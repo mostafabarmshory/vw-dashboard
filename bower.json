@@ -1,0 +1,22 @@
+{
+	"name": "my-dashboard",
+	"title": "My Dashboard",
+	"description": "General porpouse pluf dashboard.",
+	"version": "0.1.0",
+	"license": "MIT",
+	"homepage": "https://gitlab.com/pluf-spa/my-dashboard",
+	"dependencies": {
+		"angular-mocks": "^1.6.0",
+		"ng-appcache": "^2.0.1",
+		"angular-material-dashboard": "^0.2.3"
+	},
+	"devDependencies": {
+		"angular-mocks": "^1.6.0"
+	},
+	"appPath": "app",
+	"moduleName": "myDashboardApp",
+	"backend": {
+		"host": "localhost",
+		"port": 9091
+	}
+}

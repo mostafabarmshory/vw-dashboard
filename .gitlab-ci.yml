@@ -1,0 +1,16 @@
+before_script:
+  - apt-get update -yq
+  - apt-get install -y npm
+  - apt-get install nodejs-legacy
+  - apt-get install git
+  - apt-get install -y zip gzip tar
+  - npm install -g bower grunt-cli
+  - npm install
+  - bower install --allow-root
+
+example-yeoman:
+  script:
+    - grunt
+  artifacts:
+    paths:
+    - ./*.zip
