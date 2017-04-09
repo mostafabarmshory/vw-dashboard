@@ -6,9 +6,11 @@
 	"license": "MIT",
 	"homepage": "https://gitlab.com/pluf-spa/my-dashboard",
 	"dependencies": {
-		"angular-mocks": "^1.6.0",
-		"ng-appcache": "^2.0.1",
-		"angular-material-dashboard": "^0.2.3"
+		"angular-material-dashboard-cms": "^1.0.0",
+		"angular-material-dashboard-spa": "^1.0.0",
+		"angular-material-dashboard-bank": "^1.0.0",
+		"angular-material-dashboard-account": "^1.0.0",
+		"angular-material-dashboard-user": "^1.0.0"
 	},
 	"devDependencies": {
 		"angular-mocks": "^1.6.0"
@@ -17,6 +19,6 @@
 	"moduleName": "myDashboardApp",
 	"backend": {
 		"host": "localhost",
-		"port": 9091
+		"port": 8080
 	}
 }

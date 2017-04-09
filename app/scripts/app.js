@@ -2,24 +2,27 @@
 
 /**
  * @ngdoc overview
- * @name digidociEmployeeApp
+ * @name digidociEmployeeA pp
  * @description
  * # digidociEmployeeApp
  *
  * Main module of the application.
  */
 angular
-  .module('myDashboardApp', [
-    'ngMaterialDashboard', //
-    'ng-appcache', //
-  ])
-// Load application
-.run(function($app) {
-	$app.start('my-dashboard');
-})
-// TODO: check dashboard release 2.1
-.config(function ($localStorageProvider) {
-    $localStorageProvider.setKeyPrefix('my-dashboard.');
-});
+.module('myDashboardApp', [
+	'ngMaterialDashboardSpa', //
+	'ngMaterialDashboardUser', //
+	'ngMaterialDashboardAccount', //
+	'ngMaterialDashboardCms', //
+	'ngMaterialDashboardBank', //
+	])
+//	Load application
+	.run(function($app) {
+		$app.start('my-dashboard');
+	})
+//	TODO: check dashboard release 2.1
+	.config(function ($localStorageProvider) {
+		$localStorageProvider.setKeyPrefix('my-dashboard.');
+	});
 
 
