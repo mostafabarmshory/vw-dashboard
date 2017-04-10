@@ -427,7 +427,14 @@ module.exports = function(grunt) {
 			cwd : '.tmp/images',
 			dest : '<%= yeoman.dist %>/images',
 			src : [ 'generated/*' ]
-		    } ]
+		    }, {
+			cwd : 'bower_components/tinymce/',
+			src : [ 'plugins/**', 'themes/**',
+			    'skins/**' ],
+			    dest : '<%= yeoman.dist %>/scripts',
+			    filter : 'isFile',
+			    expand : true
+		    }  ]
 	    },
 	    styles : {
 		expand : true,
@@ -541,8 +548,12 @@ module.exports = function(grunt) {
 		    '*.{html,ico,json}',
 		    'styles/*.css',
 		    'styles/fonts/*.{woff,woff2,svg,ttf,eot,ijmap}',
-		    'scripts/*.js', 'images/*.{svg,png,jpeg}',
-		    'images/*/*.{svg,png,jpeg}' ],
+		    'scripts/*.js', 
+		    'images/*.{svg,png,jpeg}',
+		    'images/*/*.{svg,png,jpeg}', 
+		    'scripts/plugins/**/*.*',
+	            'scripts/themes/**/*.*',
+	            'scripts/skins/**/*.*' ],
 		    dest : '<%= yeoman.dist %>/manifest.appcache'
 	    }
 	}
