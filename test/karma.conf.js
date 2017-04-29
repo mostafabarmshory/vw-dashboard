@@ -47,6 +47,7 @@ module.exports = function(config) {
       'bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js',
       'bower_components/angular-material-expansion-panel/dist/md-expansion-panel.js',
       'bower_components/angular-material-icons/angular-material-icons.min.js',
+      'bower_components/weakmap-polyfill/weakmap-polyfill.js',
       'bower_components/angular-material-weburger/dist/angular-material-weburger.js',
       'bower_components/material-calendar/dist/angular-material-calendar.js',
       'bower_components/am-wb-seen-monitors/dist/am-wb-seen-monitors.js',
@@ -56,6 +57,7 @@ module.exports = function(config) {
       'bower_components/angular-material-dashboard-bank/dist/angular-material-dashboard-bank.js',
       'bower_components/angular-material-dashboard-account/dist/angular-material-dashboard-account.js',
       'bower_components/angular-material-dashboard-user/dist/angular-material-dashboard-user.js',
+      'bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/*.js',
