@@ -49,6 +49,8 @@ module.exports = function(config) {
       'bower_components/angular-material-icons/angular-material-icons.min.js',
       'bower_components/weakmap-polyfill/weakmap-polyfill.js',
       'bower_components/angular-material-weburger/dist/angular-material-weburger.js',
+      'bower_components/angular-uuid/uuid.min.js',
+      'bower_components/am-wb-seen/dist/am-wb-seen.js',
       'bower_components/material-calendar/dist/angular-material-calendar.js',
       'bower_components/am-wb-seen-monitors/dist/am-wb-seen-monitors.js',
       'bower_components/angular-material-dashboard/dist/angular-material-dashboard.js',
