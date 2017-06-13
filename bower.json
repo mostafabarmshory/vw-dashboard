@@ -2,7 +2,7 @@
 	"name": "my-dashboard",
 	"title": "My Dashboard",
 	"description": "General porpouse pluf dashboard.",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"license": "MIT",
 	"homepage": "https://gitlab.com/pluf-spa/my-dashboard",
 	"dependencies": {
