@@ -2,7 +2,7 @@
 	"name": "my-dashboard",
 	"title": "My Dashboard",
 	"description": "General porpouse pluf dashboard.",
-	"version": "1.0.3",
+	"version": "1.0.5",
 	"license": "MIT",
 	"homepage": "https://gitlab.com/pluf-spa/my-dashboard",
 	"dependencies": {
@@ -20,6 +20,6 @@
 	"moduleName": "myDashboardApp",
 	"backend": {
 		"host": "localhost",
-		"port": 8080
+		"port": 8083
 	}
 }
