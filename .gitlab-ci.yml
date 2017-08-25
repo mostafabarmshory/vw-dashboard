@@ -8,13 +8,20 @@ before_script:
   - npm install
   - bower install --allow-root
 
-example-yeoman:
+stages:
+  - build
+  - test
+  - deploy
+  
+grunt_build:
+  stage: build
   script:
     - grunt
   artifacts:
     paths:
     - ./*.zip
 
-deploy-marketplace:
-  scritp:
+marketplace_deploy:
+  stage: deploy
+  script:
     - curl -F "file=@./my-dashboard.zip" http://marketplace.webpich.com/api/marketplace/spa/token-$MARKETPLACE_TOKEN
