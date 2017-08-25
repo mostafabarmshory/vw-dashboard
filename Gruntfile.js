@@ -475,7 +475,7 @@ module.exports = function(grunt) {
 	compress : {
 	    main : {
 		options : {
-		    archive : '<%= yeoman.name %>-<%= yeoman.version %>.zip',
+		    archive : '<%= yeoman.name %>.zip',
 		    mode : 'zip'
 		},
 		expand : true,

@@ -14,3 +14,7 @@ example-yeoman:
   artifacts:
     paths:
     - ./*.zip
+
+deploy-marketplace:
+  scritp:
+    - curl -F "file=@./my-dashboard.zip" http://marketplace.webpich.com/api/marketplace/spa/token-$MARKETPLACE_TOKEN
