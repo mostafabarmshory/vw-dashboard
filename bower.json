@@ -19,7 +19,6 @@
 	"appPath": "app",
 	"moduleName": "myDashboardApp",
 	"backend": {
-		"host": "localhost",
-		"port": 8083
+		"host": "www.webpich.com"
 	}
 }
