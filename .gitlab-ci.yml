@@ -1,7 +1,8 @@
 before_script:
+  - apt-get update -yq
   - apt-get install -y npm
   - npm -v
-  - node -v
+  - nde
   - apt-get install nodejs-legacy
   - apt-get install git
   - apt-get install -y zip gzip tar
