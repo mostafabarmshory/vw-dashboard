@@ -1,29 +1,6 @@
 before_script:
   - apt-get update -yq
-  - apt-get install -y npm
+  - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+  - sudo apt-get install -y nodejs
   - npm -v
   - node -v
-  - apt-get install nodejs-legacy
-  - apt-get install git
-  - apt-get install -y zip gzip tar
-  - npm install -g bower grunt-cli
-  - npm install
-  - bower install --allow-root
-
-stages:
-  - build
-  - test
-  - deploy
-  
-grunt_build:
-  stage: build
-  script:
-    - grunt
-  artifacts:
-    paths:
-    - ./*.zip
-
-marketplace_deploy:
-  stage: deploy
-  script:
-    - curl -F "file=@./my-dashboard.zip" http://marketplace.webpich.com/api/marketplace/spa/token-$MARKETPLACE_TOKEN
