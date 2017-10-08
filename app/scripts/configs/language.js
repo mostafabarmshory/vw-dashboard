@@ -14,6 +14,7 @@ angular.module('myDashboardApp')
 	'Applications': 'نرم‌افزارها',
 	'Account': 'حساب کاربری',
 	'Profile': 'پروفایل‌ها',
+	'User management': 'مدیریت کاربران',
 	'Users': 'کاربران',
 	'Groups': 'گروه‌ها',
 	'Roles': 'نقش‌ها',
@@ -28,6 +29,13 @@ angular.module('myDashboardApp')
 	'Actions': 'اکشن‌ها',
 	'Tenant': 'ملک',
 	'Input value': 'مقدار ورودی',
+	
+	'spas': 'نرم‌افزارها',
+	
+	'CMS': 'سیستم مدیریت محتوی',
+	'Contents': 'محتوی‌ها',
+	
+	'Bank gates': 'درگاه‌های بانکی',
 	
 	'Search': 'جستجو',
 	
