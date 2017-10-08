@@ -1,0 +1,10 @@
+@font-face {
+    font-family: IRANSansWeb;
+    src: url(fonts/IRANSansWeb.woff);
+}
+
+
+
+html {
+    font-family: IRANSansWeb, "Times New Roman", Times, serif;
+}
