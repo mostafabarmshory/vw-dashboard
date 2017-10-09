@@ -6,13 +6,12 @@
 	"license": "MIT",
 	"homepage": "https://gitlab.com/pluf-spa/my-dashboard",
 	"dependencies": {
-		"angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#develop",
-		"angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#develop",
-		"angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#develop",
-		"angular-material-dashboard-bank": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-bank.git#develop",
-		"angular-material-dashboard-account": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-account.git#develop",
-		"angular-material-dashboard-user": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-user.git#develop",
-		"angular-material-dashboard-seo": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-seo.git#develop"
+		"angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#^1.0.0",
+		"angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#^1.0.0",
+		"angular-material-dashboard-bank": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-bank.git#^1.0.0",
+		"angular-material-dashboard-account": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-account.git#^1.0.0",
+		"angular-material-dashboard-user": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-user.git#^1.0.0",
+		"angular-material-dashboard-seo": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-seo.git#^1.0.0"
 	},
 	"devDependencies": {
 		"angular-mocks": "^1.6.0"
