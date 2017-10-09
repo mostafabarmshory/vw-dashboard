@@ -51,12 +51,35 @@ angular.module('myDashboardApp')
 	'Tenant': 'ملک',
 	'Input value': 'مقدار ورودی',
 	
+	'ID': 'شناسه',
+	'Login': 'لاگین',
+	'EMail': 'پست الکترونیکی',
+	'Edit': 'ویرایش',
+	'Save': 'ذخیره',
+	'Cancel': 'انصراف',
+	'Restore': 'بازیابی',
+	'Password': 'گذرواژه',
+	'Confirm': 'تایید',
+	
+	'Summary': 'خلاصه',
+	'Phone': 'شماره تماس',
+	'Mobile': 'شماره همراه',
+	'LinkedId': 'لینکدین',
+	'Telegram': 'تلگرام',
+	'Whatsapp': 'واتساپ',
+	'Contacts': 'تماس‌ها',
+	'User avatar': 'اواتار کاربری',
+	'Socials': 'شبکه‌های اجتمائی',
+	
 	'spas': 'نرم‌افزارها',
 	
 	'CMS': 'سیستم مدیریت محتوی',
 	'Contents': 'محتوی‌ها',
 	
 	'Bank gates': 'درگاه‌های بانکی',
+	
+	'Settings': 'تنظیمات',
+	'Setting' : 'تنظیم',
 	
 	'Theme': 'نمایه',
 	'Themes': 'نمایه‌ها',
@@ -74,7 +97,13 @@ angular.module('myDashboardApp')
 	
 	'Search': 'جستجو',
 	
-	'message': 'پیام و یا توضیحات',
+	'Language': 'زبان',
+	'Persian': 'فارسی',
+	'English': 'انگلیسی',
+	'Enable navbar': 'فعال کردن نوار ابزار',
+	
+	'Messages': 'پیام‌ها',
+	'message': 'پیام',
 	'set zone': 'تعیین منطقه',
 	'set fixer': 'تعیین تعمیرکار',
 	'remote consultant': 'مشاوره تلفنی',

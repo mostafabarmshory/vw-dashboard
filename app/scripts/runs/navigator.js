@@ -48,4 +48,12 @@ angular.module('myDashboardApp')
 		title: 'Account',
 		icon: 'help'
 	});
+	$navigator.newItem({
+		type: 'link',
+		groups: ['curent-user'],
+		link: '/settings',
+		title: 'Settings',
+		icon: 'settings',
+		priority: 1000
+	});
 });
