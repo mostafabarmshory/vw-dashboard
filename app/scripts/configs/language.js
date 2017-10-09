@@ -35,6 +35,7 @@ angular.module('myDashboardApp')
 	'Account': 'حساب کاربری',
 	'Profile': 'پروفایل‌ها',
 	'User management': 'مدیریت کاربران',
+	'User': 'کاربر',
 	'Users': 'کاربران',
 	'Groups': 'گروه‌ها',
 	'Roles': 'نقش‌ها',
@@ -56,6 +57,20 @@ angular.module('myDashboardApp')
 	'Contents': 'محتوی‌ها',
 	
 	'Bank gates': 'درگاه‌های بانکی',
+	
+	'Theme': 'نمایه',
+	'Themes': 'نمایه‌ها',
+	'default':'پیش فرض',
+	'gray': 'خاکستری',
+	'red': 'قرمز',
+	'dark': 'تیره',
+	
+	'Local': 'منطقه',
+	'Language': 'زبان',
+	'Direction': 'جهت',
+	'Right to left': 'راست به چپ',
+	'Left to right': 'چپ به راست',
+	'Enable navbar': 'فعال کردن نوار مسیر',
 	
 	'Search': 'جستجو',
 	
