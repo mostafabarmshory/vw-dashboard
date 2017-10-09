@@ -33,11 +33,11 @@
  */
 angular
 .module('myDashboardApp', [
-//	'ngMaterialDashboardSpa', //
+	'ngMaterialDashboardSpa', //
 	'ngMaterialDashboardUser', //
 	'ngMaterialDashboardAccount', //
-//	'ngMaterialDashboardCms', //
-//	'ngMaterialDashboardBank', //
+	'ngMaterialDashboardCms', //
+	'ngMaterialDashboardBank', //
 	'ngMaterialDashboardSeo', //
 	])
 //	Load application
