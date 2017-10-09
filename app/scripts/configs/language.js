@@ -93,11 +93,9 @@ angular.module('myDashboardApp')
 	'Direction': 'جهت',
 	'Right to left': 'راست به چپ',
 	'Left to right': 'چپ به راست',
-	'Enable navbar': 'فعال کردن نوار مسیر',
 	
 	'Search': 'جستجو',
 	
-	'Language': 'زبان',
 	'Persian': 'فارسی',
 	'English': 'انگلیسی',
 	'Enable navbar': 'فعال کردن نوار ابزار',
