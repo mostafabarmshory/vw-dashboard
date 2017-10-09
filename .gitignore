@@ -1,11 +1,19 @@
+# NodeJS
 /node_modules
+/package-lock.json
+
+# Project
 /dist
 /.tmp
-/.sass-cache
 /bower_components
+/.sass-cache
 
 # KDE
 .directory
+
+# GNOME
+
+# Windows
 
 # Eclipse
 /.settings/
