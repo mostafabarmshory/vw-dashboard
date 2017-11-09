@@ -54,6 +54,8 @@ module.exports = function(config) {
       'bower_components/handsontable/dist/handsontable.js',
       'bower_components/ngHandsontable/dist/ngHandsontable.js',
       'bower_components/angular-material-weburger/dist/angular-material-weburger.js',
+      'bower_components/angular-uuid/uuid.min.js',
+      'bower_components/am-wb-seen-core/dist/am-wb-seen-core.js',
       'bower_components/angular-material-dashboard/dist/angular-material-dashboard.js',
       'bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.js',
       'bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.js',
