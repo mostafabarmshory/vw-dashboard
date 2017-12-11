@@ -22,7 +22,8 @@
 	"appPath": "app",
 	"moduleName": "myDashboardApp",
 	"backend": {
-		"host": "localhost",
-		"port": 9590
+		"#host": "localhost",
+		"host": "192.69.216.109",
+		"port": 8083
 	}
 }
