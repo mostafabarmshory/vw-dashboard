@@ -1,25 +1,28 @@
-before_script:
-  - apt-get update -yq
-  - curl -sL https://deb.nodesource.com/setup_6.x | bash -
-  - apt-get install -y nodejs
-  - apt-get install git
-  - apt-get install -y zip gzip tar
-  - npm install -g bower grunt-cli
-  - npm install
-  - bower install --allow-root --no-interactive
+image: node:8
+
+cache:
+  paths:
+  - node_modules
 
 stages:
   - build
-  - test
   - deploy
   
 grunt_build:
   stage: build
   script:
+    - apt-get update -yq
+    - apt-get install git
+    - apt-get install -y zip gzip tar
+    - npm install -g bower grunt-cli
+    - npm install
+    - bower install --allow-root --no-interactive
     - grunt
   artifacts:
     paths:
-    - ./*.zip
+      - ./${CI_PROJECT_NAME}.zip
+      - ./doc
+
 
 marketplace_deploy:
   stage: deploy
@@ -27,4 +30,4 @@ marketplace_deploy:
     - master
   script:
     - grunt
-    - curl -F "file=@./my-dashboard.zip" http://marketplace.webpich.com/api/marketplace/spa/token-$MARKETPLACE_TOKEN
+    - curl -F "file=@./${CI_PROJECT_NAME}.zip" http://marketplace.webpich.com/api/marketplace/spa/token-$MARKETPLACE_TOKEN

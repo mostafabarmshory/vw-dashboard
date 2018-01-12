@@ -1,7 +1,5 @@
-/* 
- * The MIT License (MIT)
- * 
- * Copyright (c) 2016 weburger
+/*
+ * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,30 +21,39 @@
  */
 'use strict';
 
+angular.module('myDashboardApp')
 /**
- * @ngdoc overview
- * @name digidociEmployeeA pp
- * @description
- * # digidociEmployeeApp
- *
- * Main module of the application.
+ * 
  */
-angular
-.module('myDashboardApp', [
-	'ngMaterialDashboardSpa', //
-	'ngMaterialDashboardUser', //
-	'ngMaterialDashboardAccount', //
-	'ngMaterialDashboardCms', //
-	'ngMaterialDashboardBank', //
-	'ngMaterialDashboardSeo', //
-	])
-//	Load application
-	.run(function($app) {
-		$app.start('my-dashboard');
-	})
-//	TODO: check dashboard release 2.1
-	.config(function ($localStorageProvider) {
-		$localStorageProvider.setKeyPrefix('my-dashboard.');
+.run(function($navigator) {
+
+	$navigator.newGroup({
+		id: 'curent-user',
+		title: 'User',
+		description: 'A module of dashboard to manage current user.',
+		icon: 'face',
+		priority: 1
 	});
-
-
+	$navigator.newItem({
+		type: 'link',
+		groups: ['curent-user'],
+		link: '/profile',
+		title: 'Profile',
+		icon: 'help'
+	});
+	$navigator.newItem({
+		type: 'link',
+		groups: ['curent-user'],
+		link: '/account',
+		title: 'Account',
+		icon: 'help'
+	});
+	$navigator.newItem({
+		type: 'link',
+		groups: ['curent-user'],
+		link: '/settings',
+		title: 'Settings',
+		icon: 'settings',
+		priority: 1000
+	});
+});

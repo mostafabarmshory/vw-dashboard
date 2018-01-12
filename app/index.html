@@ -8,8 +8,10 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="fragment" content="!">
+    <!--  Tells to crawler that do not index this page and do not follow its links -->
+    <meta name="robots" content="noindex, nofollow" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
@@ -21,6 +23,9 @@
     <link rel="stylesheet" href="bower_components/pikaday/css/pikaday.css" />
     <link rel="stylesheet" href="bower_components/handsontable/dist/handsontable.css" />
     <link rel="stylesheet" href="bower_components/angular-material-weburger/dist/angular-material-weburger.css" />
+    <link rel="stylesheet" href="bower_components/am-wb-seen-core/dist/am-wb-seen-core.css" />
+    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <link rel="stylesheet" href="bower_components/am-wb-common/dist/angular-material-weburger-common.css" />
     <link rel="stylesheet" href="bower_components/angular-material-dashboard/dist/angular-material-dashboard.css" />
     <link rel="stylesheet" href="bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.css" />
     <link rel="stylesheet" href="bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.css" />
@@ -30,8 +35,13 @@
     <link rel="stylesheet" href="bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.css" />
     <!-- endbower -->
     <!-- endbuild -->
+    
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+	<!-- injector:css -->
+	<link rel="stylesheet" href="styles/fonts.css">
+	<link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="styles/preloader.css">
+	<!-- endinjector -->
     <!-- endbuild -->
   </head>
   <body>
@@ -91,6 +101,11 @@
     <script src="bower_components/handsontable/dist/handsontable.js"></script>
     <script src="bower_components/ngHandsontable/dist/ngHandsontable.js"></script>
     <script src="bower_components/angular-material-weburger/dist/angular-material-weburger.js"></script>
+    <script src="bower_components/angular-uuid/uuid.min.js"></script>
+    <script src="bower_components/am-wb-seen-core/dist/am-wb-seen-core.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="bower_components/am-wb-common/dist/angular-material-weburger-common.js"></script>
+    <script src="bower_components/angular-recaptcha/release/angular-recaptcha.js"></script>
     <script src="bower_components/angular-material-dashboard/dist/angular-material-dashboard.js"></script>
     <script src="bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.js"></script>
     <script src="bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.js"></script>
@@ -102,10 +117,12 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    
-    <script src="scripts/configs/icon.js"></script>
-    <script src="scripts/configs/language.js"></script>
+	<!-- injector:js -->
+	<script src="scripts/app.js"></script>
+	<script src="scripts/configs/icon.js"></script>
+	<script src="scripts/configs/language.js"></script>
+	<script src="scripts/runs/navigator.js"></script>
+	<!-- endinjector -->
     <!-- endbuild -->
 </body>
 </html>
