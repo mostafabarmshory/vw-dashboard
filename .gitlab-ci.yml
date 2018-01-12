@@ -28,8 +28,8 @@ marketplace_deploy:
   stage: deploy
   dependencies: 
     - grunt_build
-#  only:
-#    - master
+  only:
+    - master
   script:
     - ls
     - curl -F "file=@./${CI_PROJECT_NAME}.zip" http://marketplace.webpich.com/api/marketplace/spa/token-$MARKETPLACE_TOKEN
