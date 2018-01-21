@@ -1,12 +1,13 @@
 {
 	"name": "my-dashboard",
 	"moduleName": "myDashboardApp",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"title": "My Dashboard",
 	"description": "General porpouse pluf dashboard.",
 	"license": "MIT",
 	"homepage": "https://gitlab.com/pluf-spa/my-dashboard",
 	"dependencies": {
+		"angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#^1.1.0",
 		"angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#^1.1.0",
 		"angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#^1.1.0",
 		"angular-material-dashboard-bank": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-bank.git#^1.1.0",
@@ -22,8 +23,8 @@
 	},
 	"appPath": "app",
 	"backend": {
-		"#host": "localhost",
-		"host": "192.69.216.109",
-		"port": 8083
+		"host": "digidoki.com",
+		"#host": "192.69.216.109",
+		"#port": 8083
 	}
 }
