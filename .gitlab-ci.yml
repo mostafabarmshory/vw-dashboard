@@ -36,8 +36,8 @@ grunt_build:
 
 marketplace_deploy:
   stage: deploy
-#  only:
-#    - master
+  only:
+    - master
   script:
     - grunt
     - curl -F "file=@./${CI_PROJECT_NAME}.zip" http://marketplace.webpich.com/api/marketplace/spa/token-$MARKETPLACE_TOKEN
