@@ -1,7 +1,7 @@
 {
 	"name": "my-dashboard",
 	"moduleName": "myDashboardApp",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"title": "My Dashboard",
 	"description": "General porpouse pluf dashboard.",
 	"license": "MIT",
