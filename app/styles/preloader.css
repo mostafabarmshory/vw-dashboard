@@ -4,7 +4,7 @@
  * بر اساس مدل مورد نظر خود این کلاس را تغییر دهید.
  */
 .amd-preload {
-	background: #999999 url("../images/amd/loader.gif") no-repeat center;
+	background: #999999 url("../images/loader.gif") no-repeat center;
 	min-height: 1px;
 	min-width: 1px;
 	pointer-events: none;
@@ -15,6 +15,5 @@
  * می‌شود. این کلاس کلاسی است که برای انتقال استفاده می‌شود.
  */
 .amd-preload-animate {
-	background: #115588;
 }
 

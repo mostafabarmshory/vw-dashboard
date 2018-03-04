@@ -23,7 +23,7 @@
 	},
 	"appPath": "app",
 	"backend": {
-		"host": "digidoki.com",
+		"host": "testtenant02.siteonclouds.com",
 		"#host": "192.69.216.109",
 		"#port": 8083
 	}

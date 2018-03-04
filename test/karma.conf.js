@@ -33,6 +33,7 @@ module.exports = function(config) {
       'bower_components/moment/moment.js',
       'bower_components/moment-jalaali/build/moment-jalaali.js',
       'bower_components/angular-pluf/dist/angular-pluf.js',
+      'bower_components/seen-core/dist/seen-core.js',
       'bower_components/seen-tenant/dist/seen-tenant.js',
       'bower_components/angular-aria/angular-aria.js',
       'bower_components/angular-material/angular-material.js',
