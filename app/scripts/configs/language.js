@@ -30,15 +30,47 @@ angular.module('myDashboardApp')
     $translateProvider
     //
     .translations('fa', {
-	'Dashboard': 'داشبور',
-	'Applications': 'نرم‌افزارها',
-	'Account': 'حساب کاربری',
-	'Profile': 'پروفایل‌ها',
-	'User management': 'مدیریت کاربران',
+    	
+    	'Search': 'جستجو',
+    	'Log out': 'خروج',
+    	
+    	'Dashboard': 'داشبور',
+    	'Account': 'حساب کاربری',
+    	'Profile': 'پروفایل‌ها',
+    	
+    	'User management' : 'مدیریت کاربران',
+    	'Users': 'کاربران',
+    	'Groups': 'گروه‌ها',
+    	'Roles': 'نقش‌ها',
+    	'New user': 'ایجاد کاربر جدید',
+    	'New group': 'ایجاد گروه جدید',
+    	'New role': 'ایجاد نقش جدید',
+    	
+    	'Content management': 'مدیریت محتوا',
+    	'Contents': 'محتوا',
+    	'New Content': 'ایجاد محتوای جدید',
+    	
+    	'Spa management': 'مدیریت اپلیکیشن‌ها',
+    	'Applications': 'اپلیکیشن‌ها',
+    	'spas': 'اپلیکیشن‌ها',
+    	'Upload spa': 'بارگزاری اپلیکیشن جدید',
+    	'Repository': 'مخزن اپلیکیشن‌ها',
+    	
+    	'Bank management': 'مدیریت درگاه‌های بانکی',
+    	'Bank gates': 'درگاه‌های بانکی',
+    	
+    	'Discount management': 'مدیریت تخفیف‌ها',
+    	'Discounts': 'تخفیف‌ها',
+    	'New Discount': 'ایجاد تخفیف جدید',
+    	'New discount': 'ایجاد تخفیف جدید',
+    	
+    	'Tenant': 'تارنما',
+    	'Tenant Info': 'اطلاعات تارنما',
+    	'Tickets': 'درخواست‌ها',
+    	'Invoices': 'صورتحساب‌ها',
+    	
 	'User': 'کاربر',
-	'Users': 'کاربران',
-	'Groups': 'گروه‌ها',
-	'Roles': 'نقش‌ها',
+
 	'Problems': 'مشکلات',
 	'Zones': 'منطقه‌ها',
 	'Networks': 'شبکه‌ها',
@@ -48,7 +80,6 @@ angular.module('myDashboardApp')
 	'Workshops': 'کارگاه‌ها',
 	'Requests': 'تقاضاها',
 	'Actions': 'اکشن‌ها',
-	'Tenant': 'ملک',
 	'Input value': 'مقدار ورودی',
 	
 	'ID': 'شناسه',
@@ -71,13 +102,6 @@ angular.module('myDashboardApp')
 	'User avatar': 'اواتار کاربری',
 	'Socials': 'شبکه‌های اجتمائی',
 	
-	'spas': 'نرم‌افزارها',
-	
-	'CMS': 'سیستم مدیریت محتوی',
-	'Contents': 'محتوی‌ها',
-	
-	'Bank gates': 'درگاه‌های بانکی',
-	
 	'Settings': 'تنظیمات',
 	'Setting' : 'تنظیم',
 	
@@ -94,30 +118,12 @@ angular.module('myDashboardApp')
 	'Right to left': 'راست به چپ',
 	'Left to right': 'چپ به راست',
 	
-	'Search': 'جستجو',
-	
 	'Persian': 'فارسی',
 	'English': 'انگلیسی',
 	'Enable navbar': 'فعال کردن نوار ابزار',
 	
 	'Messages': 'پیام‌ها',
 	'message': 'پیام',
-	'set zone': 'تعیین منطقه',
-	'set fixer': 'تعیین تعمیرکار',
-	'remote consultant': 'مشاوره تلفنی',
-	'incomplete info': 'اطلاعات ناقص',
-	'schadule': 'تعیین زمان و مکان',
-	'fixed': 'تعمیر شد',
-	'impossilbe to fix': 'تعمییر ممکن نیست',
-	'set workshop': 'تعیین کارگاه',
-	'accept': 'دریافت گوشی',
-	'start to fix': 'آغاز تعمیر',
-	'need more time': 'نیاز به زمان بیشتر',
-	'give back': 'ارسال به مشتری',
-	'close': 'بستن',
-	'reopen': 'باز کردن',
-	'archive': 'بایگانی',
-	'report': 'گزارش',
 	
 	'app.update.message': 'نسخه جدید نصب شده است، دوباره لود کنید.',
     });
