@@ -11,6 +11,8 @@ module.exports = function(grunt) {
 
 	// Time how long tasks take. Can help when optimizing build times
 	require('time-grunt')(grunt);
+	//MODIFIED: add require for connect-modewrite
+	var modRewrite = require('connect-modrewrite');
 
 	// Automatically load required Grunt tasks
 	require('jit-grunt')(grunt, {
@@ -105,16 +107,20 @@ module.exports = function(grunt) {
 				options : {
 					open : true,
 					middleware : function(connect, options) {
-						var middlewares = [
-							connect.static('.tmp'),
-							connect()
-							.use('/bower_components',
-									connect
-									.static('./bower_components')),
-									connect().use('/app/styles',
-											connect.static('./app/styles')),
-											connect.static(appConfig.app) ];
-
+						var middlewares = [];
+						//Matches everything that does not contain a '.' (period)
+						middlewares.push(modRewrite(['!/api/.*|.*\\..* /index.html [L]'])); 
+						middlewares.push(connect.static('.tmp'));
+						middlewares.push(
+								connect()
+								.use('/bower_components',connect.static('./bower_components')));
+						middlewares.push(
+								connect()
+								.use('/app/styles',	connect.static('./app/styles')));
+						middlewares.push(connect.static(appConfig.app));
+						options.base.forEach(function(base) {
+							middlewares.push(connect.static(base));
+						});
 						if (!Array.isArray(options.base)) {
 							options.base = [ options.base ];
 						}
@@ -433,14 +439,81 @@ module.exports = function(grunt) {
 						cwd : '.tmp/images',
 						dest : '<%= yeoman.dist %>/images',
 						src : [ 'generated/*' ]
-					}, {
+					}, { // resources
+						expand : true,
+						dot : true,
+						cwd : '<%= yeoman.app %>/resources',
+						src : '**/*.*',
+						dest : '<%= yeoman.dist %>/resources',
+					}, {// tinymce plugins
 						cwd : 'bower_components/tinymce/',
-						src : [ 'plugins/**', 'themes/**',
-							'skins/**' ],
-							dest : '<%= yeoman.dist %>/scripts',
-							filter : 'isFile',
-							expand : true
-					}  ]
+						src : [ 'plugins/**', 'themes/**', 'skins/**' ],
+						dest : '<%= yeoman.dist %>/scripts',
+						filter : 'isFile',
+						expand : true
+					},
+					// TODO: maso, 2018: do for all amh modules
+					{
+						dot : true,
+						expand : true,
+						cwd : 'bower_components/angular-material-dashboard/dist/resources',
+						dest : '<%= yeoman.dist %>/resources',
+						src : '**/*.*'
+					},{
+						dot : true,
+						expand : true,
+						cwd : 'bower_components/angular-material-dashboard-account/dist/resources',
+						dest : '<%= yeoman.dist %>/resources',
+						src : '**/*.*'
+					},{
+						dot : true,
+						expand : true,
+						cwd : 'bower_components/angular-material-dashboard-bank/dist/resources',
+						dest : '<%= yeoman.dist %>/resources',
+						src : '**/*.*'
+					},{
+						dot : true,
+						expand : true,
+						cwd : 'bower_components/angular-material-dashboard-cms/dist/resources',
+						dest : '<%= yeoman.dist %>/resources',
+						src : '**/*.*'
+					},{
+						dot : true,
+						expand : true,
+						cwd : 'bower_components/angular-material-dashboard-collection/dist/resources',
+						dest : '<%= yeoman.dist %>/resources',
+						src : '**/*.*'
+					},{
+						dot : true,
+						expand : true,
+						cwd : 'bower_components/angular-material-dashboard-discount/dist/resources',
+						dest : '<%= yeoman.dist %>/resources',
+						src : '**/*.*'
+					},{
+						dot : true,
+						expand : true,
+						cwd : 'bower_components/angular-material-dashboard-seo/dist/resources',
+						dest : '<%= yeoman.dist %>/resources',
+						src : '**/*.*'
+					},{
+						dot : true,
+						expand : true,
+						cwd : 'bower_components/angular-material-dashboard-spa/dist/resources',
+						dest : '<%= yeoman.dist %>/resources',
+						src : '**/*.*'
+					},{
+						dot : true,
+						expand : true,
+						cwd : 'bower_components/angular-material-dashboard-tenant/dist/resources',
+						dest : '<%= yeoman.dist %>/resources',
+						src : '**/*.*'
+					},{
+						dot : true,
+						expand : true,
+						cwd : 'bower_components/angular-material-dashboard-user/dist/resources',
+						dest : '<%= yeoman.dist %>/resources',
+						src : '**/*.*'
+					},]
 			},
 			styles : {
 				expand : true,
@@ -496,7 +569,7 @@ module.exports = function(grunt) {
 		 * توش اطلاعاتی راجع به این برنامه قرار می‌گیره. سرورهای ما این
 		 * فایل رو پردازش می‌کنند.
 		 * 
-		 * ساختن فایل‌ها با استفاده از ابزار grunt-file-creator انجام
+		 * ساختن فایل‌ها با استفاده از ابزار grunt--creator انجام
 		 * می‌شود. برای اطلاع بیشتر در مورد این بسته به آدرس زیر مراجعه
 		 * کنید:
 		 * 
@@ -557,9 +630,9 @@ module.exports = function(grunt) {
 					'images/*.{svg,png,jpeg}',
 					'images/*/*.{svg,png,jpeg}', 
 					'scripts/*.js', 
-					'scripts/plugins/**/*.*',
-					'scripts/themes/**/*.*',
-					'scripts/skins/**/*.*',
+//					'scripts/plugins/**/*.*',
+//					'scripts/themes/**/*.*',
+//					'scripts/skins/**/*.*',
 					],
 					dest : '<%= yeoman.dist %>/manifest.appcache'
 			}
