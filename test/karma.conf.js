@@ -65,6 +65,7 @@ module.exports = function(config) {
       'bower_components/blob-polyfill/Blob.js',
       'bower_components/file-saver.js/FileSaver.js',
       'bower_components/angular-file-saver/dist/angular-file-saver.bundle.js',
+      'bower_components/angular-material-persian-datepicker/dist/datePicker.min.js',
       'bower_components/angular-material-dashboard/dist/angular-material-dashboard.js',
       'bower_components/angular-material-dashboard-tenant/dist/angular-material-dashboard-tenant.js',
       'bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.js',

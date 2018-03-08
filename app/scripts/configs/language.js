@@ -24,108 +24,108 @@
 'use strict';
 
 angular.module('myDashboardApp')
-//
+
 
 .config(function($translateProvider) {
-    $translateProvider
-    //
-    .translations('fa', {
-    	
-    	'Search': 'جستجو',
-    	'Log out': 'خروج',
-    	
-    	'Dashboard': 'داشبور',
-    	'Account': 'حساب کاربری',
-    	'Profile': 'پروفایل‌ها',
-    	
-    	'User management' : 'مدیریت کاربران',
-    	'Users': 'کاربران',
-    	'Groups': 'گروه‌ها',
-    	'Roles': 'نقش‌ها',
-    	'New user': 'ایجاد کاربر جدید',
-    	'New group': 'ایجاد گروه جدید',
-    	'New role': 'ایجاد نقش جدید',
-    	
-    	'Content management': 'مدیریت محتوا',
-    	'Contents': 'محتوا',
-    	'New Content': 'ایجاد محتوای جدید',
-    	
-    	'Spa management': 'مدیریت اپلیکیشن‌ها',
-    	'Applications': 'اپلیکیشن‌ها',
-    	'spas': 'اپلیکیشن‌ها',
-    	'Upload spa': 'بارگزاری اپلیکیشن جدید',
-    	'Repository': 'مخزن اپلیکیشن‌ها',
-    	
-    	'Bank management': 'مدیریت درگاه‌های بانکی',
-    	'Bank gates': 'درگاه‌های بانکی',
-    	
-    	'Discount management': 'مدیریت تخفیف‌ها',
-    	'Discounts': 'تخفیف‌ها',
-    	'New Discount': 'ایجاد تخفیف جدید',
-    	'New discount': 'ایجاد تخفیف جدید',
-    	
-    	'Tenant': 'تارنما',
-    	'Tenant Info': 'اطلاعات تارنما',
-    	'Tickets': 'درخواست‌ها',
-    	'Invoices': 'صورتحساب‌ها',
-    	
-	'User': 'کاربر',
+	$translateProvider
+	//
+	.translations('fa', {
 
-	'Problems': 'مشکلات',
-	'Zones': 'منطقه‌ها',
-	'Networks': 'شبکه‌ها',
-	'Devices': 'دستگاه‌ها',
-	'Model': 'مدل',
-	'Color': 'رنگ',
-	'Workshops': 'کارگاه‌ها',
-	'Requests': 'تقاضاها',
-	'Actions': 'اکشن‌ها',
-	'Input value': 'مقدار ورودی',
-	
-	'ID': 'شناسه',
-	'Login': 'لاگین',
-	'EMail': 'پست الکترونیکی',
-	'Edit': 'ویرایش',
-	'Save': 'ذخیره',
-	'Cancel': 'انصراف',
-	'Restore': 'بازیابی',
-	'Password': 'گذرواژه',
-	'Confirm': 'تایید',
-	
-	'Summary': 'خلاصه',
-	'Phone': 'شماره تماس',
-	'Mobile': 'شماره همراه',
-	'LinkedId': 'لینکدین',
-	'Telegram': 'تلگرام',
-	'Whatsapp': 'واتساپ',
-	'Contacts': 'تماس‌ها',
-	'User avatar': 'اواتار کاربری',
-	'Socials': 'شبکه‌های اجتمائی',
-	
-	'Settings': 'تنظیمات',
-	'Setting' : 'تنظیم',
-	
-	'Theme': 'نمایه',
-	'Themes': 'نمایه‌ها',
-	'default':'پیش فرض',
-	'gray': 'خاکستری',
-	'red': 'قرمز',
-	'dark': 'تیره',
-	
-	'Local': 'منطقه',
-	'Language': 'زبان',
-	'Direction': 'جهت',
-	'Right to left': 'راست به چپ',
-	'Left to right': 'چپ به راست',
-	
-	'Persian': 'فارسی',
-	'English': 'انگلیسی',
-	'Enable navbar': 'فعال کردن نوار ابزار',
-	
-	'Messages': 'پیام‌ها',
-	'message': 'پیام',
-	
-	'app.update.message': 'نسخه جدید نصب شده است، دوباره لود کنید.',
-    });
-    $translateProvider.preferredLanguage('fa');
+		'Search': 'جستجو',
+		'Log out': 'خروج',
+
+		'Dashboard': 'داشبور',
+		'Account': 'حساب کاربری',
+		'Profile': 'پروفایل‌ها',
+
+		'User management' : 'مدیریت کاربران',
+		'Users': 'کاربران',
+		'Groups': 'گروه‌ها',
+		'Roles': 'نقش‌ها',
+		'New user': 'ایجاد کاربر جدید',
+		'New group': 'ایجاد گروه جدید',
+		'New role': 'ایجاد نقش جدید',
+
+		'Content management': 'مدیریت محتوا',
+		'Contents': 'محتوا',
+		'New Content': 'ایجاد محتوای جدید',
+
+		'Spa management': 'مدیریت اپلیکیشن‌ها',
+		'Applications': 'اپلیکیشن‌ها',
+		'spas': 'اپلیکیشن‌ها',
+		'Upload spa': 'بارگزاری اپلیکیشن جدید',
+		'Repository': 'مخزن اپلیکیشن‌ها',
+
+		'Bank management': 'مدیریت درگاه‌های بانکی',
+		'Bank gates': 'درگاه‌های بانکی',
+
+		'Discount management': 'مدیریت تخفیف‌ها',
+		'Discounts': 'تخفیف‌ها',
+		'New Discount': 'ایجاد تخفیف جدید',
+		'New discount': 'ایجاد تخفیف جدید',
+
+		'Tenant': 'تارنما',
+		'Tenant Info': 'اطلاعات تارنما',
+		'Tickets': 'درخواست‌ها',
+		'Invoices': 'صورتحساب‌ها',
+
+		'User': 'کاربر',
+
+		'Problems': 'مشکلات',
+		'Zones': 'منطقه‌ها',
+		'Networks': 'شبکه‌ها',
+		'Devices': 'دستگاه‌ها',
+		'Model': 'مدل',
+		'Color': 'رنگ',
+		'Workshops': 'کارگاه‌ها',
+		'Requests': 'تقاضاها',
+		'Actions': 'اکشن‌ها',
+		'Input value': 'مقدار ورودی',
+
+		'ID': 'شناسه',
+		'Login': 'لاگین',
+		'EMail': 'پست الکترونیکی',
+		'Edit': 'ویرایش',
+		'Save': 'ذخیره',
+		'Cancel': 'انصراف',
+		'Restore': 'بازیابی',
+		'Password': 'گذرواژه',
+		'Confirm': 'تایید',
+
+		'Summary': 'خلاصه',
+		'Phone': 'شماره تماس',
+		'Mobile': 'شماره همراه',
+		'LinkedId': 'لینکدین',
+		'Telegram': 'تلگرام',
+		'Whatsapp': 'واتساپ',
+		'Contacts': 'تماس‌ها',
+		'User avatar': 'اواتار کاربری',
+		'Socials': 'شبکه‌های اجتمائی',
+
+		'Settings': 'تنظیمات',
+		'Setting' : 'تنظیم',
+
+		'Theme': 'نمایه',
+		'Themes': 'نمایه‌ها',
+		'default':'پیش فرض',
+		'gray': 'خاکستری',
+		'red': 'قرمز',
+		'dark': 'تیره',
+
+		'Local': 'منطقه',
+		'Language': 'زبان',
+		'Direction': 'جهت',
+		'Right to left': 'راست به چپ',
+		'Left to right': 'چپ به راست',
+
+		'Persian': 'فارسی',
+		'English': 'انگلیسی',
+		'Enable navbar': 'فعال کردن نوار ابزار',
+
+		'Messages': 'پیام‌ها',
+		'message': 'پیام',
+
+		'app.update.message': 'نسخه جدید نصب شده است، دوباره لود کنید.',
+	});
+	$translateProvider.preferredLanguage('fa');
 });
