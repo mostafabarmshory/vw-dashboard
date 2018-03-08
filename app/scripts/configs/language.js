@@ -31,6 +31,15 @@ angular.module('myDashboardApp')
 	//
 	.translations('fa', {
 
+		'loading configuration': 'دریافت تنظیمات',
+		'fetch configuration document': 'دریافت سند حاوی تنظیمات',
+		'fetch configuration content': 'دریافت محتوای سند تنظیمات',
+		'application configuration loaded successfully': 'تنظیمات با موفقیت دریافت شد',
+		'loading user info': 'دریافت اطلاعات کاربری',
+		'fetch user information': 'دریافت اطلاعات کاربری',
+		'user information loaded successfully': 'اطلاعات کاربری با موفقیت دریافت شد',
+		'check user permissions': 'بررسی دسترسی‌ها',
+		
 		'Search': 'جستجو',
 		'Log out': 'خروج',
 
