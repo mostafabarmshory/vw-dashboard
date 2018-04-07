@@ -7,6 +7,7 @@
 	"license": "MIT",
 	"homepage": "https://gitlab.com/pluf-spa/my-dashboard",
 	"dependencies": {
+		"angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#^1.1.0",
 		"angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#^1.1.0",
 		"angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#^1.1.0",
 		"angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#^1.1.0",
@@ -23,7 +24,7 @@
 	},
 	"appPath": "app",
 	"backend": {
-		"host": "testtenant02.siteonclouds.com",
+		"host": "siteonclouds.com",
 		"#host": "192.69.216.109",
 		"#port": 8083
 	}

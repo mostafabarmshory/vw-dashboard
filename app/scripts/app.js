@@ -37,12 +37,11 @@ angular
 	'ngMaterialDashboardSeo',
 ])
 //	Load application
-	.run(function($app) {
-		$app.start('my-dashboard');
-	})
-//	TODO: check dashboard release 2.1
-	.config(function ($localStorageProvider) {
-		$localStorageProvider.setKeyPrefix('my-dashboard.');
-	});
+.run(function($app) {
+	$app
+        .setDefaultToolbars(['dashboard'])
+        .setDefaultSidenavs(['navigator'])
+	    .start('my-dashboard');
+});
 
 
