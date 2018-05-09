@@ -24,8 +24,9 @@
 	},
 	"appPath": "app",
 	"backend": {
-		"host": "siteonclouds.com",
+		"#host": "siteonclouds.com",
 		"#host": "192.69.216.109",
-		"#port": 8083
+		"host": "localhost",
+		"port": 8083
 	}
 }
