@@ -17,10 +17,10 @@
 		"angular-material-dashboard-seo": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-seo.git#^1.1.0"
 	},
 	"devDependencies": {
-		"angular-mocks": "^1.6.0"
+		"angular-mocks": "1.7.x"
 	},
 	"resolutions": {
-		"angular": "^1.6.0"
+		"angular": "1.7.x"
 	},
 	"appPath": "app",
 	"backend": {
