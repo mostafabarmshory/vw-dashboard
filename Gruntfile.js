@@ -118,6 +118,7 @@ module.exports = function(grunt) {
 								connect()
 								.use('/app/styles',	connect.static('./app/styles')));
 						middlewares.push(connect.static(appConfig.app));
+						middlewares.push(connect.static('dist'));
 						options.base.forEach(function(base) {
 							middlewares.push(connect.static(base));
 						});
@@ -157,9 +158,11 @@ module.exports = function(grunt) {
 				options : {
 					open : true,
 					middleware : function(connect, options) {
-						var middlewares = [ connect
-							.static(appConfig.dist) ];
-
+						var middlewares = [];
+						//Matches everything that does not contain a '.' (period)
+						middlewares.push(modRewrite(['!/api/.*|.*\\..* /index.html [L]'])); 
+						middlewares.push(connect.static(appConfig.dist));
+						
 						if (!Array.isArray(options.base)) {
 							options.base = [ options.base ];
 						}
@@ -625,6 +628,7 @@ module.exports = function(grunt) {
 
 		grunt.task.run([ 
 			'clean:server', 
+			'bowercopy',
 			'wiredep',
 			'injector',
 			'concurrent:server', 

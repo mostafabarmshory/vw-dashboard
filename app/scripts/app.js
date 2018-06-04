@@ -42,6 +42,9 @@ angular
         .setDefaultToolbars(['dashboard'])
         .setDefaultSidenavs(['navigator'])
 	    .start('my-dashboard');
+})
+.config(function($routeProvider) {
+	$routeProvider.otherwise('/dashboard');
 });
 
 
