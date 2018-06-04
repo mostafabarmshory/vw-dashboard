@@ -445,75 +445,8 @@ module.exports = function(grunt) {
 						cwd : '<%= yeoman.app %>/resources',
 						src : '**/*.*',
 						dest : '<%= yeoman.dist %>/resources',
-					}, {// tinymce plugins
-						cwd : 'bower_components/tinymce/',
-						src : [ 'plugins/**', 'themes/**', 'skins/**' ],
-						dest : '<%= yeoman.dist %>/scripts',
-						filter : 'isFile',
-						expand : true
-					},
-					// TODO: maso, 2018: do for all amh modules
-					{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-account/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-bank/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-cms/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-collection/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-discount/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-seo/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-spa/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-tenant/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-user/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},]
+					}
+					]
 			},
 			styles : {
 				expand : true,
@@ -659,7 +592,24 @@ module.exports = function(grunt) {
 			}
 
 		},
-
+		
+		/*
+		 * Copy bower components resources into the dist
+		 */
+		bowercopy: {
+			options: {
+			},
+			resources: {
+				options: {
+				},
+				files: {
+					'<%= yeoman.dist %>': '*/dist/resources/',
+					'<%= yeoman.dist %>/scripts/plugins': 'tinymce/plugins/',
+					'<%= yeoman.dist %>/scripts/themes': 'tinymce/themes/',
+					'<%= yeoman.dist %>/scripts/skins': 'tinymce/skins/',
+				}
+			},
+		}
 	});
 
 	grunt.registerTask('serve', 
@@ -716,7 +666,8 @@ module.exports = function(grunt) {
 		'ngtemplates', 
 		'concat',
 		'ngAnnotate', 
-		'copy:dist', 
+		'copy:dist',
+		'bowercopy',
 		'cdnify', 
 		'cssmin', 
 		'uglify', 

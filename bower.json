@@ -7,14 +7,14 @@
 	"license": "MIT",
 	"homepage": "https://gitlab.com/pluf-spa/my-dashboard",
 	"dependencies": {
-		"angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#^1.1.0",
-		"angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#^1.1.0",
-		"angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#^1.1.0",
-		"angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#^1.1.0",
-		"angular-material-dashboard-bank": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-bank.git#^1.1.0",
-		"angular-material-dashboard-account": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-account.git#^1.1.0",
-		"angular-material-dashboard-user": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-user.git#^1.1.0",
-		"angular-material-dashboard-seo": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-seo.git#^1.1.0"
+		"angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#1.1.x",
+		"angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#1.1.x",
+		"angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#1.1.x",
+		"angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#1.1.x",
+		"angular-material-dashboard-bank": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-bank.git#1.1.x",
+		"angular-material-dashboard-account": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-account.git#1.1.x",
+		"angular-material-dashboard-user": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-user.git#1.1.x",
+		"angular-material-dashboard-seo": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-seo.git#1.1.x"
 	},
 	"devDependencies": {
 		"angular-mocks": "1.7.x"
@@ -24,9 +24,6 @@
 	},
 	"appPath": "app",
 	"backend": {
-		"#host": "siteonclouds.com",
-		"1#host": "217.218.74.61",
-		"#host": "localhost",
-		"port": 8083
+		"host": "siteonclouds.com"
 	}
 }
