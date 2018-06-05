@@ -118,6 +118,7 @@ module.exports = function(grunt) {
 								connect()
 								.use('/app/styles',	connect.static('./app/styles')));
 						middlewares.push(connect.static(appConfig.app));
+						middlewares.push(connect.static('dist'));
 						options.base.forEach(function(base) {
 							middlewares.push(connect.static(base));
 						});
@@ -157,9 +158,11 @@ module.exports = function(grunt) {
 				options : {
 					open : true,
 					middleware : function(connect, options) {
-						var middlewares = [ connect
-							.static(appConfig.dist) ];
-
+						var middlewares = [];
+						//Matches everything that does not contain a '.' (period)
+						middlewares.push(modRewrite(['!/api/.*|.*\\..* /index.html [L]'])); 
+						middlewares.push(connect.static(appConfig.dist));
+						
 						if (!Array.isArray(options.base)) {
 							options.base = [ options.base ];
 						}
@@ -445,75 +448,8 @@ module.exports = function(grunt) {
 						cwd : '<%= yeoman.app %>/resources',
 						src : '**/*.*',
 						dest : '<%= yeoman.dist %>/resources',
-					}, {// tinymce plugins
-						cwd : 'bower_components/tinymce/',
-						src : [ 'plugins/**', 'themes/**', 'skins/**' ],
-						dest : '<%= yeoman.dist %>/scripts',
-						filter : 'isFile',
-						expand : true
-					},
-					// TODO: maso, 2018: do for all amh modules
-					{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-account/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-bank/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-cms/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-collection/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-discount/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-seo/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-spa/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-tenant/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},{
-						dot : true,
-						expand : true,
-						cwd : 'bower_components/angular-material-dashboard-user/dist/resources',
-						dest : '<%= yeoman.dist %>/resources',
-						src : '**/*.*'
-					},]
+					}
+					]
 			},
 			styles : {
 				expand : true,
@@ -659,7 +595,24 @@ module.exports = function(grunt) {
 			}
 
 		},
-
+		
+		/*
+		 * Copy bower components resources into the dist
+		 */
+		bowercopy: {
+			options: {
+			},
+			resources: {
+				options: {
+				},
+				files: {
+					'<%= yeoman.dist %>': '*/dist/resources/',
+					'<%= yeoman.dist %>/scripts/plugins': 'tinymce/plugins/',
+					'<%= yeoman.dist %>/scripts/themes': 'tinymce/themes/',
+					'<%= yeoman.dist %>/scripts/skins': 'tinymce/skins/',
+				}
+			},
+		}
 	});
 
 	grunt.registerTask('serve', 
@@ -675,6 +628,7 @@ module.exports = function(grunt) {
 
 		grunt.task.run([ 
 			'clean:server', 
+			'bowercopy',
 			'wiredep',
 			'injector',
 			'concurrent:server', 
@@ -716,7 +670,8 @@ module.exports = function(grunt) {
 		'ngtemplates', 
 		'concat',
 		'ngAnnotate', 
-		'copy:dist', 
+		'copy:dist',
+		'bowercopy',
 		'cdnify', 
 		'cssmin', 
 		'uglify', 
