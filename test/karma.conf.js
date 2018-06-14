@@ -55,6 +55,7 @@ module.exports = function(config) {
       'bower_components/ngHandsontable/dist/ngHandsontable.js',
       'bower_components/am-wb-core/dist/am-wb-core.js',
       'bower_components/angular-xeditable/dist/js/xeditable.js',
+      'bower_components/angular-youtube-mb/src/angular-youtube-embed.js',
       'bower_components/am-wb-common/dist/am-wb-common.js',
       'bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js',
       'bower_components/angular-uuid/uuid.min.js',
