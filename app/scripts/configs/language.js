@@ -77,6 +77,9 @@ angular.module('myDashboardApp')
 		'Tenant Info': 'اطلاعات تارنما',
 		'Tickets': 'درخواست‌ها',
 		'Invoices': 'صورتحساب‌ها',
+		
+		'Amount': 'مبلغ',
+		
 
 		'User': 'کاربر',
 
@@ -135,6 +138,9 @@ angular.module('myDashboardApp')
 		'message': 'پیام',
 
 		'app.update.message': 'نسخه جدید نصب شده است، دوباره لود کنید.',
+		
+		'Nothing found.': 'موردی یافت نشد.',
+		
 	});
 	$translateProvider.preferredLanguage('fa');
 });
