@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 
 	// Time how long tasks take. Can help when optimizing build times
 	require('time-grunt')(grunt);
-	//MODIFIED: add require for connect-modewrite
+	// MODIFIED: add require for connect-modewrite
 	var modRewrite = require('connect-modrewrite');
 
 	// Automatically load required Grunt tasks
@@ -108,7 +108,8 @@ module.exports = function(grunt) {
 					open : true,
 					middleware : function(connect, options) {
 						var middlewares = [];
-						//Matches everything that does not contain a '.' (period)
+						// Matches everything that does not contain a '.'
+						// (period)
 						middlewares.push(modRewrite(['!/api/.*|.*\\..* /index.html [L]'])); 
 						middlewares.push(connect.static('.tmp'));
 						middlewares.push(
@@ -159,10 +160,11 @@ module.exports = function(grunt) {
 					open : true,
 					middleware : function(connect, options) {
 						var middlewares = [];
-						//Matches everything that does not contain a '.' (period)
+						// Matches everything that does not contain a '.'
+						// (period)
 						middlewares.push(modRewrite(['!/api/.*|.*\\..* /index.html [L]'])); 
 						middlewares.push(connect.static(appConfig.dist));
-						
+
 						if (!Array.isArray(options.base)) {
 							options.base = [ options.base ];
 						}
@@ -330,25 +332,25 @@ module.exports = function(grunt) {
 		// not wish
 		// to use the Usemin blocks.
 //		cssmin: {
-//			dist: {
-//				files: {
-//					'<%= yeoman.dist %>/styles/main.css': [
-//						'.tmp/styles/{,*/}*.css'
-//						]
-//				}
-//			}
+//		dist: {
+//		files: {
+//		'<%= yeoman.dist %>/styles/main.css': [
+//		'.tmp/styles/{,*/}*.css'
+//		]
+//		}
+//		}
 //		},
 //		uglify: {
-//			dist: {
-//				files: {
-//					'<%= yeoman.dist %>/scripts/scripts.js': [
-//						'<%= yeoman.dist %>/scripts/scripts.js'
-//						]
-//				}
-//			}
+//		dist: {
+//		files: {
+//		'<%= yeoman.dist %>/scripts/scripts.js': [
+//		'<%= yeoman.dist %>/scripts/scripts.js'
+//		]
+//		}
+//		}
 //		},
 //		concat: {
-//			dist: {}
+//		dist: {}
 //		},
 
 		imagemin : {
@@ -481,9 +483,9 @@ module.exports = function(grunt) {
 		/*
 		 * محصول ایجاد شده را به صورت فشرده تولید می‌کند.
 		 * 
-		 * این محصول قابلیت نصب روی سرورهای سین را دارد. برای فشرده سازی
-		 * از zip استفاده شده است. اطلاعات کامل در مورد نظیم این بسته در
-		 * مسیر زیر وجود دارد.
+		 * این محصول قابلیت نصب روی سرورهای سین را دارد. برای فشرده سازی از zip
+		 * استفاده شده است. اطلاعات کامل در مورد نظیم این بسته در مسیر زیر وجود
+		 * دارد.
 		 * 
 		 * https://github.com/gruntjs/grunt-contrib-compress
 		 */
@@ -500,14 +502,12 @@ module.exports = function(grunt) {
 		},
 
 		/*
-		 * فایل‌های مورد نیاز رو به صورت خودکار ایجاد می‌کنه. یکی از
-		 * فایل‌هایی که برای کارهامون نیاز داریم فایل spa.json هست که
-		 * توش اطلاعاتی راجع به این برنامه قرار می‌گیره. سرورهای ما این
-		 * فایل رو پردازش می‌کنند.
+		 * فایل‌های مورد نیاز رو به صورت خودکار ایجاد می‌کنه. یکی از فایل‌هایی
+		 * که برای کارهامون نیاز داریم فایل spa.json هست که توش اطلاعاتی راجع به
+		 * این برنامه قرار می‌گیره. سرورهای ما این فایل رو پردازش می‌کنند.
 		 * 
-		 * ساختن فایل‌ها با استفاده از ابزار grunt--creator انجام
-		 * می‌شود. برای اطلاع بیشتر در مورد این بسته به آدرس زیر مراجعه
-		 * کنید:
+		 * ساختن فایل‌ها با استفاده از ابزار grunt--creator انجام می‌شود. برای
+		 * اطلاع بیشتر در مورد این بسته به آدرس زیر مراجعه کنید:
 		 * 
 		 * 
 		 */
@@ -515,10 +515,10 @@ module.exports = function(grunt) {
 			spa : {
 				'dist/spa.json' : function(fs, fd, done) {
 					/*
-					 * تمام خصوصیت‌های مورد نیاز برای نرم‌افزارها بر
-					 * اساس استاندارد سین تعیین شده است. این نرم افزار
-					 * به روی سایر سرورهایی که از این پروتکل حمایت
-					 * می‌کنند نیز قابل استفاده است.
+					 * تمام خصوصیت‌های مورد نیاز برای نرم‌افزارها بر اساس
+					 * استاندارد سین تعیین شده است. این نرم افزار به روی سایر
+					 * سرورهایی که از این پروتکل حمایت می‌کنند نیز قابل استفاده
+					 * است.
 					 */
 					fs.writeSync(fd, JSON.stringify({
 						name : appConfig.name,
@@ -536,13 +536,13 @@ module.exports = function(grunt) {
 
 		/*
 		 * پرونده مانیفست برای پروژه ایجاد می‌کند. این پرونده برای ایجاد
-		 * نرم‌افزارهایی استفاده می‌شود که می‌خواهند از خصوصیت appcache
-		 * در html5 استفاده کنند. با این کار تمام کدها سمت کاربر نگهداری
-		 * می‌شود و منجب به افزایش سرعت لود سایت خواهد شد. نکته اینکه
-		 * مدیریت به روز رسانی برنامه‌ها با کاربر است.
+		 * نرم‌افزارهایی استفاده می‌شود که می‌خواهند از خصوصیت appcache در html5
+		 * استفاده کنند. با این کار تمام کدها سمت کاربر نگهداری می‌شود و منجب به
+		 * افزایش سرعت لود سایت خواهد شد. نکته اینکه مدیریت به روز رسانی
+		 * برنامه‌ها با کاربر است.
 		 * 
-		 * پرونده مورد نیاز با استفاده از بسته grunt-manifest ایجاد
-		 * می‌شود. برای اطلاع در مورد این ابزار پیوند زیر را ببینید.
+		 * پرونده مورد نیاز با استفاده از بسته grunt-manifest ایجاد می‌شود. برای
+		 * اطلاع در مورد این ابزار پیوند زیر را ببینید.
 		 * 
 		 * https://github.com/gunta/grunt-manifest
 		 */
@@ -595,7 +595,7 @@ module.exports = function(grunt) {
 			}
 
 		},
-		
+
 		/*
 		 * Copy bower components resources into the dist
 		 */
@@ -613,6 +613,14 @@ module.exports = function(grunt) {
 				}
 			},
 		}
+	});
+
+	grunt.registerTask('setversion', function(arg1) {
+		console.log('Attempting to update version to ' + arg1);
+		var parsedJson= grunt.file.readJSON('bower.json');// read in the
+		// current
+		parsedJson.version = arg1; // set the top level version field to arg1
+		grunt.file.write('bower.json', JSON.stringify(parsedJson, null, 2));
 	});
 
 	grunt.registerTask('serve', 
