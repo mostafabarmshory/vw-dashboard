@@ -7,7 +7,7 @@
   "license": "MIT",
   "homepage": "https://gitlab.com/pluf-spa/my-dashboard",
   "dependencies": {
-    "angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#1.1.x",
+    "angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#2.0.x",
     "angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#1.1.x",
     "angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#1.1.x",
     "angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#1.1.x",
