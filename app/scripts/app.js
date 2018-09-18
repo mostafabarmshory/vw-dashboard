@@ -34,7 +34,7 @@ angular
 	'ngMaterialDashboardAccount',
 	'ngMaterialDashboardCms',
 	'ngMaterialDashboardBank',
-	'ngMaterialDashboardSeo',
+	'ngMaterialDashboardSeo'
 ])
 //	Load application
 .run(function($app) {
