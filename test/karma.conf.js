@@ -1,5 +1,4 @@
-// Karma configuration
-// Generated on 2016-05-30
+
 
 module.exports = function(config) {
   'use strict';
@@ -14,25 +13,32 @@ module.exports = function(config) {
     // testing framework to use (jasmine/mocha/qunit/...)
     // as well as any additional frameworks (requirejs/chai/sinon/...)
     frameworks: [
-      'jasmine'
+      'jasmine',
+      'detectBrowsers'
     ],
+
+    detectBrowsers: {
+    	enabled: true,
+    	usePhantomJS: false,
+    	preferHeadless: true
+    },
 
     // list of files / patterns to load in the browser
     files: [
       // bower:js
       'bower_components/jquery/dist/jquery.js',
       'bower_components/angular/angular.js',
-      'bower_components/angular-animate/angular-animate.js',
-      'bower_components/angular-cookies/angular-cookies.js',
-      'bower_components/angular-sanitize/angular-sanitize.js',
-      'bower_components/angular-messages/angular-messages.js',
-      'bower_components/angular-route/angular-route.js',
       'bower_components/moment/moment.js',
       'bower_components/moment-jalaali/build/moment-jalaali.js',
       'bower_components/mustache.js/mustache.js',
       'bower_components/lodash/lodash.js',
       'bower_components/seen-core/dist/seen-core.js',
       'bower_components/seen-user/dist/seen-user.js',
+      'bower_components/angular-animate/angular-animate.js',
+      'bower_components/angular-cookies/angular-cookies.js',
+      'bower_components/angular-sanitize/angular-sanitize.js',
+      'bower_components/angular-messages/angular-messages.js',
+      'bower_components/angular-route/angular-route.js',
       'bower_components/seen-bank/dist/seen-bank.js',
       'bower_components/seen-tenant/dist/seen-tenant.js',
       'bower_components/seen-cms/dist/seen-cms.js',
@@ -67,6 +73,7 @@ module.exports = function(config) {
       'bower_components/angular-material-persian-datepicker/dist/datePicker.min.js',
       'bower_components/machina/lib/machina.js',
       'bower_components/mblowfish-core/dist/mblowfish-core.js',
+      'bower_components/mblowfish-language/dist/mblowfish-language.js',
       'bower_components/seen-monitor/dist/seen-monitor.js',
       'bower_components/d3/d3.js',
       'bower_components/nvd3/build/nv.d3.js',
@@ -74,20 +81,21 @@ module.exports = function(config) {
       'bower_components/am-wb-seen-monitors/dist/am-wb-seen-monitors.js',
       'bower_components/angular-material-dashboard/dist/angular-material-dashboard.js',
       'bower_components/angular-material-dashboard-tenant/dist/angular-material-dashboard-tenant.js',
-      'bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.js',
+      'bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.js',
       'bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.js',
-      'bower_components/angular-material-dashboard-bank/dist/angular-material-dashboard-bank.js',
       'bower_components/angular-material-dashboard-account/dist/angular-material-dashboard-account.js',
       'bower_components/angular-material-dashboard-user/dist/angular-material-dashboard-user.js',
-      'bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.js',
+      'bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.js',
+      'bower_components/angular-material-dashboard-bank/dist/angular-material-dashboard-bank.js',
+      'bower_components/angular-material-dashboard-discount/dist/angular-material-dashboard-discount.js',
+      'bower_components/angular-material-dashboard-sdp/dist/angular-material-dashboard-sdp.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
-      'app/scripts/*.js',
-      'app/scripts/**/*.js',
+      'app/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
-
+    
     // list of files / patterns to exclude
     exclude: [
     ],
@@ -95,39 +103,45 @@ module.exports = function(config) {
     // web server port
     port: 8080,
 
-    // Start these browsers, currently available:
-    // - Chrome
-    // - ChromeCanary
-    // - Firefox
-    // - Opera
-    // - Safari (only Mac)
-    // - PhantomJS
-    // - IE (only Windows)
-    browsers: [
-      'PhantomJS'
+
+    // coverage reporter generates the coverage
+    reporters: [
+    	'progress', 
+    	'coverage'
     ],
+    
+    // optionally, configure the reporter
+    coverageReporter: {
+    	dir : 'coverage/',
+    	reporters: [{
+    		type : 'lcovonly',
+    		file : 'lcov.info'
+    	},{
+    		type: 'text-summary'
+    	}]
+    },
+
+    preprocessors: {
+      'src/scripts/**/*.js': ['coverage']
+    },
 
     // Which plugins to enable
     plugins: [
-      'karma-phantomjs-launcher',
-      'karma-jasmine'
+    	'karma-jasmine',
+    	'karma-coverage',
+    	
+        'karma-chrome-launcher',
+        'karma-edge-launcher',
+        'karma-firefox-launcher',
+        'karma-ie-launcher',
+        'karma-safari-launcher',
+        'karma-safaritechpreview-launcher',
+        'karma-opera-launcher',
+        'karma-detect-browsers'
     ],
 
-    // Continuous Integration mode
-    // if true, it capture browsers, run tests and exit
     singleRun: false,
-
     colors: true,
-
-    // level of logging
-    // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_INFO,
-
-    // Uncomment the following lines if you are using grunt's server to run the tests
-    // proxies: {
-    //   '/': 'http://localhost:9000/'
-    // },
-    // URL root prevent conflicts with the site root
-    // urlRoot: '_karma_'
+    logLevel: config.LOG_INFO
   });
 };
