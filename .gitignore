@@ -18,3 +18,4 @@
 # Eclipse
 /.settings/
 /*.zip
+/nbproject/private/
