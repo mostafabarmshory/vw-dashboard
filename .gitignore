@@ -17,6 +17,5 @@
 
 # Eclipse
 /.settings/
-/.project
 /*.zip
 /nbproject/private/

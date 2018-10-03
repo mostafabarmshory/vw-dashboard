@@ -6,6 +6,7 @@ cache:
 
 before_script:
   - apt-get update -yq
+  - apt-get -yq install chromium
   - curl -sL https://deb.nodesource.com/setup_6.x | bash -
   - apt-get install -y nodejs
   - apt-get install git
@@ -22,12 +23,14 @@ grunt_build:
   stage: build
   script:
     - apt-get update -yq
+    - apt-get -yq install chromium
     - apt-get install git
     - apt-get install -y zip gzip tar
     - npm install -g bower grunt-cli
     - npm install
     - bower install --allow-root --no-interactive
     - grunt
+    - find . -name lcov.info | xargs -d '\n' cat | node_modules/.bin/codacy-coverage -t $CODACY_PROJECT_TOKEN
   artifacts:
     paths:
       - ./${CI_PROJECT_NAME}.zip

@@ -20,7 +20,8 @@ module.exports = function(grunt) {
 		ngtemplates : 'grunt-angular-templates',
 		cdnify : 'grunt-google-cdn',
 		compress : 'grunt-contrib-compress',
-		configureProxies : 'grunt-connect-proxy'
+		configureProxies : 'grunt-connect-proxy',
+		uglify: 'grunt-contrib-uglify-es'
 	});
 
 	var bowerJson = require('./bower.json');
@@ -38,7 +39,7 @@ module.exports = function(grunt) {
 				host : 'localhost',
 				port : 8080
 			},
-			dist : 'dist',
+			dist : 'dist'
 	};
 
 	// Define the configuration for all the tasks
@@ -260,7 +261,7 @@ module.exports = function(grunt) {
 			app : {
 				src : [ 
 					'<%= yeoman.app %>/index.html',
-					'<%= yeoman.app %>/offline.html',
+					'<%= yeoman.app %>/offline.html'
 					],
 					ignorePath : /\.\.\//
 			},
@@ -615,6 +616,13 @@ module.exports = function(grunt) {
 		}
 	});
 
+	grunt.registerTask('setversion', function(arg1) {
+		console.log('Attempting to update version to ' + arg1);
+		var parsedJson= grunt.file.readJSON('bower.json');//read in the current
+		parsedJson.version = arg1; //set the top level version field to arg1
+		grunt.file.write('bower.json', JSON.stringify(parsedJson, null, 2));
+	});
+	
 	grunt.registerTask('serve', 
 			'Compile then start a connect web server',
 			function(target) {
