@@ -38,10 +38,7 @@ angular
 ])
 //	Load application
 .run(function($app) {
-	$app
-        .setDefaultToolbars(['dashboard'])
-        .setDefaultSidenavs(['navigator'])
-	    .start('my-dashboard');
+	$app.start('my-dashboard');
 })
 .config(function($routeProvider) {
 	$routeProvider.otherwise('/dashboard');
