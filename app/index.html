@@ -1,81 +1,88 @@
 <!doctype html>
 <!-- manifest="manifest.appcache" -->
 <html
-	ng-app="myDashboardApp"
-	manifest="<!-- injector:base-path --><!-- endinjector -->manifest.appcache">
-  <head>
-    <title></title>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--  Tells to crawler that do not index this page and do not follow its links -->
-    <meta name="robots" content="noindex, nofollow" />
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    
-	<!--  injector:base-tag -->
-	<base href="/" >
-	<!--  endinjector  -->
-	
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-    <link rel="stylesheet" href="bower_components/md-color-picker/dist/mdColorPicker.min.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-expansion-panel/dist/md-expansion-panel.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css" />
-    <link rel="stylesheet" href="bower_components/pikaday/css/pikaday.css" />
-    <link rel="stylesheet" href="bower_components/handsontable/dist/handsontable.css" />
-    <link rel="stylesheet" href="bower_components/am-wb-core/dist/am-wb-core.css" />
-    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
-    <link rel="stylesheet" href="bower_components/am-wb-common/dist/am-wb-common.css" />
-    <link rel="stylesheet" href="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css" />
-    <link rel="stylesheet" href="bower_components/am-wb-seen-core/dist/am-wb-seen-core.css" />
-    <link rel="stylesheet" href="bower_components/am-wb-seen-monitors/dist/am-wb-seen-monitors.css" />
-    <link rel="stylesheet" href="bower_components/material-steppers/dist/material-steppers.css" />
-    <link rel="stylesheet" href="bower_components/mblowfish-core/dist/mblowfish-core.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard/dist/angular-material-dashboard.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-tenant/dist/angular-material-dashboard-tenant.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-bank/dist/angular-material-dashboard-bank.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-account/dist/angular-material-dashboard-account.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-user/dist/angular-material-dashboard-user.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    
-    <!-- build:css(.tmp) styles/main.css -->
-	<!-- injector:css -->
-	<link rel="stylesheet" href="styles/fonts.css">
-	<link rel="stylesheet" href="styles/main.css">
-	<link rel="stylesheet" href="styles/preloader.css">
-	<!-- endinjector -->
-    <!-- endbuild -->
-  </head>
-  <body
-	md-theme="{{app.setting.theme || 'default'}}" 
-	md-theme-watch
-	ng-class="{'mb-rtl-direction': app.dir=='rtl', 'mb-ltr-direction': app.dir!='rtl'}"
-	dir="{{app.dir}}">
-	<!--[if lt IE 10]>
+    ng-app="myDashboardApp"
+    manifest="<!-- injector:base-path --><!-- endinjector -->manifest.appcache">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--  Tells to crawler that do not index this page and do not follow its links -->
+        <meta name="robots" content="noindex, nofollow" />
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!--  injector:base-tag -->
+        <base href="/" >
+        <!--  endinjector  -->
+
+        <!-- build:css(.) styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
+        <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+        <link rel="stylesheet" href="bower_components/md-color-picker/dist/mdColorPicker.min.css" />
+        <link rel="stylesheet" href="bower_components/angular-material-expansion-panel/dist/md-expansion-panel.css" />
+        <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css" />
+        <link rel="stylesheet" href="bower_components/pikaday/css/pikaday.css" />
+        <link rel="stylesheet" href="bower_components/handsontable/dist/handsontable.css" />
+        <link rel="stylesheet" href="bower_components/am-wb-core/dist/am-wb-core.css" />
+        <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+        <link rel="stylesheet" href="bower_components/am-wb-common/dist/am-wb-common.css" />
+        <link rel="stylesheet" href="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css" />
+        <link rel="stylesheet" href="bower_components/am-wb-seen-core/dist/am-wb-seen-core.css" />
+        <link rel="stylesheet" href="bower_components/am-wb-seen-monitors/dist/am-wb-seen-monitors.css" />
+        <link rel="stylesheet" href="bower_components/material-steppers/dist/material-steppers.css" />
+        <link rel="stylesheet" href="bower_components/mblowfish-core/dist/mblowfish-core.css" />
+        <link rel="stylesheet" href="bower_components/angular-material-dashboard/dist/angular-material-dashboard.css" />
+        <link rel="stylesheet" href="bower_components/angular-material-dashboard-tenant/dist/angular-material-dashboard-tenant.css" />
+        <link rel="stylesheet" href="bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.css" />
+        <link rel="stylesheet" href="bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.css" />
+        <link rel="stylesheet" href="bower_components/angular-material-dashboard-bank/dist/angular-material-dashboard-bank.css" />
+        <link rel="stylesheet" href="bower_components/angular-material-dashboard-account/dist/angular-material-dashboard-account.css" />
+        <link rel="stylesheet" href="bower_components/angular-material-dashboard-user/dist/angular-material-dashboard-user.css" />
+        <link rel="stylesheet" href="bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css(.tmp) styles/main.css -->
+        <!-- injector:css -->
+        <link rel="stylesheet" href="styles/fonts.css">
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/preloader.css">
+        <!-- endinjector -->
+        <!-- endbuild -->
+    </head>
+    <body
+        md-theme="{{app.setting.theme|| 'default'}}" 
+        md-theme-watch
+        ng-class="{'mb-rtl-direction': app.dir == 'rtl', 'mb-ltr-direction': app.dir != 'rtl'}"
+        dir="{{app.dir}}">
+        <!--[if lt IE 10]>
       <p>You are using an <strong>outdated</strong> browser. Please
         <a href="http://browsehappy.com/">upgrade your browser</a>
         to improve your experience.</p>
     <![endif]-->
-	<mb-panel>
-	    <div
-	    	class="wb-preloader"
-	    	ng-hide="app.state!='loadign'">
-	    	Loading....
-	    </div>
-	</mb-panel>
-	<!-- Uncomment to enable google analytic -->
+    <mb-panel>
+        <div
+            class="wb-preloader"
+            ng-hide="app.state != 'loadign'">
+            Loading....
+        </div>
+    </mb-panel>
+    <!-- Uncomment to enable google analytic -->
     <script>
-       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-     </script>
+          (function (i, s, o, g, r, a, m) {
+              i['GoogleAnalyticsObject'] = r;
+              i[r] = i[r] || function () {
+                  (i[r].q = i[r].q || []).push(arguments);
+              }, i[r].l = 1 * new Date();
+              a = s.createElement(o),
+                      m = s.getElementsByTagName(o)[0];
+              a.async = 1;
+              a.src = g;
+              m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    </script>
 
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -144,12 +151,12 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-	<!-- injector:js -->
-	<script src="scripts/app.js"></script>
-	<script src="scripts/configs/icon.js"></script>
-	<script src="scripts/configs/language.js"></script>
-	<script src="scripts/runs/navigator.js"></script>
-	<!-- endinjector -->
+    <!-- injector:js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/configs/icon.js"></script>
+    <script src="scripts/configs/language.js"></script>
+    <script src="scripts/runs/navigator.js"></script>
+    <!-- endinjector -->
     <!-- endbuild -->
 </body>
 </html>
