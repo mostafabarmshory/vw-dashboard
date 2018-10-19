@@ -24,6 +24,6 @@
   },
   "appPath": "app",
   "backend": {
-    "host": "develop.webpich.com"
+    "host": "shoes.webpich.com"
   }
 }
