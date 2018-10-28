@@ -7,6 +7,7 @@
   "license": "MIT",
   "homepage": "https://gitlab.com/pluf-spa/my-dashboard",
   "dependencies": {
+    "mblowfish-language": "https://gitlab.com/mblowfish/mblowfish-language.git#2.0.x",    
     "angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#2.0.x",
     "angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#2.0.x",
     "angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#2.0.x",
