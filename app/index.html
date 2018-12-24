@@ -4,7 +4,7 @@
 	ng-app="myDashboardApp"
 	manifest="<!-- injector:base-path --><!-- endinjector -->manifest.appcache">
   <head>
-    <title></title>
+    <title>{{app.config.title || 'Webpich Dashboard'}}</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="bower_components/am-wb-seen-core/dist/am-wb-seen-core.css" />
     <link rel="stylesheet" href="bower_components/material-steppers/dist/material-steppers.css" />
     <link rel="stylesheet" href="bower_components/mblowfish-core/dist/mblowfish-core.css" />
+    <link rel="stylesheet" href="bower_components/mblowfish-language/dist/mblowfish-language.css" />
     <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
     <link rel="stylesheet" href="bower_components/am-wb-seen-monitors/dist/am-wb-seen-monitors.css" />
     <link rel="stylesheet" href="bower_components/angular-material-dashboard/dist/angular-material-dashboard.css" />
@@ -48,6 +49,7 @@
 	<link rel="stylesheet" href="styles/fonts.css">
 	<link rel="stylesheet" href="styles/main.css">
 	<link rel="stylesheet" href="styles/preloader.css">
+	<link rel="stylesheet" href="styles/test-preloader.css">
 	<!-- endinjector -->
     <!-- endbuild -->
   </head>
@@ -88,21 +90,21 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/moment-jalaali/build/moment-jalaali.js"></script>
     <script src="bower_components/mustache.js/mustache.js"></script>
     <script src="bower_components/lodash/lodash.js"></script>
     <script src="bower_components/seen-core/dist/seen-core.js"></script>
     <script src="bower_components/seen-user/dist/seen-user.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/seen-bank/dist/seen-bank.js"></script>
     <script src="bower_components/seen-tenant/dist/seen-tenant.js"></script>
     <script src="bower_components/seen-cms/dist/seen-cms.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
@@ -132,6 +134,7 @@
     <script src="bower_components/angular-material-persian-datepicker/dist/datePicker.min.js"></script>
     <script src="bower_components/machina/lib/machina.js"></script>
     <script src="bower_components/mblowfish-core/dist/mblowfish-core.js"></script>
+    <script src="bower_components/mblowfish-language/dist/mblowfish-language.js"></script>
     <script src="bower_components/seen-monitor/dist/seen-monitor.js"></script>
     <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/nvd3/build/nv.d3.js"></script>
@@ -144,6 +147,7 @@
     <script src="bower_components/angular-material-dashboard-bank/dist/angular-material-dashboard-bank.js"></script>
     <script src="bower_components/angular-material-dashboard-account/dist/angular-material-dashboard-account.js"></script>
     <script src="bower_components/angular-material-dashboard-user/dist/angular-material-dashboard-user.js"></script>
+    <script src="bower_components/seen-seo/dist/seen-seo.js"></script>
     <script src="bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
