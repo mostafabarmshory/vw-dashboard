@@ -54,7 +54,7 @@ module.exports = function(config) {
       'bower_components/ngHandsontable/dist/ngHandsontable.js',
       'bower_components/angular-material-expansion-panel/dist/md-expansion-panel.js',
       'bower_components/tinycolor/tinycolor.js',
-      'bower_components/md-color-picker/dist/mdColorPicker.min.js',
+      'bower_components/md-color-picker/dist/md-color-picker.js',
       'bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js',
       'bower_components/jspanel4x/dist/jspanel.js',
       'bower_components/tinymce/tinymce.js',
@@ -137,6 +137,18 @@ module.exports = function(config) {
         'karma-opera-launcher',
         'karma-detect-browsers'
     ],
+    
+    browsers: ['ChromeHeadlessNoSandbox'],
+    customLaunchers: {
+        ChromeHeadlessNoSandbox: {
+            base: 'ChromeHeadless',
+            flags: [
+                '--no-sandbox', // required to run without privileges in docker
+                '--user-data-dir=/tmp/chrome-test-profile',
+                '--disable-web-security'
+            ]
+        }
+    },
 
     singleRun: false,
     colors: true,
