@@ -28,6 +28,7 @@
  */
 angular
 .module('myDashboardApp', [
+	'ngMaterialDashboard',//
 	'mblowfish-language',//
 	'ngMaterialDashboardTenant',//
 	'ngMaterialDashboardSpa',//
@@ -35,6 +36,7 @@ angular
 	'ngMaterialDashboardAccount',//
 	'ngMaterialDashboardCms',//
 	'ngMaterialDashboardBank',//
+	'ngMaterialDashboardShop',//
 	'ngMaterialDashboardSeo'//
 ])
 //	Load application
