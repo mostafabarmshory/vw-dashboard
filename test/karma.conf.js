@@ -34,15 +34,15 @@ module.exports = function(config) {
       'bower_components/lodash/lodash.js',
       'bower_components/seen-core/dist/seen-core.js',
       'bower_components/seen-user/dist/seen-user.js',
-      'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-cookies/angular-cookies.js',
-      'bower_components/angular-sanitize/angular-sanitize.js',
-      'bower_components/angular-messages/angular-messages.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/seen-bank/dist/seen-bank.js',
       'bower_components/seen-tenant/dist/seen-tenant.js',
       'bower_components/seen-cms/dist/seen-cms.js',
+      'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-aria/angular-aria.js',
+      'bower_components/angular-messages/angular-messages.js',
+      'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-material/angular-material.js',
       'bower_components/angular-translate/angular-translate.js',
       'bower_components/angular-material-icons/angular-material-icons.min.js',
@@ -85,6 +85,7 @@ module.exports = function(config) {
       'bower_components/angular-material-dashboard-bank/dist/angular-material-dashboard-bank.js',
       'bower_components/angular-material-dashboard-account/dist/angular-material-dashboard-account.js',
       'bower_components/angular-material-dashboard-user/dist/angular-material-dashboard-user.js',
+      'bower_components/seen-seo/dist/seen-seo.js',
       'bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
@@ -136,7 +137,7 @@ module.exports = function(config) {
         'karma-opera-launcher',
         'karma-detect-browsers'
     ],
-
+    
     singleRun: false,
     colors: true,
     logLevel: config.LOG_INFO
