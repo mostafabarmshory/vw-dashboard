@@ -54,7 +54,7 @@ module.exports = function(config) {
       'bower_components/ngHandsontable/dist/ngHandsontable.js',
       'bower_components/angular-material-expansion-panel/dist/md-expansion-panel.js',
       'bower_components/tinycolor/tinycolor.js',
-      'bower_components/md-color-picker/dist/mdColorPicker.min.js',
+      'bower_components/md-color-picker/dist/md-color-picker.js',
       'bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js',
       'bower_components/jspanel4x/dist/jspanel.js',
       'bower_components/tinymce/tinymce.js',
@@ -83,10 +83,14 @@ module.exports = function(config) {
       'bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.js',
       'bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.js',
       'bower_components/angular-material-dashboard-bank/dist/angular-material-dashboard-bank.js',
-      'bower_components/angular-material-dashboard-account/dist/angular-material-dashboard-account.js',
       'bower_components/angular-material-dashboard-user/dist/angular-material-dashboard-user.js',
       'bower_components/seen-seo/dist/seen-seo.js',
       'bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.js',
+      'bower_components/angular-xeditable/dist/js/xeditable.js',
+      'bower_components/angular-youtube-mb/src/angular-youtube-embed.js',
+      'bower_components/am-wb-common/dist/am-wb-common.js',
+      'bower_components/seen-shop/dist/seen-shop.js',
+      'bower_components/angular-material-dashboard-shop/dist/angular-material-dashboard-shop.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/**/*.js',
@@ -100,7 +104,6 @@ module.exports = function(config) {
 
     // web server port
     port: 8080,
-
 
     // coverage reporter generates the coverage
     reporters: [
@@ -137,7 +140,7 @@ module.exports = function(config) {
         'karma-opera-launcher',
         'karma-detect-browsers'
     ],
-
+    
     singleRun: false,
     colors: true,
     logLevel: config.LOG_INFO
