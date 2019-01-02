@@ -16,6 +16,7 @@ grunt_build:
     - develop
   script:
     # TODO: maso, 2018: install opera, firefox
+    # TODO: maso, 2018: install opera, firefox
     - apt-get update
     - apt-get -yq install chromium git zip gzip tar
     - npm install -g bower grunt-cli
