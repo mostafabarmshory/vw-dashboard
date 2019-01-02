@@ -34,6 +34,7 @@ angular
 	'ngMaterialDashboardSpa',//
 	'ngMaterialDashboardUser',//
 	'ngMaterialDashboardCms',//
+	'ngMaterialDashboardSpa',//
 	'ngMaterialDashboardBank',//
 	'ngMaterialDashboardShop',//
 	'ngMaterialDashboardSeo'//

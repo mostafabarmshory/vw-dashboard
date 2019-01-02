@@ -105,7 +105,6 @@ module.exports = function(config) {
     // web server port
     port: 8080,
 
-
     // coverage reporter generates the coverage
     reporters: [
     	'progress', 
