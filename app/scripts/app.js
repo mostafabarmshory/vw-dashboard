@@ -30,12 +30,13 @@ angular
 .module('myDashboardApp', [
 	'mblowfish-language',//
 	'ngMaterialDashboardTenant',//
-	'ngMaterialDashboardSpa',//
-	'ngMaterialDashboardUser',//
 	'ngMaterialDashboardAccount',//
+	'ngMaterialDashboardUser',//
+	'ngMaterialDashboardSeo',//
 	'ngMaterialDashboardCms',//
+	'ngMaterialDashboardSpa',//
 	'ngMaterialDashboardBank',//
-	'ngMaterialDashboardSeo'//
+	'ngMaterialDashboardShop',//
 ])
 //	Load application
 .run(function($app) {

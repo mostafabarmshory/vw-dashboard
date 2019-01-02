@@ -87,6 +87,11 @@ module.exports = function(config) {
       'bower_components/angular-material-dashboard-user/dist/angular-material-dashboard-user.js',
       'bower_components/seen-seo/dist/seen-seo.js',
       'bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.js',
+      'bower_components/angular-xeditable/dist/js/xeditable.js',
+      'bower_components/angular-youtube-mb/src/angular-youtube-embed.js',
+      'bower_components/am-wb-common/dist/am-wb-common.js',
+      'bower_components/seen-shop/dist/seen-shop.js',
+      'bower_components/angular-material-dashboard-shop/dist/angular-material-dashboard-shop.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/**/*.js',
