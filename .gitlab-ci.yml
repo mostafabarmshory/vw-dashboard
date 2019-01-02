@@ -19,10 +19,11 @@ grunt_build:
     - apt-get update
     - apt-get -yq install chromium git zip gzip tar
     - npm install -g bower grunt-cli
+    - pass=123
+    - useradd -m -p $pass builder
+    - su builder
     - npm install
     - bower install --allow-root --no-interactive
-    - alias chromium='chromium --no-sandbox'
-    - CHROMIUM_BIN='chromium --no-sandbox'
     - grunt
     - find . -name lcov.info | xargs -d '\n' cat | node_modules/.bin/codacy-coverage -t $CODACY_PROJECT_TOKEN
   artifacts:
@@ -36,11 +37,12 @@ marketplace_deploy:
   only:
     - master
   script:
+    - pass=123
+    - useradd -m -p $pass builder
+    - su builder
     - npm install -g bower grunt-cli
     - npm install
     - bower install --allow-root --no-interactive
-    - alias chromium='chromium --no-sandbox'
-    - CHROMIUM_BIN='chromium --no-sandbox'
     - grunt build
     - curl -F "file=@./${CI_PROJECT_NAME}.zip" http://marketplace.webpich.com/api/v2/marketplace/spas/token-$MARKETPLACE_TOKEN
 
