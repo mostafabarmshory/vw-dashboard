@@ -22,6 +22,7 @@ grunt_build:
     - npm install -g bower grunt-cli
     - npm install
     - bower install --allow-root --no-interactive
+    - chmod 777 -fR .
     - su builder -c "grunt"
     - find . -name lcov.info | xargs -d '\n' cat | node_modules/.bin/codacy-coverage -t $CODACY_PROJECT_TOKEN
   artifacts:
@@ -40,6 +41,7 @@ marketplace_deploy:
     - npm install -g bower grunt-cli
     - npm install
     - bower install --allow-root --no-interactive
+    - chmod 777 -fR .
     - su builder -c "grunt build"
     - curl -F "file=@./${CI_PROJECT_NAME}.zip" http://marketplace.webpich.com/api/v2/marketplace/spas/token-$MARKETPLACE_TOKEN
 
