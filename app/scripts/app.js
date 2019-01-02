@@ -33,7 +33,6 @@ angular
 	'ngMaterialDashboardTenant',//
 	'ngMaterialDashboardSpa',//
 	'ngMaterialDashboardUser',//
-	'ngMaterialDashboardAccount',//
 	'ngMaterialDashboardCms',//
 	'ngMaterialDashboardBank',//
 	'ngMaterialDashboardShop',//
