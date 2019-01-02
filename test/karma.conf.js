@@ -22,6 +22,13 @@ module.exports = function(config) {
     	usePhantomJS: false,
     	preferHeadless: true
     },
+    browsers: ['ChromiumHeadless'],
+    customLaunchers: {
+        ChromiumHeadless: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
 
     // list of files / patterns to load in the browser
     files: [
