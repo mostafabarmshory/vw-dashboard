@@ -9,6 +9,7 @@
   "dependencies": {
     "mblowfish-language": "https://gitlab.com/mblowfish/mblowfish-language.git#2.1.x",    
     "angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#2.1.x",
+    "angular-material-dashboard-account": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-account.git#2.1.x",
     "angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#2.1.x",
     "angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#2.1.x",
     "angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#2.1.x",

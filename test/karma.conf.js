@@ -80,6 +80,7 @@ module.exports = function(config) {
       'bower_components/angular-nvd3/dist/angular-nvd3.js',
       'bower_components/am-wb-seen-monitors/dist/am-wb-seen-monitors.js',
       'bower_components/angular-material-dashboard/dist/angular-material-dashboard.js',
+      'bower_components/angular-material-dashboard-account/dist/angular-material-dashboard-account.js',
       'bower_components/angular-material-dashboard-tenant/dist/angular-material-dashboard-tenant.js',
       'bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.js',
       'bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.js',

@@ -30,6 +30,7 @@ angular
 .module('myDashboardApp', [
 	'ngMaterialDashboard',//
 	'mblowfish-language',//
+	'ngMaterialDashboardAccount',//
 	'ngMaterialDashboardTenant',//
 	'ngMaterialDashboardSpa',//
 	'ngMaterialDashboardUser',//
