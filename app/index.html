@@ -2,19 +2,20 @@
 <!-- manifest="manifest.appcache" -->
 <html
 	ng-app="myDashboardApp"
-	manifest="<!-- injector:base-path --><!-- endinjector -->manifest.appcache">
+    manifest="<!-- injector:base-path --><!-- endinjector -->manifest.appcache">
   <head>
-    <title>{{app.config.title || 'Webpich Dashboard'}}</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <!--  Tells to crawler that do not index this page and do not follow its links -->
     <meta name="robots" content="noindex, nofollow" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    
-	<!--  injector:base-tag -->
-	<base href="/" >
-	<!--  endinjector  -->
+
+    <!--  injector:base-tag -->
+    <base href="/" >
+    <meta name="fragment" content="!">
+    <!--  endinjector  -->
 	
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
