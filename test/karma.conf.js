@@ -60,6 +60,7 @@ module.exports = function(config) {
       'bower_components/jspanel4x/dist/jspanel.js',
       'bower_components/tinymce/tinymce.js',
       'bower_components/object-path/index.js',
+      'bower_components/flux/dist/Flux.js',
       'bower_components/am-wb-core/dist/am-wb-core.js',
       'bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js',
       'bower_components/angular-uuid/uuid.min.js',
