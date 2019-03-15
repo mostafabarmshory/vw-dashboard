@@ -16,7 +16,7 @@
     "angular-material-dashboard-bank": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-bank.git#2.2.x",
     "angular-material-dashboard-user": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-user.git#2.2.x",
     "angular-material-dashboard-seo": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-seo.git#2.2.x",
-    "angular-material-dashboard-shop": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-shop.git#2.1.x"
+    "angular-material-dashboard-shop": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-shop.git#2.2.x"
   },
   "devDependencies": {
     "angular-mocks": "1.7.x"
