@@ -38,7 +38,8 @@ angular
 	'ngMaterialDashboardSpa',//
 	'ngMaterialDashboardBank',//
 	'ngMaterialDashboardShop',//
-	'ngMaterialDashboardSeo'//
+	'ngMaterialDashboardSeo',//
+	'ngMaterialDashboardWallet'//
 ])
 //	Load application
 .run(function($app) {
