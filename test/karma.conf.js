@@ -46,7 +46,6 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-material/angular-material.js',
       'bower_components/angular-translate/angular-translate.js',
-      'bower_components/angular-material-icons/angular-material-icons.min.js',
       'bower_components/weakmap-polyfill/weakmap-polyfill.js',
       'bower_components/numbro/numbro.js',
       'bower_components/pikaday/pikaday.js',
@@ -90,6 +89,7 @@ module.exports = function(config) {
       'bower_components/am-wb-common/dist/am-wb-common.js',
       'bower_components/seen-shop/dist/seen-shop.js',
       'bower_components/angular-material-dashboard-shop/dist/angular-material-dashboard-shop.js',
+      'bower_components/angular-material-dashboard-wallet/dist/angular-material-dashboard-wallet.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/**/*.js',
