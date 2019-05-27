@@ -90,6 +90,7 @@ module.exports = function(config) {
       'bower_components/seen-shop/dist/seen-shop.js',
       'bower_components/angular-material-dashboard-shop/dist/angular-material-dashboard-shop.js',
       'bower_components/angular-material-dashboard-wallet/dist/angular-material-dashboard-wallet.js',
+      'bower_components/angular-material-dashboard-sdp/dist/angular-material-dashboard-sdp.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/**/*.js',
