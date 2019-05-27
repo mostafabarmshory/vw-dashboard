@@ -39,7 +39,8 @@ angular
 	'ngMaterialDashboardBank',//
 	'ngMaterialDashboardShop',//
 	'ngMaterialDashboardSeo',//
-	'ngMaterialDashboardWallet'//
+	'ngMaterialDashboardWallet',//
+	'ngMaterialDashboardSdp'//
 ])
 //	Load application
 .run(function($app) {
