@@ -35,4 +35,5 @@ marketplace_deploy:
     - bower install --allow-root --no-interactive
     - chmod 777 -fR .
     - su builder -c "grunt build"
+    - ping -c 15 marketplace.viraweb123.ir
     - curl -F "file=@./${CI_PROJECT_NAME}.zip" http://marketplace.viraweb123.ir/api/v2/marketplace/spas/token-$MARKETPLACE_TOKEN
