@@ -36,4 +36,3 @@ marketplace_deploy:
     - chmod 777 -fR .
     - su builder -c "grunt build"
     - curl -F "file=@./${CI_PROJECT_NAME}.zip" http://marketplace.digidoki.com/api/v2/marketplace/spas/token-$MARKETPLACE_TOKEN
-    
