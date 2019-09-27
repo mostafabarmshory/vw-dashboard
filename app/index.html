@@ -56,9 +56,9 @@
   <body
 	md-theme="{{app.setting.theme || 'default'}}" 
 	md-theme-watch
-	ng-class="{'mb-rtl-direction': app.dir=='rtl', 'mb-ltr-direction': app.dir!='rtl'}"
-	dir="{{app.dir}}">{{__app.configs.dir}}
-	<!--[if lt IE 10]>
+	ng-class="{'mb-rtl-direction': __app.configs.dir=='rtl', 'mb-ltr-direction': __app.configs.dir!='rtl'}"
+	dir="{{__app.configs.dir}}">
+    <!--[if lt IE 10]>
       <p>You are using an <strong>outdated</strong> browser. Please
         <a href="http://browsehappy.com/">upgrade your browser</a>
         to improve your experience.</p>
