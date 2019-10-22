@@ -1,7 +1,7 @@
 {
   "name": "my-dashboard",
   "moduleName": "myDashboardApp",
-  "version": "2.7.6",
+  "version": "2.7.7",
   "title": "My Dashboard",
   "description": "General porpouse pluf dashboard.",
   "license": "MIT",
@@ -28,6 +28,6 @@
   },
   "appPath": "app",
   "backend": {
-    "host": "www.viraweb123.ir"
+    "host": "egov.san.iran.gov.ir"
   }
 }
