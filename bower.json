@@ -7,18 +7,18 @@
   "license": "MIT",
   "homepage": "https://gitlab.com/pluf-spa/my-dashboard",
   "dependencies": {
-    "mblowfish-language": "https://gitlab.com/mblowfish/mblowfish-language.git#2.2.x",    
-    "angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#2.2.x",
-    "angular-material-dashboard-account": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-account.git#2.2.x",
-    "angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#2.2.x",
-    "angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#2.2.x",
-    "angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#2.2.x",
-    "angular-material-dashboard-bank": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-bank.git#2.2.x",
-    "angular-material-dashboard-user": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-user.git#2.2.x",
-    "angular-material-dashboard-seo": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-seo.git#2.2.x",
-    "angular-material-dashboard-shop": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-shop.git#2.2.x",
-    "angular-material-dashboard-wallet": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-wallet.git#2.2.x",
-    "angular-material-dashboard-sdp": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-sdp.git#2.2.x"
+    "mblowfish-language": "https://gitlab.com/mblowfish/mblowfish-language.git#3.0.x",    
+    "angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#3.0.x",
+    "angular-material-dashboard-account": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-account.git#3.0.x",
+    "angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#3.0.x",
+    "angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#3.0.x",
+    "angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#3.0.x",
+    "angular-material-dashboard-bank": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-bank.git#3.0.x",
+    "angular-material-dashboard-user": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-user.git#3.0.x",
+    "angular-material-dashboard-seo": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-seo.git#3.0.x",
+    "angular-material-dashboard-shop": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-shop.git#3.0.x",
+    "angular-material-dashboard-wallet": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-wallet.git#3.0.x",
+    "angular-material-dashboard-sdp": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-sdp.git#3.0.x"
   },
   "devDependencies": {
     "angular-mocks": "1.7.x"
@@ -28,6 +28,6 @@
   },
   "appPath": "app",
   "backend": {
-    "host": "egov.san.iran.gov.ir"
+    "host": "test.viraweb123.ir"
   }
 }
