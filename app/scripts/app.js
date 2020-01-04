@@ -48,6 +48,7 @@ angular
 })
 .config(function($routeProvider) {
 	$routeProvider.otherwise('/dashboard');
-});
+})
+.controller('MainCtrl', function(){});
 
 
