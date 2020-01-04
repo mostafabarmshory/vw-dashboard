@@ -4,145 +4,145 @@
 <html
 	ng-app="myDashboardApp"
 	manifest="<!-- injector:base-path --><!-- endinjector -->manifest.appcache">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--  Tells to crawler that do not index this page and do not follow its links -->
-    <meta name="robots" content="noindex, nofollow" />
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--  Tells to crawler that do not index this page and do not follow its links -->
+	<meta name="robots" content="noindex, nofollow" />
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	
 	<!--  injector:base-tag -->
 	<base href="/" >
 	<!--  endinjector  -->
 	
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-    <link rel="stylesheet" href="bower_components/pikaday/css/pikaday.css" />
-    <link rel="stylesheet" href="bower_components/handsontable/dist/handsontable.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-expansion-panel/dist/md-expansion-panel.css" />
-    <link rel="stylesheet" href="bower_components/md-color-picker/dist/md-color-picker.css" />
-    <link rel="stylesheet" href="bower_components/jspanel4x/dist/jspanel.css" />
-    <link rel="stylesheet" href="bower_components/am-wb-core/dist/am-wb-core.css" />
-    <link rel="stylesheet" href="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css" />
-    <link rel="stylesheet" href="bower_components/am-wb-seen-core/dist/am-wb-seen-core.css" />
-    <link rel="stylesheet" href="bower_components/material-steppers/dist/material-steppers.css" />
-    <link rel="stylesheet" href="bower_components/mblowfish-core/dist/mblowfish-core.css" />
-    <link rel="stylesheet" href="bower_components/mblowfish-language/dist/mblowfish-language.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard/dist/angular-material-dashboard.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-account/dist/angular-material-dashboard-account.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-tenant/dist/angular-material-dashboard-tenant.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-bank/dist/angular-material-dashboard-bank.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-user/dist/angular-material-dashboard-user.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.css" />
-    <link rel="stylesheet" href="bower_components/am-wb-common/dist/am-wb-common.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-shop/dist/angular-material-dashboard-shop.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-wallet/dist/angular-material-dashboard-wallet.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-dashboard-sdp/dist/angular-material-dashboard-sdp.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    
-    <!-- build:css(.tmp) styles/main.css -->
+	<!-- build:css(.) styles/vendor.css -->
+	<!-- bower:css -->
+	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+	<link rel="stylesheet" href="bower_components/pikaday/css/pikaday.css" />
+	<link rel="stylesheet" href="bower_components/handsontable/dist/handsontable.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-expansion-panel/dist/md-expansion-panel.css" />
+	<link rel="stylesheet" href="bower_components/md-color-picker/dist/md-color-picker.css" />
+	<link rel="stylesheet" href="bower_components/jspanel4x/dist/jspanel.css" />
+	<link rel="stylesheet" href="bower_components/am-wb-core/dist/am-wb-core.css" />
+	<link rel="stylesheet" href="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css" />
+	<link rel="stylesheet" href="bower_components/am-wb-seen-core/dist/am-wb-seen-core.css" />
+	<link rel="stylesheet" href="bower_components/material-steppers/dist/material-steppers.css" />
+	<link rel="stylesheet" href="bower_components/mblowfish-core/dist/mblowfish-core.css" />
+	<link rel="stylesheet" href="bower_components/mblowfish-language/dist/mblowfish-language.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-dashboard/dist/angular-material-dashboard.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-dashboard-account/dist/angular-material-dashboard-account.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-dashboard-tenant/dist/angular-material-dashboard-tenant.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-dashboard-bank/dist/angular-material-dashboard-bank.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-dashboard-user/dist/angular-material-dashboard-user.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.css" />
+	<link rel="stylesheet" href="bower_components/am-wb-common/dist/am-wb-common.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-dashboard-shop/dist/angular-material-dashboard-shop.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-dashboard-wallet/dist/angular-material-dashboard-wallet.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-dashboard-sdp/dist/angular-material-dashboard-sdp.css" />
+	<!-- endbower -->
+	<!-- endbuild -->
+	
+	<!-- build:css(.tmp) styles/main.css -->
 	<!-- injector:css -->
 	<link rel="stylesheet" href="styles/fonts.css">
 	<link rel="stylesheet" href="styles/main.css">
 	<link rel="stylesheet" href="styles/preloader.css">
 	<link rel="stylesheet" href="styles/test-preloader.css">
 	<!-- endinjector -->
-    <!-- endbuild -->
-  </head>
-  <body
+	<!-- endbuild -->
+	</head>
+	<body
 	md-theme="{{app.setting.theme || 'default'}}" 
 	md-theme-watch
-	ng-class="{'mb-rtl-direction': app.dir=='rtl', 'mb-ltr-direction': app.dir!='rtl'}"
-	dir="{{app.dir}}">{{__app.configs.dir}}
+	ng-class="{'mb-rtl-direction': __app.configs.dir=='rtl', 'mb-ltr-direction': __app.configs.dir!='rtl'}"
+	dir="{{__app.configs.dir}}">
 	<!--[if lt IE 10]>
-      <p>You are using an <strong>outdated</strong> browser. Please
-        <a href="http://browsehappy.com/">upgrade your browser</a>
-        to improve your experience.</p>
-    <![endif]-->
+	  <p>You are using an <strong>outdated</strong> browser. Please
+		<a href="http://browsehappy.com/">upgrade your browser</a>
+		to improve your experience.</p>
+	<![endif]-->
 	<mb-panel></mb-panel>
 
 
 	<!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/moment-jalaali/build/moment-jalaali.js"></script>
-    <script src="bower_components/mustache.js/mustache.js"></script>
-    <script src="bower_components/lodash/lodash.js"></script>
-    <script src="bower_components/seen-core/dist/seen-core.js"></script>
-    <script src="bower_components/seen-user/dist/seen-user.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/seen-bank/dist/seen-bank.js"></script>
-    <script src="bower_components/seen-tenant/dist/seen-tenant.js"></script>
-    <script src="bower_components/seen-cms/dist/seen-cms.js"></script>
-    <script src="bower_components/seen-monitor/dist/seen-monitor.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-material/angular-material.js"></script>
-    <script src="bower_components/angular-translate/angular-translate.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/weakmap-polyfill/weakmap-polyfill.js"></script>
-    <script src="bower_components/numbro/numbro.js"></script>
-    <script src="bower_components/pikaday/pikaday.js"></script>
-    <script src="bower_components/zeroclipboard/dist/ZeroClipboard.js"></script>
-    <script src="bower_components/handsontable/dist/handsontable.js"></script>
-    <script src="bower_components/ngHandsontable/dist/ngHandsontable.js"></script>
-    <script src="bower_components/angular-material-expansion-panel/dist/md-expansion-panel.js"></script>
-    <script src="bower_components/tinycolor/tinycolor.js"></script>
-    <script src="bower_components/md-color-picker/dist/md-color-picker.js"></script>
-    <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
-    <script src="bower_components/jspanel4x/dist/jspanel.js"></script>
-    <script src="bower_components/tinymce/tinymce.js"></script>
-    <script src="bower_components/object-path/index.js"></script>
-    <script src="bower_components/flux/dist/Flux.js"></script>
-    <script src="bower_components/ngstorage/ngStorage.js"></script>
-    <script src="bower_components/am-wb-core/dist/am-wb-core.js"></script>
-    <script src="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
-    <script src="bower_components/angular-uuid/uuid.min.js"></script>
-    <script src="bower_components/am-wb-seen-core/dist/am-wb-seen-core.js"></script>
-    <script src="bower_components/ng-appcache/dist/appcache.js"></script>
-    <script src="bower_components/angular-recaptcha/release/angular-recaptcha.js"></script>
-    <script src="bower_components/material-steppers/dist/material-steppers.js"></script>
-    <script src="bower_components/blob-polyfill/Blob.js"></script>
-    <script src="bower_components/file-saver.js/FileSaver.js"></script>
-    <script src="bower_components/angular-file-saver/dist/angular-file-saver.bundle.js"></script>
-    <script src="bower_components/angular-material-persian-datepicker/dist/datePicker.min.js"></script>
-    <script src="bower_components/machina/lib/machina.js"></script>
-    <script src="bower_components/mblowfish-core/dist/mblowfish-core.js"></script>
-    <script src="bower_components/mblowfish-language/dist/mblowfish-language.js"></script>
-    <script src="bower_components/angular-material-dashboard/dist/angular-material-dashboard.js"></script>
-    <script src="bower_components/angular-material-dashboard-account/dist/angular-material-dashboard-account.js"></script>
-    <script src="bower_components/seen-supertenant/dist/seen-supertenant.js"></script>
-    <script src="bower_components/angular-material-dashboard-tenant/dist/angular-material-dashboard-tenant.js"></script>
-    <script src="bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.js"></script>
-    <script src="bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.js"></script>
-    <script src="bower_components/angular-material-dashboard-bank/dist/angular-material-dashboard-bank.js"></script>
-    <script src="bower_components/angular-material-dashboard-user/dist/angular-material-dashboard-user.js"></script>
-    <script src="bower_components/seen-seo/dist/seen-seo.js"></script>
-    <script src="bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.js"></script>
-    <script src="bower_components/angular-youtube-mb/src/angular-youtube-embed.js"></script>
-    <script src="bower_components/d3/d3.js"></script>
-    <script src="bower_components/am-wb-common/dist/am-wb-common.js"></script>
-    <script src="bower_components/seen-shop/dist/seen-shop.js"></script>
-    <script src="bower_components/angular-material-dashboard-shop/dist/angular-material-dashboard-shop.js"></script>
-    <script src="bower_components/angular-material-dashboard-wallet/dist/angular-material-dashboard-wallet.js"></script>
-    <script src="bower_components/seen-sdp/dist/seen-sdp.js"></script>
-    <script src="bower_components/angular-material-dashboard-sdp/dist/angular-material-dashboard-sdp.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+	<!-- bower:js -->
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/moment/moment.js"></script>
+	<script src="bower_components/moment-jalaali/build/moment-jalaali.js"></script>
+	<script src="bower_components/mustache.js/mustache.js"></script>
+	<script src="bower_components/lodash/lodash.js"></script>
+	<script src="bower_components/seen-core/dist/seen-core.js"></script>
+	<script src="bower_components/seen-user/dist/seen-user.js"></script>
+	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<script src="bower_components/seen-bank/dist/seen-bank.js"></script>
+	<script src="bower_components/seen-tenant/dist/seen-tenant.js"></script>
+	<script src="bower_components/seen-cms/dist/seen-cms.js"></script>
+	<script src="bower_components/seen-monitor/dist/seen-monitor.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.js"></script>
+	<script src="bower_components/angular-aria/angular-aria.js"></script>
+	<script src="bower_components/angular-messages/angular-messages.js"></script>
+	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script src="bower_components/angular-material/angular-material.js"></script>
+	<script src="bower_components/angular-translate/angular-translate.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/weakmap-polyfill/weakmap-polyfill.js"></script>
+	<script src="bower_components/numbro/numbro.js"></script>
+	<script src="bower_components/pikaday/pikaday.js"></script>
+	<script src="bower_components/zeroclipboard/dist/ZeroClipboard.js"></script>
+	<script src="bower_components/handsontable/dist/handsontable.js"></script>
+	<script src="bower_components/ngHandsontable/dist/ngHandsontable.js"></script>
+	<script src="bower_components/angular-material-expansion-panel/dist/md-expansion-panel.js"></script>
+	<script src="bower_components/tinycolor/tinycolor.js"></script>
+	<script src="bower_components/md-color-picker/dist/md-color-picker.js"></script>
+	<script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
+	<script src="bower_components/jspanel4x/dist/jspanel.js"></script>
+	<script src="bower_components/tinymce/tinymce.js"></script>
+	<script src="bower_components/object-path/index.js"></script>
+	<script src="bower_components/flux/dist/Flux.js"></script>
+	<script src="bower_components/ngstorage/ngStorage.js"></script>
+	<script src="bower_components/am-wb-core/dist/am-wb-core.js"></script>
+	<script src="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
+	<script src="bower_components/angular-uuid/uuid.min.js"></script>
+	<script src="bower_components/am-wb-seen-core/dist/am-wb-seen-core.js"></script>
+	<script src="bower_components/ng-appcache/dist/appcache.js"></script>
+	<script src="bower_components/angular-recaptcha/release/angular-recaptcha.js"></script>
+	<script src="bower_components/material-steppers/dist/material-steppers.js"></script>
+	<script src="bower_components/blob-polyfill/Blob.js"></script>
+	<script src="bower_components/file-saver.js/FileSaver.js"></script>
+	<script src="bower_components/angular-file-saver/dist/angular-file-saver.bundle.js"></script>
+	<script src="bower_components/angular-material-persian-datepicker/dist/datePicker.min.js"></script>
+	<script src="bower_components/machina/lib/machina.js"></script>
+	<script src="bower_components/mblowfish-core/dist/mblowfish-core.js"></script>
+	<script src="bower_components/mblowfish-language/dist/mblowfish-language.js"></script>
+	<script src="bower_components/angular-material-dashboard/dist/angular-material-dashboard.js"></script>
+	<script src="bower_components/angular-material-dashboard-account/dist/angular-material-dashboard-account.js"></script>
+	<script src="bower_components/seen-supertenant/dist/seen-supertenant.js"></script>
+	<script src="bower_components/angular-material-dashboard-tenant/dist/angular-material-dashboard-tenant.js"></script>
+	<script src="bower_components/angular-material-dashboard-cms/dist/angular-material-dashboard-cms.js"></script>
+	<script src="bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.js"></script>
+	<script src="bower_components/angular-material-dashboard-bank/dist/angular-material-dashboard-bank.js"></script>
+	<script src="bower_components/angular-material-dashboard-user/dist/angular-material-dashboard-user.js"></script>
+	<script src="bower_components/seen-seo/dist/seen-seo.js"></script>
+	<script src="bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.js"></script>
+	<script src="bower_components/angular-youtube-mb/src/angular-youtube-embed.js"></script>
+	<script src="bower_components/d3/d3.js"></script>
+	<script src="bower_components/am-wb-common/dist/am-wb-common.js"></script>
+	<script src="bower_components/seen-shop/dist/seen-shop.js"></script>
+	<script src="bower_components/angular-material-dashboard-shop/dist/angular-material-dashboard-shop.js"></script>
+	<script src="bower_components/angular-material-dashboard-wallet/dist/angular-material-dashboard-wallet.js"></script>
+	<script src="bower_components/seen-sdp/dist/seen-sdp.js"></script>
+	<script src="bower_components/angular-material-dashboard-sdp/dist/angular-material-dashboard-sdp.js"></script>
+	<!-- endbower -->
+	<!-- endbuild -->
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<!-- build:js({.tmp,app}) scripts/scripts.js -->
 	<!-- injector:js -->
 	<script src="scripts/app.js"></script>
 	<script src="scripts/configs/icon.js"></script>
 	<!-- endinjector -->
-    <!-- endbuild -->
+	<!-- endbuild -->
 </body>
 </html>
