@@ -28,26 +28,31 @@
  */
 angular
 .module('myDashboardApp', [
-	'ngMaterialDashboard',//
-	'mblowfish-language',//
-	'ngMaterialDashboardAccount',//
-	'ngMaterialDashboardTenant',//
-	'ngMaterialDashboardSpa',//
-	'ngMaterialDashboardUser',//
-	'ngMaterialDashboardCms',//
-	'ngMaterialDashboardSpa',//
-	'ngMaterialDashboardBank',//
-	'ngMaterialDashboardShop',//
-	'ngMaterialDashboardSeo',//
-	'ngMaterialDashboardWallet',//
-	'ngMaterialDashboardSdp'//
+    'ngMaterialDashboard',//
+    'mblowfish-language',//
+    'ngMaterialDashboardAccount',//
+    'ngMaterialDashboardTenant',//
+    'ngMaterialDashboardSpa',//
+    'ngMaterialDashboardUser',//
+    'ngMaterialDashboardCms',//
+    'ngMaterialDashboardSpa',//
+    'ngMaterialDashboardBank',//
+    'ngMaterialDashboardShop',//
+    'ngMaterialDashboardSeo',//
+    'ngMaterialDashboardWallet',//
+    'ngMaterialDashboardSdp'//
 ])
-//	Load application
-.run(function($app) {
-	$app.start('my-dashboard');
+//  Load application
+.run(function($app, $window, $wbWindow) {
+    $app.start('my-dashboard');
+
+    // load crisp
+    $window.$crisp=[];
+    $window.CRISP_WEBSITE_ID = '55019c32-37d1-46ab-b97e-1b524309deb1';
+    $wbWindow.loadLibrary('https://client.crisp.chat/l.js');
 })
 .config(function($routeProvider) {
-	$routeProvider.otherwise('/dashboard');
+    $routeProvider.otherwise('/dashboard');
 })
 .controller('MainCtrl', function(){});
 
