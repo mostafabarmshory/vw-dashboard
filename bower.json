@@ -1,11 +1,7 @@
 {
   "name": "my-dashboard",
   "moduleName": "myDashboardApp",
-<<<<<<< HEAD
   "version": "3.0.0",
-=======
-  "version": "2.7.7",
->>>>>>> branch 'develop' of https://gitlab.com/angular-material-dashboard/apps/my-dashboard.git
   "title": "My Dashboard",
   "description": "General porpouse pluf dashboard.",
   "license": "MIT",
