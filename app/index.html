@@ -1,9 +1,13 @@
 <!doctype html>
-<html ng-app="myDashboardApp" 
-      ng-controller="MainCtrl"
-      manifest="<!-- injector:base-path --><!-- endinjector -->manifest.appcache">
+<html 
+	md-theme="{{app.test.theme || app.setting.theme || app.config.theme || 'default'}}"
+	md-theme-watch
+	dir="{{app.dir}}"
+	ng-app="myDashboardApp" 
+	ng-controller="MainCtrl"
+	manifest="<!-- injector:base-path --><!-- endinjector -->manifest.appcache">
 <head>
-	<title>Angular Material Dashboard</title>
+	<title>Dashboard</title>
 	<meta charset="utf-8">
 	<meta name="description" content="Angular admin dashboard with material design">
 	<meta name="author" content="flatlogic.com">
@@ -118,10 +122,7 @@
 	<!-- endbuild -->
 </head>
 <body 
-	md-theme="{{app.test.theme || app.setting.theme || app.config.theme || 'default'}}"
-	md-theme-watch
 	ng-class="{'mb-rtl-direction': app.dir=='rtl', 'mb-ltr-direction': app.dir!='rtl'}"
-	dir="{{app.dir}}"
 	layout="column"
 	mb-view
 	style="height: 100vh; width: 100vw;">
