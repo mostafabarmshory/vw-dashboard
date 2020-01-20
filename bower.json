@@ -8,7 +8,7 @@
   "homepage": "https://gitlab.com/pluf-spa/my-dashboard",
   "dependencies": {
     "mblowfish-language": "https://gitlab.com/mblowfish/mblowfish-language.git#3.0.x",    
-    "angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#3.0.x",
+    "angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#3.1.x",
     "angular-material-dashboard-account": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-account.git#3.0.x",
     "angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#3.0.x",
     "angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#3.0.x",
