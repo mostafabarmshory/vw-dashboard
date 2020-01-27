@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>my-dashboard</name>
+	<name>vw-dashboard</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -15,7 +15,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1506708283948</id>
+			<id>0</id>
 			<name></name>
 			<type>10</type>
 			<matcher>
@@ -24,7 +24,7 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1506708284038</id>
+			<id>0</id>
 			<name></name>
 			<type>10</type>
 			<matcher>
