@@ -1,7 +1,7 @@
 {
-	"name": "wv-dashboard",
+	"name": "vw-dashboard",
 	"moduleName": "myDashboardApp",
-	"version": "3.0.5",
+	"version": "0.1.0",
 	"title": "Dashboard",
 	"description": "General porpouse dashboard.",
 	"license": "MIT",
