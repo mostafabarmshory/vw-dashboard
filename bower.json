@@ -9,12 +9,10 @@
 	"dependencies": {
 		"mblowfish-language": "https://gitlab.com/mblowfish/mblowfish-language.git#3.1.x",
 		"angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#3.1.x",
-		"angular-material-dashboard-account": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-account.git#3.1.x",
 		"angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#3.1.x",
 		"angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#3.1.x",
 		"angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#3.1.x",
 		"angular-material-dashboard-bank": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-bank.git#3.1.x",
-		"angular-material-dashboard-user": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-user.git#3.1.x",
 		"angular-material-dashboard-seo": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-seo.git#3.1.x",
 		"angular-material-dashboard-shop": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-shop.git#3.1.x",
 		"angular-material-dashboard-wallet": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-wallet.git#3.1.x",

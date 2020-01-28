@@ -1,0 +1,139 @@
+<md-content 
+	class="md-padding"
+	layout-padding
+	flex>
+	
+	<!-- صفحه حساب کاربری -->
+	<section 
+		mb-preloading="ctrl.userLoading"
+		layout="column" 
+		md-whiteframe="1"
+		layout-margin>
+		<div
+			layout="column" 
+			layout-gt-sm="row">
+			<img 
+				width="250px"
+				height="250px"
+				ng-src="/api/v2/user/accounts/{{user.id}}/avatar" 
+				ng-src-error="https://www.gravatar.com/avatar/{{app.user.current.id|wbmd5}}?d=identicon&size=250"/>
+			<div flex> 
+				<table 
+					class="amd-table amd-table-description">
+					<tr>
+						<td translate>ID</td>
+						<td>{{user.id}}</td>
+					</tr>
+					<tr>
+						<td translate>Username</td>
+						<td>{{user.login}}</td>
+					</tr>
+					<tr>
+						<td translate>First name</td>
+						<td>{{user.first_name}}</td>
+					</tr>
+					<tr>
+						<td translate>Last name</td>
+						<td>{{user.last_name}}</td>
+					</tr>
+					<tr>
+						<td translate>EMail</td>
+						<td>{{user.email}}
+							<a ng-if="user.email" ng-href="mailto:{{user.email}}">
+								<md-button class="md-icon-button md-warn"><wb-icon>mail</wb-icon></md-button>
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td translate>Joined date</td>
+						<td>{{user.date_joined | mbDate:'jYYYY/jMM/jDD'}}</td>
+					</tr>
+					<tr>
+						<td translate>Last login</td>
+						<td>{{user.last_login | mbDate:'jYYYY/jMM/jDD'}}</td>
+					</tr>
+					<tr>
+						<td translate>Activation state</td>
+						<td>
+							<span ng-if="!app.user.tenant_owner">{{user.is_active ? 'Active' : 'Deactive' | translate}}</span>
+							<md-switch ng-if="app.user.tenant_owner"
+								ng-model="user.is_active" 
+								ng-change="update()">
+							    {{user.is_active ? 'Active' : 'Deactive' | translate}}
+							</md-switch>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div
+			layout="column" 
+			layout-gt-sm="row">
+			<span flex></span>
+			<md-button 
+				class="md-raised md-accent" 
+				ng-click="remove()">
+				<wb-icon>delete</wb-icon>
+				<span translate>Delete</span>
+			</md-button>
+		</div>
+	</section>
+
+	<section 
+		mb-preloading="ctrl.roleLoading"
+		layout="column" 
+		md-whiteframe="1"
+		layout-margin>
+		<h3 translate>Roles</h3>
+		<md-chips 
+			ng-model="roles.items"
+			md-on-remove="removeRole($chip)">
+			<md-chip-template>
+				<strong>{{$chip.name}}</strong>
+			</md-chip-template>
+		</md-chips>
+		<div 
+			ng-show="!roles.items || roles.items.length == 0"
+			layout="column" layout-align="center center">
+			<p translate>User has no role.</p>
+		</div>
+		<div layout="row">
+			<span flex></span>
+			<md-button class="md-raised" 
+				ng-click="changeRoles()">
+				<wb-icon>edit</wb-icon>
+				<span translate>Edit</span>
+			</md-button>
+		</div>
+	</section>
+	
+	<section 
+		mb-preloading="ctrl.groupLoading"
+		layout="column" 
+		md-whiteframe="1"
+		layout-margin>
+		<h3 translate>Groups</h3>
+		<md-chips 
+			ng-model="groups.items"
+			md-on-remove="removeGroup($chip)">
+			<md-chip-template>
+				<strong>{{$chip.name}}</strong>
+			</md-chip-template>
+		</md-chips>
+		<div 
+			ng-show="!groups.items || groups.items.length == 0"
+			layout="column" layout-align="center center">
+			<p translate>User is not member of any group.</p>
+		</div>
+		<div layout="row">
+			<span flex></span>
+			<md-button class="md-raised"
+				ng-click="changeGroups()">
+				<wb-icon>edit</wb-icon>
+				<span translate>Edit</span>
+			</md-button>
+		</div>
+	</section>
+</md-content>
+

@@ -1,7 +1,5 @@
-/* 
- * The MIT License (MIT)
- * 
- * Copyright (c) 2016 weburger
+/*
+ * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,38 +19,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+'use strict';
 
-/*
- * Main module of the application.
+angular.module('ngMaterialDashboardUser')
+
+/**
+ * @ngdoc controller
+ * @name AmdUserGroupsCtrl
+ * @description Manages list of accounts
  */
-angular
-.module('myDashboardApp', [
-    'ngMaterialDashboard',//
-    'mblowfish-language',//
-    'ngMaterialDashboardUser',//
+.controller('AmdUserGroupsCtrl', function($scope, $controller, $navigator) {
 
-    'ngMaterialDashboardTenant',//
-    'ngMaterialDashboardSpa',//
-    'ngMaterialDashboardCms',//
-    'ngMaterialDashboardSpa',//
-    'ngMaterialDashboardBank',//
-    'ngMaterialDashboardShop',//
-    'ngMaterialDashboardSeo',//
-    'ngMaterialDashboardWallet',//
-    'ngMaterialDashboardSdp'//
-])
-//  Load application
-.run(function($app, $window) {
-    $app.start('my-dashboard');
-
-    // load crisp
-    $window.$crisp=[];
-    $window.CRISP_WEBSITE_ID = '55019c32-37d1-46ab-b97e-1b524309deb1';
-    $window.loadLibrary('https://client.crisp.chat/l.js');
-})
-.config(function($routeProvider) {
-    $routeProvider.otherwise('/dashboard');
-})
-.controller('MainCtrl', function(){});
-
-
+    angular.extend(this, $controller('MbSeenUserGroupsCtrl', {
+        $scope : $scope
+    }));
+    
+    
+    // Add action
+    this.addAction({
+        title: 'New group',
+        icon: 'add',
+        action: function(){
+            $navigator.openPage('ums/groups/new');
+        } 
+    });
+});

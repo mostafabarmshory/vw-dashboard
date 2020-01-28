@@ -1,7 +1,5 @@
-/* 
- * The MIT License (MIT)
- * 
- * Copyright (c) 2016 weburger
+/*
+ * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +21,26 @@
  */
 'use strict';
 
-angular.module('myDashboardApp')
+angular.module('ngMaterialDashboardUser')
+
 /**
- * Icon configuration.
+ * @ngdoc controller
+ * @name AmdUserAccountsCtrl
+ * @description Manages list of accounts
  */
-.config(function() {
+.controller('AmdUserAccountsCtrl', function($scope, $controller, $navigator) {
+
+    angular.extend(this, $controller('MbSeenUserAccountsCtrl', {
+        $scope : $scope
+    }));
+    
+    
+    // Add action
+    this.addAction({
+        title: 'New account',
+        icon: 'add',
+        action: function(){
+            $navigator.openPage('ums/accounts/new');
+        } 
+    });
 });
