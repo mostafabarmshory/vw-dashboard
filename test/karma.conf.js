@@ -67,12 +67,6 @@ module.exports = function(config) {
       'bower_components/loglevel/dist/loglevel.min.js',
       'bower_components/moment/moment.js',
       'bower_components/mblowfish-core/dist/mblowfish-core.js',
-      'bower_components/angular-material-dashboard/dist/angular-material-dashboard.js',
-      'bower_components/angular-material-dashboard-tenant/dist/angular-material-dashboard-tenant.js',
-      'bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.js',
-      'bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.js',
-      'bower_components/angular-material-dashboard-shop/dist/angular-material-dashboard-shop.js',
-      'bower_components/angular-material-dashboard-sdp/dist/angular-material-dashboard-sdp.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/**/*.js',
