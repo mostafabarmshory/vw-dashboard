@@ -1,0 +1,64 @@
+<md-content 
+    class="md-padding"
+    layout-padding
+    flex>
+    <mb-titled-block 
+        mb-progress="ctrl.loading || ctrl.loadingPayment"
+        mb-title="{{'Payment'| translate}}"
+        layout="column">
+
+        <div layout="row" 
+             layout-xs="column" 
+             layout-align-xs="center center" 
+             layout-padding>
+
+            <table>
+                <tr>
+                    <td translate="">ID </td>
+                    <td>: {{ctrl.payment.id}}</td>
+                </tr>
+                <tr>
+                    <td translate="">Amount </td>
+                    <td>: {{ctrl.payment.amount}}</td>
+                </tr>
+                <tr>
+                    <td translate="">Receipt Id </td>
+                    <td>: {{ctrl.payment.receipt_id}}</td>
+                </tr>
+                <tr>
+                    <td translate="">Description </td>
+                    <td>: {{ctrl.payment.description}}</td>
+                </tr>
+                <tr>
+                    <td translate="">Creation Date </td>
+                    <td>: {{ctrl.payment.creation_dtime| mbDate:'jYYYY-jMM-jDD hh:mm:ss'}}</td>
+                </tr>
+                <tr ng-if="ctrl.payment.modif_dtime">
+                    <td translate="">Last Modified Date </td>
+                    <td>: {{ctrl.payment.modif_dtime| mbDate:'jYYYY-jMM-jDD hh:mm:ss'}}</td>
+                </tr>
+                <tr>
+                    <td translate="">Status </td>
+                    <td ng-if="!ctrl.loading && !ctrl.loadingPayment">
+                        : <span style="color: red" translate="">
+                            {{(ctrl.receipt.payRef ? 'Is payed' : 'Is not payed')}}
+                        </span> 
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!--If order is not payed-->
+        <div 
+            ng-if="!ctrl.loading && !ctrl.loadingPayment && ctrl.paymentChecked && !ctrl.receipt.payRef"
+            layout="row">
+            <span flex></span>
+            <md-button 
+                class = "md-raised md-accent"
+                ng-click="ctrl.pay()">
+                <span translate>Pay</span>
+            </md-button>
+        </div>
+
+    </mb-titled-block>
+</md-content>

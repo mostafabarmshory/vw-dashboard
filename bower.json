@@ -1,3 +1,4 @@
+
 {
 	"name": "vw-dashboard",
 	"moduleName": "myDashboardApp",
@@ -7,14 +8,20 @@
 	"license": "MIT",
 	"homepage": "https://dashboard.viraweb123.ir",
 	"dependencies": {
+		"seen-bank": "https://gitlab.com/seen/angular/seen-bank.git#3.0.x",
+		"seen-supertenant": "https://gitlab.com/seen/angular/seen-supertenant.git#3.0.x",
+		"seen-shop": "https://gitlab.com/seen/angular/seen-shop.git#3.0.x",
+		"seen-seo": "https://gitlab.com/seen/angular/seen-seo.git#3.0.x",
+		"seen-sdp": "https://gitlab.com/seen/angular/seen-sdp.git#3.0.x",
+		
+		
+		
 		"angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#3.1.x",
 		"angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#3.1.x",
 		"angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#3.1.x",
 		"angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#3.1.x",
-		"angular-material-dashboard-bank": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-bank.git#3.1.x",
 		"angular-material-dashboard-seo": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-seo.git#3.1.x",
 		"angular-material-dashboard-shop": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-shop.git#3.1.x",
-		"angular-material-dashboard-wallet": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-wallet.git#3.1.x",
 		"angular-material-dashboard-sdp": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-sdp.git#3.1.x"
 	},
 	"devDependencies": {
