@@ -26,27 +26,30 @@
  * Main module of the application.
  */
 angular.module('myDashboardApp', [
-    'ngMaterialDashboard',//
-    'ngMaterialDashboardUser',//
-    'ngMaterialDashboardBank',//
-    'ngMaterialDashboardTenant',//
-    'ngMaterialDashboardSpa',//
-    'ngMaterialDashboardCms',//
-    'ngMaterialDashboardSpa',//
-    'ngMaterialDashboardShop',//
-    'ngMaterialDashboardSeo',//
-    'ngMaterialDashboardSdp',//
-])
-//  Load application
-.run(function($app, $window) {
-    $app.start('my-dashboard');
+	'ngMaterialDashboard',
+	'ngMaterialDashboardBank',
+	'ngMaterialDashboardCms',
+	'ngMaterialDashboardCollection',
+	'ngMaterialDashboardJms',
+	'ngMaterialDashboardSpa',
+	'ngMaterialDashboardSpa',
+	'ngMaterialDashboardShop',
+	'ngMaterialDashboardSeo',
+	'ngMaterialDashboardSdp',
+	'ngMaterialDashboardTenant',
+	'ngMaterialDashboardUser',
+]).run(function($app, $window, $toolbar, $sidenav) {
+	//  Load application
+	$toolbar.setDefaultToolbars(['dashboard']);
+	$sidenav.setDefaultSidenavs(['navigator']);
 
-    // load crisp
-    $window.$crisp=[];
-    $window.CRISP_WEBSITE_ID = '55019c32-37d1-46ab-b97e-1b524309deb1';
-    $window.loadLibrary('https://client.crisp.chat/l.js');
-})
-.config(function($routeProvider) {
-    $routeProvider.otherwise('/dashboard');
-})
-.controller('MainCtrl', function(){});
+	$app.start('my-dashboard');
+
+
+	// load crisp
+	$window.$crisp = [];
+	$window.CRISP_WEBSITE_ID = '55019c32-37d1-46ab-b97e-1b524309deb1';
+	$window.loadLibrary('https://client.crisp.chat/l.js');
+}).config(function($routeProvider) {
+	$routeProvider.otherwise('/dashboard');
+});
