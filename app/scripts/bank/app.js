@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-angular.module('ngMaterialDashboardBank', [ //
-    'ngMaterialDashboard',//
-    'seen-bank'
+angular.module('ngMaterialDashboardBank', [
+	'mblowfish-core',
+	'seen-bank'
 ]);

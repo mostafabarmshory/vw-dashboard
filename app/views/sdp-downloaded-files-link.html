@@ -1,0 +1,40 @@
+<md-content
+    mb-infinate-scroll="nextPage()"
+    layout="column"
+    flex
+    mb-preloading="mainWaiting">
+
+    <!-- Action bar -->
+
+    <mb-pagination-bar
+        mb-model="paginatorParameter"
+        mb-reload="reload"
+        mb-sort-keys="sortKeys"
+        mb-more-actions="moreActions">
+    </mb-pagination-bar>
+
+
+    <div layout="row" layout-sm="column" layout-align="center center">
+        <md-progress-circular 
+            ng-show='loadingLinks'
+            md-diameter="96"> Loading ...
+        </md-progress-circular>
+    </div>
+
+
+    <md-list 
+        flex
+        ng-if="items.length > 0">
+        
+        <sdp-downloaded-link 
+            ng-repeat="item in items"
+            item="item">
+        </sdp-downloaded-link>
+
+    </md-list>
+    <div
+        layout="column"
+        ng-if="flag">
+        <h3 style="text-align: center" translate>Noting found</h3>
+    </div>
+</md-content>

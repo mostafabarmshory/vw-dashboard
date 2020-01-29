@@ -1,0 +1,225 @@
+<md-content
+	layout-margin
+	flex>
+	
+	<mb-titled-block 
+		mb-progress="ctrl.loadingAsset || ctrl.savingAsset"
+		mb-title="{{'Asset'| translate}}"
+		layout="column">
+		<section ng-show="!ctrl.edit"
+			layout="column">
+			<table>
+				<tr>
+					<td>ID </td>
+					<td>: {{asset.id}}</td>
+				</tr>
+				<tr>
+					<td>Name </td>
+					<td>: {{asset.name}}</td>
+				</tr>
+				<tr>
+					<td>Type </td>
+					<td>: {{asset.type}}</td>
+				</tr>
+				<tr ng-if="asset.type === 'file'">
+					<td>Price  </td>
+					<td>: {{asset.price}}</td>
+				</tr>
+				<tr>
+					<td>Description </td>
+					<td>: {{asset.description}}</td>
+				</tr>
+				<tr>
+					<td>Creation Date </td>
+					<td>: {{asset.creation_dtime}}</td>
+				</tr>
+				<tr>
+					<td>Last Modif Date </td>
+					<td>: {{asset.modif_dtime}}</td>
+				</tr>
+				<tr>
+					<td>Parent </td>
+					<td>: {{asset.parent}}</td>
+				</tr>
+				<tr>
+					<td>Content ID </td>
+					<td>: {{asset.content}}</td>
+				</tr>
+				<tr>
+					<td>Thumbnail ID </td>
+					<td>: {{asset.thumbnail}}</td>
+				</tr>
+			</table>
+			<!-- Action bar -->
+			<div layout="row">
+				<span flex></span>
+				<md-button 
+					class = "md-raised md-primary"
+					ng-click="remove()">
+					<wb-icon>delete</wb-icon>
+					<span translate>Delete</span>
+				</md-button>
+				<md-button
+					class="md-raised"
+					ng-click="ctrl.edit=true">
+					<wb-icon>edit</wb-icon>
+					<span translate>Edit</span>
+				</md-button>
+			</div>
+		</section>
+	
+		<section ng-show="ctrl.edit"
+			layout="column">
+			
+			<md-button class="md-raised" ng-click="changeFile()">
+				{{'change file' | translate}}
+			</md-button>
+			
+			<md-input-container class="md-block" flex-gt-xs>
+				<label>Name</label>
+				<input ng-model="asset.name">
+			</md-input-container>
+			<md-input-container class="md-block" flex-gt-xs>
+				<label>Description</label>
+				<input ng-model="asset.description">
+			</md-input-container>
+			<md-input-container ng-if="asset.type === 'file'" class="md-block" flex-gt-xs>
+				<label>Price</label>
+				<input ng-model="asset.price">
+			</md-input-container>
+			<md-input-container class="md-block" flex-gt-xs>
+				<label>Parent</label>
+				<input ng-model="asset.parent">
+			</md-input-container>
+			<md-input-container class="md-block" flex-gt-xs>
+				<label>Content</label>
+				<input ng-model="asset.content">
+			</md-input-container>
+			<md-input-container class="md-block" flex-gt-xs>
+				<label>Thumbnail</label>
+				<input ng-model="asset.thumbnail">
+			</md-input-container>
+		
+			 <div layout="row">
+				<span flex></span>
+				<md-button
+					class="md-raised" 
+					ng-click="save()">
+					<wb-icon>save</wb-icon>
+					<span translate>Save</span>
+				</md-button>
+				<md-button 
+					class="md-raised" 
+					ng-click="ctrl.edit=false">
+					<wb-icon>close</wb-icon>
+					<span translate>Cancel</span>
+				</md-button>
+			 </div>
+		</section>
+	</mb-titled-block>
+
+	<!-- categories -->
+	<mb-titled-block
+		mb-progress="ctrl.loadingCategories"
+		layout="column" 
+		mb-title="{{'Categories' | translate}}">
+		<div class="sdp-chips-list" style="direction:rtl;">
+			<div layout="row" layout-align="start center">
+				<md-chips flex
+					class="custom-chips" 
+					ng-model="ctrl.categories" 
+					md-removable="true">
+					<md-chip-template>
+						<span>
+							<strong>{{$chip.id}} - {{$chip.name}}</strong>
+						</span>
+					</md-chip-template>
+				  	<button md-chip-remove class="md-primary chipaction" ng-click="removeFromCategory($chip)">
+						<wb-icon class="block">close</wb-icon>
+				  	</button>
+				</md-chips>
+				<md-button
+					class="md-icon-button md-raised"
+					ng-click="addToCategory()">
+					<wb-icon>add</wb-icon>
+				</md-button>
+			</div>
+			<div 
+				ng-if="!ctrl.categories || ctrl.categories.length == 0"
+				layout="column" layout-align="center center">
+				<p>This asset is not contained in any category</p>
+			</div>
+		</div>
+	</mb-titled-block>
+	
+	<!-- tags -->
+	<mb-titled-block
+		mb-progress="ctrl.loadingTags"
+		mb-title="{{'Tags' | translate}}"
+		layout="column">
+		<div class="sdp-chips-list" style="direction:rtl;">
+			<div layout="row" layout-align="start center">
+				<md-chips flex
+					class="custom-chips"
+					ng-model="ctrl.tags" 
+					md-removable="true">
+					<md-chip-template>
+						<span>
+							<strong>{{$chip.id}} - {{$chip.name}}</strong>
+						</span>
+					</md-chip-template>
+				  	<button md-chip-remove class="md-primary chipaction" ng-click="removeTag($chip)">
+						<wb-icon class="block">close</wb-icon>
+				  	</button>
+				</md-chips>
+				<md-button 
+					class="md-icon-button md-raised" 
+					ng-click="addTag()">
+					<wb-icon>add</wb-icon>
+				</md-button>
+			</div>
+			<div ng-show="!ctrl.tags || ctrl.tags.length == 0"
+				layout="column" layout-align="center center">
+				<p>This asset has no any tag.</p>
+			</div>
+		</div>
+	</mb-titled-block>
+	
+	<!-- related assets -->
+	<mb-titled-block 
+		mb-progress="ctrl.loadingRelateds"
+		mb-title="{{'Relateds' | translate}}"
+		layout="column">
+		<div class="sdp-chips-list" style="direction:rtl;">
+			<div layout="row" layout-align="start center">
+				<md-chips flex
+					class="custom-chips" 
+					ng-model="ctrl.relateds" 
+					md-on-select="goToAssetPage($chip.id)"
+					md-removable="true" 
+					style="direction:rtl;">
+					<md-chip-template>
+						<span>
+							<strong>{{$chip.id}} - {{$chip.name}}</strong>
+						</span>
+					</md-chip-template>
+				  	<button md-chip-remove 
+				  		class="md-primary chipaction" 
+				  		ng-click="removeRelation($chip)">
+						<wb-icon class="block">close</wb-icon>
+				  	</button>
+				</md-chips>
+				<md-button 
+					class="md-icon-button md-raised"
+					ng-click="addRelation()">
+					<wb-icon>add</wb-icon>
+				</md-button>
+			</div>
+			<div ng-show="!ctrl.relateds || ctrl.relateds.length == 0"
+				layout="column" layout-align="center center">
+				<p>No one asset is related to this asset.</p>
+			</div>
+		</div>
+	</mb-titled-block>
+</md-content>
+

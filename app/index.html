@@ -26,12 +26,6 @@
 	<link rel="stylesheet" href="bower_components/jspanel4x/dist/jspanel.css" />
 	<link rel="stylesheet" href="bower_components/md-color-picker/dist/md-color-picker.css" />
 	<link rel="stylesheet" href="bower_components/mblowfish-core/dist/mblowfish-core.css" />
-	<link rel="stylesheet" href="bower_components/angular-material-dashboard/dist/angular-material-dashboard.css" />
-	<link rel="stylesheet" href="bower_components/angular-material-dashboard-tenant/dist/angular-material-dashboard-tenant.css" />
-	<link rel="stylesheet" href="bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.css" />
-	<link rel="stylesheet" href="bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.css" />
-	<link rel="stylesheet" href="bower_components/angular-material-dashboard-shop/dist/angular-material-dashboard-shop.css" />
-	<link rel="stylesheet" href="bower_components/angular-material-dashboard-sdp/dist/angular-material-dashboard-sdp.css" />
 	<!-- endbower -->
 	<!-- endbuild -->
 	
@@ -87,12 +81,6 @@
     <script src="bower_components/loglevel/dist/loglevel.min.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/mblowfish-core/dist/mblowfish-core.js"></script>
-    <script src="bower_components/angular-material-dashboard/dist/angular-material-dashboard.js"></script>
-    <script src="bower_components/angular-material-dashboard-tenant/dist/angular-material-dashboard-tenant.js"></script>
-    <script src="bower_components/angular-material-dashboard-spa/dist/angular-material-dashboard-spa.js"></script>
-    <script src="bower_components/angular-material-dashboard-seo/dist/angular-material-dashboard-seo.js"></script>
-    <script src="bower_components/angular-material-dashboard-shop/dist/angular-material-dashboard-shop.js"></script>
-    <script src="bower_components/angular-material-dashboard-sdp/dist/angular-material-dashboard-sdp.js"></script>
     <!-- endbower -->
 	<!-- endbuild -->
 
@@ -115,6 +103,9 @@
 	<script src="scripts/bank/controllers/bank-wallet.js"></script>
 	<script src="scripts/bank/controllers/bank-wallets.js"></script>
 	<script src="scripts/bank/controllers/banks.js"></script>
+	<script src="scripts/bank/controllers/discount-new.js"></script>
+	<script src="scripts/bank/controllers/discount.js"></script>
+	<script src="scripts/bank/controllers/discounts.js"></script>
 	<script src="scripts/bank/runs/navigator.js"></script>
 	<script src="scripts/cms/app.js"></script>
 	<script src="scripts/cms/configs/states.js"></script>
@@ -136,6 +127,104 @@
 	<script src="scripts/collection/controllers/collection.js"></script>
 	<script src="scripts/collection/controllers/collections.js"></script>
 	<script src="scripts/collection/controllers/document.js"></script>
+	<script src="scripts/dashboard/app.js"></script>
+	<script src="scripts/dashboard/configs/icons.js"></script>
+	<script src="scripts/dashboard/configs/states.js"></script>
+	<script src="scripts/dashboard/controllers/abstract-dashboard.js"></script>
+	<script src="scripts/dashboard/controllers/dashboard.js"></script>
+	<script src="scripts/dashboard/runs/dashboard-init.js"></script>
+	<script src="scripts/jms/app.js"></script>
+	<script src="scripts/jms/configs/states.js"></script>
+	<script src="scripts/jms/controllers/pipeline.js"></script>
+	<script src="scripts/jms/controllers/pipelines.js"></script>
+	<script src="scripts/jms/runs/app.js"></script>
+	<script src="scripts/jms/services/jms.js"></script>
+	<script src="scripts/jms/services/superjms.js"></script>
+	<script src="scripts/sdp/app.js"></script>
+	<script src="scripts/sdp/configs/state.js"></script>
+	<script src="scripts/sdp/controllers/resource-categories-list.js"></script>
+	<script src="scripts/sdp/controllers/resource-category-list.js"></script>
+	<script src="scripts/sdp/controllers/resource-tag-list.js"></script>
+	<script src="scripts/sdp/controllers/sdp-asset-new.js"></script>
+	<script src="scripts/sdp/controllers/sdp-asset.js"></script>
+	<script src="scripts/sdp/controllers/sdp-assets.js"></script>
+	<script src="scripts/sdp/controllers/sdp-categories.js"></script>
+	<script src="scripts/sdp/controllers/sdp-category-new.js"></script>
+	<script src="scripts/sdp/controllers/sdp-category.js"></script>
+	<script src="scripts/sdp/controllers/sdp-downloaded-files-link.js"></script>
+	<script src="scripts/sdp/controllers/sdp-tag-new.js"></script>
+	<script src="scripts/sdp/controllers/sdp-tag.js"></script>
+	<script src="scripts/sdp/controllers/sdp-tags.js"></script>
+	<script src="scripts/sdp/directives/sdp-downloaded-link.js"></script>
+	<script src="scripts/sdp/runs/navigator.js"></script>
+	<script src="scripts/sdp/runs/resources.js"></script>
+	<script src="scripts/seo/app.js"></script>
+	<script src="scripts/seo/configs/states.js"></script>
+	<script src="scripts/seo/controllers/backend-new.js"></script>
+	<script src="scripts/seo/controllers/backend.js"></script>
+	<script src="scripts/seo/controllers/backends.js"></script>
+	<script src="scripts/seo/controllers/content-render.js"></script>
+	<script src="scripts/seo/controllers/crawled-links.js"></script>
+	<script src="scripts/seo/controllers/engine.js"></script>
+	<script src="scripts/seo/controllers/engines.js"></script>
+	<script src="scripts/seo/controllers/link-new.js"></script>
+	<script src="scripts/seo/controllers/link.js"></script>
+	<script src="scripts/seo/controllers/links.js"></script>
+	<script src="scripts/seo/runs/app.js"></script>
+	<script src="scripts/seo/services/seo-content.js"></script>
+	<script src="scripts/shop/app.js"></script>
+	<script src="scripts/shop/configs/state.js"></script>
+	<script src="scripts/shop/controllers/amd-shop-agency.js"></script>
+	<script src="scripts/shop/controllers/amd-shop-category.js"></script>
+	<script src="scripts/shop/controllers/amd-shop-deliver.js"></script>
+	<script src="scripts/shop/controllers/amd-shop-order.js"></script>
+	<script src="scripts/shop/controllers/amd-shop-product.js"></script>
+	<script src="scripts/shop/controllers/amd-shop-service.js"></script>
+	<script src="scripts/shop/controllers/amd-shop-tag.js"></script>
+	<script src="scripts/shop/controllers/amd-shop-zone.js"></script>
+	<script src="scripts/shop/controllers/seen-shop-agencies.js"></script>
+	<script src="scripts/shop/controllers/seen-shop-categories.js"></script>
+	<script src="scripts/shop/controllers/seen-shop-delivers.js"></script>
+	<script src="scripts/shop/controllers/seen-shop-orders.js"></script>
+	<script src="scripts/shop/controllers/seen-shop-products.js"></script>
+	<script src="scripts/shop/controllers/seen-shop-services.js"></script>
+	<script src="scripts/shop/controllers/seen-shop-tags.js"></script>
+	<script src="scripts/shop/controllers/seen-shop-zones.js"></script>
+	<script src="scripts/shop/runs/actions-agency.js"></script>
+	<script src="scripts/shop/runs/actions-category.js"></script>
+	<script src="scripts/shop/runs/actions-deliver.js"></script>
+	<script src="scripts/shop/runs/actions-order.js"></script>
+	<script src="scripts/shop/runs/actions-product.js"></script>
+	<script src="scripts/shop/runs/actions-service.js"></script>
+	<script src="scripts/shop/runs/actions-tag.js"></script>
+	<script src="scripts/shop/runs/actions-zone.js"></script>
+	<script src="scripts/shop/runs/navigator.js"></script>
+	<script src="scripts/shop/runs/resources.js"></script>
+	<script src="scripts/spa/app.js"></script>
+	<script src="scripts/spa/configs/states.js"></script>
+	<script src="scripts/spa/controllers/repository-spa.js"></script>
+	<script src="scripts/spa/controllers/repository-spas.js"></script>
+	<script src="scripts/spa/controllers/spa-upload.js"></script>
+	<script src="scripts/spa/controllers/spa.js"></script>
+	<script src="scripts/spa/controllers/spas.js"></script>
+	<script src="scripts/spa/factories/market-spa.js"></script>
+	<script src="scripts/spa/runs/navigator.js"></script>
+	<script src="scripts/spa/services/marketplace.js"></script>
+	<script src="scripts/tenant/app.js"></script>
+	<script src="scripts/tenant/configs/states.js"></script>
+	<script src="scripts/tenant/controllers/invoice.js"></script>
+	<script src="scripts/tenant/controllers/invoices.js"></script>
+	<script src="scripts/tenant/controllers/local-settings.js"></script>
+	<script src="scripts/tenant/controllers/receipt.js"></script>
+	<script src="scripts/tenant/controllers/setting-security.js"></script>
+	<script src="scripts/tenant/controllers/tenant.js"></script>
+	<script src="scripts/tenant/controllers/tenants.js"></script>
+	<script src="scripts/tenant/controllers/ticket.js"></script>
+	<script src="scripts/tenant/controllers/tickets.js"></script>
+	<script src="scripts/tenant/directives/amdTenantInvoice.js"></script>
+	<script src="scripts/tenant/filters/iran-currency.js"></script>
+	<script src="scripts/tenant/runs/navigator.js"></script>
+	<script src="scripts/tenant/runs/settings.js"></script>
 	<script src="scripts/user/app.js"></script>
 	<script src="scripts/user/configs/icons.js"></script>
 	<script src="scripts/user/configs/states.js"></script>

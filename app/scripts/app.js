@@ -25,21 +25,17 @@
 /*
  * Main module of the application.
  */
-angular
-.module('myDashboardApp', [
-	// Internal modules
+angular.module('myDashboardApp', [
+    'ngMaterialDashboard',//
     'ngMaterialDashboardUser',//
     'ngMaterialDashboardBank',//
-	
-	// TODO: maso, 2020: add as internal module.
-    'ngMaterialDashboard',//
     'ngMaterialDashboardTenant',//
     'ngMaterialDashboardSpa',//
     'ngMaterialDashboardCms',//
     'ngMaterialDashboardSpa',//
     'ngMaterialDashboardShop',//
     'ngMaterialDashboardSeo',//
-    'ngMaterialDashboardSdp'//
+    'ngMaterialDashboardSdp',//
 ])
 //  Load application
 .run(function($app, $window) {
@@ -54,5 +50,3 @@ angular
     $routeProvider.otherwise('/dashboard');
 })
 .controller('MainCtrl', function(){});
-
-

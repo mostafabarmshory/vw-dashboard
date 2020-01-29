@@ -1,0 +1,78 @@
+<md-dialog 
+    layout="column"
+    ng-cloak
+    flex="50">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 translate="">New product</h2>
+            <span flex></span>
+            <md-button 
+                class="md-icon-button" 
+                ng-click="answer(config)"
+                ng-disabled="myForm.$invalid">
+                <wb-icon aria-label="Close dialog">done</wb-icon>
+            </md-button>
+            <md-button 
+                class="md-icon-button" 
+                ng-click="cancel()">
+                <wb-icon aria-label="Close dialog">close</wb-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content layout-padding>
+        <form
+            name="myForm"
+            ng-action="add(config)"
+            layout="column" 
+            flex>
+            <md-input-container>
+                <label translate="">Name</label>
+                <input ng-model="config.title" name="title" required></input>
+                <div ng-messages="myForm.title.$error">
+                    <div ng-message="required" translate="">This field is required.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label translate="">Description</label>
+                <input ng-model="config.description"></input>
+            </md-input-container>
+
+            <md-input-container>
+                <label tranlate>Price</label>
+                <input ng-model="config.price" type="number" required></input>
+                <div ng-messages="myForm.title.$error">
+                    <div ng-message="required" translate="">This field is required.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label tranlate="">Off</label>
+                <input ng-model="config.off"></input>
+            </md-input-container>
+
+            <md-input-container>
+                <label translate="">Manufacturer</label>
+                <input ng-model="config.manufacturer"></input>
+            </md-input-container>
+
+            <md-input-container>
+                <label translate="">Brand</label>
+                <input ng-model="config.brand"></input>
+            </md-input-container>
+
+            <md-input-container>
+                <label translate="">Model</label>
+                <input ng-model="config.model"></input>
+            </md-input-container>
+
+            <wb-ui-setting-image
+                title="{{'Image' | translate}}" 
+                wb-ui-setting-clear-button="true"
+                wb-ui-setting-preview="true"
+                ng-model="config.avatar">
+            </wb-ui-setting-image>
+
+        </form>
+    </md-dialog-content>
+</md-dialog>

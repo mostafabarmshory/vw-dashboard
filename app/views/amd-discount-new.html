@@ -1,0 +1,82 @@
+<md-content 
+	class="md-padding"
+	layout-padding
+	flex>
+	<form 
+		name="discountForm"
+		ng-action="add(config)"
+		mb-preloading="ctrl.savingDiscount"
+		layout-margin
+		layout="column"
+		flex>
+		<md-input-container>
+			<label translate="">Code</label>
+			<input name="code" ng-model="config.model.code" required></input>
+			<div ng-messages="discountForm.code.$error">
+		    	<div ng-message="required">This is required!</div>
+		    </div>
+		</md-input-container>
+		
+		<md-input-container class="md-block" flex-gt-sm>
+	        <label translate="">Type</label>
+	        <md-select required 
+		        placeholder="Type" 
+		        md-on-open="loadDiscountTypes()" 
+		        ng-model="config.model.type">
+		        <md-option ng-repeat="dtype in discountTypes.items" value="{{dtype.type}}">
+		        	{{dtype.title}}
+		        </md-option>
+	        </md-select>
+        </md-input-container>
+		
+		<md-input-container>
+			<label translate="">Count</label>
+			<input type="number" ng-model="config.model.count"></input>
+		</md-input-container>
+		
+		<md-input-container>
+			<label translate="">Off value</label>
+			<input type="number" ng-model="config.model.off_value"></input>
+		</md-input-container>
+		
+		 <div layout-gt-sm="row">
+			<md-input-container class="md-block" flex-gt-sm>
+				<label translate="">User</label>
+				<input ng-model="config.model.user"></input>
+			</md-input-container>
+			<md-button ng-click="selectUser()">select</md-button>
+		 </div>
+		
+		<md-input-container>
+			<label translate="">Valid day</label>
+			<input type="number" ng-model="config.model.valid_day"></input>
+		</md-input-container>
+		
+		<md-input-container>
+			<label translate="">Name</label>
+			<input ng-model="config.model.name"></input>
+		</md-input-container>
+		
+		<md-input-container>
+			<label translate="">Description</label>
+			<input ng-model="config.model.description"></input>
+		</md-input-container>
+		
+		<div layout="row">
+			<span flex></span>
+			<md-button
+				class="md-raised" 
+				ng-click="add(config)">
+				<wb-icon aria-label="close">done</wb-icon>
+				<span translate="">Add</span>
+			</md-button>
+			<md-button 
+				class="md-raised" 
+				ng-click="cancel()">
+				<wb-icon aria-label="close">close</wb-icon>
+				<span translate="">Cancel</span>
+			</md-button>
+		</div>
+	</form>
+</md-content>
+

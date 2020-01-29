@@ -1,0 +1,24 @@
+<md-content
+	layout="column"
+	layout-padding
+	flex>
+	<table>
+		<tr><td translate>Title: </td><td>{{link.title}}</td></tr>
+		<tr><td translate>Link: </td><td><a ng-href="{{link.loc}}">{{link.loc}}</a></td></tr>
+		<tr><td translate>Priority: </td><td>{{link.priority}}</td></tr>
+		<tr><td translate>Last modification: </td><td>{{link.lastmod}}</td></tr>
+		<tr><td translate>Description:</td><td>{{link.description}}</td></tr>
+<!-- 		TODO: maso, 2017: adding other attribuates -->
+	</table>
+	<div 
+		layout="row">
+		<span flex></span>
+		<md-button
+			class="md-raised md-accent"
+			ng-click="remove()">
+			<wb-icon>delete</wb-icon>
+			<span translate>delete</span>
+		</md-button>
+	</div>
+</md-content>
+

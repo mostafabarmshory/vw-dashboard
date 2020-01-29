@@ -1,0 +1,100 @@
+<md-content
+    layout="column"
+    mb-preloading="ctrl.state==='working'"
+    flex>
+    <div 
+        layout="row"
+        layout-padding 
+        flex>
+        <img 
+            width="150px"
+            height="150px"
+            ng-src="/{{spa.name}}/images/logo.svg" 
+            class="md-avatar"/>
+        <table class="md-table md-table-description">
+            <tr>
+                <td translate>Title</td>
+                <td>
+            <am-wb-inline
+                ng-model="spa.title"
+                am-wb-inline-type="text"
+                am-wb-inline-label="Content name"
+                am-wb-inline-enable="true"
+                am-wb-inline-on-save="update()">
+                {{spa.title}}
+            </am-wb-inline>
+            </td>
+            </tr>
+            <tr>
+                <td translate>Description</td>
+                <td>
+            <am-wb-inline
+                ng-model="spa.description"
+                am-wb-inline-type="textarea"
+                am-wb-inline-label="Content name"
+                am-wb-inline-enable="true"
+                am-wb-inline-on-save="update()">
+                {{spa.description|| '...'}}
+            </am-wb-inline>
+            </td>
+            </tr>
+            <tr>
+                <td translate>Name</td>
+                <td>
+            <am-wb-inline
+                ng-model="spa.name"
+                am-wb-inline-type="text"
+                am-wb-inline-label="Content name"
+                am-wb-inline-enable="true"
+                am-wb-inline-on-save="updateName()">
+                {{spa.name}}
+            </am-wb-inline>
+            </td>
+            </tr>
+            <tr>
+                <td translate>Version</td>
+                <td>{{spa.version}}</td>
+            </tr>
+            <tr>
+                <td translate>License</td>
+                <td>{{spa.license}}</td>
+            </tr>
+            <tr>
+                <td translate>Home page</td>
+                <td>{{spa.homepage}}</td>
+            </tr>
+            <tr ng-if="spa.last_version !== spa.version">
+                <td translate>New version</td>
+                <td>{{spa.last_version}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div
+        layout="row">
+        <md-button
+            class="md-raised"
+            data-ng-repeat="trans in transitions.items"
+            data-ng-click="addTransition(trans)"
+            data-ng-show="{{trans.visible}}">
+            <span translate>{{trans.title|| trans.id}}</span>
+        </md-button>
+        <span flex></span>
+        <md-button
+            class="md-raised"
+            target="_blank"
+            ng-href="/{{spa.name}}/">
+            <span translate>Run</span>
+        </md-button>
+        <md-button
+            class="md-raised"
+            ng-click="deleteSpa()">
+            <span translate>Delete</span>
+        </md-button>
+        <md-button
+            class="md-raised"
+            ng-click="setDefault()">
+            <span translate>Set default</span>
+        </md-button>
+    </div>
+</md-content>

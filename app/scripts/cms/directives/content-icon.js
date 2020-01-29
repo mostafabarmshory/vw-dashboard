@@ -21,7 +21,7 @@
  */
 'use strict';
 
-angular.module('ngMaterialDashboard')
+angular.module('ngMaterialDashboardCms')
 
 /**
  * @ngdoc directive

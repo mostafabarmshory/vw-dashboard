@@ -1,0 +1,28 @@
+<md-content
+	mb-preloading="ctrl.uploading"
+	layout="column"
+	flex>
+	<lf-ng-md-file-input 
+		lf-files="files"
+		accept="application/zip"
+		progress
+		drag>
+	</lf-ng-md-file-input>
+	<div
+		layout="row">
+		<span flex></span>
+		<md-button
+			class="md-primary md-raised"
+			ng-click="upload(files)">
+			<span translate>Upload</span>	
+		</md-button>
+		<md-button
+			class="md-raised"
+			ng-href="spas"
+			translate>
+			<span translate>Cancel</span>	
+		</md-button>
+	</div>
+</md-content>
+
+

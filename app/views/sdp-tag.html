@@ -1,0 +1,78 @@
+<md-content
+	layout-margin
+	flex>
+	<mb-titled-block 
+		mb-progress="ctrl.loadingTag || ctrl.savingTag"
+		mb-title="{{'Tag'| translate}}"
+		layout="column">
+		<section ng-show="!ctrl.edit"
+			layout="column">
+			<table>
+				<tr>
+					<td>ID </td>
+					<td>: {{tag.id}}</td>
+				</tr>
+				<tr>
+					<td>Name </td>
+					<td>: {{tag.name}}</td>
+				</tr>
+				<tr>
+					<td>Description </td>
+					<td>: {{tag.description}}</td>
+				</tr>
+				<tr>
+					<td>Creation Date</td>
+					<td>: {{tag.creation_dtime}}</td>
+				</tr>
+				<tr>
+					<td>Last Modif Date</td>
+					<td>: {{tag.modif_dtime}}</td>
+				</tr>
+			</table>
+		
+			<!-- Action bar -->
+			<div ng-show="!ctrl.edit" layout="row">
+				<span flex></span>
+				<md-button 
+					class = "md-raised md-accent"
+					ng-click="remove()">
+	<!-- 				<wb-icon>delete</wb-icon> -->
+					<span translate>Delete</span>
+				</md-button>
+				<md-button 
+					class = "md-raised"
+					ng-click="ctrl.edit=true">
+	<!-- 				<wb-icon>edit</wb-icon> -->
+					<span translate>Edit</span>
+				</md-button>
+			</div>
+		</section>
+	
+		<section ng-show="ctrl.edit"
+			layout="column">
+			<md-input-container class="md-block" flex-gt-xs>
+				<label>Name</label>
+				<input ng-model="tag.name">
+			</md-input-container>
+			<md-input-container class="md-block" flex-gt-xs>
+				<label>Description</label>
+				<input ng-model="tag.description">
+			</md-input-container>
+			 <div layout="row">
+				<span flex></span>
+				<md-button 
+					class="md-raised"
+					ng-click="ctrl.edit=false">
+	<!-- 				<wb-icon>close</wb-icon> -->
+					<span translate>Cancel</span>
+				</md-button>
+				<md-button 
+					class="md-raised md-primary"
+					ng-click="save()">
+	<!-- 				<wb-icon>save</wb-icon> -->
+					<span translate>Save</span>
+				</md-button>
+			 </div>
+		</section>
+	</mb-titled-block>
+</md-content>

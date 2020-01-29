@@ -22,17 +22,24 @@
 'use strict';
 
 angular.module('ngMaterialDashboardBank')
-/**
- * دریچه‌های محاوره‌ای
- */
-.run(function($navigator) {
-	$navigator
-	.newGroup({
-		id: 'bank',
-		title: 'Bank management',
-		description: 'A module of dashboard to manage bank.',
-		icon: 'attach_money',
-		priority: 5,
-                hidden: '!app.user.tenant_owner'
+	/**
+	 * دریچه‌های محاوره‌ای
+	 */
+	.run(function($navigator) {
+		$navigator.newGroup({
+			id: 'bank',
+			title: 'Bank management',
+			description: 'A module of dashboard to manage bank.',
+			icon: 'attach_money',
+			priority: 5,
+			hidden: '!app.user.tenant_owner'
+		});
+		$navigator.newGroup({
+			id: 'discount-management',
+			title: 'Discount management',
+			description: 'Manage defined discount in the system.',
+			icon: 'money_off',
+			hidden: '!app.user.tenant_owner',
+			priority: 5
+		});
 	});
-});

@@ -1,0 +1,49 @@
+<md-dialog aria-label="Menu Item" ng-cloak>
+	<form name="myForm" flex layout="column" ng-action="answer(config.model)">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>New Event Document</h2>
+				<span flex></span>
+				<md-button 
+					class="md-icon-button" 
+					ng-click="answer(config.model)">
+					<wb-icon aria-label="close">done</wb-icon>
+				</md-button>
+				<md-button 
+					class="md-icon-button" 
+					ng-click="cancel()">
+					<wb-icon aria-label="close">close</wb-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+
+		<md-dialog-content layout="column" layout-padding>
+		
+			<md-input-container ng-repeat="key in ['title', 'description', 'thumbnail', 'content']"
+				flex>
+				<label translate>{{key}}</label>
+				<input ng-model="config.model[key]">
+			</md-input-container>
+		
+<!-- 			<md-input-container> -->
+<!-- 				<label>title</label> -->
+<!-- 				<input ng-model="config.model.title"  name="title" required /> -->
+<!-- 				<div ng-messages="myForm.title.$error"> -->
+<!-- 	              	<div ng-message="required" translate>This is required.</div> -->
+<!-- 	            </div> -->
+<!-- 			</md-input-container> -->
+<!-- 			<md-input-container> -->
+<!-- 				<label>url key</label> -->
+<!-- 				<input ng-model="config.model.collection_name" name="collectionName" required /> -->
+<!-- 				<div ng-messages="myForm.collectionName.$error"> -->
+<!-- 	              	<div ng-message="required" translate>This is required.</div> -->
+<!-- 	            </div>  -->
+<!-- 			</md-input-container> -->
+<!-- 			<md-input-container> -->
+<!-- 				<label>description</label> -->
+<!-- 				<input ng-model="config.model.description"></input> -->
+<!-- 			</md-input-container> -->
+		</md-dialog-content>
+    </form>
+</md-dialog>
+

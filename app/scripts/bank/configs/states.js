@@ -162,4 +162,29 @@ angular.module('ngMaterialDashboardBank')
 				controller: 'AmdBankReceiptCtrl',
 				controllerAs: 'ctrl'
 			});
+
+		$routeProvider//
+			.when('/discounts', {
+				controller: 'AmdDiscountsCtrl',
+				templateUrl: 'views/amd-discount-discounts.html',
+				name: 'Discounts',
+				icon: 'money_off',
+				groups: ['discount-management'],
+				navigate: true,
+				protect: true,
+			})//
+			.when('/discounts/new', {
+				controller: 'AmdDiscountNewCtrl',
+				templateUrl: 'views/amd-discount-new.html',
+				name: 'New Discount',
+				icon: 'card_giftcard',
+				groups: ['discount-management'],
+				navigate: true,
+				protect: true,
+			})//
+			.when('/discount/:discountId', {
+				controller: 'AmdDiscountCtrl',
+				templateUrl: 'views/amd-discount-discount.html',
+				protect: true,
+			});
 	});

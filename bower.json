@@ -1,5 +1,3 @@
-
-
 {
 	"name": "vw-dashboard",
 	"moduleName": "myDashboardApp",
@@ -15,15 +13,7 @@
 		"seen-seo": "https://gitlab.com/seen/angular/seen-seo.git#3.0.x",
 		"seen-sdp": "https://gitlab.com/seen/angular/seen-sdp.git#3.0.x",
 		"seen-cms": "https://gitlab.com/seen/angular/seen-cms.git#3.0.x",
-		
-		
-		
-		"angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#3.1.x",
-		"angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#3.1.x",
-		"angular-material-dashboard-spa": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-spa.git#3.1.x",
-		"angular-material-dashboard-seo": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-seo.git#3.1.x",
-		"angular-material-dashboard-shop": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-shop.git#3.1.x",
-		"angular-material-dashboard-sdp": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-sdp.git#3.1.x"
+		"mblowfish-core": "https://gitlab.com/mblowfish/mblowfish-core.git#3.2.x"
 	},
 	"devDependencies": {
 		"angular-mocks": "1.7.x"

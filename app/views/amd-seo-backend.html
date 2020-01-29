@@ -1,0 +1,69 @@
+<md-content
+	layout="column"
+	layout-padding
+	mb-preloading="loadingBackend"
+	flex>
+	
+	<div>
+		<div 
+			layout="row"
+			layout-padding>
+			<am-wb-inline
+				ng-model="backend.symbol"
+				am-wb-inline-type="image"
+				am-wb-inline-label="Backend name"
+				am-wb-inline-enable="app.user.tenant_owner"
+				am-wb-inline-on-save="save()">
+					<img 
+						height="64px"
+						src="{{backend.symbol}}" 
+						alt="{{backend.title}}" />
+			</am-wb-inline>
+			<div>
+				<div
+					layout="column">
+					<am-wb-inline
+						ng-model="backend.title"
+						am-wb-inline-type="text"
+						am-wb-inline-label="Backend name"
+						am-wb-inline-enable="app.user.tenant_owner"
+						am-wb-inline-on-save="save()">
+						{{backend.title}} <!-- <br/> {{backend.modif_dtime | amddate}} -->
+					</am-wb-inline>
+					<am-wb-inline
+						ng-model="backend.description"
+						am-wb-inline-type="text"
+						am-wb-inline-label="Backend name"
+						am-wb-inline-enable="app.user.tenant_owner"
+						am-wb-inline-on-save="save()">
+						{{backend.description}}
+					</am-wb-inline>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+	<md-switch 
+		ng-change="save()"
+		ng-model="backend.enable" 
+		aria-label="Enable">
+		<span translate>Enable backend</span>
+	</md-switch>
+	
+	
+	<div 
+		layout="row">
+		<span flex></span>
+		<md-button
+			class="md-raised"
+			ng-href="seo/backends">
+			<span translate>Cancel</span>
+		</md-button>
+		<md-button
+			class="md-raised md-accent"
+			ng-click="remove()">
+			<span translate>Delete</span>
+		</md-button>
+	</div>
+</md-content>
+

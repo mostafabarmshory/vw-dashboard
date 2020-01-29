@@ -1,0 +1,119 @@
+<md-content
+	class="md-padding"
+	layout-padding
+	flex>
+	<section ng-show="!ctrl.edit"
+		mb-preloading="ctrl.loadingDiscount"
+		layout="column"
+		md-whiteframe=1"
+		layout-margin>
+		<table>
+			<tr>
+				<td>ID </td>
+				<td>: {{discount.id}}</td>
+			</tr>
+			<tr>
+				<td>Code </td>
+				<td>: {{discount.code}}</td>
+			</tr>
+			<tr>
+				<td>Type </td>
+				<td>: {{discount.type}}</td>
+			</tr>
+			<tr>
+				<td>Off Value </td>
+				<td>: {{discount.off_value}}</td>
+			</tr>
+			<tr>
+				<td>Count </td>
+				<td>: {{discount.count}}</td>
+			</tr>
+			<tr>
+				<td>Remain Count </td>
+				<td>: {{discount.remain_count}}</td>
+			</tr>
+			<tr>
+				<td>Valid Day </td>
+				<td>: {{discount.valid_day}}</td>
+			</tr>
+			<tr>
+				<td>User</td>
+				<td>: {{discount.user}}</td>
+			</tr>
+			<tr>
+				<td>Name </td>
+				<td>: {{discount.name}}</td>
+			</tr>
+			<tr>
+				<td>Description </td>
+				<td>: {{discount.description}}</td>
+			</tr>
+			<tr>
+				<td>Creation Date</td>
+				<td>: {{discount.creation_dtime}}</td>
+			</tr>
+		</table>
+	
+		<!-- Action bar -->
+		<div ng-show="!ctrl.edit" layout="row">
+			<span flex></span>
+			<md-button 
+				class = "md-raised md-primary"
+				ng-click="remove()">
+				<wb-icon>delete</wb-icon>
+				<span translate>Delete</span>
+			</md-button>
+			<md-button
+				class = "md-raised" 
+				ng-click="ctrl.edit=true">
+				<wb-icon>edit</wb-icon>
+				<span translate>Edit</span>
+			</md-button>
+		</div>
+	</section>
+
+	<section ng-show="ctrl.edit"
+		mb-preloading="ctrl.savingDiscount"
+		layout="column" 
+		md-whiteframe="1"
+		layout-margin>
+		<md-input-container class="md-block" flex-gt-xs>
+			<label>Off Value</label>
+			<input type="number" ng-model="discount.off_value"></input>
+		</md-input-container>
+		<md-input-container class="md-block" flex-gt-xs>
+			<label>Valid Day</label>
+			<input type="number" ng-model="discount.valid_day"></input>
+		</md-input-container>
+		<md-input-container class="md-block" flex-gt-xs>
+			<label>Name</label>
+			<input ng-model="discount.name">
+		</md-input-container>
+		<md-input-container class="md-block" flex-gt-xs>
+			<label>Description</label>
+			<input ng-model="discount.description">
+		</md-input-container>
+		<md-input-container class="md-block" flex-gt-xs>
+			<label>Title</label>
+			<input ng-model="discount.title">
+		</md-input-container>
+	
+		 <div layout="row">
+			<span flex></span>
+			<md-button 
+				class="md-raised" 
+				ng-click="save()">
+				<wb-icon>save</wb-icon>
+				<span translate>Save</span>
+			</md-button>
+			<md-button 
+				class="md-raised" 
+				ng-click="ctrl.edit=false">
+				<wb-icon>close</wb-icon>
+				<span translate>Cancel</span>
+			</md-button>
+		 </div>
+	</section>
+
+</md-content>
+

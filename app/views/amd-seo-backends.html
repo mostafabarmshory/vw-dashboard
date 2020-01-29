@@ -1,0 +1,56 @@
+<div
+	layout="column"
+	flex>
+	<mb-pagination-bar
+		mb-model="ctrl.queryParameter"
+		mb-properties="ctrl.properties"
+		mb-reload="ctrl.reload()"
+		mb-more-actions="ctrl.getActions()">
+	</mb-pagination-bar>
+	<md-content
+		mb-preloading="ctrl.state === 'busy'"
+		mb-infinate-scroll="ctrl.loadNextPage()"
+		layout="column"
+		flex>
+		<md-list flex>
+			<md-list-item 
+				ng-href="seo/backends/{{object.id}}"
+				ng-repeat="object in ctrl.items track by object.id"
+				class="md-3-line">
+				<img
+					ng-if="object.symbol"
+					ng-src="{{object.symbol}}"
+					class="md-avatar" 
+					alt="{{object.id}}">
+				<wb-icon ng-if="!object.symbol">dvr</wb-icon>
+				<div 
+					class="md-list-item-text" 
+					layout="column">
+					<h3>{{object.title}}</h3>
+					<h4>{{object.engine}}</h4>
+					<p>{{object.description}}</p>
+				</div>
+				<md-button
+					class="md-icon-button"
+					ng-click="ctrl.deleteItem(object, $event)">
+					<wb-icon>delete</wb-icon>
+				</md-button>
+				<md-divider md-inset></md-divider>
+			</md-list-item>
+		</md-list>
+		<div
+			layout="column"
+			layout-align="center center"
+			ng-show="ctrl.state !== 'busy' && ctrl.items && ctrl.items.length === 0">
+			<h2 translate="">Empty backend list</h2>
+			<p translate="">Any backend match with the query. You can add a new backend by 
+				click on the add button. Links improve your site rank.</p>
+			<md-button
+				ng-click="ctrl.addItem($event)">
+				<wb-icon>add</wb-icon>
+				<span translate="">Add</span>
+			</md-button>
+		</div>
+	</md-content>
+</div>
+

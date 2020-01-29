@@ -1,0 +1,27 @@
+<md-dialog 
+    layout="column"
+    ng-cloak>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="answer(model.subject)">
+				<wb-icon aria-label="Done">done</wb-icon>
+			</md-button>
+			<md-button class="md-icon-button" ng-click="cancel()">
+				<wb-icon aria-label="Close dialog">close</wb-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+        
+	<md-dialog-content 
+		layout="column" 
+		layout-padding 
+		layout-align="center stretch"
+		flex>
+                <span flex="1"></span>
+		<md-input-container class="md-block">
+			<label translate>Subject of ticket</label>
+			<input ng-model="model.subject">
+		</md-input-container>
+	</md-dialog-content>
+</md-dialog>

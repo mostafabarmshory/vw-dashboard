@@ -1,0 +1,80 @@
+<md-dialog ng-controller="SdpAssetsCtrl" aria-label="AssetRelation">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>New Relation</h2>
+			<span flex></span>
+			<form  ng-submit="search(temp.query)">
+				<md-input-container 
+					class="md-icon-float md-icon-right md-block">
+					<label translate>Search</label>
+					<input ng-model="temp.query">
+				</md-input-container>
+				<input type="submit" hide>
+			</form>
+			<md-button 
+				class="md-icon-button" 
+				ng-disabled="!config.model.type || !config.model.end_id"
+				ng-click="answer(config.model)">
+				<wb-icon aria-label="close">done</wb-icon>
+			</md-button>
+			<md-button 
+				class="md-icon-button" 
+				ng-click="cancel()">
+				<wb-icon aria-label="close">close</wb-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+
+	<md-dialog-content ng-init="nextPage()" amd-infinate-scroll="nextPage()" 
+    	layout="column" layout-padding flex>
+    	<md-list flex>
+    		<md-radio-group ng-model="config.model.end_id">
+		    	<md-list-item class="md-3-line"
+		    		ng-click="config.model.end_id = asset.id"
+		    		ng-class="{true:'md-raised md-primary', false:''}[config.model.end_id === asset.id]"
+		    		ng-style="{'background-color': config.model.end_id === asset.id ? '#cce2ff' : ''}"
+					ng-repeat="asset in ctrl.items">
+					<div class="md-list-item-text" layout="column">
+						<h4>ID: {{asset.id}}</h4>
+						<h3>Name: {{asset.name}}</h3>
+						<p>Description: {{asset.description}}</p>
+					</div>
+					<md-radio-button 
+						ng-value="asset.id" 
+						class="md-secondary md-primary" >
+					</md-radio-button>
+					<md-divider></md-divider>
+		    	</md-list-item>
+		    </md-radio-group>
+	    	<!-- Preloading. -->
+			<div layout="column" layout-align="center center">
+				<md-progress-circular 
+					ng-show="ctrl.status === 'working'" 
+					md-diameter="96"> Loading ...
+				</md-progress-circular>
+			</div>
+    	</md-list>
+	</md-dialog-content>
+
+	<md-dialog-actions>
+		<form layout="row">
+			<md-input-container>
+				<label>Type</label>
+				<input ng-model="config.model.type" required></input>
+			</md-input-container>
+			<md-input-container>
+				<label>Asset Id</label>
+				<input ng-model="config.model.end_id" ng-disabled required></input>
+			</md-input-container>
+			<md-input-container>
+				<label>Description</label>
+				<input ng-model="config.model.description"></input>
+			</md-input-container>
+			<md-checkbox ng-model="config.model.bidirectional" aria-label="bidirectional">
+	            {{'bidirectional' | translate}}
+	        </md-checkbox>
+		</form>
+	</md-dialog-actions>
+    
+</md-dialog>
+

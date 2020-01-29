@@ -1,0 +1,53 @@
+
+<md-content  
+    flex
+    layout="column"
+    layout-padding
+    mb-preloading="ctrl.loadingSettings || ctrl.savingSettings">
+
+    <md-input-container>
+        <label translate>Language</label>
+        <md-select 
+            ng-model="settings['local.language'].value">
+            <md-option 
+                ng-value="lang" 
+                ng-repeat="lang in languages">
+                <span translate>{{lang}}</span>
+            </md-option>
+        </md-select>
+    </md-input-container>
+    
+    <md-input-container>
+        <label translate>Date format</label>
+        <md-select 
+            ng-model="settings['local.date'].value">
+            <md-option 
+                ng-value="date" 
+                ng-repeat="date in dates">
+                <span translate>{{date}}</span>
+            </md-option>
+        </md-select>
+    </md-input-container>
+    
+    <md-input-container>
+        <label translate>Currency</label>
+        <md-select 
+            ng-model="settings['local.currency'].value">
+            <md-option 
+                ng-value="key" 
+                ng-repeat="(key,value) in ctrl.currencies">
+                <span translate>{{value}}</span>
+            </md-option>
+        </md-select>
+    </md-input-container>
+
+
+    <div>
+        <div layout="row">
+            <span flex></span> 
+            <md-button class="md-raised" ng-href="/" translate>Cancel</md-button>
+            <md-button class="md-raised md-primary" ng-click="save()" translate>Save</md-button>
+        </div>
+    </div>
+</md-content>
+
