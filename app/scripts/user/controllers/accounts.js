@@ -19,28 +19,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardUser')
+
 
 /**
  * @ngdoc controller
  * @name AmdUserAccountsCtrl
  * @description Manages list of accounts
  */
-.controller('AmdUserAccountsCtrl', function($scope, $controller, $navigator) {
+angular.module('ngMaterialDashboardUser').controller('AmdUserAccountsCtrl', function($scope, $controller, $navigator) {
 
-    angular.extend(this, $controller('MbSeenUserAccountsCtrl', {
-        $scope : $scope
-    }));
-    
-    
-    // Add action
-    this.addAction({
-        title: 'New account',
-        icon: 'add',
-        action: function(){
-            $navigator.openPage('ums/accounts/new');
-        } 
-    });
+	angular.extend(this, $controller('MbSeenUserAccountsCtrl', {
+		$scope: $scope
+	}));
+
+
+	// Add action
+	this.addAction({
+		title: 'New account',
+		icon: 'add',
+		action: function() {
+			$navigator.openPage('ums/accounts/new');
+		}
+	});
 });

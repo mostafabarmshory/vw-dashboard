@@ -71,8 +71,6 @@ angular.module('ngMaterialDashboardUser').config(function($routeProvider) {
 		 * @description Details of a user
 		 */
 		.when('/ums/accounts/:userId', {
-			controller: 'AmdUserCtrl',
-			controllerAs: 'ctrl',
 			templateUrl: 'views/amd-user-user.html',
 			protect: true,
 		})
