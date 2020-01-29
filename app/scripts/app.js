@@ -27,10 +27,11 @@
  */
 angular
 .module('myDashboardApp', [
-    'ngMaterialDashboard',//
-    'mblowfish-language',//
+	// Internal modules
     'ngMaterialDashboardUser',//
-
+	
+	// TODO: maso, 2020: add as internal module.
+    'ngMaterialDashboard',//
     'ngMaterialDashboardTenant',//
     'ngMaterialDashboardSpa',//
     'ngMaterialDashboardCms',//

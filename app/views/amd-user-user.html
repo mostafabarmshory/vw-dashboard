@@ -86,6 +86,14 @@
 						mb-inline-type="text"> : {{profile.first_name}}</mb-inline></td>
 			</tr>
 			<tr>
+				<td translate>Last Name</td>
+				<td><mb-inline
+						ng-model="profile.last_name"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="__account.permissions.core_owner"
+						mb-inline-type="text"> : {{profile.last_name}}</mb-inline></td>
+			</tr>
+			<tr>
 				<td translate>EMail</td>
 				<td><mb-inline
 						ng-model="profile.public_email"

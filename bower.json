@@ -7,7 +7,6 @@
 	"license": "MIT",
 	"homepage": "https://dashboard.viraweb123.ir",
 	"dependencies": {
-		"mblowfish-language": "https://gitlab.com/mblowfish/mblowfish-language.git#3.1.x",
 		"angular-material-dashboard": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard.git#3.1.x",
 		"angular-material-dashboard-tenant": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-tenant.git#3.1.x",
 		"angular-material-dashboard-cms": "https://gitlab.com/angular-material-dashboard/angular-material-dashboard-cms.git#3.1.x",
