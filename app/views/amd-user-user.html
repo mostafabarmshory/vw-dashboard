@@ -1,0 +1,200 @@
+
+<md-content 
+	ng-controller="AmdUserAccountCtrl as ctrl"
+	flex>
+<!--		mb-preloading="ctrl.userLoading"-->
+	<mb-titled-block 
+		layout-margin
+		mb-title="{{'Account'| translate}}"
+		layout="column">
+		<div
+			layout="column" 
+			layout-gt-sm="row">
+			<mb-inline
+				ng-model="_avatarNewFile"
+				ng-change="ctrl.updateAvatar(_avatarNewFile)"
+				mb-inline-enable="__account.permissions.core_owner"
+				mb-inline-type="file">
+				<img 
+					width="250px"
+					height="250px"
+					ng-src="/api/v2/user/accounts/{{::account.id}}/avatar" 
+					ng-src-error="https://www.gravatar.com/avatar/{{::(account.id|wbmd5)}}?d=identicon&size=250"/>
+			</mb-inline>
+			<div flex> 
+				<table 
+					class="amd-table amd-table-description">
+					<tr>
+						<td translate>ID</td>
+						<td>{{::account.id}}</td>
+					</tr>
+					<tr>
+						<td translate>Username</td>
+						<td>{{::account.login}}</td>
+					</tr>
+					<tr>
+						<td translate>Joined</td>
+						<td>{{account.date_joined | mbDate}}</td>
+					</tr>
+					<tr>
+						<td translate>Last Login</td>
+						<td>{{account.last_login | mbDate}}</td>
+					</tr>
+					<tr>
+						<td translate>Activation state</td>
+						<td>
+							<span ng-if="!app.user.tenant_owner">{{account.is_active ? 'Active' : 'Deactive' | translate}}</span>
+							<md-switch ng-if="app.user.tenant_owner"
+								ng-model="account.is_active" 
+								ng-change="update()">{{account.is_active ? 'Active' : 'Deactive' | translate}}
+							</md-switch>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div
+			layout="column" 
+			layout-gt-sm="row">
+			<span flex></span>
+			<md-button 
+				class="md-raised md-accent" 
+				ng-click="remove()">
+				<wb-icon>delete</wb-icon>
+				<span translate>Delete</span>
+			</md-button>
+		</div>
+	</mb-titled-block>
+	
+	<mb-titled-block 
+		mb-title="{{'Public Profile'| translate}}"
+		mb-progress="ctrl.profileUpdating"
+		style="margin: 16px;"
+		layout="column">
+		<table 
+			class="amd-table amd-table-description">
+			<tr>
+				<td translate>ID</td>
+				<td> : {{profile.id}}</td>
+			</tr>
+			<tr>
+				<td translate>First Name</td>
+				<td><mb-inline
+						ng-model="profile.first_name"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="__account.permissions.core_owner"
+						mb-inline-type="text"> : {{profile.first_name}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td translate>EMail</td>
+				<td><mb-inline
+						ng-model="profile.public_email"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="__account.permissions.core_owner"
+						mb-inline-type="email"> : {{profile.public_email}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td translate>Language</td>
+				<td><mb-inline
+						ng-model="profile.language"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="__account.permissions.core_owner"
+						mb-inline-type="text"> : {{profile.language}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td translate>Timezone</td>
+				<td><mb-inline
+						ng-model="profile.timezone"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="__account.permissions.core_owner"
+						mb-inline-type="text"> : {{profile.timezone}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td translate>National Code</td>
+				<td><mb-inline
+						ng-model="profile.national_code"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="__account.permissions.core_owner"
+						mb-inline-type="text"> : {{profile.national_code}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td translate>Gender</td>
+				<td><mb-inline
+						ng-model="profile.gender"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="__account.permissions.core_owner"
+						mb-inline-type="gender"> : {{profile.gender}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td translate>Weight</td>
+				<td><mb-inline
+						ng-model="profile.weight"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="__account.permissions.core_owner"
+						mb-inline-type="float"> : {{profile.weight}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td translate>Birthday</td>
+				<td><mb-inline
+						ng-model="profile.birthday"
+						mb-inline-enable="__account.permissions.core_owner"
+						mb-inline-type="date"
+						mb-inline-on-save="ctrl.updateProfile()"> : {{profile.birthday | mbDate}}</mb-inline></td>
+			</tr>
+		</table>
+	</mb-titled-block>
+
+	<!--order info-->
+	<mb-titled-block 
+		layout-margin
+		mb-title="{{::('Roles'| translate)}}"
+		layout="column">
+		<md-chips 
+			ng-model="roles"
+			md-on-remove="removeRole($chip)">
+			<md-chip-template>
+				<strong>{{$chip.name}}</strong>
+			</md-chip-template>
+		</md-chips>
+		<div 
+			ng-show="!roles.items || roles.items.length == 0"
+			layout="column" layout-align="center center">
+			<p translate>User has no role.</p>
+		</div>
+		<div layout="row">
+			<span flex></span>
+			<md-button class="md-raised" 
+				ng-click="changeRoles()">
+				<wb-icon>edit</wb-icon>
+				<span translate>Edit</span>
+			</md-button>
+		</div>
+	</mb-titled-block>
+	
+	<mb-titled-block 
+		layout-margin
+		mb-title="{{::('Groups'| translate)}}"
+		layout="column">
+		<md-chips 
+			ng-model="groups"
+			md-on-remove="removeGroup($chip)">
+			<md-chip-template>
+				<strong>{{$chip.name}}</strong>
+			</md-chip-template>
+		</md-chips>
+		<div 
+			ng-show="!groups.items || groups.items.length == 0"
+			layout="column" layout-align="center center">
+			<p translate>User is not member of any group.</p>
+		</div>
+		<div layout="row">
+			<span flex></span>
+			<md-button class="md-raised"
+				ng-click="changeGroups()">
+				<wb-icon>edit</wb-icon>
+				<span translate>Edit</span>
+			</md-button>
+		</div>
+	</section>
+</md-content>
+
