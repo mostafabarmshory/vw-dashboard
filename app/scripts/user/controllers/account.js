@@ -82,6 +82,31 @@ angular.module('ngMaterialDashboardUser').controller('AmdUserAccountCtrl', funct
 	};
 
 
+    /**
+     * Update avatar of the current user
+     * 
+     * @name load
+     * @memberof MbAccountCtrl
+     * @returns {promiss} to update avatar
+     */
+	this.updateAvatar = function(file) {
+		// XXX: maso, 1395: reset avatar
+		if (ctrl.updatingAvatar) {
+			return;
+		}
+		ctrl.updatingAvatar = account.uploadAvatar(file)//
+			.then(function() {
+				$window.toast($translate.instant('Your avatar updated successfully.'));
+			}, function() {
+				$window.alert($translate.instant('Failed to update avatar'));
+			})//
+			.finally(function() {
+				delete ctrl.updatingAvatar;
+			});
+		return ctrl.updatingAvatar;
+	}
+
+
 	/**
 	 * Removed all roles of user
 	 */

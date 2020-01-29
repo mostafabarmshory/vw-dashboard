@@ -11,10 +11,10 @@
 			layout="column" 
 			layout-gt-sm="row">
 			<mb-inline
-				ng-model="profile.first_name"
-				ng-change="ctrl.updateProfile()"
+				ng-model="_avatarNewFile"
+				ng-change="ctrl.updateAvatar(_avatarNewFile)"
 				mb-inline-enable="__account.permissions.core_owner"
-				mb-inline-type="text">
+				mb-inline-type="file">
 				<img 
 					width="250px"
 					height="250px"
