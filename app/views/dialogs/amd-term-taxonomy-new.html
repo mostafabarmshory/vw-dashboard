@@ -1,0 +1,60 @@
+<md-dialog 
+    ng-cloak>
+    <form 
+        name="myForm" 
+        flex layout="column" 
+        ng-action="answer(config.model)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 translate>New term-taxonomy</h2>
+                <span flex></span>
+                <md-button 
+                    class="md-icon-button" 
+                    ng-click="answer(config.model)"
+                    aria-label="close">
+                    <wb-icon>done</wb-icon>
+                </md-button>
+                <md-button 
+                    class="md-icon-button" 
+                    ng-click="cancel()"
+                    aria-label="close">
+                    <wb-icon>close</wb-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content 
+            layout="column" 
+            layout-padding
+            ng-controller="AmdCmsTermTaxonomyNewCtrl as ctrl"
+            style="padding-top: 16px">
+            <md-input-container>
+                <label translate>Taxonomy</label>
+                <input ng-model="config.model.taxonomy">
+            </md-input-container>
+            <!-- 			<md-input-container> -->
+            <!-- 				<label translate>Term ID</label> -->
+            <!-- 				<input ng-model="config.model.term_id"> -->
+            <!-- 			</md-input-container> -->
+            <md-autocomplete flex required
+                             md-clear-button="true"
+                             md-input-name="termId"
+                             md-selected-item="ctrl.selectedItem"
+                             md-selected-item-change="config.model.term_id = ctrl.selectedItem.id"
+                             md-search-text="ctrl.searchText"
+                             md-items="item in ctrl.querySearch(ctrl.searchText)"
+                             md-item-text="item.name"
+                             md-require-match
+                             md-floating-label="{{'Term'| translate}}">
+                <md-item-template>
+                    <span md-highlight-text="ctrl.searchText">{{item.name}}</span>
+                </md-item-template>
+            </md-autocomplete>
+
+            <md-input-container>
+                <label translate>Description</label>
+                <textarea ng-model="config.model.description"></textarea>
+            </md-input-container>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+

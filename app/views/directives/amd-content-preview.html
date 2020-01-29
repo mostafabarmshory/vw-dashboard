@@ -1,0 +1,34 @@
+<div style="text-align:center;" md-colors="{borderColor: 'primary-200'}">
+
+    <img class="amd-content-preview" style="border: solid 1px;border-color:inherit;"
+         ng-if="type === 'image'"
+         ng-src="/api/v2/cms/contents/{{content.id}}/content"
+         alt="{{amdContent.title}}">
+
+    <audio class="amd-content-preview" style="border: solid 1px;border-color:inherit;"
+           ng-if="type === 'audio'"
+           controls>
+        <source src="/api/v2/cms/contents/{{content.id}}/content" type="{{content.mime_type}}">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <video 
+    	class="amd-content-preview" 
+    	style="border: solid 1px;border-color:inherit;"
+        ng-if="type === 'video'"
+        controls>
+        <source src="/api/v2/cms/contents/{{content.id}}/content" type="{{content.mime_type}}">
+        Your browser does not support the video tag.
+    </video>
+
+	<!-- TODO: maso, 2019: replace with canonical link -->
+    <md-content 
+    	ng-if="type === 'weburger'"
+    	style="max-height: 400px;">
+        <wb-group 
+        	class="amd-content-preview" 
+			wb-editable="editable"
+			ng-model="model">
+        </wb-group>
+    </md-content>
+</div>
