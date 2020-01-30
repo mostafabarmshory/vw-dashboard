@@ -6,7 +6,8 @@
 	<mb-titled-block 
 		ng-show="!ctrl.edit"
 		mb-progress="ctrl.loading"
-		mb-title="{{'Tag'| translate}}"
+		mb-title="{{'Zone'| translate}}"
+		mb-icon="shop-zone"
 		layout="column">
 		<table>
 			<tr>
@@ -14,7 +15,7 @@
 				<td>: {{ctrl.item.id}}</td>
 			</tr>
 			<tr>
-				<td translate="">Name </td>
+				<td translate="">Title</td>
 				<td><mb-inline
 						ng-model="ctrl.item.title"
 						mb-inline-enable="{{true}}"
@@ -22,7 +23,7 @@
 						mb-inline-on-save="ctrl.updateItem()">: {{ctrl.item.title}}</mb-inline></td>
 			</tr>
 			<tr>
-				<td translate="">Description </td>
+				<td translate="">Description</td>
 				<td><mb-inline
 						ng-model="ctrl.item.description"
 						mb-inline-enable="{{true}}"
@@ -30,12 +31,52 @@
 						mb-inline-on-save="ctrl.updateItem()">: {{ctrl.item.description}}</mb-inline></td>
 			</tr>
 			<tr>
+				<td translate="">Province</td>
+				<td><mb-inline
+						ng-model="ctrl.item.province"
+						mb-inline-enable="{{true}}"
+						mb-inline-type="text"
+						mb-inline-on-save="ctrl.updateItem()">: {{ctrl.item.province}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td translate="">City</td>
+				<td><mb-inline
+						ng-model="ctrl.item.city"
+						mb-inline-enable="{{true}}"
+						mb-inline-type="text"
+						mb-inline-on-save="ctrl.updateItem()">: {{ctrl.item.city}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td translate="">Address</td>
+				<td><mb-inline
+						ng-model="ctrl.item.address"
+						mb-inline-enable="{{true}}"
+						mb-inline-type="text"
+						mb-inline-on-save="ctrl.updateItem()">: {{ctrl.item.address}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td translate="">Polygon</td>
+				<td><mb-inline
+						ng-model="ctrl.item.polygon"
+						mb-inline-enable="{{true}}"
+						mb-inline-type="text"
+						mb-inline-on-save="ctrl.updateItem()">: {{ctrl.item.polygon}}</mb-inline></td>
+			</tr>
+<!--			<tr>
+				<td translate="">deleted</td>
+				<td><mb-inline
+						ng-model="ctrl.item.deleted"
+						mb-inline-enable="{{true}}"
+						mb-inline-type="text"
+						mb-inline-on-save="ctrl.updateItem()">: {{ctrl.item.deleted}}</mb-inline></td>
+			</tr>-->
+			<tr>
 				<td translate="">Creation Date </td>
-				<td>: {{ctrl.item.creation_dtime| mbDate:'jYYYY-jMM-jDD'}}</td>
+				<td>: {{ctrl.item.creation_dtime| mbDateTime}}</td>
 			</tr>
 			<tr>
 				<td translate="">Last Modified Date </td>
-				<td>: {{ctrl.item.modif_dtime| mbDate:'jYYYY-jMM-jDD'}}</td>
+				<td>: {{ctrl.item.modif_dtime| mbDateTime}}</td>
 			</tr>
 		</table>
 
@@ -48,11 +89,6 @@
 				ng-click="ctrl.deleteItem()">
 				<span translate="">Delete</span>
 			</md-button>
-<!-- 			<md-button  -->
-<!-- 				class="md-raised md-primary" -->
-<!-- 				ng-click="ctrl.edit = true"> -->
-<!-- 				<span translate="">Edit</span> -->
-<!-- 			</md-button> -->
 		</div>
 	</mb-titled-block>
 </md-content>

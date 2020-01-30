@@ -18,17 +18,20 @@
 			<md-list-item 
 				ng-repeat="pobject in ctrl.items track by pobject.id"
 				class="md-3-line" 
-				ng-href="{{'shop/agencies/' + pobject.id}}"
+				ng-href="shop/agencies/{{::pobject.id}}"
 				style="cursor: pointer">
-				<img ng-src="{{pobject.avatar}}" ng-if="pobject.avatar" class="md-avatar" />
-				<wb-icon ng-if="!pobject.avatar">cloud_upload</wb-icon>
-				<div class="md-list-item-text" layout="column">
-					<h3>{{pobject.title}}</h3>
-					<h4>
-						<span translate="">Price</span>: {{pobject.price}} 
-						<span ng-show="pobject.off">- <span tanslate="">Off</span>: <s>{{pobject.off}}</s></span>
-					</h4>
-					<p>{{pobject.description}}</p>
+				<img 
+					ng-src="{{::pobject.avatar}}" 
+					ng-if="::pobject.avatar" 
+					class="md-avatar" />
+				<wb-icon 
+					ng-if="::(!pobject.avatar)">store</wb-icon>
+				<div 
+					class="md-list-item-text" 
+					layout="column">
+					<h3>{{::pobject.title}}</h3>
+					<h4>{{::pobject.province}} {{::pobject.description}}</h4>
+					<p>{{::pobject.address}} {{::pobject.phone}}</p>
 				</div>
 				<md-divider md-inset></md-divider> 
 			</md-list-item> 

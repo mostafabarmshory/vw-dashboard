@@ -20,35 +20,38 @@
  * SOFTWARE.
  */
 
-angular.module('ngMaterialDashboardShop')
+
 
 /**
  * @ngdoc Controller
  * @name AmdShopZoneCtrl
  * @description Manages a zone from shop domain
  */
-.controller('AmdShopZoneCtrl', function(
+angular.module('ngMaterialDashboardShop').controller('AmdShopZoneCtrl', function(
     /* angularjs  */ $scope, $controller, $element,
     /* ngRoute    */ $routeParams,
-    /* seen-shp   */ $shop,
-    /* mblowfish  */ $actions) {
+    /* seen-shp   */ $shop) {
 
-    // province, city, address, polygon, deleted, owner_id, modif_dtime, creation_dtime
+	// XXX: maso, 2020: manage ->
+	//            'owner_id' => array(
+	//            'member' => array( 
 
-    angular.extend(this, $controller('MbSeenAbstractItemCtrl', {
-        $scope : $scope,
-        $element: $element
-    }));
+	// province, city, address, polygon, deleted, owner_id, modif_dtime, creation_dtime
 
-    /**
+	angular.extend(this, $controller('MbSeenAbstractItemCtrl', {
+		$scope: $scope,
+		$element: $element
+	}));
+
+	/**
 	 * Deletes model
 	 * 
 	 * @param item
 	 * @return promiss to delete item
 	 * @memberof AmdShopZoneCtrl
-     * @see MbSeenAbstractItemCtrl
+	 * @see MbSeenAbstractItemCtrl
 	 */
-	this.deleteModel = function(item){
+	this.deleteModel = function(item) {
 		return $shop.deleteZone(item.id);
 	};
 
@@ -57,9 +60,9 @@ angular.module('ngMaterialDashboardShop')
 	 * 
 	 * @return promise to get schema
 	 * @memberof AmdShopZoneCtrl
-     * @see MbSeenAbstractItemCtrl
+	 * @see MbSeenAbstractItemCtrl
 	 */
-	this.getModelSchema = function(){
+	this.getModelSchema = function() {
 		return $shop.zoneSchema();
 	};
 
@@ -69,9 +72,9 @@ angular.module('ngMaterialDashboardShop')
 	 * @param queryParameter to apply search
 	 * @return promiss to get items
 	 * @memberof AmdShopZoneCtrl
-     * @see MbSeenAbstractItemCtrl
+	 * @see MbSeenAbstractItemCtrl
 	 */
-	this.getModel = function(id){
+	this.getModel = function(id) {
 		return $shop.getZone(id);
 	};
 
@@ -80,19 +83,17 @@ angular.module('ngMaterialDashboardShop')
 	 * 
 	 * @return promiss to add and return an item
 	 * @memberof AmdShopZoneCtrl
-     * @see MbSeenAbstractItemCtrl
+	 * @see MbSeenAbstractItemCtrl
 	 */
-	this.updateModel = function(item){
+	this.updateModel = function(item) {
 		return item.update();
 	};
 
 
-    
-
-    this.init({
-        modelId: $routeParams.zoneId,
-        eventType: '/shop/zones'
-    });
+	this.init({
+		modelId: $routeParams.zoneId,
+		eventType: '/shop/zones'
+	});
 });
 
 
