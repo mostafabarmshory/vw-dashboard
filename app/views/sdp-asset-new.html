@@ -1,0 +1,54 @@
+<md-content 
+	class="md-padding"
+	layout-padding
+	flex>
+	<mb-titled-block 
+		mb-progress="ctrl.saving"
+		mb-title="{{'New asset'| translate}}"
+		layout="column">
+		<form name="assetForm"
+			ng-action="add(config)"
+			layout="column" 
+			flex>
+			<md-input-container>
+				<label>Name</label>
+				<input ng-model="config.model.name"></input>
+			</md-input-container>
+			
+			<md-input-container>
+				<label>Description</label>
+				<input ng-model="config.model.description"></input>
+			</md-input-container>
+			
+			<md-input-container>
+				<label>Price</label>
+				<input ng-model="config.model.price"></input>
+			</md-input-container>
+			
+			<md-input-container>
+				<lf-ng-md-file-input lf-files="config.files" 
+					progress 
+					preview 
+					drag></lf-ng-md-file-input>
+			</md-input-container>
+			
+			<div layout="row">
+				<span flex></span>
+				<md-button 
+					class="md-raised" 
+					ng-click="cancel()">
+	<!-- 				<wb-icon aria-label="close">close</wb-icon> -->
+					<span translate="">Cancel</span>
+				</md-button>
+				<md-button
+					class="md-raised md-primary" 
+					ng-click="add(config)">
+	<!-- 				<wb-icon aria-label="close">done</wb-icon> -->
+					<span translate="">Add</span>
+				</md-button>
+			</div>
+			
+		</form>
+	</mb-titled-block>
+</md-content>
+

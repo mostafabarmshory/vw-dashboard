@@ -1,0 +1,48 @@
+<div  
+	mb-preloading="ctrl.loading"
+	layout="column"
+	flex>
+	<mb-pagination-bar
+		mb-model="ctrl.queryParameter"
+		mb-properties="ctrl.properties"
+		mb-reload="ctrl.reload()"
+		mb-more-actions="ctrl.getActions()">
+	</mb-pagination-bar>
+	<md-content
+		mb-preloading="ctrl.state==='busy'"
+		mb-infinate-scroll="ctrl.loadNextPage()"
+		layout="column"
+		flex>
+		<md-list>
+			<md-list-item
+				ng-show="!ctrl.loadingItems && ctrl.items.length" 
+				ng-repeat="object in ctrl.items track by object.id"
+				ng-href="seo/links/{{object.id}}"
+				class="md-3-line">
+				<wb-icon>link</wb-icon>
+				<div class="md-list-item-text" 
+					layout="column">
+					<h3><strong>{{object.title}}</strong> [<a href="{{object.loc}}">{{object.loc}}</a>]</h3>
+					<h4>{{'Priority' | translate}}: <b>{{object.priority}}</b> - {{'Last modification' | translate}}: {{object.lastmod}}</h4>
+					<p>{{object.description}}</p>
+				</div>
+				<md-button class="md-icon-button"
+					ng-click="ctrl.deleteItem(object)" 
+					aria-label="remove attachment"><wb-icon>delete</wb-icon>
+				</md-button>
+				<md-divider md-inset></md-divider>
+			</md-list-item>
+		</md-list>
+		<div
+			layout="column"
+			layout-align="center center"
+			ng-if="ctrl.state !== 'busy' && ctrl.items && !ctrl.items.length">
+			<h2>Empty link list</h2>
+			<md-button class="md-raised"
+				ng-click="addLink()">
+				<wb-icon>add</wb-icon>
+				<span translate>New link</span>
+			</md-button>
+		</div>
+	</md-content>
+</div>

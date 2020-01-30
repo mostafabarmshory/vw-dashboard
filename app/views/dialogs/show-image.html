@@ -1,0 +1,36 @@
+<md-dialog
+    flex="50"
+    layout="column"
+    ng-cloak
+    layout-align="center center">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 
+                ng-if="config.attachment.mime_type.includes('image')"
+                translate="">
+                {{config.attachment.description}}
+            </h2>
+            <h2 
+                ng-if="!config.attachment.mime_type.includes('image')"
+                translate="">
+                Unknown type
+            </h2>
+            <span flex></span>
+            <md-button 
+                class="md-icon-button" 
+                ng-click="cancel()">
+                <wb-icon aria-label="Close dialog">close</wb-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content layout-padding>
+        <img
+            ng-if="config.attachment.mime_type.includes('image')"
+            ng-src="/api/v2/shop/orders/{{config.order.id}}/attachments/{{config.attachment.id}}/content"
+            ng-src-error="src/resources/images/baseline-help-24px.svg"/>
+
+        <img
+            ng-if="!config.attachment.mime_type.includes('image')"
+            ng-src="src/resources/images/unknown-file.png"/>
+    </md-dialog-content>
+</md-dialog>

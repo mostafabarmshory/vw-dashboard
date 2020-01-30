@@ -1,0 +1,82 @@
+<md-content 
+    layout-padding
+    flex>
+
+    <mb-titled-block 
+        mb-progress="ctrl.charging"
+        mb-title="{{'Charge wallet'| translate}}"
+        layout="column">
+
+        <form 
+            name="contentForm"
+            ng-action="ctrl.charge()"
+            mb-preloading="ctrl.charging"
+            layout-margin
+            layout="column"
+            flex>
+
+            <div layout="column" 
+                 layout-padding>
+                <md-input-container>
+                    <label translate="">Choose wallet</label>
+                    <md-select 
+                        ng-model="ctrl.wallet"
+                        ng-change="ctrl.setCurrency()"
+                        md-on-open="ctrl.loadUserWallets()" 
+                        required>
+                        <md-option 
+                            ng-value="wallet" 
+                            ng-repeat="wallet in ctrl.wallets">
+                            {{::wallet.title}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container>
+                    <label translate>Amount</label>
+                    <input
+                        required
+                        type="number"
+                        name="amount"
+                        ng-model="ctrl.amount"
+                        min="1">
+                    <div 
+                        ng-messages="contentForm.amount.$error" 
+                        ng-if="contentForm.amount.$touched">
+                        <div ng-message="required"><span translate>Amount should be positive.</span></div>
+                        <div ng-message="min"><span translate>Minimum supported amount is reached.</span></div>
+                    </div>
+                </md-input-container>
+
+                <!--Bank gates-->
+                <div 
+                    layout-padding
+                    layout-margin>
+                    <mb-pay
+                        mb-pay="ctrl.pay($data)" 
+                        mb-callback-url="{{ctrl.callbackUrl}}"
+                        mb-discount-enable="true"
+                        ng-model="ctrl.currency">
+                    </mb-pay>
+                </div>
+
+                <div 
+                    layout-gt-xs="row"
+                    layout="column"
+                    layout-margin>
+                    <span flex></span>
+                    <md-button 
+                        class = "md-raised md-accent"
+                        ng-click="ctrl.cancel()"
+                        aria-label="cancel">
+                        <span translate="">Cancel</span>
+                    </md-button>
+                </div>
+
+                <div ng-if="ctrl.message">
+                    <p style="color: red"><span translate>{{ctrl.message}}</span></p>
+                </div>
+            </div>
+        </form>
+    </mb-titled-block>
+</md-content>

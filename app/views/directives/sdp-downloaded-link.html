@@ -1,0 +1,20 @@
+<md-list-item 
+    class="md-3-line"
+    ng-href="{{}}"> 
+
+    <wb-icon ng-if="item.active">done</wb-icon> 
+    <wb-icon ng-if="!item.active">cancel</wb-icon>
+    <div 
+        class="md-list-item-text" 
+        layout="column">
+        <h4>{{fileName}}</h4>
+        <h4 ng-if="!(user.first_name && user.last_name)" translate>Provider: unknown </h4>
+        <h4 ng-if="user.first_name && user.last_name" translate>Provider: {{user.first_name + ' ' + user.last_name}} </h4>
+        <p><span translate>Creation date</span>: {{item.creation_dtime| mbDate}} - 
+            <span translate>Expiry date</span>: {{item.expiry| mbDate}}</p>
+    </div>
+
+    <md-button class="md-icon-button">
+        <wb-icon ng-if="item.active">delete</wb-icon>
+    </md-button>
+</md-list-item>

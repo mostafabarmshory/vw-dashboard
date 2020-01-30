@@ -1,0 +1,41 @@
+<md-dialog 
+    ng-cloak>
+    <form 
+        name="myForm" 
+        flex layout="column" 
+        ng-action="answer(config.model)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 translate>New term-taxonomy</h2>
+                <span flex></span>
+                <md-button 
+                    class="md-icon-button" 
+                    ng-click="answer(config.model)"
+                    aria-label="close">
+                    <wb-icon>done</wb-icon>
+                </md-button>
+                <md-button 
+                    class="md-icon-button" 
+                    ng-click="cancel()"
+                    aria-label="close">
+                    <wb-icon>close</wb-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content 
+            layout="column" 
+            layout-padding
+            style="padding-top: 16px">
+            <md-input-container>
+                <label translate>Taxonomy name</label>
+                <input ng-model="config.model.taxonomy">
+            </md-input-container>
+
+            <md-input-container>
+                <label translate>Description</label>
+                <textarea ng-model="config.model.description"></textarea>
+            </md-input-container>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+

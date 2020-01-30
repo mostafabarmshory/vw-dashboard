@@ -1,0 +1,64 @@
+<div  
+	mb-preloading="ctrl.loading"
+	layout="column"
+	flex>
+	<mb-pagination-bar
+		mb-model="ctrl.queryParameter"
+		mb-reload="ctrl.reload()"
+		mb-sort-keys="ctrl.getSortKeys()"
+		mb-more-actions="ctrl.getActions()">
+	</mb-pagination-bar>
+	<md-content
+   		mb-preloading="ctrl.state==='busy'"
+		mb-infinate-scroll="ctrl.loadNextPage()"
+		layout="column"
+		flex>
+        <!-- Contents info -->
+        <md-list flex>
+            <md-list-item 
+                ng-repeat="wallet in ctrl.items track by wallet.id"
+                ng-if="!wallet.deleted"
+                ng-href="wallets/{{::wallet.id}}"
+                class="md-3-line">
+                <wb-icon>account_balance_wallet</wb-icon>
+                <div 
+                    class="md-list-item-text" 
+                    layout="column">
+                    <h3>{{::wallet.title}}</h3>
+                    <h4><span translate="">Balance</span>: {{wallet.total_deposit - wallet.total_withdraw || 0}} ({{::wallet.currency}})</h4>
+                    <p>{{::wallet.description}}</p>
+                </div>
+                <md-button
+                    ng-if="app.user.current.id == wallet.owner_id"
+                    class="md-icon-button" 
+                    aria-label="Charge wallet"
+                    ng-href="/wallets/charge?walletId={{::wallet.id}}"> 
+                    <wb-icon>battery_charging_80</wb-icon>
+                    <md-tooltip md-direction="bottom"><span translate="">Charge wallet</span></md-tooltip>
+                </md-button>
+                <md-button 
+                    ng-if="app.user.current.id == wallet.owner_id"
+                    class="md-icon-button" 
+                    aria-label="Wallet to wallet"
+                    ng-href="/wallet-to-wallet?fromId={{::wallet.id}}">
+                    <wb-icon>swap_horiz</wb-icon>
+                    <md-tooltip md-direction="bottom"><span translate="">Wallet to wallet</span></md-tooltip>
+                </md-button>
+                <md-button 
+                    ng-if="app.user.current.id == wallet.owner_id"
+                    class="md-icon-button" 
+                    aria-label="Delete wallet"
+                    ng-click="ctrl.deleteItem(wallet)"> 
+                    <wb-icon>delete</wb-icon>
+                    <md-tooltip><span translate="">Delete wallet</span></md-tooltip>
+                </md-button>
+            </md-list-item>
+		    <div
+		        layout="column"
+		        layout-align="center center"
+		        ng-if="ctrl.state === 'ideal' && (!ctrl.items || ctrl.items.length === 0)">
+		        <h2 translate="">Nothing found</h2>
+		    </div>
+        </md-list>
+    </md-content>
+</div>

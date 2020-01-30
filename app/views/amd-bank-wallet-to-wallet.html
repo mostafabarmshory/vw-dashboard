@@ -1,0 +1,101 @@
+<md-content 
+    layout-padding
+    flex>
+
+    <mb-titled-block 
+        mb-progress="ctrl.transfering"
+        mb-title="{{'Wallet to wallet transfering'| translate}}"
+        layout="column">
+
+        <form 
+            name="contentForm"
+            ng-action="ctrl.transfer()"
+            mb-preloading="ctrl.transfering"
+            layout-margin
+            layout="column"
+            flex>
+
+            <div layout="column" 
+                 layout-padding>
+                <md-input-container>
+                    <label translate="">Source wallet</label>
+                    <md-select 
+                        ng-model="ctrl.sourceWallet"
+                        required>
+                        <md-option 
+                            ng-value="wallet" 
+                            ng-repeat="wallet in ctrl.wallets">
+                            {{::wallet.title}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container>
+                    <label translate>Destination wallet id</label>
+                    <input
+                        required
+                        name="dest"
+                        type="number"
+                        ng-model="ctrl.destWalletId"
+                        min="1">
+                    <div 
+                        ng-messages="contentForm.dest.$error" 
+                        ng-if="contentForm.dest.$touched">
+                        <div ng-message="required">Source wallet id is required and a positive number.</div>
+                        <div ng-message="min">Minimum supported amount is reached.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label translate>Amount</label>
+                    <input
+                        required
+                        type="number"
+                        name="amount"
+                        ng-model="ctrl.amount"
+                        min="1"
+                        max="{{ctrl.sourceWallet.total_deposit - ctrl.sourceWallet.total_withdraw}}">
+                    <div 
+                        ng-messages="contentForm.amount.$error" 
+                        ng-if="contentForm.amount.$touched">
+                        <div ng-message="required"><span translate>Amount should be positive.</span></div>
+                        <div ng-message="min"><span translate>Minimum supported amount is reached.</span></div>
+                        <div ng-message="max"><span translate>Wallet balance is insufficient.</span></div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label translate>Description</label>
+                    <input
+                        type="text"
+                        ng-model="ctrl.description">
+                </md-input-container>
+
+
+                <div 
+                    layout-gt-xs="row"
+                    layout="column">
+                    <span flex></span>
+                    <md-button 
+                        class = "md-raised md-accent"
+                        ng-click="ctrl.cancel()"
+                        aria-label="cancel">
+                        <span translate="">Cancel</span>
+                    </md-button>
+                    <md-button
+                        class="md-raised md-primary" 
+                        type="submit"
+                        ng-disabled="contentForm.$invalid"
+                        ng-click="ctrl.transfer()"
+                        aria-label="transfer">
+                        <span translate>Transfer</span>
+                    </md-button>
+                </div>
+
+                <div ng-if="ctrl.message">
+                    <p style="color: red"><span translate>{{ctrl.message}}</span></p>
+                </div>
+            </div>
+        </form>
+    </mb-titled-block>
+</md-content>

@@ -1,0 +1,27 @@
+<md-dialog aria-label="Select File" ng-cloak>
+	<form flex layout="column" ng-action="answer(config)">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Select File</h2>
+				<span flex></span>
+				<md-button 
+					class="md-icon-button" 
+					ng-click="answer(config)">
+					<wb-icon aria-label="close">done</wb-icon>
+				</md-button>
+				<md-button 
+					class="md-icon-button" 
+					ng-click="cancel()">
+					<wb-icon aria-label="close">close</wb-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+
+		<md-dialog-content layout="column" layout-padding>
+			<md-input-container>
+				<lf-ng-md-file-input lf-files="config.files" progress preview drag></lf-ng-md-file-input>
+			</md-input-container>
+		</md-dialog-content>
+    </form>
+</md-dialog>
+

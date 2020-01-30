@@ -1,0 +1,62 @@
+<md-content 
+    class="md-padding"
+    layout-padding
+    flex>
+
+    <mb-titled-block 
+        mb-progress="ctrl.loading"
+        mb-title="{{'Payment receipt'| translate}}"
+        layout="column">
+
+        <div layout="row" 
+             layout-xs="column" 
+             layout-align-xs="center center" 
+             layout-padding>
+
+            <table>
+                <tr>
+                    <td translate="">ID </td>
+                    <td>: {{ctrl.receipt.id}}</td>
+                </tr>
+                <tr>
+                    <td translate="">Title </td>
+                    <td>: {{ctrl.receipt.title}}</td>
+                </tr>
+                <tr>
+                    <td translate="">Amount </td>
+                    <td>: {{ctrl.receipt.amount}}</td>
+                </tr>
+                <tr>
+                    <td translate="">Description </td>
+                    <td>: {{ctrl.receipt.description}}</td>
+                </tr>
+                <tr>
+                    <td translate="">Backend </td>
+                    <td>: {{ctrl.gate.title}}</td>
+                </tr>
+                <tr>
+                    <td translate="">Status </td>
+                    <td>: <span ng-if="!ctrl.loading" style="color: red" translate="">{{ctrl.receipt.payRef ? 'payed' : 'not payed'}}</span></td>
+                </tr>
+            </table>
+        </div>
+        <!--If order is not payed-->
+        <div 
+            ng-if="!ctrl.receipt.payRef"
+            layout="row">
+            <span flex></span>
+            <md-button 
+                ng-disabled="ctrl.receipt.payRef"
+                ng-show="!ctrl.receipt.payRef" 
+                class="md-raised md-primary" 
+                ng-href="{{ctrl.receipt.callURL}}">
+                <span translate="">Complete pay</span>
+            </md-button>
+            <md-button 
+                class="md-raised md-accent" 
+                ng-click="ctrl.cancel()">
+                <span translate="">Cancel</span>
+            </md-button>
+        </div>
+    </mb-titled-block>
+</md-content>

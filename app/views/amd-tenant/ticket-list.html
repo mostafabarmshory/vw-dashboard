@@ -1,0 +1,74 @@
+<div
+    mb-infinate-scroll="nextPage()"
+    layout="column"
+    flex>
+
+    <!-- Action bar -->
+    <mb-pagination-bar
+        mb-model="paginatorParameter"
+        mb-reload="reload()"
+        mb-sort-keys="sortKeys"
+        mb-more-actions="moreActions">
+    </mb-pagination-bar>
+    <!-- Preloading. -->
+    <div 
+        layout="column" 
+        layout-align="start center">
+        <md-progress-linear 
+            ng-show="ctrl.status === 'working'" 
+            class="md-accent"
+            md-diameter="96"> {{'Loading ...'| translate}} 
+        </md-progress-linear>
+    </div>
+    <div
+        layout="column"
+        ng-if="ctrl.status !== 'working' && ctrl.items.length === 0">
+        <h3 style="text-align: center" translate>Item not found</h3>
+        <div
+            layout="row"
+            layout-align="center center">
+            <md-button ng-click="add()">
+                <wb-icon>add</wb-icon>
+                <span translate>add</span>
+            </md-button>
+        </div>
+    </div>
+
+    <div
+        ng-show="ctrl.status !== 'working'" 
+        layout="row">
+        <!-- Group info -->
+        <md-list 
+            ng-if="ctrl.items.length > 0"
+            flex
+            flex-gt-sm="30"
+            style="background-color: #dcd8d8;height: 100vh">
+            <md-list-item 
+                ng-repeat="item in ctrl.items"
+                class="md-3-line" 
+                ng-href="{{'tenant/tickets/' + item.id}}">
+                <div 
+                    class="md-list-item-text" 
+                    layout="column">
+                    <h3>{{item.subject}}</h3>
+                    <h4>{{item.description}}</h4>
+                    <p>{{item.creation_dtime}}, <span translate="">User</span>:{{item.requester}}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+        <!-- Group info -->
+        <div
+            id="tickets-list-left-panel"
+            layout="column"
+            flex
+            layout-align="center center">
+            <img 
+                width="80px"
+                height="80px"
+                ng-src="resources/images/chat.gif"
+                class="md-avatar"/>
+            <p translate="">Select a ticket</p>
+        </div>
+    </div>
+</div>
+

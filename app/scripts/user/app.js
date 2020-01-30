@@ -20,6 +20,6 @@
  * SOFTWARE.
  */
 
-angular.module('ngMaterialDashboardUser', [ //
-    'ngMaterialDashboard',//
+angular.module('ngMaterialDashboardUser', [
+	'mblowfish-core',
 ]);

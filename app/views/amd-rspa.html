@@ -1,0 +1,57 @@
+<md-content
+	layout="column"
+	mb-preloading="working"
+	flex>
+	<div layout="row" 
+		layout-padding
+		flex>
+		<img 
+			width="150px"
+			height="150px"
+			ng-src="/{{spa.name}}/images/logo.svg" 
+			class="md-avatar"/>
+		<table class="md-table md-table-description">
+			<tr>
+				<td translate>Title</td>
+				<td>{{spa.title}}</td>
+			</tr>
+			<tr>
+				<td translate>Description</td>
+				<td>{{spa.description}}</td>
+			</tr>
+			<tr>
+				<td translate>Name</td>
+				<td>{{spa.name}}</td>
+			</tr>
+			<tr>
+				<td translate>Version</td>
+				<td>{{spa.version}}</td>
+			</tr>
+			<tr>
+				<td translate>License</td>
+				<td>{{spa.license}}</td>
+			</tr>
+			<tr>
+				<td translate>Home page</td>
+				<td>{{spa.homepage}}</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div
+		layout="row">
+		<md-button
+			class="md-raised"
+			ng-href="spas/repository">
+			<span translate>Back to list</span>
+		</md-button>
+		<span flex></span>
+		<md-button
+			class="md-primary md-raised"
+			data-ng-repeat="state in states"
+			data-ng-click="gotoState(state)"
+			data-ng-show="{{state.visible}}">
+			<span translate>{{state.title || state.id}}</span>
+		</md-button>
+	</div>
+</md-content>

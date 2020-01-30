@@ -1,0 +1,51 @@
+<md-dialog 
+    layout="column"
+    ng-cloak
+    flex="50">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 translate="">New service</h2>
+            <span flex></span>
+            <md-button 
+                class="md-icon-button" 
+                ng-click="answer(config)"
+                ng-disabled="myForm.$invalid">
+                <wb-icon aria-label="Close dialog">done</wb-icon>
+            </md-button>
+            <md-button 
+                class="md-icon-button" 
+                ng-click="cancel()">
+                <wb-icon aria-label="Close dialog">close</wb-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content layout-padding>
+        <form
+            name="myForm"
+            ng-action="add(config)"
+            layout="column" 
+            flex>
+            <md-input-container>
+                <label translate="">Title</label>
+                <input ng-model="config.title"></input>
+            </md-input-container>
+
+            <md-input-container>
+                <label translate="">Sub domain</label>
+                <input 
+                    ng-model="config.subdomain" 
+                    type="text" 
+                    name="subdomain"
+                    required></input>
+                <div ng-messages="myForm.subdomain.$error">
+                    <div ng-message="required" translate>This field is required.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label translate="">Domain</label>
+                <input ng-model="config.domain" type="text"></input>
+            </md-input-container>
+        </form>
+    </md-dialog-content>
+</md-dialog>

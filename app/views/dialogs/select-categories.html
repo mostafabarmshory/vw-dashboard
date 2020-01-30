@@ -1,0 +1,32 @@
+<md-dialog 
+    layout="column"
+    ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 translate="">Select categories</h2>
+            <span flex></span>
+            <md-button 
+                class="md-icon-button" 
+                ng-click="answer(config.data)"
+                ng-disabled="myForm.$invalid">
+                <wb-icon aria-label="Close dialog">done</wb-icon>
+            </md-button>
+            <md-button 
+                class="md-icon-button" 
+                ng-click="cancel()">
+                <wb-icon aria-label="Close dialog">close</wb-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content layout-padding>
+        
+        <div layout="column">
+            <md-checkbox 
+                ng-repeat="category in config.data track by $index"
+                ng-checked="category.selected" 
+                ng-click="category.selected = !category.selected">
+                {{category.name}}
+            </md-checkbox>
+        </div>
+    </md-dialog-content>
+</md-dialog>

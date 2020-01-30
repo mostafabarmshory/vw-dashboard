@@ -1,0 +1,59 @@
+<md-content 
+    class="md-padding"
+    layout-padding
+    flex>
+    <form 
+        name="contentForm"
+        ng-action="ctrl.add(wallet)"
+        mb-preloading="ctrl.creatingWallet"
+        layout-margin
+        layout="column"
+        flex>
+
+        <md-input-container>
+            <label translate="">Title</label>
+            <input name="title" ng-model="wallet.title" required></input>
+            <div 
+                ng-messages="contentForm.title.$error">
+                <div ng-message="required"><span translate="">This field is required.</span></div>
+            </div>
+        </md-input-container>
+
+        <md-select 
+            placeholder="{{'Currency'| translate}}" 
+            ng-model="wallet.currency" 
+            required>
+            <md-option 
+                ng-value="key"
+                ng-repeat="(key,val) in ctrl.currencies track by $index">
+                {{val}}
+            </md-option>
+        </md-select>
+        
+        <span flex="5"></span>
+        
+        <md-input-container>
+            <label translate="">Description</label>
+            <input ng-model="wallet.description"></input>
+        </md-input-container>
+
+        <div layout="row">
+            <span flex></span>
+            <md-button 
+                class="md-raised md-accent" 
+                ng-click="ctrl.cancel()"
+                aria-label="close">
+                <span translate>Cancel</span>
+            </md-button>
+            <md-button
+                class="md-raised md-primary" 
+                type="submit"
+                ng-disabled="contentForm.$invalid"
+                ng-click="ctrl.add(wallet)"
+                aria-label="add wallet">
+                <span translate>Add</span>
+            </md-button>
+        </div>
+    </form>
+</md-content>
+

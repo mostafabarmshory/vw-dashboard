@@ -1,0 +1,48 @@
+<md-content
+	mb-infinate-scroll="nextPage()"
+	layout="column"
+	flex>
+	<!-- Action bar -->
+	<mb-pagination-bar
+		mb-model="paginatorParameter"
+		mb-reload="reload"
+		mb-sort-keys="sortKeys"
+		mb-more-actions="moreActions">
+	</mb-pagination-bar>
+	<!-- Categories list -->
+	<div layout="column"
+		ng-if="ctrl.items.length === 0 && !ctrl.loadingItems">
+		<p style="text-align: center" translate="">List is empty.</p>
+		<div layout="row"
+			layout-align="center center">
+			<md-button class="md-raised" 
+				ng-click="add()">
+				<wb-icon>add</wb-icon>
+				<span translate="">New category</span>
+			</md-button>
+		</div>
+	</div>
+	<md-list flex>
+		<md-list-item 
+			ng-repeat="pobject in ctrl.items track by pobject.id"
+			class="md-2-line" 
+			ng-href="{{'categories/'+pobject.id}}">
+			<img ng-src="{{pobject.avatar}}" ng-if="pobject.avatar" class="md-avatar" />
+			<wb-icon ng-if="!pobject.avatar">folder_special</wb-icon>
+			<div 
+				class="md-list-item-text" 
+				layout="column">
+				<!--<h3>{{pobject.id}}</h3>-->
+				<h4>{{pobject.name}}</h4>
+				<p>{{pobject.description}}</p>
+			</div>
+			<md-divider md-inset></md-divider>
+		</md-list-item>
+		<!-- Preloading. -->
+		<div layout="column" layout-align="center center">
+			<md-progress-circular ng-show="ctrl.loadingItems || ctrl.savingCategory"
+				md-diameter="96"> {{'Loading ...' | translate}} </md-progress-circular>
+		</div>
+	</md-list>
+</md-content>
+

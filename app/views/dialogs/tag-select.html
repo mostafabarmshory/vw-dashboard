@@ -1,0 +1,53 @@
+<md-dialog ng-controller="TagsCtrl" aria-label="Tag">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 translate="">Select tag</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="answer(ctrl.selected)">
+                <wb-icon aria-label="select">done</wb-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <wb-icon aria-label="Close dialog">close</wb-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content ng-init="nextPage()" amd-infinate-scroll="nextPage()"  
+                       layout="column" layout-padding flex>
+        <md-list flex>
+            <md-list-item class="md-3-line"
+                          ng-click="ctrl.selected = tag"
+                          ng-class="{true:'md - raised md - primary', false:''}[ctrl.selected.id === tag.id]"
+                          ng-style="{'background-color': ctrl.selected.id === tag.id ? '#cce2ff' : ''}"
+                          ng-repeat="tag in ctrl.items">
+                <div class="md-list-item-text" layout="column">
+                    <h4 translate="">ID: {{tag.id}}</h4>
+                    <h3 translate="">Name: {{tag.name}}</h3>
+                    <p>{{'Description' | translate}}: {{tag.description}}</p>
+                </div>
+                <md-divider></md-divider>
+            </md-list-item>
+            <!-- Preloading. -->
+            <div layout="column" layout-align="center center">
+                <md-progress-circular 
+                    ng-show="ctrl.status === 'working'" 
+                    md-diameter="96"> {{'Loading...' | translate}}
+                </md-progress-circular>
+            </div>
+        </md-list>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" >
+        <span flex></span>
+        <form  ng-submit="search(temp.query)">
+            <md-input-container 
+                class="md-icon-float md-icon-right md-block">
+                <label translate="">Search</label>
+                <wb-icon>search</wb-icon>
+                <input ng-model="temp.query">
+            </md-input-container>
+            <input type="submit" hide>
+        </form>
+    </md-dialog-actions>
+
+</md-dialog>

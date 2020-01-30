@@ -1,0 +1,28 @@
+<md-dialog
+    flex="50"
+    layout="column"
+    ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 translate="">Properties</h2>
+            <span flex></span>
+            <md-button 
+                class="md-icon-button" 
+                ng-click="answer(config.action)"
+                ng-disabled="myForm.$invalid">
+                <wb-icon aria-label="Close dialog">done</wb-icon>
+            </md-button>
+            <md-button 
+                class="md-icon-button" 
+                ng-click="cancel()">
+                <wb-icon aria-label="Close dialog">close</wb-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content layout-padding>
+        <mb-dynamic-form
+            ng-model="config.action"
+            mb-parameters="config.properties">
+        </mb-dynamic-form>
+    </md-dialog-content>
+</md-dialog>

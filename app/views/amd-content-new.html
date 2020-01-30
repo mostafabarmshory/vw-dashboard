@@ -1,0 +1,57 @@
+<md-content 
+	ng-controller="AmdContentNewCtrl as ctrl"
+	class="md-padding"
+	layout-padding
+	flex>
+	<form 
+		name="contentForm"
+		ng-action="ctrl.add(config)"
+		mb-preloading="ctrl.savingContent"
+		layout-margin
+		layout="column"
+		flex>
+		<md-input-container
+			class="md-icon-float md-block">
+			<label>Name</label>
+			<input name="name" ng-model="config.model.name" required></input>
+			<div ng-messages="contentForm.name.$error">
+				<div ng-message="required">This is required!</div>
+			</div>
+			<wb-icon ng-click="ctrl.generateRandomName()">autorenew</wb-icon>
+		</md-input-container>
+		
+		<md-input-container>
+			<label>Description</label>
+			<input ng-model="config.model.description"></input>
+		</md-input-container>
+		
+		<md-input-container>
+			<label>Title</label>
+			<input ng-model="config.model.title"></input>
+		</md-input-container>
+		
+		<md-input-container>
+			<lf-ng-md-file-input lf-files="config.files" progress preview drag required></lf-ng-md-file-input>
+			<div ng-messages="!lf-files.file[0]">
+		      <div ng-message="required">This is required!</div>
+		    </div>
+		</md-input-container>
+		
+		<div layout="row">
+			<span flex></span>
+			<md-button
+				class="md-raised" 
+				ng-click="ctrl.add(config)">
+				<wb-icon aria-label="close">done</wb-icon>
+				<span translate>Add</span>
+			</md-button>
+			<md-button 
+				class="md-raised" 
+				ng-click="ctrl.cancel()">
+				<wb-icon aria-label="close">close</wb-icon>
+				<span translate>Cancel</span>
+			</md-button>
+		</div>
+	</form>
+</md-content>
+
