@@ -19,33 +19,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardJms')
 /**
  * 
  */
-.config(function ($routeProvider) {
-    $routeProvider
-    .otherwise('/pipelines')
-    /**
-     * @ngdoc ngRoute
-     * @name AmdJmsPipelinesCtrl
-     * @description List of pipelines
-     * 
-     */
-    .when('/pipelines', {
-        controller: 'AmdJmsPipelinesCtrl',
-        templateUrl: 'views/amd-jms-pipelines.html',
-        navigate: true,
-        groups: ['jms'],
-        name: 'Jobs',
-        icon: 'dvr',
-        /*
-         * @ngInject
-         */
-        protect: function ($rootScope) {
-            return !$rootScope.__account.permissions.tenant_owner && !$rootScope.__account.permissions.tenant_member;
-        }
-    });
+angular.module('ngMaterialDashboardJms').config(function($routeProvider) {
+	$routeProvider.otherwise('/pipelines')
+		/**
+		 * @ngdoc ngRoute
+		 * @name AmdJmsPipelinesCtrl
+		 * @description List of pipelines
+		 * 
+		 */
+		.when('/pipelines', {
+			controller: 'AmdJmsPipelinesCtrl',
+			templateUrl: 'views/amd-jms-pipelines.html',
+			navigate: true,
+			groups: ['jms'],
+			name: 'Jobs',
+			icon: 'dvr',
+			/*
+			 * @ngInject
+			 */
+			protect: function($rootScope) {
+				return !$rootScope.__account.permissions.tenant_owner && !$rootScope.__account.permissions.tenant_member;
+			}
+		});
 });

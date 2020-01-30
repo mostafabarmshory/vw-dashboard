@@ -19,7 +19,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
 angular.module('ngMaterialDashboardTenant').config(function ($routeProvider) {
     $routeProvider
@@ -41,6 +40,7 @@ angular.module('ngMaterialDashboardTenant').config(function ($routeProvider) {
         })
         .when('/tenant/tenants/:tenantId', {
             templateUrl: 'views/amd-tenant-tenant.html',
+		protect: true,
             controller: 'AmdTenantTenantController',
             controllerAs: 'ctrl'
         })
@@ -57,33 +57,10 @@ angular.module('ngMaterialDashboardTenant').config(function ($routeProvider) {
             protect: function ($rootScope) {
                 return !$rootScope.app.user.tenant_owner;
             },
-            /*
-             * @ngInject
-             */
-            integerate: function ($actions) {
-                $actions.group('navigationPathMenu').clear();
-                $actions.newAction({
-                    id: 'tenant',
-                    title: 'Tenant Info',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/tenants/current',
-                    groups: ['navigationPathMenu']
-                });
-                $actions.newAction({
-                    id: 'tenant-tickets',
-                    title: 'Tickets',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/tickets',
-                    groups: ['navigationPathMenu']
-                });
-            }
         }) //
         .when('/tenant/tickets/:ticketId', {
             templateUrl: 'views/amd-tenant/ticket.html',
+		protect: true,
             controller: 'AmdTenantTicketController',
             /*
              * @ngInject
@@ -91,39 +68,6 @@ angular.module('ngMaterialDashboardTenant').config(function ($routeProvider) {
             protect: function ($rootScope) {
                 return !$rootScope.app.user.tenant_owner;
             },
-            /*
-             * @ngInject
-             */
-            integerate: function ($actions, $routeParams) {
-                $actions.group('navigationPathMenu').clear();
-                $actions.newAction({
-                    id: 'tenant',
-                    title: 'Tenant Info',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/tenants/current',
-                    groups: ['navigationPathMenu']
-                });
-                $actions.newAction({
-                    id: 'tenant-tickets',
-                    title: 'Tickets',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/tickets',
-                    groups: ['navigationPathMenu']
-                });
-                $actions.newAction({
-                    id: 'tenant-ticket-' + $routeParams.ticketId,
-                    title: 'Ticket #' + $routeParams.ticketId,
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/tickets/' + $routeParams.ticketId,
-                    groups: ['navigationPathMenu']
-                });
-            }
         })
         .when('/tenant/invoices', {
             templateUrl: 'views/amd-tenant/invoice-list.html',
@@ -139,30 +83,6 @@ angular.module('ngMaterialDashboardTenant').config(function ($routeProvider) {
             protect: function ($rootScope) {
                 return !$rootScope.__account.permissions.tenant_owner;
             },
-            /*
-             * @ngInject
-             */
-            integerate: function ($actions) {
-                $actions.group('navigationPathMenu').clear();
-                $actions.newAction({
-                    id: 'tenant',
-                    title: 'Tenant Info',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/tenants/current',
-                    groups: ['navigationPathMenu']
-                });
-                $actions.newAction({
-                    id: 'tenant-invoices',
-                    title: 'Invoices',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/invoices',
-                    groups: ['navigationPathMenu']
-                });
-            }
         }) //
         .when('/tenant/invoices/new', {
             templateUrl: 'views/amd-tenant/invoice-new.html',
@@ -173,39 +93,6 @@ angular.module('ngMaterialDashboardTenant').config(function ($routeProvider) {
             protect: function ($rootScope) {
                 return !$rootScope.__account.permissions.tenant_owner;
             },
-            /*
-             * @ngInject
-             */
-            integerate: function ($actions) {
-                $actions.group('navigationPathMenu').clear();
-                $actions.newAction({
-                    id: 'tenant',
-                    title: 'Tenant Info',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/tenants/current',
-                    groups: ['navigationPathMenu']
-                });
-                $actions.newAction({
-                    id: 'tenant-invoices',
-                    title: 'Invoices',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/invoices',
-                    groups: ['navigationPathMenu']
-                });
-                $actions.newAction({
-                    id: 'new-invoice',
-                    title: 'New invoice',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/invoices/new',
-                    groups: ['navigationPathMenu']
-                });
-            }
         }) //
         .when('/tenant/invoices/:invoiceId', {
             templateUrl: 'views/amd-tenant/invoice.html',
@@ -217,39 +104,6 @@ angular.module('ngMaterialDashboardTenant').config(function ($routeProvider) {
             protect: function ($rootScope) {
                 return !$rootScope.__account.permissions.tenant_owner;
             },
-            /*
-             * @ngInject
-             */
-            integerate: function ($actions, $routeParams) {
-                $actions.group('navigationPathMenu').clear();
-                $actions.newAction({
-                    id: 'tenant',
-                    title: 'Tenant Info',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/tenants/current',
-                    groups: ['navigationPathMenu']
-                });
-                $actions.newAction({
-                    id: 'tenant-invoices',
-                    title: 'Invoices',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/invoices',
-                    groups: ['navigationPathMenu']
-                });
-                $actions.newAction({
-                    id: 'tenant-invoice-' + $routeParams.invoiceId,
-                    title: 'Ticket #' + $routeParams.invoiceId,
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/invoices/' + $routeParams.invoiceId,
-                    groups: ['navigationPathMenu']
-                });
-            }
         }) //
         .when('/receipts/:id', {
             templateUrl: 'views/amd-tenant-receipt.html',
@@ -272,39 +126,6 @@ angular.module('ngMaterialDashboardTenant').config(function ($routeProvider) {
             protect: function ($rootScope) {
                 return !$rootScope.__account.permissions.tenant_owner;
             },
-            /*
-             * @ngInject
-             */
-            integerate: function ($actions) {
-                $actions.group('navigationPathMenu').clear();
-                $actions.newAction({
-                    id: 'tenant',
-                    title: 'Tenant Info',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/tenants/current',
-                    groups: ['navigationPathMenu']
-                });
-                $actions.newAction({
-                    id: 'tenant-settings',
-                    title: 'Tenant Settings',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/settings',
-                    groups: ['navigationPathMenu']
-                });
-                $actions.newAction({
-                    id: 'tenant-security',
-                    title: 'Security',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/settings/security',
-                    groups: ['navigationPathMenu']
-                });
-            }
         }).when('/tenant/settings/local-setting', {
             templateUrl: 'views/amd-local-setting.html',
             controller: 'AmdLocalSettingsCtrl',
@@ -319,38 +140,5 @@ angular.module('ngMaterialDashboardTenant').config(function ($routeProvider) {
             protect: function ($rootScope) {
                 return !$rootScope.__account.permissions.tenant_owner;
             },
-            /*
-             * @ngInject
-             */
-            integerate: function ($actions) {
-                $actions.group('navigationPathMenu').clear();
-                $actions.newAction({
-                    id: 'tenant',
-                    title: 'Tenant Info',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/tenants/current',
-                    groups: ['navigationPathMenu']
-                });
-                $actions.newAction({
-                    id: 'tenant-settings',
-                    title: 'Tenant Settings',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/settings',
-                    groups: ['navigationPathMenu']
-                });
-                $actions.newAction({
-                    id: 'local-settings',
-                    title: 'Local settings',
-                    type: 'link',
-                    priority: 10,
-                    visible: true,
-                    url: 'tenant/settings/local-settings',
-                    groups: ['navigationPathMenu']
-                });
-            }
         });
 });

@@ -19,35 +19,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardCollection')
+
 /**
  * 
  */
-.config(function($routeProvider) {
+angular.module('ngMaterialDashboardCollection').config(function($routeProvider) {
 	$routeProvider//
-	.when('/collections', {
-		controller : 'AmdCollectionsCtrl',
-		templateUrl : 'views/amd-collections.html',
-		name : 'Collections',
-		icon : 'storage',
-		navigate : true,
-		protect: true,
-	})//
-	.when('/collections/new', {
-		controller : 'AmdCollectionNewCtrl',
-		templateUrl : 'views/amd-collection-new.html',
-		protect: true,
-	})//
-	.when('/collections/:collectionId/documents/:documentId', {
-		controller : 'AmdDocumentCtrl',
-		templateUrl : 'views/amd-document.html',
-		protect: true,
-	})//
-	.when('/collections/:id', {
-		controller : 'AmdCollectionCtrl',
-		templateUrl : 'views/amd-collection.html',
-		protect: true,
-	});
+		.when('/collections', {
+			controller: 'AmdCollectionsCtrl',
+			templateUrl: 'views/amd-collections.html',
+			name: 'Collections',
+			icon: 'storage',
+			navigate: true,
+			protect: true,
+		})//
+		.when('/collections/new', {
+			controller: 'AmdCollectionNewCtrl',
+			templateUrl: 'views/amd-collection-new.html',
+			protect: true,
+		})//
+		.when('/collections/:collectionId/documents/:documentId', {
+			controller: 'AmdDocumentCtrl',
+			templateUrl: 'views/amd-document.html',
+			protect: true,
+		})//
+		.when('/collections/:id', {
+			controller: 'AmdCollectionCtrl',
+			templateUrl: 'views/amd-collection.html',
+			protect: true,
+		});
 });

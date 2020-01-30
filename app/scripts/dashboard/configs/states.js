@@ -19,20 +19,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboard')
-/**
- * 
- */
-.config(function ($routeProvider) {
-    $routeProvider//
-    /*
-     * Dashboard
-     */
-    .when('/dashboard', {
-        templateUrl: 'views/amd-dashboard.html',
-        protect: true,
-        helpId: 'amd-dashboard'
-    });
+angular.module('ngMaterialDashboard').config(function($routeProvider) {
+	$routeProvider.when('/dashboard', {
+		templateUrl: 'views/amd-dashboard.html',
+		protect: true,
+		helpId: 'amd-dashboard'
+	});
 });

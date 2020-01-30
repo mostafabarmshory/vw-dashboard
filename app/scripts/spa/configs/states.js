@@ -19,13 +19,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardSpa')
 /**
  * 
  */
-.config(function($routeProvider) {
+angular.module('ngMaterialDashboardSpa').config(function($routeProvider) {
 	$routeProvider //
 	.when('/spas', {
 		controller : 'amdSpasCtrl',
