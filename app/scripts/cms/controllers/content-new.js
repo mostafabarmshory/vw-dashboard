@@ -1,16 +1,15 @@
-'use strict';
 
-angular.module('ngMaterialDashboardCms')
+
 
 /**
  * @ngdoc controller
  * @name AmdContentNewCtrl
  * @description Mange content new
  */
-.controller('AmdContentNewCtrl', function($scope, $cms, $navigator, uuid4) {
-    
+angular.module('ngMaterialDashboardCms').controller('AmdContentNewCtrl', function($scope, $cms, $navigator, uuid4) {
+
 	var ctrl = {
-		savingContent : false
+		savingContent: false
 	};
 
 	function cancel() {
@@ -20,34 +19,34 @@ angular.module('ngMaterialDashboardCms')
 	function add(config) {
 		ctrl.savingContent = true;
 		var data = config.model;
-		if(typeof data.title === 'undefined'){
+		if (typeof data.title === 'undefined') {
 			data.title = data.name;
 		}
 		var promise = $cms.putContent(data);
-        if(config.files[0]){
-            promise = promise.then(function(content){
-                var file = config.files[0].lfFile;
-                return content.uploadValue(file);
-            });
-        }
+		if (config.files[0]) {
+			promise = promise.then(function(content) {
+				var file = config.files[0].lfFile;
+				return content.uploadValue(file);
+			});
+		}
 		promise.then(function(obj) {
 			$navigator.openPage('/content/' + obj.id);
 		}, function(error) {
 			alert('Fail to create content:' + error.data.message);
 		})
-		.finally(function(){
-            ctrl.savingContent = false;
-		});
+			.finally(function() {
+				ctrl.savingContent = false;
+			});
 	}
-	
-	
+
+
 	/**
 	 * Sets page name with random value
 	 * 
 	 * @memberof AmdContentNewCtrl
 	 */
-	this.generateRandomName = function () {
-		$scope.config.model.name =uuid4.generate();
+	this.generateRandomName = function() {
+		$scope.config.model.name = uuid4.generate();
 	};
 
 	this.cancel = cancel;

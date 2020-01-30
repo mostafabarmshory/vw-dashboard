@@ -38,8 +38,6 @@ angular.module('ngMaterialDashboardCms')
 		protect: true
 	}) //
 	.when('/contents/new', {
-		controller : 'AmdContentNewCtrl',
-		controllerAs: 'ctrl',
 		templateUrl : 'views/amd-content-new.html',
 		navigate : true,
 		groups : [ 'content-management' ],

@@ -1,10 +1,11 @@
 <md-content 
+	ng-controller="AmdContentNewCtrl as ctrl"
 	class="md-padding"
 	layout-padding
 	flex>
 	<form 
 		name="contentForm"
-		ng-action="add(config)"
+		ng-action="ctrl.add(config)"
 		mb-preloading="ctrl.savingContent"
 		layout-margin
 		layout="column"
@@ -40,13 +41,13 @@
 			<span flex></span>
 			<md-button
 				class="md-raised" 
-				ng-click="add(config)">
+				ng-click="ctrl.add(config)">
 				<wb-icon aria-label="close">done</wb-icon>
 				<span translate>Add</span>
 			</md-button>
 			<md-button 
 				class="md-raised" 
-				ng-click="cancel()">
+				ng-click="ctrl.cancel()">
 				<wb-icon aria-label="close">close</wb-icon>
 				<span translate>Cancel</span>
 			</md-button>
