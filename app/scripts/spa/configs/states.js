@@ -60,7 +60,6 @@ angular.module('ngMaterialDashboardSpa').config(function($routeProvider) {
 		protect: true,
 	}) //
 	.when('/spas/:spaId', {
-		controller : 'amdSpaCtrl',
 		templateUrl : 'views/amd-spa.html',
 		protect: true,
 	});
