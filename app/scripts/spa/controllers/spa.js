@@ -19,97 +19,74 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-angular.module('ngMaterialDashboardSpa')
+
 
 /**
  * @ngdoc controller
  * @name SpaCtrl
  * @description # SpaCtrl Controller of the ngMaterialDashboard
  */
-.controller('amdSpaCtrl', function ($scope, $tenant, $routeParams, $location, $http, $navigator) {
+angular.module('ngMaterialDashboardSpa').controller('AmdTenantSpaCtrl', function(
+	/* angularjs */ $window, $scope, $tenant, $routeParams, $location) {
 	/**
 	 * Controller data
 	 */
-	$scope.ctrl = {
-		state: 'relax'
-	};
-	var ctrl = $scope.ctrl;
+	var spa;
 
 	/**
 	 * Update current local changes into the backend
 	 */
-	function update(){
-		ctrl.state = 'working';
-		return $scope.spa.update()
-		.then(function(){
-			alert('update is successfully.');
-		}, function(error){
-			alert('fail to update.');
-		})//
-		.finally(function(){
-			ctrl.state = 'relax';
-		});
-	}
-	
-	/**
-	 * Update name of the spa
-	 */
-	function updateName(){
-		return confirm("Name of an spa directly effect into the SEO and cause fail in update process. Change spa name?")//
-		.then(function(){
-			ctrl.state = 'working';
-			return $scope.spa.update();//
-		})//
-		.finally(function(){
-			ctrl.state = 'relax';
-		});
-	}
-	
+	this.update = function() {
+		var ctrl = this;
+		return this.working = spa.update()
+			.then(function() {
+				$window.toast('update is successfully.');
+			}, function() {
+				$window.alert('fail to update.');
+			}).finally(function() {
+				delete ctrl.working;
+			});
+	};
+
 	/**
 	 * درخواست مورد نظر را از سیستم حذف می‌کند.
 	 * 
 	 * @param request
 	 * @returns
 	 */
-	function remove() {
-		return confirm("delete spa " + $scope.spa.id +"?")//
-		.then(function(){
-			ctrl.state = 'working';
-			return $scope.spa.delete();//
-		})//
-		.then(function(){
-			$location.path('/spas');
-		}, function(error){
-			alert('fail to delete spa:' + error.message);
-		})//
-		.finally(function(){
-			ctrl.state = 'relax';
-		});
+	this.remove = function() {
+		var ctrl = this;
+		return confirm("delete spa " + $scope.spa.id + "?")//
+			.then(function() {
+				return ctrl.working = spa.delete();//
+			})//
+			.then(function() {
+				$location.path('/spas');
+			}, function(error) {
+				$window.alert('fail to delete spa:' + error.message);
+			})//
+			.finally(function() {
+				delete ctrl.working;
+			});
 	}
 
 	/**
 	 * Load the spa
 	 */
-	function load() {
-		ctrl.state = 'working';
-		return $tenant.getSpa($routeParams.spaId)//
-		.then(function(spa){
-			$scope.spa = spa;
-			return $scope.spa.getPossibleTransitions();
-		}, function(error){
-		    if(error.status === 404){
-		        $navigator.openPage('spas');
-		    }
-			ctrl.error = error;
-		})//
-		.then(function(transList){
-			ctrl.error = null;
-			$scope.transitions = transList;
-		})//
-		.finally(function(){
-			ctrl.state = 'relax';
-		});
+	this.load = function() {
+		var ctrl = this;
+		return ctrl.working = $tenant.getSpa($routeParams.spaId)//
+			.then(function(spaLoaded) {
+				$scope.spa = spaLoaded;
+				spa = spaLoaded;
+				return ctrl.working = spa.getPossibleTransitions();
+			})//
+			.then(function(transList) {
+				$scope.transitions = transList;
+			})//
+			.finally(function() {
+				delete ctrl.working;
+			});
 	}
 
 	/**
@@ -119,73 +96,41 @@ angular.module('ngMaterialDashboardSpa')
 	 * 
 	 * @returns
 	 */
-	function setDefault(){
-		ctrl.state = 'working';
+	this.setDefault = function() {
+		var ctrl = this;
 		return $tenant.getSetting('spa.default')//
-		// TODO: maso, 2018: check if not exist
-		.then(function(setting){
-			setting.value = $scope.spa.name;
-			return setting.update();
-		})//
-		.then(function(){
-			toast('Default SPA is changed.');
-		},function(error){
-			alert('Fail to set default spa:'+error.message);
-		})//
-		.finally(function(){
-			ctrl.state = 'relax';
-		});
-	}
+			// TODO: maso, 2018: check if not exist
+			.then(function(setting) {
+				setting.value = spa.name;
+				return setting.update();
+			})//
+			.then(function() {
+				toast('Default SPA is changed.');
+			}, function(error) {
+				alert('Fail to set default spa:' + error.message);
+			})//
+			.finally(function() {
+				ctrl.state = 'relax';
+			});
+	};
 
 	/**
 	 * Add given transition to SPA. In other word, do some transaction on SPA.
 	 */
-	function addTransition(state){
-		if(ctrl.state !== 'relax'){
-			return;
-		}
-		ctrl.state = 'working';
-		// Load data for state
-		var data = {}; 
-//		$http.put('/api/spa/'+$scope.spa.id+'/states/'+state.id, data)//
-		$scope.spa.putTransition(state)
-		.then(function(){
-			return load();
-		}, function(error){
-			ctrl.error = error;
-			alert('Process failed. ' + error.message);
-		})//
-		.finally(function(){
-			ctrl.state = 'relax';
-		});
-	}
-	
-	function deleteSpa (){
-        if(ctrl.state !== 'relax'){
-            return;
-        }
-        ctrl.state = 'working';
-        confirm('Delete the SPA?')
-        .then(function(){
-            $scope.spa.delete()
-            .then(function(){
-                $navigator.openPage('spas');
-            }, function(error){
-                ctrl.error = error;
-                alert('Failed to delete: ' + error.message);
-            })//
-        })
-        .finally(function(){
-            ctrl.state = 'relax';
-        });
+	this.addTransition = function(state) {
+		var ctrl = this;
+		var data = {};
+		return this.working = spa.putTransition(state)
+			.then(function() {
+				return ctrl.load();
+			}, function(error) {
+				alert('Process failed. ' + error.message);
+			})//
+			.finally(function() {
+				delete ctrl.working;
+			});
 	}
 
 	// Load state
-	$scope.setDefault = setDefault;
-	$scope.remove = remove;
-	$scope.update = update;
-	$scope.updateName = updateName;
-	$scope.addTransition = addTransition;
-	$scope.deleteSpa = deleteSpa;
-	load();
+	this.load();
 });
