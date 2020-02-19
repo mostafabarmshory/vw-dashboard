@@ -1,7 +1,7 @@
 {
 	"name": "vw-dashboard",
 	"moduleName": "myDashboardApp",
-	"version": "2.0.4",
+	"version": "2.0.5",
 	"title": "ViraWeb Dashboard",
 	"description": "ViraWeb123 dashboards allow managers to monitor the contribution of the various departments in their organization.",
 	"license": "MIT",
