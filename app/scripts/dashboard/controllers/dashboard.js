@@ -25,10 +25,13 @@
  * @description Dashboard controller
  * 
  */
-angular.module('ngMaterialDashboard').controller('AmdDashboardCtrl', function($scope, $http, $controller, $sce) {
+angular.module('ngMaterialDashboard').controller('AmdDashboardCtrl', function($scope, $sce) {
 	var url = 'https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en';
 
-	$scope.url = $sce.trustAsResourceUrl(url);
+
+	this.setDashboardUrl = function(url){
+		$scope.url = $sce.trustAsResourceUrl(url);
+	}
 
 	/**
 	 * Load dashboard data from application settings
@@ -43,4 +46,7 @@ angular.module('ngMaterialDashboard').controller('AmdDashboardCtrl', function($s
 		//            };
 		//        });//
 	};
+	
+	
+	this.setDashboardUrl(url);
 });
