@@ -25,9 +25,9 @@
 				<div 
 					class="md-list-item-text" 
 					layout="column">
-					<h3>{{pobject.title}} - ({{pobject.state| translate}})</h3>
-					<h4>{{pobject.full_name}} - {{pobject.phone}}</h4>
-					<p>{{pobject.province}} - {{pobject.city}} - {{pobject.address}}</p>
+					<h3>{{::pobject.id}} - {{::pobject.full_name}} - ({{ ::(pobject.state| translate) }})</h3>
+					<h4>{{::pobject.title}} - {{::pobject.phone}} - {{::(pobject.creation_dtime | mbDateTime)}}</h4>
+					<p>{{::pobject.province}} - {{::pobject.city}} - {{::pobject.address}}</p>
 				</div>
 				<md-divider md-inset></md-divider>
 			</md-list-item>
