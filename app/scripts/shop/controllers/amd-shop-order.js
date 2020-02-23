@@ -6,7 +6,8 @@
  * @name AmdShopOrderCtrl
  * @description load the order
  */
-angular.module('ngMaterialDashboardShop').controller('AmdShopOrderCtrl', function(ShopOrder, $shop, $translate, $routeParams, $navigator, $window) {
+angular.module('ngMaterialDashboardShop').controller('AmdShopOrderCtrl', function(ShopOrder, 
+	$shop, $translate, $routeParams, $navigator, $window) {
 
 	this.order = {};
 	this.actions = [];
