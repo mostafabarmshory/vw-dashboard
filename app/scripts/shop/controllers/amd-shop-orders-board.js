@@ -31,18 +31,39 @@
 angular.module('mblowfish-core').controller('MbSeenShopOrdersBoardCtrl', function(
         /* angularjs */ $scope, $controller, $element, $scope,
         /* seen-shop */ $shop,
-        /* mblowfish */ $actions, $navigator) {
+        /* mblowfish */ $actions, $navigator, $storage) {
+
+	var BOARD_STORAGE_KEY = '/shop/orders/board';
 
 	angular.extend(this, $controller('MbSeenShopOrdersCtrl', {
 		$scope: $scope,
 		$element: $element
 	}));
 
-	this.clearBoard = function() {
-		this.board = {
-			title: 'Shop board',
-			columns: []
+
+	this.loadBoard = function() {
+		if (!$storage.has(BOARD_STORAGE_KEY)) {
+			this.board = {
+				title: 'Shop board',
+				columns: []
+			}
+			this.saveBoard();
+		} else {
+			this.board = $storage.get(BOARD_STORAGE_KEY);
 		}
+		return this.board;
+	};
+
+	this.saveBoard = function() {
+		$storage.put(BOARD_STORAGE_KEY, this.board);
+	};
+
+	this.clearBoard = function() {
+		var board = this.board;
+		for (var i = 0; i < board.columns.length; i++) {
+			board.columns[i].items = [];
+		}
+		this.saveBoard();
 	};
 
 	this.getBoardColumn = function(id) {
@@ -110,5 +131,6 @@ angular.module('mblowfish-core').controller('MbSeenShopOrdersBoardCtrl', functio
 	});
 
 	this.init(configs);
+	this.loadBoard();
 	this.loadNextPage();
 });

@@ -2,13 +2,27 @@
 	id="shop-orders-board"
 	ng-controller="MbSeenShopOrdersBoardCtrl as ctrl"
 	mb-preloading="ctrl.loading">
-	<div id="toolbar"></div>
+	<div 
+		md-colors="{background: 'primary-700'}"
+		id="toolbar"
+		layout="row">
+		<md-button
+			class="md-icon-button md-mini" 
+			ng-click="ctrl.loadNextPage($event)">
+			<wb-icon>replay_30</wb-icon>
+		</md-button>
+		<md-button
+			class="md-icon-button md-mini" 
+			ng-click="ctrl.reload($event)">
+			<wb-icon>replay</wb-icon>
+		</md-button>
+	</div>
 	<md-content 
 		id="body"
 		md-colors="{background: 'primary-300'}">
 		<div 
 			ng-repeat="column in ctrl.board.columns track by column.id"
-			id="column-{{column.id}}"
+			id="dynamic-column-{{column.id}}"
 			md-colors="{background: 'primary-100'}"
 			class="column md-whiteframe-4dp">
 			<div
@@ -18,11 +32,6 @@
 				<span translate>{{column.title}}</span>
 				<span flex></span>
 				<span>{{column.items.length}} {{'Order' | translate}}</span>
-				<md-button
-					class="md-icon-button md-mini" 
-					ng-click="openNewActivityDialog(list,$event)">
-					<wb-icon>add</wb-icon>
-				</md-button>
 			</div>
 			<md-content
 				id="body"
@@ -40,6 +49,16 @@
 					<small>{{::item.province}} - {{::item.city}} - {{::item.address}}</small>
 				</div>
 			<md-content>
+		</div>
+		<div 
+			id="column-new"
+			md-colors="{background: 'primary-100'}"
+			class="column md-whiteframe-4dp">
+			<md-button
+				class="md-icon-button md-mini" 
+				ng-click="ctrl.addNewColumn($event)">
+				<wb-icon>add</wb-icon>
+			</md-button>
 		</div>
 	</md-content>
 	<div id="footer"></div>
