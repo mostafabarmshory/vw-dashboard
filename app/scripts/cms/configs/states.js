@@ -21,9 +21,6 @@
  */
 
 
-/**
- * 
- */
 angular.module('ngMaterialDashboardCms').config(function($routeProvider) {
 	$routeProvider //
 		.when('/contents', {
@@ -77,9 +74,7 @@ angular.module('ngMaterialDashboardCms').config(function($routeProvider) {
 			icon: 'note_add',
 			protect: true
 		})
-		.when('/term-taxonomies/:taxonomyId', {
-			controller: 'AmdCmsTermTaxonomyCtrl',
-			controllerAs: 'ctrl',
+		.when('/term-taxonomies/:itemId', {
 			templateUrl: 'views/amd-term-taxonomy.html',
 			protect: true
 		});

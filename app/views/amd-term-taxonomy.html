@@ -1,123 +1,84 @@
 <md-content
-    flex>
-    <mb-titled-block 
-        ng-show="!ctrl.edit"
-        mb-progress="ctrl.loadingTaxonomy || ctrl.savingTaxonomy || ctrl.removingTaxonomy"
-        mb-title="{{'Taxonomy'| translate}}"
-        layout="column">
-
-        <div layout="row" 
-             layout-xs="column" 
-             layout-align-xs="center center" 
-             layout-padding>
-
-            <table>
-                <tr>
-                    <td translate="">ID </td>
-                    <td>: {{ctrl.taxonomy.id}}</td>
-                </tr>
-                <tr>
-                    <td translate="">Taxonomy </td>
-                    <td>: {{ctrl.taxonomy.taxonomy}}</td>
-                </tr>
-                <tr>
-                    <td translate="">Description </td>
-                    <td>: {{ctrl.taxonomy.description}}</td>
-                </tr>
-                <tr>
-                    <td translate="">Parent id </td>
-                    <td>: {{ctrl.taxonomy.parent_id}}</td>
-                </tr>
-                <tr>
-                    <td translate="">Term id</td>
-                    <td>: {{ctrl.taxonomy.term_id}}</td>
-                </tr>
-            </table>
-        </div>
-        <div ng-show="!ctrl.edit" layout-gt-xs="row"
-             layout="column">
-            <span flex></span>
-            <md-button 
-                class = "md-raised md-accent"
-                ng-click="ctrl.remove()">
-                <span translate="">Delete</span>
-            </md-button>
-            <md-button 
-                class="md-raised md-primary"
-                ng-click="ctrl.edit = true;">
-                <span translate="">Edit</span>
-            </md-button>
-        </div>
-    </mb-titled-block>
-    <!--Edit term -->
-    <mb-titled-block 
-        ng-if="ctrl.edit"
-        mb-progress="ctrl.savingTaxonomy"
-        mb-title="{{'Edit taxonomy'| translate}}"
-        layout="column">
-
-        <form
-            name="myForm"
-            ng-action="ctrl.save()"
-            layout="column" 
-            flex>
-            <md-input-container>
-                <label translate="">Taxonomy</label>
-                <input ng-model="ctrl.taxonomy.taxonomy" name="taxonomy" required></input>
-                <div ng-messages="myForm.taxonomy.$error">
-                    <div ng-message="required" translate="">This field is required.</div>
-                </div>
-            </md-input-container>
-            <div 
-                ng-controller="AmdCmsTermTaxonomyNewCtrl as termTaxctrl"
-                ng-init="termTaxctrl.setInitialItem(ctrl.taxonomy.term_id)">
-                <md-autocomplete flex required 
-                                 md-clear-button="true"
-                                 md-input-name="termId"
-                                 md-selected-item="termTaxctrl.selectedItem"
-                                 md-selected-item-change="ctrl.taxonomy.term_id = termTaxctrl.selectedItem.id"
-                                 md-search-text="termTaxctrl.searchText"
-                                 md-items="item in termTaxctrl.querySearch(termTaxctrl.searchText)"
-                                 md-item-text="item.name"
-                                 md-require-match
-                                 md-floating-label="{{'Term'| translate}}">
-                    <md-item-template>
-                        <span md-highlight-text="termTaxctrl.searchText">{{item.name}}</span>
-                    </md-item-template>
-                </md-autocomplete>
-            </div>
-
-            <md-input-container>
-                <label translate="">Parent</label>
-                <md-select ng-model="ctrl.taxonomy.parent_id">
-                    <md-option><em>None</em></md-option>
-                    <md-option 
-                        ng-repeat="tax in ctrl.termTaxonomies" 
-                        ng-value="tax.id">
-                        {{tax.taxonomy}}
-                    </md-option>
-                </md-select>
-            </md-input-container>
-            
-            <md-input-container>
-                <label translate>Description</label>
-                <textarea ng-model="ctrl.taxonomy.description"></textarea>
-            </md-input-container>
-
-            <div layout="row">
-                <span flex></span>
-                <md-button 
-                    class="md-raised"
-                    ng-click="ctrl.edit = false">
-                    <span translate="">Cancel</span>
-                </md-button>
-                <md-button
-                    class="md-raised md-primary"  
-                    ng-disabled="myForm.$invalid"
-                    ng-click="ctrl.save()">
-                    <span translate="">Save</span>
-                </md-button>
-            </div>
-        </form>
-    </mb-titled-block>
+	ng-controller="AmdCmsTermTaxonomyCtrl as ctrl"
+	layout-padding
+	flex>
+	<mb-titled-block 
+		mb-progress="ctrl.isBusy()"
+		mb-title="{{'Taxonomy'| translate}}"
+		layout="column">
+		<div 
+			layout="row" 
+			layout-xs="column" 
+			layout-align-xs="center center" 
+			layout-padding>
+			<table>
+				<tr>
+					<td translate="">ID</td>
+					<td>: {{ctrl.item.id}}</td>
+				</tr>
+				<tr>
+					<td translate="">Taxonomy</td>
+					<td>
+						<mb-inline
+							ng-model="ctrl.item.taxonomy"
+							mb-inline-type="text"
+							mb-inline-label="Taxonomy"
+							mb-inline-enable="true"
+							mb-inline-on-save="ctrl.updateItem()">
+								: {{ctrl.item.taxonomy}}
+						</mb-inline>
+					</td>
+				</tr>
+				<tr>
+					<td translate="">Description</td>
+					<td>
+						<mb-inline
+							ng-model="ctrl.item.description"
+							mb-inline-type="text"
+							mb-inline-label="Description"
+							mb-inline-enable="true"
+							mb-inline-on-save="ctrl.updateItem()">
+								: {{ctrl.item.description}}
+						</mb-inline>
+					</td>
+				</tr>
+				<tr>
+					<td translate="">Parent id</td>
+					<td>
+						<mb-inline
+							ng-model="ctrl.item.parent_id"
+							mb-inline-type="text"
+							mb-inline-label="Parent ID"
+							mb-inline-enable="true"
+							mb-inline-on-save="ctrl.updateItem()">
+								: {{ctrl.item.parent_id}}
+						</mb-inline>
+					</td>
+				</tr>
+				<tr>
+					<td translate="">Term id</td>
+					<td>
+						<mb-inline
+							ng-model="ctrl.item.term_id"
+							mb-inline-type="text"
+							mb-inline-label="Term ID"
+							mb-inline-enable="true"
+							mb-inline-on-save="ctrl.updateItem()">
+								: {{ctrl.item.term_id}}
+						</mb-inline>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div 
+			layout-gt-xs="row"
+			 layout="column">
+			<span flex></span>
+			<md-button 
+				class = "md-raised md-accent"
+				ng-click="ctrl.deleteItem()">
+				<span translate="">Delete</span>
+			</md-button>
+		</div>
+	</mb-titled-block>
 </md-content>
