@@ -1,24 +1,106 @@
-<md-content
-	layout="column"
-	layout-padding
+<md-content 
+	ng-controller="AmdSeoLinkCtrl as ctrl" 
+	layout="column" 
+	layout-padding 
 	flex>
-	<table>
-		<tr><td translate>Title: </td><td>{{link.title}}</td></tr>
-		<tr><td translate>Link: </td><td><a ng-href="{{link.loc}}">{{link.loc}}</a></td></tr>
-		<tr><td translate>Priority: </td><td>{{link.priority}}</td></tr>
-		<tr><td translate>Last modification: </td><td>{{link.lastmod}}</td></tr>
-		<tr><td translate>Description:</td><td>{{link.description}}</td></tr>
-<!-- 		TODO: maso, 2017: adding other attribuates -->
-	</table>
-	<div 
-		layout="row">
-		<span flex></span>
-		<md-button
-			class="md-raised md-accent"
-			ng-click="remove()">
-			<wb-icon>delete</wb-icon>
-			<span translate>delete</span>
-		</md-button>
-	</div>
-</md-content>
 
+	<mb-titled-block 
+		mb-title="Detail"
+		mb-more-actions="ctrl.contentActions"
+		mb-progress="ctrl.isBusy()"
+		layout="column">
+		<table>
+			<tr>
+				<td translate>ID</td>
+				<td>: {{ctrl.item.id}}</td>
+			</tr>
+			<tr>
+				<td translate>Title</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.item.title"
+						mb-inline-type="text"
+						mb-inline-label="Title"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateItem()">
+							: {{ctrl.item.title}}
+						</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td translate>Description</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.item.description"
+						mb-inline-type="text"
+						mb-inline-label="Description"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateItem()">
+							: {{ctrl.item.description}}
+					</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td translate>Link</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.item.loc"
+						mb-inline-type="text"
+						mb-inline-label="Location"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateItem()">
+							: {{ctrl.item.loc}}
+					</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td translate>Priority</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.item.description"
+						mb-inline-type="text"
+						mb-inline-label="Description"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateItem()">
+							: {{ctrl.item.priority}}
+						</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td translate>Change Frequncy</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.item.changefreq"
+						mb-inline-type="text"
+						mb-inline-label="Change Frequncy"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateItem()">
+							: {{ctrl.item.changefreq}}
+					</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td translate>Last Modification</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.item.lastmod"
+						mb-inline-type="datetime"
+						mb-inline-label="Last Modification"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateItem()">
+							: {{ctrl.item.lastmod}}
+					</mb-inline>
+				</td>
+			</tr>
+		</table>
+		<div layout="row">
+			<span flex></span>
+			<md-button class="md-raised" ng-href="{{ctrl.item.loc}}">
+				<span translate>Open</span>
+			</md-button>
+			<md-button class="md-raised md-primary" ng-click="ctrl.deleteItem()">
+				<span translate>delete</span>
+			</md-button>
+		</div>
+	</mb-titled-block>
+</md-content>

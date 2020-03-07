@@ -20,72 +20,72 @@
  * SOFTWARE.
  */
 
-angular.module('ngMaterialDashboardShop')
+
 
 /**
- * @ngdoc function
+ * @ngdoc Contreoller
  * @name ngMaterialDashboardShop.controller:AmdShopTagCtrl
  * @description # TagCtrl Controller of the saasdmCpanelApp
  */
-.controller('AmdShopTagCtrl', function($scope, $shop, $translate, $routeParams, $location) {
+angular.module('ngMaterialDashboardShop').controller('AmdShopTagCtrl', function($scope, $shop, $translate, $routeParams, $location) {
 
-    var ctrl = {
-            loading : false,
-            saving : false,
-            edit: false,
-            items: []
-    };
+	var ctrl = {
+		loading: false,
+		saving: false,
+		edit: false,
+		items: []
+	};
 
-    function loadTag(){
-        if(ctrl.loading){
-            return;
-        }
-        ctrl.loading = true;
-        $shop.getTag($routeParams.tagId)//
-        .then(function(t){
-            $scope.tag = t;
-        }, function(){
-            alert($translate.instant('Failed to load the tag.'));
-        })//
-        .finally(function(){
-            ctrl.loading = false;
-        });
-    }
-    
-    function remove() {
-        confirm($translate.instant('Item will be deleted. There is no undo action.'))//
-        .then(function () {
-            return $scope.tag.delete();//
-        })//
-        .then(function(){
-            $location.path('/tags');
-        }, function(){
-            alert($translate.instant('Fail to delete the tag.'));
-        });
-    }
+	function loadTag() {
+		if (ctrl.loading) {
+			return;
+		}
+		ctrl.loading = true;
+		$shop.getTag($routeParams.tagId)//
+			.then(function(t) {
+				$scope.tag = t;
+			}, function() {
+				alert($translate.instant('Failed to load the tag.'));
+			})//
+			.finally(function() {
+				ctrl.loading = false;
+			});
+	}
 
-    function save(){
-        if(ctrl.saving){
-            return;
-        }
-        ctrl.saving = true;
-        $scope.tag.update()//
-        .then(function (newTag) {
-            $scope.tag = newTag;
-            ctrl.edit = false;
-        }, function () {
-            alert($translate.instant('Failed to save the tag.'));
-        })//
-        .finally(function(){
-            ctrl.saving = false;
-        });
-    }
+	function remove() {
+		confirm($translate.instant('Item will be deleted. There is no undo action.'))//
+			.then(function() {
+				return $scope.tag.delete();//
+			})//
+			.then(function() {
+				$location.path('/tags');
+			}, function() {
+				alert($translate.instant('Fail to delete the tag.'));
+			});
+	}
 
-    $scope.tag = {};
-    $scope.remove = remove;
-    $scope.save = save;
-    $scope.ctrl = ctrl;
-    
-    loadTag();
+	function save() {
+		if (ctrl.saving) {
+			return;
+		}
+		ctrl.saving = true;
+		$scope.tag.update()//
+			.then(function(newTag) {
+				$scope.tag = newTag;
+				ctrl.edit = false;
+			}, function() {
+				alert($translate.instant('Failed to save the tag.'));
+			})//
+			.finally(function() {
+				ctrl.saving = false;
+			});
+	}
+
+	$scope.tag = {};
+	$scope.remove = remove;
+	$scope.save = save;
+	$scope.ctrl = ctrl;
+
+	loadTag();
 });
 
