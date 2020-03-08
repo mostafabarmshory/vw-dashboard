@@ -127,6 +127,22 @@ angular.module('ngMaterialDashboardShop').config(function($routeProvider) {
 				return !$rootScope.app.user.tenant_owner;
 			},
 		})//
+		/*
+		 * Orders
+		 */
+		.when('/shop/orders/board', {
+			templateUrl: 'views/amd-shop-orders-board.html',
+			name: 'Orders Board',
+			icon: 'dashboard',
+			groups: ['shop-management'],
+			navigate: true,
+			/*
+			 * @ngInject
+			 */
+			protect: function($rootScope) {
+				return !$rootScope.app.user.tenant_owner;
+			},
+		})//
 		.when('/shop/orders/:orderId', {
 			controller: 'AmdShopOrderCtrl',
 			controllerAs: 'ctrl',

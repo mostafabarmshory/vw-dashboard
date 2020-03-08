@@ -169,7 +169,7 @@ angular.module('ngMaterialDashboardBank').config(function($routeProvider) {
 			templateUrl: 'views/amd-discount-discounts.html',
 			name: 'Discounts',
 			icon: 'money_off',
-			groups: ['discount-management'],
+			groups: ['bank'],
 			navigate: true,
 			protect: true,
 		})//
@@ -178,7 +178,7 @@ angular.module('ngMaterialDashboardBank').config(function($routeProvider) {
 			templateUrl: 'views/amd-discount-new.html',
 			name: 'New Discount',
 			icon: 'card_giftcard',
-			groups: ['discount-management'],
+			groups: ['bank'],
 			navigate: true,
 			protect: true,
 		})//

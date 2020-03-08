@@ -29,7 +29,6 @@ angular.module('myDashboardApp', [
 	'ngMaterialDashboard',
 	'ngMaterialDashboardBank',
 	'ngMaterialDashboardCms',
-	'ngMaterialDashboardCollection',
 	'ngMaterialDashboardJms',
 	'ngMaterialDashboardSpa',
 	'ngMaterialDashboardSpa',

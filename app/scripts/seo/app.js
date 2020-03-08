@@ -19,7 +19,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+/**
+ * SEO Module
+ * 
+ *  In SEO Module tools and veiws are desinged to manage SEO configuration and 
+ * monitoring. You can follow crowled links.
+ */
 angular.module('ngMaterialDashboardSeo', [
 	'mblowfish-core',
 	'seen-seo'

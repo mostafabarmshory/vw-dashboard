@@ -1,261 +1,284 @@
-'use strict';
+/* 
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2016 weburger
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
-angular.module('ngMaterialDashboardCms')
-
-	/**
-	 * @ngdoc function
-	 * @name ngMaterialDashboardCms.controller:AmdCmsTermCtrl
-	 * @description # TermCtrl Controller of the ngMaterialDashboardCms
-	 */
-	.controller('AmdCmsTermCtrl', function ($navigator, $cms, $translate, $routeParams, $location, QueryParameter) {
-
-	    this.loadingTerm = true;
-	    this.savingTerm = false;
-	    this.edit = false;
-	    this.term = null;
 
 
-	    function handlError() {
+/**
+ * @ngdoc function
+ * @name ngMaterialDashboardCms.controller:AmdCmsTermCtrl
+ * @description # TermCtrl Controller of the ngMaterialDashboardCms
+ */
+angular.module('ngMaterialDashboardCms').controller('AmdCmsTermCtrl', function(
+	$navigator, $cms, $translate, $routeParams, $location, QueryParameter) {
+
+	this.loadingTerm = true;
+	this.savingTerm = false;
+	this.edit = false;
+	this.term = null;
+
+
+	function handlError() {
 		alert($translate.instant('Failed to load items'));
-	    }
+	}
 
-	    /*
-	     * Load the term
-	     */
-	    this.loadTerm = function () {
+	/*
+	 * Load the term
+	 */
+	this.loadTerm = function() {
 		var ctrl = this;
 		this.loadingTerm = true;
 		$cms.getTerm($routeParams.termId)//
-			.then(function (term) {
-			    ctrl.term = term;
-			    ctrl.loadMetas();
-			    ctrl.loadTaxonomies();
-			}, function () {
-			    alert($translate.instant('Failed to load term'));
+			.then(function(term) {
+				ctrl.term = term;
+				ctrl.loadMetas();
+				ctrl.loadTaxonomies();
+			}, function() {
+				alert($translate.instant('Failed to load term'));
 			})
-			.finally(function () {
-			    ctrl.loadingTerm = false;
+			.finally(function() {
+				ctrl.loadingTerm = false;
 			});
-	    };
+	};
 
-	    /*
-	     * Load metas of term
-	     */
-	    this.loadMetas = function () {
+	/*
+	 * Load metas of term
+	 */
+	this.loadMetas = function() {
 		var ctrl = this;
 		this.loadingMetas = true;
 		ctrl.term.getMetadatas()//
-			.then(function (res) {
-			    ctrl.term.metas = res.items;
+			.then(function(res) {
+				ctrl.term.metas = res.items;
 			}, handlError)
-			.finally(function () {
-			    ctrl.loadingMetas = false;
+			.finally(function() {
+				ctrl.loadingMetas = false;
 			});
-	    };
+	};
 
-	    /*
-	     * Load taxonomies of term
-	     */
-	    this.loadTaxonomies = function () {
+	/*
+	 * Load taxonomies of term
+	 */
+	this.loadTaxonomies = function() {
 		var pp = new QueryParameter;
 		pp.setFilter('term_id', this.term.id);
 		var ctrl = this;
 		this.loadingTaxonomies = true;
 		//TODO: Masood,2019: Change the $cms.getTermTaxonomies(pp) to ctrl.term.getTermTaxonomies()
 		$cms.getTermTaxonomies(pp)
-			.then(function (res) {
-			    ctrl.term.taxonomies = res.items || {};
-			}, function () {
-			    alert($translate.instant('Failed to load taxonomies'));
+			.then(function(res) {
+				ctrl.term.taxonomies = res.items || {};
+			}, function() {
+				alert($translate.instant('Failed to load taxonomies'));
 			})
-			.finally(function () {
-			    ctrl.loadingTaxonomies = false;
+			.finally(function() {
+				ctrl.loadingTaxonomies = false;
 			});
-	    };
+	};
 
-	    /*
-	     * Remove term
-	     */
-	    this.remove = function () {
+	/*
+	 * Remove term
+	 */
+	this.remove = function() {
 		var ctrl = this;
 		confirm('delete term ' + this.term.id + '?')//
-			.then(function () {
-			    ctrl.removingTerm = true;
-			    return ctrl.term.delete();//
+			.then(function() {
+				ctrl.removingTerm = true;
+				return ctrl.term.delete();//
 			})//
-			.then(function () {
-			    $location.path('terms');
-			}, function (error) {
-			    alert($translate.instant('Failed to delete term') + error.message);
+			.then(function() {
+				$location.path('terms');
+			}, function(error) {
+				alert($translate.instant('Failed to delete term') + error.message);
 			})//
-			.finally(function () {
-			    ctrl.removingTerm = false;
+			.finally(function() {
+				ctrl.removingTerm = false;
 			});
-	    };
+	};
 
-	    /*
-	     * Save term
-	     */
-	    this.save = function () {
+	/*
+	 * Save term
+	 */
+	this.save = function() {
 		var ctrl = this;
 		this.savingTerm = true;
 		this.term.update()//
-			.then(function () {
-			    ctrl.edit = false;
-			}, function () {
-			    alert($translate.instant('Failed to update term'));
+			.then(function() {
+				ctrl.edit = false;
+			}, function() {
+				alert($translate.instant('Failed to update term'));
 			})//
-			.finally(function () {
-			    ctrl.savingTerm = false;
+			.finally(function() {
+				ctrl.savingTerm = false;
 			});;
-	    };
+	};
 
-	    /*
-	     * Edit a Meta of the term
-	     */
-	    this.editMeta = function (meta, index) {
+	/*
+	 * Edit a Meta of the term
+	 */
+	this.editMeta = function(meta, index) {
 		var ctrl = this;
 		$navigator.openDialog({
-		    templateUrl: 'views/dialogs/amd-meta.html',
-		    config: {
-			model: angular.copy(meta)
-		    }
+			templateUrl: 'views/dialogs/amd-meta.html',
+			config: {
+				model: angular.copy(meta)
+			}
 		})//
-			.then(function (meta) {
-			    ctrl.updatingMeta = true;
-			    return meta.update();
+			.then(function(meta) {
+				ctrl.updatingMeta = true;
+				return meta.update();
 			})//
-			.then(function (newMeta) {
-			    ctrl.term.metas[index] = newMeta;
+			.then(function(newMeta) {
+				ctrl.term.metas[index] = newMeta;
 			})//
-			.finally(function () {
-			    ctrl.updatingMeta = false;
+			.finally(function() {
+				ctrl.updatingMeta = false;
 			});
-	    };
+	};
 
-	    /*
-	     * Remove a Meta of the term
-	     */
-	    this.removeMeta = function (meta, index) {
+	/*
+	 * Remove a Meta of the term
+	 */
+	this.removeMeta = function(meta, index) {
 		var ctrl = this;
 		confirm('delete meta ' + meta.id + '?')//
-			.then(function () {
-			    ctrl.removingMeta = true;
-			    return meta.delete();//
+			.then(function() {
+				ctrl.removingMeta = true;
+				return meta.delete();//
 			})//
-			.then(function () {
-			    ctrl.term.metas.splice(index, 1);
-			}, function (error) {
-			    alert($translate.instant('Failed to delete meta') + error.message);
+			.then(function() {
+				ctrl.term.metas.splice(index, 1);
+			}, function(error) {
+				alert($translate.instant('Failed to delete meta') + error.message);
 			})//
-			.finally(function () {
-			    ctrl.removingMeta = false;
+			.finally(function() {
+				ctrl.removingMeta = false;
 			});
-	    };
+	};
 
-	    /*
-	     * Add meta to term
-	     */
-	    var ctrl = this;
-	    function addMeta() {
+	/*
+	 * Add meta to term
+	 */
+	var ctrl = this;
+	function addMeta() {
 		$navigator.openDialog({
-		    templateUrl: 'views/dialogs/amd-meta.html',
-		    config: {
-			model: {}
-		    }
+			templateUrl: 'views/dialogs/amd-meta.html',
+			config: {
+				model: {}
+			}
 		})//
-			.then(function (meta) {
-			    ctrl.addingMeta = true;
-			    return ctrl.term.putMetadatum(meta);
+			.then(function(meta) {
+				ctrl.addingMeta = true;
+				return ctrl.term.putMetadatum(meta);
 			})//
-			.then(function (meta) {
-			    ctrl.term.metas = ctrl.term.metas.concat(meta);
+			.then(function(meta) {
+				ctrl.term.metas = ctrl.term.metas.concat(meta);
 			})//
-			.finally(function () {
-			    ctrl.addingMeta = false;
+			.finally(function() {
+				ctrl.addingMeta = false;
 			});
-	    }
+	}
 
 
-	    /*
-	     * Edit a taxonomy of the term
-	     */
-	    this.editTaxonomy = function (taxonomy, index) {
+	/*
+	 * Edit a taxonomy of the term
+	 */
+	this.editTaxonomy = function(taxonomy, index) {
 		var ctrl = this;
 		$navigator.openDialog({
-		    templateUrl: 'views/dialogs/amd-in-term-taxonomy-new.html',
-		    config: {
-			model: angular.copy(taxonomy)
-		    }
+			templateUrl: 'views/dialogs/amd-in-term-taxonomy-new.html',
+			config: {
+				model: angular.copy(taxonomy)
+			}
 		})//
-			.then(function (taxonomy) {
-			    ctrl.updatingTaxonomy = true;
-			    return taxonomy.update();
+			.then(function(taxonomy) {
+				ctrl.updatingTaxonomy = true;
+				return taxonomy.update();
 			})//
-			.then(function (newTaxonomy) {
-			    ctrl.term.taxonomies[index] = newTaxonomy;
+			.then(function(newTaxonomy) {
+				ctrl.term.taxonomies[index] = newTaxonomy;
 			})//
-			.finally(function () {
-			    ctrl.updatingTaxonomy = false;
+			.finally(function() {
+				ctrl.updatingTaxonomy = false;
 			});
-	    };
+	};
 
-	    /*
-	     * Remove a taxonomy of the term
-	     */
-	    this.removeTaxonomy = function (taxonomy, index) {
+	/*
+	 * Remove a taxonomy of the term
+	 */
+	this.removeTaxonomy = function(taxonomy, index) {
 		var ctrl = this;
 		confirm('delete taxonomy ' + taxonomy.id + '?')//
-			.then(function () {
-			    ctrl.removingTaxonomy = true;
-			    return taxonomy.delete();//
+			.then(function() {
+				ctrl.removingTaxonomy = true;
+				return taxonomy.delete();//
 			})//
-			.then(function () {
-			    ctrl.term.taxonomies.splice(index, 1);
-			}, function (error) {
-			    alert($translate.instant('Failed to delete taxonomy') + error.message);
+			.then(function() {
+				ctrl.term.taxonomies.splice(index, 1);
+			}, function(error) {
+				alert($translate.instant('Failed to delete taxonomy') + error.message);
 			})//
-			.finally(function () {
-			    ctrl.removingTaxonomy = false;
+			.finally(function() {
+				ctrl.removingTaxonomy = false;
 			});
-	    };
+	};
 
-	    /*
-	     * Add taxonomy to the term
-	     */
-	    function addTaxonomy() {
+	/*
+	 * Add taxonomy to the term
+	 */
+	function addTaxonomy() {
 		$navigator.openDialog({
-		    templateUrl: 'views/dialogs/amd-in-term-taxonomy-new.html',
-		    config: {
-			model: {}
-		    }
+			templateUrl: 'views/dialogs/amd-in-term-taxonomy-new.html',
+			config: {
+				model: {}
+			}
 		})//
-			.then(function (taxonomy) {
-			    ctrl.addingTaxonomy = true;
-			    taxonomy.term_id = ctrl.term.id;
-			    //TODO: Masood, 2019: Replace the line with: return ctrl.term.putTermTaxonomy(taxonomy)
-			    return $cms.putTermTaxonomy(taxonomy);
+			.then(function(taxonomy) {
+				ctrl.addingTaxonomy = true;
+				taxonomy.term_id = ctrl.term.id;
+				//TODO: Masood, 2019: Replace the line with: return ctrl.term.putTermTaxonomy(taxonomy)
+				return $cms.putTermTaxonomy(taxonomy);
 			})//
-			.then(function (taxonomy) {
-			    ctrl.term.taxonomies = ctrl.term.taxonomies.concat(taxonomy);
+			.then(function(taxonomy) {
+				ctrl.term.taxonomies = ctrl.term.taxonomies.concat(taxonomy);
 			})//
-			.finally(function () {
-			    ctrl.addingTaxonomy = false;
+			.finally(function() {
+				ctrl.addingTaxonomy = false;
 			});
-	    }
+	}
 
-	    this.metaActions = [{
-		    title: 'New meta',
-		    icon: 'add',
-		    action: addMeta
-		}];
+	this.metaActions = [{
+		title: 'New meta',
+		icon: 'add',
+		action: addMeta
+	}];
 
-	    this.taxonomyActions = [{
-		    title: 'New taxonomy',
-		    icon: 'add',
-		    action: addTaxonomy
-		}];
+	this.taxonomyActions = [{
+		title: 'New taxonomy',
+		icon: 'add',
+		action: addTaxonomy
+	}];
 
-	    this.loadTerm();
-	});
+	this.loadTerm();
+});
 

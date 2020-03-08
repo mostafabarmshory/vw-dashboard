@@ -1,4 +1,5 @@
 <div
+	id="shop_orders_list"
 	ng-controller="MbSeenShopOrdersCtrl as ctrl"
 	mb-preloading="ctrl.loading"
 	layout="column"
@@ -16,18 +17,18 @@
 		flex>
 		<md-list flex>
 			<md-list-item 
+				id="{{::pobject.state}}"
 				ng-repeat="pobject in ctrl.items track by pobject.id"
 				class="md-3-line" 
-				ng-href="{{'shop/orders/' + pobject.id}}"
-				style="cursor: pointer">
+				ng-href="{{'shop/orders/' + pobject.id}}">
 				<img ng-src="{{pobject.avatar}}" ng-if="pobject.avatar" class="md-avatar" />
 				<wb-icon ng-if="!pobject.avatar">event</wb-icon>
 				<div 
 					class="md-list-item-text" 
 					layout="column">
-					<h3>{{pobject.title}} - ({{pobject.state| translate}})</h3>
-					<h4>{{pobject.full_name}} - {{pobject.phone}}</h4>
-					<p>{{pobject.province}} - {{pobject.city}} - {{pobject.address}}</p>
+					<h3>{{::pobject.id}} - {{::pobject.full_name}} - ({{ ::(pobject.state| translate) }})</h3>
+					<h4>{{::pobject.title}} - {{::pobject.phone}} - {{::(pobject.creation_dtime | mbDateTime)}}</h4>
+					<p>{{::pobject.province}} - {{::pobject.city}} - {{::pobject.address}}</p>
 				</div>
 				<md-divider md-inset></md-divider>
 			</md-list-item>

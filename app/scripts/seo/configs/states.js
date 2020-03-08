@@ -132,13 +132,11 @@ angular.module('ngMaterialDashboardSeo').config(function($routeProvider) {
 		})
 		/**
 		 * @ngdoc ngRoute
-		 * @name /seo/links/:id
+		 * @name /seo/links/:modelId
 		 * @description Link details
 		 * 
 		 */
-		.when('/seo/links/:id', {
-			controller: 'AmdSeoLinkCtrl',
-			controllerAs: 'ctrl',
+		.when('/seo/links/:itemId', {
 			templateUrl: 'views/amd-seo-link.html',
 			/*
 			 * @ngInject
