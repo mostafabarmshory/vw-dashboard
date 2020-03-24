@@ -19,89 +19,59 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-angular.module('ngMaterialDashboardTenant')
 
-	/**
-	 * @ngdoc Controller
-	 * @name AmdTenantTenantsController
-	 * @description Manages list of tenants from the current tenant.
-	 * 
-	 * Each tenant can create multi sub tenants. This is a controller of the subtenatns.
-	 */
-	.controller('AmdTenantTenantsController', function (
+
+/**
+ * @ngdoc Controller
+ * @name AmdTenantTenantsController
+ * @description Manages list of tenants from the current tenant.
+ * 
+ * Each tenant can create multi sub tenants. This is a controller of the subtenatns.
+ */
+angular.module('ngMaterialDashboardTenant').controller('AmdTenantTenantsController', function(
 		/* angularjs      */ $scope, $controller,
 		/* seen-tenant    */ $tenant,
-		/* ng-translate   */ $translate,
-		/* mblowfish-core */ $navigator) {
+		/* mblowfish-core */ $actions
+) {
 
-		// Extends with ItemsController
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-			$scope: $scope
-		}));
+	// Extends with ItemsController
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope
+	}));
 
-	    /**
-	     * Gets schema of the tenant model
-	     */
-		this.getModelSchema = function () {
-			return $tenant.tenantSchema();
-		};
+	/**
+	 * Gets schema of the tenant model
+	 */
+	this.getModelSchema = function() {
+		return $tenant.tenantSchema();
+	};
 
-		// get tenants
-		this.getModels = function (parameterQuery) {
-			return $tenant.getTenants(parameterQuery);
-		};
+	// get tenants
+	this.getModels = function(parameterQuery) {
+		return $tenant.getTenants(parameterQuery);
+	};
 
-		// get a tenant
-		this.getModel = function (id) {
-			return $tenant.getTenant(id);
-		};
+	// get a tenant
+	this.getModel = function(id) {
+		return $tenant.getTenant(id);
+	};
 
-		// delete tenant
-		this.deleteModel = function (item) {
-			return item.delete();
-		};
+	// delete tenant
+	this.deleteModel = function(item) {
+		return item.delete();
+	};
 
-		this.add = function () {
-			return $navigator.openDialog({
-				templateUrl: 'views/dialogs/tenant-new.html',
-				config: {}
-			}).then(function (newConfig) {
-				ctrl.createTenant(newConfig);
-			});
-		};
-
-	    /*
-	     * Create tenant 
-	     */
-		this.createTenant = function (tenant) {
-			if (ctrl.tenantSaving) {
-				return;
-			}
-			ctrl.tenantSaving = true;
-			$tenant.putTenant(tenant)
-				.then(function (tenant) {
-					ctrl.items = ctrl.items.concat(tenant);
-				}, function () {
-					alert($translate.instant('Fail to create new tenant.'));
-				})//
-				.finally(function () {
-					ctrl.tenantSaving = false;
-				});
-		};
-
-
-		// initial the controller
-		this.init({
-			eventType: '/tenant/tenants'
-		});
-
-		// add actions
-		var ctrl = this;
-		this.addActions([{
-			title: 'New tenant',
-			icon: 'add',
-			action: function () {
-				ctrl.add();
-			}
-		}]);
+	// initial the controller
+	this.init({
+		eventType: '/tenant/tenants'
 	});
+
+	// add actions
+	this.addActions([{
+		title: 'New tenant',
+		icon: 'add',
+		action: function() {
+			$actions.exec('create:/tenant/tenants');
+		}
+	}]);
+});

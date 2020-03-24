@@ -19,18 +19,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardTenant')
-.run(function ($navigator, $app) {
-    $navigator.newGroup({
-        id: 'tenant',
-        title: 'Tenant',
-        description: 'A module of dashboard to manage tenants.',
-        icon: 'web',
-        hidden: function ($rootScope) {
-            return !($rootScope.app.user.tenant_owner/*  && $app.isEnable('tenant') */);
-        },
-        priority: 5
-    });
+angular.module('ngMaterialDashboardTenant').run(function($navigator, $app) {
+	$navigator.newGroup({
+		id: 'tenant',
+		title: 'Tenant',
+		description: 'A module of dashboard to manage tenants.',
+		icon: 'web',
+		hidden: function($rootScope) {
+			return !($rootScope.app.user.tenant_owner/*  && $app.isEnable('tenant') */);
+		},
+		priority: 5
+	});
 });

@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
  * 
@@ -20,52 +19,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-angular.module('ngMaterialDashboardShop').run(function(
-    /* angularjs    */ $window,
-    /* am-wb-core   */ $dispatcher,
-    /* mblowfish    */ $navigator, $actions,
-    /* sen-shop     */ $shop,
-    /* ng-translate */ $translate
+
+angular.module('ngMaterialDashboardTenant').run(function(
+    /* angularjs       */ $window,
+    /* am-wb-core      */ $dispatcher,
+    /* mblowfish       */ $navigator, $actions,
+    /* seen-tenant     */ $tenant,
+    /* ng-translate    */ $translate
 ) {
-	// TODO: maso, 2020: add zone action
+	var EVENT_NAME = '/tenant/tenants';
 
 	var actions = [{
-		id: 'create:/shop/agencies',
+		id: 'create:/tenant/tenants',
 		priority: 10,
 		icon: 'store',
-		title: 'New Agency',
-		description: 'Creates new agency in shop domain',
+		title: 'New Tenant',
+		description: 'Creates new sub-tenant in the current one',
 		/*
 		 * @ngInject
 		 */
 		action: function(/*$event*/) {
-			var job = $shop.agencySchema()
+			var job = $tenant.tenantSchema()
 				.then(function(schema) {
 					return $navigator.openDialog({
 						templateUrl: 'views/dialogs/amd-item-new.html',
 						config: {
-							title: 'New Agency',
+							title: 'New Tenant',
 							schema: schema,
 							data: {}
 						}
 					});
 				})
 				.then(function(itemData) {
-					return $shop.putAgency(itemData);
+					return $tenant.putTenant(itemData);
 				})
 				.then(function(item) {
-					$dispatcher.dispatch('/shop/agencies', {
+					$dispatcher.dispatch(EVENT_NAME, {
 						key: 'create',
 						values: [item]
 					});
 				}, function() {
-					$window.alert($translate.instant('Failed to create a new agency.'));
+					$window.alert($translate.instant('Failed to create a new tenant.'));
 				});
 			// TODO: maso, 2020: add the job into the job lists
 			// $app.addJob('Adding new shop category', job);
 			return job;
 		},
-		groups: ['amd.shop.agencies']
+		groups: ['/tenant/tenants#more']
 	}];
 
 	_.forEach(actions, function(action) {

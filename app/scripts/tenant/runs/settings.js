@@ -19,19 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardTenant')
-/**
- * دریچه‌های محاوره‌ای
- */
-.run(function() {
-//	// Settings
-//	$options//
-//	.newPage({
-//		title: 'Messages',
-//		templateUrl: 'views/amd-account-settings/messages.html',
-//		controller: 'MessagesCtrl',
-//		tags: ['messages', 'account']
-//	});
+angular.module('ngMaterialDashboardTenant').run(function() {
+	//	// Settings
+	//	$options//
+	//	.newPage({
+	//		title: 'Messages',
+	//		templateUrl: 'views/amd-account-settings/messages.html',
+	//		controller: 'MessagesCtrl',
+	//		tags: ['messages', 'account']
+	//	});
 });

@@ -19,17 +19,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/* jslint todo: true */
-/* jslint xxx: true */
-/* jshint -W100 */
-'use strict';
 
-angular.module('ngMaterialDashboardTenant')
-
-.filter('iranCurrency', function(numberFilter, translateFilter) {
+angular.module('ngMaterialDashboardTenant').filter('iranCurrency', function(numberFilter, translateFilter) {
 	return function(number, unit) {
 		var txt = '';
-		if (!number){
+		if (!number) {
 			return translateFilter('free');
 		}
 		if (unit === 'R') {
