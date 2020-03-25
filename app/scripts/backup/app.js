@@ -1,3 +1,41 @@
+
+/*
+ * TODO: move to a domain or a module
+ */
+angular.module('seen-backup', ['seen-core'])
+
+	/**
+	 * 
+	 * @ngdoc Factories
+	 * @name BackupSnapshot
+	 * @description A backup object
+	 * 
+	 * 
+	 */
+	.factory('BackupSnapshot', seen.factory({
+		url: '/api/v2/backup/snapshots',
+		resources: []
+	}))
+
+
+	/**
+	 * @ngdoc Services
+	 * @name $tenant
+	 * @description Tenant service
+	 * 
+	 * manages all tenants.
+	 */
+	.service('$backup', seen.service({
+		resources: [{
+			name: 'Snapshot',
+			factory: 'BackupSnapshot',
+			type: 'collection',
+			url: '/api/v2/backup/snapshots'
+		}]
+	}));
+
+
+
 /*
  * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
  * 
@@ -20,8 +58,8 @@
  * SOFTWARE.
  */
 
-angular.module('ngMaterialDashboardTenant', [
+angular.module('ngMaterialDashboardBackup', [
 	'mblowfish-core',
-	'seen-supertenant',
+	'seen-backup'
 ]);
 

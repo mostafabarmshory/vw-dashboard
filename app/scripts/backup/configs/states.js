@@ -20,8 +20,20 @@
  * SOFTWARE.
  */
 
-angular.module('ngMaterialDashboardTenant', [
-	'mblowfish-core',
-	'seen-supertenant',
-]);
-
+angular.module('ngMaterialDashboardBackup').config(function($routeProvider) {
+	$routeProvider
+		.when('/backup/snapshots', {
+			templateUrl: 'views/backup/snapshots.html',
+			groups: ['tenant'],
+			navigate: true,
+            /*
+             * @ngInject
+             */
+			protect: function($rootScope) {
+				return !$rootScope.__account.permissions.tenant_owner;
+			},
+			loginRequired: true,
+			name: 'Backup Snapshots',
+			icon: 'business'
+		});
+});

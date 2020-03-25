@@ -20,8 +20,51 @@
  * SOFTWARE.
  */
 
-angular.module('ngMaterialDashboardTenant', [
-	'mblowfish-core',
-	'seen-supertenant',
-]);
+angular.module('ngMaterialDashboardBackup').controller('AmdBackupSnapshotsController', function(
+		/* angularjs      */ $scope, $controller,
+		/* seen-tenant    */ $backup,
+		/* mblowfish-core */ $actions
+) {
+
+	// Extends with ItemsController
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope
+	}));
+	/**
+	 * Gets schema of the tenant model
+	 */
+	this.getModelSchema = function() {
+		return $backup.snapshotSchema();
+	};
+
+	// get tenants
+	this.getModels = function(parameterQuery) {
+		return $backup.getSnapshots(parameterQuery);
+	};
+
+	// get a tenant
+	this.getModel = function(id) {
+		return $backup.getSnapshot(id);
+	};
+
+	// delete tenant
+	this.deleteModel = function(item) {
+		return item.delete();
+	};
+
+	// initial the controller
+	this.init({
+		eventType: '/backup/snapshots'
+	});
+
+	// add actions
+	this.addActions([{
+		title: 'New Backup',
+		icon: 'add',
+		action: function() {
+			$actions.exec('create:/backup/snapshots');
+		}
+	}]);
+});
+
 

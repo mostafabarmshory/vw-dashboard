@@ -37,6 +37,7 @@ angular.module('myDashboardApp', [
 	'ngMaterialDashboardSdp',
 	'ngMaterialDashboardTenant',
 	'ngMaterialDashboardUser',
+	'ngMaterialDashboardBackup',
 ]).run(function($app, $window, $toolbar, $sidenav) {
 	//  Load application
 	$toolbar.setDefaultToolbars(['dashboard']);

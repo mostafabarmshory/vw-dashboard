@@ -19,13 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardTenant')
 
-/**
- */
-.controller('AmdTenantInvoicesController', function($scope, $tenant, $translate, QueryParameter) {
+
+angular.module('ngMaterialDashboardTenant').controller('AmdTenantInvoicesController', function(
+	$scope,
+	$tenant, QueryParameter,
+	$translate
+) {
 
 	var paginatorParameter = new QueryParameter();
 	var requests = null;
@@ -48,15 +49,15 @@ angular.module('ngMaterialDashboardTenant')
 		}
 		ctrl.loadingInvoices = true;
 		$tenant.getInvoices(paginatorParameter)//
-		.then(function(items) {
-			requests = items;
-			ctrl.items = ctrl.items.concat(requests.items);
-		}, function() {
-			alert($translate.instant('Failed to load invoices.'));
-		})
-		.finally(function(){
-			ctrl.loadingInvoices = false;
-		});
+			.then(function(items) {
+				requests = items;
+				ctrl.items = ctrl.items.concat(requests.items);
+			}, function() {
+				alert($translate.instant('Failed to load invoices.'));
+			})
+			.finally(function() {
+				ctrl.loadingInvoices = false;
+			});
 	}
 
 	/**
@@ -75,8 +76,8 @@ angular.module('ngMaterialDashboardTenant')
 	$scope.nextPage = nextPage;
 	$scope.paginatorParameter = paginatorParameter;
 	$scope.reload = reload;
-	$scope.sortKeys = [ 'id', 'title', 'amount', 'due_dtime', 'creation_dtime' ];
-	$scope.sortKeysTitles = [ 'Id', 'Title', 'Amount', 'Due time', 'creation time'];
+	$scope.sortKeys = ['id', 'title', 'amount', 'due_dtime', 'creation_dtime'];
+	$scope.sortKeysTitles = ['Id', 'Title', 'Amount', 'Due time', 'creation time'];
 
 });
 
