@@ -143,6 +143,15 @@ angular.module('ngMaterialDashboardShop').controller('AmdShopOrderCtrl', functio
 		var str = 'tel:' + this.order.phone;
 		$window.open(str);
 	};
+	
+	this.showDetailOfHistory = function(history){
+		$navigator.openDialog({
+			templateUrl: 'views/shop/order-history-detail-dialog.html',
+			config: {
+				history: history
+			}
+		});
+	}
 
 	this.loadOrder();
 });

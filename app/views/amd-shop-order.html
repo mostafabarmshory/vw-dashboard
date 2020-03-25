@@ -308,6 +308,7 @@
 						flex> 
 						<md-list-item
 							ng-repeat="history in ctrl.order.histories track by $index"
+							ng-click="ctrl.showDetailOfHistory(history, $event)"
 							class="md-3-line" 
 							style="cursor: pointer">
 							<div
@@ -360,9 +361,10 @@
 								<h4>{{::history.description}}</h4>
 								<p>
 									<span ng-if="::history.creation_dtime">
-										<span translate>Date</span>:<span>{{::(history.creation_dtime | mbDate)}}</span>,
+										<span translate>Date</span>:<span>{{::(history.creation_dtime | mbDateTime)}}</span>,
 									</span>
 									<span 
+										ng-if="history.subject_id>0"
 										ng-switch="::history.subject_type">
 										<span
 											ng-switch-when="User_Account">

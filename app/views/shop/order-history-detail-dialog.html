@@ -1,0 +1,39 @@
+<md-dialog 
+	ng-cloak>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2 translate="">Order History</h2>
+			<span flex></span>
+			<md-button 
+				class="md-icon-button" 
+				ng-click="cancel()"
+				aria-label="close">
+				<wb-icon>close</wb-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-dialog-content 
+		layout="column" 
+		layout-padding
+		style="padding-top: 16px">
+		<table>
+			<tbody>
+				<tr><td translate="">Date</td><td>:{{::(config.history.creation_dtime|mbDateTime)}}</td></tr>
+				<tr><td translate="">Action</td><td>:{{::config.history.action}}</td></tr>
+				<tr>
+					<td translate="">Description</td>
+					<td>
+						<p style="max-width: 300px;">:{{::config.history.description}}</p>
+					</td>
+				</tr>
+				<!-- Object -->
+				<tr><td translate="">Object Type</td><td>:{{::config.history.object_type}}</td></tr>
+				<tr><td translate="">Object ID</td><td>:{{::config.history.object_id}}</td></tr>
+				<!-- Subject -->
+				<tr><td translate="">Subject Type</td><td>:{{::config.history.subject_type}}</td></tr>
+				<tr><td translate="">Subject ID</td><td>:{{::config.history.subject_id}}</td></tr>
+			</tbody>
+		</table>
+	</md-dialog-content>
+</md-dialog>
+
