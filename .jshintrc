@@ -16,6 +16,7 @@
 		"alert": false,
 		"confirm": false,
 		"prompt": false,
-		"moment": false
+		"moment": false,
+		"seen": false
 	}
 }
