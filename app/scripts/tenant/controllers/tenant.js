@@ -44,7 +44,7 @@ angular.module('ngMaterialDashboardTenant').controller('AmdTenantTenantControlle
 		this.loading = true;
 		var ctrl = this;
 		return $tenant.getTenant(tenantId, {
-			graphql: '{id,title,subdomain,domain,modif_dtime,creation_dtime,owners{id,login,date_joined}}'
+			graphql: '{id,title, description,subdomain,domain,validate,modif_dtime,creation_dtime,owners{id,login,date_joined}}'
 		})//
 			.then(function(tenant) {
 				// TODO: maso, 2020: load owners
