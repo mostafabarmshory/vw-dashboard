@@ -32,8 +32,8 @@
                 </div>
                 
                 <md-button 
-                    ng-href="/api/v2/cms/contents/{{content.id}}/content"
-                    download="{{content.file_name || content.name}}"
+                    ng-href="/api/v2/cms/contents/{{::content.name}}/content"
+                    download="{{::(content.file_name || content.name)}}"
                     target="_blank"
                     class="md-secondary md-icon-button">
                     <wb-icon aria-label="download">download</md-icon>
