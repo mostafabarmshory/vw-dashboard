@@ -6,13 +6,17 @@
 		mb-progress="ctrl.loading"
 		layout="column">
 		<div
-			layout="row">
+			layout-gt-sm="row"
+			layout="column">
 			<amd-content-preview
 				ng-model="ctrl.content"
-				md-margin>
+				md-margin
+				flex-gt-sm="100"
+				flex="33">
 			</amd-content-preview>
 			<table
-				md-margin>
+				md-margin
+				style="min-width: 70%">
 					<tr>
 						<td translate>ID</td>
 						<td>{{::ctrl.content.id}}</td>
