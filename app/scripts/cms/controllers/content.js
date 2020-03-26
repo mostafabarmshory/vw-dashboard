@@ -31,7 +31,7 @@
  */
 angular.module('ngMaterialDashboardCms').controller('AmdContentCtrl', function($scope, $cms, $dispatcher, $window,
 	$routeParams, $location, CmsContent, CmsContentMetadata, $resource, $clipboard) {
-	var graphqlQuery = '{id,name,title,description,status,creation_dtime,modif_dtime,downloads,file_name,file_size,media_type,mime_type,term_taxonomies{id,taxonomy,term{id,name}},metas{id,key,value}}';
+	var graphqlQuery = '{id,name,title,description,state,creation_dtime,modif_dtime,downloads,file_name,file_size,media_type,mime_type,term_taxonomies{id,taxonomy,term{id,name}},metas{id,key,value}}';
 
 	this.loadingContent = true;
 	this.savingContent = false;
