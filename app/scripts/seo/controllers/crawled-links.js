@@ -41,7 +41,7 @@ angular.module('ngMaterialDashboardSeo')
      * Override the function
      */
     this.getModelSchema = function () {
-        return $seo.linkSchema();
+        return $seo.contentSchema();
     };
 
     // get crawled links
