@@ -29,8 +29,11 @@
  * @name ngMaterialDashboard.controller:ContentCtrl
  * @description # ContentCtrl Controller of the ngMaterialDashboard
  */
-angular.module('ngMaterialDashboardCms').controller('AmdContentCtrl', function($scope, $cms, $dispatcher, $window,
-	$routeParams, $location, CmsContent, CmsContentMetadata, $resource, $clipboard) {
+mblowfish.controller('AmdContentCtrl', function(
+	$state, $location,
+
+	$scope, $cms, $dispatcher, $window,
+	CmsContent, CmsContentMetadata, $resource, $clipboard) {
 	var graphqlQuery = '{id,name,title,description,state,creation_dtime,modif_dtime,downloads,file_name,file_size,media_type,mime_type,term_taxonomies{id,taxonomy,term{id,name}},metas{id,key,value}}';
 
 	this.loadingContent = true;
@@ -45,7 +48,8 @@ angular.module('ngMaterialDashboardCms').controller('AmdContentCtrl', function($
 	this.metadataJob = false;
 
 
-	function handlError() {
+	function handlError(error) {
+		// TODO: maso, 2020: log the error
 		alert('faile to load content');
 	}
 
@@ -63,7 +67,8 @@ angular.module('ngMaterialDashboardCms').controller('AmdContentCtrl', function($
 			})//
 			.then(function() {
 				// TODO: maso, 1395: go to the model page
-				$location.path('/contents');
+				// TODO: close the editor
+				$location.path('/cms/contents');
 			}, function(error) {
 				alert('fail to delete content:' + error.message);
 			});
@@ -207,7 +212,7 @@ angular.module('ngMaterialDashboardCms').controller('AmdContentCtrl', function($
 	this.loadContent = function() {
 		var ctrl = this;
 		this.loadingContent = true;
-		$cms.getContent($routeParams.contentId, {
+		$cms.getContent($state.params.contentId, {
 			graphql: graphqlQuery,
 		})//
 			.then(function(content) {

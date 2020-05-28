@@ -19,16 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardCms')
 
 /**
- * @ngdoc directive
- * @name wbInfinateScroll
- * @description # wbInfinateScroll
+@ngdoc directive
+@name wbInfinateScroll
+@description # wbInfinateScroll
  */
-.directive('amdContentIcon', function($q, $parse) {
+mblowfish.directive('amdContentIcon', function($q, $parse) {
 
 	/**
 	 * Link data and view

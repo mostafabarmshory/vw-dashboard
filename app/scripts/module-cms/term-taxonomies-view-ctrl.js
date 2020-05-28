@@ -22,53 +22,59 @@
  * SOFTWARE.
  */
 
-
 /**
- * @ngdoc function
- * @name ngMaterialDashboardCms.controller:AmdCmsTermTaxonomyCtrl
- * @description # TaxonomyCtrl Controller of the ngMaterialDashboardCms
+@ngdoc Controllers
+@name AmdCmsTermTaxonomiesCtrl
+@description # Manages Term-Taxonomies
  */
-angular.module('ngMaterialDashboardCms').controller('AmdCmsTermTaxonomyCtrl', function(
-	/* AngularJS */ $scope, $controller,
-	/* seen-cms  */ $cms
-) {
+mblowfish.controller('AmdCmsTermTaxonomiesCtrl', function($scope, $cms, $controller) {
 
 	/*
-	 * Extends collection controller from MbAbstractCtrl 
+	 * Extends collection controller
 	 */
-	angular.extend(this, $controller('MbSeenAbstractItemCtrl', {
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
 		$scope: $scope
 	}));
 
-	// -------------------------------------------------------------------------
-	// Model
-	//
-	// We suppose that all model action be override by the new controllers.
-	//
-	// -------------------------------------------------------------------------
-	this.deleteModel = function(item) {
-		return $cms.deleteTermTaxonomy(item.id);
-	};
-
+	// Override the schema function
 	this.getModelSchema = function() {
 		return $cms.termTaxonomySchema();
 	};
 
+	// get models
+	this.getModels = function(parameterQuery) {
+		return $cms.getTermTaxonomies(parameterQuery);
+	};
+
+	// get a model
 	this.getModel = function(id) {
 		return $cms.getTermTaxonomy(id);
 	};
 
-	this.updateModel = function(model) {
-		return model.update();
+	// add a model
+	this.addModel = function(model) {
+		return $cms.putTermTaxonomy(model);
 	};
 
-	// Loads the controller
+	// delete model
+	this.deleteModel = function(model) {
+		return $cms.deleteTermTaxonomy(model.id);
+	};
+
+
+	/*
+	 * init ctrl
+	 */
 	this.init({
-		eventType: '/cms/term-taxonomies',
-		confirmation: true,
-		//		dataQuery: '{id, name, title}', 
-		//		modelId: $routeParam.modelId,
+		eventType: '/term-taxonomies',
+		addAction: {
+			title: 'New term-taxonomy',
+			icon: 'add',
+			dialog: 'views/dialogs/amd-term-taxonomy-new.html'
+		},
+		deleteAction: {
+			title: 'Delete term-taxonomy?'
+		},
+		actions: []
 	});
-
 });
-

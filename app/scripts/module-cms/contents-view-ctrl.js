@@ -24,11 +24,11 @@
 
 
 /**
- * @ngdoc Controllers
- * @name ngMaterialDashboard.controller:ContentsCtrl
- * @description # ContentsCtrl Controller of the ngMaterialDashboard
+@ngdoc Controllers
+@name AmdContentsCtrl
+@description ContentsCtrl Controller of the ngMaterialDashboard
  */
-angular.module('ngMaterialDashboardCms').controller('AmdContentsCtrl', function($scope, $controller, $navigator) {
+mblowfish.controller('AmdContentsCtrl', function($scope, $controller, $location) {
 	// Extends with ItemsController
 	angular.extend(this, $controller('MbSeenCmsContentsCtrl', {
 		$scope: $scope
@@ -37,7 +37,7 @@ angular.module('ngMaterialDashboardCms').controller('AmdContentsCtrl', function(
 		title: 'New content',
 		icon: 'add',
 		action: function() {
-			$navigator.openPage('/contents/new');
+			$location.path('/cms/contents/new');
 		}
 	});
 	this.init();

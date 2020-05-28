@@ -23,14 +23,13 @@
  */
 
 
-
 /**
- * @ngdoc function
- * @name ngMaterialDashboardCms.controller:AmdCmsTermCtrl
- * @description # TermCtrl Controller of the ngMaterialDashboardCms
+@ngdoc function
+@name ngMaterialDashboardCms.controller:AmdCmsTermCtrl
+@description # TermCtrl Controller of the ngMaterialDashboardCms
  */
-angular.module('ngMaterialDashboardCms').controller('AmdCmsTermCtrl', function(
-	$navigator, $cms, $translate, $routeParams, $location, QueryParameter) {
+mblowfish.controller('AmdCmsTermCtrl', function(
+	$navigator, $cms, $translate, $state, $location, QueryParameter) {
 
 	this.loadingTerm = true;
 	this.savingTerm = false;
@@ -48,7 +47,7 @@ angular.module('ngMaterialDashboardCms').controller('AmdCmsTermCtrl', function(
 	this.loadTerm = function() {
 		var ctrl = this;
 		this.loadingTerm = true;
-		$cms.getTerm($routeParams.termId)//
+		$cms.getTerm($state.params.termId)//
 			.then(function(term) {
 				ctrl.term = term;
 				ctrl.loadMetas();
@@ -138,12 +137,13 @@ angular.module('ngMaterialDashboardCms').controller('AmdCmsTermCtrl', function(
 	 */
 	this.editMeta = function(meta, index) {
 		var ctrl = this;
-		$navigator.openDialog({
-			templateUrl: 'views/dialogs/amd-meta.html',
-			config: {
-				model: angular.copy(meta)
-			}
-		})//
+		$navigator
+			.openDialog({
+				templateUrl: 'views/dialogs/amd-meta.html',
+				config: {
+					model: angular.copy(meta)
+				}
+			})//
 			.then(function(meta) {
 				ctrl.updatingMeta = true;
 				return meta.update();
