@@ -19,43 +19,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardUser')
 
 /**
- * @ngdoc controller
- * @name AmdUserNewCtrl
- * @description Creates new user
+ * @ngdoc Controllers
+ * @name MbSeenShopAgenciesCtrl
+ * @description Manages list of agencies from shop domain
+ * 
  */
-.controller('AmdUserNewCtrl', function($scope, $usr, $navigator, $mbLogger) {
+mblowfish.controller('MbSeenShopAgenciesCtrl', function(
+        /* angularjs */ $scope, $controller, $element,
+        /* seen-shop */ $shop,
+        /* mblowfish */ $actions) {
 
-	/*
-	 * View controller options
-	 */
-	var ctrl = {
-			working: false
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope,
+		$element: $element
+	}));
+
+	// Override the function
+	this.getModelSchema = function() {
+		return $shop.agencySchema();
 	};
 
-	function cancel() {
-		$navigator.openPage('ums/accounts');
-	}
+	// get accounts
+	this.getModels = function(parameterQuery) {
+		return $shop.getAgencies(parameterQuery);
+	};
 
-	function addUser(model) {
-		ctrl.working = true;
-		$usr.putAccount(model)//
-		.then(function(/* user */) {
-			$navigator.openPage('ums/accounts');
-			$scope.errorMessage = null;
-		}, function(error) {
-			$scope.errorMessage = $mbLogger.errorMessage(error, ctrl.myForm);
-		})//
-		.finally(function(){
-			ctrl.working = false;
-		});
-	}
-	
-	$scope.cancel = cancel;
-	$scope.addUser = addUser;
-	$scope.ctrl = ctrl;
+	// get an account
+	this.getModel = function(id) {
+		return $shop.getAgency(id);
+	};
+
+	// delete account
+	this.deleteModel = function(model) {
+		return $shop.deleteAgency(model.id);
+	};
+
+	this.init({
+		eventType: '/shop/agencies',
+		actions: [{
+			title: 'New Agency',
+			icon: 'add',
+			action: function() {
+				$actions.exec('create:/shop/agencies');
+			}
+		}]
+	});
 });

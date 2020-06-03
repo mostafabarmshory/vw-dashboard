@@ -22,57 +22,55 @@
  * SOFTWARE.
  */
 
-/*
- * Main module of the application.
- */
-angular.module('myDashboardApp', ['mblowfish-core'])
+var APP_KEY = 'vwstudio';
+/***********************************************************************************
+ * Configuration
+ **********************************************************************************/
+mblowfish.config(function(
+	$mbApplicationProvider, $mbLayoutProvider, $mbToolbarProvider, $mbActionsProvider,
+	$mbSidenavProvider,
+	// TODO: replace with $mbTranslateProvider
+	$mbRouteProvider,
+	$mbStorageProvider, $locationProvider) {
 
-	/***********************************************************************************
-	 * Configuration
-	 **********************************************************************************/
-	.config(function(
-		$applicationProvider, $mbLayoutProvider, $mbToolbarProvider, $mbActionsProvider,
-		$mbSidenavProvider,
-		// TODO: replace with $mbTranslateProvider
-		$mbRouteProvider,
-		$mbStorageProvider, $locationProvider) {
+	//
+	// Application ID
+	//
+	// Application ID is used to seperate applications from each other. for
+	// example you may have studo and dashboard application.
+	//
+	$mbApplicationProvider
+		.setKey(APP_KEY)
+		.setPreloadingEnabled(true)
+		.setTenantRequired(true)
+		.setAccountDetailRequired(true)
+		.setSettingsRequired(true)
+		.setLogingRequired(true);
 
+	//
+	// Application storage prefix
+	//
+	//  All data will be stored in local storage with key. This will be
+	// added to all keys. So you can run several application which is 
+	// designed based on MB
+	$mbStorageProvider.setKeyPrefix(APP_KEY + '.');
 
-		//
-		// Application storage prefix
-		//
-		//  All data will be stored in local storage with key. This will be
-		// added to all keys. So you can run several application which is 
-		// designed based on MB
-		$mbStorageProvider.setKeyPrefix('vwstudio.');
+	//
+	// HTML5 Addess style
+	//
+	// Enables HTML5 addresss style. SO the #! sign will be removed from
+	// the path.
+	$locationProvider.html5Mode(true);
 
-		//
-		// HTML5 Addess style
-		//
-		// Enables HTML5 addresss style. SO the #! sign will be removed from
-		// the path.
-		$locationProvider.html5Mode(true);
-
-		//
-		// Application ID
-		//
-		// Application ID is used to seperate applications from each other. for
-		// example you may have studo and dashboard application.
-		//
-		$applicationProvider.setKey('vwstudio');
-		$applicationProvider.setAutoloadConfigs(true);
-		$applicationProvider.setAutosaveConfigs(true);
-
-
-
-		//
-		//  $mbLayout: manages layouts of the system. It is used as a basic layout
-		// system to manage views, editors and etc. You are free to add layouts dynamically
-		// at runtime.
-		//
-		// $mbLayoutProvider.setMode('auto');
-		$mbLayoutProvider.setDefault('Demo Layout');
-		$mbLayoutProvider.addLayout('Demo Layout', {
+	//
+	//  $mbLayout: manages layouts of the system. It is used as a basic layout
+	// system to manage views, editors and etc. You are free to add layouts dynamically
+	// at runtime.
+	//
+	// $mbLayoutProvider.setMode('auto');
+	$mbLayoutProvider
+		.setDefault('Demo Layout')
+		.addLayout('Demo Layout', {
 			settings: {
 				hasHeaders: true,
 				constrainDragToContainer: true,
@@ -128,10 +126,11 @@ angular.module('myDashboardApp', ['mblowfish-core'])
 		});
 
 
-		//
-		// $mbAction: manages all actions
-		//
-		$mbActionsProvider.init({
+	//
+	// $mbAction: manages all actions
+	//
+	$mbActionsProvider
+		.init({
 			items: {
 				'mb.app.navigator.toggle': {
 					title: 'Navigator',
@@ -145,30 +144,30 @@ angular.module('myDashboardApp', ['mblowfish-core'])
 			}
 		});
 
-		$mbSidenavProvider.addSidenav('/app/navigator', {
-			title: 'Navigator',
-			description: 'Navigate all path and routs of the pandel',
-			controller: 'MbNavigatorContainerCtrl',
-			controllerAs: 'ctrl',
-			templateUrl: 'views/mb-navigator.html',
-			locked: 'false',
-			position: 'start'
-		});
-		// $mbRouteProvider.otherwise('/dashboard');
+	$mbSidenavProvider.addSidenav('/app/navigator', {
+		title: 'Navigator',
+		description: 'Navigate all path and routs of the pandel',
+		controller: 'MbNavigatorContainerCtrl',
+		controllerAs: 'ctrl',
+		templateUrl: 'views/mb-navigator.html',
+		locked: 'false',
+		position: 'start'
+	});
+	// $mbRouteProvider.otherwise('/dashboard');
 
 
-		//
-		//  By initializing the main toolbar you can add list of action or component
-		// into the toolbar.
-		//
-		$mbToolbarProvider.init([{
-			url: '/dashboard',
-			items: ['mb.app.navigator.toggle']
-		}, {
-			url: '/cms',
-			items: []
-		}]);
-	})
+	//
+	//  By initializing the main toolbar you can add list of action or component
+	// into the toolbar.
+	//
+	$mbToolbarProvider.init([{
+		url: '/dashboard',
+		items: ['mb.app.navigator.toggle']
+	}, {
+		url: '/cms',
+		items: []
+	}]);
+})
 
 
 	/***********************************************************************************
@@ -181,4 +180,21 @@ angular.module('myDashboardApp', ['mblowfish-core'])
 		$window.CRISP_WEBSITE_ID = '55019c32-37d1-46ab-b97e-1b524309deb1';
 		$window.loadLibrary('https://client.crisp.chat/l.js');
 	});
+
+
+/***********************************************************************************
+ * Custom application loading
+ **********************************************************************************/
+$(window).on('load', function() {
+	mblowfish
+		.loadModules(APP_KEY)
+		.then(function() {
+			try {
+				mblowfish.bootstrap(document.documentElement);
+			} catch (error){
+				console.log(error);
+			}
+		});
+});
+
 

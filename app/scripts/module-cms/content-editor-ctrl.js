@@ -33,7 +33,7 @@ mblowfish.controller('AmdContentCtrl', function(
 	$state, $location,
 
 	$scope, $cms, $dispatcher, $window,
-	CmsContent, CmsContentMetadata, $resource, $clipboard) {
+	CmsContent, CmsContentMetadata, $mbResource, $clipboard) {
 	var graphqlQuery = '{id,name,title,description,state,creation_dtime,modif_dtime,downloads,file_name,file_size,media_type,mime_type,term_taxonomies{id,taxonomy,term{id,name}},metas{id,key,value}}';
 
 	this.loadingContent = true;
@@ -90,7 +90,7 @@ mblowfish.controller('AmdContentCtrl', function(
 	this.addTermTaxonomy = function() {
 		var ctrl = this;
 		this.termtaxonomyJob = true;
-		$resource.get('cms/term-taxonomies', {
+		$mbResource.get('cms/term-taxonomies', {
 			style: {
 				title: 'Term taxonomy',
 			},
@@ -125,12 +125,13 @@ mblowfish.controller('AmdContentCtrl', function(
 	this.addMetadata = function() {
 		var ctrl = this;
 		this.metadataJob = true;
-		return $resource.get('/cms/microdata', {
-			style: {
-				title: 'Term taxonomy',
-			},
-			data: null
-		})
+		return $mbResource
+			.get('/cms/microdata', {
+				style: {
+					title: 'Term taxonomy',
+				},
+				data: null
+			})
 			.then(function(microdata) {
 				return ctrl.content.putMetadatum(microdata);
 			})

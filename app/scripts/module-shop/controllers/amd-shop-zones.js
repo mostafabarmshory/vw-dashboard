@@ -19,43 +19,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardUser')
 
 /**
- * @ngdoc controller
- * @name AmdUserNewCtrl
- * @description Creates new user
+ * @ngdoc Controllers
+ * @name MbSeenShopZonesCtrl
+ * @description Manages list of zones from shop domain
+ * 
+ * In the shop domain you are allowed to categorize agances into zones. This is a
+ * main controller to manage list of zones.
+ * 
  */
-.controller('AmdUserNewCtrl', function($scope, $usr, $navigator, $mbLogger) {
+mblowfish.controller('MbSeenShopZonesCtrl', function(
+        /* angularjs */ $scope, $controller, $element,
+        /* seen-shop */ $shop,
+        /* mblowfish */ $actions) {
 
-	/*
-	 * View controller options
-	 */
-	var ctrl = {
-			working: false
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope,
+		$element: $element
+	}));
+
+	// Override the function
+	this.getModelSchema = function() {
+		return $shop.zoneSchema();
 	};
 
-	function cancel() {
-		$navigator.openPage('ums/accounts');
-	}
+	// get accounts
+	this.getModels = function(parameterQuery) {
+		return $shop.getZones(parameterQuery);
+	};
 
-	function addUser(model) {
-		ctrl.working = true;
-		$usr.putAccount(model)//
-		.then(function(/* user */) {
-			$navigator.openPage('ums/accounts');
-			$scope.errorMessage = null;
-		}, function(error) {
-			$scope.errorMessage = $mbLogger.errorMessage(error, ctrl.myForm);
-		})//
-		.finally(function(){
-			ctrl.working = false;
-		});
-	}
-	
-	$scope.cancel = cancel;
-	$scope.addUser = addUser;
-	$scope.ctrl = ctrl;
+	// get an account
+	this.getModel = function(id) {
+		return $shop.getZone(id);
+	};
+
+	// delete account
+	this.deleteModel = function(model) {
+		return $shop.deleteZone(model.id);
+	};
+
+	this.init({
+		eventType: '/shop/zones',
+		actions: [{
+			title: 'New Zone',
+			icon: 'add',
+			action: function() {
+				$actions.exec('create:/shop/zones');
+			}
+		}]
+	});
 });

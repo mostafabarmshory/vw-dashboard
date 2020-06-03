@@ -19,43 +19,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardUser')
+
 
 /**
- * @ngdoc controller
- * @name AmdUserNewCtrl
- * @description Creates new user
+ * @ngdoc Controllers
+ * @name MbSeenShopOrdersCtrl
+ * @description Manages list of categories
+ * 
+ * 
  */
-.controller('AmdUserNewCtrl', function($scope, $usr, $navigator, $mbLogger) {
+mblowfish.controller('MbSeenShopOrdersCtrl', function (
+        /* angularjs */ $scope, $controller, $element, 
+        /* seen-shop */ $shop,
+        /* mblowfish */ $actions) {
 
-	/*
-	 * View controller options
-	 */
-	var ctrl = {
-			working: false
-	};
+    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+        $scope : $scope,
+        $element: $element
+    }));
 
-	function cancel() {
-		$navigator.openPage('ums/accounts');
-	}
+    // Override the function
+    this.getModelSchema = function () {
+        return $shop.orderSchema();
+    };
 
-	function addUser(model) {
-		ctrl.working = true;
-		$usr.putAccount(model)//
-		.then(function(/* user */) {
-			$navigator.openPage('ums/accounts');
-			$scope.errorMessage = null;
-		}, function(error) {
-			$scope.errorMessage = $mbLogger.errorMessage(error, ctrl.myForm);
-		})//
-		.finally(function(){
-			ctrl.working = false;
-		});
-	}
-	
-	$scope.cancel = cancel;
-	$scope.addUser = addUser;
-	$scope.ctrl = ctrl;
+    // get accounts
+    this.getModels = function (parameterQuery) {
+        return $shop.getOrders(parameterQuery);
+    };
+
+    // get an account
+    this.getModel = function (id) {
+        return $shop.getOrder(id);
+    };
+
+    // delete account
+    this.deleteModel = function (model) {
+        return $shop.deleteOrder(model.id);
+    };
+
+    this.init({
+        eventType: '/shop/orders',
+        actions:[{
+            title: 'New order',
+            icon: 'add',
+            action: function(){
+                $actions.exec('create:/shop/orders');
+            }
+        }]
+    });
 });

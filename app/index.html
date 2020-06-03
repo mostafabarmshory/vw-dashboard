@@ -3,7 +3,6 @@
 	md-theme="{{app.test.theme || app.setting.theme || app.config.theme || 'default'}}"
 	md-theme-watch
 	dir="{{app.dir}}"
-	ng-app="myDashboardApp" 
 	manifest="<!-- injector:base-path --><!-- endinjector -->manifest.appcache">
 <head>
 	<title>Dashboard</title>
@@ -22,7 +21,6 @@
 	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
 	<link rel="stylesheet" href="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css" />
 	<link rel="stylesheet" href="bower_components/material-steppers/dist/material-steppers.css" />
-	<link rel="stylesheet" href="bower_components/jspanel4x/dist/jspanel.css" />
 	<link rel="stylesheet" href="bower_components/md-color-picker/dist/md-color-picker.css" />
 	<link rel="stylesheet" href="bower_components/mblowfish-core/dist/mblowfish-core.css" />
 	<!-- endbower -->
@@ -30,11 +28,9 @@
 	
     <!-- build:css(.tmp) styles/main.css -->
 	<!-- injector:css -->
-	<link rel="stylesheet" href="styles/fonts.css">
 	<link rel="stylesheet" href="styles/main.css">
 	<link rel="stylesheet" href="styles/preloader.css">
 	<link rel="stylesheet" href="styles/shop-orders-board.css">
-	<link rel="stylesheet" href="styles/test-preloader.css">
 	<!-- endinjector -->
 	<!-- endbuild -->
 
@@ -53,7 +49,6 @@
     <script src="bower_components/seen-sdp/dist/seen-sdp.js"></script>
     <script src="bower_components/seen-cms/dist/seen-cms.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
@@ -71,15 +66,14 @@
     <script src="bower_components/angular-file-saver/dist/angular-file-saver.bundle.js"></script>
     <script src="bower_components/material-steppers/dist/material-steppers.js"></script>
     <script src="bower_components/angular-material-persian-datepicker/dist/datePicker.min.js"></script>
-    <script src="bower_components/jspanel4x/dist/jspanel.js"></script>
     <script src="bower_components/tinymce/tinymce.js"></script>
     <script src="bower_components/tinycolor/tinycolor.js"></script>
     <script src="bower_components/md-color-picker/dist/md-color-picker.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <script src="bower_components/weakmap-polyfill/weakmap-polyfill.js"></script>
-    <script src="bower_components/ngstorage/ngStorage.js"></script>
     <script src="bower_components/loglevel/dist/loglevel.min.js"></script>
     <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/golden-layout/dist/goldenlayout.min.js"></script>
     <script src="bower_components/mblowfish-core/dist/mblowfish-core.js"></script>
     <!-- endbower -->
 	<!-- endbuild -->
@@ -87,164 +81,51 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
 	<!-- injector:js -->
 	<script src="scripts/app.js"></script>
-	<script src="scripts/backup/app.js"></script>
-	<script src="scripts/backup/configs/states.js"></script>
-	<script src="scripts/backup/controllers/snapshots.js"></script>
-	<script src="scripts/backup/runs/actions.js"></script>
-	<script src="scripts/bank/app.js"></script>
-	<script src="scripts/bank/configs/states.js"></script>
-	<script src="scripts/bank/controllers/amd-wallet-charge.js"></script>
-	<script src="scripts/bank/controllers/bank-gate.js"></script>
-	<script src="scripts/bank/controllers/bank-gates-new.js"></script>
-	<script src="scripts/bank/controllers/bank-gates.js"></script>
-	<script src="scripts/bank/controllers/bank-receipt.js"></script>
-	<script src="scripts/bank/controllers/bank-reciepts.js"></script>
-	<script src="scripts/bank/controllers/bank-wallet-new.js"></script>
-	<script src="scripts/bank/controllers/bank-wallet-payment.js"></script>
-	<script src="scripts/bank/controllers/bank-wallet-payments.js"></script>
-	<script src="scripts/bank/controllers/bank-wallet-to-wallet.js"></script>
-	<script src="scripts/bank/controllers/bank-wallet-transfers.js"></script>
-	<script src="scripts/bank/controllers/bank-wallet.js"></script>
-	<script src="scripts/bank/controllers/bank-wallets.js"></script>
-	<script src="scripts/bank/controllers/banks.js"></script>
-	<script src="scripts/bank/controllers/discount-new.js"></script>
-	<script src="scripts/bank/controllers/discount.js"></script>
-	<script src="scripts/bank/controllers/discounts.js"></script>
-	<script src="scripts/bank/runs/navigator.js"></script>
-	<script src="scripts/cms/app.js"></script>
-	<script src="scripts/cms/configs/states.js"></script>
-	<script src="scripts/cms/controllers/content-new.js"></script>
-	<script src="scripts/cms/controllers/content.js"></script>
-	<script src="scripts/cms/controllers/contents.js"></script>
-	<script src="scripts/cms/controllers/term-taxonomies.js"></script>
-	<script src="scripts/cms/controllers/term-taxonomy-new.js"></script>
-	<script src="scripts/cms/controllers/term-taxonomy.js"></script>
-	<script src="scripts/cms/controllers/term.js"></script>
-	<script src="scripts/cms/controllers/terms.js"></script>
-	<script src="scripts/cms/directives/content-icon.js"></script>
-	<script src="scripts/cms/directives/content-preview.js"></script>
-	<script src="scripts/cms/runs/navigator.js"></script>
-	<script src="scripts/cms/runs/resources.js"></script>
-	<script src="scripts/dashboard/app.js"></script>
-	<script src="scripts/dashboard/configs/states.js"></script>
-	<script src="scripts/dashboard/controllers/abstract-dashboard.js"></script>
-	<script src="scripts/dashboard/controllers/dashboard.js"></script>
-	<script src="scripts/jms/app.js"></script>
-	<script src="scripts/jms/configs/states.js"></script>
-	<script src="scripts/jms/controllers/pipeline.js"></script>
-	<script src="scripts/jms/controllers/pipelines.js"></script>
-	<script src="scripts/jms/runs/app.js"></script>
-	<script src="scripts/jms/services/jms.js"></script>
-	<script src="scripts/jms/services/superjms.js"></script>
-	<script src="scripts/sdp/app.js"></script>
-	<script src="scripts/sdp/configs/state.js"></script>
-	<script src="scripts/sdp/controllers/resource-categories-list.js"></script>
-	<script src="scripts/sdp/controllers/resource-category-list.js"></script>
-	<script src="scripts/sdp/controllers/resource-tag-list.js"></script>
-	<script src="scripts/sdp/controllers/sdp-asset-new.js"></script>
-	<script src="scripts/sdp/controllers/sdp-asset.js"></script>
-	<script src="scripts/sdp/controllers/sdp-assets.js"></script>
-	<script src="scripts/sdp/controllers/sdp-categories.js"></script>
-	<script src="scripts/sdp/controllers/sdp-category-new.js"></script>
-	<script src="scripts/sdp/controllers/sdp-category.js"></script>
-	<script src="scripts/sdp/controllers/sdp-downloaded-files-link.js"></script>
-	<script src="scripts/sdp/controllers/sdp-tag-new.js"></script>
-	<script src="scripts/sdp/controllers/sdp-tag.js"></script>
-	<script src="scripts/sdp/controllers/sdp-tags.js"></script>
-	<script src="scripts/sdp/directives/sdp-downloaded-link.js"></script>
-	<script src="scripts/sdp/runs/navigator.js"></script>
-	<script src="scripts/sdp/runs/resources.js"></script>
-	<script src="scripts/seo/app.js"></script>
-	<script src="scripts/seo/configs/states.js"></script>
-	<script src="scripts/seo/controllers/backend-new.js"></script>
-	<script src="scripts/seo/controllers/backend.js"></script>
-	<script src="scripts/seo/controllers/backends.js"></script>
-	<script src="scripts/seo/controllers/content-render.js"></script>
-	<script src="scripts/seo/controllers/crawled-links.js"></script>
-	<script src="scripts/seo/controllers/engine.js"></script>
-	<script src="scripts/seo/controllers/engines.js"></script>
-	<script src="scripts/seo/controllers/link-new.js"></script>
-	<script src="scripts/seo/controllers/link.js"></script>
-	<script src="scripts/seo/controllers/links.js"></script>
-	<script src="scripts/seo/runs/app.js"></script>
-	<script src="scripts/seo/services/seo-content.js"></script>
-	<script src="scripts/shop/app.js"></script>
-	<script src="scripts/shop/configs/icons.js"></script>
-	<script src="scripts/shop/configs/state.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-agencies.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-agency.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-categories.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-category.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-deliver.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-delivers.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-order.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-orders-board.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-orders.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-product.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-products.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-service.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-services.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-tag.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-tags.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-zone.js"></script>
-	<script src="scripts/shop/controllers/amd-shop-zones.js"></script>
-	<script src="scripts/shop/runs/actions-agency.js"></script>
-	<script src="scripts/shop/runs/actions-category.js"></script>
-	<script src="scripts/shop/runs/actions-deliver.js"></script>
-	<script src="scripts/shop/runs/actions-order.js"></script>
-	<script src="scripts/shop/runs/actions-product.js"></script>
-	<script src="scripts/shop/runs/actions-service.js"></script>
-	<script src="scripts/shop/runs/actions-tag.js"></script>
-	<script src="scripts/shop/runs/actions-zone.js"></script>
-	<script src="scripts/shop/runs/navigator.js"></script>
-	<script src="scripts/shop/runs/resources.js"></script>
-	<script src="scripts/spa/app.js"></script>
-	<script src="scripts/spa/configs/states.js"></script>
-	<script src="scripts/spa/controllers/repository-spa.js"></script>
-	<script src="scripts/spa/controllers/repository-spas.js"></script>
-	<script src="scripts/spa/controllers/spa-upload.js"></script>
-	<script src="scripts/spa/controllers/spa.js"></script>
-	<script src="scripts/spa/controllers/spas.js"></script>
-	<script src="scripts/spa/factories/market-spa.js"></script>
-	<script src="scripts/spa/runs/navigator.js"></script>
-	<script src="scripts/spa/services/marketplace.js"></script>
-	<script src="scripts/tenant/app.js"></script>
-	<script src="scripts/tenant/configs/states.js"></script>
-	<script src="scripts/tenant/controllers/invoice.js"></script>
-	<script src="scripts/tenant/controllers/invoices.js"></script>
-	<script src="scripts/tenant/controllers/local-settings.js"></script>
-	<script src="scripts/tenant/controllers/receipt.js"></script>
-	<script src="scripts/tenant/controllers/setting-security.js"></script>
-	<script src="scripts/tenant/controllers/tenant.js"></script>
-	<script src="scripts/tenant/controllers/tenants.js"></script>
-	<script src="scripts/tenant/controllers/ticket.js"></script>
-	<script src="scripts/tenant/controllers/tickets.js"></script>
-	<script src="scripts/tenant/directives/amdTenantInvoice.js"></script>
-	<script src="scripts/tenant/filters/iran-currency.js"></script>
-	<script src="scripts/tenant/runs/actions.js"></script>
-	<script src="scripts/tenant/runs/navigator.js"></script>
-	<script src="scripts/tenant/runs/settings.js"></script>
-	<script src="scripts/user/app.js"></script>
-	<script src="scripts/user/configs/icons.js"></script>
-	<script src="scripts/user/configs/states.js"></script>
-	<script src="scripts/user/controllers/AmdUserGroupsCtrl.js"></script>
-	<script src="scripts/user/controllers/account.js"></script>
-	<script src="scripts/user/controllers/accounts.js"></script>
-	<script src="scripts/user/controllers/group-new.js"></script>
-	<script src="scripts/user/controllers/group.js"></script>
-	<script src="scripts/user/controllers/groups-of.js"></script>
-	<script src="scripts/user/controllers/role.js"></script>
-	<script src="scripts/user/controllers/roles-of.js"></script>
-	<script src="scripts/user/controllers/user-new.js"></script>
-	<script src="scripts/user/controllers/users-of.js"></script>
-	<script src="scripts/user/runs/navigator.js"></script>
+	<script src="scripts/module-cms/content-editor-ctrl.js"></script>
+	<script src="scripts/module-cms/content-icon-directive.js"></script>
+	<script src="scripts/module-cms/content-new-view-ctrl.js"></script>
+	<script src="scripts/module-cms/content-preview-directive.js"></script>
+	<script src="scripts/module-cms/contents-view-ctrl.js"></script>
+	<script src="scripts/module-cms/index.js"></script>
+	<script src="scripts/module-cms/term-editor-ctrl.js"></script>
+	<script src="scripts/module-cms/term-taxonomies-view-ctrl.js"></script>
+	<script src="scripts/module-cms/term-taxonomy-editor-ctrl.js"></script>
+	<script src="scripts/module-cms/term-taxonomy-new-dialog-ctrl.js"></script>
+	<script src="scripts/module-cms/terms-view-ctrl.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-agencies.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-agency.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-categories.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-category.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-deliver.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-delivers.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-order.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-orders-board.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-orders.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-product.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-products.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-service.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-services.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-tag.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-tags.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-zone.js"></script>
+	<script src="scripts/module-shop/controllers/amd-shop-zones.js"></script>
+	<script src="scripts/module-shop/index.js"></script>
 	<!-- endinjector -->
 	<!-- endbuild -->
 </head>
-<body 
-	ng-class="{'mb-rtl-direction': app.dir=='rtl', 'mb-ltr-direction': app.dir!='rtl'}"
-	layout="column"
-	mb-view
-	style="height: 100vh; width: 100vw;">
+<body
+	ng-class="{'mb-rtl-direction': __app.dir=='rtl', 'mb-ltr-direction': __app.dir!='rtl'}"
+	mb-sidenavs>
+	<main>
+		<mb-toolbar-group
+			mb-url="/app/main"
+			mb-toolbars="['/dashboard', '/cms']">
+		</mb-toolbar-group>
+		<mb-view
+			mb-mode="docker"></mb-view>
+		<mb-status
+			mb-url="/app/main">
+		</mb-status>
+	</main>
 </body>
 </html>
