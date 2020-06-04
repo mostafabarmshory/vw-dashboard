@@ -1,6 +1,3 @@
-'use strict';
-
-angular.module('ngMaterialDashboardBank')
 
 	/**
 	 * @ngdoc controller
@@ -8,7 +5,7 @@ angular.module('ngMaterialDashboardBank')
 	 * @description Manage payments of a wallet
 	 * 
 	 */
-	.controller('AmdBankWalletPaymentCtrl', function ($bank, $navigator, $state, $translate) {
+mblowfish.controller('AmdBankWalletPaymentCtrl', function ($bank, $navigator, $state, $translate) {
 
 	    this.walletId = $state.params.walletId;
 	    this.paymentId = $state.params.paymentId;

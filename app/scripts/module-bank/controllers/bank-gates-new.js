@@ -1,6 +1,3 @@
-'use strict';
-
-angular.module('ngMaterialDashboardBank')
 
 /**
  * @ngdoc controller
@@ -8,7 +5,7 @@ angular.module('ngMaterialDashboardBank')
  * @description Manages bank backends
  * 
  */
-.controller('AmdBankGateNewCtrl', function($scope, $bank, QueryParameter, $navigator, $translate) {
+mblowfish.controller('AmdBankGateNewCtrl', function($scope, $bank, QueryParameter, $navigator, $translate) {
 
     /**
      * Load banks

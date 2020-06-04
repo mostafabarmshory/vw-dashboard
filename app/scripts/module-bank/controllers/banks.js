@@ -19,19 +19,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
+/**
+ * @ngdoc controller
+ * @name AmdBankGates
+ * @description Manages bank backends
+ * 
+ */
+mblowfish.controller('AmdBanksCtrl', function($scope, $bank, $controller) {
 
-angular.module('ngMaterialDashboardBank')
-	/**
-	 * دریچه‌های محاوره‌ای
-	 */
-	.run(function($navigator) {
-		$navigator.newGroup({
-			id: 'bank',
-			title: 'Bank management',
-			description: 'A module of dashboard to manage bank.',
-			icon: 'attach_money',
-			priority: 5,
-			hidden: '!app.user.tenant_owner'
-		});
+	// Extends with ItemsController
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope
+	}));
+
+    /*
+     * Overried the function
+     */
+	this.getModelSchema = function() {
+		return $bank.engineSchema();
+	};
+
+	// get engines
+	this.getModels = function(parameterQuery) {
+		return $bank.getEngines(parameterQuery);
+	};
+
+	// get a engine
+	this.getModel = function(id) {
+		return $bank.getEngine(id);
+	};
+
+	// delete a engine
+	this.deleteModel = function(id) {
+		return $bank.deleteEngine(id);
+	};
+
+	this.init({
+		eventType: '/bank/engines'
 	});
+});

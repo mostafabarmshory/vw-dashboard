@@ -6,7 +6,7 @@
  * @name AmdBankWalletNewCtrl
  * @description Create new wallet
  */
-angular.module('ngMaterialDashboardBank').controller('AmdBankWalletNewCtrl', function($bank, $navigator, $translate, $http) {
+mblowfish.controller('AmdBankWalletNewCtrl', function($bank, $navigator, $translate, $http) {
 
 	this.creatingWallet = false;
 

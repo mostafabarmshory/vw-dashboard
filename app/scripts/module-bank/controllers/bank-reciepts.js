@@ -1,6 +1,3 @@
-'use strict';
-
-angular.module('ngMaterialDashboardBank')
 
 /**
  * @ngdoc controller
@@ -8,7 +5,7 @@ angular.module('ngMaterialDashboardBank')
  * @description Manages bank backends
  * 
  */
-.controller('AmdBankReceiptsCtrl', function($scope, $bank, QueryParameter , $translate) {
+mblowfish.controller('AmdBankReceiptsCtrl', function($scope, $bank, QueryParameter , $translate) {
 
 	var paginatorParameter = new QueryParameter();
 	var requests = null;

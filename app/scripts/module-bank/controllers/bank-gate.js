@@ -1,6 +1,3 @@
-'use strict';
-
-angular.module('ngMaterialDashboardBank')
 
 /**
  * @ngdoc controller
@@ -8,7 +5,7 @@ angular.module('ngMaterialDashboardBank')
  * @description Manages bank backends
  * 
  */
-.controller('AmdBankGateCtrl', function ($scope, $bank, $location, $state, $navigator, $translate) {
+mblowfish.controller('AmdBankGateCtrl', function ($scope, $bank, $location, $state, $navigator, $translate) {
 
     var ctrl = {
             state: 'relax',

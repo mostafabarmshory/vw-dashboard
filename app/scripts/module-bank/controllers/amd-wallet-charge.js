@@ -5,7 +5,7 @@
  * @description # Charge a wallet
  * 
  */
-angular.module('ngMaterialDashboardBank').controller('AmdBankWalletChargeCtrl', function($bank, $rootScope, QueryParameter, $window, $state, $translate) {
+mblowfish.controller('AmdBankWalletChargeCtrl', function($bank, $rootScope, QueryParameter, $window, $state, $translate) {
 
 	this.queryParameter = new QueryParameter();
 	this.wallet = {};

@@ -19,8 +19,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-angular.module('ngMaterialDashboardBank')
 
 
 /**
@@ -29,7 +27,7 @@ angular.module('ngMaterialDashboardBank')
  * @description manage a receipt
  * 
  */
-.controller('AmdBankReceiptCtrl', function ($state, $bank, $window) {
+mblowfish.controller('AmdBankReceiptCtrl', function ($state, $bank, $window) {
 
     /**
      * Sets a receipt in the scope
