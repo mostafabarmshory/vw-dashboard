@@ -19,9 +19,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardUser')
 
 /**
  * @ngdoc controller
@@ -33,7 +30,7 @@ angular.module('ngMaterialDashboardUser')
  * 
  * Manages a group view
  */
-.controller('AmdGroupCtrl', function ($scope, $usr, $state, $navigator, $mbResource, $translate, $q) {
+mblowfish.controller('AmdGroupCtrl', function ($scope, $usr, $state, $navigator, $mbResource, $translate, $q) {
 
 	var ctrl = {
 			roleLoading: true,

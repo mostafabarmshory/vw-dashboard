@@ -19,52 +19,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-angular.module('ngMaterialDashboardUser').run(function($navigator) {
-	$navigator.newGroup({
-		id: 'current-user',
-		title: 'User',
-		description: 'A module of dashboard to manage current user.',
-		icon: 'person',
-		priority: 1
-	});
-	$navigator.newItem({
-		type: 'link',
-		groups: ['current-user'],
-		link: '/users/profile',
-		title: 'Profile',
-		icon: 'account_circle'
-	});
-	$navigator.newItem({
-		type: 'link',
-		groups: ['current-user'],
-		link: '/users/account',
-		title: 'Account',
-		icon: 'account_box'
-	});
-	$navigator.newItem({
-		type: 'link',
-		groups: ['current-user'],
-		link: '/users/password',
-		title: 'Password',
-		icon: 'fingerprint'
-	});
 
+/**
+ * @ngdoc controller
+ * @name AmdUserNewCtrl
+ * @description Creates new user
+ */
+mblowfish.controller('AmdUserNewCtrl', function($scope, $usr, $navigator, $mbLogger) {
 
-
-	/**
-	 * @ngdoc setting-group
-	 * @name user-management
-	 * @description List of user management tools
-	 * 
-	 * Group all user management tools under a group.
+	/*
+	 * View controller options
 	 */
-	$navigator.newGroup({
-		id: 'user-management',
-		title: 'User management',
-		description: 'A module of dashboard to manage users.',
-		icon: 'supervisor_account',
-		hidden: '!app.user.tenant_owner',
-		priority: 2
-	});
+	var ctrl = {
+			working: false
+	};
 
+	function cancel() {
+		$navigator.openPage('ums/accounts');
+	}
+
+	function addUser(model) {
+		ctrl.working = true;
+		$usr.putAccount(model)//
+		.then(function(/* user */) {
+			$navigator.openPage('ums/accounts');
+			$scope.errorMessage = null;
+		}, function(error) {
+			$scope.errorMessage = $mbLogger.errorMessage(error, ctrl.myForm);
+		})//
+		.finally(function(){
+			ctrl.working = false;
+		});
+	}
+	
+	$scope.cancel = cancel;
+	$scope.addUser = addUser;
+	$scope.ctrl = ctrl;
 });

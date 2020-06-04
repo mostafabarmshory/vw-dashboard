@@ -19,24 +19,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardUser')
-/*
- * 
+/**
+ * @ngdoc controller
+ * @name AmdGroupNewCtrl
+ * @description Creates new group
  */
-.config(function(wbIconServiceProvider) {
-	wbIconServiceProvider
-	/**
-	 * @ngdoc Icons
-	 * @name amd-account
-	 * @description Current user account
-	 */
-	.addShape('amd-account', wbIconServiceProvider.getShape('person'))
-	/**
-	 * @ngdoc Icons
-	 * @name amd-profile
-	 * @description Current user profile
-	 */
-	.addShape('amd-profile', wbIconServiceProvider.getShape('person'));
+mblowfish.controller('AmdGroupNewCtrl', function($scope, $usr, $navigator) {
+	var ctrl = {
+			working: false
+	};
+
+	function cancel() {
+		$navigator.openPage('ums/groups');
+	}
+
+	function addGroup(model) {
+		ctrl.working = true;
+		$usr.putGroup(model)//
+		.then(function() {
+			$navigator.openPage('ums/groups');
+		}, function(/*error*/) {
+			// Show error
+		})//
+		.finally(function(){
+			ctrl.working = false;
+		});
+	}
+
+	$scope.cancel = cancel;
+	$scope.addGroup = addGroup;
+	$scope.ctrl = ctrl;
 });

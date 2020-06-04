@@ -25,7 +25,7 @@
  * @name AmdUserGroupsCtrl
  * @description Manages list of accounts
  */
-angular.module('ngMaterialDashboardUser').controller('AmdUserGroupsCtrl', function($scope, $controller, $navigator) {
+mblowfish.controller('AmdUserGroupsCtrl', function($scope, $controller, $navigator) {
 
 	angular.extend(this, $controller('MbSeenUserGroupsCtrl', {
 		$scope: $scope

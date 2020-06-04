@@ -19,43 +19,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardUser')
+
 
 /**
  * @ngdoc controller
- * @name AmdUserNewCtrl
- * @description Creates new user
+ * @name AmdUserAccountsCtrl
+ * @description Manages list of accounts
  */
-.controller('AmdUserNewCtrl', function($scope, $usr, $navigator, $mbLogger) {
+mblowfish.controller('AmdUserAccountsCtrl', function($scope, $controller, $navigator) {
 
-	/*
-	 * View controller options
-	 */
-	var ctrl = {
-			working: false
-	};
+	angular.extend(this, $controller('MbSeenUserAccountsCtrl', {
+		$scope: $scope
+	}));
 
-	function cancel() {
-		$navigator.openPage('ums/accounts');
-	}
 
-	function addUser(model) {
-		ctrl.working = true;
-		$usr.putAccount(model)//
-		.then(function(/* user */) {
-			$navigator.openPage('ums/accounts');
-			$scope.errorMessage = null;
-		}, function(error) {
-			$scope.errorMessage = $mbLogger.errorMessage(error, ctrl.myForm);
-		})//
-		.finally(function(){
-			ctrl.working = false;
-		});
-	}
-	
-	$scope.cancel = cancel;
-	$scope.addUser = addUser;
-	$scope.ctrl = ctrl;
+	// Add action
+	this.addAction({
+		title: 'New account',
+		icon: 'add',
+		action: function() {
+			$navigator.openPage('ums/accounts/new');
+		}
+	});
 });

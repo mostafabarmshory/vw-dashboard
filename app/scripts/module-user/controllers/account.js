@@ -25,7 +25,7 @@
  * @name AmdUserAccountCtrl
  * @description Manages an account
  */
-angular.module('ngMaterialDashboardUser').controller('AmdUserAccountCtrl', function(
+mblowfish.controller('AmdUserAccountCtrl', function(
 	/* AngularJS */ $scope, $usr, $state, $navigator, $mbResource, $translate, $q, $window,
 	/* Seen User */ UserAccount, UserProfile) {
 
