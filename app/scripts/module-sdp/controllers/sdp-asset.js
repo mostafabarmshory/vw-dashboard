@@ -1,13 +1,10 @@
-'use strict';
-
-angular.module('ngMaterialDashboardSdp')
 
 	/**
 	 * @ngdoc function
 	 * @name saasdmCpanelApp.controller:MainCtrl
 	 * @description # MainCtrl Controller of the saasdmCpanelApp
 	 */
-	.controller('SdpAssetCtrl', function($scope, $sdp, $navigator, $state, $location, $translate, $mbResource, QueryParameter) {
+	mblowfish.controller('SdpAssetCtrl', function($scope, $sdp, $navigator, $state, $location, $translate, $mbResource, QueryParameter) {
 
 		var ctrl = {
 			loadingAsset: true,

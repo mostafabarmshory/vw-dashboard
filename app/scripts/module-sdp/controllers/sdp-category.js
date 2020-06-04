@@ -1,13 +1,10 @@
-'use strict';
-
-angular.module('ngMaterialDashboardSdp')
 
 	/**
 	 * @ngdoc function
 	 * @name saasdmCpanelApp.controller:SdpCategoryCtrl
 	 * @description # SdpCategoryCtrl Controller of the saasdmCpanelApp
 	 */
-	.controller('SdpCategoryCtrl', function($scope, $sdp, $mbResource,
+	mblowfish.controller('SdpCategoryCtrl', function($scope, $sdp, $mbResource,
 		$state, $location, QueryParameter) {
 
 		var ctrl = {

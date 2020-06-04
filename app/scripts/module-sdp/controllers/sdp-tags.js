@@ -19,16 +19,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardSdp')
 
 /**
  * @ngdoc function
  * @name saasdmCpanelApp.controller:SdpTagsCtrl
  * @description # SdpTagsCtrl Controller of the saasdmCpanelApp
  */
-.controller('SdpTagsCtrl', function($scope, $sdp, $navigator, QueryParameter) {
+mblowfish.controller('SdpTagsCtrl', function($scope, $sdp, $navigator, QueryParameter) {
 
     var paginatorParameter = new QueryParameter();
     paginatorParameter.setOrder('id', 'd');

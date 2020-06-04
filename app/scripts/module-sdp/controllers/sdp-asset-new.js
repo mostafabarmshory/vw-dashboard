@@ -1,13 +1,10 @@
-'use strict';
-
-angular.module('ngMaterialDashboardSdp')
 
 /**
  * @ngdoc controller
  * @name AmdContentNewCtrl
  * @description Mange content new
  */
-.controller('SdpAssetNewCtrl', function ($scope, $sdp, $navigator) {
+mblowfish.controller('SdpAssetNewCtrl', function ($scope, $sdp, $navigator) {
 
     var ctrl = {
         saving : false

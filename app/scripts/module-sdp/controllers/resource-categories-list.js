@@ -19,18 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardSdp')
 
 /**
- * A controller to select one sdp-category from a list of categories
+ * A controller to select multiple sdp-categories from a list of categories
  * @ngdoc controller
- * @name SdpCategoryListResourceCtrl
+ * @name SdpCategoriesListResourceCtrl
  * @description 
  * 
  */
-.controller('SdpCategoryListResourceCtrl', function($scope, $sdp, QueryParameter) {
+mblowfish.controller('SdpCategoriesListResourceCtrl', function($scope, $sdp, QueryParameter) {
 
 	var paginatorParameter = new QueryParameter();
 	paginatorParameter.setOrder('id', 'd');
@@ -38,7 +35,7 @@ angular.module('ngMaterialDashboardSdp')
 	var ctrl = {
 			loadingItems: false,
 			items: [],
-			selectedItem: null
+			selectedItems : $scope.value || []
 	};
 
 	/**
@@ -47,10 +44,7 @@ angular.module('ngMaterialDashboardSdp')
 	 * @returns promiss
 	 */
 	function nextPage() {
-		if (ctrl.loadingItems) {
-			return;
-		}
-		if (requests && !requests.hasMore()) {
+		if (ctrl.loadingItems || (requests && !requests.hasMore())) {
 			return;
 		}
 		if (requests) {
@@ -82,15 +76,36 @@ angular.module('ngMaterialDashboardSdp')
 		return nextPage();
 	}
 
-	function selectItem(item){
-		ctrl.selectedId = item.id;
-		$scope.$parent.setValue(item);
+	function toggleSelect(item){
+		var index = _findIndex(item);
+		if(index >= 0){
+			ctrl.selectedItems.splice(index, 1);
+			item.selected = false;
+		}else{
+			ctrl.selectedItems.push(item);
+			item.selected = true;
+		}
+		$scope.$parent.setValue(ctrl.selectedItems);
+	}
+	
+	function _findIndex(item){
+		var elementPos = ctrl.selectedItems.map(function(x){return x.id;}).indexOf(item.id);
+		return elementPos;
+	}
+	
+	function isSelected(item){
+		return ctrl.selectedItems && _findIndex(item) >= 0;
 	}
 
+	/*
+	 * تمام امکاناتی که در لایه نمایش ارائه می‌شود در اینجا نام گذاری
+	 * شده است.
+	 */
 	$scope.items = [];
 	$scope.nextPage = nextPage;
 	$scope.ctrl = ctrl;
-	$scope.selectItem = selectItem;
+	$scope.toggleSelect = toggleSelect;
+	$scope.isSelected = isSelected;
 
 	// Pagination
 	$scope.paginatorParameter = paginatorParameter;

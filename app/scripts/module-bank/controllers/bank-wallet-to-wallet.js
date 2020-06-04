@@ -71,6 +71,6 @@ mblowfish.controller('AmdBankWalletToWalletCtrl', function($bank, $rootScope, Qu
 		$window.history.back();
 	};
 
-	this.loadUserWallets();
+//	this.loadUserWallets();
 
 });

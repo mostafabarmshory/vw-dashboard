@@ -19,16 +19,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardSdp')
 
 /**
  * @ngdoc controller
  * @name AmdContentNewCtrl
  * @description Mange content new
  */
-.controller('SdpTagNewCtrl', function($scope, $sdp, $navigator) {
+mblowfish.controller('SdpTagNewCtrl', function($scope, $sdp, $navigator) {
 
     var ctrl = {
         saving : false

@@ -1,16 +1,10 @@
-/* jslint todo: true */
-/* jslint xxx: true */
-/* jshint -W100 */
-'use strict';
-
-angular.module('ngMaterialDashboardSdp')
 
 /**
  * @ngdoc controller
  * @name amhSdp.controller:LinkPaymentCtrl
  * @description # LinkPaymentCtrl Controller of the amhSdp
  */
-.controller('SdpDownloadedFilesLinkCtrl', function($scope, $sdp, QueryParameter) {
+mblowfish.controller('SdpDownloadedFilesLinkCtrl', function($scope, $sdp, QueryParameter) {
 	$scope.mainWaiting = true;
     $scope.flag = false;
     var paginatorParameter = new QueryParameter();

@@ -19,25 +19,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardSdp')
 
 /**
- * A controller to select one sdp-tag from a list of tags
+ * A controller to select one sdp-category from a list of categories
  * @ngdoc controller
- * @name SdpTagListResourceCtrl
+ * @name SdpCategoryListResourceCtrl
  * @description 
  * 
  */
-.controller('SdpTagListResourceCtrl', function($scope, $sdp, QueryParameter) {
+mblowfish.controller('SdpCategoryListResourceCtrl', function($scope, $sdp, QueryParameter) {
 
 	var paginatorParameter = new QueryParameter();
 	paginatorParameter.setOrder('id', 'd');
 	var requests = null;
 	var ctrl = {
 			loadingItems: false,
-			items: []
+			items: [],
+			selectedItem: null
 	};
 
 	/**
@@ -58,7 +56,7 @@ angular.module('ngMaterialDashboardSdp')
 			paginatorParameter.setPage(1);
 		}
 		ctrl.loadingItems = true;
-		return $sdp.getTags(paginatorParameter)//
+		return $sdp.getCategories(paginatorParameter)//
 		.then(function(items) {
 			requests = items;
 			ctrl.items = ctrl.items.concat(requests.items);
@@ -82,7 +80,7 @@ angular.module('ngMaterialDashboardSdp')
 	}
 
 	function selectItem(item){
-	    ctrl.selectedId = item.id;
+		ctrl.selectedId = item.id;
 		$scope.$parent.setValue(item);
 	}
 
@@ -97,6 +95,7 @@ angular.module('ngMaterialDashboardSdp')
 	$scope.sortKeys= [
 		'id', 
 		'name',
-		'creation_dtime'
+		'creation_dtime',
+		'parent_id'
 	];
 });
