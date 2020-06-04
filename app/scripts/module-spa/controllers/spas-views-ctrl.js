@@ -19,16 +19,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardSpa')
 
 /**
  * @ngdoc function
  * @name ngMaterialDashboard.controller:GroupsCtrl
  * @description # GroupsCtrl Controller of the ngMaterialDashboard
  */
-.controller('amdSpasCtrl', function ($scope, $tenant, $navigator, $controller) {
+mblowfish.controller('amdSpasCtrl', function ($scope, $tenant, $navigator, $controller) {
 
     // Extends with ItemsController
     angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Phoenix Scholars Co. (http://dpq.co.ir)
+ * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,41 +19,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardSpa')
-
-/**
- * 
- */
-.controller('amdSpaUploadCtrl', function($scope, $tenant, $navigator) {
-	var ctrl = {
-			state : 'relax',
-			uploading : false
-	};
-
-	/**
-	 * Upload an spa file.
-	 * 
-	 * @returns
-	 */
-	function fileSelected(element) {
-		ctrl.uploading = true;
-		return $tenant.putSpa(element[0].lfFile)//
-		.then(function(spa) {
-			toast('Application is installed successfully.');
-			return $navigator.openPage('spas/' + spa.id);
-		}, function(ex) {
-			alert('Fail to install app: ' + ex.data.message);
+mblowfish.config(function($mbEditorProvider, $mbViewProvider) {
+	$mbEditorProvider
+		.addEditor('/spas/repository/:spaId', {
+			controller: 'amdRepositorySpaCtrl',
+			templateUrl: 'views/amd-rspa.html',
 		})
-		.finally(function(){
-			ctrl.uploading = false;
+		.addEditor('/spas/:spaId', {
+			templateUrl: 'views/amd-spa.html',
+			controller: 'AmdTenantSpaCtrl',
+			controllerAs: 'ctrl'
 		});
-	}
 
-	/*
-	 * تمام امکاناتی که در لایه نمایش ارائه می‌شود در اینجا نام گذاری شده است.
-	 */
-	$scope.ctrl = ctrl;
-	$scope.upload = fileSelected;
+
+
+	var viewGroups = ['Applications'];
+
+	$mbViewProvider
+		.addView('/spas', {
+			controller: 'amdSpasCtrl',
+			controllerAs: 'ctrl',
+			templateUrl: 'views/amd-spas.html',
+			title: 'spas',
+			icon: 'apps',
+			groups: viewGroups,
+		}) //
+		.addView('/spas-upload', {
+			controller: 'amdSpaUploadCtrl',
+			templateUrl: 'views/amd-spa-upload.html',
+			title: 'Upload spa',
+			icon: 'file_upload',
+			groups: viewGroups,
+		}) //
+		.addView('/spas-repository', {
+			controller: 'amdReposiotrySpasCtrl',
+			controllerAs: 'ctrl',
+			templateUrl: 'views/amd-rspas.html',
+			title: 'Repository',
+			icon: 'cloud_upload',
+			groups: viewGroups,
+		});
 });

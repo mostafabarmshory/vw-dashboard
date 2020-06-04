@@ -26,7 +26,7 @@
  * @name SpaCtrl
  * @description # SpaCtrl Controller of the ngMaterialDashboard
  */
-angular.module('ngMaterialDashboardSpa').controller('AmdTenantSpaCtrl', function(
+mblowfish.controller('AmdTenantSpaCtrl', function(
 	/* angularjs */ $window, $scope, $tenant, $state, $location) {
 	/**
 	 * Controller data

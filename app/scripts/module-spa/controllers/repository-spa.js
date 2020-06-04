@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
+ * Copyright (c) 2015 Phoenix Scholars Co. (http://dpq.co.ir)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,6 +19,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-angular.module('ngMaterialDashboardSpa', [
-	'mblowfish-core',
-]);
+
+/**
+ * 
+ */
+mblowfish.controller('amdRepositorySpaCtrl', function($scope, $state, $tenant) {
+
+	/**
+	 * Load the spa
+	 */
+	function load() {
+		$scope.working = $tenant.getRepositorySpa($state.params.spaId)//
+		.then(function(spa){
+			$scope.spa = spa;
+			return $scope.spa.getPossibleTransitions();
+		})//
+		.then(function(states){
+			$scope.states = states.items;
+		})//
+		.finally(function(){
+			$scope.working = false;
+		});
+		return $scope.working;
+	}
+
+	/**
+	 * Go to the new state.
+	 */
+	function gotoState(state){
+		if($scope.working){
+			return;
+		}
+		// Load data for state
+		return $scope.working = $scope.spa.putTransition(state)//
+		.then(function(){
+			toast('Process done successfully.');
+		}, function(){
+            alert('Process failed.');
+		})//
+		.finally(function(){
+		    $scope.working = false;
+		});
+	}
+
+	/*
+	 * تمام امکاناتی که در لایه نمایش ارائه می‌شود در اینجا نام گذاری
+	 * شده است.
+	 */
+	$scope.gotoState = gotoState;
+
+	load();
+});

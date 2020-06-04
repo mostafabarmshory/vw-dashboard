@@ -19,14 +19,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardSpa')
 
 /**
  * 
  */
-.controller('amdReposiotrySpasCtrl', function ($scope, $controller, $navigator, $tenant) {
+mblowfish.controller('amdReposiotrySpasCtrl', function ($scope, $controller, $navigator, $tenant) {
 
     // Extends with ItemsController
     angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {

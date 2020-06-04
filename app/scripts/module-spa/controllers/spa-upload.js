@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
+ * Copyright (c) 2015 Phoenix Scholars Co. (http://dpq.co.ir)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,20 +19,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
 
-angular.module('ngMaterialDashboardSpa')
 /**
- * دریچه‌های محاوره‌ای
+ * 
  */
-.run(function($navigator) {
-	$navigator
-	.newGroup({
-		id: 'spa',
-		title: 'Spa management',
-		description: 'A module of dashboard to manage spa.',
-		icon: 'apps',
-		hidden: '!app.user.tenant_owner',
-		priority: 5
-	});
+mblowfish.controller('amdSpaUploadCtrl', function($scope, $tenant, $navigator) {
+	var ctrl = {
+			state : 'relax',
+			uploading : false
+	};
+
+	/**
+	 * Upload an spa file.
+	 * 
+	 * @returns
+	 */
+	function fileSelected(element) {
+		ctrl.uploading = true;
+		return $tenant.putSpa(element[0].lfFile)//
+		.then(function(spa) {
+			toast('Application is installed successfully.');
+			return $navigator.openPage('spas/' + spa.id);
+		}, function(ex) {
+			alert('Fail to install app: ' + ex.data.message);
+		})
+		.finally(function(){
+			ctrl.uploading = false;
+		});
+	}
+
+	/*
+	 * تمام امکاناتی که در لایه نمایش ارائه می‌شود در اینجا نام گذاری شده است.
+	 */
+	$scope.ctrl = ctrl;
+	$scope.upload = fileSelected;
 });
