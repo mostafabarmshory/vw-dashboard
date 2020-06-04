@@ -1,5 +1,3 @@
-'use strict';
-angular.module('ngMaterialDashboardSeo')
 
 /**
  * @ngdoc controller
@@ -8,7 +6,7 @@ angular.module('ngMaterialDashboardSeo')
  * 
  * Manages a backend view
  */
-.controller('AmdSeoBackendCtrl', function ($scope, $seo, $state, $navigator) {
+mblowfish.controller('AmdSeoBackendCtrl', function ($scope, $seo, $state, $navigator) {
 
 	/**
      * Remove backend

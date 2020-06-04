@@ -19,8 +19,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-angular.module('ngMaterialDashboardSeo')
 
 /**
  * @ngdoc controller
@@ -29,7 +27,7 @@ angular.module('ngMaterialDashboardSeo')
  * 
  * Shows content preview and render the page
  */
-.controller('AmdSeoContentRenderCtrl', function ($scope, $element, $state, $sce, $seoContent, $seo) {
+mblowfish.controller('AmdSeoContentRenderCtrl', function ($scope, $element, $state, $sce, $seoContent, $seo) {
     // controller attributes
     /*
      * loading, 404, 500

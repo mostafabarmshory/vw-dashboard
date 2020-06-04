@@ -1,5 +1,3 @@
-'use strict';
-angular.module('ngMaterialDashboardSeo')
 
 /**
  * @ngdoc controller
@@ -7,7 +5,7 @@ angular.module('ngMaterialDashboardSeo')
  * @description
  *  # AmdSeoBackendCtrl Controller of the ngMaterialDashboardSeo
  */
-.controller('AmdSeoBackendNewCtrl', function ($scope, $seo, $navigator) {
+mblowfish.controller('AmdSeoBackendNewCtrl', function ($scope, $seo, $navigator) {
 	var ctrl ={
 			status: 'relax'
 	};

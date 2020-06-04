@@ -21,16 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardSeo')
 
 /**
  * @ngdoc controller
  * @name AmdSeoCrawledLinksCtrl
  * @description # Controller of the crawled links
  */
-.controller('AmdSeoCrawledLinksCtrl', function ($scope, $navigator, $translate, $seo, $controller) {
+mblowfish.controller('AmdSeoCrawledLinksCtrl', function ($scope, $navigator, $translate, $seo, $controller) {
 
     // Extends with ItemsController
     angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {

@@ -28,7 +28,7 @@
  * @name AmdSeoLinksCtrl
  * @description Manages view of SEO links
  */
-angular.module('ngMaterialDashboardSeo').controller('AmdSeoLinksCtrl', function($scope, $navigator, $seo, QueryParameter, $controller) {
+mblowfish.controller('AmdSeoLinksCtrl', function($scope, $navigator, $seo, QueryParameter, $controller) {
 
 	// Extends with ItemsController
 	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {

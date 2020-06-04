@@ -1,5 +1,3 @@
-'use strict';
-angular.module('ngMaterialDashboardSeo')
 
 /**
  * @ngdoc controller
@@ -8,6 +6,6 @@ angular.module('ngMaterialDashboardSeo')
  * 
  * # AmdSeoEngineCtrl Controller of the ngMaterialDashboardSeo
  */
-.controller('AmdSeoEngineCtrl', function ($scope) {
+mblowfish.controller('AmdSeoEngineCtrl', function ($scope) {
 
 });

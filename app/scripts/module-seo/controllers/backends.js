@@ -22,14 +22,13 @@
  * SOFTWARE.
  */
 
-angular.module('ngMaterialDashboardSeo')
 
 	/**
 	 * @ngdoc controller
 	 * @name AmdSeoBackendsCtrl
 	 * @description # AmdSeoBackendsCtrl Controller of the ngMaterialDashboardSeo
 	 */
-	.controller('AmdSeoBackendsCtrl', function ($scope, $navigator, $seo, $controller) {
+	mblowfish.controller('AmdSeoBackendsCtrl', function ($scope, $navigator, $seo, $controller) {
 
 	    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
 		$scope: $scope

@@ -30,7 +30,7 @@
  * 
  * The Controller of the a link.
  */
-angular.module('ngMaterialDashboardSeo').controller('AmdSeoLinkCtrl', function(
+mblowfish.controller('AmdSeoLinkCtrl', function(
 	/* AngularJS */ $scope, $controller,
 	/* seen-seo  */ $seo) {
 
