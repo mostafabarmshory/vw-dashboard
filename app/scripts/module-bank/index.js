@@ -22,7 +22,7 @@
 
 
 
-mblowfish.config(function($mbViewProvider, $mbEditorProvider, $mbActionsProvider) {
+mblowfish.config(function($mbViewProvider, $mbEditorProvider) {
 
 	var viewGroups = ['Finance'];
 

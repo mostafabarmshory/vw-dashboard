@@ -25,7 +25,7 @@
 @name wbInfinateScroll
 @description # wbInfinateScroll
  */
-mblowfish.directive('amdContentPreview', function($q, $parse) {
+mblowfish.directive('amdContentPreview', function() {
 
 	/**
 	 * Link data and view

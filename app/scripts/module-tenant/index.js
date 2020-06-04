@@ -103,7 +103,7 @@ mblowfish.config(function($mbEditorProvider, $mbViewProvider, $mbActionsProvider
 			/*
 			 * @ngInject
 			 */
-			action: function(/*$event*/) {
+			action: function($tenant, $navigator, $mbDispatcher, $window, $translate) {
 				var job = $tenant.tenantSchema()
 					.then(function(schema) {
 						return $navigator.openDialog({
@@ -119,7 +119,7 @@ mblowfish.config(function($mbEditorProvider, $mbViewProvider, $mbActionsProvider
 						return $tenant.putTenant(itemData);
 					})
 					.then(function(item) {
-						$dispatcher.dispatch(EVENT_NAME, {
+						$mbDispatcher.dispatch(EVENT_NAME, {
 							key: 'create',
 							values: [item]
 						});

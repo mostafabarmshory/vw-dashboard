@@ -108,14 +108,15 @@ mblowfish.controller('AmdJmsPipelinesCtrl',
 				'supertenant.member.count': 0
 			};
 			var promiseList = [];
-			for (var metric in $scope.metrics) {
+			_.forEach($scope.metrics, function(metric) {
 				var promise = $monitor.getMetric(metric)//
 					.then(function(res) {
 						$scope.metrics[res.name] = res.value;
 					});
 				promiseList.push(promise);
-			}
-			$q.all(promiseList)//
+			});
+			$q
+				.all(promiseList)//
 				.finally(function() {
 					$scope.ctrl.loadingStatistics = false;
 				});

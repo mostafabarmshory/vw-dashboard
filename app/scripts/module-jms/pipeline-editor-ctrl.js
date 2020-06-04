@@ -6,7 +6,7 @@
  * 
  * Manages a pipeline view
  */
-mblowfish.controller('AmdJmsPipelineCtrl', function($scope, $jms, $state, $navigator) {
+mblowfish.controller('AmdJmsPipelineCtrl', function($scope, $jms, $state, $navigator, $window) {
 
 	/**
      * Remove pipeline
@@ -20,12 +20,13 @@ mblowfish.controller('AmdJmsPipelineCtrl', function($scope, $jms, $state, $navig
 		}
 		confirm('The pipeline will be deleted. There is no undo action.')//
 			.then(function() {
-				return $scope.loadingPipeline = $scope.pipeline.delete()//
+				$scope.loadingPipeline = $scope.pipeline.delete()//
 					.then(function() {
 						$navigator.openPage('pipelines');
 					}, function() {
 						alert('Fail to delete pipeline.');
 					});
+				return $scope.loadingPipeline;
 			})//
 			.finally(function() {
 				$scope.loadingPipeline = false;
@@ -44,13 +45,14 @@ mblowfish.controller('AmdJmsPipelineCtrl', function($scope, $jms, $state, $navig
 		if ($scope.loadingPipeline) {
 			return;
 		}
-		return $scope.loadingPipeline = $scope.pipeline.update()//
+		$scope.loadingPipeline = $scope.pipeline.update()//
 			.then(function() {
-				toast('Pipeline is saved');
+				$window.toast('Pipeline is saved');
 			})//
 			.finally(function() {
 				$scope.loadingPipeline = false;
 			});
+		return $scope.loadingPipeline;
 	}
 
 	/**

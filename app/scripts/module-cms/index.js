@@ -21,7 +21,7 @@
  */
 
 mblowfish.config(function(
-	/* Mblowfish */ $mbViewProvider, $mbEditorProvider, $mbActionsProvider, $mbToolbarProvider) {
+	/* Mblowfish */ $mbViewProvider, $mbEditorProvider) {
 
 	var viewGroups = ['Content Management'];
 	$mbViewProvider

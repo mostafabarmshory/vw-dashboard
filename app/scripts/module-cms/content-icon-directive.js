@@ -26,7 +26,7 @@
 @name wbInfinateScroll
 @description # wbInfinateScroll
  */
-mblowfish.directive('amdContentIcon', function($q, $parse) {
+mblowfish.directive('amdContentIcon', function() {
 
 	/**
 	 * Link data and view

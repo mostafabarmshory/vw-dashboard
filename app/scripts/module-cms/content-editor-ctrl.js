@@ -48,7 +48,7 @@ mblowfish.controller('AmdContentCtrl', function(
 	this.metadataJob = false;
 
 
-	function handlError(error) {
+	function handlError(/*error*/) {
 		// TODO: maso, 2020: log the error
 		alert('faile to load content');
 	}
@@ -202,10 +202,10 @@ mblowfish.controller('AmdContentCtrl', function(
 			item.content_id = this.content.id;
 			this.metadata.push(item);
 		}
-	}
+	};
 
 
-	function handleError(title, message, error) {
+	function handleError(/*title, message, error*/) {
 
 	}
 
@@ -213,7 +213,8 @@ mblowfish.controller('AmdContentCtrl', function(
 	this.loadContent = function() {
 		var ctrl = this;
 		this.loadingContent = true;
-		$cms.getContent($state.params.contentId, {
+		$cms
+		.getContent($state.params.contentId, {
 			graphql: graphqlQuery,
 		})//
 			.then(function(content) {
@@ -293,7 +294,7 @@ mblowfish.controller('AmdContentCtrl', function(
 
 	function getItemIndex(collection, item) {
 		for (var i = 0; i < collection.length; i++) {
-			if (collection[i].id == item.id) {
+			if (collection[i].id === item.id) {
 				return i;
 			}
 		}
@@ -320,7 +321,7 @@ mblowfish.controller('AmdContentCtrl', function(
      * Load the controller
      */
 	var microdataCallback = $dispatcher.on('/cms/microdata', function(data) {
-		if (data.value.content_id != ctrl.content.id) {
+		if (data.value.content_id !== ctrl.content.id) {
 			return;
 		}
 		switch (data.type) {

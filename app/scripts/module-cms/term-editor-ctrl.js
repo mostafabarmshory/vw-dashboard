@@ -79,7 +79,7 @@ mblowfish.controller('AmdCmsTermCtrl', function(
 	 * Load taxonomies of term
 	 */
 	this.loadTaxonomies = function() {
-		var pp = new QueryParameter;
+		var pp = new QueryParameter();
 		pp.setFilter('term_id', this.term.id);
 		var ctrl = this;
 		this.loadingTaxonomies = true;
@@ -129,7 +129,7 @@ mblowfish.controller('AmdCmsTermCtrl', function(
 			})//
 			.finally(function() {
 				ctrl.savingTerm = false;
-			});;
+			});
 	};
 
 	/*
@@ -247,12 +247,13 @@ mblowfish.controller('AmdCmsTermCtrl', function(
 	 * Add taxonomy to the term
 	 */
 	function addTaxonomy() {
-		$navigator.openDialog({
-			templateUrl: 'views/dialogs/amd-in-term-taxonomy-new.html',
-			config: {
-				model: {}
-			}
-		})//
+		$navigator
+			.openDialog({
+				templateUrl: 'views/dialogs/amd-in-term-taxonomy-new.html',
+				config: {
+					model: {}
+				}
+			})//
 			.then(function(taxonomy) {
 				ctrl.addingTaxonomy = true;
 				taxonomy.term_id = ctrl.term.id;

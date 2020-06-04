@@ -87,5 +87,5 @@ mblowfish.config(function($mbIconProvider, $mbEditorProvider, $mbViewProvider) {
 			groups: viewGroups,
 			title: 'Roles',
 			icon: 'accessibility',
-		})
+		});
 });

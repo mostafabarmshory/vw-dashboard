@@ -35,7 +35,7 @@ mblowfish
 	}));
 
 
-mblowfish.config(function($mbActionsProvider, $mbViewProvider) {
+mblowfish.config(function($mbActionsProvider,$mbViewProvider) {
 	var EVENT_NAME = '/backup/snapshots';
 
 	$mbActionsProvider
@@ -44,7 +44,7 @@ mblowfish.config(function($mbActionsProvider, $mbViewProvider) {
 			description: 'Creates new backup snapshot in the current tenant',
 			icon: 'store',
 			/* @ngInject */
-			action: function($backup, $navigator, $window) {
+			action: function($backup, $navigator, $window, $mbDispatcher, $translate) {
 				var job = $backup.snapshotSchema()
 					.then(function(schema) {
 						return $navigator.openDialog({

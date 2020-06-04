@@ -19,10 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardTenant')
-.directive('amdTenantInvoice', function(){
+mblowfish.directive('amdTenantInvoice', function(){
     function postLink($scope,$element,$attributes,$ctrls){
        var ngModel = $ctrls[0] ;
        ngModel.$render = function(){

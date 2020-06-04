@@ -17,6 +17,9 @@
 		"confirm": false,
 		"prompt": false,
 		"moment": false,
-		"seen": false
+		"seen": false,
+		"mblowfish": false,
+		"$": false,
+		"_": false
 	}
 }

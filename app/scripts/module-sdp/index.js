@@ -63,22 +63,11 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 		.addEditor('/sdp/menu/:collectionId/item/:documentId/new', {
 			controller: 'SdpEventMenuItemNewCtrl',
 			templateUrl: 'views/sdp-event-menu-item-new.html',
-		})//
+		})
 		.addEditor('/sdp/item/:collectionId/document/:documentId', {
 			controller: 'AmdDocumentCtrl',
 			templateUrl: 'views/sdp-event-document.html',
-		})//
-
-
-
-
-
-
-
-
-
-
-
+		});
 
 	var viewGroups = ['Digital Assets'];
 
@@ -126,7 +115,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			groups: viewGroups,
 		})
 		.addView('/sdp/collections', {
-			controller: 'AmdCollectionsCtrl',
+//			controller: 'AmdCollectionsCtrl',
 			templateUrl: 'views/amd-collections.html',
 			title: 'Collections',
 			icon: 'storage',

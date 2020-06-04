@@ -139,7 +139,6 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			templateUrl: 'views/amd-shop-order.html',
 		})//
 		.addEditor('/shop/delivers/:deliverId', {
-			controller: 'AmdShopDeliverCtrl',
 			templateUrl: 'views/amd-shop-deliver.html',
 			controller: 'AmdShopDeliverCtrl',
 			controllerAs: 'ctrl'
@@ -191,7 +190,6 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 				};
 			},
 			controllerAs: 'resourceCtrl',
-			priority: 8,
 			tags: ['/shop/categories']
 		})
 		.addPage('/shop/zones#id', {
@@ -231,7 +229,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			/*
 			 * @ngInject
 			 */
-			action: function(/*$event*/) {
+			action: function($shop, $navigator, $mbDispatcher, $window, $translate) {
 				var job = $shop.zoneSchema()
 					.then(function(schema) {
 						return $navigator.openDialog({
@@ -247,7 +245,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 						return $shop.putZone(zoneData);
 					})
 					.then(function(zone) {
-						$dispatcher.dispatch('/shop/zones', {
+						$mbDispatcher.dispatch('/shop/zones', {
 							key: 'create',
 							values: [zone]
 						});
@@ -267,7 +265,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			/*
 			 * @ngInject
 			 */
-			action: function(/*$event*/) {
+			action: function($shop, $window, $translate, $navigator, $mbDispatcher) {
 				var job = $shop.serviceSchema()
 					.then(function(schema) {
 						return $navigator.openDialog({
@@ -283,7 +281,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 						return $shop.putProduct(itemData);
 					})
 					.then(function(item) {
-						$dispatcher.dispatch('/shop/services', {
+						$mbDispatcher.dispatch('/shop/services', {
 							key: 'create',
 							values: [item]
 						});
@@ -300,7 +298,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			icon: 'photo_album',
 			title: 'New Product',
 			/* @ngInject */
-			action: function(/*$event*/) {
+			action: function($shop, $window, $translate, $navigator, $mbDispatcher) {
 				var job = $shop.productSchema()
 					.then(function(schema) {
 						return $navigator.openDialog({
@@ -335,7 +333,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			title: 'New Deliver',
 			description: 'Creates new delivers',
 			/* @ngInject */
-			action: function($event) {
+			action: function($window) {
 				$window.alert('Not supported');
 			},
 			groups: shopActionGroups
@@ -345,7 +343,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			icon: 'photo_album',
 			description: 'Creates new delivers',
 			/* @ngInject */
-			action: function($event) {
+			action: function($shop, $window, $translate, $navigator, $mbDispatcher) {
 				var job = $navigator.openDialog({
 					templateUrl: 'views/dialogs/amd-shop-deliver-new.html',
 					config: {}
@@ -354,7 +352,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 						return $shop.putDeliver(deliverData);
 					})
 					.then(function(deliver) {
-						$dispatcher.dispatch('/shop/delivers', {
+						$mbDispatcher.dispatch('/shop/delivers', {
 							key: 'create',
 							values: [deliver]
 						});
@@ -373,7 +371,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			title: 'New Category',
 			description: 'Creates new category',
 			/* @ngInject */
-			action: function($event) {
+			action: function($event, $shop, $window, $translate, $navigator, $mbDispatcher) {
 				var job = $navigator.openDialog({
 					templateUrl: 'views/dialogs/amd-shop-category-new.html',
 					config: {}
@@ -383,7 +381,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 						return $shop.putCategory(newConfig);
 					})
 					.then(function(cat) {
-						$dispatcher.dispatch('/shop/categories', {
+						$mbDispatcher.dispatch('/shop/categories', {
 							key: 'create',
 							values: [cat]
 						});
@@ -403,7 +401,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			/*
 			 * @ngInject
 			 */
-			action: function(/*$event*/) {
+			action: function($shop, $window, $translate, $navigator, $mbDispatcher) {
 				var job = $shop.agencySchema()
 					.then(function(schema) {
 						return $navigator.openDialog({
@@ -419,7 +417,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 						return $shop.putAgency(itemData);
 					})
 					.then(function(item) {
-						$dispatcher.dispatch('/shop/agencies', {
+						$mbDispatcher.dispatch('/shop/agencies', {
 							key: 'create',
 							values: [item]
 						});
@@ -431,5 +429,5 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 				return job;
 			},
 			groups: shopActionGroups
-		})
-})
+		});
+});
