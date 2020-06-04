@@ -8,14 +8,14 @@ angular.module('ngMaterialDashboardBank')
  * @description Load transfers of a wallet
  * 
  */
-.controller('AmdBankWalletTransfersCtrl', function ($scope, $routeParams, $q, $translate, $bank, $navigator, $controller) {
+.controller('AmdBankWalletTransfersCtrl', function ($scope, $state, $q, $translate, $bank, $navigator, $controller) {
 
     // Extends with ItemsController
     angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
         $scope: $scope
     }));
 
-    this.walletId = $routeParams.walletId;
+    this.walletId = $state.params.walletId;
 
     /*
      * Load wallet

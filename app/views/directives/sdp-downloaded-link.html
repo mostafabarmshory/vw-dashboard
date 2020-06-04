@@ -2,8 +2,8 @@
     class="md-3-line"
     ng-href="{{}}"> 
 
-    <wb-icon ng-if="item.active">done</wb-icon> 
-    <wb-icon ng-if="!item.active">cancel</wb-icon>
+    <mb-icon ng-if="item.active">done</mb-icon> 
+    <mb-icon ng-if="!item.active">cancel</mb-icon>
     <div 
         class="md-list-item-text" 
         layout="column">
@@ -15,6 +15,6 @@
     </div>
 
     <md-button class="md-icon-button">
-        <wb-icon ng-if="item.active">delete</wb-icon>
+        <mb-icon ng-if="item.active">delete</mb-icon>
     </md-button>
 </md-list-item>

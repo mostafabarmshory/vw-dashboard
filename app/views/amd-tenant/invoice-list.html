@@ -20,7 +20,7 @@
 			class="md-3-line"
 			ng-href="{{'tenant/invoices/'+item.id}}"
 			md-colors="{backgroundColor: item.status==='payed' ? 'background': 'accent-100'}"> 
-			<wb-icon>{{item.status == 'payed' ? 'done' : 'attach_money'}}</wb-icon> 
+			<mb-icon>{{item.status == 'payed' ? 'done' : 'attach_money'}}</mb-icon> 
 			<div class="md-list-item-text" layout="column">
 				<h3>{{item.title}}</h3>
 				<h4>{{'Amount' | translate}}: {{item.amount}}</h4>

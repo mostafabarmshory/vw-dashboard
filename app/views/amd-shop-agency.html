@@ -1,18 +1,16 @@
 <md-content
-	ng-controller="AmdShopAgencyCtrl as ctrl"
 	class="md-padding"
-	layout-padding 
-	flex>
+	layout-padding>
 	<mb-titled-block 
 		ng-show="!ctrl.edit"
 		mb-progress="ctrl.loading"
-		mb-title="{{'Agency'| translate}}"
+		mb-title="Agency"
 		mb-icon="store"
 		layout="column">
 		<table>
 			<tr>
 				<td translate="">ID </td>
-				<td>: {{ctrl.item.id}}</td>
+				<td>: {{::ctrl.item.id}}</td>
 			</tr>
 			<tr>
 				<td translate="">Title</td>

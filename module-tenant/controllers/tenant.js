@@ -27,9 +27,9 @@
  * @description Manage a tenant
  */
 angular.module('ngMaterialDashboardTenant').controller('AmdTenantTenantController', function(
-		/* angularjs   */ $scope, $routeParams, $q,
+		/* angularjs   */ $scope, $state, $q,
 		/* ngtranslate */ $tenant, $navigator, $translate,
-		/* am-wb-core  */ $resource,
+		/* am-wb-core  */ $mbResource,
 		/* seen-tenant */ TenantTenant, TenantAccount) {
 
 
@@ -40,7 +40,7 @@ angular.module('ngMaterialDashboardTenant').controller('AmdTenantTenantControlle
 		if (this.loading) {
 			return;
 		}
-		var tenantId = $routeParams.tenantId;
+		var tenantId = $state.params.tenantId;
 		this.loading = true;
 		var ctrl = this;
 		return $tenant.getTenant(tenantId, {
@@ -125,7 +125,8 @@ angular.module('ngMaterialDashboardTenant').controller('AmdTenantTenantControlle
 			return this.ownersPromise;
 		}
 		var ctrl = this;
-		$resource.get('/user/accounts')
+		$mbResource
+			.get('/user/accounts')
 			.then(function(accounts) {
 				var jobs = [];
 				_.forEach(accounts, function(account) {

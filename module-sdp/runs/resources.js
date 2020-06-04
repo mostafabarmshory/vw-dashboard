@@ -19,35 +19,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardSdp')
-/**
- * دریچه‌های محاوره‌ای
- */
-.run(function($resource) {
-	$resource.newPage({
-		label: 'Category list',
-		type:'sdp-category-list',
-		templateUrl: 'views/resources/sdp-category-list.html',
-		controller: 'SdpCategoryListResourceCtrl',
-		tags: ['sdp-category']
-	});
-	$resource.newPage({
-		label: 'Categories list',
-		type:'sdp-categories-list',
-		templateUrl: 'views/resources/sdp-categories-list.html',
-		controller: 'SdpCategoriesListResourceCtrl',
-		tags: ['sdp-category-list']
-	});
-	
-	$resource.newPage({
-        label: 'Tag list',
-        type:'sdp-tag-list',
-        templateUrl: 'views/resources/sdp-tag-list.html',
-        controller: 'SdpTagListResourceCtrl',
-        tags: ['sdp-tag']
-    });
-	
+mblowfish.config(function($mbResourceProvider) {
+	$mbResourceProvider
+		.addPage({
+			label: 'Category list',
+			type: 'sdp-category-list',
+			templateUrl: 'views/resources/sdp-category-list.html',
+			controller: 'SdpCategoryListResourceCtrl',
+			tags: ['sdp-category']
+		})
+		.addPage({
+			label: 'Categories list',
+			type: 'sdp-categories-list',
+			templateUrl: 'views/resources/sdp-categories-list.html',
+			controller: 'SdpCategoriesListResourceCtrl',
+			tags: ['sdp-category-list']
+		})
+		.addPage({
+			label: 'Tag list',
+			type: 'sdp-tag-list',
+			templateUrl: 'views/resources/sdp-tag-list.html',
+			controller: 'SdpTagListResourceCtrl',
+			tags: ['sdp-tag']
+		});
 });
 

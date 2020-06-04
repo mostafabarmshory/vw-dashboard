@@ -29,7 +29,7 @@
  */
 mblowfish.controller('AmdShopZoneCtrl', function(
     /* angularjs  */ $scope, $controller, $element,
-    /* ngRoute    */ $routeParams,
+    /* ngRoute    */ $state,
     /* seen-shp   */ $shop) {
 
 	// XXX: maso, 2020: manage ->
@@ -91,7 +91,7 @@ mblowfish.controller('AmdShopZoneCtrl', function(
 
 
 	this.init({
-		modelId: $routeParams.zoneId,
+		modelId: $state.params.zoneId,
 		eventType: '/shop/zones'
 	});
 });

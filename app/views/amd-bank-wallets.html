@@ -20,7 +20,7 @@
                 ng-if="!wallet.deleted"
                 ng-href="wallets/{{::wallet.id}}"
                 class="md-3-line">
-                <wb-icon>account_balance_wallet</wb-icon>
+                <mb-icon>account_balance_wallet</mb-icon>
                 <div 
                     class="md-list-item-text" 
                     layout="column">
@@ -33,7 +33,7 @@
                     class="md-icon-button" 
                     aria-label="Charge wallet"
                     ng-href="/wallets/charge?walletId={{::wallet.id}}"> 
-                    <wb-icon>battery_charging_80</wb-icon>
+                    <mb-icon>battery_charging_80</mb-icon>
                     <md-tooltip md-direction="bottom"><span translate="">Charge wallet</span></md-tooltip>
                 </md-button>
                 <md-button 
@@ -41,7 +41,7 @@
                     class="md-icon-button" 
                     aria-label="Wallet to wallet"
                     ng-href="/wallet-to-wallet?fromId={{::wallet.id}}">
-                    <wb-icon>swap_horiz</wb-icon>
+                    <mb-icon>swap_horiz</mb-icon>
                     <md-tooltip md-direction="bottom"><span translate="">Wallet to wallet</span></md-tooltip>
                 </md-button>
                 <md-button 
@@ -49,7 +49,7 @@
                     class="md-icon-button" 
                     aria-label="Delete wallet"
                     ng-click="ctrl.deleteItem(wallet)"> 
-                    <wb-icon>delete</wb-icon>
+                    <mb-icon>delete</mb-icon>
                     <md-tooltip><span translate="">Delete wallet</span></md-tooltip>
                 </md-button>
             </md-list-item>

@@ -1,5 +1,4 @@
 <div
-	ng-controller="MbSeenShopDeliversCtrl as ctrl"
 	mb-preloading="ctrl.loading"
 	layout="column"
 	flex>
@@ -21,7 +20,7 @@
 				ng-href="{{'shop/delivers/' + pobject.id}}"
 				style="cursor: pointer">
 				<img ng-src="{{pobject.avatar}}" ng-if="pobject.avatar" class="md-avatar" />
-				<wb-icon ng-if="!pobject.avatar">send</wb-icon>
+				<mb-icon ng-if="!pobject.avatar">send</mb-icon>
 				<div 
 					class="md-list-item-text" 
 					layout="column">

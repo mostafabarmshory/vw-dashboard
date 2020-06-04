@@ -19,7 +19,7 @@
 			layout-align="center center">
 			<md-button class="md-raised" 
 				ng-click="add()">
-				<wb-icon>add</wb-icon>
+				<mb-icon>add</mb-icon>
 				<span translate>New category</span>
 			</md-button>
 		</div>
@@ -29,7 +29,7 @@
 			ng-repeat="pobject in ctrl.items track by pobject.id"
 			class="md-3-line" 
 			ng-href="{{'sdp/category/'+pobject.id}}">
-			<wb-icon>folder_special</wb-icon>
+			<mb-icon>folder_special</mb-icon>
 			<div 
 				class="md-list-item-text" 
 				layout="column">

@@ -27,7 +27,7 @@
  * @name ngMaterialDashboardShop.controller:AmdShopTagCtrl
  * @description # TagCtrl Controller of the saasdmCpanelApp
  */
-mblowfish.controller('AmdShopTagCtrl', function($scope, $shop, $translate, $routeParams, $location) {
+mblowfish.controller('AmdShopTagCtrl', function($scope, $shop, $translate, $state, $location) {
 
 	var ctrl = {
 		loading: false,
@@ -41,7 +41,7 @@ mblowfish.controller('AmdShopTagCtrl', function($scope, $shop, $translate, $rout
 			return;
 		}
 		ctrl.loading = true;
-		$shop.getTag($routeParams.tagId)//
+		$shop.getTag($state.params.tagId)//
 			.then(function(t) {
 				$scope.tag = t;
 			}, function() {

@@ -18,7 +18,7 @@
 			layout-align="center center">
 			<md-button class="md-raised" 
 				ng-click="add()">
-				<wb-icon>add</wb-icon>
+				<mb-icon>add</mb-icon>
 				<span translate>New asset</span>
 			</md-button>
 		</div>
@@ -26,7 +26,7 @@
 	<md-list flex> 
 		<md-list-item ng-repeat="pobject in ctrl.items track by pobject.id"
 			class="md-3-line" ng-href="{{'sdp/asset/'+pobject.id}}">
-			<wb-icon>folder</wb-icon>
+			<mb-icon>folder</mb-icon>
 			<div class="md-list-item-text" layout="column">
 				<h3>{{pobject.id}}</h3>
 				<h4>{{pobject.name}}</h4>

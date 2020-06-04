@@ -8,7 +8,7 @@ angular.module('ngMaterialDashboardBank')//
 	 * @description # Wallet to wallet transfer
 	 * 
 	 */
-	.controller('AmdBankWalletToWalletCtrl', function ($bank, $rootScope, QueryParameter, $window, $routeParams, $translate) {
+	.controller('AmdBankWalletToWalletCtrl', function ($bank, $rootScope, QueryParameter, $window, $state, $translate) {
 
 	    this.queryParameter = new QueryParameter();
 	    this.sourceWallet = {};
@@ -34,11 +34,11 @@ angular.module('ngMaterialDashboardBank')//
 	    };
 
 	    this.findInitialWallet = function () {
-		if (!$routeParams.fromId) {
+		if (!$state.params.fromId) {
 		    return;
 		}
 		for (var i = 0; i < this.wallets.length; i++) {
-		    if (JSON.stringify(this.wallets[i].id) === $routeParams.fromId) {
+		    if (JSON.stringify(this.wallets[i].id) === $state.params.fromId) {
 			this.sourceWallet = this.wallets[i];
 			return;
 		    }

@@ -7,7 +7,7 @@ angular.module('ngMaterialDashboardBank')
  * @name AmdDiscountNewCtrl
  * @description Manages a new discount view
  */
-.controller('AmdDiscountNewCtrl', function($scope, /*$discount, */$resource, $navigator) {
+.controller('AmdDiscountNewCtrl', function($scope, /*$discount, */$mbResource, $navigator) {
 
 	var ctrl = {
 			savingDiscount : false
@@ -48,7 +48,7 @@ angular.module('ngMaterialDashboardBank')
 	}
 
 	$scope.selectUser = function(){
-		return $resource.get('userId')//
+		return $mbResource.get('userId')//
 		.then(function(userId){
 			$scope.config.model.user = userId;
 		})

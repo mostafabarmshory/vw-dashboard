@@ -20,10 +20,10 @@
  * SOFTWARE.
  */
 
-angular.module('ngMaterialDashboardBackup').controller('AmdBackupSnapshotsController', function(
+mblowfish.controller('AmdBackupSnapshotsController', function(
 		/* angularjs      */ $scope, $controller,
 		/* seen-tenant    */ $backup,
-		/* mblowfish-core */ $actions
+		/* mblowfish-core */ $mbActions
 ) {
 
 	// Extends with ItemsController
@@ -62,7 +62,7 @@ angular.module('ngMaterialDashboardBackup').controller('AmdBackupSnapshotsContro
 		title: 'New Backup',
 		icon: 'add',
 		action: function() {
-			$actions.exec('create:/backup/snapshots');
+			$mbActions.exec('create:/backup/snapshots');
 		}
 	}]);
 });

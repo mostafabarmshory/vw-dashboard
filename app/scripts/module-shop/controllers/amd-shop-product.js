@@ -25,7 +25,7 @@
  * @name AmdShopProductCtrl
  * @description Controller of products list
  */
-mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $routeParams, $translate, $navigator, $location, $q, QueryParameter ) {
+mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $state, $translate, $navigator, $location, $q, QueryParameter ) {
 
     var ctrl = {
             loading: false,
@@ -45,7 +45,7 @@ mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $routeParams
             return;
         }
         ctrl.loading = true;
-        $shop.getProduct($routeParams.productId)//
+        $shop.getProduct($state.params.productId)//
         .then(function (p) {
             $scope.product = p;
             loadMetas();

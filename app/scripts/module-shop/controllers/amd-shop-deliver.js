@@ -26,7 +26,7 @@
  * @name AmdShopDeliveryCtrl
  * @description Controller of a Delivery
  */
-mblowfish.controller('AmdShopDeliverCtrl', function($scope, $shop, $routeParams, $translate, $location, $navigator, $q, QueryParameter) {
+mblowfish.controller('AmdShopDeliverCtrl', function($scope, $shop, $state, $translate, $location, $navigator, $q, QueryParameter) {
 
 	var ctrl = {
 		loading: false,
@@ -44,7 +44,7 @@ mblowfish.controller('AmdShopDeliverCtrl', function($scope, $shop, $routeParams,
 			return;
 		}
 		ctrl.loading = true;
-		$shop.getDeliver($routeParams.deliverId)//
+		$shop.getDeliver($state.params.deliverId)//
 			.then(function(p) {
 				$scope.deliver = p;
 			}, function() {

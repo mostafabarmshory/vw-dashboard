@@ -26,13 +26,13 @@ angular.module('ngMaterialDashboardSpa')
 /**
  * 
  */
-.controller('amdRepositorySpaCtrl', function($scope, $routeParams, $tenant) {
+.controller('amdRepositorySpaCtrl', function($scope, $state, $tenant) {
 
 	/**
 	 * Load the spa
 	 */
 	function load() {
-		$scope.working = $tenant.getRepositorySpa($routeParams.spaId)//
+		$scope.working = $tenant.getRepositorySpa($state.params.spaId)//
 		.then(function(spa){
 			$scope.spa = spa;
 			return $scope.spa.getPossibleTransitions();

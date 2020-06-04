@@ -2,47 +2,48 @@
 
 angular.module('ngMaterialDashboardSdp')
 
-/**
- * @ngdoc controller
- * @name AmdContentNewCtrl
- * @description Mange content new
- */
-.controller('SdpCategoryNewCtrl', function($scope, $sdp, $navigator, $resource) {
-	
-	var ctrl = {
-		saving : false
-	};
+	/**
+	 * @ngdoc controller
+	 * @name AmdContentNewCtrl
+	 * @description Mange content new
+	 */
+	.controller('SdpCategoryNewCtrl', function($scope, $sdp, $navigator, $mbResource) {
 
-	function cancel() {
-		$navigator.openPage('sdp/categories');
-	}
+		var ctrl = {
+			saving: false
+		};
 
-	function add(config) {
-		ctrl.saving = true;
-		var data = config.model;
-		data.parent_id = ctrl.parent_id;
-		$sdp.putCategory(data)//
-		.then(function(obj) {
-			ctrl.saving = false;
-			$navigator.openPage('sdp/category/' + obj.id);
-		}, function() {
-			ctrl.saving = false;
-			alert('Fail to create category.');
-		});
-	}
-	
-	function selectParent(){
-		return $resource.get('sdp-category', {
-			data: ctrl.parent
-		})//
-		.then(function(parent){
-			ctrl.parent = parent;
-			ctrl.parent_id = parent.id;
-		});
-	}
+		function cancel() {
+			$navigator.openPage('sdp/categories');
+		}
 
-	$scope.cancel = cancel;
-	$scope.add = add;
-	$scope.selectParent = selectParent;
-	$scope.ctrl = ctrl;
-});
+		function add(config) {
+			ctrl.saving = true;
+			var data = config.model;
+			data.parent_id = ctrl.parent_id;
+			$sdp.putCategory(data)//
+				.then(function(obj) {
+					ctrl.saving = false;
+					$navigator.openPage('sdp/category/' + obj.id);
+				}, function() {
+					ctrl.saving = false;
+					alert('Fail to create category.');
+				});
+		}
+
+		function selectParent() {
+			return $mbResource
+				.get('sdp-category', {
+					data: ctrl.parent
+				})//
+				.then(function(parent) {
+					ctrl.parent = parent;
+					ctrl.parent_id = parent.id;
+				});
+		}
+
+		$scope.cancel = cancel;
+		$scope.add = add;
+		$scope.selectParent = selectParent;
+		$scope.ctrl = ctrl;
+	});

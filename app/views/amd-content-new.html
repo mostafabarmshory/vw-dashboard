@@ -13,7 +13,7 @@
 			<div ng-messages="contentForm.name.$error">
 				<div ng-message="required">This is required!</div>
 			</div>
-			<wb-icon ng-click="ctrl.generateRandomName()">autorenew</wb-icon>
+			<mb-icon ng-click="ctrl.generateRandomName()">autorenew</mb-icon>
 		</md-input-container>
 		
 		<md-input-container>
@@ -38,13 +38,13 @@
 			<md-button
 				class="md-raised" 
 				ng-click="ctrl.add(config)">
-				<wb-icon aria-label="close">done</wb-icon>
+				<mb-icon aria-label="close">done</mb-icon>
 				<span translate>Add</span>
 			</md-button>
 			<md-button 
 				class="md-raised" 
 				ng-click="ctrl.cancel()">
-				<wb-icon aria-label="close">close</wb-icon>
+				<mb-icon aria-label="close">close</mb-icon>
 				<span translate>Cancel</span>
 			</md-button>
 		</div>

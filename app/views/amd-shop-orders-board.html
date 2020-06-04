@@ -1,6 +1,5 @@
 <div
 	id="shop-orders-board"
-	ng-controller="MbSeenShopOrdersBoardCtrl as ctrl"
 	mb-preloading="ctrl.loading">
 	<div 
 		md-colors="{background: 'primary-700'}"
@@ -9,12 +8,12 @@
 		<md-button
 			class="md-icon-button md-mini" 
 			ng-click="ctrl.loadNextPage($event)">
-			<wb-icon>replay_30</wb-icon>
+			<mb-icon>replay_30</mb-icon>
 		</md-button>
 		<md-button
 			class="md-icon-button md-mini" 
 			ng-click="ctrl.reload($event)">
-			<wb-icon>replay</wb-icon>
+			<mb-icon>replay</mb-icon>
 		</md-button>
 	</div>
 	<md-content 
@@ -57,7 +56,7 @@
 			<md-button
 				class="md-icon-button md-mini" 
 				ng-click="ctrl.addNewColumn($event)">
-				<wb-icon>add</wb-icon>
+				<mb-icon>add</mb-icon>
 			</md-button>
 		</div>
 	</md-content>

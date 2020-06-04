@@ -25,7 +25,7 @@
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media">
-                            <wb-icon size="80px">business</wb-icon>
+                            <mb-icon size="80px">business</mb-icon>
                         </div>
                     </md-card-title-media>
                 </md-card-title>
@@ -42,7 +42,7 @@
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media">
-                            <wb-icon size="80px">recent_actors</wb-icon>
+                            <mb-icon size="80px">recent_actors</mb-icon>
                         </div>
                     </md-card-title-media>
                 </md-card-title>
@@ -59,7 +59,7 @@
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media">
-                            <wb-icon size="80px">assignment_turned_in</wb-icon>
+                            <mb-icon size="80px">assignment_turned_in</mb-icon>
                         </div>
                     </md-card-title-media>
                 </md-card-title>
@@ -76,7 +76,7 @@
 <!--                     </md-card-title-text> -->
 <!--                     <md-card-title-media> -->
 <!--                         <div class="md-media-sm card-media"> -->
-<!--                             <wb-icon size="80px">alarm</wb-icon> -->
+<!--                             <mb-icon size="80px">alarm</mb-icon> -->
 <!--                         </div> -->
 <!--                     </md-card-title-media> -->
 <!--                 </md-card-title> -->
@@ -93,7 +93,7 @@
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media">
-                            <wb-icon size="80px">receipt</wb-icon>
+                            <mb-icon size="80px">receipt</mb-icon>
                         </div>
                     </md-card-title-media>
                 </md-card-title>
@@ -116,12 +116,12 @@
 		    <md-list-item 
 		        ng-repeat="object in ctrl.items track by object.id"
 		        class="md-3-line">
-		        <wb-icon ng-if="object.status == 'new'">star_border</wb-icon>
-		        <wb-icon ng-if="object.status == 'ready'">access_time</wb-icon>
-		        <wb-icon ng-if="object.status == 'in-progress'">play_circle_outline</wb-icon>
-		        <wb-icon ng-if="object.status == 'stopped'">pause_circle_outline</wb-icon>
-		        <wb-icon ng-if="object.status == 'error'">error_outline</wb-icon>
-		        <wb-icon ng-if="object.status == 'done'">done</wb-icon>
+		        <mb-icon ng-if="object.status == 'new'">star_border</mb-icon>
+		        <mb-icon ng-if="object.status == 'ready'">access_time</mb-icon>
+		        <mb-icon ng-if="object.status == 'in-progress'">play_circle_outline</mb-icon>
+		        <mb-icon ng-if="object.status == 'stopped'">pause_circle_outline</mb-icon>
+		        <mb-icon ng-if="object.status == 'error'">error_outline</mb-icon>
+		        <mb-icon ng-if="object.status == 'done'">done</mb-icon>
 		        <div 
 		            class="md-list-item-text" 
 		            layout="column">

@@ -28,7 +28,7 @@ angular.module('ngMaterialDashboardSdp')
  * @name saasdmCpanelApp.controller:SdpTagCtrl
  * @description # SdpTagCtrl Controller of the saasdmCpanelApp
  */
-.controller('SdpTagCtrl', function($scope, $sdp, $navigator, $routeParams, $location, $translate) {
+.controller('SdpTagCtrl', function($scope, $sdp, $navigator, $state, $location, $translate) {
 
     var ctrl = {
         loadingTag : true,
@@ -81,7 +81,7 @@ angular.module('ngMaterialDashboardSdp')
 
     function load(){        
         // Load tag
-        return $sdp.getTag($routeParams.tagId)//
+        return $sdp.getTag($state.params.tagId)//
         .then(function(a){
             tag = a;
             $scope.tag = a;

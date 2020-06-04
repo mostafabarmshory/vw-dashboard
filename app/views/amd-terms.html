@@ -23,12 +23,12 @@
                 ng-repeat="term in ctrl.items track by term.id"
                 ng-href="cms/terms/{{::term.id}}">
                 <p>{{::term.name}}</p>
-                <wb-icon 
+                <mb-icon 
                     class="md-secondary" 
                     ng-click="ctrl.deleteItem(term, $event)" 
                     aria-label="Delete">
                     delete
-                </wb-icon>
+                </mb-icon>
             </md-list-item>
         </md-list>
     </md-content>

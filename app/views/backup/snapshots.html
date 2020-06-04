@@ -19,7 +19,7 @@
 				ng-repeat="snapshot in ctrl.items track by snapshot.id"
 				class="md-3-line" 
 				style="cursor: pointer">
-				<wb-icon>unarchive</wb-icon>
+				<mb-icon>unarchive</mb-icon>
 				<div class="md-list-item-text" layout="column">
 					<h3>{{::snapshot.title}}</h3>
 					<h4>{{::snapshot.description}}</h4>
@@ -30,9 +30,9 @@
 					download="snapshot-{{::(snapshot.creation_dtime|mbDateTime)}}"
 					target="_blank"
 					class="md-secondary md-icon-button">
-					<wb-icon aria-label="download">download</md-icon>
+					<mb-icon aria-label="download">download</md-icon>
 				</md-button>
-				<wb-icon 
+				<mb-icon 
 					class="md-secondary" 
 					ng-click="ctrl.deleteItem(snapshot, $event)" 
 					aria-label="Delete">delete</md-icon>

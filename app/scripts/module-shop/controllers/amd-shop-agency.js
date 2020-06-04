@@ -28,9 +28,9 @@
  */
 mblowfish.controller('AmdShopAgencyCtrl', function(
     /* angularjs  */ $scope, $controller, $element,
-    /* ngRoute    */ $routeParams,
+    /* ngRoute    */ $state,
     /* seen-shp   */ $shop,
-    /* mblowfish  */ $actions) {
+    /* mblowfish  */ $mbActions) {
 
     angular.extend(this, $controller('MbSeenAbstractItemCtrl', {
         $scope : $scope,

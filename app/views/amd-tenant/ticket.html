@@ -46,7 +46,7 @@
             <md-button
                 class="md-icon-button md-raised"
                 ng-click="toggleEdit()">
-                <wb-icon>edit</wb-icon>
+                <mb-icon>edit</mb-icon>
             </md-button>
         </div>
         <div
@@ -138,7 +138,7 @@
                         layout="row">
                         <span ng-if="comment.creation_dtime">{{comment.creation_dtime}}</span>
                         <span ng-if="comment.creation_dtime !== comment.modif_dtime">
-                            <wb-icon>edit</wb-icon>	{{comment.modif_dtime}}
+                            <mb-icon>edit</mb-icon>	{{comment.modif_dtime}}
                         </span>
                     </div>
                 </md-whiteframe>

@@ -236,11 +236,12 @@ mblowfish.controller('AmdContentCtrl', function(
 	this.uploadFile = function() {
 		var ctrl = this;
 		ctrl.loading = true;
-		$resource.get('local-file', {
-			style: {
-				accept: '*'
-			}
-		})
+		$mbResource
+			.get('local-file', {
+				style: {
+					accept: '*'
+				}
+			})
 			.then(function(file) {
 				return ctrl.content.uploadValue(file);
 			})

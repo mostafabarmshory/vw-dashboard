@@ -1,5 +1,4 @@
 <md-content
-	ng-controller="AmdShopProductCtrl as ctrl"
 	class="md-padding"
 	layout-padding
 	flex>
@@ -164,12 +163,12 @@
 					<md-button class="md-icon-button md-primary"
 							   ng-click="updateMetafield(meta)"
 							   aria-label="edit metafield">
-						<wb-icon>edit</wb-icon>
+						<mb-icon>edit</mb-icon>
 					</md-button>
 					<md-button class="md-icon-button md-accent"
 							   ng-click="removeMetafield(meta)"
 							   aria-label="remove variable">
-						<wb-icon>delete</wb-icon>
+						<mb-icon>delete</mb-icon>
 					</md-button>
 				</div>
 			</td>
@@ -183,7 +182,7 @@
 				class="md-icon-button md-raised md-primary"
 				ng-click="addMetafield()"
 				aria-label="add meta data">
-				<wb-icon>add</wb-icon>
+				<mb-icon>add</mb-icon>
 			</md-button>
 		</div>
 	</mb-titled-block>
@@ -202,7 +201,7 @@
 				ng-href="{{'categories/' + category.id}}">
 
 				<img ng-if="category.thumbnail" ng-src="{{category.thumbnail}}"  class="md-avatar" />
-				<wb-icon ng-if="!category.thumbnail">folder_special</wb-icon>
+				<mb-icon ng-if="!category.thumbnail">folder_special</mb-icon>
 				<div class="md-list-item-text" layout="column">
 					<h3>{{category.name}}</h3>
 					<p>{{category.description}}</p>

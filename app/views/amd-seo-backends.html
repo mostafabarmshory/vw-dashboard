@@ -22,7 +22,7 @@
 					ng-src="{{object.symbol}}"
 					class="md-avatar" 
 					alt="{{object.id}}">
-				<wb-icon ng-if="!object.symbol">dvr</wb-icon>
+				<mb-icon ng-if="!object.symbol">dvr</mb-icon>
 				<div 
 					class="md-list-item-text" 
 					layout="column">
@@ -33,7 +33,7 @@
 				<md-button
 					class="md-icon-button"
 					ng-click="ctrl.deleteItem(object, $event)">
-					<wb-icon>delete</wb-icon>
+					<mb-icon>delete</mb-icon>
 				</md-button>
 				<md-divider md-inset></md-divider>
 			</md-list-item>
@@ -47,7 +47,7 @@
 				click on the add button. Links improve your site rank.</p>
 			<md-button
 				ng-click="ctrl.addItem($event)">
-				<wb-icon>add</wb-icon>
+				<mb-icon>add</mb-icon>
 				<span translate="">Add</span>
 			</md-button>
 		</div>

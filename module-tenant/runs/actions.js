@@ -23,7 +23,7 @@
 angular.module('ngMaterialDashboardTenant').run(function(
     /* angularjs       */ $window,
     /* am-wb-core      */ $dispatcher,
-    /* mblowfish       */ $navigator, $actions,
+    /* mblowfish       */ $navigator, $mbActions,
     /* seen-tenant     */ $tenant,
     /* ng-translate    */ $translate
 ) {
@@ -69,6 +69,6 @@ angular.module('ngMaterialDashboardTenant').run(function(
 	}];
 
 	_.forEach(actions, function(action) {
-		$actions.newAction(action);
+		$mbActions.newAction(action);
 	});
 });

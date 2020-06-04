@@ -33,7 +33,7 @@ angular.module('ngMaterialDashboardUser')
  * 
  * Manages a group view
  */
-.controller('AmdGroupCtrl', function ($scope, $usr, $routeParams, $navigator, $resource, $translate, $q) {
+.controller('AmdGroupCtrl', function ($scope, $usr, $state, $navigator, $mbResource, $translate, $q) {
 
 	var ctrl = {
 			roleLoading: true,
@@ -107,7 +107,7 @@ angular.module('ngMaterialDashboardUser')
 
 	function load() {
 		ctrl.groupLoading = true;
-		return $usr.getGroup($routeParams.groupId)//
+		return $usr.getGroup($state.params.groupId)//
 		.then(function(group){
 			$scope.group = group;
 			loadRoles();
@@ -120,7 +120,7 @@ angular.module('ngMaterialDashboardUser')
 
 	function changeRoles(){
 		var myData = $scope.roles ? $scope.roles.items : [];
-		return $resource.get('roles', {
+		return $mbResource.get('roles', {
 			data: myData
 		})//
 		.then(function(list){
@@ -154,7 +154,7 @@ angular.module('ngMaterialDashboardUser')
 	
 	function changeUsers(){
 		var myData = $scope.users ? $scope.users.items : [];
-		return $resource.get('accounts', {
+		return $mbResource.get('accounts', {
 			data: myData
 		})//
 		.then(function(list){

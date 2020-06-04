@@ -8,9 +8,9 @@ angular.module('ngMaterialDashboardBank')
 	 * @description Manage a wallet
 	 * 
 	 */
-	.controller('AmdBankWalletCtrl', function ($bank, $location, $routeParams, $translate) {
+	.controller('AmdBankWalletCtrl', function ($bank, $location, $state, $translate) {
 
-	    this.walletId = $routeParams.walletId;
+	    this.walletId = $state.params.walletId;
 
 	    this.load = function () {
 		if (this.loading) {

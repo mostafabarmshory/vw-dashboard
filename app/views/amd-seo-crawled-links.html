@@ -17,7 +17,7 @@
 				ng-repeat="object in ctrl.items track by object.id"
 				ng-href="seo/crawled-links/{{object.id}}/render"
 				class="md-3-line">
-				<wb-icon>donut_small</wb-icon>
+				<mb-icon>donut_small</mb-icon>
 				<div 
 					class="md-list-item-text" 
 					layout="column">
@@ -29,7 +29,7 @@
 					class="md-icon-button"
 					ng-click="ctrl.upload(object)" 
 					aria-label="Upload content">
-					<wb-icon>cloud_upload</wb-icon>
+					<mb-icon>cloud_upload</mb-icon>
 				</md-button>
 				<md-button 
 					class="md-icon-button" 
@@ -37,19 +37,19 @@
 					ng-href="/api/v2/seo/contents/{{object.id}}/content"
 					target="_blank" 
 					download="{{object.file_name}}">
-					<wb-icon>cloud_download</wb-icon>
+					<mb-icon>cloud_download</mb-icon>
 				</md-button>
 				<md-button 
 					class="md-icon-button"
 					ng-href="{{object.url}}"
 					aria-label="Render content">
-					<wb-icon>open_in_browser</wb-icon>
+					<mb-icon>open_in_browser</mb-icon>
 				</md-button>
 				<md-button 
 					class="md-icon-button"
 					ng-click="ctrl.deleteItem(object)" 
 					aria-label="Delete content">
-					<wb-icon>delete</wb-icon>
+					<mb-icon>delete</mb-icon>
 				</md-button>
 				<md-divider md-inset></md-divider>
 			</md-list-item>

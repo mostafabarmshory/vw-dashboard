@@ -29,7 +29,7 @@ angular.module('ngMaterialDashboardBank')
  * @description manage a receipt
  * 
  */
-.controller('AmdBankReceiptCtrl', function ($routeParams, $bank, $window) {
+.controller('AmdBankReceiptCtrl', function ($state, $bank, $window) {
 
     /**
      * Sets a receipt in the scope
@@ -46,7 +46,7 @@ angular.module('ngMaterialDashboardBank')
      * @returns {string} id of the recept
      */
     this.getReceiptId = function () {
-        return ($routeParams.id || null);
+        return ($state.params.id || null);
     };
 
     /**

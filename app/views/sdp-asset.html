@@ -56,13 +56,13 @@
 				<md-button 
 					class = "md-raised md-primary"
 					ng-click="remove()">
-					<wb-icon>delete</wb-icon>
+					<mb-icon>delete</mb-icon>
 					<span translate>Delete</span>
 				</md-button>
 				<md-button
 					class="md-raised"
 					ng-click="ctrl.edit=true">
-					<wb-icon>edit</wb-icon>
+					<mb-icon>edit</mb-icon>
 					<span translate>Edit</span>
 				</md-button>
 			</div>
@@ -105,13 +105,13 @@
 				<md-button
 					class="md-raised" 
 					ng-click="save()">
-					<wb-icon>save</wb-icon>
+					<mb-icon>save</mb-icon>
 					<span translate>Save</span>
 				</md-button>
 				<md-button 
 					class="md-raised" 
 					ng-click="ctrl.edit=false">
-					<wb-icon>close</wb-icon>
+					<mb-icon>close</mb-icon>
 					<span translate>Cancel</span>
 				</md-button>
 			 </div>
@@ -135,13 +135,13 @@
 						</span>
 					</md-chip-template>
 				  	<button md-chip-remove class="md-primary chipaction" ng-click="removeFromCategory($chip)">
-						<wb-icon class="block">close</wb-icon>
+						<mb-icon class="block">close</mb-icon>
 				  	</button>
 				</md-chips>
 				<md-button
 					class="md-icon-button md-raised"
 					ng-click="addToCategory()">
-					<wb-icon>add</wb-icon>
+					<mb-icon>add</mb-icon>
 				</md-button>
 			</div>
 			<div 
@@ -169,13 +169,13 @@
 						</span>
 					</md-chip-template>
 				  	<button md-chip-remove class="md-primary chipaction" ng-click="removeTag($chip)">
-						<wb-icon class="block">close</wb-icon>
+						<mb-icon class="block">close</mb-icon>
 				  	</button>
 				</md-chips>
 				<md-button 
 					class="md-icon-button md-raised" 
 					ng-click="addTag()">
-					<wb-icon>add</wb-icon>
+					<mb-icon>add</mb-icon>
 				</md-button>
 			</div>
 			<div ng-show="!ctrl.tags || ctrl.tags.length == 0"
@@ -206,13 +206,13 @@
 				  	<button md-chip-remove 
 				  		class="md-primary chipaction" 
 				  		ng-click="removeRelation($chip)">
-						<wb-icon class="block">close</wb-icon>
+						<mb-icon class="block">close</mb-icon>
 				  	</button>
 				</md-chips>
 				<md-button 
 					class="md-icon-button md-raised"
 					ng-click="addRelation()">
-					<wb-icon>add</wb-icon>
+					<mb-icon>add</mb-icon>
 				</md-button>
 			</div>
 			<div ng-show="!ctrl.relateds || ctrl.relateds.length == 0"

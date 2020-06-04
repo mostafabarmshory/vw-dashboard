@@ -8,7 +8,7 @@ angular.module('ngMaterialDashboardJms')
  * 
  * Manages a pipeline view
  */
-.controller('AmdJmsPipelineCtrl', function ($scope, $jms, $routeParams, $navigator) {
+.controller('AmdJmsPipelineCtrl', function ($scope, $jms, $state, $navigator) {
 
 	/**
      * Remove pipeline
@@ -66,7 +66,7 @@ angular.module('ngMaterialDashboardJms')
 	        return;
 	    }
 	    $scope.loadingPipeline = true;
-		return $jms.getPipeline($routeParams.id)//
+		return $jms.getPipeline($state.params.id)//
 		.then(function(pipeline){
 			$scope.pipeline = pipeline;
 		})

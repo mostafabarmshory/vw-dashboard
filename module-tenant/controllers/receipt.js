@@ -25,7 +25,7 @@ angular.module('ngMaterialDashboardTenant')
 	/**
 	 *
 	 */
-	.controller('AmdTenantReceiptCtrl', function ($scope, $routeParams, $tenant, $app, $window) {
+	.controller('AmdTenantReceiptCtrl', function ($scope, $state, $tenant, $app, $window) {
 
 		var ctrl = {
 			laoding: false,
@@ -50,7 +50,7 @@ angular.module('ngMaterialDashboardTenant')
 		 * @returns
 		 */
 		function getReceiptId() {
-			return ($routeParams.id || null);
+			return ($state.params.id || null);
 		}
 
 		/**

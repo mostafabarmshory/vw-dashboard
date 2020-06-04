@@ -29,7 +29,7 @@
  * @description load the order
  */
 mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder, 
-	$shop, $translate, $routeParams, $navigator, $window) {
+	$shop, $translate, $state, $navigator, $window) {
 
 	this.order = {};
 	this.actions = [];
@@ -41,7 +41,7 @@ mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder,
 		}
 		this.loading = true;
 		var ctrl = this;
-		$shop.getOrder($routeParams.orderId, {
+		$shop.getOrder($state.params.orderId, {
 			graphql: '{id,title,full_name,phone,email,province,city,address,description,state,creation_dtime,modif_dtime,' +
 	/* */'order_items{title,price,count,item_type},' +
 	/* */'histories{object_type,object_id,subject_type,subject_id,creation_dtime,action,description},' +

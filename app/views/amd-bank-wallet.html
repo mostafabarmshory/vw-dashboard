@@ -154,7 +154,7 @@
                                     ng-repeat="transfer in transferCtrl.items track by transfer.id"
                                     ng-if="transfer.to_wallet_id === transferCtrl.wallet.id"
                                     class="md-3-line">
-                                    <wb-icon>control_point</wb-icon>
+                                    <mb-icon>control_point</mb-icon>
                                     <div 
                                         class="md-list-item-text" 
                                         layout="column">
@@ -167,7 +167,7 @@
                                     ng-repeat="transfer in transferCtrl.items track by transfer.id"
                                     ng-if="transfer.from_wallet_id === transferCtrl.wallet.id"
                                     class="md-3-line">
-                                    <wb-icon>remove_circle_outline</wb-icon>
+                                    <mb-icon>remove_circle_outline</mb-icon>
                                     <div 
                                         class="md-list-item-text" 
                                         layout="column">
@@ -218,7 +218,7 @@
                                     ng-repeat="payment in paymentCtrl.items track by payment.id"
                                     ng-href="/wallets/{{ctrl.wallet.id}}/payments/{{payment.id}}"
                                     class="md-3-line">
-                                    <wb-icon>control_point</wb-icon>
+                                    <mb-icon>control_point</mb-icon>
                                     <div 
                                         class="md-list-item-text" 
                                         layout="column">

@@ -31,7 +31,7 @@
 angular.module('ngMaterialDashboardTenant').controller('AmdTenantTenantsController', function(
 		/* angularjs      */ $scope, $controller,
 		/* seen-tenant    */ $tenant,
-		/* mblowfish-core */ $actions
+		/* mblowfish-core */ $mbActions
 ) {
 
 	// Extends with ItemsController
@@ -71,7 +71,7 @@ angular.module('ngMaterialDashboardTenant').controller('AmdTenantTenantsControll
 		title: 'New tenant',
 		icon: 'add',
 		action: function() {
-			$actions.exec('create:/tenant/tenants');
+			$mbActions.exec('create:/tenant/tenants');
 		}
 	}]);
 });

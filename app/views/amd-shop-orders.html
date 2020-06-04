@@ -1,6 +1,5 @@
 <div
 	id="shop_orders_list"
-	ng-controller="MbSeenShopOrdersCtrl as ctrl"
 	mb-preloading="ctrl.loading"
 	layout="column"
 	flex>
@@ -22,7 +21,7 @@
 				class="md-3-line" 
 				ng-href="{{'shop/orders/' + pobject.id}}">
 				<img ng-src="{{pobject.avatar}}" ng-if="pobject.avatar" class="md-avatar" />
-				<wb-icon ng-if="!pobject.avatar">event</wb-icon>
+				<mb-icon ng-if="!pobject.avatar">event</mb-icon>
 				<div 
 					class="md-list-item-text" 
 					layout="column">

@@ -8,10 +8,10 @@ angular.module('ngMaterialDashboardBank')
 	 * @description Manage payments of a wallet
 	 * 
 	 */
-	.controller('AmdBankWalletPaymentCtrl', function ($bank, $navigator, $routeParams, $translate) {
+	.controller('AmdBankWalletPaymentCtrl', function ($bank, $navigator, $state, $translate) {
 
-	    this.walletId = $routeParams.walletId;
-	    this.paymentId = $routeParams.paymentId;
+	    this.walletId = $state.params.walletId;
+	    this.paymentId = $state.params.paymentId;
 
 	    this.paymentChecked = false;
 

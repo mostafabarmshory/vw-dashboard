@@ -62,7 +62,7 @@
 										class="md-icon-button md-raised noprint"
 										style="cursor: pointer;align-self: center;margin: 0px;"
 										ng-click="ctrl.callToCustomer();">
-										<wb-icon aria-label="Call to customer">call</wb-icon>
+										<mb-icon aria-label="Call to customer">call</mb-icon>
 									</md-button>
 								</div>
 							</td>
@@ -142,9 +142,9 @@
 						<tbody>
 							<tr ng-repeat="item in ctrl.order.order_items track by $index">
 								<td align="center">
-						<wb-icon ng-if="item.item_type === 'service'" class="noprint">cloud_upload</wb-icon>
-						<wb-icon ng-if="item.item_type === 'product'" class="noprint">add_shopping_cart</wb-icon>
-						<wb-icon ng-if="item.item_type === 'deliver'" class="noprint">send</wb-icon>
+						<mb-icon ng-if="item.item_type === 'service'" class="noprint">cloud_upload</mb-icon>
+						<mb-icon ng-if="item.item_type === 'product'" class="noprint">add_shopping_cart</mb-icon>
+						<mb-icon ng-if="item.item_type === 'deliver'" class="noprint">send</mb-icon>
 						</td>
 						<td>
 							<p>{{item.title}}</p>
@@ -203,7 +203,7 @@
 								ng-href="/api/v2/shop/orders/{{ctrl.order.id}}/attachments/{{attachment.id}}/content"
 								target="_blank"
 								download="{{attachment.file_name}}">
-								<wb-icon>cloud_download</wb-icon>
+								<mb-icon>cloud_download</mb-icon>
 								<md-tooltip><span translate="">Download</span></md-tooltip>
 							</md-button>
 						</md-list-item>
@@ -313,45 +313,45 @@
 								ng-switch="::history.action">
 								<div 
 									ng-switch-when="create">
-									<wb-icon 
+									<mb-icon 
 										ng-style="{'background-color': '#607D8B'}" 
 										class="md-avatar-icon" 
-										alt="{{::history.action}}">add</wb-icon>
+										alt="{{::history.action}}">add</mb-icon>
 								</div>
 								<div 
 									ng-switch-when="accept">
-									<wb-icon 
+									<mb-icon 
 										ng-style="{'background-color': '#607D8B'}" 
 										class="md-avatar-icon" 
-										alt="{{::history.action}}">done</wb-icon>
+										alt="{{::history.action}}">done</mb-icon>
 								</div>
 								<div 
 									ng-switch-when="reject">
-									<wb-icon 
+									<mb-icon 
 										ng-style="{'background-color': '#607D8B'}" 
 										class="md-avatar-icon" 
-										alt="{{::history.action}}">clear</wb-icon>
+										alt="{{::history.action}}">clear</mb-icon>
 								</div>
 								<div 
 									ng-switch-when="archive">
-									<wb-icon 
+									<mb-icon 
 										ng-style="{'background-color': '#607D8B'}" 
 										class="md-avatar-icon" 
-										alt="{{::history.action}}">drafts</wb-icon>
+										alt="{{::history.action}}">drafts</mb-icon>
 								</div>
 								<div 
 									ng-switch-when="done">
-									<wb-icon 
+									<mb-icon 
 										ng-style="{'background-color': '#607D8B'}" 
 										class="md-avatar-icon" 
-										alt="{{::history.action}}">done_all</wb-icon>
+										alt="{{::history.action}}">done_all</mb-icon>
 								</div>
 								<div 
 									ng-switch-default>
-									<wb-icon 
+									<mb-icon 
 										ng-style="{'background-color': '#607D8B'}" 
 										class="md-avatar-icon" 
-										alt="{{::history.action}}">settings</wb-icon>
+										alt="{{::history.action}}">settings</mb-icon>
 								</div>
 							</div>
 							<div class="md-list-item-text" layout="column">

@@ -1,5 +1,4 @@
 <md-content
-	ng-controller="MbSeenShopZonesCtrl as ctrl"
 	mb-preloading="ctrl.loading"
 	layout="column"
 	flex>
@@ -20,7 +19,7 @@
 				class="md-3-line" 
 				ng-href="shop/zones/{{::pobject.id}}"
 				style="cursor: pointer">
-				<wb-icon>shop-zone</wb-icon>
+				<mb-icon>shop-zone</mb-icon>
 				<div class="md-list-item-text" layout="column">
 					<h3>{{::pobject.title}}</h3>
 					<h4>{{::pobject.description}}</h4>

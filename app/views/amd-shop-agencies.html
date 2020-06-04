@@ -1,5 +1,4 @@
 <div
-	ng-controller="MbSeenShopAgenciesCtrl as ctrl"
 	mb-preloading="ctrl.loading"
 	layout="column"
 	flex>
@@ -24,8 +23,8 @@
 					ng-src="{{::pobject.avatar}}" 
 					ng-if="::pobject.avatar" 
 					class="md-avatar" />
-				<wb-icon 
-					ng-if="::(!pobject.avatar)">store</wb-icon>
+				<mb-icon 
+					ng-if="::(!pobject.avatar)">store</mb-icon>
 				<div 
 					class="md-list-item-text" 
 					layout="column">

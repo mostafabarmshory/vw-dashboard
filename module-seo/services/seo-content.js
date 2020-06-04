@@ -24,7 +24,7 @@ angular.module('ngMaterialDashboardSeo')
 
 /**
  * @ngdoc Services
- * @name $actions
+ * @name $mbActions
  * @description Manage application actions
  * 
  * Controllers and views can access actions which is registered by an

@@ -29,7 +29,7 @@ angular.module('ngMaterialDashboardTenant')
  * 
  * 
  */
-.controller('AmdTenantTicketController', function ($scope, $routeParams, $tenant, QueryParameter) {
+.controller('AmdTenantTicketController', function ($scope, $state, $tenant, QueryParameter) {
 
     var paginatorParameter = new QueryParameter();
     paginatorParameter.setOrder('creation_dtime', 'd');
@@ -77,7 +77,7 @@ angular.module('ngMaterialDashboardTenant')
         requests = null;
         ctrl.items = [];
         ctrl.status = 'loading';
-        return $tenant.getTicket($routeParams.ticketId)//
+        return $tenant.getTicket($state.params.ticketId)//
         .then(function (ticket) {
             $scope.ticket = ticket;
             ctrl.status = 'relax';

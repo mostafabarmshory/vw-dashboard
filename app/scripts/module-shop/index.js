@@ -36,54 +36,72 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			title: 'Categories',
 			icon: 'folder_special',
 			templateUrl: 'views/amd-shop-categories.html',
+			controller: 'MbSeenShopCategoriesCtrl',
+			controllerAs: 'ctrl',
 			groups: shopViewGroups,
 		})
 		.addView('/shop/agencies', {
 			title: 'Agencies',
 			icon: 'store',
 			templateUrl: 'views/amd-shop-agencies.html',
+			controller: 'MbSeenShopAgenciesCtrl',
+			controllerAs: 'ctrl',
 			groups: shopViewGroups,
 		})
 		.addView('/shop/products', {
 			title: 'Products',
-			templateUrl: 'views/amd-shop-products.html',
 			icon: 'add_shopping_cart',
+			templateUrl: 'views/amd-shop-products.html',
+			controller: 'MbSeenShopProductsCtrl',
+			controllerAs: 'ctrl',
 			groups: shopViewGroups,
 		})
 		.addView('/shop/services', {
 			title: 'Services',
-			templateUrl: 'views/amd-shop-services.html',
 			icon: 'cloud_upload',
+			templateUrl: 'views/amd-shop-services.html',
+			controller: 'MbSeenShopServicesCtrl',
+			controllerAs: 'ctrl',
 			groups: shopViewGroups,
 		})
 		.addView('/shop/orders', {
-			templateUrl: 'views/amd-shop-orders.html',
-			name: 'Orders',
+			title: 'Orders',
 			icon: 'event',
+			templateUrl: 'views/amd-shop-orders.html',
+			controller: 'MbSeenShopOrdersCtrl',
+			controllerAs: 'ctrl',
 			groups: shopViewGroups,
 		})//
-		.addView('/shop/orders/board', {
+		.addView('/shop/orders-board', {
 			title: 'Orders Board',
 			icon: 'dashboard',
 			templateUrl: 'views/amd-shop-orders-board.html',
+			controller: 'MbSeenShopOrdersBoardCtrl',
+			controllerAs: 'ctrl',
 			groups: shopViewGroups,
 		})//
 		.addView('/shop/tags', {
 			title: 'Tags',
 			icon: 'label',
 			templateUrl: 'views/amd-shop-tags.html',
+			controller: 'MbSeenShopTagsCtrl',
+			controllerAs: 'ctrl',
 			groups: shopViewGroups,
 		})
 		.addView('/shop/delivers', {
 			title: 'Delivers',
 			icon: 'local_shipping',
 			templateUrl: 'views/amd-shop-delivers.html',
+			controller: 'MbSeenShopDeliversCtrl',
+			controllerAs: 'ctrl',
 			groups: shopViewGroups,
 		})
 		.addView('/shop/zones', {
 			title: 'Zones',
 			icon: 'layers',
 			templateUrl: 'views/amd-shop-zones.html',
+			controller: 'MbSeenShopZonesCtrl',
+			controllerAs: 'ctrl',
 			groups: shopViewGroups,
 		});
 
@@ -92,18 +110,28 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 	$mbEditorProvider
 		.addEditor('/shop/agencies/:itemId', {
 			templateUrl: 'views/amd-shop-agency.html',
+			controller: 'AmdShopAgencyCtrl',
+			controllerAs: 'ctrl'
 		})
 		.addEditor('/shop/categories/:categoryId', {
 			templateUrl: 'views/amd-shop-category.html',
+			controller: 'AmdShopCategoryCtrl',
+			controllerAs: 'ctrl'
 		})
 		.addEditor('/shop/products/:productId', {
 			templateUrl: 'views/amd-shop-product.html',
+			controller: 'AmdShopProductCtrl',
+			controllerAs: 'ctrl'
 		})//
 		.addEditor('/shop/services/:serviceId', {
 			templateUrl: 'views/amd-shop-service.html',
+			controller: 'AmdShopServiceCtrl',
+			controllerAs: 'ctrl'
 		})
 		.addEditor('/shop/tags/:tagId', {
 			templateUrl: 'views/amd-shop-tag.html',
+			controller: 'AmdShopTagCtrl',
+			controllerAs: 'ctrl'
 		})
 		.addEditor('/shop/orders/:orderId', {
 			controller: 'AmdShopOrderCtrl',
@@ -113,9 +141,13 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 		.addEditor('/shop/delivers/:deliverId', {
 			controller: 'AmdShopDeliverCtrl',
 			templateUrl: 'views/amd-shop-deliver.html',
+			controller: 'AmdShopDeliverCtrl',
+			controllerAs: 'ctrl'
 		})
 		.addEditor('/shop/zones/:zoneId', {
 			templateUrl: 'views/amd-shop-zone.html',
+			controller: 'AmdShopZoneCtrl',
+			controllerAs: 'ctrl'
 		});
 
 

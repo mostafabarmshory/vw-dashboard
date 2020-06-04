@@ -31,7 +31,7 @@
 mblowfish.controller('MbSeenShopServicesCtrl', function (
         /* angularjs  */ $scope, $controller,
         /* seen-shp   */ $shop,
-        /* mblowfish  */ $actions) {
+        /* mblowfish  */ $mbActions) {
 
     angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
         $scope : $scope
@@ -67,7 +67,7 @@ mblowfish.controller('MbSeenShopServicesCtrl', function (
             title: 'New service',
             icon: 'add',
             action: function () {
-                $actions.exec('create:/shop/services');
+                $mbActions.exec('create:/shop/services');
             }
         }]
     });

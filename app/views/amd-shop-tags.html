@@ -1,5 +1,4 @@
 <div
-	ng-controller="MbSeenShopTagsCtrl as ctrl"
 	mb-preloading="ctrl.loading"
 	layout="column"
 	flex>
@@ -20,7 +19,7 @@
 				ng-repeat="tag in ctrl.items track by tag.id"
 				class="md-3-line" 
 				ng-href="{{'shop/tags/' + tag.id}}">
-				<wb-icon>label</wb-icon>
+				<mb-icon>label</mb-icon>
 				<div 
 					class="md-list-item-text" 
 					layout="column">

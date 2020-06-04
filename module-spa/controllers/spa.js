@@ -27,7 +27,7 @@
  * @description # SpaCtrl Controller of the ngMaterialDashboard
  */
 angular.module('ngMaterialDashboardSpa').controller('AmdTenantSpaCtrl', function(
-	/* angularjs */ $window, $scope, $tenant, $routeParams, $location) {
+	/* angularjs */ $window, $scope, $tenant, $state, $location) {
 	/**
 	 * Controller data
 	 */
@@ -75,7 +75,7 @@ angular.module('ngMaterialDashboardSpa').controller('AmdTenantSpaCtrl', function
 	 */
 	this.load = function() {
 		var ctrl = this;
-		return ctrl.working = $tenant.getSpa($routeParams.spaId)//
+		return ctrl.working = $tenant.getSpa($state.params.spaId)//
 			.then(function(spaLoaded) {
 				$scope.spa = spaLoaded;
 				spa = spaLoaded;

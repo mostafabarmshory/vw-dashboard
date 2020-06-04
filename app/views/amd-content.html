@@ -175,14 +175,14 @@
 			ng-repeat="m in ctrl.metadata"
 			class="md-icon-float md-icon-right md-block">
 			<label>{{::m.key}}</label>
-			<wb-icon ng-if="ctrl.canEditMetadata(m)">edit</wb-icon>
+			<mb-icon ng-if="ctrl.canEditMetadata(m)">edit</mb-icon>
 			<input 
 				ng-model="m.value" 
 				ng-change="ctrl.updateMetadata(m)"
 				ng-model-options="{updateOn:'default change blur',debounce:{default:1000,blur:0,change:0}}"
 				type="text">
-			<wb-icon
-				ng-click="ctrl.deleteMetadata(m)">delete</wb-icon>
+			<mb-icon
+				ng-click="ctrl.deleteMetadata(m)">delete</mb-icon>
 		</md-input-container>
 	</mb-titled-block>
 </md-content>

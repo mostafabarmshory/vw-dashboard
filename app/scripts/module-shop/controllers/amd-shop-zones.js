@@ -32,7 +32,7 @@
 mblowfish.controller('MbSeenShopZonesCtrl', function(
         /* angularjs */ $scope, $controller, $element,
         /* seen-shop */ $shop,
-        /* mblowfish */ $actions) {
+        /* mblowfish */ $mbActions) {
 
 	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
 		$scope: $scope,
@@ -65,7 +65,7 @@ mblowfish.controller('MbSeenShopZonesCtrl', function(
 			title: 'New Zone',
 			icon: 'add',
 			action: function() {
-				$actions.exec('create:/shop/zones');
+				$mbActions.exec('create:/shop/zones');
 			}
 		}]
 	});

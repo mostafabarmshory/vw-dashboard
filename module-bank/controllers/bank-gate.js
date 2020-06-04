@@ -8,7 +8,7 @@ angular.module('ngMaterialDashboardBank')
  * @description Manages bank backends
  * 
  */
-.controller('AmdBankGateCtrl', function ($scope, $bank, $location, $routeParams, $navigator, $translate) {
+.controller('AmdBankGateCtrl', function ($scope, $bank, $location, $state, $navigator, $translate) {
 
     var ctrl = {
             state: 'relax',
@@ -37,7 +37,7 @@ angular.module('ngMaterialDashboardBank')
             return;
         }
         ctrl.state = 'working';
-        return $bank.getBackend($routeParams.gateId)//
+        return $bank.getBackend($state.params.gateId)//
         .then(function (gate) {
             $scope.gate = gate;
             return $scope.gate;

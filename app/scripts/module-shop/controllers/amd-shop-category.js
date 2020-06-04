@@ -25,7 +25,7 @@
  * @name AmdShopCategoryCtrl
  */
 mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
-        $routeParams, $location, $translate, QueryParameter, $navigator) {
+        $state, $location, $translate, QueryParameter, $navigator) {
 
     var ctrl = {
             loading: false,
@@ -52,7 +52,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
             return;
         }
         ctrl.loading = true;
-        $shop.getCategory($routeParams.categoryId)//
+        $shop.getCategory($state.params.categoryId)//
         .then(function (cat) {
             $scope.category = cat;
             loadParentCategory(cat.parent_id);

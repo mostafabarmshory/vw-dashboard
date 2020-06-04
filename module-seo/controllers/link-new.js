@@ -7,7 +7,7 @@ angular.module('ngMaterialDashboardSeo')
  * @description
  *  # AmdSeoLinkCtrl Controller of the ngMaterialDashboardSeo
  */
-.controller('AmdSeoLinkNewCtrl', function ($scope, $seo, $routeParams, $navigator) {
+.controller('AmdSeoLinkNewCtrl', function ($scope, $seo, $state, $navigator) {
 
 	var ctrl = {
 		status: 'relax'

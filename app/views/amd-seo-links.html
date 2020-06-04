@@ -19,7 +19,7 @@
 				ng-repeat="object in ctrl.items track by object.id"
 				ng-href="seo/links/{{object.id}}"
 				class="md-3-line">
-				<wb-icon>link</wb-icon>
+				<mb-icon>link</mb-icon>
 				<div class="md-list-item-text" 
 					layout="column">
 					<h3><strong>{{object.title}}</strong> [<a href="{{object.loc}}">{{object.loc}}</a>]</h3>
@@ -28,7 +28,7 @@
 				</div>
 				<md-button class="md-icon-button"
 					ng-click="ctrl.deleteItem(object)" 
-					aria-label="remove attachment"><wb-icon>delete</wb-icon>
+					aria-label="remove attachment"><mb-icon>delete</mb-icon>
 				</md-button>
 				<md-divider md-inset></md-divider>
 			</md-list-item>
@@ -40,7 +40,7 @@
 			<h2>Empty link list</h2>
 			<md-button class="md-raised"
 				ng-click="addLink()">
-				<wb-icon>add</wb-icon>
+				<mb-icon>add</mb-icon>
 				<span translate>New link</span>
 			</md-button>
 		</div>

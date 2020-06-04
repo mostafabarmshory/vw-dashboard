@@ -8,7 +8,7 @@ angular.module('ngMaterialDashboardSeo')
  * 
  * Manages a backend view
  */
-.controller('AmdSeoBackendCtrl', function ($scope, $seo, $routeParams, $navigator) {
+.controller('AmdSeoBackendCtrl', function ($scope, $seo, $state, $navigator) {
 
 	/**
      * Remove backend
@@ -66,7 +66,7 @@ angular.module('ngMaterialDashboardSeo')
 	        return;
 	    }
 	    $scope.loadingBackend = true;
-		return $seo.getBackend($routeParams.id)//
+		return $seo.getBackend($state.params.id)//
 		.then(function(backend){
 			$scope.backend = backend;
 		})

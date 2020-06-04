@@ -29,7 +29,7 @@
             <md-button
                 class="md-raised" 
                 ng-click="ctrl.add()">
-                <wb-icon>add</wb-icon>
+                <mb-icon>add</mb-icon>
                 <span translate>New tenant</span>
             </md-button>
         </div>
@@ -42,7 +42,7 @@
             class="md-3-line" 
             ng-href="{{'tenant/tenants/' + pobject.id}}"
             style="cursor: pointer">
-            <wb-icon>domain</wb-icon>
+            <mb-icon>domain</mb-icon>
             <div 
                 class="md-list-item-text" 
                 layout="column">
@@ -54,7 +54,7 @@
                 class="md-icon-button" 
                 ng-href="http://{{pobject.domain}}"
                 target="_blank">
-                <wb-icon aria-label="Go to tenant">reply</wb-icon>
+                <mb-icon aria-label="Go to tenant">reply</mb-icon>
                 <md-tooltip md-direction="right"><span translate="">Go to tenant</span></md-tooltip>
             </md-button>
             <md-divider md-inset></md-divider>

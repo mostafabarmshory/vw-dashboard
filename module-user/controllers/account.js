@@ -26,7 +26,7 @@
  * @description Manages an account
  */
 angular.module('ngMaterialDashboardUser').controller('AmdUserAccountCtrl', function(
-	/* AngularJS */ $scope, $usr, $routeParams, $navigator, $resource, $translate, $q, $window,
+	/* AngularJS */ $scope, $usr, $state, $navigator, $mbResource, $translate, $q, $window,
 	/* Seen User */ UserAccount, UserProfile) {
 
 	this.roleLoading = true;
@@ -126,51 +126,55 @@ angular.module('ngMaterialDashboardUser').controller('AmdUserAccountCtrl', funct
 	}
 
 	function changeRoles() {
-		return $resource.get('/user/roles', {
-			data: roles
-		}).then(function(list) {
-			// change roles and reload roles
-			var jobs = [];
-			list.forEach(function(item) {
-				if (_findIndex(roles, item) < 0) {
-					jobs.push(account.putRole(item));
-				}
+		return $mbResource
+			.get('/user/roles', {
+				data: roles
+			})
+			.then(function(list) {
+				// change roles and reload roles
+				var jobs = [];
+				list.forEach(function(item) {
+					if (_findIndex(roles, item) < 0) {
+						jobs.push(account.putRole(item));
+					}
+				});
+				roles.forEach(function(item) {
+					if (_findIndex(list, item) < 0) {
+						jobs.push(account.deleteRole(item));
+					}
+				});
+				$q.all(jobs).finally(function() {
+					$scope.roles = roles = list;
+				}).catch(function() {
+					alert($translate.instant('An error occured while set roles.'));
+				});
 			});
-			roles.forEach(function(item) {
-				if (_findIndex(list, item) < 0) {
-					jobs.push(account.deleteRole(item));
-				}
-			});
-			$q.all(jobs).finally(function() {
-				$scope.roles = roles = list;
-			}).catch(function() {
-				alert($translate.instant('An error occured while set roles.'));
-			});
-		});
 	}
 
 	function changeGroups() {
-		return $resource.get('groups', {
-			data: groups
-		}).then(function(list) {
-			// change groups and reload groups
-			var jobs = [];
-			list.forEach(function(item) {
-				if (_findIndex(myData, item) < 0) {
-					jobs.push(account.putGroup(item));
-				}
+		return $mbResource
+			.get('groups', {
+				data: groups
+			})
+			.then(function(list) {
+				// change groups and reload groups
+				var jobs = [];
+				list.forEach(function(item) {
+					if (_findIndex(myData, item) < 0) {
+						jobs.push(account.putGroup(item));
+					}
+				});
+				groups.forEach(function(item) {
+					if (_findIndex(list, item) < 0) {
+						jobs.push(account.deleteGroup(item));
+					}
+				});
+				$q.all(jobs).finally(function() {
+					$scope.groups = groups = list;
+				}).catch(function() {
+					alert($translate.instant('An error occured while set groups.'));
+				});
 			});
-			groups.forEach(function(item) {
-				if (_findIndex(list, item) < 0) {
-					jobs.push(account.deleteGroup(item));
-				}
-			});
-			$q.all(jobs).finally(function() {
-				$scope.groups = groups = list;
-			}).catch(function() {
-				alert($translate.instant('An error occured while set groups.'));
-			});
-		});
 	}
 
 	function _findIndex(array, item) {
@@ -248,7 +252,7 @@ angular.module('ngMaterialDashboardUser').controller('AmdUserAccountCtrl', funct
 		if (ctrl.loading) {
 			return ctrl.loading;
 		}
-		ctrl.loading = $usr.getAccount($routeParams.userId, {
+		ctrl.loading = $usr.getAccount($state.params.userId, {
 			graphql: '{' +
 				'id,login,date_joined,last_login,is_active,' +
 				'profiles{id,first_name,last_name,public_email,language,timezone,national_code,gender,weight,birthday},' +

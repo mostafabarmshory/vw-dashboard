@@ -5,7 +5,7 @@
  * @description # Charge a wallet
  * 
  */
-angular.module('ngMaterialDashboardBank').controller('AmdBankWalletChargeCtrl', function($bank, $rootScope, QueryParameter, $window, $routeParams, $translate) {
+angular.module('ngMaterialDashboardBank').controller('AmdBankWalletChargeCtrl', function($bank, $rootScope, QueryParameter, $window, $state, $translate) {
 
 	this.queryParameter = new QueryParameter();
 	this.wallet = {};
@@ -31,11 +31,11 @@ angular.module('ngMaterialDashboardBank').controller('AmdBankWalletChargeCtrl', 
 	};
 
 	this.findInitialWallet = function() {
-		if (!$routeParams.walletId) {
+		if (!$state.params.walletId) {
 			return;
 		}
 		for (var i = 0; i < this.wallets.length; i++) {
-			if (JSON.stringify(this.wallets[i].id) === $routeParams.walletId) {
+			if (JSON.stringify(this.wallets[i].id) === $state.params.walletId) {
 				this.wallet = this.wallets[i];
 				this.setCurrency();
 				return;

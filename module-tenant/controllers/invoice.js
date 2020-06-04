@@ -27,7 +27,7 @@
  * @name AmdTenantInvoiceController
  * @description Manages view of a invoice
  */
-angular.module('ngMaterialDashboardTenant').controller('AmdTenantInvoiceController', function($scope, $rootScope, $routeParams, $location,
+angular.module('ngMaterialDashboardTenant').controller('AmdTenantInvoiceController', function($scope, $rootScope, $state, $location,
 		/*$discount,*/ $tenant) {
 
 	/**
@@ -137,7 +137,7 @@ angular.module('ngMaterialDashboardTenant').controller('AmdTenantInvoiceControll
 		$scope.status.invoiceLoading = true;
 		$scope.invoice = null;
 		ctrl.items = [];
-		return $tenant.getInvoice($routeParams.invoiceId)//
+		return $tenant.getInvoice($state.params.invoiceId)//
 			.then(function(inv) {
 				$scope.invoice = inv;
 				status.invoiceLoading = false;

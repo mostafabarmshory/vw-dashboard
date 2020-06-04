@@ -31,7 +31,7 @@
 mblowfish.controller('MbSeenShopOrdersBoardCtrl', function(
         /* angularjs */ $scope, $controller, $element, $scope,
         /* seen-shop */ $shop,
-        /* mblowfish */ $actions, $navigator, $storage) {
+        /* mblowfish */ $mbActions, $navigator, $mbStorage) {
 
 	var BOARD_STORAGE_KEY = '/shop/orders/board';
 
@@ -42,20 +42,20 @@ mblowfish.controller('MbSeenShopOrdersBoardCtrl', function(
 
 
 	this.loadBoard = function() {
-		if (!$storage.has(BOARD_STORAGE_KEY)) {
+		if (!$mbStorage[BOARD_STORAGE_KEY]) {
 			this.board = {
 				title: 'Shop board',
 				columns: []
 			}
 			this.saveBoard();
 		} else {
-			this.board = $storage.get(BOARD_STORAGE_KEY);
+			this.board = $mbStorage[BOARD_STORAGE_KEY];
 		}
 		return this.board;
 	};
 
 	this.saveBoard = function() {
-		$storage.put(BOARD_STORAGE_KEY, this.board);
+		$mbStorage[BOARD_STORAGE_KEY] = this.board;
 	};
 
 	this.clearBoard = function() {
@@ -101,8 +101,10 @@ mblowfish.controller('MbSeenShopOrdersBoardCtrl', function(
 				order: order
 			},
 			locals: {
-				$routeParams: {
-					orderId: order.id
+				$state: {
+					params: {
+						orderId: order.id
+					}
 				}
 			},
 			controller: 'AmdShopOrderCtrl',
@@ -121,7 +123,7 @@ mblowfish.controller('MbSeenShopOrdersBoardCtrl', function(
 			title: 'New order',
 			icon: 'add',
 			action: function() {
-				$actions.exec('create:/shop/orders');
+				$mbActions.exec('create:/shop/orders');
 			}
 		}]
 	};

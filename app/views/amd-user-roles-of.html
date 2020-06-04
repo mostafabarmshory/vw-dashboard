@@ -15,12 +15,12 @@
 		ng-repeat="role in ctrl.items" 
 		ng-href="{{'role/'+role.id}}"
 		class="noright">
-		<wb-icon>mood</wb-icon>
+		<mb-icon>mood</mb-icon>
 		<p>{{ role.name }} ({{role.description}})</p>
-		<wb-icon 
+		<mb-icon 
 			class="md-secondary" 
 			ng-click="remove(role)" 
-			aria-label="remove">delete</wb-icon>
+			aria-label="remove">delete</mb-icon>
 	</md-list-item>
 	
 	
@@ -33,7 +33,7 @@
 			Use the following actions to add a new role.</p>
 		<md-button
 			ng-click="add()">
-			<wb-icon>add</wb-icon>
+			<mb-icon>add</mb-icon>
 			<span translate>Add</span>
 		</md-button>
 	</div>

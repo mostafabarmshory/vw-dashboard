@@ -7,7 +7,7 @@ angular.module('ngMaterialDashboardBank')
  * @name ngMaterialDashboardDiscount.controller:DiscountCtrl
  * @description # DiscountCtrl Controller of the ngMaterialDashboardDiscount
  */
-.controller('AmdDiscountCtrl', function($scope, /*$discount,*/ $navigator, $routeParams, $location) {
+.controller('AmdDiscountCtrl', function($scope, /*$discount,*/ $navigator, $state, $location) {
 
 	var ctrl = {
 			loadingDiscount : true,
@@ -62,7 +62,7 @@ angular.module('ngMaterialDashboardBank')
 	$scope.ctrl = ctrl;
 //
 //	// Load discount
-//	$discount.discount($routeParams.discountId)//
+//	$discount.discount($state.params.discountId)//
 //	.then(function(a){
 //		discount = a;
 //		$scope.discount = a;

@@ -29,7 +29,7 @@ angular.module('ngMaterialDashboardSeo')
  * 
  * Shows content preview and render the page
  */
-.controller('AmdSeoContentRenderCtrl', function ($scope, $element, $routeParams, $sce, $seoContent, $seo) {
+.controller('AmdSeoContentRenderCtrl', function ($scope, $element, $state, $sce, $seoContent, $seo) {
     // controller attributes
     /*
      * loading, 404, 500
@@ -84,8 +84,8 @@ angular.module('ngMaterialDashboardSeo')
     };
 
     // load controller
-    if ($routeParams.crawledLinkId) {
-        this.loadSeoContent($routeParams.crawledLinkId);
+    if ($state.params.crawledLinkId) {
+        this.loadSeoContent($state.params.crawledLinkId);
     } else {
         this.status = '404';
     }
