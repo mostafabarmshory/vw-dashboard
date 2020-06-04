@@ -20,8 +20,17 @@
  * SOFTWARE.
  */
 
-angular.module('ngMaterialDashboardTenant', [
-	'mblowfish-core',
-	'seen-supertenant',
-]);
-
+mblowfish.filter('iranCurrency', function(numberFilter, translateFilter) {
+	return function(number, unit) {
+		var txt = '';
+		if (!number) {
+			return translateFilter('free');
+		}
+		if (unit === 'R') {
+			txt = 'rial';
+		} else if (unit === 'T') {
+			txt = 'tooman';
+		}
+		return numberFilter(number) + ' ' + translateFilter(txt);
+	};
+});

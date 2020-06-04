@@ -21,12 +21,7 @@
  */
 
 
-/**
- * @ngdoc Controller
- * @name AmdTenantTenantController
- * @description Manage a tenant
- */
-angular.module('ngMaterialDashboardTenant').controller('AmdTenantTenantController', function(
+mblowfish.controller('AmdTenantTenantController', function(
 		/* angularjs   */ $scope, $state, $q,
 		/* ngtranslate */ $tenant, $navigator, $translate,
 		/* am-wb-core  */ $mbResource,

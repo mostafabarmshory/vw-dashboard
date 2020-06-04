@@ -20,17 +20,58 @@
  * SOFTWARE.
  */
 
-angular.module('ngMaterialDashboardTenant').filter('iranCurrency', function(numberFilter, translateFilter) {
-	return function(number, unit) {
-		var txt = '';
-		if (!number) {
-			return translateFilter('free');
-		}
-		if (unit === 'R') {
-			txt = 'rial';
-		} else if (unit === 'T') {
-			txt = 'tooman';
-		}
-		return numberFilter(number) + ' ' + translateFilter(txt);
+
+/**
+ * @ngdoc Controller
+ * @name AmdTenantTenantsController
+ * @description Manages list of tenants from the current tenant.
+ * 
+ * Each tenant can create multi sub tenants. This is a controller of the subtenatns.
+ */
+mblowfish.controller('AmdTenantTenantsController', function(
+		/* angularjs      */ $scope, $controller,
+		/* seen-tenant    */ $tenant,
+		/* mblowfish-core */ $mbActions
+) {
+
+	// Extends with ItemsController
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope
+	}));
+
+	/**
+	 * Gets schema of the tenant model
+	 */
+	this.getModelSchema = function() {
+		return $tenant.tenantSchema();
 	};
+
+	// get tenants
+	this.getModels = function(parameterQuery) {
+		return $tenant.getTenants(parameterQuery);
+	};
+
+	// get a tenant
+	this.getModel = function(id) {
+		return $tenant.getTenant(id);
+	};
+
+	// delete tenant
+	this.deleteModel = function(item) {
+		return item.delete();
+	};
+
+	// initial the controller
+	this.init({
+		eventType: '/tenant/tenants'
+	});
+
+	// add actions
+	this.addActions([{
+		title: 'New tenant',
+		icon: 'add',
+		action: function() {
+			$mbActions.exec('create:/tenant/tenants');
+		}
+	}]);
 });

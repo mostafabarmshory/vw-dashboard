@@ -27,7 +27,7 @@
  * @name AmdTenantInvoiceController
  * @description Manages view of a invoice
  */
-angular.module('ngMaterialDashboardTenant').controller('AmdTenantInvoiceController', function($scope, $rootScope, $state, $location,
+mblowfish.controller('AmdTenantInvoiceController', function($scope, $rootScope, $state, $location,
 		/*$discount,*/ $tenant) {
 
 	/**

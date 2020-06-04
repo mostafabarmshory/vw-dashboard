@@ -19,9 +19,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-'use strict';
-
-angular.module('ngMaterialDashboardTenant')
 
 /**
  * 
@@ -29,7 +26,7 @@ angular.module('ngMaterialDashboardTenant')
  * 
  * 
  */
-.controller('AmdTenantTicketController', function ($scope, $state, $tenant, QueryParameter) {
+mblowfish.controller('AmdTenantTicketController', function ($scope, $state, $tenant, QueryParameter) {
 
     var paginatorParameter = new QueryParameter();
     paginatorParameter.setOrder('creation_dtime', 'd');

@@ -1,12 +1,4 @@
-
-angular.module('ngMaterialDashboardTenant')
-
-	/**
-	 * @ngdoc controller
-	 * @name AmdLocalSettingsCtrl
-	 * @description Setting controller for local settings
-	 */
-	.controller('AmdLocalSettingsCtrl', function ($scope, $tenant, $q, $http) {
+mblowfish.controller('AmdLocalSettingsCtrl', function ($scope, $tenant, $q, $http) {
 
 		var ctrl = {
 			loadingSettings: false,

@@ -1,21 +1,4 @@
-
-angular.module('ngMaterialDashboardTenant')
-
-	/**
-	 * @ngdoc controller
-	 * @name AmdSettingsCaptchaCtrl
-	 * @description Setting controller for captcha
-	 * 
-	 * This is a controller to manage server side setting of capthca engine. In this
-	 * version following engines are supported:
-	 * 
-	 * <ul>
-	 * <li>No captcha</li>
-	 * <li>Google reCaptcha</li>
-	 * </ul>
-	 * 
-	 */
-	.controller('AmdSettingsSecurityCtrl', function ($scope, $tenant, $q) {
+mblowfish.controller('AmdSettingsSecurityCtrl', function ($scope, $tenant, $q) {
 
 		$scope.options = ["nocaptcha", "recaptcha"];
 
