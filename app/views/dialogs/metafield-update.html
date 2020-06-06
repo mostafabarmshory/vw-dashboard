@@ -3,7 +3,7 @@
     ng-cloak>
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2 translate="">Update metadata</h2>
+            <h2 mb-translate="">Update metadata</h2>
             <span flex></span>
             <md-button 
                 class="md-icon-button" 
@@ -24,22 +24,22 @@
               layout-padding>
             <span flex="10"></span>
             <md-input-container required>
-                <label translate="">Key</label>
+                <label mb-translate="">Key</label>
                 <input ng-model="config.data.key" name="key" disabled required="true">
             </md-input-container>
             <md-input-container>
-                <label translate="">Value</label>
+                <label mb-translate="">Value</label>
                 <input ng-model="config.data.value" name="value" required="true">
                 <div ng-messages="myForm.value.$error" ng-show="ctrl.showError">
-                    <div ng-message="required" translate>This field is required.</div>
+                    <div ng-message="required" mb-translate>This field is required.</div>
                 </div>
             </md-input-container>
             <md-input-container>
-                <label translate="">Unit</label>
+                <label mb-translate="">Unit</label>
                 <input ng-model="config.data.unit">
             </md-input-container>
             <md-input-container>
-                <label translate="">Namespace</label>
+                <label mb-translate="">Namespace</label>
                 <input ng-model="config.data.namespace">
             </md-input-container>
         </form>

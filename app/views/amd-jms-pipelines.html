@@ -5,7 +5,7 @@
 
     <mb-titled-block 
     	mb-icon="report"
-        mb-title="{{'Statistics' | translate}}"
+        mb-title="{{'Statistics'  | translate}}"
         mb-progress="ctrl.loadingStatistics">
         <div 
             layout="row"
@@ -20,7 +20,7 @@
                     <md-card-title-text
                         style="margin-left: 16px;">
                         <span class="md-headline">{{metrics['supertenant.tenant.count'] || 0}}</span>
-                        <span class="md-subhead" translate>Number of Organizations</span>
+                        <span class="md-subhead" mb-translate>Number of Organizations</span>
                         <!--<p></p>-->
                     </md-card-title-text>
                     <md-card-title-media>
@@ -37,7 +37,7 @@
                     <md-card-title-text
                         style="margin-left: 16px;">
                         <span class="md-headline">{{metrics['supertenant.member.count'] || 0}}</span>
-                        <span class="md-subhead" translate>Number of Users</span>
+                        <span class="md-subhead" mb-translate>Number of Users</span>
                         <!--<p></p>-->
                     </md-card-title-text>
                     <md-card-title-media>
@@ -54,7 +54,7 @@
                     <md-card-title-text
                         style="margin-left: 16px;">
                         <span class="md-headline">{{metrics['supertms.test.count'] || 0}}</span>
-                        <span class="md-subhead" translate>Number of Tests</span>
+                        <span class="md-subhead" mb-translate>Number of Tests</span>
                         <!--<p></p>-->
                     </md-card-title-text>
                     <md-card-title-media>
@@ -71,7 +71,7 @@
 <!--                     <md-card-title-text -->
 <!--                         style="margin-left: 16px;"> -->
 <!--                         <span class="md-headline">{{metrics['supertms.test.total_time'] || 232}}</span> -->
-<!--                         <span class="md-subhead" translate>Total Time of Tests</span> -->
+<!--                         <span class="md-subhead" mb-translate>Total Time of Tests</span> -->
 <!--                         <p></p> -->
 <!--                     </md-card-title-text> -->
 <!--                     <md-card-title-media> -->
@@ -88,7 +88,7 @@
                     <md-card-title-text
                         style="margin-left: 16px;">
                         <span class="md-headline">{{metrics['supertms.test_run.count'] || 0}}</span>
-                        <span class="md-subhead" translate>Number of Test Runs</span>
+                        <span class="md-subhead" mb-translate>Number of Test Runs</span>
                         <!--<p></p>-->
                     </md-card-title-text>
                     <md-card-title-media>
@@ -102,7 +102,7 @@
     </mb-titled-block>
 	<mb-pagination-bar
 		mb-icon="history"
-        mb-title="{{'Running Jobs' | translate}}"
+        mb-title="{{'Running Jobs'  | translate}}"
         mb-model="paginatorParameter"
         mb-reload="reload()"
         mb-properties="ctrl.properties">
@@ -126,8 +126,8 @@
 		            class="md-list-item-text" 
 		            layout="column">
 		            <h3>{{object.id}} - {{object.title}}</h3>
-		            <p><span translate>Status</span>: <span translate>{{object.status}}</span></p>
-		            <p><span translate>Tenant</span>: {{tenants[object.tenant].title}}</p>
+		            <p><span mb-translate>Status</span>: <span mb-translate>{{object.status}}</span></p>
+		            <p><span mb-translate>Tenant</span>: {{tenants[object.tenant].title}}</p>
 		        </div>
 		        <md-divider md-inset></md-divider>
 		    </md-list-item>
@@ -136,7 +136,7 @@
 		    layout="column"
 		    layout-align="center center"
 		    ng-show="!ctrl.loadingPipelines && ctrl.items && ctrl.items.length === 0">
-		    <h2 translate>Empty job list</h2>
+		    <h2 mb-translate>Empty job list</h2>
 		</div>
 	</div>
       

@@ -4,7 +4,7 @@
 
     <mb-titled-block 
         mb-progress="ctrl.charging"
-        mb-title="{{'Charge wallet'| translate}}"
+        mb-title="{{'Charge wallet' | translate}}"
         layout="column">
 
         <form 
@@ -18,7 +18,7 @@
             <div layout="column" 
                  layout-padding>
                 <md-input-container>
-                    <label translate="">Choose wallet</label>
+                    <label mb-translate="">Choose wallet</label>
                     <md-select 
                         ng-model="ctrl.wallet"
                         ng-change="ctrl.setCurrency()"
@@ -33,7 +33,7 @@
                 </md-input-container>
 
                 <md-input-container>
-                    <label translate>Amount</label>
+                    <label mb-translate>Amount</label>
                     <input
                         required
                         type="number"
@@ -43,8 +43,8 @@
                     <div 
                         ng-messages="contentForm.amount.$error" 
                         ng-if="contentForm.amount.$touched">
-                        <div ng-message="required"><span translate>Amount should be positive.</span></div>
-                        <div ng-message="min"><span translate>Minimum supported amount is reached.</span></div>
+                        <div ng-message="required"><span mb-translate>Amount should be positive.</span></div>
+                        <div ng-message="min"><span mb-translate>Minimum supported amount is reached.</span></div>
                     </div>
                 </md-input-container>
 
@@ -69,12 +69,12 @@
                         class = "md-raised md-accent"
                         ng-click="ctrl.cancel()"
                         aria-label="cancel">
-                        <span translate="">Cancel</span>
+                        <span mb-translate="">Cancel</span>
                     </md-button>
                 </div>
 
                 <div ng-if="ctrl.message">
-                    <p style="color: red"><span translate>{{ctrl.message}}</span></p>
+                    <p style="color: red"><span mb-translate>{{ctrl.message}}</span></p>
                 </div>
             </div>
         </form>

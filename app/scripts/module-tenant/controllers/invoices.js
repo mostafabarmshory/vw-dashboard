@@ -23,7 +23,7 @@
 mblowfish.controller('AmdTenantInvoicesController', function(
 	$scope,
 	$tenant, QueryParameter,
-	$translate
+	$mbTranslate
 ) {
 
 	var paginatorParameter = new QueryParameter();
@@ -51,7 +51,7 @@ mblowfish.controller('AmdTenantInvoicesController', function(
 				requests = items;
 				ctrl.items = ctrl.items.concat(requests.items);
 			}, function() {
-				alert($translate.instant('Failed to load invoices.'));
+				alert($mbTranslate.instant('Failed to load invoices.'));
 			})
 			.finally(function() {
 				ctrl.loadingInvoices = false;

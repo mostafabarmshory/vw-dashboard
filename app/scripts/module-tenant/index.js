@@ -103,7 +103,7 @@ mblowfish.config(function($mbEditorProvider, $mbViewProvider, $mbActionsProvider
 			/*
 			 * @ngInject
 			 */
-			action: function($tenant, $navigator, $mbDispatcher, $window, $translate) {
+			action: function($tenant, $navigator, $mbDispatcher, $window, $mbTranslate) {
 				var job = $tenant.tenantSchema()
 					.then(function(schema) {
 						return $navigator.openDialog({
@@ -124,7 +124,7 @@ mblowfish.config(function($mbEditorProvider, $mbViewProvider, $mbActionsProvider
 							values: [item]
 						});
 					}, function() {
-						$window.alert($translate.instant('Failed to create a new tenant.'));
+						$window.alert($mbTranslate.instant('Failed to create a new tenant.'));
 					});
 				// TODO: maso, 2020: add the job into the job lists
 				// $app.addJob('Adding new shop category', job);

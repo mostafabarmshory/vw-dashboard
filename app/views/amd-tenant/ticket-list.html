@@ -17,19 +17,19 @@
         <md-progress-linear 
             ng-show="ctrl.status === 'working'" 
             class="md-accent"
-            md-diameter="96"> {{'Loading ...'| translate}} 
+            md-diameter="96"> {{'Loading ...' | translate}} 
         </md-progress-linear>
     </div>
     <div
         layout="column"
         ng-if="ctrl.status !== 'working' && ctrl.items.length === 0">
-        <h3 style="text-align: center" translate>Item not found</h3>
+        <h3 style="text-align: center" mb-translate>Item not found</h3>
         <div
             layout="row"
             layout-align="center center">
             <md-button ng-click="add()">
                 <mb-icon>add</mb-icon>
-                <span translate>add</span>
+                <span mb-translate>add</span>
             </md-button>
         </div>
     </div>
@@ -52,7 +52,7 @@
                     layout="column">
                     <h3>{{item.subject}}</h3>
                     <h4>{{item.description}}</h4>
-                    <p>{{item.creation_dtime}}, <span translate="">User</span>:{{item.requester}}</p>
+                    <p>{{item.creation_dtime}}, <span mb-translate="">User</span>:{{item.requester}}</p>
                 </div>
             </md-list-item>
         </md-list>
@@ -67,7 +67,7 @@
                 height="80px"
                 ng-src="resources/images/chat.gif"
                 class="md-avatar"/>
-            <p translate="">Select a ticket</p>
+            <p mb-translate="">Select a ticket</p>
         </div>
     </div>
 </div>

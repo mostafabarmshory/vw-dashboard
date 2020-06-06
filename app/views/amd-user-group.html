@@ -15,11 +15,11 @@
 				<table
 					class="amd-table amd-table-description">
 					<tr>
-						<td translate>ID</td>
+						<td mb-translate>ID</td>
 						<td>{{group.id}}</td>
 					</tr>
 					<tr>
-						<td translate>Name</td>
+						<td mb-translate>Name</td>
 						<td>
 							<mb-inline
 								ng-model="group.name"
@@ -32,7 +32,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td translate>Description</td>
+						<td mb-translate>Description</td>
 						<td>
 							<mb-inline
 								ng-model="group.description"
@@ -55,7 +55,7 @@
 				class="md-raised md-accent" 
 				ng-click="remove()">
 				<mb-icon>delete</mb-icon>
-				<span translate>Delete</span>
+				<span mb-translate>Delete</span>
 			</md-button>
 		</div>
 	</section>
@@ -65,7 +65,7 @@
 		layout="column" 
 		md-whiteframe="1"
 		layout-margin>
-		<h3 translate>Roles</h3>
+		<h3 mb-translate>Roles</h3>
 		<md-chips 
 			ng-model="roles.items"
 			md-on-remove="removeRole($chip)">
@@ -77,14 +77,14 @@
 			ng-show="!roles.items || roles.items.length == 0"
 			layout="column" 
 			layout-align="center center">
-			<p translate>Group has no role.</p>
+			<p mb-translate>Group has no role.</p>
 		</div>
 		<div layout="row">
 			<span flex></span>
 			<md-button class="md-raised"
 				ng-click="changeRoles()">
 				<mb-icon>edit</mb-icon>
-				<span translate>Edit</span>
+				<span mb-translate>Edit</span>
 			</md-button>
 		</div>
 	</section>
@@ -94,7 +94,7 @@
 		layout="column" 
 		md-whiteframe="1"
 		layout-margin>
-		<h3 translate>Users</h3>
+		<h3 mb-translate>Users</h3>
 		<md-chips 
 			ng-model="users.items"
 			md-on-remove="removeUser($chip)">
@@ -106,14 +106,14 @@
 			ng-show="!users.items || users.items.length == 0"
 			layout="column" 
 			layout-align="center center">
-			<p translate>Group has no any member.</p>
+			<p mb-translate>Group has no any member.</p>
 		</div>
 		<div layout="row">
 			<span flex></span>
 			<md-button class="md-raised"
 				ng-click="changeUsers()">
 				<mb-icon>edit</mb-icon>
-				<span translate>Edit</span>
+				<span mb-translate>Edit</span>
 			</md-button>
 		</div>
 	</section>

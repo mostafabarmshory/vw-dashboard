@@ -42,13 +42,13 @@
 			layout="column"
 			layout-align="center center"
 			ng-show="ctrl.state !== 'busy' && ctrl.items && ctrl.items.length === 0">
-			<h2 translate="">Empty backend list</h2>
-			<p translate="">Any backend match with the query. You can add a new backend by 
+			<h2 mb-translate="">Empty backend list</h2>
+			<p mb-translate="">Any backend match with the query. You can add a new backend by 
 				click on the add button. Links improve your site rank.</p>
 			<md-button
 				ng-click="ctrl.addItem($event)">
 				<mb-icon>add</mb-icon>
-				<span translate="">Add</span>
+				<span mb-translate="">Add</span>
 			</md-button>
 		</div>
 	</md-content>

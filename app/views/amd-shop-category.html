@@ -5,7 +5,7 @@
 	<mb-titled-block 
 		ng-show="!ctrl.edit"
 		mb-progress="ctrl.loading || ctrl.saving"
-		mb-title="{{'Category'| translate}}"
+		mb-title="{{'Category' | translate}}"
 		layout="column">
 
 		<div layout="row" 
@@ -25,15 +25,15 @@
 
 			<table>
 				<tr>
-					<td translate="">ID </td>
+					<td mb-translate="">ID </td>
 					<td>: {{::category.id}}</td>
 				</tr>
 				<tr>
-					<td translate="">Parent </td>
+					<td mb-translate="">Parent </td>
 					<td>: {{parent.name}}</td>
 				</tr>
 				<tr>
-					<td translate="">Name </td>
+					<td mb-translate="">Name </td>
 					<td><mb-inline
 							ng-model="category.name"
 							mb-inline-enable="{{true}}"
@@ -41,7 +41,7 @@
 							mb-inline-on-save="save()">: {{category.name}}</mb-inline></td>
 				</tr>
 				<tr>
-					<td translate="">Description </td>
+					<td mb-translate="">Description </td>
 					<td><mb-inline
 						ng-model="category.description"
 						mb-inline-enable="{{true}}"
@@ -49,7 +49,7 @@
 						mb-inline-on-save="save()">: {{category.description}}</mb-inline></td>
 				</tr>
 				<tr>
-					<td translate="">Content ID </td>
+					<td mb-translate="">Content ID </td>
 					<td><mb-inline
 						ng-model="category.content_id"
 						mb-inline-enable="{{true}}"
@@ -64,7 +64,7 @@
 			<md-button 
 				class = "md-raised md-accent"
 				ng-click="remove()">
-				<span translate="">Delete</span>
+				<span mb-translate="">Delete</span>
 			</md-button>
 		</div>
 	</mb-titled-block>
@@ -73,13 +73,13 @@
 	<!-- subcategories -->
 	<mb-titled-block
 		mb-progress="ctrl.loadingChilds || ctrl.savingCategory"
-		mb-title="{{'Subcategories'| translate}}"
+		mb-title="{{'Subcategories' | translate}}"
 		layout="column"
 		mb-more-actions="categoryActions">
 
 		<div layout="column"
 			 ng-if="ctrl.subcategories.length == 0 && !ctrl.loadingChilds">
-			<p style="text-align: center" translate>List is empty.</p>
+			<p style="text-align: center" mb-translate>List is empty.</p>
 		</div>
 		<md-list flex>
 			<md-list-item 
@@ -103,13 +103,13 @@
 	<!-- Services -->
 	<mb-titled-block
 		mb-progress="ctrl.loadingServices || ctrl.serviceSaving"
-		mb-title="{{'Services'| translate}}"
+		mb-title="{{'Services' | translate}}"
 		layout="column"
 		mb-more-actions="serviceActions">
 
 		<div layout="column"
 			 ng-if="ctrl.services.length == 0 && !ctrl.loadingServices">
-			<p style="text-align: center" translate>List is empty.</p>
+			<p style="text-align: center" mb-translate>List is empty.</p>
 		</div>
 		<md-list flex> 
 			<md-list-item 
@@ -131,13 +131,13 @@
 	<!-- Products -->
 	<mb-titled-block
 		mb-progress="ctrl.loadingProducts || ctrl.productSaving"
-		mb-title="{{'Products'| translate}}"
+		mb-title="{{'Products' | translate}}"
 		layout="column"
 		mb-more-actions="productActions">
 
 		<div layout="column"
 			 ng-if="ctrl.products.length === 0 && !ctrl.loadingProducts">
-			<p style="text-align: center" translate>List is empty.</p>
+			<p style="text-align: center" mb-translate>List is empty.</p>
 		</div>
 		<md-list flex> 
 			<md-list-item 

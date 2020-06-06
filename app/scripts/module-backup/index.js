@@ -44,7 +44,7 @@ mblowfish.config(function($mbActionsProvider,$mbViewProvider) {
 			description: 'Creates new backup snapshot in the current tenant',
 			icon: 'store',
 			/* @ngInject */
-			action: function($backup, $navigator, $window, $mbDispatcher, $translate) {
+			action: function($backup, $navigator, $window, $mbDispatcher, $mbTranslate) {
 				var job = $backup.snapshotSchema()
 					.then(function(schema) {
 						return $navigator.openDialog({
@@ -65,7 +65,7 @@ mblowfish.config(function($mbActionsProvider,$mbViewProvider) {
 							values: [item]
 						});
 					}, function() {
-						$window.alert($translate.instant('Failed to create a new backup snapshot.'));
+						$window.alert($mbTranslate.instant('Failed to create a new backup snapshot.'));
 					});
 				// TODO: maso, 2020: add the job into the job lists
 				// $app.addJob('Adding new shop category', job);

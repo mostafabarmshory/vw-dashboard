@@ -5,7 +5,7 @@
     <mb-titled-block 
         ng-show="!ctrl.edit"
         mb-progress="ctrl.loading || ctrl.updating"
-        mb-title="{{'Deliver'| translate}}"
+        mb-title="{{'Deliver' | translate}}"
         layout="column">
         <div layout="row" 
              layout-xs="column" 
@@ -13,11 +13,11 @@
              layout-padding>
             <table>
                 <tr>
-                    <td translate="">ID </td>
+                    <td mb-translate="">ID </td>
                     <td>: {{deliver.id}}</td>
                 </tr>
                 <tr>
-                    <td translate="">Title </td>
+                    <td mb-translate="">Title </td>
                     <td><mb-inline
                             ng-model="deliver.title"
                             mb-inline-enable="{{true}}"
@@ -25,7 +25,7 @@
                             mb-inline-on-save="save()">: {{deliver.title}}</mb-inline></td>
                 </tr>
                 <tr>
-                    <td translate="">Description </td>
+                    <td mb-translate="">Description </td>
                     <td><mb-inline
                             ng-model="deliver.description"
                             mb-inline-enable="{{true}}"
@@ -33,7 +33,7 @@
                             mb-inline-on-save="save()">: {{deliver.description}}</mb-inline></td>
                 </tr>
                 <tr>
-                    <td translate="">Price </td>
+                    <td mb-translate="">Price </td>
                     <td><mb-inline
                             ng-model="deliver.price"
                             mb-inline-enable="{{true}}"
@@ -41,11 +41,11 @@
                             mb-inline-on-save="save()">: {{deliver.price}}</mb-inline></td>
                 </tr>
                 <tr>
-                    <td translate="">Creation Date </td>
+                    <td mb-translate="">Creation Date </td>
                     <td>: {{deliver.creation_dtime| mbDate:'jYYYY-jMM-jDD'}}</td>
                 </tr>
                 <tr>
-                    <td translate="">Last Modified Date </td>
+                    <td mb-translate="">Last Modified Date </td>
                     <td>: {{deliver.modif_dtime| mbDate:'jYYYY-jMM-jDD'}}</td>
                 </tr>
             </table>
@@ -56,12 +56,12 @@
             <md-button 
                 class = "md-raised md-accent"
                 ng-click="remove()">
-                <span translate="">Delete</span>
+                <span mb-translate="">Delete</span>
             </md-button>
 <!--             <md-button  -->
 <!--                 class="md-raised md-primary" -->
 <!--                 ng-click="ctrl.edit = true;"> -->
-<!--                 <span translate="">Edit</span> -->
+<!--                 <span mb-translate="">Edit</span> -->
 <!--             </md-button> save()-->
         </div>
     </mb-titled-block>

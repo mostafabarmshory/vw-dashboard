@@ -27,7 +27,7 @@
  * @name ngMaterialDashboardShop.controller:AmdShopTagCtrl
  * @description # TagCtrl Controller of the saasdmCpanelApp
  */
-mblowfish.controller('AmdShopTagCtrl', function($scope, $shop, $translate, $state, $location) {
+mblowfish.controller('AmdShopTagCtrl', function($scope, $shop, $mbTranslate, $state, $location) {
 
 	var ctrl = {
 		loading: false,
@@ -45,7 +45,7 @@ mblowfish.controller('AmdShopTagCtrl', function($scope, $shop, $translate, $stat
 			.then(function(t) {
 				$scope.tag = t;
 			}, function() {
-				alert($translate.instant('Failed to load the tag.'));
+				alert($mbTranslate.instant('Failed to load the tag.'));
 			})//
 			.finally(function() {
 				ctrl.loading = false;
@@ -53,14 +53,14 @@ mblowfish.controller('AmdShopTagCtrl', function($scope, $shop, $translate, $stat
 	}
 
 	function remove() {
-		confirm($translate.instant('Item will be deleted. There is no undo action.'))//
+		confirm($mbTranslate.instant('Item will be deleted. There is no undo action.'))//
 			.then(function() {
 				return $scope.tag.delete();//
 			})//
 			.then(function() {
 				$location.path('/tags');
 			}, function() {
-				alert($translate.instant('Fail to delete the tag.'));
+				alert($mbTranslate.instant('Fail to delete the tag.'));
 			});
 	}
 
@@ -74,7 +74,7 @@ mblowfish.controller('AmdShopTagCtrl', function($scope, $shop, $translate, $stat
 				$scope.tag = newTag;
 				ctrl.edit = false;
 			}, function() {
-				alert($translate.instant('Failed to save the tag.'));
+				alert($mbTranslate.instant('Failed to save the tag.'));
 			})//
 			.finally(function() {
 				ctrl.saving = false;

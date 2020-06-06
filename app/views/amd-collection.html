@@ -10,9 +10,9 @@
 			style="min-height: 160px;"
 			layout="row">
 			<table>
-				<tr><td translate="">Name</td><td>: {{collection.name}}</td></tr>
-				<tr><td translate="">Title</td><td>: {{collection.title}}</td></tr>
-				<tr><td translate="">Description</td><td><p>:{{collection.description}}</p></td></tr>
+				<tr><td mb-translate="">Name</td><td>: {{collection.name}}</td></tr>
+				<tr><td mb-translate="">Title</td><td>: {{collection.title}}</td></tr>
+				<tr><td mb-translate="">Description</td><td><p>:{{collection.description}}</p></td></tr>
 		<!-- 		TODO: maso, 2017: adding other attribuates -->
 			</table>
 		</div>
@@ -22,7 +22,7 @@
 			<md-button
 				ng-click="removeCollection()">
 				<mb-icon>delete</mb-icon>
-				<span translate="">delete</span>
+				<span mb-translate="">delete</span>
 			</md-button>
 		</div>
 	</div>
@@ -63,7 +63,7 @@
 		<md-button
 			ng-click="add()">
 			<mb-icon>add</mb-icon>
-			<span translate="">Add</span>
+			<span mb-translate="">Add</span>
 		</md-button>
 	</div>
 </md-content>

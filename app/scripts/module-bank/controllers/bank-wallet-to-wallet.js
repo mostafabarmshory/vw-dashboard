@@ -5,7 +5,7 @@
  * @description # Wallet to wallet transfer
  * 
  */
-mblowfish.controller('AmdBankWalletToWalletCtrl', function($bank, $rootScope, QueryParameter, $window, $state, $translate) {
+mblowfish.controller('AmdBankWalletToWalletCtrl', function($bank, $rootScope, QueryParameter, $window, $state, $mbTranslate) {
 
 	this.queryParameter = new QueryParameter();
 	this.sourceWallet = {};
@@ -60,7 +60,7 @@ mblowfish.controller('AmdBankWalletToWalletCtrl', function($bank, $rootScope, Qu
 			.then(function(transfer) {
 				$window.history.back();
 			}, function(error) {
-				alert($translate.instant('Failed to transfer'));
+				alert($mbTranslate.instant('Failed to transfer'));
 			})
 			.finally(function() {
 				ctrl.transfering = false;

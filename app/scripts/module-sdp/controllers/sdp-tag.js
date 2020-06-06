@@ -25,7 +25,7 @@
  * @name saasdmCpanelApp.controller:SdpTagCtrl
  * @description # SdpTagCtrl Controller of the saasdmCpanelApp
  */
-mblowfish.controller('SdpTagCtrl', function($scope, $sdp, $navigator, $state, $location, $translate) {
+mblowfish.controller('SdpTagCtrl', function($scope, $sdp, $navigator, $state, $location, $mbTranslate) {
 
     var ctrl = {
         loadingTag : true,
@@ -37,7 +37,7 @@ mblowfish.controller('SdpTagCtrl', function($scope, $sdp, $navigator, $state, $l
     var tag;
 
     function handlError(){
-        alert($translate.instant('faile to load asset'));
+        alert($mbTranslate.instant('faile to load asset'));
     }
     
     /**

@@ -12,7 +12,7 @@
 			md-whiteframe="1"
 			layout-margin 
 			mb-preloading="ctrl.updatingAvatar || ctrl.loadUser">
-			<h3 translate>Avatar</h3>
+			<h3 mb-translate>Avatar</h3>
 		    <img style="border-radius: 50%"
 		    	width="200px" height="200px" ng-show="!uploadAvatar"
 		    	ng-src="/api/v2/user/accounts/{{ctrl.user.id}}/avatar" />
@@ -30,21 +30,21 @@
 		    		ng-show="!uploadAvatar"
 					class="md-raised md-primary"
 					ng-click="uploadAvatar=true">
-		    		<sapn translate>edit</sapn>
+		    		<sapn mb-translate>edit</sapn>
 		    	</md-button>
 		    	<md-button 
 		    		ng-show="uploadAvatar"
 					class="md-raised md-primary"
 					ng-click="updateAvatar(avatarFiles)">
 <!-- 		    		<mb-icon>save</mb-icon> -->
-		    		<sapn translate>save</sapn>
+		    		<sapn mb-translate>save</sapn>
 		    	</md-button>
 		    	<md-button 
 		    		ng-show="uploadAvatar"
 		    		class="md-raised"
 		    		ng-click="uploadAvatar=false">
 <!-- 					<mb-icon>cancel</mb-icon> -->
-					<sapn translate>cancel</sapn>
+					<sapn mb-translate>cancel</sapn>
 		    	</md-button>
 		    </div>
 		</section>
@@ -55,32 +55,32 @@
 			md-whiteframe="1"
 			layout-margin
 			mb-preloading="ctrl.loadProfile || ctrl.saveProfile || ctrl.loadUser">
-			<h3 translate>Profile</h3>
+			<h3 mb-translate>Profile</h3>
 			<form
 				name="contactForm"
 				layout="column" 
 				layout-padding>
 				<md-input-container layout-fill>
-			        <label translate>First name</label>
+			        <label mb-translate>First name</label>
 			        <input ng-model="ctrl.profile.first_name">
 			    </md-input-container>
 				<md-input-container layout-fill>
-			        <label translate>Last name</label>
+			        <label mb-translate>Last name</label>
 			        <input ng-model="ctrl.profile.last_name">
 			    </md-input-container>
 				<md-input-container layout-fill>
-			        <label translate>Public email</label>
+			        <label mb-translate>Public email</label>
 			        <input name="email" ng-model="ctrl.profile.email" type="email">
 			        <div ng-messages="contactForm.email.$error">
 		              	<div ng-message="email">Email is not valid.</div>
 		            </div>
 			    </md-input-container>
 			    <md-input-container layout-fill>
-			        <label translate>Language</label>
+			        <label mb-translate>Language</label>
 			        <input ng-model="ctrl.profile.language">
 			    </md-input-container>
 			    <md-input-container layout-fill>
-			        <label translate>Timezone</label>
+			        <label mb-translate>Timezone</label>
 			        <input ng-model="ctrl.profile.timezone">
 			    </md-input-container>
 			</form>
@@ -89,7 +89,7 @@
 		    	<md-button 
 		    		 class="md-raised md-primary"
 		    		 ng-click="save(ctrl.profile)">
-		    		<sapn translate>update</sapn>
+		    		<sapn mb-translate>update</sapn>
 		    	</md-button>
 		    </div>
 		</section>

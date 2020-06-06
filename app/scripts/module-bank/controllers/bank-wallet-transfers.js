@@ -5,7 +5,7 @@
  * @description Load transfers of a wallet
  * 
  */
-mblowfish.controller('AmdBankWalletTransfersCtrl', function ($scope, $state, $q, $translate, $bank, $navigator, $controller) {
+mblowfish.controller('AmdBankWalletTransfersCtrl', function ($scope, $state, $q, $mbTranslate, $bank, $navigator, $controller) {
 
     // Extends with ItemsController
     angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
@@ -29,7 +29,7 @@ mblowfish.controller('AmdBankWalletTransfersCtrl', function ($scope, $state, $q,
         .then(function (wallet) {
             ctrl.wallet = wallet;
         }, function () {
-            alert($translate.instant('Failed to load wallet'));
+            alert($mbTranslate.instant('Failed to load wallet'));
         })//
         .finally(function () {
             delete ctrl.loadingWallet;

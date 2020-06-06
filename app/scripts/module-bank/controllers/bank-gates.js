@@ -5,7 +5,7 @@
  * @description Manages bank backends
  * 
  */
-mblowfish.controller('AmdBankGatesCtrl', function ($scope, $bank, QueryParameter, $navigator, $translate) {
+mblowfish.controller('AmdBankGatesCtrl', function ($scope, $bank, QueryParameter, $navigator, $mbTranslate) {
 
     var paginatorParameter = new QueryParameter();
     paginatorParameter.setOrder('id', 'd');
@@ -50,7 +50,7 @@ mblowfish.controller('AmdBankGatesCtrl', function ($scope, $bank, QueryParameter
      * @returns
      */
     function remove(pobject) {
-        confirm($translate.instant('The bank gate will be deleted.'))//
+        confirm($mbTranslate.instant('The bank gate will be deleted.'))//
         .then(function () {
             pobject.delete()//
             .then(function () {
@@ -81,7 +81,7 @@ mblowfish.controller('AmdBankGatesCtrl', function ($scope, $bank, QueryParameter
         .then(function () {
             $navigator.openPage('/bank/gates');
         }, function () {
-            alert($translate.instant('Fail to create new bank gate'));
+            alert($mbTranslate.instant('Fail to create new bank gate'));
         })//
         .finally(function () {
             $scope.creatingNewGate = false;

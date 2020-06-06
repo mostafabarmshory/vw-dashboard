@@ -28,7 +28,7 @@
                     layout="column">
                     <h3>{{item.subject}}</h3>
                     <h4>{{item.description}}</h4>
-                    <p>{{item.creation_dtime}}, <span translate="">User</span>:{{item.requester}}</p>
+                    <p>{{item.creation_dtime}}, <span mb-translate="">User</span>:{{item.requester}}</p>
                 </div>
             </md-list-item>
         </md-list>
@@ -55,7 +55,7 @@
             layout-align="center center"
             style="min-height: 60px">
             <md-input-container class="md-block">
-                <label translate="">Subject</label>
+                <label mb-translate="">Subject</label>
                 <input 
                     ng-model="ticket.subject" 
                     ng-change="updateSubject()" 
@@ -106,7 +106,7 @@
                             class="md-raised md-primary"
                             ng-click="addComment(_temp); _temp = {};"
                             aria-label="Add comment">
-                            <span translate>send</span>
+                            <span mb-translate>send</span>
                         </md-button>
                     </div>
                 </md-whiteframe>

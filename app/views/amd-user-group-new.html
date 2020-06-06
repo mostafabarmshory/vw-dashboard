@@ -14,15 +14,15 @@
 			<div layout="column" 
 				layout-padding>
 				<md-input-container>
-					<label translate>Name</label>
+					<label mb-translate>Name</label>
 					<input name="name" ng-model="model.name" type="text" required>
 					<div ng-messages="ctrl.myForm.name.$error">
-						<div ng-message="required" translate>This field is required.</div>
-						<div ng-message="unique" translate>Username is used before.</div>
+						<div ng-message="required" mb-translate>This field is required.</div>
+						<div ng-message="unique" mb-translate>Username is used before.</div>
 					</div>
 				</md-input-container>
 				<md-input-container>
-					<label translate>Description</label>
+					<label mb-translate>Description</label>
 					<input ng-model="model.description">
 				</md-input-container>
 			</div>
@@ -33,13 +33,13 @@
 					ng-click="cancel()"
 					aria-label="close">
 <!-- 					<mb-icon>close</mb-icon> -->
-					<span translate>Cancel</span>
+					<span mb-translate>Cancel</span>
 				</md-button>
 				<md-button 
 					class="md-raised md-primary"
 					ng-click="addGroup(model)">
 <!-- 					<mb-icon>done</mb-icon> -->
-					<span translate>Add</span>
+					<span mb-translate>Add</span>
 				</md-button>
 			</div>
 		</form>

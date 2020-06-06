@@ -23,7 +23,7 @@
 
 mblowfish.controller('AmdTenantTenantController', function(
 		/* angularjs   */ $scope, $state, $q,
-		/* ngtranslate */ $tenant, $navigator, $translate,
+		/* ngtranslate */ $tenant, $navigator, $mbTranslate,
 		/* am-wb-core  */ $mbResource,
 		/* seen-tenant */ TenantTenant, TenantAccount) {
 
@@ -47,7 +47,7 @@ mblowfish.controller('AmdTenantTenantController', function(
 				delete tenant.owners;
 				ctrl.tenant = new TenantTenant(tenant);
 			}, function(error) {
-				alert($translate.instant('Failed to load tenant.'));
+				alert($mbTranslate.instant('Failed to load tenant.'));
 			})//
 			.finally(function() {
 				ctrl.loading = false;
@@ -70,7 +70,7 @@ mblowfish.controller('AmdTenantTenantController', function(
 				ctrl.edit = false;
 			}, function() {
 				// show error
-				alert($translate.instant('Failed to save tenant'));
+				alert($mbTranslate.instant('Failed to save tenant'));
 			})
 			.finally(function() {
 				ctrl.saving = false;
@@ -97,7 +97,7 @@ mblowfish.controller('AmdTenantTenantController', function(
 			return;
 		}
 		var ctrl = this;
-		confirm($translate.instant('delete tenant?'))//
+		confirm($mbTranslate.instant('delete tenant?'))//
 			.then(function() {
 				ctrl.removing = true;
 				return ctrl.tenant.delete();
@@ -108,7 +108,7 @@ mblowfish.controller('AmdTenantTenantController', function(
 				$navigator.openPage('tenant/tenants');
 			}, function() {
 				// show error
-				alert($translate.instant('Failed to delete tenant'));
+				alert($mbTranslate.instant('Failed to delete tenant'));
 			})
 			.finally(function() {
 				ctrl.removing = false;

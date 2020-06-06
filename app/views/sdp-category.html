@@ -4,7 +4,7 @@
 	mb-infinate-scroll="nextChilds()">
 	<mb-titled-block 
 		mb-progress="ctrl.loadingCategory || ctrl.savingCategory"
-		mb-title="{{'Category'| translate}}"
+		mb-title="{{'Category' | translate}}"
 		layout="column">
 		<section ng-show="!ctrl.edit"
 			layout="column">
@@ -49,13 +49,13 @@
 					class = "md-raised md-accent"
 					ng-click="remove()">
 	<!-- 				<mb-icon>delete</mb-icon> -->
-					<span translate>Delete</span>
+					<span mb-translate>Delete</span>
 				</md-button>
 				<md-button 
 					class="md-raised"
 					ng-click="ctrl.edit=true">
 	<!-- 				<mb-icon>edit</mb-icon> -->
-					<span translate>Edit</span>
+					<span mb-translate>Edit</span>
 				</md-button>
 			</div>
 		</section>
@@ -95,13 +95,13 @@
 					class="md-raised"
 					ng-click="ctrl.edit=false">
 	<!-- 				<mb-icon>close</mb-icon> -->
-					<span translate>Cancel</span>
+					<span mb-translate>Cancel</span>
 				</md-button>
 				<md-button
 					class="md-raised md-primary"  
 					ng-click="save()">
 	<!-- 				<mb-icon>save</mb-icon> -->
-					<span translate>Save</span>
+					<span mb-translate>Save</span>
 				</md-button>
 			 </div>
 		</section>
@@ -110,7 +110,7 @@
 	<!-- subcategories -->
 		<mb-titled-block
 			mb-progress="ctrl.loadingChilds"
-			mb-title="{{'Subcategories' | translate}}"
+			mb-title="{{'Subcategories'  | translate}}"
 			layout="column">
 			<md-list flex>
 				<md-list-item 

@@ -5,7 +5,7 @@
     <mb-titled-block
         ng-if="!ctrl.edit"
         mb-progress="ctrl.loading"
-        mb-title="{{'Gate'| translate}}"
+        mb-title="{{'Gate' | translate}}"
         layout="column">
 
         <div layout="row" 
@@ -19,15 +19,15 @@
                 ng-src="{{gate.symbol|| gate.url|| ('images/bank/' + gate.symbol + '.svg')}}" />
             <table>
                 <tr>
-                    <td translate="">ID  </td>
+                    <td mb-translate="">ID  </td>
                     <td>: {{gate.id}}</td>
                 </tr>
                 <tr>
-                    <td translate="">Title </td>
+                    <td mb-translate="">Title </td>
                     <td>: {{gate.title}}</td>
                 </tr>
                 <tr>
-                    <td translate="">Description  </td>
+                    <td mb-translate="">Description  </td>
                     <td>: {{gate.description}}</td>
                 </tr>
             </table>
@@ -38,19 +38,19 @@
             <md-button 
                 class = "md-raised md-accent"
                 ng-click="remove()">
-                <span translate="">Delete</span>
+                <span mb-translate="">Delete</span>
             </md-button>
             <md-button 
                 class = "md-raised md-primary"
                 ng-click="ctrl.edit = true">
-                <span translate="">Edit</span>
+                <span mb-translate="">Edit</span>
             </md-button>
         </div>
     </mb-titled-block>
     <mb-titled-block 
         ng-if="ctrl.edit"
         mb-progress="working"
-        mb-title="{{'Edit gate'| translate}}"
+        mb-title="{{'Edit gate' | translate}}"
         layout="column">
         <form
             name="myForm"
@@ -61,7 +61,7 @@
                 <label tranlate="">Title </label>
                 <input ng-model="gate.title" name="title" required></input>
                 <div ng-messages="myForm.title.$error">
-                    <div ng-message="required" translate="">This field is required.</div>
+                    <div ng-message="required" mb-translate="">This field is required.</div>
                 </div>
             </md-input-container>
 
@@ -71,7 +71,7 @@
             </md-input-container>
 
             <wb-ui-setting-image
-                title="{{'Image'| translate}}" 
+                title="{{'Image' | translate}}" 
                 wb-ui-setting-clear-button="true"
                 wb-ui-setting-preview="true"
                 ng-model="gate.symbol">
@@ -82,13 +82,13 @@
                 <md-button 
                     class="md-raised" 
                     ng-click="ctrl.edit = false;load()">
-                    <span translate="">Cancel</span>
+                    <span mb-translate="">Cancel</span>
                 </md-button>
                 <md-button
                     class="md-raised md-primary" 
                     ng-disabled="myForm.$invalid"
                     ng-click="update()">
-                    <span translate="">Update</span>
+                    <span mb-translate="">Update</span>
                 </md-button>
             </div>
         </form>

@@ -28,7 +28,7 @@
  * @description # AmdJmsPipelinesCtrl Controller of the pipelines
  */
 mblowfish.controller('AmdJmsPipelinesCtrl',
-	function($scope, $superjms, $supertenant, $translate, $monitor, $q,
+	function($scope, $superjms, $supertenant, $mbTranslate, $monitor, $q,
 		QueryParameter) {
 
 		var paginatorParameter = new QueryParameter();
@@ -78,7 +78,7 @@ mblowfish.controller('AmdJmsPipelinesCtrl',
 					ctrl.items = ctrl.items.concat(requests.items);
 					return items;
 				}, function() {
-					alert($translate.instant('Failed to load pipelines.'));
+					alert($mbTranslate.instant('Failed to load pipelines.'));
 				})//
 				.then(loadTenants, function() {
 					throw 'Failed to load tenants of pipelines';

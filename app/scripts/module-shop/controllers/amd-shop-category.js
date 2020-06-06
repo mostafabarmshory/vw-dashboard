@@ -25,7 +25,7 @@
  * @name AmdShopCategoryCtrl
  */
 mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
-        $state, $location, $translate, QueryParameter, $navigator) {
+        $state, $location, $mbTranslate, QueryParameter, $navigator) {
 
     var ctrl = {
             loading: false,
@@ -60,7 +60,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
             loadServices();
             loadProducts();
         }, function () {
-            alert($translate.instant('Failed to load the category.'));
+            alert($mbTranslate.instant('Failed to load the category.'));
         })//
         .finally(function () {
             ctrl.loading = false;
@@ -68,14 +68,14 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
     }
 
     function remove() {
-        confirm($translate.instant('Item will be deleted. There is no undo action.'))//
+        confirm($mbTranslate.instant('Item will be deleted. There is no undo action.'))//
         .then(function () {
             return $scope.category.delete();//
         })//
         .then(function () {
             $location.path('/categories');
         }, function () {
-            alert($translate.instant('Fail to delete the category.'));
+            alert($mbTranslate.instant('Fail to delete the category.'));
         });
     }
 
@@ -89,7 +89,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
             $scope.category = newCat;
             ctrl.edit = false;
         }, function () {
-            alert($translate.instant('Failed to save the category.'));
+            alert($mbTranslate.instant('Failed to save the category.'));
         })//
         .finally(function () {
             ctrl.saving = false;
@@ -107,7 +107,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
         .then(function (clist) {
             ctrl.subcategories = clist.items;
         }, function () {
-            alert($translate.instant('Failed to load subcategories.'));
+            alert($mbTranslate.instant('Failed to load subcategories.'));
         })//
         .finally(function () {
             ctrl.loadingSubcategories = false;
@@ -123,7 +123,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
         .then(function (slist) {
             ctrl.services = slist.items;
         }, function () {
-            alert($translate.instant('Failed to load services.'));
+            alert($mbTranslate.instant('Failed to load services.'));
         })//
         .finally(function () {
             ctrl.loadingServices = false;
@@ -139,7 +139,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
         .then(function (plist) {
             ctrl.products = plist.items;
         }, function () {
-            alert($translate.instant('Failed to load products.'));
+            alert($mbTranslate.instant('Failed to load products.'));
         })//
         .finally(function () {
             ctrl.loadingProducts = false;
@@ -166,7 +166,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
         .then(function (parent) {
             $scope.parent = parent;
         }, function () {
-            alert($translate.instant('Failed to load parent category.'));
+            alert($mbTranslate.instant('Failed to load parent category.'));
         })//
         .finally(function () {
             ctrl.parentLoading = false;
@@ -191,7 +191,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
         .then(function (cat) {
             ctrl.subcategories = ctrl.subcategories.concat(cat);
         }, function () {
-            alert($translate.instant('Fail to create new category.'));
+            alert($mbTranslate.instant('Fail to create new category.'));
         })//
         .finally(function () {
             ctrl.savingCategory = false;
@@ -225,7 +225,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
         .then(function (service) {
             return service;
         }, function () {
-            alert($translate.instant('Fail to create new service.'));
+            alert($mbTranslate.instant('Fail to create new service.'));
         })//
         .then(function (service) {
             addServiceToCategory(service);
@@ -248,7 +248,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
         .then(function (servic) {
             ctrl.services = ctrl.services.concat(servic);
         }, function () {
-            alert($translate.instant('Fail to add service to the category.'));
+            alert($mbTranslate.instant('Fail to add service to the category.'));
         })//
         .finally(function () {
             ctrl.addingService = false;
@@ -283,7 +283,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
         .then(function (product) {
             return product;
         }, function () {
-            alert($translate.instant('Fail to create new product.'));
+            alert($mbTranslate.instant('Fail to create new product.'));
         })
         .then(function (product) {
             addProductToCategory(product);
@@ -306,7 +306,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
         .then(function (prod) {
             ctrl.products = ctrl.products.concat(prod);
         }, function () {
-            alert($translate.instant('Fail to add product to the category.'));
+            alert($mbTranslate.instant('Fail to add product to the category.'));
         })//
         .finally(function () {
             ctrl.addingProduct = false;

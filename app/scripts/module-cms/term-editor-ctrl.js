@@ -29,7 +29,7 @@
 @description # TermCtrl Controller of the ngMaterialDashboardCms
  */
 mblowfish.controller('AmdCmsTermCtrl', function(
-	$navigator, $cms, $translate, $state, $location, QueryParameter) {
+	$navigator, $cms, $mbTranslate, $state, $location, QueryParameter) {
 
 	this.loadingTerm = true;
 	this.savingTerm = false;
@@ -38,7 +38,7 @@ mblowfish.controller('AmdCmsTermCtrl', function(
 
 
 	function handlError() {
-		alert($translate.instant('Failed to load items'));
+		alert($mbTranslate.instant('Failed to load items'));
 	}
 
 	/*
@@ -53,7 +53,7 @@ mblowfish.controller('AmdCmsTermCtrl', function(
 				ctrl.loadMetas();
 				ctrl.loadTaxonomies();
 			}, function() {
-				alert($translate.instant('Failed to load term'));
+				alert($mbTranslate.instant('Failed to load term'));
 			})
 			.finally(function() {
 				ctrl.loadingTerm = false;
@@ -88,7 +88,7 @@ mblowfish.controller('AmdCmsTermCtrl', function(
 			.then(function(res) {
 				ctrl.term.taxonomies = res.items || {};
 			}, function() {
-				alert($translate.instant('Failed to load taxonomies'));
+				alert($mbTranslate.instant('Failed to load taxonomies'));
 			})
 			.finally(function() {
 				ctrl.loadingTaxonomies = false;
@@ -108,7 +108,7 @@ mblowfish.controller('AmdCmsTermCtrl', function(
 			.then(function() {
 				$location.path('terms');
 			}, function(error) {
-				alert($translate.instant('Failed to delete term') + error.message);
+				alert($mbTranslate.instant('Failed to delete term') + error.message);
 			})//
 			.finally(function() {
 				ctrl.removingTerm = false;
@@ -125,7 +125,7 @@ mblowfish.controller('AmdCmsTermCtrl', function(
 			.then(function() {
 				ctrl.edit = false;
 			}, function() {
-				alert($translate.instant('Failed to update term'));
+				alert($mbTranslate.instant('Failed to update term'));
 			})//
 			.finally(function() {
 				ctrl.savingTerm = false;
@@ -169,7 +169,7 @@ mblowfish.controller('AmdCmsTermCtrl', function(
 			.then(function() {
 				ctrl.term.metas.splice(index, 1);
 			}, function(error) {
-				alert($translate.instant('Failed to delete meta') + error.message);
+				alert($mbTranslate.instant('Failed to delete meta') + error.message);
 			})//
 			.finally(function() {
 				ctrl.removingMeta = false;
@@ -236,7 +236,7 @@ mblowfish.controller('AmdCmsTermCtrl', function(
 			.then(function() {
 				ctrl.term.taxonomies.splice(index, 1);
 			}, function(error) {
-				alert($translate.instant('Failed to delete taxonomy') + error.message);
+				alert($mbTranslate.instant('Failed to delete taxonomy') + error.message);
 			})//
 			.finally(function() {
 				ctrl.removingTaxonomy = false;

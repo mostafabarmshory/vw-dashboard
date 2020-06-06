@@ -6,7 +6,7 @@
  * @name AmdBankWalletNewCtrl
  * @description Create new wallet
  */
-mblowfish.controller('AmdBankWalletNewCtrl', function($bank, $navigator, $translate, $http) {
+mblowfish.controller('AmdBankWalletNewCtrl', function($bank, $navigator, $mbTranslate, $http) {
 
 	this.creatingWallet = false;
 
@@ -34,7 +34,7 @@ mblowfish.controller('AmdBankWalletNewCtrl', function($bank, $navigator, $transl
 			$navigator.openPage('/wallets');
 		}, function() {
 			ctrl.creatingWallet = false;
-			alert($translate.instant('Fail to create new wallet'));
+			alert($mbTranslate.instant('Fail to create new wallet'));
 		});
 	};
 });

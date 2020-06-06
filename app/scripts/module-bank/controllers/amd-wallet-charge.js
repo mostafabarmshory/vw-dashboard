@@ -5,7 +5,7 @@
  * @description # Charge a wallet
  * 
  */
-mblowfish.controller('AmdBankWalletChargeCtrl', function($bank, $rootScope, QueryParameter, $window, $state, $translate) {
+mblowfish.controller('AmdBankWalletChargeCtrl', function($bank, $rootScope, QueryParameter, $window, $state, $mbTranslate) {
 
 	this.queryParameter = new QueryParameter();
 	this.wallet = {};
@@ -59,9 +59,9 @@ mblowfish.controller('AmdBankWalletChargeCtrl', function($bank, $rootScope, Quer
 	};
 
 	this.pay = function(data) {
-		data.title = $translate.instant('Charge wallet');
+		data.title = $mbTranslate.instant('Charge wallet');
 		data.amount = this.amount;
-		data.description = $translate.instant('Charge ' + this.wallet.title);
+		data.description = $mbTranslate.instant('Charge ' + this.wallet.title);
 		// create receipt and send to bank receipt page.
 		return this.wallet.putPayment(data)
 			.then(function(payment) {

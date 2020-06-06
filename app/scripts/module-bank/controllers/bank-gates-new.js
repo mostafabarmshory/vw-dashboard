@@ -5,7 +5,7 @@
  * @description Manages bank backends
  * 
  */
-mblowfish.controller('AmdBankGateNewCtrl', function($scope, $bank, QueryParameter, $navigator, $translate) {
+mblowfish.controller('AmdBankGateNewCtrl', function($scope, $bank, QueryParameter, $navigator, $mbTranslate) {
 
     /**
      * Load banks
@@ -31,10 +31,10 @@ mblowfish.controller('AmdBankGateNewCtrl', function($scope, $bank, QueryParamete
     	data.type = bank.type;
     	return $bank.putBackend(data)//
     	.then(function(){
-    	    toast($translate.instant('New bank gate is created successfully'));
+    	    toast($mbTranslate.instant('New bank gate is created successfully'));
     	    $navigator.openPage('/bank/gates');
     	}, function(){
-    	    alert($translate.instant('Fail to create new bank gate'));
+    	    alert($mbTranslate.instant('Fail to create new bank gate'));
     	})//
     	.finally(function(){
     	    $scope.creatingNewGate = false;

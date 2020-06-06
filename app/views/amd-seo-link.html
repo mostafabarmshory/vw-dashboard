@@ -11,11 +11,11 @@
 		layout="column">
 		<table>
 			<tr>
-				<td translate>ID</td>
+				<td mb-translate>ID</td>
 				<td>: {{ctrl.item.id}}</td>
 			</tr>
 			<tr>
-				<td translate>Title</td>
+				<td mb-translate>Title</td>
 				<td>
 					<mb-inline
 						ng-model="ctrl.item.title"
@@ -28,7 +28,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td translate>Description</td>
+				<td mb-translate>Description</td>
 				<td>
 					<mb-inline
 						ng-model="ctrl.item.description"
@@ -41,7 +41,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td translate>Link</td>
+				<td mb-translate>Link</td>
 				<td>
 					<mb-inline
 						ng-model="ctrl.item.loc"
@@ -54,7 +54,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td translate>Priority</td>
+				<td mb-translate>Priority</td>
 				<td>
 					<mb-inline
 						ng-model="ctrl.item.description"
@@ -67,7 +67,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td translate>Change Frequncy</td>
+				<td mb-translate>Change Frequncy</td>
 				<td>
 					<mb-inline
 						ng-model="ctrl.item.changefreq"
@@ -80,7 +80,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td translate>Last Modification</td>
+				<td mb-translate>Last Modification</td>
 				<td>
 					<mb-inline
 						ng-model="ctrl.item.lastmod"
@@ -96,10 +96,10 @@
 		<div layout="row">
 			<span flex></span>
 			<md-button class="md-raised" ng-href="{{ctrl.item.loc}}">
-				<span translate>Open</span>
+				<span mb-translate>Open</span>
 			</md-button>
 			<md-button class="md-raised md-primary" ng-click="ctrl.deleteItem()">
-				<span translate>delete</span>
+				<span mb-translate>delete</span>
 			</md-button>
 		</div>
 	</mb-titled-block>

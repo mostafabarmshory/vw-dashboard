@@ -29,9 +29,13 @@ var APP_KEY = 'vwstudio';
 mblowfish.config(function(
 	$mbApplicationProvider, $mbLayoutProvider, $mbToolbarProvider, $mbActionsProvider,
 	$mbSidenavProvider,
-	// TODO: replace with $mbTranslateProvider
-	$mbRouteProvider,
+	//	$mbRouteProvider,
+	$mbTranslateSanitizationProvider,
 	$mbStorageProvider, $locationProvider) {
+
+
+	$mbTranslateSanitizationProvider
+		.useStrategy(['sanitize']);
 
 	//
 	// Application ID
@@ -191,7 +195,7 @@ $(window).on('load', function() {
 		.then(function() {
 			try {
 				mblowfish.bootstrap(document.documentElement);
-			} catch (error){
+			} catch (error) {
 				console.log(error);
 			}
 		});

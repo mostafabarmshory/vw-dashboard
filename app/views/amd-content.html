@@ -18,11 +18,11 @@
 				md-margin
 				style="min-width: 70%">
 					<tr>
-						<td translate>ID</td>
+						<td mb-translate>ID</td>
 						<td>{{::ctrl.content.id}}</td>
 					</tr>
 					<tr>
-						<td translate>Name</td>
+						<td mb-translate>Name</td>
 						<td>
 							<mb-inline
 								ng-model="ctrl.content.name"
@@ -33,7 +33,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td translate>Title</td>
+						<td mb-translate>Title</td>
 						<td>
 						  <mb-inline
 							  ng-model="ctrl.content.title"
@@ -46,7 +46,7 @@
 						 </td>
 					</tr>
 					<tr>
-						<td translate>Description</td>
+						<td mb-translate>Description</td>
 						<td>
 						  <mb-inline
 							  ng-model="ctrl.content.description"
@@ -59,7 +59,7 @@
 						 </td>
 					</tr>
 					<tr>
-						<td translate>File name</td>
+						<td mb-translate>File name</td>
 						<td>
 						  <mb-inline
 							  ng-model="ctrl.content.file_name"
@@ -72,11 +72,11 @@
 						 </td>
 					</tr>
 					<tr>
-						<td translate>File size</td>
+						<td mb-translate>File size</td>
 						<td>{{ctrl.content.file_size}}</td>
 					</tr>
 					<tr>
-						<td translate>Media type</td>
+						<td mb-translate>Media type</td>
 						<td>
 						  <mb-inline
 							  ng-model="ctrl.content.media_type"
@@ -89,7 +89,7 @@
 						 </td>
 					</tr>
 					<tr>
-						<td translate>Mimetype</td>
+						<td mb-translate>Mimetype</td>
 						<td>
 						  <mb-inline
 							  ng-model="ctrl.content.mime_type"
@@ -102,15 +102,15 @@
 						 </td>
 					</tr>
 					<tr>
-						<td translate>Downloads count</td>
+						<td mb-translate>Downloads count</td>
 						<td>{{::ctrl.content.downloads}}</td>
 					</tr>
 					<tr>
-						<td translate>Creation Date</td>
+						<td mb-translate>Creation Date</td>
 						<td>{{ctrl.content.creation_dtime | mbDate}}</td>
 					</tr>
 					<tr>
-						<td translate>Last Modification Date</td>
+						<td mb-translate>Last Modification Date</td>
 						<td>{{ctrl.content.modif_dtime | mbDate}}</td>
 					</tr>
 			</table>
@@ -125,12 +125,12 @@
 				download="{{ctrl.content.file_name || ctrl.content.name}}"
 				target="_blank"
 				class = "md-raised md-primary">
-				<span translate>Download</span>
+				<span mb-translate>Download</span>
 			</md-button>
 			<md-button 
 				class = "md-raised md-accent"
 				ng-click="ctrl.remove()">
-				<span translate>Delete</span>
+				<span mb-translate>Delete</span>
 			</md-button>
 		</div>
 	</mb-titled-block>

@@ -4,7 +4,7 @@
 
     <mb-titled-block 
         mb-progress="ctrl.transfering"
-        mb-title="{{'Wallet to wallet transfering'| translate}}"
+        mb-title="{{'Wallet to wallet transfering' | translate}}"
         layout="column">
 
         <form 
@@ -18,7 +18,7 @@
             <div layout="column" 
                  layout-padding>
                 <md-input-container>
-                    <label translate="">Source wallet</label>
+                    <label mb-translate="">Source wallet</label>
                     <md-select 
                         ng-model="ctrl.sourceWallet"
                         required>
@@ -31,7 +31,7 @@
                 </md-input-container>
 
                 <md-input-container>
-                    <label translate>Destination wallet id</label>
+                    <label mb-translate>Destination wallet id</label>
                     <input
                         required
                         name="dest"
@@ -47,7 +47,7 @@
                 </md-input-container>
 
                 <md-input-container>
-                    <label translate>Amount</label>
+                    <label mb-translate>Amount</label>
                     <input
                         required
                         type="number"
@@ -58,14 +58,14 @@
                     <div 
                         ng-messages="contentForm.amount.$error" 
                         ng-if="contentForm.amount.$touched">
-                        <div ng-message="required"><span translate>Amount should be positive.</span></div>
-                        <div ng-message="min"><span translate>Minimum supported amount is reached.</span></div>
-                        <div ng-message="max"><span translate>Wallet balance is insufficient.</span></div>
+                        <div ng-message="required"><span mb-translate>Amount should be positive.</span></div>
+                        <div ng-message="min"><span mb-translate>Minimum supported amount is reached.</span></div>
+                        <div ng-message="max"><span mb-translate>Wallet balance is insufficient.</span></div>
                     </div>
                 </md-input-container>
 
                 <md-input-container>
-                    <label translate>Description</label>
+                    <label mb-translate>Description</label>
                     <input
                         type="text"
                         ng-model="ctrl.description">
@@ -80,7 +80,7 @@
                         class = "md-raised md-accent"
                         ng-click="ctrl.cancel()"
                         aria-label="cancel">
-                        <span translate="">Cancel</span>
+                        <span mb-translate="">Cancel</span>
                     </md-button>
                     <md-button
                         class="md-raised md-primary" 
@@ -88,12 +88,12 @@
                         ng-disabled="contentForm.$invalid"
                         ng-click="ctrl.transfer()"
                         aria-label="transfer">
-                        <span translate>Transfer</span>
+                        <span mb-translate>Transfer</span>
                     </md-button>
                 </div>
 
                 <div ng-if="ctrl.message">
-                    <p style="color: red"><span translate>{{ctrl.message}}</span></p>
+                    <p style="color: red"><span mb-translate>{{ctrl.message}}</span></p>
                 </div>
             </div>
         </form>

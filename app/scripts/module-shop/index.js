@@ -229,7 +229,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			/*
 			 * @ngInject
 			 */
-			action: function($shop, $navigator, $mbDispatcher, $window, $translate) {
+			action: function($shop, $navigator, $mbDispatcher, $window, $mbTranslate) {
 				var job = $shop.zoneSchema()
 					.then(function(schema) {
 						return $navigator.openDialog({
@@ -250,7 +250,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 							values: [zone]
 						});
 					}, function() {
-						$window.alert($translate.instant('Failed to create new zone.'));
+						$window.alert($mbTranslate.instant('Failed to create new zone.'));
 					});
 				// TODO: maso, 2020: add the job into the job lists
 				// $app.addJob('Adding new shop category', job);
@@ -265,7 +265,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			/*
 			 * @ngInject
 			 */
-			action: function($shop, $window, $translate, $navigator, $mbDispatcher) {
+			action: function($shop, $window, $mbTranslate, $navigator, $mbDispatcher) {
 				var job = $shop.serviceSchema()
 					.then(function(schema) {
 						return $navigator.openDialog({
@@ -286,7 +286,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 							values: [item]
 						});
 					}, function() {
-						$window.alert($translate.instant('Failed to create a new service.'));
+						$window.alert($mbTranslate.instant('Failed to create a new service.'));
 					});
 				// TODO: maso, 2020: add the job into the job lists
 				// $app.addJob('Adding new shop category', job);
@@ -298,7 +298,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			icon: 'photo_album',
 			title: 'New Product',
 			/* @ngInject */
-			action: function($shop, $window, $translate, $navigator, $mbDispatcher) {
+			action: function($shop, $window, $mbTranslate, $navigator, $mbDispatcher) {
 				var job = $shop.productSchema()
 					.then(function(schema) {
 						return $navigator.openDialog({
@@ -319,7 +319,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 							values: [product]
 						});
 					}, function() {
-						$window.alert($translate.instant('Failed to create a new product.'));
+						$window.alert($mbTranslate.instant('Failed to create a new product.'));
 					});
 				// TODO: maso, 2020: add the job into the job lists
 				// $app.addJob('Adding new shop category', job);
@@ -343,7 +343,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			icon: 'photo_album',
 			description: 'Creates new delivers',
 			/* @ngInject */
-			action: function($shop, $window, $translate, $navigator, $mbDispatcher) {
+			action: function($shop, $window, $mbTranslate, $navigator, $mbDispatcher) {
 				var job = $navigator.openDialog({
 					templateUrl: 'views/dialogs/amd-shop-deliver-new.html',
 					config: {}
@@ -357,7 +357,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 							values: [deliver]
 						});
 					}, function() {
-						$window.alert($translate.instant('Failed to create new deliver.'));
+						$window.alert($mbTranslate.instant('Failed to create new deliver.'));
 					});
 				// TODO: maso, 2020: add the job into the job lists
 				// $app.addJob('Adding new shop deliver', job);
@@ -371,7 +371,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			title: 'New Category',
 			description: 'Creates new category',
 			/* @ngInject */
-			action: function($event, $shop, $window, $translate, $navigator, $mbDispatcher) {
+			action: function($event, $shop, $window, $mbTranslate, $navigator, $mbDispatcher) {
 				var job = $navigator.openDialog({
 					templateUrl: 'views/dialogs/amd-shop-category-new.html',
 					config: {}
@@ -386,7 +386,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 							values: [cat]
 						});
 					}, function() {
-						$window.alert($translate.instant('Failed to create new category.'));
+						$window.alert($mbTranslate.instant('Failed to create new category.'));
 					});
 				// TODO: maso, 2020: add the job into the job lists
 				// $app.addJob('Adding new shop category', job);
@@ -401,7 +401,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			/*
 			 * @ngInject
 			 */
-			action: function($shop, $window, $translate, $navigator, $mbDispatcher) {
+			action: function($shop, $window, $mbTranslate, $navigator, $mbDispatcher) {
 				var job = $shop.agencySchema()
 					.then(function(schema) {
 						return $navigator.openDialog({
@@ -422,7 +422,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 							values: [item]
 						});
 					}, function() {
-						$window.alert($translate.instant('Failed to create a new agency.'));
+						$window.alert($mbTranslate.instant('Failed to create a new agency.'));
 					});
 				// TODO: maso, 2020: add the job into the job lists
 				// $app.addJob('Adding new shop category', job);

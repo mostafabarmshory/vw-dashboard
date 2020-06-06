@@ -5,7 +5,7 @@
 	 * @description Manage payments of a wallet
 	 * 
 	 */
-mblowfish.controller('AmdBankWalletPaymentCtrl', function ($bank, $navigator, $state, $translate) {
+mblowfish.controller('AmdBankWalletPaymentCtrl', function ($bank, $navigator, $state, $mbTranslate) {
 
 	    this.walletId = $state.params.walletId;
 	    this.paymentId = $state.params.paymentId;
@@ -26,7 +26,7 @@ mblowfish.controller('AmdBankWalletPaymentCtrl', function ($bank, $navigator, $s
 			    ctrl.wallet = wallet;
 			    ctrl.loadPayment();
 			}, function () {
-			    alert($translate.instant('Failed to load wallet'));
+			    alert($mbTranslate.instant('Failed to load wallet'));
 			})//
 			.finally(function () {
 			    ctrl.loading = false;
@@ -50,7 +50,7 @@ mblowfish.controller('AmdBankWalletPaymentCtrl', function ($bank, $navigator, $s
 			    //TODO: masood,2019: Get with graphql
 			    return $bank.getReceipt(payment.receipt_id);
 			}, function () {
-			    alert($translate.instant('Failed to load payment'));
+			    alert($mbTranslate.instant('Failed to load payment'));
 			})//
 			.then(function (receipt) {
 			    ctrl.receipt = receipt;

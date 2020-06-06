@@ -25,7 +25,7 @@
  * @description Manage a wallet
  * 
  */
-mblowfish.controller('AmdBankWalletCtrl', function($bank, $location, $state, $translate) {
+mblowfish.controller('AmdBankWalletCtrl', function($bank, $location, $state, $mbTranslate) {
 
 	this.walletId = $state.params.walletId;
 
@@ -39,7 +39,7 @@ mblowfish.controller('AmdBankWalletCtrl', function($bank, $location, $state, $tr
 			.then(function(wallet) {
 				ctrl.wallet = wallet;
 			}, function() {
-				alert($translate.instant('Failed to load wallet'));
+				alert($mbTranslate.instant('Failed to load wallet'));
 			})//
 			.finally(function() {
 				ctrl.loading = false;
@@ -48,14 +48,14 @@ mblowfish.controller('AmdBankWalletCtrl', function($bank, $location, $state, $tr
 
 	this.remove = function() {
 		var ctrl = this;
-		confirm($translate.instant('The wallet will be deleted.'))//
+		confirm($mbTranslate.instant('The wallet will be deleted.'))//
 			.then(function() {
 				return ctrl.wallet.delete();//
 			})//
 			.then(function() {
 				$location.path('/wallets');
 			}, function() {
-				alert($translate.instant('Failed to delete wallet'));
+				alert($mbTranslate.instant('Failed to delete wallet'));
 			});
 	};
 
@@ -69,7 +69,7 @@ mblowfish.controller('AmdBankWalletCtrl', function($bank, $location, $state, $tr
 			.then(function(wallet) {
 				ctrl.wallet = wallet;
 			}, function() {
-				alert($translate.instant('Failed to save wallet'));
+				alert($mbTranslate.instant('Failed to save wallet'));
 			})
 			.finally(function() {
 				ctrl.saving = false;

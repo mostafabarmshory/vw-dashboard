@@ -26,7 +26,7 @@
  * @description Manages an account
  */
 mblowfish.controller('AmdUserAccountCtrl', function(
-	/* AngularJS */ $scope, $usr, $state, $navigator, $mbResource, $translate, $q, $window,
+	/* AngularJS */ $scope, $usr, $state, $navigator, $mbResource, $mbTranslate, $q, $window,
 	/* Seen User */ UserAccount, UserProfile) {
 
 	this.roleLoading = true;
@@ -46,14 +46,14 @@ mblowfish.controller('AmdUserAccountCtrl', function(
 	 * @returns
 	 */
 	function remove() {
-		$window.confirm($translate.instant('User will be deleted. There is no undo.'))//
+		$window.confirm($mbTranslate.instant('User will be deleted. There is no undo.'))//
 			.then(function() {
 				return $scope.account.delete();//
 			})//
 			.then(function() {
 				$navigator.openPage('user/accounts');
 			}, function() {
-				alert($translate.instant('Failed to delete item.'));
+				alert($mbTranslate.instant('Failed to delete item.'));
 			});
 	}
 
@@ -62,7 +62,7 @@ mblowfish.controller('AmdUserAccountCtrl', function(
 			return;
 		}
 		ctrl.userLoading = account.update().then(function() {
-			$window.toast($translate.instant('Save is successfull.'));
+			$window.toast($mbTranslate.instant('Save is successfull.'));
 		}).finally(function() {
 			ctrl.userLoading = false;
 		});
@@ -74,7 +74,7 @@ mblowfish.controller('AmdUserAccountCtrl', function(
 			return;
 		}
 		this.profileUpdating = profile.update().then(function() {
-			$window.toast($translate.instant('Save is successfull.'));
+			$window.toast($mbTranslate.instant('Save is successfull.'));
 		}).finally(function() {
 			delete ctrl.profileUpdating;
 		});
@@ -96,9 +96,9 @@ mblowfish.controller('AmdUserAccountCtrl', function(
 		}
 		ctrl.updatingAvatar = account.uploadAvatar(file)//
 			.then(function() {
-				$window.toast($translate.instant('Your avatar updated successfully.'));
+				$window.toast($mbTranslate.instant('Your avatar updated successfully.'));
 			}, function() {
-				$window.alert($translate.instant('Failed to update avatar'));
+				$window.alert($mbTranslate.instant('Failed to update avatar'));
 			})//
 			.finally(function() {
 				delete ctrl.updatingAvatar;
@@ -111,7 +111,7 @@ mblowfish.controller('AmdUserAccountCtrl', function(
 	 * Removed all roles of user
 	 */
 	function removeRoles() {
-		confirm($translate.instant('All roles of user will be removed.'))//
+		confirm($mbTranslate.instant('All roles of user will be removed.'))//
 			.then(function() {
 				var jobs = [];
 				$scope.roles.forEach(function(item) {
@@ -146,7 +146,7 @@ mblowfish.controller('AmdUserAccountCtrl', function(
 				$q.all(jobs).finally(function() {
 					$scope.roles = roles = list;
 				}).catch(function() {
-					alert($translate.instant('An error occured while set roles.'));
+					alert($mbTranslate.instant('An error occured while set roles.'));
 				});
 			});
 	}
@@ -172,7 +172,7 @@ mblowfish.controller('AmdUserAccountCtrl', function(
 				$q.all(jobs).finally(function() {
 					$scope.groups = groups = list;
 				}).catch(function() {
-					alert($translate.instant('An error occured while set groups.'));
+					alert($mbTranslate.instant('An error occured while set groups.'));
 				});
 			});
 	}
@@ -191,7 +191,7 @@ mblowfish.controller('AmdUserAccountCtrl', function(
 			return;
 		}
 		ctrl.roleLoading = true;
-		$window.confirm($translate.instant('Item will be deleted.'))//
+		$window.confirm($mbTranslate.instant('Item will be deleted.'))//
 			.then(function() {
 				return $scope.account.deleteRole(role);
 			})//
@@ -211,7 +211,7 @@ mblowfish.controller('AmdUserAccountCtrl', function(
 			return;
 		}
 		ctrl.groupLoading = true;
-		confirm($translate.instant('Item will be deleted.'))//
+		confirm($mbTranslate.instant('Item will be deleted.'))//
 			.then(function() {
 				return $scope.account.deleteGroup(group);
 			})//

@@ -25,7 +25,7 @@
                     class="md-list-item-text" 
                     layout="column">
                     <h3>{{::wallet.title}}</h3>
-                    <h4><span translate="">Balance</span>: {{wallet.total_deposit - wallet.total_withdraw || 0}} ({{::wallet.currency}})</h4>
+                    <h4><span mb-translate="">Balance</span>: {{wallet.total_deposit - wallet.total_withdraw || 0}} ({{::wallet.currency}})</h4>
                     <p>{{::wallet.description}}</p>
                 </div>
                 <md-button
@@ -34,7 +34,7 @@
                     aria-label="Charge wallet"
                     ng-href="/wallets/charge?walletId={{::wallet.id}}"> 
                     <mb-icon>battery_charging_80</mb-icon>
-                    <md-tooltip md-direction="bottom"><span translate="">Charge wallet</span></md-tooltip>
+                    <md-tooltip md-direction="bottom"><span mb-translate="">Charge wallet</span></md-tooltip>
                 </md-button>
                 <md-button 
                     ng-if="app.user.current.id == wallet.owner_id"
@@ -42,7 +42,7 @@
                     aria-label="Wallet to wallet"
                     ng-href="/wallet-to-wallet?fromId={{::wallet.id}}">
                     <mb-icon>swap_horiz</mb-icon>
-                    <md-tooltip md-direction="bottom"><span translate="">Wallet to wallet</span></md-tooltip>
+                    <md-tooltip md-direction="bottom"><span mb-translate="">Wallet to wallet</span></md-tooltip>
                 </md-button>
                 <md-button 
                     ng-if="app.user.current.id == wallet.owner_id"
@@ -50,14 +50,14 @@
                     aria-label="Delete wallet"
                     ng-click="ctrl.deleteItem(wallet)"> 
                     <mb-icon>delete</mb-icon>
-                    <md-tooltip><span translate="">Delete wallet</span></md-tooltip>
+                    <md-tooltip><span mb-translate="">Delete wallet</span></md-tooltip>
                 </md-button>
             </md-list-item>
 		    <div
 		        layout="column"
 		        layout-align="center center"
 		        ng-if="ctrl.state === 'ideal' && (!ctrl.items || ctrl.items.length === 0)">
-		        <h2 translate="">Nothing found</h2>
+		        <h2 mb-translate="">Nothing found</h2>
 		    </div>
         </md-list>
     </md-content>

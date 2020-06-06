@@ -5,7 +5,7 @@
  * @description Manages bank backends
  * 
  */
-mblowfish.controller('AmdBankReceiptsCtrl', function($scope, $bank, QueryParameter , $translate) {
+mblowfish.controller('AmdBankReceiptsCtrl', function($scope, $bank, QueryParameter , $mbTranslate) {
 
 	var paginatorParameter = new QueryParameter();
 	var requests = null;
@@ -32,7 +32,7 @@ mblowfish.controller('AmdBankReceiptsCtrl', function($scope, $bank, QueryParamet
 			requests = items;
 			ctrl.items = ctrl.items.concat(requests.items);
 		}, function() {
-			alert($translate.instant('Failed to load receipts.'));
+			alert($mbTranslate.instant('Failed to load receipts.'));
 		})
 		.finally(function(){
 			ctrl.loadingReceipts = false;

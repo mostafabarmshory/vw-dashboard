@@ -25,7 +25,7 @@
  * @name AmdShopProductCtrl
  * @description Controller of products list
  */
-mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $state, $translate, $navigator, $location, $q, QueryParameter ) {
+mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $state, $mbTranslate, $navigator, $location, $q, QueryParameter ) {
 
     var ctrl = {
             loading: false,
@@ -51,7 +51,7 @@ mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $state, $tra
             loadMetas();
             loadCategories();
         }, function () {
-            alert($translate.instant('Faild to load the product.'));
+            alert($mbTranslate.instant('Faild to load the product.'));
         })//
         .finally(function () {
             ctrl.loading = false;
@@ -64,13 +64,13 @@ mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $state, $tra
      * @description Remove the selected product from the server
      */
     function remove() {
-        confirm($translate.instant('Item will be deleted. There is no undo action.'))//
+        confirm($mbTranslate.instant('Item will be deleted. There is no undo action.'))//
         .then(function () {
             return $scope.product.delete()//
             .then(function () {
                 $location.path('/products');
             }, function () {
-                alert($translate.instant('Fail to delete the product.'));
+                alert($mbTranslate.instant('Fail to delete the product.'));
             });
         });
     }
@@ -90,7 +90,7 @@ mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $state, $tra
             $scope.product = newProduct;
             ctrl.edit = false;
         }, function () {
-            alert($translate.instant('Failed to update product.'));
+            alert($mbTranslate.instant('Failed to update product.'));
         })//
         .finally(function () {
             ctrl.updating = false;
@@ -111,7 +111,7 @@ mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $state, $tra
         .then(function (metaFields) {
             $scope.metafeilds = metaFields.items;
         }, function () {
-            alert($translate.instant('Faild to get metafields.'));
+            alert($mbTranslate.instant('Faild to get metafields.'));
         })//
         .finally(function () {
             ctrl.loadingMetas = false;
@@ -130,7 +130,7 @@ mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $state, $tra
         .then(function (res) {
             $scope.categories = res.items;
         }, function () {
-            alert($translate.instant('Faild to get categories.'));
+            alert($mbTranslate.instant('Faild to get categories.'));
         })//
         .finally(function () {
             ctrl.loadingCategories = false;
@@ -145,14 +145,14 @@ mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $state, $tra
      *            metaData
      */
     function removeMetafield(metaData) {
-        confirm($translate.instant('Item will be deleted. There is no undo action.'))//
+        confirm($mbTranslate.instant('Item will be deleted. There is no undo action.'))//
         .then(function () {
             return $scope.product.deleteMetafield(metaData)//
             .then(function () {
                 loadMetas();
-                toast($translate.instant('Item is deleted successfully.'));
+                toast($mbTranslate.instant('Item is deleted successfully.'));
             }, function () {
-                alert($translate.instant('Failed to delete item.'));
+                alert($mbTranslate.instant('Failed to delete item.'));
             });
         });
     }
@@ -170,7 +170,7 @@ mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $state, $tra
             .then(function () {
                 loadMetas();
             }, function () {
-                alert($translate.instant('Failed to add new item.'));
+                alert($mbTranslate.instant('Failed to add new item.'));
             });
         });
     }
@@ -187,7 +187,7 @@ mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $state, $tra
             .then(function () {
                 loadMetas();
             }, function () {
-                alert($translate.instant('Failed to update item.'));
+                alert($mbTranslate.instant('Failed to update item.'));
             });
         });
     }
@@ -197,7 +197,7 @@ mblowfish.controller('AmdShopProductCtrl', function ($scope, $shop, $state, $tra
         .then(function () {
             loadMetas();
         }, function () {
-            alert($translate.instant('Failed to update item.'));
+            alert($mbTranslate.instant('Failed to update item.'));
         });
     }
 

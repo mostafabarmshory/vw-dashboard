@@ -5,7 +5,7 @@
  * @description Manages bank backends
  * 
  */
-mblowfish.controller('AmdBankGateCtrl', function ($scope, $bank, $location, $state, $navigator, $translate) {
+mblowfish.controller('AmdBankGateCtrl', function ($scope, $bank, $location, $state, $navigator, $mbTranslate) {
 
     var ctrl = {
             state: 'relax',
@@ -18,13 +18,13 @@ mblowfish.controller('AmdBankGateCtrl', function ($scope, $bank, $location, $sta
      * @returns
      */
     function remove() {
-        confirm($translate.instant('The bank gate will be deleted.'))//
+        confirm($mbTranslate.instant('The bank gate will be deleted.'))//
         .then(function () {
             $scope.gate.delete()
             .then(function () {
                 $location.path('/bank/gates');
             }, function () {
-                alert($translate.instant('Fail to delete bank gate'));
+                alert($mbTranslate.instant('Fail to delete bank gate'));
             });
         });
     }

@@ -59,7 +59,6 @@ module.exports = function(config) {
       'bower_components/tinymce/tinymce.js',
       'bower_components/tinycolor/tinycolor.js',
       'bower_components/md-color-picker/dist/md-color-picker.js',
-      'bower_components/angular-translate/angular-translate.js',
       'bower_components/weakmap-polyfill/weakmap-polyfill.js',
       'bower_components/loglevel/dist/loglevel.min.js',
       'bower_components/moment/moment.js',

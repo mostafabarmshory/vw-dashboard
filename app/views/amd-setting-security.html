@@ -5,7 +5,7 @@
     <mb-titled-block 
         ng-show="!ctrl.edit"
         mb-progress="loadingCaptchaOptions || loadingCaptchaSettings || savingSettings"
-        mb-title="{{'Captcha'| translate}}"
+        mb-title="{{'Captcha' | translate}}"
         layout="column">
 
         <div>
@@ -18,7 +18,7 @@
                     <md-option 
                         ng-value="option" 
                         ng-repeat="option in options">
-                        <span translate="">{{option}}</span>
+                        <span mb-translate="">{{option}}</span>
                     </md-option>
                 </md-select>
             </div>
@@ -31,25 +31,25 @@
 
                 <md-input-container
                     style="padding: 0px;margin: 0px;">
-                    <label translate="">Site Key</label>
+                    <label mb-translate="">Site Key</label>
                     <input type="text" ng-model="keySetting.value">
                 </md-input-container>
 
                 <md-input-container
                     style="padding: 0px;margin: 0px;">
-                    <label translate="">Secret Key</label>
+                    <label mb-translate="">Secret Key</label>
                     <input type="text" ng-model="secretKeySetting.value">
                 </md-input-container>
 
                 <md-input-container
                     style="padding: 0px;margin: 0px;">
-                    <label translate="">Android Key </label>
+                    <label mb-translate="">Android Key </label>
                     <input type="text" ng-model="androidKeySetting.value">
                 </md-input-container>
 
                 <md-input-container
                     style="padding: 0px;margin: 0px;">
-                    <label translate="">Android Secret Key </label>
+                    <label mb-translate="">Android Secret Key </label>
                     <input type="text" ng-model="androidSecretKeySetting.value">
                 </md-input-container>
             </div>
@@ -60,7 +60,7 @@
     <mb-titled-block 
         ng-show="!ctrl.edit"
         mb-progress="loadingHttpsSettings || savingSettings"
-        mb-title="{{'HTTPS'| translate}}"
+        mb-title="{{'HTTPS' | translate}}"
         layout="column">
         <div 
             layout="column"
@@ -70,13 +70,13 @@
                 ng-model="enable"
                 ng-change="httpsEnableChanged(enable)"
                 aria-label="Enable HTTPS protocol">
-                <span translate="">Enable HTTPS</span>
+                <span mb-translate="">Enable HTTPS</span>
             </md-checkbox>
             <md-checkbox 
                 ng-model="redirect"
                 ng-change="httpsRedirectChanged(redirect)"
                 aria-label="Redirect HTTP to HTTPS">
-                <span translate="">Redirect HTTP to HTTPS</span>
+                <span mb-translate="">Redirect HTTP to HTTPS</span>
             </md-checkbox>
         </div>
     </mb-titled-block>
@@ -84,8 +84,8 @@
     <div>
         <div layout="row">
             <span flex></span> 
-            <md-button class="md-raised" ng-href="dashboard" translate="">Cancel</md-button>
-            <md-button class="md-raised md-primary" ng-click="update()" translate="">Save</md-button>
+            <md-button class="md-raised" ng-href="dashboard" mb-translate="">Cancel</md-button>
+            <md-button class="md-raised md-primary" ng-click="update()" mb-translate="">Save</md-button>
         </div>
     </div>
 </md-content>

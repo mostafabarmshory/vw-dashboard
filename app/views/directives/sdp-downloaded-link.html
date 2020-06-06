@@ -8,10 +8,10 @@
         class="md-list-item-text" 
         layout="column">
         <h4>{{fileName}}</h4>
-        <h4 ng-if="!(user.first_name && user.last_name)" translate>Provider: unknown </h4>
-        <h4 ng-if="user.first_name && user.last_name" translate>Provider: {{user.first_name + ' ' + user.last_name}} </h4>
-        <p><span translate>Creation date</span>: {{item.creation_dtime| mbDate}} - 
-            <span translate>Expiry date</span>: {{item.expiry| mbDate}}</p>
+        <h4 ng-if="!(user.first_name && user.last_name)" mb-translate>Provider: unknown </h4>
+        <h4 ng-if="user.first_name && user.last_name" mb-translate>Provider: {{user.first_name + ' ' + user.last_name}} </h4>
+        <p><span mb-translate>Creation date</span>: {{item.creation_dtime| mbDate}} - 
+            <span mb-translate>Expiry date</span>: {{item.expiry| mbDate}}</p>
     </div>
 
     <md-button class="md-icon-button">

@@ -26,7 +26,7 @@
  * @name AmdShopDeliveryCtrl
  * @description Controller of a Delivery
  */
-mblowfish.controller('AmdShopDeliverCtrl', function($scope, $shop, $state, $translate, $location, $navigator, $q, QueryParameter) {
+mblowfish.controller('AmdShopDeliverCtrl', function($scope, $shop, $state, $mbTranslate, $location, $navigator, $q, QueryParameter) {
 
 	var ctrl = {
 		loading: false,
@@ -48,7 +48,7 @@ mblowfish.controller('AmdShopDeliverCtrl', function($scope, $shop, $state, $tran
 			.then(function(p) {
 				$scope.deliver = p;
 			}, function() {
-				alert($translate.instant('Faild to load the deliver.'));
+				alert($mbTranslate.instant('Faild to load the deliver.'));
 			})//
 			.finally(function() {
 				ctrl.loading = false;
@@ -61,7 +61,7 @@ mblowfish.controller('AmdShopDeliverCtrl', function($scope, $shop, $state, $tran
      * @description remove the selected deliver from the server
      */
 	function remove() {
-		confirm($translate.instant('Item will be deleted. There is no undo action.'))//
+		confirm($mbTranslate.instant('Item will be deleted. There is no undo action.'))//
 			.then(function() {
 				return $scope.deliver.delete()//
 					.then(function() {
@@ -87,7 +87,7 @@ mblowfish.controller('AmdShopDeliverCtrl', function($scope, $shop, $state, $tran
 				$scope.deliver = newDeliver;
 				ctrl.edit = false;
 			}, function() {
-				alert($translate.instant('Failed to update deliver.'));
+				alert($mbTranslate.instant('Failed to update deliver.'));
 			})//
 			.finally(function() {
 				ctrl.updating = false;

@@ -26,7 +26,7 @@
                 <div 
                     class="md-list-item-text" 
                     layout="column">
-                    <h3>{{::content.title}} (<span translate="">Author</span> : {{::content.author.profiles[0].first_name}} {{::content.author.profiles[0].last_name}})</h3>
+                    <h3>{{::content.title}} (<span mb-translate="">Author</span> : {{::content.author.profiles[0].first_name}} {{::content.author.profiles[0].last_name}})</h3>
                     <h4>{{::content.name}}</h4>
                     <p>{{::content.description}}</p>
                 </div>
@@ -48,7 +48,7 @@
             layout="column"
             layout-align="center center"
             ng-if="ctrl.state === 'ideal' && (!ctrl.items || ctrl.items.length == 0)">
-            <h2 translate="">No item found</h2>
+            <h2 mb-translate="">No item found</h2>
         </div>
     </md-content>
 </div>

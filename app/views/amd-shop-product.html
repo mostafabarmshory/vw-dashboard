@@ -5,7 +5,7 @@
 	<mb-titled-block 
 		ng-show="!ctrl.edit"
 		mb-progress="ctrl.loading"
-		mb-title="{{'Product'| translate}}"
+		mb-title="{{'Product' | translate}}"
 		layout="column">
 		<div 
 			layout="row" 
@@ -21,11 +21,11 @@
 			</mb-inline>
 			<table>
 				<tr>
-					<td translate="">ID  </td>
+					<td mb-translate="">ID  </td>
 					<td>: {{product.id}}</td>
 				</tr>
 				<tr>
-					<td translate="">Name  </td>
+					<td mb-translate="">Name  </td>
 					<td><mb-inline
 						ng-model="product.title"
 						mb-inline-enable="{{true}}"
@@ -33,7 +33,7 @@
 						mb-inline-on-save="update()">: {{product.title}}</mb-inline></td>
 				</tr>
 				<tr>
-					<td translate="">Description  </td>
+					<td mb-translate="">Description  </td>
 					<td><mb-inline
 						ng-model="product.description"
 						mb-inline-enable="{{true}}"
@@ -41,7 +41,7 @@
 						mb-inline-on-save="update()">: {{product.description}}</mb-inline></td>
 				</tr>
 				<tr>
-					<td translate="">Price  </td>
+					<td mb-translate="">Price  </td>
 					<td><mb-inline
 						ng-model="product.price"
 						mb-inline-enable="{{true}}"
@@ -49,7 +49,7 @@
 						mb-inline-on-save="update()">: {{product.price}}</mb-inline></td>
 				</tr>
 				<tr>
-					<td translate="">Off  </td>
+					<td mb-translate="">Off  </td>
 					<td><mb-inline
 						ng-model="product.off"
 						mb-inline-enable="{{true}}"
@@ -57,7 +57,7 @@
 						mb-inline-on-save="update()">: {{product.off}}</mb-inline></td>
 				</tr>
 				<tr>
-					<td translate="">Manufacturer  </td>
+					<td mb-translate="">Manufacturer  </td>
 					<td><mb-inline
 						ng-model="product.manufacturer"
 						mb-inline-enable="{{true}}"
@@ -65,7 +65,7 @@
 						mb-inline-on-save="update()">: {{product.manufacturer}}</mb-inline></td>
 				</tr>
 				<tr>
-					<td translate="">Brand  </td>
+					<td mb-translate="">Brand  </td>
 					<td><mb-inline
 						ng-model="product.brand"
 						mb-inline-enable="{{true}}"
@@ -73,7 +73,7 @@
 						mb-inline-on-save="update()">: {{product.brand}}</mb-inline></td>
 				</tr>
 				<tr>
-					<td translate="">Model  </td>
+					<td mb-translate="">Model  </td>
 					<td><mb-inline
 						ng-model="product.model"
 						mb-inline-enable="{{true}}"
@@ -81,11 +81,11 @@
 						mb-inline-on-save="update()">: {{product.model}}</mb-inline></td>
 				</tr>
 				<tr>
-					<td translate="">Creation Date  </td>
+					<td mb-translate="">Creation Date  </td>
 					<td>: {{product.creation_dtime| mbDate}}</td>
 				</tr>
 				<tr>
-					<td translate="">Last Modified Date  </td>
+					<td mb-translate="">Last Modified Date  </td>
 					<td>: {{product.modif_dtime| mbDate}}</td>
 				</tr>
 			</table>
@@ -96,7 +96,7 @@
 			<md-button 
 				class = "md-raised md-accent"
 				ng-click="remove()">
-				<span translate="">Delete</span>
+				<span mb-translate="">Delete</span>
 			</md-button>
 		</div>
 	</mb-titled-block>
@@ -109,11 +109,11 @@
 		<table class="mb-table mb-shop-table">
 			<thead>
 				<tr md-colors="{color: 'primary-700'}">
-					<td style="width: 20%" translate="">Field key</td>
-					<td style="width: 20%" translate="">Field value</td>
-					<td style="width: 20%" translate="">Unit</td>
-					<td style="width: 20%" translate="">Namespace</td>
-					<td translate style="width: 10%;text-align: center;"></td>
+					<td style="width: 20%" mb-translate="">Field key</td>
+					<td style="width: 20%" mb-translate="">Field value</td>
+					<td style="width: 20%" mb-translate="">Unit</td>
+					<td style="width: 20%" mb-translate="">Namespace</td>
+					<td mb-translate style="width: 10%;text-align: center;"></td>
 				</tr>
 			</thead>
 			<tbody>
@@ -123,7 +123,7 @@
 				ng-model="meta.key"
 				am-wb-inline-enable="false"
 				am-wb-inline-type="text"
-				am-wb-inline-label="{{'Field key' | translate}}"
+				am-wb-inline-label="{{'Field key'  | translate}}"
 				am-wb-inline-on-save="inlineUpdateMetafield(meta)">
 				<p> {{meta.key}} </p>
 			</am-wb-inline>
@@ -133,7 +133,7 @@
 				ng-model="meta.value"
 				am-wb-inline-enable="true"
 				am-wb-inline-type="text"
-				am-wb-inline-label="{{'Field value' | translate}}"
+				am-wb-inline-label="{{'Field value'  | translate}}"
 				am-wb-inline-on-save="inlineUpdateMetafield(meta)">
 				<p> {{meta.value}} </p>
 			</am-wb-inline>
@@ -143,7 +143,7 @@
 				ng-model="meta.unit"
 				am-wb-inline-enable="true"
 				am-wb-inline-type="text"
-				am-wb-inline-label="{{'Unit' | translate}}"
+				am-wb-inline-label="{{'Unit'  | translate}}"
 				am-wb-inline-on-save="inlineUpdateMetafield(meta)">
 				<p> {{meta.unit}} </p>
 			</am-wb-inline>
@@ -153,7 +153,7 @@
 				ng-model="meta.namespace"
 				am-wb-inline-enable="true"
 				am-wb-inline-type="text"
-				am-wb-inline-label="{{'Namespace' | translate}}"
+				am-wb-inline-label="{{'Namespace'  | translate}}"
 				am-wb-inline-on-save="inlineUpdateMetafield(meta)">
 				<p> {{meta.namespace}} </p>
 			</am-wb-inline>
@@ -191,7 +191,7 @@
 	<mb-titled-block 
 		ng-show="!ctrl.edit"
 		mb-progress="ctrl.loading || loadingCategories || updatingCategories"
-		mb-title="{{'Categories'| translate}}"
+		mb-title="{{'Categories' | translate}}"
 		layout="column">
 
 		<md-list flex ng-if="categories"> 
@@ -212,7 +212,7 @@
 
 		<div layout="column"
 			 ng-if="!categories || categories.length === 0">
-			<p style="text-align: center" translate="">Nothing found.</p>
+			<p style="text-align: center" mb-translate="">Nothing found.</p>
 		</div>
 
 		<div layout="row">
@@ -220,7 +220,7 @@
 			<md-button 
 				class="md-raised md-primary" 
 				ng-click="selectCategories()">
-				<span translate="">Edit</span>
+				<span mb-translate="">Edit</span>
 			</md-button>
 		</div>
 	</mb-titled-block>

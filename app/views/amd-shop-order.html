@@ -32,7 +32,7 @@
 
 			<!--order info-->
 			<mb-titled-block 
-				mb-title="{{'Order information'| translate}}"
+				mb-title="{{'Order information' | translate}}"
 				layout="column">
 				<div 
 					id="order-info"
@@ -40,19 +40,19 @@
 
 					<table>
 						<tr>
-							<td translate="">ID  </td>
+							<td mb-translate="">ID  </td>
 							<td>: {{ctrl.order.id}}</td>
 						</tr>
 						<tr class="noprint">
-							<td translate="">Title  </td>
+							<td mb-translate="">Title  </td>
 							<td>: {{ctrl.order.title}}</td>
 						</tr>
 						<tr>
-							<td translate="">Full name  </td>
+							<td mb-translate="">Full name  </td>
 							<td>: {{ctrl.order.full_name}}</td>
 						</tr>
 						<tr>
-							<td translate="">Phone  </td>
+							<td mb-translate="">Phone  </td>
 							<td> 
 								<div layout="row">
 									<p style="margin: 0px;padding: 0px;align-self: center">{{ctrl.order.phone}}</p>
@@ -67,23 +67,23 @@
 							</td>
 						</tr>
 						<tr>
-							<td translate="">Address  </td>
+							<td mb-translate="">Address  </td>
 							<td>: {{ctrl.order.province}} - {{ctrl.order.city}} - {{ctrl.order.address}}</td>
 						</tr>
 						<tr class="noprint">
-							<td translate="">Description  </td>
+							<td mb-translate="">Description  </td>
 							<td>: {{ctrl.order.description}}</td>
 						</tr>
 						<tr class="noprint">
-							<td translate="">State  </td>
-							<td>: <span translate="">{{ctrl.order.state}}</span></td>
+							<td mb-translate="">State  </td>
+							<td>: <span mb-translate="">{{ctrl.order.state}}</span></td>
 						</tr>
 						<tr>
-							<td translate="">Modification Date  </td>
+							<td mb-translate="">Modification Date  </td>
 							<td>: {{ctrl.order.modif_dtime | mbDateTime}}</td>
 						</tr>
 						<tr>
-							<td translate="">Creation Date  </td>
+							<td mb-translate="">Creation Date  </td>
 							<td>: {{ctrl.order.creation_dtime | mbDateTime}}</td>
 						</tr>
 					</table>
@@ -101,7 +101,7 @@
 							class="md-primary md-raised"
 							ng-repeat="action in ctrl.actions"
 							ng-click="ctrl.doAction(action)">
-							{{action.title | translate}}
+							{{action.title  | translate}}
 						</md-button>
 					</div>
 				</div>
@@ -109,7 +109,7 @@
 
 			<!--order metafields-->
 			<mb-titled-block 
-				mb-title="{{'Order metafields'| translate}}"
+				mb-title="{{'Order metafields' | translate}}"
 				layout="column">
 				<div layout="column">
 					<table>
@@ -123,7 +123,7 @@
 
 			<!--Order items-->
 			<mb-titled-block 
-				mb-title="{{'Order items'| translate}}"
+				mb-title="{{'Order items' | translate}}"
 				layout="column">
 				<div 
 					id="order-items">
@@ -132,10 +132,10 @@
 						<thead>
 							<tr md-colors="{color: 'primary-700'}">
 								<td style="width: 5%"></td>
-								<td align="center" translate="" style="width: 60%">Title</td>
-								<td align="center" translate="" style="width: 10%">Unit/price</td>
-								<td align="center" translate="" style="width: 10%">Count</td>
-								<td align="center" translate="" style="width: 10%">Price</td>
+								<td align="center" mb-translate="" style="width: 60%">Title</td>
+								<td align="center" mb-translate="" style="width: 10%">Unit/price</td>
+								<td align="center" mb-translate="" style="width: 10%">Count</td>
+								<td align="center" mb-translate="" style="width: 10%">Price</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -161,7 +161,7 @@
 						<tr style="border-bottom: none">
 							<td style="width: 5%"></td>
 							<td align="start" style="width: 60%">
-								<h3 translate="">Total price</h3>
+								<h3 mb-translate="">Total price</h3>
 							</td>
 							<td style="width: 10%"></td>
 							<td style="width: 10%"></td>
@@ -175,7 +175,7 @@
 			</mb-titled-block>
 			<!--Order attachments-->
 			<mb-titled-block 
-				mb-title="{{'Order attachments'| translate}}"
+				mb-title="{{'Order attachments' | translate}}"
 				layout="column"
 				class="noprint">
 				<div 
@@ -203,14 +203,14 @@
 								target="_blank"
 								download="{{attachment.file_name}}">
 								<mb-icon>cloud_download</mb-icon>
-								<md-tooltip><span translate="">Download</span></md-tooltip>
+								<md-tooltip><span mb-translate="">Download</span></md-tooltip>
 							</md-button>
 						</md-list-item>
 					</md-list>
 
 					<div
 						ng-if="ctrl.order.attachments.length === 0">
-						<p translate="">No attachments</p>
+						<p mb-translate="">No attachments</p>
 					</div>
 				</div>
 			</mb-titled-block>
@@ -226,7 +226,7 @@
 			layout-margin>
 
 			<mb-titled-block 
-				mb-title="{{'Customer information'| translate}}"
+				mb-title="{{'Customer information' | translate}}"
 				layout="column">
 
 				<md-list 
@@ -235,7 +235,7 @@
 					<div 
 						ng-if="ctrl.order.customer.id">
 						<md-subheader>
-							<h2 style="color: black" translate>Customer</h2>
+							<h2 style="color: black" mb-translate>Customer</h2>
 						</md-subheader>
 						<md-list-item 
 							ng-href="ums/accounts/{{::ctrl.order.customer.id}}"
@@ -249,14 +249,14 @@
 								<h3>{{::ctrl.order.customer.profiles[0].first_name}} {{::ctrl.order.customer.profiles[0].last_name}}</h3>
 								<h4>
 									<span ng-if="::ctrl.order.customer.date_joined">
-										<span translate>Joined</span> : {{::(ctrl.order.customer.date_joined | mbDate)}}
+										<span mb-translate>Joined</span> : {{::(ctrl.order.customer.date_joined | mbDate)}}
 									</span>
 								</h3>
 								<p>
-									<span ng-if="::ctrl.order.customer.profiles[0].public_email"><span translate>EMail</span> : {{::ctrl.order.customer.profiles[0].public_email}},</span>
-									<span ng-if="::ctrl.order.customer.profiles[0].gender"><span translate>Gender</span> : {{::ctrl.order.customer.profiles[0].gender}},</span>
-									<span ng-if="::ctrl.order.customer.profiles[0].language"><span translate>Language</span> : {{::ctrl.order.customer.profiles[0].language}},</span>
-									<span ng-if="::ctrl.order.customer.profiles[0].timezone"><span translate>Time Zone</span> : {{::ctrl.order.customer.profiles[0].timezone}},</span>
+									<span ng-if="::ctrl.order.customer.profiles[0].public_email"><span mb-translate>EMail</span> : {{::ctrl.order.customer.profiles[0].public_email}},</span>
+									<span ng-if="::ctrl.order.customer.profiles[0].gender"><span mb-translate>Gender</span> : {{::ctrl.order.customer.profiles[0].gender}},</span>
+									<span ng-if="::ctrl.order.customer.profiles[0].language"><span mb-translate>Language</span> : {{::ctrl.order.customer.profiles[0].language}},</span>
+									<span ng-if="::ctrl.order.customer.profiles[0].timezone"><span mb-translate>Time Zone</span> : {{::ctrl.order.customer.profiles[0].timezone}},</span>
 								</p>
 							</div>
 						</md-list-item> 
@@ -268,7 +268,7 @@
 						<md-divider></md-divider> 
 
 						<!--Responsible info-->
-						<md-subheader ng-if="ctrl.order.assignee"><h2 style="color: black">{{::('Responsible'| translate)}}</h2></md-subheader>
+						<md-subheader ng-if="ctrl.order.assignee"><h2 style="color: black">{{::('Responsible' | translate)}}</h2></md-subheader>
 						<md-list-item 
 							class="md-3-line" 
 							ng-href="ums/accounts/{{::ctrl.order.assignee.id}}"
@@ -280,14 +280,14 @@
 								<h3>{{::ctrl.order.assignee.profiles[0].first_name}} {{::ctrl.order.assignee.profiles[0].last_name}}</h3>
 								<h4>
 									<span ng-if="::ctrl.order.customer.date_joined">
-										<span translate>Joined</span> : {{::(ctrl.order.assignee.date_joined | mbDate)}}
+										<span mb-translate>Joined</span> : {{::(ctrl.order.assignee.date_joined | mbDate)}}
 									</span>
 								</h3>
 								<p>
-									<span ng-if="::ctrl.order.assignee.profiles[0].public_email"><span translate>EMail</span> : {{::ctrl.order.assignee.profiles[0].public_email}},</span>
-									<span ng-if="::ctrl.order.assignee.profiles[0].gender"><span translate>Gender</span> : {{::ctrl.order.assignee.profiles[0].gender}},</span>
-									<span ng-if="::ctrl.order.assignee.profiles[0].language"><span translate>Language</span> : {{::ctrl.order.assignee.profiles[0].language}},</span>
-									<span ng-if="::ctrl.order.assignee.profiles[0].timezone"><span translate>Time Zone</span> : {{::ctrl.order.assignee.profiles[0].timezone}},</span>
+									<span ng-if="::ctrl.order.assignee.profiles[0].public_email"><span mb-translate>EMail</span> : {{::ctrl.order.assignee.profiles[0].public_email}},</span>
+									<span ng-if="::ctrl.order.assignee.profiles[0].gender"><span mb-translate>Gender</span> : {{::ctrl.order.assignee.profiles[0].gender}},</span>
+									<span ng-if="::ctrl.order.assignee.profiles[0].language"><span mb-translate>Language</span> : {{::ctrl.order.assignee.profiles[0].language}},</span>
+									<span ng-if="::ctrl.order.assignee.profiles[0].timezone"><span mb-translate>Time Zone</span> : {{::ctrl.order.assignee.profiles[0].timezone}},</span>
 								</p>
 							</div>
 						</md-list-item> 
@@ -297,7 +297,7 @@
 
 			<!--History-->
 			<mb-titled-block 
-				mb-title="{{::('Order history'| translate)}}"
+				mb-title="{{::('Order history' | translate)}}"
 				layout="column">
 				<div 
 					layout="column">
@@ -355,22 +355,22 @@
 								</div>
 							</div>
 							<div class="md-list-item-text" layout="column">
-								<h3 translate="">{{::history.action}}</h3>
+								<h3 mb-translate="">{{::history.action}}</h3>
 								<h4>{{::history.description}}</h4>
 								<p>
 									<span ng-if="::history.creation_dtime">
-										<span translate>Date</span>:<span>{{::(history.creation_dtime | mbDateTime)}}</span>,
+										<span mb-translate>Date</span>:<span>{{::(history.creation_dtime | mbDateTime)}}</span>,
 									</span>
 									<span 
 										ng-if="history.subject_id>0"
 										ng-switch="::history.subject_type">
 										<span
 											ng-switch-when="User_Account">
-											<span translate>Employee</span>:<span>{{::history.subject_id}}</span>
+											<span mb-translate>Employee</span>:<span>{{::history.subject_id}}</span>
 										</span>
 										<span 
 											ng-switch-default>
-											<span translate>Subject</span>:<span>{{::history.subject_type}}-{{::history.subject_id}}</span>
+											<span mb-translate>Subject</span>:<span>{{::history.subject_type}}-{{::history.subject_id}}</span>
 										</span>
 									</span>
 								</p>

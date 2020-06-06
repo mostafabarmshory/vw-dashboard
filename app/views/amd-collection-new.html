@@ -9,15 +9,15 @@
 		layout="column">
 		
 		<md-input-container>
-			<label translate>Name</label>
+			<label mb-translate>Name</label>
 			<input ng-model="model.name" required>
 		</md-input-container>
 		<md-input-container>
-			<label translate>Title</label>
+			<label mb-translate>Title</label>
 			<input ng-model="model.title">
 		</md-input-container>
 		<md-input-container>
-			<label translate>Description</label>
+			<label mb-translate>Description</label>
 			<input ng-model="model.description">
 		</md-input-container>
 	</div>
@@ -27,12 +27,12 @@
 		<md-button 
 			ng-click="add(model)">
 			<mb-icon aria-label="close">done</mb-icon>
-			<span translate>Add</span>
+			<span mb-translate>Add</span>
 		</md-button>
 		<md-button 
 			ng-click="cancel()">
 			<mb-icon aria-label="close">close</mb-icon>
-			<span translate>Cancle</span>
+			<span mb-translate>Cancle</span>
 		</md-button>
 	</div>
 </form>

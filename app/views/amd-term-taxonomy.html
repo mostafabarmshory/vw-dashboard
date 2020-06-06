@@ -4,7 +4,7 @@
 	flex>
 	<mb-titled-block 
 		mb-progress="ctrl.isBusy()"
-		mb-title="{{'Taxonomy'| translate}}"
+		mb-title="{{'Taxonomy' | translate}}"
 		layout="column">
 		<div 
 			layout="row" 
@@ -13,11 +13,11 @@
 			layout-padding>
 			<table>
 				<tr>
-					<td translate="">ID</td>
+					<td mb-translate="">ID</td>
 					<td>: {{ctrl.item.id}}</td>
 				</tr>
 				<tr>
-					<td translate="">Taxonomy</td>
+					<td mb-translate="">Taxonomy</td>
 					<td>
 						<mb-inline
 							ng-model="ctrl.item.taxonomy"
@@ -30,7 +30,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td translate="">Description</td>
+					<td mb-translate="">Description</td>
 					<td>
 						<mb-inline
 							ng-model="ctrl.item.description"
@@ -43,7 +43,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td translate="">Parent id</td>
+					<td mb-translate="">Parent id</td>
 					<td>
 						<mb-inline
 							ng-model="ctrl.item.parent_id"
@@ -56,7 +56,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td translate="">Term id</td>
+					<td mb-translate="">Term id</td>
 					<td>
 						<mb-inline
 							ng-model="ctrl.item.term_id"
@@ -77,7 +77,7 @@
 			<md-button 
 				class = "md-raised md-accent"
 				ng-click="ctrl.deleteItem()">
-				<span translate="">Delete</span>
+				<span mb-translate="">Delete</span>
 			</md-button>
 		</div>
 	</mb-titled-block>

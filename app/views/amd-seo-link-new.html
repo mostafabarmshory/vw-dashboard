@@ -10,29 +10,29 @@
 	 	layout="column" 
 		flex>
 		<md-input-container>
-			<label translate>Title</label>
+			<label mb-translate>Title</label>
 			<input ng-model="model.title">
 		</md-input-container>
 		<md-input-container>
-			<label translate>Description</label>
+			<label mb-translate>Description</label>
 			<input ng-model="model.description">
 		</md-input-container>
 		<md-input-container>
-			<label translate>Link (loc)</label>
+			<label mb-translate>Link (loc)</label>
 			<input name="loc" ng-model="model.loc" type="url" required>
 			<div ng-messages="linkForm.loc.$error">
-		    	<div ng-message="required">{{'This field is required.' | translate}}</div>
-		    	<div ng-message="url">{{'URL is not valid.' | translate}}</div>
+		    	<div ng-message="required">{{'This field is required.'  | translate}}</div>
+		    	<div ng-message="url">{{'URL is not valid.'  | translate}}</div>
 		    </div>
 		</md-input-container>
 		<md-input-container>
-			<label translate>Last Modification</label>
+			<label mb-translate>Last Modification</label>
 			<md-datepicker ng-model="myDate"
 				md-hide-icons="calendar" 
 				ng-change="model.lastmod = formatDate(myDate)"></md-datepicker>
 		</md-input-container>
 		<md-input-container>
-			<label translate>Change Frequency</label>
+			<label mb-translate>Change Frequency</label>
 			<md-select ng-model="model.changefreq">
               <md-option ng-repeat="item in changeFrequencies" value="{{item.value}}">
                 {{item.title}}
@@ -40,13 +40,13 @@
             </md-select>
 		</md-input-container>
 		<md-input-container>
-			<label translate>Priority</label>
+			<label mb-translate>Priority</label>
 			<input name="priority" type="number" 
 				ng-model="model.priority" 
 				min="0.0" max="1.0" step="0.01">
 			<div ng-messages="linkForm.priority.$error">
-		    	<div ng-message="min">{{'Minimum value is 0.0.' | translate}}</div>
-		    	<div ng-message="max">{{'Maximum value is 1.0.' | translate}}</div>
+		    	<div ng-message="min">{{'Minimum value is 0.0.'  | translate}}</div>
+		    	<div ng-message="max">{{'Maximum value is 1.0.'  | translate}}</div>
 		    </div>
 		</md-input-container>
 	
@@ -56,14 +56,14 @@
 				class="md-raised" 
 				ng-click="cancel()">
 				<mb-icon aria-label="close">close</mb-icon>
-				<span translate>Cancle</span>
+				<span mb-translate>Cancle</span>
 			</md-button>
 			<md-button 
 				class="md-raised" 
 				ng-disabled="linkForm.$invalid"
 				ng-click="addLink(model)">
 				<mb-icon aria-label="close">done</mb-icon>
-				<span translate>Add</span>
+				<span mb-translate>Add</span>
 			</md-button>
 		</div>
 	</form>

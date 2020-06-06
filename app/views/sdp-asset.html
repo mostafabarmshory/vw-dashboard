@@ -4,7 +4,7 @@
 	
 	<mb-titled-block 
 		mb-progress="ctrl.loadingAsset || ctrl.savingAsset"
-		mb-title="{{'Asset'| translate}}"
+		mb-title="{{'Asset' | translate}}"
 		layout="column">
 		<section ng-show="!ctrl.edit"
 			layout="column">
@@ -57,13 +57,13 @@
 					class = "md-raised md-primary"
 					ng-click="remove()">
 					<mb-icon>delete</mb-icon>
-					<span translate>Delete</span>
+					<span mb-translate>Delete</span>
 				</md-button>
 				<md-button
 					class="md-raised"
 					ng-click="ctrl.edit=true">
 					<mb-icon>edit</mb-icon>
-					<span translate>Edit</span>
+					<span mb-translate>Edit</span>
 				</md-button>
 			</div>
 		</section>
@@ -72,7 +72,7 @@
 			layout="column">
 			
 			<md-button class="md-raised" ng-click="changeFile()">
-				{{'change file' | translate}}
+				{{'change file'  | translate}}
 			</md-button>
 			
 			<md-input-container class="md-block" flex-gt-xs>
@@ -106,13 +106,13 @@
 					class="md-raised" 
 					ng-click="save()">
 					<mb-icon>save</mb-icon>
-					<span translate>Save</span>
+					<span mb-translate>Save</span>
 				</md-button>
 				<md-button 
 					class="md-raised" 
 					ng-click="ctrl.edit=false">
 					<mb-icon>close</mb-icon>
-					<span translate>Cancel</span>
+					<span mb-translate>Cancel</span>
 				</md-button>
 			 </div>
 		</section>
@@ -122,7 +122,7 @@
 	<mb-titled-block
 		mb-progress="ctrl.loadingCategories"
 		layout="column" 
-		mb-title="{{'Categories' | translate}}">
+		mb-title="{{'Categories'  | translate}}">
 		<div class="sdp-chips-list" style="direction:rtl;">
 			<div layout="row" layout-align="start center">
 				<md-chips flex
@@ -155,7 +155,7 @@
 	<!-- tags -->
 	<mb-titled-block
 		mb-progress="ctrl.loadingTags"
-		mb-title="{{'Tags' | translate}}"
+		mb-title="{{'Tags'  | translate}}"
 		layout="column">
 		<div class="sdp-chips-list" style="direction:rtl;">
 			<div layout="row" layout-align="start center">
@@ -188,7 +188,7 @@
 	<!-- related assets -->
 	<mb-titled-block 
 		mb-progress="ctrl.loadingRelateds"
-		mb-title="{{'Relateds' | translate}}"
+		mb-title="{{'Relateds'  | translate}}"
 		layout="column">
 		<div class="sdp-chips-list" style="direction:rtl;">
 			<div layout="row" layout-align="start center">

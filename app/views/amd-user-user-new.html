@@ -13,34 +13,34 @@
 		    <div style="text-align: center;"
 				layout-margin
 				ng-show="!ctrl.working && errorMessage"> 
-				<p><span md-colors="{color:'warn'}" translate>{{errorMessage}}</span></p>
+				<p><span md-colors="{color:'warn'}" mb-translate>{{errorMessage}}</span></p>
 			</div>
 			<div 
 				layout="column" 
 				layout-padding>
 			  <md-input-container>
-			    <label translate>Username</label>
+			    <label mb-translate>Username</label>
 			    <input 
 			    	name="login" 
 			    	ng-model="model.login" 
 			    	type="text" required>
 			    <div ng-messages="ctrl.myForm.login.$error" md-auto-hide="false">
-					<div ng-message="required" translate>This field is required.</div>
-					<div ng-message="unique" translate>Username is used before.</div>
-					<div ng-message="minlength" translate>Username is too short.</div>
+					<div ng-message="required" mb-translate>This field is required.</div>
+					<div ng-message="unique" mb-translate>Username is used before.</div>
+					<div ng-message="minlength" mb-translate>Username is too short.</div>
 				</div>
 			  </md-input-container>
 			  <md-input-container>
-			    <label translate>Email</label>
+			    <label mb-translate>Email</label>
 			    <input name="email" ng-model="model.email" type="email" required>
 			    <div ng-messages="ctrl.myForm.email.$error" md-auto-hide="false">
-					<div ng-message="required" translate>This field is required.</div>
-					<div ng-message="notnull" translate>This field is required.</div>
-					<div ng-message="email" translate>Email is not valid.</div>
+					<div ng-message="required" mb-translate>This field is required.</div>
+					<div ng-message="notnull" mb-translate>This field is required.</div>
+					<div ng-message="email" mb-translate>Email is not valid.</div>
 				</div>
 			  </md-input-container>
 			  <md-input-container>
-			    <label translate>Password</label>
+			    <label mb-translate>Password</label>
 			    <input 
 			    	name="password" 
 			    	ng-model="model.password" 
@@ -49,8 +49,8 @@
 			    <div 
 			    	ng-messages="ctrl.myForm.password.$error" 
 			    	md-auto-hide="false">
-					<div ng-message="required" translate>This field is required.</div>
-					<div ng-message="minlength" translate>Password is too short.</div>
+					<div ng-message="required" mb-translate>This field is required.</div>
+					<div ng-message="minlength" mb-translate>Password is too short.</div>
 				</div>
 			  </md-input-container>
 			</div>
@@ -61,13 +61,13 @@
 					class="md-raised"
 					ng-click="cancel()">
 <!-- 					<mb-icon>close</mb-icon> -->
-					<span translate>Cancel</span>
+					<span mb-translate>Cancel</span>
 				</md-button>
 				<md-button 
 					class="md-raised md-primary"
 					ng-click="addUser(model, ctrl.myForm)">
 <!-- 					<mb-icon>done</mb-icon> -->
-					<span translate>Add</span>
+					<span mb-translate>Add</span>
 				</md-button>
 			</div>
 		</form>

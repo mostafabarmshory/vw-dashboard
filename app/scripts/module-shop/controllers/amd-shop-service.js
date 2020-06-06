@@ -26,7 +26,7 @@
  * @description Controller of a service
  */
 mblowfish.controller('AmdShopServiceCtrl', function(
-	$scope, $state, $translate, $location, $navigator, $q,
+	$scope, $state, $mbTranslate, $location, $navigator, $q,
         /* wb-core   */ $mbResource,
         /* seen-core */ QueryParameter,
         /* seen-shop */ $shop, ShopService, ShopCategory, ServiceMetafield) {
@@ -58,7 +58,7 @@ mblowfish.controller('AmdShopServiceCtrl', function(
 				delete p.categories;
 				$scope.service = new ShopService(p);
 			}, function() {
-				alert($translate.instant('Faild to load the service.'));
+				alert($mbTranslate.instant('Faild to load the service.'));
 			})//
 			.finally(function() {
 				ctrl.loading = false;
@@ -71,13 +71,13 @@ mblowfish.controller('AmdShopServiceCtrl', function(
      * @description remove the selected service from the server
      */
 	function remove() {
-		confirm($translate.instant('Item will be deleted. There is no undo action.'))//
+		confirm($mbTranslate.instant('Item will be deleted. There is no undo action.'))//
 			.then(function() {
 				return $scope.service.delete()//
 					.then(function() {
 						$location.path('/services/');
 					}, function() {
-						alert($translate.instant('Fail to delete the service.'));
+						alert($mbTranslate.instant('Fail to delete the service.'));
 					});
 			});
 	}
@@ -95,7 +95,7 @@ mblowfish.controller('AmdShopServiceCtrl', function(
 			.then(function(newService) {
 				$scope.service = newService;
 			}, function() {
-				alert($translate.instant('Failed to update service.'));
+				alert($mbTranslate.instant('Failed to update service.'));
 			})//
 			.finally(function() {
 				ctrl.loading = false;
@@ -135,14 +135,14 @@ mblowfish.controller('AmdShopServiceCtrl', function(
      *            metaData
      */
 	function removeMetafield(metaData) {
-		confirm($translate.instant('Item will be deleted. There is no undo action.'))//
+		confirm($mbTranslate.instant('Item will be deleted. There is no undo action.'))//
 			.then(function() {
 				return $scope.service.deleteMetafield(metaData)//
 					.then(function() {
 						loadMetafields();
-						toast($translate.instant('Item is deleted successfully.'));
+						toast($mbTranslate.instant('Item is deleted successfully.'));
 					}, function() {
-						alert($translate.instant('Failed to delete item.'));
+						alert($mbTranslate.instant('Failed to delete item.'));
 					});
 			});
 	}
@@ -160,7 +160,7 @@ mblowfish.controller('AmdShopServiceCtrl', function(
 				.then(function() {
 					loadMetafields();
 				}, function() {
-					alert($translate.instant('Failed to add new item.'));
+					alert($mbTranslate.instant('Failed to add new item.'));
 				});
 		});
 	}
@@ -177,7 +177,7 @@ mblowfish.controller('AmdShopServiceCtrl', function(
 				.then(function() {
 					loadMetafields();
 				}, function() {
-					alert($translate.instant('Failed to update item.'));
+					alert($mbTranslate.instant('Failed to update item.'));
 				});
 		});
 	}
@@ -187,7 +187,7 @@ mblowfish.controller('AmdShopServiceCtrl', function(
 			.then(function() {
 				loadMetafields();
 			}, function() {
-				alert($translate.instant('Failed to update item.'));
+				alert($mbTranslate.instant('Failed to update item.'));
 			});
 	}
 

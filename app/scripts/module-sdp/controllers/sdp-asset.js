@@ -4,7 +4,7 @@
 	 * @name saasdmCpanelApp.controller:MainCtrl
 	 * @description # MainCtrl Controller of the saasdmCpanelApp
 	 */
-	mblowfish.controller('SdpAssetCtrl', function($scope, $sdp, $navigator, $state, $location, $translate, $mbResource, QueryParameter) {
+	mblowfish.controller('SdpAssetCtrl', function($scope, $sdp, $navigator, $state, $location, $mbTranslate, $mbResource, QueryParameter) {
 
 		var ctrl = {
 			loadingAsset: true,
@@ -24,7 +24,7 @@
 
 
 		function handlError() {
-			alert($translate.instant('faile to load asset'));
+			alert($mbTranslate.instant('faile to load asset'));
 		}
 
 		/**
@@ -34,7 +34,7 @@
 		 * @returns
 		 */
 		function remove() {
-			confirm($translate.instant('The item will be deleted.'))//
+			confirm($mbTranslate.instant('The item will be deleted.'))//
 				.then(function() {
 					return $scope.asset.delete();//
 				})//
@@ -42,7 +42,7 @@
 					// TODO: maso, 1395: go to the model page
 					$location.path('/assets');
 				}, function() {
-					alert($translate.instant('fail to delete asset'));
+					alert($mbTranslate.instant('fail to delete asset'));
 				});
 		}
 
@@ -58,7 +58,7 @@
 						ctrl.edit = false;
 						ctrl.savingAsset = false;
 						selectedFile = false;
-						alert($translate.instant('Fail to update asset'));
+						alert($mbTranslate.instant('Fail to update asset'));
 					});
 			} else {
 				asset.update()//
@@ -80,7 +80,7 @@
 				.then(function(conf) {
 					selectedFile = conf.files[0].lfFile;
 				}, function() {
-					alert($translate.instant('Fail to select file for asset.'));
+					alert($mbTranslate.instant('Fail to select file for asset.'));
 				});
 		}
 
@@ -98,7 +98,7 @@
 		function removeFromCategory(category) {
 			category.deleteAsset(asset)//
 				.then(loadCategories, function() {
-					alert($translate.instant('fail to load asset from category'));
+					alert($mbTranslate.instant('fail to load asset from category'));
 				});
 		}
 
@@ -174,7 +174,7 @@
 		function removeRelation(relatedAsset) {
 			asset.deleteAssetRelation(relatedAsset)//
 				.then(loadRelations, function() {
-					alert($translate.instant('fail to delete relation of asset'));
+					alert($mbTranslate.instant('fail to delete relation of asset'));
 				});
 		}
 
@@ -229,15 +229,15 @@
 				}, handlError)
 				// load categories
 				.then(loadCategories, function() {
-					alert($translate.instant('fail to load categories'));
+					alert($mbTranslate.instant('fail to load categories'));
 				})
 				// load tags
 				.then(loadTags, function() {
-					alert($translate.instant('fail to load tags'));
+					alert($mbTranslate.instant('fail to load tags'));
 				})
 				// load relateds
 				.then(loadRelations, function() {
-					alert($translate.instant('fail to load relateds'));
+					alert($mbTranslate.instant('fail to load relateds'));
 				});
 		}
 

@@ -29,7 +29,7 @@
  * @description Manages a role view
  * 
  */
-mblowfish.controller('AmdRoleCtrl', function($scope, $usr, $state, $navigator, $mbResource, $translate, $q) {
+mblowfish.controller('AmdRoleCtrl', function($scope, $usr, $state, $navigator, $mbResource, $mbTranslate, $q) {
 
 	var ctrl = {
 		roleLoading: true,
@@ -44,14 +44,14 @@ mblowfish.controller('AmdRoleCtrl', function($scope, $usr, $state, $navigator, $
 	 * @return {promiss} to do the remove process
 	 */
 	function remove() {
-		return confirm($translate.instant('Role will be removed. There is no undo.'))
+		return confirm($mbTranslate.instant('Role will be removed. There is no undo.'))
 			.then(function() {
 				return $scope.role.delete();//
 			})//
 			.then(function() {
 				$navigator.openPage('ums/roles');
 			}, function(/*error*/) {
-				alert($translate.instant('Failed to delete item.'));
+				alert($mbTranslate.instant('Failed to delete item.'));
 			});
 	}
 
@@ -70,7 +70,7 @@ mblowfish.controller('AmdRoleCtrl', function($scope, $usr, $state, $navigator, $
 		ctrl.roleLoading = true;
 		return $scope.role.update()//
 			.then(function() {
-				toast($translate.instant('Save is successfull.'));
+				toast($mbTranslate.instant('Save is successfull.'));
 			})//
 			.finally(function() {
 				ctrl.roleLoading = false;
@@ -138,7 +138,7 @@ mblowfish.controller('AmdRoleCtrl', function($scope, $usr, $state, $navigator, $
 						loadGroups();
 					}, function() {
 						$scope.groups = myData;
-						alert($translate.instant('An error occured while set groups.'));
+						alert($mbTranslate.instant('An error occured while set groups.'));
 					});
 			});
 	}
@@ -169,7 +169,7 @@ mblowfish.controller('AmdRoleCtrl', function($scope, $usr, $state, $navigator, $
 						loadUsers();
 					}, function() {
 						$scope.users = myData;
-						alert($translate.instant('An error occured while set users.'));
+						alert($mbTranslate.instant('An error occured while set users.'));
 					});
 			});
 	}
@@ -188,7 +188,7 @@ mblowfish.controller('AmdRoleCtrl', function($scope, $usr, $state, $navigator, $
 			return;
 		}
 		ctrl.groupLoading = true;
-		confirm($translate.instant('Item will be deleted.'))//
+		confirm($mbTranslate.instant('Item will be deleted.'))//
 			.then(function() {
 				return $scope.role.deleteGroup(group);
 			})//
@@ -208,7 +208,7 @@ mblowfish.controller('AmdRoleCtrl', function($scope, $usr, $state, $navigator, $
 			return;
 		}
 		ctrl.userLoading = true;
-		confirm($translate.instant('Item will be deleted.'))//
+		confirm($mbTranslate.instant('Item will be deleted.'))//
 			.then(function() {
 				return $scope.role.deleteAccount(user);
 			})//

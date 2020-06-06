@@ -27,7 +27,7 @@
  * @name AmdSeoCrawledLinksCtrl
  * @description # Controller of the crawled links
  */
-mblowfish.controller('AmdSeoCrawledLinksCtrl', function ($scope, $navigator, $translate, $seo, $controller) {
+mblowfish.controller('AmdSeoCrawledLinksCtrl', function ($scope, $navigator, $mbTranslate, $seo, $controller) {
 
     // Extends with ItemsController
     angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
@@ -78,7 +78,7 @@ mblowfish.controller('AmdSeoCrawledLinksCtrl', function ($scope, $navigator, $tr
         .then(function (content) {
             //TODO: Masood, 2019: Do works if needed
         }, function () {
-            alert($translate.instant('Failed to upload content'));
+            alert($mbTranslate.instant('Failed to upload content'));
         });
     };
 });

@@ -12,17 +12,17 @@
 			<md-checkbox 
 				ng-model="options.removeStyle" 
 				aria-label="Remove style from view">
-				<span translate>Remove style attribute</span>
+				<span mb-translate>Remove style attribute</span>
 			</md-checkbox>
 			<md-checkbox 
 				ng-model="options.removeAngularjsTags" 
 				aria-label="Remove AngularJS attributes from view">
-				<span translate>Remove AngularJS attributes</span>
+				<span mb-translate>Remove AngularJS attributes</span>
 			</md-checkbox>
 			<md-checkbox 
 				ng-model="options.removeAngularjsMDTags" 
 				aria-label="Remove AngularJS Material Desing attributes from view">
-				<span translate>Remove AngularJS Material Design attributes</span>
+				<span mb-translate>Remove AngularJS Material Design attributes</span>
 			</md-checkbox>
 		</div>
 		<div
@@ -33,12 +33,12 @@
 				ng-href="/api/v2/seo/content/{{ctrl.seoContent.id}}/content"
 				target="_blank"
 				download="{{ctrl.seoContent.file_name}}">
-				<span translate>Download</span>
+				<span mb-translate>Download</span>
 			</md-button>
 			<md-button
 				class="md-raised md-primary"
 				ng-click="ctrl.uploadPreview(options)">
-				<span translate>Upload preview</span>
+				<span mb-translate>Upload preview</span>
 			</md-button>
 		</div>
 	</mb-titled-block>	
@@ -49,43 +49,43 @@
 		mb-icon="info">
 		<table>
 			<tr>
-				<td translate>URL</td>
+				<td mb-translate>URL</td>
 				<td>{{ctrl.seoContent.url}}</td>
 			</tr>
 			<tr>
-				<td translate>Title</td>
+				<td mb-translate>Title</td>
 				<td>{{ctrl.seoContent.title}}</td>
 			</tr>
 			<tr>
-				<td translate>description</td>
+				<td mb-translate>description</td>
 				<td>{{ctrl.seoContent.description}}</td>
 			</tr>
 			<tr>
-				<td translate>mime_type</td>
+				<td mb-translate>mime_type</td>
 				<td>{{ctrl.seoContent.mime_type}}</td>
 			</tr>
 			<tr>
-				<td translate>file_name</td>
+				<td mb-translate>file_name</td>
 				<td>{{ctrl.seoContent.file_name}}</td>
 			</tr>
 			<tr>
-				<td translate>file_size</td>
+				<td mb-translate>file_size</td>
 				<td>{{ctrl.seoContent.file_size}}</td>
 			</tr>
 			<tr>
-				<td translate>downloads</td>
+				<td mb-translate>downloads</td>
 				<td>{{ctrl.seoContent.downloads}}</td>
 			</tr>
 			<tr>
-				<td translate>creation_dtime</td>
+				<td mb-translate>creation_dtime</td>
 				<td>{{ctrl.seoContent.creation_dtime}}</td>
 			</tr>
 			<tr>
-				<td translate>modif_dtime</td>
+				<td mb-translate>modif_dtime</td>
 				<td>{{ctrl.seoContent.modif_dtime}}</td>
 			</tr>
 			<tr>
-				<td translate>expire_dtime</td>
+				<td mb-translate>expire_dtime</td>
 				<td>
 					<mb-inline 
 					 	ng-model="ctrl.seoContent.expire_dtime" 

@@ -10,11 +10,11 @@
 		layout-margin>
 		<table class="amd-table amd-table-description">
 			<tr>
-				<td translate>ID </td>
+				<td mb-translate>ID </td>
 				<td>{{role.id}}</td>
 			</tr>
 			<tr>
-				<td translate>Name</td>
+				<td mb-translate>Name</td>
 				<td>
 					<am-wb-inline
 						ng-model="role.name"
@@ -27,7 +27,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td translate>Code name</td>
+				<td mb-translate>Code name</td>
 				<td>
 					<am-wb-inline
 						ng-model="role.code_name"
@@ -40,7 +40,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td translate>Application</td>
+				<td mb-translate>Application</td>
 				<td>
 					<am-wb-inline
 						ng-model="role.application"
@@ -53,7 +53,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td translate>Description</td>
+				<td mb-translate>Description</td>
 				<td>
 					<am-wb-inline
 						ng-model="role.description"
@@ -86,14 +86,14 @@
 			ng-show="!groups.items || groups.items.length == 0"
 			layout="column" 
 			layout-align="center center">
-			<p translate>There is no group having this role.</p>
+			<p mb-translate>There is no group having this role.</p>
 		</div>
 		<div layout="row">
 			<span flex></span>
 			<md-button class="md-raised" 
 				ng-click="changeGroups()">
 				<mb-icon>edit</mb-icon>
-				<span translate>Edit</span>
+				<span mb-translate>Edit</span>
 			</md-button>
 		</div>
 	</section>
@@ -116,14 +116,14 @@
 			ng-show="!users.items || users.items.length == 0"
 			layout="column" 
 			layout-align="center center">
-			<p translate>There is not user having this role.</p>
+			<p mb-translate>There is not user having this role.</p>
 		</div>
 		<div layout="row">
 			<span flex></span>
 			<md-button class="md-raised" 
 				ng-click="changeUsers()">
 				<mb-icon>edit</mb-icon>
-				<span translate>Edit</span>
+				<span mb-translate>Edit</span>
 			</md-button>
 		</div>
 	</section>

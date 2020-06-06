@@ -29,7 +29,7 @@
  * @description load the order
  */
 mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder, 
-	$shop, $translate, $state, $navigator, $window) {
+	$shop, $mbTranslate, $state, $navigator, $window) {
 
 	this.order = {};
 	this.actions = [];
@@ -54,7 +54,7 @@ mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder,
 			.then(function(order) {
 				ctrl.initialize(order);
 			}, function() {
-				alert($translate.instant('Failed to load the order.'));
+				alert($mbTranslate.instant('Failed to load the order.'));
 			})//
 			.finally(function() {
 				ctrl.loading = false;
@@ -90,7 +90,7 @@ mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder,
 			.then(function(res) {
 				ctrl.actions = res.items;
 			}, function() {
-				alert($translate.instant('Failed to load possible actions.'));
+				alert($mbTranslate.instant('Failed to load possible actions.'));
 			})//
 			.finally(function() {
 				ctrl.actionLoading = false;

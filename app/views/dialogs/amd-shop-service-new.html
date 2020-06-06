@@ -4,7 +4,7 @@
 	flex="50">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
-			<h2 translate="">New service</h2>
+			<h2 mb-translate="">New service</h2>
 			<span flex></span>
 			<md-button 
 				class="md-icon-button" 
@@ -41,7 +41,7 @@
 					<label tranlate="">Title</label>
 					<input ng-model="config.title" name="title" required></input>
 					<div ng-messages="myForm.title.$error">
-						<div ng-message="required" translate>This field is required.</div>
+						<div ng-message="required" mb-translate>This field is required.</div>
 					</div>
 				</md-input-container>
 	
@@ -54,7 +54,7 @@
 					<label tranlate="">Price</label>
 					<input ng-model="config.price" type="number" required></input>
 					<div ng-messages="myForm.title.$error">
-						<div ng-message="required" translate="">This field is required.</div>
+						<div ng-message="required" mb-translate="">This field is required.</div>
 					</div>
 				</md-input-container>
 	

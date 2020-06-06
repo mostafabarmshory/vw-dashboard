@@ -30,15 +30,15 @@
 					<h3>{{user.profiles[0].first_name}} - {{user.profiles[0].last_name}}</h3>
 					<h4>
 						<span ng-show="user.is_active">
-							<span translate>Active</span>,
+							<span mb-translate>Active</span>,
 						</span>
 						<span ng-show="!user.is_active">
-							<span translate>Inactive</span>,
+							<span mb-translate>Inactive</span>,
 						</span>
 					</h4>
 					<p>
-						<span translate>Joined</span>: {{user.date_joined}},
-						<span translate>Last Login</span>: {{user.last_login}},
+						<span mb-translate>Joined</span>: {{user.date_joined}},
+						<span mb-translate>Last Login</span>: {{user.last_login}},
 					</p>
 				</div>
 				<md-checkbox 
