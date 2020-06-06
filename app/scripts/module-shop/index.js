@@ -394,6 +394,34 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			},
 			groups: shopActionGroups
 		})
+		.addAction('create:/shop/tags', {// create new tag menu
+            priority: 10,
+            icon: 'label',
+            title: 'New Tag',
+            description: 'Creates new tag',
+            /* @ngInject */
+            action: function($shop, $window, $translate, $navigator, $mbDispatcher) {
+                var job = $navigator.openDialog({
+                    templateUrl: 'views/dialogs/amd-shop-tag-new.html',
+                    config: {}
+                })
+                    .then(function(newConfig) {
+                        return $shop.putTag(newConfig);
+                    })
+                    .then(function(tag) {
+                        $mbDispatcher.dispatch('/shop/tags', {
+                            key: 'create',
+                            values: [tag]
+                        });
+                    }, function() {
+                        $window.alert($translate.instant('Failed to create new tag.'));
+                    });
+                // TODO: maso, 2020: add the job into the job lists
+                // $app.addJob('Adding new shop tag', job);
+                return job;
+            },
+            groups: shopActionGroups
+        })
 		.addAction('create:/shop/agencies', {
 			icon: 'store',
 			title: 'New Agency',
