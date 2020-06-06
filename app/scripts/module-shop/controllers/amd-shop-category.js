@@ -181,7 +181,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
             return;
         }
         return ctrl.savingCategory = $navigator.openDialog({
-            templateUrl: 'views/dialogs/category-new.html',
+            templateUrl: 'views/dialogs/amd-shop-category-new.html',
             config: {}
         })
         .then(function (newConfig) {
@@ -206,7 +206,7 @@ mblowfish.controller('AmdShopCategoryCtrl', function ($scope, $shop,
 
     function addNewService() {
         return $navigator.openDialog({
-            templateUrl: 'views/dialogs/service-new.html',
+            templateUrl: 'views/dialogs/amd-shop-service-new.html',
             config: {}
         }).then(function (newConfig) {
             createService(newConfig);
