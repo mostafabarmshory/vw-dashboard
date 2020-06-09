@@ -29,6 +29,8 @@ mblowfish.config(function($mbIconProvider, $mbEditorProvider, $mbViewProvider) {
 	$mbEditorProvider
 		.addEditor('/ums/accounts/:userId', {
 			templateUrl: 'views/amd-user-user.html',
+			controller: 'MbUserAccountEditorCtrl',
+			controllerAs: 'ctrl'
 		})
 		.addEditor('/ums/groups/:groupId', {
 			templateUrl: 'views/amd-user-group.html',
