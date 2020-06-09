@@ -33,7 +33,7 @@ mblowfish.config(function(
 			groups: viewGroups,
 			icon: 'image',
 		})
-		.addView('/cms/contents/new', {
+		.addView('/cms/contents-new', {
 			title: 'Upload',
 			controller: 'AmdContentNewCtrl',
 			controllerAs: 'ctrl',
