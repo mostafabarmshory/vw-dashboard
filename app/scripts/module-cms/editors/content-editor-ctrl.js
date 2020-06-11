@@ -296,6 +296,9 @@ mblowfish.controller('AmdContentCtrl', function(
 	// End 
 	//-------------------------------------------------------------------------
 	ctrl.addEventHandler(AMD_CMS_CONTENT_SP, function(event) {
+		if (!content) {
+			return;
+		}
 		_.forEach(event.values, function(value) {
 			if (value.id === content.id) {
 				switch (event.key) {
@@ -312,6 +315,9 @@ mblowfish.controller('AmdContentCtrl', function(
 	});
 
 	ctrl.addEventHandler(AMD_CMS_METADATA_SP, function(data) {
+		if (!content) {
+			return;
+		}
 		_.forEach(data.values, function(value) {
 			if (value.content_id !== content.id) {
 				return;
@@ -330,6 +336,9 @@ mblowfish.controller('AmdContentCtrl', function(
 
 
 	ctrl.addEventHandler(contentTermTaxonomiesAssos, function(data) {
+		if (!content) {
+			return;
+		}
 		_.forEach(data.values, function(value) {
 			switch (data.key) {
 				case 'create':

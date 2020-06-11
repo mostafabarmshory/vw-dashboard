@@ -24,57 +24,62 @@
 
 /**
 @ngdoc Controllers
-@name AmdCmsTermTaxonomiesCtrl
-@description # Manages Term-Taxonomies
+@name AmdCmsTermsCtrl
+@description # Manages Terms
  */
-mblowfish.controller('AmdCmsTermTaxonomiesCtrl', function($scope, $cms, $controller) {
+mblowfish.controller('AmdCmsTermsCtrl', function($scope, $cms, $controller) {
 
-	/*
-	 * Extends collection controller
-	 */
+    /*
+     * Extends collection controller
+     */
 	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
 		$scope: $scope
 	}));
 
 	// Override the schema function
 	this.getModelSchema = function() {
-		return $cms.termTaxonomySchema();
+		return $cms.termSchema();
 	};
 
-	// get models
+	// get contents
 	this.getModels = function(parameterQuery) {
-		return $cms.getTermTaxonomies(parameterQuery);
+		return $cms.getTerms(parameterQuery);
 	};
 
-	// get a model
+	// get a content
 	this.getModel = function(id) {
-		return $cms.getTermTaxonomy(id);
+		return $cms.getTerm(id);
 	};
 
-	// add a model
-	this.addModel = function(model) {
-		return $cms.putTermTaxonomy(model);
-	};
-
-	// delete model
+	// delete account
 	this.deleteModel = function(model) {
-		return $cms.deleteTermTaxonomy(model.id);
+		var ctrl = this;
+		return $cms.deleteTerm(model.id)
+			.then(function() {
+				ctrl.reload();
+			});
 	};
 
+	// adding new term
+	this.addModel = function(model) {
+		return $cms.putTerm(model);
+	};
 
-	/*
-	 * init ctrl
-	 */
 	this.init({
-		eventType: '/term-taxonomies',
+		// dispatcher path and internal address
+		eventType: AMD_CMS_TERMS_SP,
+
+		// add creation actions
 		addAction: {
-			title: 'New term-taxonomy',
+			title: 'New term',
 			icon: 'add',
-			dialog: 'views/dialogs/amd-term-taxonomy-new.html'
+			dialog: 'views/dialogs/amd-term-new.html'
 		},
+		// delete action
 		deleteAction: {
-			title: 'Delete term-taxonomy?'
+			title: 'Delete term?'
 		},
+		// list of actions in the view
 		actions: []
 	});
 });

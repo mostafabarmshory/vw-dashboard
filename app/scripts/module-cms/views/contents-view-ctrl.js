@@ -37,7 +37,7 @@ mblowfish.controller('AmdContentsCtrl', function($scope, $controller, $location)
 		title: 'New content',
 		icon: 'add',
 		action: function() {
-			$location.path('/cms/contents/new');
+			$location.path(AMD_CMS_VIEW_CONTENT_NEW_PATH);
 		}
 	});
 	this.init();

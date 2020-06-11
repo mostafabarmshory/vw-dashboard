@@ -23,8 +23,8 @@
 //------------------------------------------------------------
 // Resources Types
 //------------------------------------------------------------
-var AMD_CMS_CONTENT_RT = '/cms/content';
-var AMD_CMS_METADATA_RT = '/cms/microdata';
+var AMD_CMS_CONTENT_RT = '/cms/contents';
+var AMD_CMS_METADATA_RT = '/cms/metadata';
 var AMD_CMS_TERMTAXONOMIES_RT = '/cms/term-taxonomies';
 
 
@@ -32,15 +32,25 @@ var AMD_CMS_TERMTAXONOMIES_RT = '/cms/term-taxonomies';
 // Stoer Paths
 //------------------------------------------------------------
 var AMD_CMS_CONTENT_SP = '/cms/contents';
-var AMD_CMS_METADATA_SP = '/cms/microdata';
+var AMD_CMS_METADATA_SP = '/cms/metadata';
 var AMD_CMS_TERMTAXONOMIES_SP = '/cms/term-taxonomies';
+var AMD_CMS_TERMS_SP = '/cms/terms';
+
+
+//------------------------------------------------------------
+// Views
+//------------------------------------------------------------
+var AMD_CMS_VIEW_CONTENT_NEW_PATH = '/cms/contents-new';
+var AMD_CMS_VIEW_CONTENTS_PATH = '/cms/contents';
+var AMD_CMS_VIEW_TERMS_PATH = '/cms/terms';
+var AMD_CMS_VIEW_TERM_TAXONOMIES_PATH = '/cms/term-taxonomies';
 
 mblowfish.config(function(
 	/* Mblowfish */ $mbViewProvider, $mbEditorProvider, $mbResourceProvider) {
 
 	var viewGroups = ['Content Management'];
 	$mbViewProvider
-		.addView('/cms/contents', {
+		.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
 			title: 'Contents',
 			controller: 'AmdContentsCtrl',
 			controllerAs: 'ctrl',
@@ -48,7 +58,7 @@ mblowfish.config(function(
 			groups: viewGroups,
 			icon: 'image',
 		})
-		.addView('/cms/contents-new', {
+		.addView(AMD_CMS_VIEW_CONTENT_NEW_PATH, {
 			title: 'Upload',
 			controller: 'AmdContentNewCtrl',
 			controllerAs: 'ctrl',
@@ -56,7 +66,7 @@ mblowfish.config(function(
 			groups: viewGroups,
 			icon: 'cloud_upload',
 		}) //
-		.addView('/cms/terms', {
+		.addView(AMD_CMS_VIEW_TERMS_PATH, {
 			title: 'Terms',
 			controller: 'AmdCmsTermsCtrl',
 			controllerAs: 'ctrl',
@@ -64,7 +74,7 @@ mblowfish.config(function(
 			groups: viewGroups,
 			icon: 'title',
 		})
-		.addView('/cms/term-taxonomies', {
+		.addView(AMD_CMS_VIEW_TERM_TAXONOMIES_PATH, {
 			title: 'Term taxonomis',
 			controller: 'AmdCmsTermTaxonomiesCtrl',
 			controllerAs: 'ctrl',
@@ -89,7 +99,7 @@ mblowfish.config(function(
 		});
 
 	/* @ngInject */
-	var termTaxonomiesCtrl = function($scope, $resource) {
+	var TermTaxonomiesCtrl = function($scope, $resource) {
 		$scope.multi = false;
 		var value = [];
 		this.toggleSelected = function(item) {
@@ -112,7 +122,7 @@ mblowfish.config(function(
 			title: 'Term-Taxonomy',
 			icon: 'label',
 			templateUrl: 'views/resources/amd-term-taxonomy.html',
-			controller: termTaxonomiesCtrl,
+			controller: TermTaxonomiesCtrl,
 			controllerAs: 'resourceCtrl',
 			priority: 8
 		})
@@ -121,7 +131,7 @@ mblowfish.config(function(
 			title: 'Category',
 			icon: 'label',
 			templateUrl: 'views/resources/amd-term-taxonomy-category.html',
-			controller: termTaxonomiesCtrl,
+			controller: TermTaxonomiesCtrl,
 			controllerAs: 'resourceCtrl',
 			priority: 8
 		})
@@ -130,7 +140,7 @@ mblowfish.config(function(
 			title: 'Tag',
 			icon: 'label',
 			templateUrl: 'views/resources/amd-term-taxonomy-tag.html',
-			controller: termTaxonomiesCtrl,
+			controller: TermTaxonomiesCtrl,
 			controllerAs: 'resourceCtrl',
 			priority: 8
 		})
