@@ -22,9 +22,11 @@
 
 
 /**
-@ngdoc directive
-@name wbInfinateScroll
-@description # wbInfinateScroll
+@ngdoc Directive
+@name amd-content-icon
+@description 
+
+Display an icon for the current content
  */
 mblowfish.directive('amdContentIcon', function() {
 
@@ -36,22 +38,25 @@ mblowfish.directive('amdContentIcon', function() {
 		 * Load types
 		 */
 		ngModel.$render = function(){
-			scope.content = ngModel.$viewValue;
-			if(!scope.content){
-				scope.type = 'insert_drive_file';
+			var content = ngModel.$viewValue;
+			var icon = 'insert_drive_file';
+			if(!content){
+				scope.icon = icon;
 				return;
 			}
-			if(angular.isArray(scope.content.mime_type.match(/.*(ogg|mp3|mpeg).*/i))){
-				scope.icon = 'audiotrack';
-			} else if(angular.isArray(scope.content.mime_type.match(/.*(video).*/i))){
-				scope.icon = 'video_library';
-			} else if(angular.isArray(scope.content.mime_type.match(/.*(image).*/i))){
-				scope.icon = 'image';
-			} else if(angular.isArray(scope.content.mime_type.match(/.*(weburger).*/i))){
-				scope.icon = 'chrome_reader_mode';
+			var mime_type = content.mime_type;
+			if(angular.isArray(mime_type.match(/.*(ogg|mp3|mpeg).*/i))){
+				icon = 'audiotrack';
+			} else if(angular.isArray(mime_type.match(/.*(video).*/i))){
+				icon = 'video_library';
+			} else if(angular.isArray(mime_type.match(/.*(image).*/i))){
+				icon = 'image';
+			} else if(angular.isArray(mime_type.match(/.*(weburger).*/i))){
+				icon = 'chrome_reader_mode';
 			} else {
-				scope.icon = 'insert_drive_file';
+				icon = 'insert_drive_file';
 			}
+			scope.icon = icon;
 		};
 	}
 	
@@ -60,7 +65,7 @@ mblowfish.directive('amdContentIcon', function() {
 		transclude : false,
 		replace: true,
 		require: 'ngModel',
-		template : '<ng-md-icon icon="{{icon}}"></ng-md-icon>',
+		template : '<mb-icon>{{::icon}}</mb-icon>',
 		link: postLink
 	};
 });

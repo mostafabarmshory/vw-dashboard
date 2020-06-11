@@ -1,6 +1,7 @@
 <div  
 	ng-controller="AmdCmsTermTaxonomiesCtrl as ctrlCollection"
-	ng-init="ctrlCollection.setDataQuery('{id, taxonomy, description, count, term{id, name}}')"
+	ng-init="ctrlCollection.setDataQuery('{id, taxonomy, description, count, term{id, name}}');
+		ctrlCollection.addFilter('taxonomy', 'category');"
 	mb-preloading="ctrlCollection.state === 'busy'"
 	layout="column"
 	flex>
@@ -25,7 +26,6 @@
 					class="md-list-item-text" 
 					layout="column">
 					<h3>{{::content.term.name}} ({{::content.count}})</h3>
-					<h4>{{::content.taxonomy}}</h4>
 					<p>{{::content.description}}</p>
 				</div>
 				<md-checkbox 

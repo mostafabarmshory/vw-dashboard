@@ -1,17 +1,18 @@
-<div  
-	layout="column"
-	style="padding: 16px;"
-	flex>
+<div 
+	layout="column" style="padding: 16px;" flex>
 	<md-input-container>
 		<label mb-translate="">Key</label>
 		<input 
-			ng-model="value.key" 
+			ng-model="meta.key"
+			ng-change="setKey(meta.key)"
+			ng-model-options="{ updateOn: 'default blur',  debounce: 200 }"
 			type="text">
 	</md-input-container>
 	<md-input-container>
 		<label mb-translate="">Value</label>
-		<input 
-			ng-model="value.value" 
-			type="text">
+		<textarea 
+			ng-model="meta.value"
+			ng-change="setValue(meta.value)"
+			ng-model-options="{ updateOn: 'default blur',  debounce: 200 }">
 	</md-input-container>
 </div>

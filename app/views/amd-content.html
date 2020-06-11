@@ -2,9 +2,14 @@
 	style="overflow: auto;">
 	<mb-titled-block 
 		mb-title="Information"
-		mb-more-actions="ctrl.contentActions"
-		mb-progress="ctrl.loading"
-		layout="column">
+		mb-more-actions="contentMoreActions"
+		mb-progress="ctrl.isBusy || ctrl.isContentBusy"
+		layout="column"
+		ng-init="contentMoreActions = [{
+			title:'Upload', 
+			icon:'upload',
+			expression: 'ctrl.uploadFile()'
+		}]">
 		<div
 			layout-gt-sm="row"
 			layout="column">
@@ -29,7 +34,7 @@
 								mb-inline-type="text"
 								mb-inline-label="Name"
 								mb-inline-enable="true"
-								mb-inline-on-save="ctrl.save()">{{ctrl.content.name || '...'}}</mb-inline>
+								mb-inline-on-save="ctrl.updateContent()">{{ctrl.content.name || '...'}}</mb-inline>
 						</td>
 					</tr>
 					<tr>
@@ -40,7 +45,7 @@
 							  mb-inline-type="text"
 							  mb-inline-label="Title"
 							  mb-inline-enable="true"
-							  mb-inline-on-save="ctrl.save()">
+							  mb-inline-on-save="ctrl.updateContent()">
 							  {{ctrl.content.title || '...'}}
 						  </mb-inline>
 						 </td>
@@ -53,7 +58,7 @@
 							  mb-inline-type="textarea"
 							  mb-inline-label="Description"
 							  mb-inline-enable="true"
-							  mb-inline-on-save="ctrl.save()">
+							  mb-inline-on-save="ctrl.updateContent()">
 							  {{ctrl.content.description || '...'}}
 						  </mb-inline>
 						 </td>
@@ -66,7 +71,7 @@
 							  mb-inline-type="text"
 							  mb-inline-label="File name"
 							  mb-inline-enable="true"
-							  mb-inline-on-save="ctrl.save()">
+							  mb-inline-on-save="ctrl.updateContent()">
 							  {{ctrl.content.file_name || '...'}}
 						  </mb-inline>
 						 </td>
@@ -83,7 +88,7 @@
 							  mb-inline-type="text"
 							  mb-inline-label="Media type"
 							  mb-inline-enable="true"
-							  mb-inline-on-save="ctrl.save()">
+							  mb-inline-on-save="ctrl.updateContent()">
 							  {{ctrl.content.media_type || '...'}}
 						  </mb-inline>
 						 </td>
@@ -96,7 +101,7 @@
 							  mb-inline-type="text"
 							  mb-inline-label="Mimetype"
 							  mb-inline-enable="true"
-							  mb-inline-on-save="ctrl.save()">
+							  mb-inline-on-save="ctrl.updateContent()">
 							  {{ctrl.content.mime_type || '...'}}
 						  </mb-inline>
 						 </td>
@@ -129,7 +134,7 @@
 			</md-button>
 			<md-button 
 				class = "md-raised md-accent"
-				ng-click="ctrl.remove()">
+				ng-click="ctrl.deleteContent()">
 				<span mb-translate>Delete</span>
 			</md-button>
 		</div>
@@ -142,15 +147,20 @@
 	  -- add, remove or update the list.
 	  -->
 	<mb-titled-block
-		mb-progress="ctrl.termtaxonomyJob"
-		mb-more-actions="ctrl.termtaxonomyActions"
-		mb-title="Term Taxonomies">
+		mb-progress="ctrl.isBusy || ctrl.isTermtaxonomiesBusy"
+		mb-more-actions="termtaxonomyActions"
+		mb-title="Term Taxonomies"
+		ng-init="termtaxonomyActions = [{
+			title:'Add new term-taxonomy', 
+			icon:'add',
+			expression: 'ctrl.addTermTaxonomy()'
+		}]">
 		<md-chips
 			ng-model="ctrl.termTaxonomies" 
 			name="termTaxonomies" 
 			readonly="true"
 			md-removable="true"
-			md-on-remove="ctrl.removeTermTaxonomy($chip)"
+			md-on-remove="ctrl.deleteTermTaxonomy($chip)"
 			md-max-chips="5" 
 			placeholder="Enter a term"
 			input-aria-label="Terms">
@@ -168,20 +178,27 @@
 	  -->
 	<mb-titled-block
 		mb-title="Metadata"
-		mb-more-actions="ctrl.metadataActions"
-		mb-progress="ctrl.metadataJob"
-		layout="column">
+		mb-more-actions="metadataActions"
+		mb-progress="ctrl.isBusy || ctrl.isMetadataBusy"
+		layout="column"
+		ng-init="metadataActions = [{
+			title: 'Add new metadatum',
+			icon: 'add',
+			expression: 'ctrl.createMetadata()'
+		}]">
 		<md-input-container 
 			ng-repeat="m in ctrl.metadata"
 			class="md-icon-float md-icon-right md-block">
 			<label>{{::m.key}}</label>
-			<mb-icon ng-if="ctrl.canEditMetadata(m)">edit</mb-icon>
-			<input 
+			<mb-icon 
+				ng-if="hasAnyRole('tenant.owner', 'cms.editor')">edit</mb-icon>
+			<textarea 
+				ng-enable="hasAnyRole('tenant.owner', 'cms.editor')"
 				ng-model="m.value" 
 				ng-change="ctrl.updateMetadata(m)"
-				ng-model-options="{updateOn:'default change blur',debounce:{default:1000,blur:0,change:0}}"
-				type="text">
+				ng-model-options="{updateOn:'default change blur',debounce:{default:3000,blur:0,change:0}}"></textarea>
 			<mb-icon
+				ng-if="hasAnyRole('tenant.owner', 'cms.editor')"
 				ng-click="ctrl.deleteMetadata(m)">delete</mb-icon>
 		</md-input-container>
 	</mb-titled-block>

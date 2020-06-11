@@ -20,8 +20,23 @@
  * SOFTWARE.
  */
 
+//------------------------------------------------------------
+// Resources Types
+//------------------------------------------------------------
+var AMD_CMS_CONTENT_RT = '/cms/content';
+var AMD_CMS_METADATA_RT = '/cms/microdata';
+var AMD_CMS_TERMTAXONOMIES_RT = '/cms/term-taxonomies';
+
+
+//------------------------------------------------------------
+// Stoer Paths
+//------------------------------------------------------------
+var AMD_CMS_CONTENT_SP = '/cms/contents';
+var AMD_CMS_METADATA_SP = '/cms/microdata';
+var AMD_CMS_TERMTAXONOMIES_SP = '/cms/term-taxonomies';
+
 mblowfish.config(function(
-	/* Mblowfish */ $mbViewProvider, $mbEditorProvider) {
+	/* Mblowfish */ $mbViewProvider, $mbEditorProvider, $mbResourceProvider) {
 
 	var viewGroups = ['Content Management'];
 	$mbViewProvider
@@ -73,38 +88,72 @@ mblowfish.config(function(
 			templateUrl: 'views/amd-term-taxonomy.html',
 		});
 
+	/* @ngInject */
+	var termTaxonomiesCtrl = function($scope, $resource) {
+		$scope.multi = false;
+		var value = [];
+		this.toggleSelected = function(item) {
+			if (this.isSelected(item)) {
+				var index = value.indexOf(item);
+				value.splice(index, 1);
+			} else {
+				value.push(item);
+			}
+			$resource.setValue(value);
+		};
+		this.isSelected = function(item) {
+			return value.indexOf(item) >= 0;
+		};
+	};
 
-	//	$mbResourceProvider
-	// .addPage({
-	//		type: 'cms.term-taxonomies.single',
-	//		tags: ['cms/term-taxonomies'],
-	//		label: 'Content term-taxonomy',
-	//		icon: 'label',
-	//		templateUrl: 'views/resources/amd-term-taxonomy.html',
-	//        /*
-	//         * @ngInject
-	//         */
-	//		controller: function($scope) {
-	//			$scope.multi = false;
-	//			this.value = $scope.value;
-	//			this.setSelected = function(item) {
-	//				$scope.$parent.setValue(new CmsTermTaxonomy(item));
-	//				$scope.$parent.answer();
-	//			};
-	//			this.isSelected = function(item) {
-	//				return item === this.value || item.id === this.value.id;
-	//			};
-	//		},
-	//		controllerAs: 'resourceCtrl',
-	//		priority: 8
-	//	})
-	//	.addPage({
-	//		type: 'cms.microdata.keyval',
-	//		tags: ['/cms/microdata'],
-	//		label: 'Microdatum',
-	//		icon: 'label',
-	//		templateUrl: 'views/resources/amd-cms-microdatum.html',
-	//		priority: 8
-	//	});
+	$mbResourceProvider
+		.addPage('cms.term-taxonomies', {
+			tags: [AMD_CMS_TERMTAXONOMIES_RT],
+			title: 'Term-Taxonomy',
+			icon: 'label',
+			templateUrl: 'views/resources/amd-term-taxonomy.html',
+			controller: termTaxonomiesCtrl,
+			controllerAs: 'resourceCtrl',
+			priority: 8
+		})
+		.addPage('cms.term-taxonomies.category', {
+			tags: [AMD_CMS_TERMTAXONOMIES_RT],
+			title: 'Category',
+			icon: 'label',
+			templateUrl: 'views/resources/amd-term-taxonomy-category.html',
+			controller: termTaxonomiesCtrl,
+			controllerAs: 'resourceCtrl',
+			priority: 8
+		})
+		.addPage('cms.term-taxonomies.tag', {
+			tags: [AMD_CMS_TERMTAXONOMIES_RT],
+			title: 'Tag',
+			icon: 'label',
+			templateUrl: 'views/resources/amd-term-taxonomy-tag.html',
+			controller: termTaxonomiesCtrl,
+			controllerAs: 'resourceCtrl',
+			priority: 8
+		})
+		.addPage('cms.metadata.keyval', {
+			tags: [AMD_CMS_METADATA_RT],
+			title: 'Metadatum',
+			icon: 'label',
+			/* @ngInject */
+			controller: function($scope, $value, $resource) {
+				var value = _.isArray($value) ? $value : [{}];
+				$scope.meta = value[0];
+				$scope.setKey = function(key) {
+					value[0].key = key;
+					$resource.setValue(value);
+				};
+				$scope.setValue = function(val) {
+					value[0].value = val;
+					$resource.setValue(value);
+				};
+			},
+			controllerAs: 'ctrl',
+			templateUrl: 'views/resources/amd-cms-microdatum.html',
+			priority: 8
+		});
 
 });

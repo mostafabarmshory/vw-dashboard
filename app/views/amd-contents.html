@@ -1,54 +1,42 @@
 <div  
-    ng-init="ctrl.setDataQuery('{id, title, name, file_name, description, mime_type, media_type, state, author{id,profiles{first_name,last_name}}}')"
-    mb-preloading="ctrl.loading"
-    layout="column"
-    flex>
-    <!-- TODO: maso, 1395: در حالت خطا یک صفحه با امکان reload اضافه بشه. -->
-    <mb-pagination-bar
-        mb-model="ctrl.queryParameter"
-        mb-reload="ctrl.reload()"
-        mb-sort-keys="ctrl.getSortKeys()"
-        mb-more-actions="ctrl.getActions()"
-        mb-properties="ctrl.properties">
-    </mb-pagination-bar>
-    <md-content
-        mb-infinate-scroll="ctrl.loadNextPage()"
-        layout="column"
-        flex>
-        <md-list flex>
-            <md-list-item 
-                ng-repeat="content in ctrl.items track by content.id"
-                ng-href="cms/contents/{{::content.id}}"
-                class="md-3-line">
-                <amd-content-icon 
-                    ng-model="content">
-                </amd-content-icon>
-                <div 
-                    class="md-list-item-text" 
-                    layout="column">
-                    <h3>{{::content.title}} (<span mb-translate="">Author</span> : {{::content.author.profiles[0].first_name}} {{::content.author.profiles[0].last_name}})</h3>
-                    <h4>{{::content.name}}</h4>
-                    <p>{{::content.description}}</p>
-                </div>
-                
-                <md-button 
-                    ng-href="/api/v2/cms/contents/{{::content.name}}/content"
-                    download="{{::(content.file_name || content.name)}}"
-                    target="_blank"
-                    class="md-secondary md-icon-button">
-                    <mb-icon aria-label="download">download</md-icon>
-                </md-button>
-                <mb-icon 
-                    class="md-secondary" 
-                    ng-click="ctrl.deleteItem(content, $event)" 
-                    aria-label="Delete">delete</md-icon>
-            </md-list-item>
-        </md-list>
-        <div
-            layout="column"
-            layout-align="center center"
-            ng-if="ctrl.state === 'ideal' && (!ctrl.items || ctrl.items.length == 0)">
-            <h2 mb-translate="">No item found</h2>
-        </div>
-    </md-content>
+	ng-init="ctrl.setDataQuery('{id, title, name, file_name, media_type, mime_type, state}')"
+	mb-preloading="ctrl.loading"
+	layout="column">
+	<!-- TODO: maso, 1395: در حالت خطا یک صفحه با امکان reload اضافه بشه. -->
+	<mb-pagination-bar
+		mb-model="ctrl.queryParameter"
+		mb-reload="ctrl.reload()"
+		mb-sort-keys="ctrl.getSortKeys()"
+		mb-more-actions="ctrl.getActions()"
+		mb-properties="ctrl.properties">
+	</mb-pagination-bar>
+	<md-content
+		mb-infinate-scroll="ctrl.loadNextPage()"
+		layout="column"
+		style="max-width: 100%;"
+		flex>
+		<md-list flex>
+			<md-list-item 
+				ng-repeat="content in ctrl.items track by content.id"
+				ng-href="cms/contents/{{::content.id}}"
+				class="md-3-line">
+				<amd-content-icon 
+					ng-model="content">
+				</amd-content-icon>
+				<div 
+					class="md-list-item-text" 
+					layout="column">
+					<h3>{{::content.title}}</h3>
+					<h4>{{::content.name}}</h4>
+					<p>{{::content.id}}-{{::content.media_type}}-{{::content.state}}</p>
+				</div>
+			</md-list-item>
+		</md-list>
+		<div
+			layout="column"
+			layout-align="center center"
+			ng-if="ctrl.state === 'ideal' && (!ctrl.items || ctrl.items.length == 0)">
+			<h2 mb-translate="">No content found</h2>
+		</div>
+	</md-content>
 </div>
