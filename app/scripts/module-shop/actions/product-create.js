@@ -20,51 +20,37 @@
  * SOFTWARE.
  */
 
-/**
- * @ngdoc Controllers
- * @name MbSeenShopCategoriesCtrl
- * @description Manages list of categories
- * 
- * 
- */
-mblowfish.controller('MbSeenShopCategoriesCtrl', function (
-        /* angularjs */ $scope, $controller, $element,
-        /* seen-shop */ $shop,
-        /* mblowfish */ $mbActions) {
 
-    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-        $scope : $scope,
-        $element: $element
-    }));
-
-    // Override the function
-    this.getModelSchema = function () {
-        return $shop.categorySchema();
-    };
-
-    // get accounts
-    this.getModels = function (parameterQuery) {
-        return $shop.getCategories(parameterQuery);
-    };
-
-    // get an account
-    this.getModel = function (id) {
-        return $shop.getCategory(id);
-    };
-
-    // delete account
-    this.deleteModel = function (model) {
-        return $shop.deleteCategory(model.id);
-    };
-
-    this.init({
-        eventType: '/shop/categories',
-        actions:[{
-            title: 'New tag',
-            icon: 'add',
-            action: function(){
-                $mbActions.exec('create:/shop/categories');
-            }
-        }]
-    });
+mblowfish.addAction('create:/shop/products', {// create new category menu
+	icon: 'photo_album',
+	title: 'New Product',
+	/* @ngInject */
+	action: function($shop, $window, $mbTranslate, $navigator, $mbDispatcher) {
+		var job = $shop.productSchema()
+			.then(function(schema) {
+				return $navigator.openDialog({
+					templateUrl: 'views/dialogs/amd-item-new.html',
+					config: {
+						title: 'New Product',
+						schema: schema,
+						data: {}
+					}
+				});
+			})
+			.then(function(productData) {
+				return $shop.putProduct(productData);
+			})
+			.then(function(product) {
+				$mbDispatcher.dispatch('/shop/products', {
+					key: 'create',
+					values: [product]
+				});
+			}, function() {
+				$window.alert($mbTranslate.instant('Failed to create a new product.'));
+			});
+		// TODO: maso, 2020: add the job into the job lists
+		// $app.addJob('Adding new shop category', job);
+		return job;
+	},
+	groups: shopActionGroups
 });

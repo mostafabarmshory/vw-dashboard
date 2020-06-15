@@ -125,9 +125,9 @@ mblowfish.controller('AmdContentCtrl', function(
 
 	function uploadFile() {
 		ctrl.isCuntentBusy = $mbResource
-			.get('local-file', {
-				style: {
-					accept: '*'
+			.get('file', {
+				$style: {
+					accept: '.*'
 				}
 			})
 			.then(function(file) {

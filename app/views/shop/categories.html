@@ -1,12 +1,16 @@
 <div
 	mb-preloading="ctrl.loading"
 	layout="column"
-	flex>
+	ng-init="categoriesMoreActions = [{
+		title:'New Category', 
+		icon:'add',
+		actionId: AMD_SHOP_CATEGORY_CREATE_ACTION
+	}]">
 	<mb-pagination-bar
 		mb-model="ctrl.queryParameter"
 		mb-reload="ctrl.reload()"
 		mb-sort-keys="ctrl.getSortKeys()"
-		mb-more-actions="ctrl.getActions()"
+		mb-more-actions="categoriesMoreActions"
 		mb-properties="ctrl.properties">
 	</mb-pagination-bar>
 	<md-content
@@ -17,10 +21,10 @@
 			<md-list-item 
 				ng-repeat="pobject in ctrl.items track by pobject.id"
 				class="md-2-line" 
-				ng-href="{{'shop/categories/' + pobject.id}}"
+				ng-href="shop/categories/{{::pobject.id}}"
 				style="cursor: pointer">
-				<img ng-src="{{pobject.avatar}}" ng-if="pobject.avatar" class="md-avatar" />
-				<mb-icon ng-if="!pobject.avatar">folder_special</mb-icon>
+				<img ng-if="pobject.thumbnail" ng-src="{{pobject.thumbnail}}"  class="md-avatar" />
+				<mb-icon ng-if="!pobject.thumbnail">folder_special</mb-icon>
 				<div 
 					class="md-list-item-text" 
 					layout="column">

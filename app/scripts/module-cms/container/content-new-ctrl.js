@@ -28,7 +28,7 @@
 @description Mange content new
  */
 mblowfish.controller('AmdContentNewCtrl', function(
-	$scope, $frame,
+	$scope,/* $frame,*/
 	$cms,
 	$location, $controller,
 	$mbCrypto) {
@@ -43,7 +43,8 @@ mblowfish.controller('AmdContentNewCtrl', function(
 	var ctrl = this;
 
 	function cancel() {
-		return $frame.close();
+		reload();
+//		return $frame.close();
 	}
 
 	function add(config) {

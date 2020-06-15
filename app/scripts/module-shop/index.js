@@ -20,9 +20,47 @@
 * SOFTWARE.
 */
 
+mblowfish.addConstants({
+	AMD_SHOP_AGENCY_SP: '/shop/agencies',
+	AMD_SHOP_CATEGORY_SP: '/shop/categories',
+	AMD_SHOP_DELIVER_SP: '/shop/agencies',
+	AMD_SHOP_PRODUCT_SP: '/shop/agencies',
+	AMD_SHOP_SERVICE_SP: '/shop/agencies',
+	AMD_SHOP_PRODUCT_SP: '/shop/agencies',
+	AMD_SHOP_ZONE_SP: '/shop/agencies',
+	AMD_SHOP_TAG_SP: '/shop/agencies',
+
+	AMD_SHOP_AGENCY_DELETE_ACTION: 'amd.shop.agency.delete',
+	AMD_SHOP_AGENCY_CREATE_ACTION: 'amd.shop.agency.create',
+	AMD_SHOP_AGENCY_UPDATE_ACTION: 'amd.shop.agency.update',
+
+	AMD_SHOP_CATEGORY_DELETE_ACTION: 'amd.shop.category.delete',
+	AMD_SHOP_CATEGORY_CREATE_ACTION: 'amd.shop.category.create',
+	AMD_SHOP_CATEGORY_UPDATE_ACTION: 'amd.shop.category.update',
+
+	AMD_SHOP_DELIVER_DELETE_ACTION: 'amd.shop.deliver.delete',
+	AMD_SHOP_DELIVER_CREATE_ACTION: 'amd.shop.deliver.create',
+	AMD_SHOP_DELIVER_UPDATE_ACTION: 'amd.shop.deliver.update',
+
+	AMD_SHOP_PRODUCT_DELETE_ACTION: 'amd.shop.product.delete',
+	AMD_SHOP_PRODUCT_CREATE_ACTION: 'amd.shop.product.create',
+	AMD_SHOP_PRODUCT_UPDATE_ACTION: 'amd.shop.product.update',
+
+	AMD_SHOP_SERVICE_DELETE_ACTION: 'amd.shop.service.delete',
+	AMD_SHOP_SERVICE_CREATE_ACTION: 'amd.shop.service.create',
+	AMD_SHOP_SERVICE_UPDATE_ACTION: 'amd.shop.service.update',
+
+	AMD_SHOP_TAG_DELETE_ACTION: 'amd.shop.tag.delete',
+	AMD_SHOP_TAG_CREATE_ACTION: 'amd.shop.tag.create',
+	AMD_SHOP_TAG_UPDATE_ACTION: 'amd.shop.tag.update',
+
+	AMD_SHOP_ZONE_DELETE_ACTION: 'amd.shop.zone.delete',
+	AMD_SHOP_ZONE_CREATE_ACTION: 'amd.shop.zone.create',
+	AMD_SHOP_ZONE_UPDATE_ACTION: 'amd.shop.zone.update',
+});
+
 mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvider, $mbIconProvider, $mbActionsProvider) {
 
-	var shopActionGroups = ['Shop'];
 	var shopViewGroups = ['Shop'];
 
 	$mbIconProvider
@@ -32,22 +70,6 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 
 
 	$mbViewProvider
-		.addView('/shop/categories', {
-			title: 'Categories',
-			icon: 'folder_special',
-			templateUrl: 'views/amd-shop-categories.html',
-			controller: 'MbSeenShopCategoriesCtrl',
-			controllerAs: 'ctrl',
-			groups: shopViewGroups,
-		})
-		.addView('/shop/agencies', {
-			title: 'Agencies',
-			icon: 'store',
-			templateUrl: 'views/amd-shop-agencies.html',
-			controller: 'MbSeenShopAgenciesCtrl',
-			controllerAs: 'ctrl',
-			groups: shopViewGroups,
-		})
 		.addView('/shop/products', {
 			title: 'Products',
 			icon: 'add_shopping_cart',
@@ -108,16 +130,6 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 
 
 	$mbEditorProvider
-		.addEditor('/shop/agencies/:itemId', {
-			templateUrl: 'views/amd-shop-agency.html',
-			controller: 'AmdShopAgencyCtrl',
-			controllerAs: 'ctrl'
-		})
-		.addEditor('/shop/categories/:categoryId', {
-			templateUrl: 'views/amd-shop-category.html',
-			controller: 'AmdShopCategoryCtrl',
-			controllerAs: 'ctrl'
-		})
 		.addEditor('/shop/products/:productId', {
 			templateUrl: 'views/amd-shop-product.html',
 			controller: 'AmdShopProductCtrl',
@@ -215,247 +227,4 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			tags: ['/shop/zones#id', 'zone_id']
 		});
 
-
-
-	//-----------------------------------------------------
-	// Actions
-	//-----------------------------------------------------
-	$mbActionsProvider
-		//>>                       Zone                             <<
-		.addAction('create:/shop/zones', {
-			title: 'New Category',
-			icon: 'photo_album',
-			description: 'Creates new category',
-			/*
-			 * @ngInject
-			 */
-			action: function($shop, $navigator, $mbDispatcher, $window, $mbTranslate) {
-				var job = $shop.zoneSchema()
-					.then(function(schema) {
-						return $navigator.openDialog({
-							templateUrl: 'views/dialogs/amd-item-new.html',
-							config: {
-								title: 'New Zone',
-								schema: schema,
-								data: {}
-							}
-						});
-					})
-					.then(function(zoneData) {
-						return $shop.putZone(zoneData);
-					})
-					.then(function(zone) {
-						$mbDispatcher.dispatch('/shop/zones', {
-							key: 'create',
-							values: [zone]
-						});
-					}, function() {
-						$window.alert($mbTranslate.instant('Failed to create new zone.'));
-					});
-				// TODO: maso, 2020: add the job into the job lists
-				// $app.addJob('Adding new shop category', job);
-				return job;
-			},
-			groups: shopActionGroups
-		})
-		.addAction('create:/shop/services', {// create new category menu
-			icon: 'photo_album',
-			title: 'New Deliver',
-			description: 'Creates new delivers',
-			/*
-			 * @ngInject
-			 */
-			action: function($shop, $window, $mbTranslate, $navigator, $mbDispatcher) {
-				var job = $shop.serviceSchema()
-					.then(function(schema) {
-						return $navigator.openDialog({
-							templateUrl: 'views/dialogs/amd-item-new.html',
-							config: {
-								title: 'New Service',
-								schema: schema,
-								data: {}
-							}
-						});
-					})
-					.then(function(itemData) {
-						return $shop.putProduct(itemData);
-					})
-					.then(function(item) {
-						$mbDispatcher.dispatch('/shop/services', {
-							key: 'create',
-							values: [item]
-						});
-					}, function() {
-						$window.alert($mbTranslate.instant('Failed to create a new service.'));
-					});
-				// TODO: maso, 2020: add the job into the job lists
-				// $app.addJob('Adding new shop category', job);
-				return job;
-			},
-			groups: shopActionGroups
-		})
-		.addAction('create:/shop/products', {// create new category menu
-			icon: 'photo_album',
-			title: 'New Product',
-			/* @ngInject */
-			action: function($shop, $window, $mbTranslate, $navigator, $mbDispatcher) {
-				var job = $shop.productSchema()
-					.then(function(schema) {
-						return $navigator.openDialog({
-							templateUrl: 'views/dialogs/amd-item-new.html',
-							config: {
-								title: 'New Product',
-								schema: schema,
-								data: {}
-							}
-						});
-					})
-					.then(function(productData) {
-						return $shop.putProduct(productData);
-					})
-					.then(function(product) {
-						$mbDispatcher.dispatch('/shop/products', {
-							key: 'create',
-							values: [product]
-						});
-					}, function() {
-						$window.alert($mbTranslate.instant('Failed to create a new product.'));
-					});
-				// TODO: maso, 2020: add the job into the job lists
-				// $app.addJob('Adding new shop category', job);
-				return job;
-			},
-			groups: shopActionGroups
-		})
-		.addAction('create:/shop/delivers', {// create new category menu
-			priority: 10,
-			icon: 'photo_album',
-			title: 'New Deliver',
-			description: 'Creates new delivers',
-			/* @ngInject */
-			action: function($window) {
-				$window.alert('Not supported');
-			},
-			groups: shopActionGroups
-		})
-		.addAction('create:/shop/delivers', {// create new category menu
-			title: 'New Deliver',
-			icon: 'photo_album',
-			description: 'Creates new delivers',
-			/* @ngInject */
-			action: function($shop, $window, $mbTranslate, $navigator, $mbDispatcher) {
-				var job = $navigator.openDialog({
-					templateUrl: 'views/dialogs/amd-shop-deliver-new.html',
-					config: {}
-				})
-					.then(function(deliverData) {
-						return $shop.putDeliver(deliverData);
-					})
-					.then(function(deliver) {
-						$mbDispatcher.dispatch('/shop/delivers', {
-							key: 'create',
-							values: [deliver]
-						});
-					}, function() {
-						$window.alert($mbTranslate.instant('Failed to create new deliver.'));
-					});
-				// TODO: maso, 2020: add the job into the job lists
-				// $app.addJob('Adding new shop deliver', job);
-				return job;
-			},
-			groups: shopActionGroups
-		})
-		.addAction('create:/shop/categories', {// create new category menu
-			priority: 10,
-			icon: 'photo_album',
-			title: 'New Category',
-			description: 'Creates new category',
-			/* @ngInject */
-			action: function($event, $shop, $window, $mbTranslate, $navigator, $mbDispatcher) {
-				var job = $navigator.openDialog({
-					templateUrl: 'views/dialogs/amd-shop-category-new.html',
-					config: {}
-				})
-					.then(function(newConfig) {
-						newConfig.parent_id = $event.parent_id;
-						return $shop.putCategory(newConfig);
-					})
-					.then(function(cat) {
-						$mbDispatcher.dispatch('/shop/categories', {
-							key: 'create',
-							values: [cat]
-						});
-					}, function() {
-						$window.alert($mbTranslate.instant('Failed to create new category.'));
-					});
-				// TODO: maso, 2020: add the job into the job lists
-				// $app.addJob('Adding new shop category', job);
-				return job;
-			},
-			groups: shopActionGroups
-		})
-		.addAction('create:/shop/tags', {// create new tag menu
-            priority: 10,
-            icon: 'label',
-            title: 'New Tag',
-            description: 'Creates new tag',
-            /* @ngInject */
-            action: function($shop, $window, $translate, $navigator, $mbDispatcher) {
-                var job = $navigator.openDialog({
-                    templateUrl: 'views/dialogs/amd-shop-tag-new.html',
-                    config: {}
-                })
-                    .then(function(newConfig) {
-                        return $shop.putTag(newConfig);
-                    })
-                    .then(function(tag) {
-                        $mbDispatcher.dispatch('/shop/tags', {
-                            key: 'create',
-                            values: [tag]
-                        });
-                    }, function() {
-                        $window.alert($translate.instant('Failed to create new tag.'));
-                    });
-                // TODO: maso, 2020: add the job into the job lists
-                // $app.addJob('Adding new shop tag', job);
-                return job;
-            },
-            groups: shopActionGroups
-        })
-		.addAction('create:/shop/agencies', {
-			icon: 'store',
-			title: 'New Agency',
-			description: 'Creates new agency in shop domain',
-			/*
-			 * @ngInject
-			 */
-			action: function($shop, $window, $mbTranslate, $navigator, $mbDispatcher) {
-				var job = $shop.agencySchema()
-					.then(function(schema) {
-						return $navigator.openDialog({
-							templateUrl: 'views/dialogs/amd-item-new.html',
-							config: {
-								title: 'New Agency',
-								schema: schema,
-								data: {}
-							}
-						});
-					})
-					.then(function(itemData) {
-						return $shop.putAgency(itemData);
-					})
-					.then(function(item) {
-						$mbDispatcher.dispatch('/shop/agencies', {
-							key: 'create',
-							values: [item]
-						});
-					}, function() {
-						$window.alert($mbTranslate.instant('Failed to create a new agency.'));
-					});
-				// TODO: maso, 2020: add the job into the job lists
-				// $app.addJob('Adding new shop category', job);
-				return job;
-			},
-			groups: shopActionGroups
-		});
 });

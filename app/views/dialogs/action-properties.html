@@ -1,28 +1,28 @@
 <md-dialog
-    flex="50"
-    layout="column"
-    ng-cloak>
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2 mb-translate="">Properties</h2>
-            <span flex></span>
-            <md-button 
-                class="md-icon-button" 
-                ng-click="answer(config.action)"
-                ng-disabled="myForm.$invalid">
-                <mb-icon aria-label="Close dialog">done</mb-icon>
-            </md-button>
-            <md-button 
-                class="md-icon-button" 
-                ng-click="cancel()">
-                <mb-icon aria-label="Close dialog">close</mb-icon>
-            </md-button>
-        </div>
-    </md-toolbar>
-    <md-dialog-content layout-padding>
-        <mb-dynamic-form
-            ng-model="config.action"
-            mb-parameters="config.properties">
-        </mb-dynamic-form>
-    </md-dialog-content>
+	flex="50"
+	layout="column"
+	ng-cloak>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2 mb-translate="">Properties</h2>
+			<span flex></span>
+			<md-button 
+				class="md-icon-button" 
+				ng-click="answer(config.action)"
+				ng-disabled="myForm.$invalid">
+				<mb-icon aria-label="Close dialog">done</mb-icon>
+			</md-button>
+			<md-button 
+				class="md-icon-button" 
+				ng-click="cancel()">
+				<mb-icon aria-label="Close dialog">close</mb-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-dialog-content layout-padding>
+		<mb-dynamic-form
+			ng-model="config.action"
+			mb-parameters="config.properties">
+		</mb-dynamic-form>
+	</md-dialog-content>
 </md-dialog>

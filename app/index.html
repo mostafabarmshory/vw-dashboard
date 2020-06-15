@@ -81,6 +81,15 @@
 	<!-- injector:js -->
 	<script src="scripts/app.js"></script>
 	<script src="scripts/module-backup/index.js"></script>
+	<script src="scripts/module-bank/index.js"></script>
+	<script src="scripts/module-cms/index.js"></script>
+	<script src="scripts/module-jms/index.js"></script>
+	<script src="scripts/module-sdp/index.js"></script>
+	<script src="scripts/module-seo/index.js"></script>
+	<script src="scripts/module-shop/index.js"></script>
+	<script src="scripts/module-spa/index.js"></script>
+	<script src="scripts/module-tenant/index.js"></script>
+	<script src="scripts/module-user/index.js"></script>
 	<script src="scripts/module-backup/snapshots-view-ctrl.js"></script>
 	<script src="scripts/module-bank/controllers/amd-wallet-charge.js"></script>
 	<script src="scripts/module-bank/controllers/bank-gate.js"></script>
@@ -99,7 +108,7 @@
 	<script src="scripts/module-bank/controllers/discount-new.js"></script>
 	<script src="scripts/module-bank/controllers/discount.js"></script>
 	<script src="scripts/module-bank/controllers/discounts.js"></script>
-	<script src="scripts/module-bank/index.js"></script>
+	<script src="scripts/module-cms/container/content-new-ctrl.js"></script>
 	<script src="scripts/module-cms/controllers/seen-cms-contents-ctrl.js"></script>
 	<script src="scripts/module-cms/controllers/seen-cms-termTaxonomies-ctrl.js"></script>
 	<script src="scripts/module-cms/dialogs/term-taxonomy-new-dialog-ctrl.js"></script>
@@ -108,12 +117,10 @@
 	<script src="scripts/module-cms/editors/content-editor-ctrl.js"></script>
 	<script src="scripts/module-cms/editors/term-editor-ctrl.js"></script>
 	<script src="scripts/module-cms/editors/term-taxonomy-editor-ctrl.js"></script>
-	<script src="scripts/module-cms/frames/content-new-frame-ctrl.js"></script>
-	<script src="scripts/module-cms/index.js"></script>
+	<script src="scripts/module-cms/resource/content-url.js"></script>
 	<script src="scripts/module-cms/views/contents-view-ctrl.js"></script>
 	<script src="scripts/module-cms/views/term-taxonomies-view-ctrl.js"></script>
 	<script src="scripts/module-cms/views/terms-view-ctrl.js"></script>
-	<script src="scripts/module-jms/index.js"></script>
 	<script src="scripts/module-jms/pipeline-editor-ctrl.js"></script>
 	<script src="scripts/module-jms/pipelines-view-ctrl.js"></script>
 	<script src="scripts/module-sdp/controllers/resource-categories-list.js"></script>
@@ -129,7 +136,6 @@
 	<script src="scripts/module-sdp/controllers/sdp-tag-new.js"></script>
 	<script src="scripts/module-sdp/controllers/sdp-tag.js"></script>
 	<script src="scripts/module-sdp/controllers/sdp-tags.js"></script>
-	<script src="scripts/module-sdp/index.js"></script>
 	<script src="scripts/module-sdp/sdp-downloaded-link-directive.js"></script>
 	<script src="scripts/module-seo/controllers/backend-new.js"></script>
 	<script src="scripts/module-seo/controllers/backend.js"></script>
@@ -141,12 +147,28 @@
 	<script src="scripts/module-seo/controllers/link-new.js"></script>
 	<script src="scripts/module-seo/controllers/link.js"></script>
 	<script src="scripts/module-seo/controllers/links.js"></script>
-	<script src="scripts/module-seo/index.js"></script>
 	<script src="scripts/module-seo/seo-content-service.js"></script>
-	<script src="scripts/module-shop/controllers/amd-shop-agencies.js"></script>
-	<script src="scripts/module-shop/controllers/amd-shop-agency.js"></script>
-	<script src="scripts/module-shop/controllers/amd-shop-categories.js"></script>
-	<script src="scripts/module-shop/controllers/amd-shop-category.js"></script>
+	<script src="scripts/module-shop/actions/agency-create.js"></script>
+	<script src="scripts/module-shop/actions/agency-delete.js"></script>
+	<script src="scripts/module-shop/actions/agency-update.js"></script>
+	<script src="scripts/module-shop/actions/category-delete.js"></script>
+	<script src="scripts/module-shop/actions/category-new.js"></script>
+	<script src="scripts/module-shop/actions/category-update.js"></script>
+	<script src="scripts/module-shop/actions/deliver-create.js"></script>
+	<script src="scripts/module-shop/actions/deliver-delete.js"></script>
+	<script src="scripts/module-shop/actions/deliver-update.js"></script>
+	<script src="scripts/module-shop/actions/product-create.js"></script>
+	<script src="scripts/module-shop/actions/product-delete.js"></script>
+	<script src="scripts/module-shop/actions/product-update.js"></script>
+	<script src="scripts/module-shop/actions/service-create.js"></script>
+	<script src="scripts/module-shop/actions/service-delete.js"></script>
+	<script src="scripts/module-shop/actions/service-update.js"></script>
+	<script src="scripts/module-shop/actions/tag-create.js"></script>
+	<script src="scripts/module-shop/actions/tag-delete.js"></script>
+	<script src="scripts/module-shop/actions/tag-update.js"></script>
+	<script src="scripts/module-shop/actions/zone-create.js"></script>
+	<script src="scripts/module-shop/actions/zone-delete.js"></script>
+	<script src="scripts/module-shop/actions/zone-update.js"></script>
 	<script src="scripts/module-shop/controllers/amd-shop-deliver.js"></script>
 	<script src="scripts/module-shop/controllers/amd-shop-delivers.js"></script>
 	<script src="scripts/module-shop/controllers/amd-shop-order.js"></script>
@@ -160,13 +182,15 @@
 	<script src="scripts/module-shop/controllers/amd-shop-tags.js"></script>
 	<script src="scripts/module-shop/controllers/amd-shop-zone.js"></script>
 	<script src="scripts/module-shop/controllers/amd-shop-zones.js"></script>
-	<script src="scripts/module-shop/index.js"></script>
+	<script src="scripts/module-shop/editors/amd-shop-agency.js"></script>
+	<script src="scripts/module-shop/editors/amd-shop-category.js"></script>
+	<script src="scripts/module-shop/views/amd-shop-agencies.js"></script>
+	<script src="scripts/module-shop/views/amd-shop-categories.js"></script>
 	<script src="scripts/module-spa/controllers/repository-spa.js"></script>
 	<script src="scripts/module-spa/controllers/repository-spas.js"></script>
 	<script src="scripts/module-spa/controllers/spa-editor-ctrl.js"></script>
 	<script src="scripts/module-spa/controllers/spa-upload.js"></script>
 	<script src="scripts/module-spa/controllers/spas-views-ctrl.js"></script>
-	<script src="scripts/module-spa/index.js"></script>
 	<script src="scripts/module-spa/market-spa-factory.js"></script>
 	<script src="scripts/module-spa/marketplace-service.js"></script>
 	<script src="scripts/module-tenant/amdTenantInvoice-directive.js"></script>
@@ -179,10 +203,9 @@
 	<script src="scripts/module-tenant/controllers/tenants.js"></script>
 	<script src="scripts/module-tenant/controllers/ticket.js"></script>
 	<script src="scripts/module-tenant/controllers/tickets.js"></script>
-	<script src="scripts/module-tenant/index.js"></script>
 	<script src="scripts/module-tenant/iran-currency-filter.js"></script>
-	<script src="scripts/module-user/controllers/AmdUserGroupsCtrl.js"></script>
 	<script src="scripts/module-user/controllers/accounts.js"></script>
+	<script src="scripts/module-user/controllers/AmdUserGroupsCtrl.js"></script>
 	<script src="scripts/module-user/controllers/group-new.js"></script>
 	<script src="scripts/module-user/controllers/group.js"></script>
 	<script src="scripts/module-user/controllers/groups-of.js"></script>
@@ -191,7 +214,6 @@
 	<script src="scripts/module-user/controllers/user-new.js"></script>
 	<script src="scripts/module-user/controllers/users-of.js"></script>
 	<script src="scripts/module-user/editors/account.js"></script>
-	<script src="scripts/module-user/index.js"></script>
 	<!-- endinjector -->
 	<!-- endbuild -->
 </head>
