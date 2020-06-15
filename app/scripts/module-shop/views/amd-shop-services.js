@@ -37,8 +37,7 @@ mblowfish.addView('/shop/services', {
 	/* @ngInject */
 	controller: function(
         /* angularjs  */ $scope, $controller,
-        /* seen-shp   */ $shop,
-        /* mblowfish  */ $mbActions) {
+        /* seen-shp   */ $shop) {
 
 		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
 			$scope: $scope

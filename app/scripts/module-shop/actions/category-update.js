@@ -50,4 +50,5 @@ mblowfish.addAction(AMD_SHOP_CATEGORY_UPDATE_ACTION, {
 				alert($mbTranslate.instant('Fail to delete the category.'));
 			});
 	}
-})
+});
+

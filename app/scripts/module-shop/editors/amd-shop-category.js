@@ -149,7 +149,7 @@ mblowfish.addEditor('/shop/categories/:categoryId', {
 					switch (event.key) {
 						case 'create':
 						case 'update':
-							_.assign(content, value);
+							_.assign(category, value);
 							break;
 						case 'delete':
 							$editor.close();

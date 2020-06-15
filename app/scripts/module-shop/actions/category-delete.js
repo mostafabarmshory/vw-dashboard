@@ -54,4 +54,5 @@ mblowfish.addAction(AMD_SHOP_CATEGORY_DELETE_ACTION, {
 					});
 			});
 	}
-})
+});
+

@@ -20,6 +20,8 @@
 * SOFTWARE.
 */
 
+/* exported AMD_SHOP_ZONE_SP */
+
 mblowfish.addConstants({
 	AMD_SHOP_AGENCY_SP: '/shop/agencies',
 	AMD_SHOP_CATEGORY_SP: '/shop/categories',
@@ -63,7 +65,7 @@ mblowfish.addConstants({
 	AMD_SHOP_ZONE_UPDATE_ACTION: 'amd.shop.zone.update',
 });
 
-mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvider, $mbIconProvider, $mbActionsProvider) {
+mblowfish.config(function($mbIconProvider) {
 
 	$mbIconProvider
 		.addShapes({

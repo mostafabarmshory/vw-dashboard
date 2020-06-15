@@ -166,7 +166,7 @@ mblowfish.controller('AmdContentCtrl', function(
 						.then(function(newtt) {
 							vlaues.push(newtt);
 						}));
-				})
+				});
 				ctrl.isTermtaxonomiesBusy = $q.all(jobs)
 					.finally(function() {
 						ctrl.fireCreated(contentTermTaxonomiesAssos, vlaues);
@@ -221,7 +221,7 @@ mblowfish.controller('AmdContentCtrl', function(
 			.then(function() {
 				ctrl.isMicrodataBusy = microdata.delete()
 					.then(function() {
-						ctrl.fireDeleted(AMD_CMS_METADATA_SP, microdata)
+						ctrl.fireDeleted(AMD_CMS_METADATA_SP, microdata);
 						$window.toast('Microdata is removed successfully');
 					}, function(/*error*/) {
 						// TODO: maso, 2020: log errors

@@ -151,7 +151,7 @@ mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder,
 				history: history
 			}
 		});
-	}
+	};
 
 	this.loadOrder();
 });

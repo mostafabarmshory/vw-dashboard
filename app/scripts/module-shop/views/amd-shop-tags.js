@@ -38,8 +38,7 @@ mblowfish.addView('/shop/tags', {
 	/* @ngInject */
 	controller: function(
         /* angularjs */ $scope, $controller, $element,
-        /* seen-shop */ $shop,
-        /* mblowfish */ $mbActions) {
+        /* seen-shop */ $shop) {
 
 		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
 			$scope: $scope,

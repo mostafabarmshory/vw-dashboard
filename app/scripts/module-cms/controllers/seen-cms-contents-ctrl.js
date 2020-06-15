@@ -81,7 +81,7 @@ mblowfish.controller('MbSeenCmsContentsCtrl',function ($scope, $cms, $q, $contro
         // XXX: maso, 2018: check content is not anonymous
         return $cms.putContent(content)//
         .then(uploadContentValue);
-    }
+    };
 
     this.init({
         eventType: AMD_CMS_CONTENT_SP

@@ -16,7 +16,7 @@ mblowfish.controller('AmdCmsContentUrlResourceCtrl', function($scope, $resource,
 	 */
 	this.setAbsolute = function(absolute) {
 		this.absolute = absolute;
-	}
+	};
 
 	/**
 	 * Checks if the mode is absolute
@@ -25,6 +25,11 @@ mblowfish.controller('AmdCmsContentUrlResourceCtrl', function($scope, $resource,
 	 */
 	this.isAbsolute = function() {
 		return this.absolute;
+	};
+	
+	function getDomain(){
+		// XXX: maso, 2020:
+		return '';
 	}
 
 	/*
@@ -37,12 +42,14 @@ mblowfish.controller('AmdCmsContentUrlResourceCtrl', function($scope, $resource,
 			path = getDomain() + path;
 		}
 		$resource.setValue(path);
-	}
+	};
 
 	this.isSelected = function(content) {
 		return this.selected && this.selected.id === content.id;
 	};
 
 	// init the controller
-	this.init()
+	this.init();
 });
+
+

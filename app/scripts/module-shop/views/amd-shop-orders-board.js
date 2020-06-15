@@ -35,7 +35,7 @@ mblowfish.addView('/shop/orders-board', {
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	controller: function(
-        /* angularjs */ $scope, $controller, $element, $scope,
+        /* angularjs */ $scope, $controller, $element,
         /* seen-shop */ $shop,
         /* mblowfish */ $navigator, $mbStorage) {
 
@@ -73,7 +73,7 @@ mblowfish.addView('/shop/orders-board', {
 				this.board = {
 					title: 'Shop board',
 					columns: []
-				}
+				};
 				this.saveBoard();
 			} else {
 				this.board = $mbStorage[BOARD_STORAGE_KEY];
@@ -95,7 +95,7 @@ mblowfish.addView('/shop/orders-board', {
 
 		this.getBoardColumn = function(id) {
 			for (var i = 0; i < this.board.columns.length; i++) {
-				if (this.board.columns[i].id == id) {
+				if (this.board.columns[i].id === id) {
 					return this.board.columns[i];
 				}
 			}

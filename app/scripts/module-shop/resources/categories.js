@@ -35,4 +35,4 @@ mblowfish.addResource('/shop/categories', {
 	},
 	controllerAs: 'resourceCtrl',
 	tags: [AMD_SHOP_CATEGORY_SP]
-})
+});

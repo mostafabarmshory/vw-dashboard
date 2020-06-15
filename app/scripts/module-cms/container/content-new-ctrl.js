@@ -62,7 +62,7 @@ mblowfish.controller('AmdContentNewCtrl', function(
 		}
 		promise
 			.then(function(content) {
-				ctrl.fireCreated(AMD_CMS_CONTENT_SP, content)
+				ctrl.fireCreated(AMD_CMS_CONTENT_SP, content);
 				reload();
 				$location.path('/cms/contents/' + content.id);
 			}, function(/*error*/) {

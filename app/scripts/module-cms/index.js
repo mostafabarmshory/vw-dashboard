@@ -20,30 +20,34 @@
  * SOFTWARE.
  */
 
-//------------------------------------------------------------
-// Resources Types
-//------------------------------------------------------------
-var AMD_CMS_CONTENT_RT = '/cms/contents';
-var AMD_CMS_METADATA_RT = '/cms/metadata';
-var AMD_CMS_TERMTAXONOMIES_RT = '/cms/term-taxonomies';
+mblowfish.addConstants({
+	//------------------------------------------------------------
+	// Resources Types
+	//------------------------------------------------------------
+	AMD_CMS_CONTENT_RT: '/cms/contents',
+	AMD_CMS_METADATA_RT: '/cms/metadata',
+	AMD_CMS_TERMTAXONOMIES_RT: '/cms/term-taxonomies',
 
 
-//------------------------------------------------------------
-// Stoer Paths
-//------------------------------------------------------------
-var AMD_CMS_CONTENT_SP = '/cms/contents';
-var AMD_CMS_METADATA_SP = '/cms/metadata';
-var AMD_CMS_TERMTAXONOMIES_SP = '/cms/term-taxonomies';
-var AMD_CMS_TERMS_SP = '/cms/terms';
+	//------------------------------------------------------------
+	// Stoer Paths
+	//------------------------------------------------------------
+	AMD_CMS_CONTENT_SP: '/cms/contents',
+	AMD_CMS_METADATA_SP: '/cms/metadata',
+	AMD_CMS_TERMTAXONOMIES_SP: '/cms/term-taxonomies',
+	AMD_CMS_TERMS_SP: '/cms/terms',
 
 
-//------------------------------------------------------------
-// Views
-//------------------------------------------------------------
-var AMD_CMS_VIEW_CONTENT_NEW_PATH = '/cms/contents-new';
-var AMD_CMS_VIEW_CONTENTS_PATH = '/cms/contents';
-var AMD_CMS_VIEW_TERMS_PATH = '/cms/terms';
-var AMD_CMS_VIEW_TERM_TAXONOMIES_PATH = '/cms/term-taxonomies';
+	//------------------------------------------------------------
+	// Views
+	//------------------------------------------------------------
+	AMD_CMS_VIEW_CONTENT_NEW_PATH: '/cms/contents-new',
+	AMD_CMS_VIEW_CONTENTS_PATH: '/cms/contents',
+	AMD_CMS_VIEW_TERMS_PATH: '/cms/terms',
+	AMD_CMS_VIEW_TERM_TAXONOMIES_PATH: '/cms/term-taxonomies',
+});
+
+
 
 mblowfish.config(function(
 	/* Mblowfish */ $mbViewProvider, $mbEditorProvider, $mbResourceProvider) {
@@ -173,7 +177,7 @@ mblowfish.config(function(
 			controllerAs: 'ctrl',
 			priority: 10,
 			tags: ['image-url', 'avatar', 'thumbnail']
-		})
+		});
 	//	.addPage({
 	//		type: 'content-upload',
 	//		icon: 'file_upload',

@@ -243,7 +243,7 @@ mblowfish.addEditor('/shop/services/:serviceId', {
 				.finally(function() {
 					$scope.updatingCategories = false;
 				});
-		}
+		};
 
 
 		/*
