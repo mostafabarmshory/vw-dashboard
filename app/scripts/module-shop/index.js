@@ -110,14 +110,6 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			controllerAs: 'ctrl',
 			groups: shopViewGroups,
 		})
-		.addView('/shop/delivers', {
-			title: 'Delivers',
-			icon: 'local_shipping',
-			templateUrl: 'views/amd-shop-delivers.html',
-			controller: 'MbSeenShopDeliversCtrl',
-			controllerAs: 'ctrl',
-			groups: shopViewGroups,
-		})
 		.addView('/shop/zones', {
 			title: 'Zones',
 			icon: 'layers',
@@ -150,11 +142,6 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			controllerAs: 'ctrl',
 			templateUrl: 'views/amd-shop-order.html',
 		})//
-		.addEditor('/shop/delivers/:deliverId', {
-			templateUrl: 'views/amd-shop-deliver.html',
-			controller: 'AmdShopDeliverCtrl',
-			controllerAs: 'ctrl'
-		})
 		.addEditor('/shop/zones/:zoneId', {
 			templateUrl: 'views/amd-shop-zone.html',
 			controller: 'AmdShopZoneCtrl',

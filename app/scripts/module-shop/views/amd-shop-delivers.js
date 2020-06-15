@@ -21,38 +21,52 @@
  */
 
 
-mblowfish.addAction(AMD_SHOP_DELIVER_CREATE_ACTION, {
-	title: 'New Deliver',
-	icon: 'photo_album',
-	description: 'Creates new delivers',
+/**
+@ngdoc Views
+@name MbSeenShopDeliversCtrl
+@description 
+Manages list of shop delivers
+ */
+mblowfish.addView('/shop/delivers', {
+	title: 'Delivers',
+	icon: 'local_shipping',
+	templateUrl: 'views/shop/delivers.html',
+	controllerAs: 'ctrl',
 	groups: ['Shop'],
-	/* @ngInject */
-	action: function($shop, $mbTranslate, $event, $mbDispatcherUtil, $mbDynamicForm) {
-		var data = {};
-		var values = $event.values;
-		if (values && values.length) {
-			data = values[0];
-		}
+	controller: function(
+        /* angularjs  */ $scope, $controller, $element,
+        /* seen-shp   */ $shop) {
 
-		// TODO: maso, 2020: add the job into the job lists
-		// $app.addJob('Adding new shop category', job);
-		return $shop.deliverSchema()
-			.then(function(schema) {
-				return $mbDynamicForm
-					.openDialog({
-						title: 'New Deliver',
-						schema: schema,
-						data: data
-					})
-					.then(function(itemData) {
-						return $shop.putDeliver(itemData)
-							.then(function(item) {
-								$mbDispatcherUtil.fireCreated(AMD_SHOP_DELIVER_SP, [item]);
-							}, function() {
-								alert($mbTranslate.instant('Failed to create a new deliver.'));
-							});
-					});
-			});
-	},
+		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+			$scope: $scope,
+			$element: $element
+		}));
+
+		// Override the function
+		this.getModelSchema = function() {
+			return $shop.deliverSchema();
+		};
+
+		// get accounts
+		this.getModels = function(parameterQuery) {
+			return $shop.getDelivers(parameterQuery);
+		};
+
+		// get an account
+		this.getModel = function(id) {
+			return $shop.getDeliver(id);
+		};
+
+		// delete account
+		this.deleteModel = function(model) {
+			return $shop.deleteDeliver(model.id);
+		};
+
+		/*************************************************************
+		 * Load the controller and more actions
+		 *************************************************************/
+		this.init({
+			eventType: AMD_SHOP_DELIVER_SP
+		});
+	}
 });
-

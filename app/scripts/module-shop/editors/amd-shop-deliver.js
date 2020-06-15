@@ -23,13 +23,12 @@
 
 /**
  * @ngdoc Controller
- * @name AmdShopAgencyCtrl
- * @description Manages an agency from shop domain
+ * @name AmdShopDeliveryCtrl
+ * @description Controller of a Delivery
  */
-mblowfish.addEditor('/shop/agencies/:itemId', {
-	templateUrl: 'views/shop/agency.html',
+mblowfish.addEditor('/shop/delivers/:itemId', {
+	templateUrl: 'views/shop/deliver.html',
 	controllerAs: 'ctrl',
-	/* @ngInject */
 	controller: function(
     /* angularjs  */ $controller, $element,
     /* ngRoute    */ $scope, $state, $editor,
@@ -44,17 +43,17 @@ mblowfish.addEditor('/shop/agencies/:itemId', {
 
 		// delete model
 		this.deleteModel = function(item) {
-			return $shop.deleteAgency(item.id);
+			return $shop.deleteDeliver(item.id);
 		};
 
 		// get model schema
 		this.getModelSchema = function() {
-			return $shop.agencySchema();
+			return $shop.deliverSchema();
 		};
 
 		// get model
 		this.getModel = function(id) {
-			return $shop.getAgency(id);
+			return $shop.getDeliver(id);
 		};
 
 		// update model
@@ -66,7 +65,7 @@ mblowfish.addEditor('/shop/agencies/:itemId', {
 		// Load
 		//--------------------------------------------------------------------
 
-		this.addEventHandler(AMD_SHOP_AGENCY_SP, function(event) {
+		this.addEventHandler(AMD_SHOP_DELIVER_SP, function(event) {
 			_.forEach(event.values, function(value) {
 				if (isEqualId(value.id, itemId)) {
 					switch (event.key) {
@@ -80,17 +79,16 @@ mblowfish.addEditor('/shop/agencies/:itemId', {
 				}
 			});
 		});
-		
-		
+
+
 		this
 			.init({
-				eventType: AMD_SHOP_AGENCY_SP,
+				eventType: AMD_SHOP_DELIVER_SP,
 				modelId: itemId
 			})
 			.then(function() {
-				$editor.setTitle('Agency:' + itemId);
+				$editor.setTitle('Deliver:' + itemId);
 			});
 	}
 });
-
 

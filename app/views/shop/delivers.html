@@ -1,12 +1,16 @@
 <div
 	mb-preloading="ctrl.loading"
 	layout="column"
-	flex>
+	ng-init="moreActions = [{
+		title:'New Deliver', 
+		icon:'add',
+		actionId: AMD_SHOP_DELIVER_CREATE_ACTION
+	}]">
 	<mb-pagination-bar
 		mb-model="ctrl.queryParameter"
 		mb-reload="ctrl.reload()"
 		mb-sort-keys="ctrl.getSortKeys()"
-		mb-more-actions="ctrl.getActions()"
+		mb-more-actions="moreActions"
 		mb-properties="ctrl.properties">
 	</mb-pagination-bar>
 	<md-content
@@ -26,7 +30,7 @@
 					layout="column">
 					<h3>{{pobject.title}}</h3>
 					<!--<h4>{{pobject.id}}</h4>-->
-					<p>{{pobject.description}}</p>
+					<!--<p>{{pobject.description}}</p>-->
 				</div>
 				<md-divider md-inset></md-divider>
 			</md-list-item>
