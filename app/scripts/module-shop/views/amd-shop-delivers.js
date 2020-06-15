@@ -33,6 +33,7 @@ mblowfish.addView('/shop/delivers', {
 	templateUrl: 'views/shop/views/delivers.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
+	/* @ngInject */
 	controller: function(
         /* angularjs  */ $scope, $controller, $element,
         /* seen-shp   */ $shop) {

@@ -30,6 +30,7 @@
 mblowfish.addEditor('/shop/zones/:itemId', {
 	templateUrl: 'views/shop/editors/zone.html',
 	controllerAs: 'ctrl',
+	/* @ngInject */
 	controller: function(
     /* angularjs  */ $scope, $controller, $element, $mbUtil,
     /* ngRoute    */ $state, $editor,

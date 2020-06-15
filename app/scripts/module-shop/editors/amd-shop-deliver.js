@@ -29,6 +29,7 @@
 mblowfish.addEditor('/shop/delivers/:itemId', {
 	templateUrl: 'views/shop/editors/deliver.html',
 	controllerAs: 'ctrl',
+	/* @ngInject */
 	controller: function(
     /* angularjs  */ $controller, $element,
     /* ngRoute    */ $scope, $state, $editor,
