@@ -29,44 +29,45 @@
  * 
  * 
  */
-mblowfish.controller('MbSeenShopOrdersCtrl', function (
-        /* angularjs */ $scope, $controller, $element, 
-        /* seen-shop */ $shop,
-        /* mblowfish */ $mbActions) {
+mblowfish.addView('/shop/orders', {
+	title: 'Orders',
+	icon: 'event',
+	templateUrl: 'views/shop/orders.html',
+	controllerAs: 'ctrl',
+	groups: ['Shop'],
+	anchore: 'editors',
+	/* @ngInject */
+	controller: function(
+        /* angularjs */ $scope, $controller, $element,
+        /* seen-shop */ $shop) {
 
-    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-        $scope : $scope,
-        $element: $element
-    }));
+		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+			$scope: $scope,
+			$element: $element
+		}));
 
-    // Override the function
-    this.getModelSchema = function () {
-        return $shop.orderSchema();
-    };
+		// Override the function
+		this.getModelSchema = function() {
+			return $shop.orderSchema();
+		};
 
-    // get accounts
-    this.getModels = function (parameterQuery) {
-        return $shop.getOrders(parameterQuery);
-    };
+		// get accounts
+		this.getModels = function(parameterQuery) {
+			return $shop.getOrders(parameterQuery);
+		};
 
-    // get an account
-    this.getModel = function (id) {
-        return $shop.getOrder(id);
-    };
+		// get an account
+		this.getModel = function(id) {
+			return $shop.getOrder(id);
+		};
 
-    // delete account
-    this.deleteModel = function (model) {
-        return $shop.deleteOrder(model.id);
-    };
+		// delete account
+		this.deleteModel = function(model) {
+			return $shop.deleteOrder(model.id);
+		};
 
-    this.init({
-        eventType: '/shop/orders',
-        actions:[{
-            title: 'New order',
-            icon: 'add',
-            action: function(){
-                $mbActions.exec('create:/shop/orders');
-            }
-        }]
-    });
+		this.init({
+			eventType: AMD_SHOP_ORDERS_SP,
+		});
+	}
 });

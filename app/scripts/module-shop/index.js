@@ -24,6 +24,7 @@ mblowfish.addConstants({
 	AMD_SHOP_AGENCY_SP:   '/shop/agencies',
 	AMD_SHOP_CATEGORY_SP: '/shop/categories',
 	AMD_SHOP_DELIVER_SP:  '/shop/delivers',
+	AMD_SHOP_ORDERS_SP:  '/shop/orders',
 	AMD_SHOP_PRODUCT_SP:  '/shop/products',
 	AMD_SHOP_SERVICE_SP:  '/shop/services',
 	AMD_SHOP_ZONE_SP:     '/shop/zones',
@@ -40,6 +41,10 @@ mblowfish.addConstants({
 	AMD_SHOP_DELIVER_DELETE_ACTION: 'amd.shop.deliver.delete',
 	AMD_SHOP_DELIVER_CREATE_ACTION: 'amd.shop.deliver.create',
 	AMD_SHOP_DELIVER_UPDATE_ACTION: 'amd.shop.deliver.update',
+
+	AMD_SHOP_ORDER_DELETE_ACTION: 'amd.shop.order.delete',
+	AMD_SHOP_ORDER_CREATE_ACTION: 'amd.shop.order.create',
+	AMD_SHOP_ORDER_UPDATE_ACTION: 'amd.shop.order.update',
 
 	AMD_SHOP_PRODUCT_DELETE_ACTION: 'amd.shop.product.delete',
 	AMD_SHOP_PRODUCT_CREATE_ACTION: 'amd.shop.product.create',
@@ -60,7 +65,6 @@ mblowfish.addConstants({
 
 mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvider, $mbIconProvider, $mbActionsProvider) {
 
-	var shopViewGroups = ['Shop'];
 
 	$mbIconProvider
 		.addShapes({
@@ -75,31 +79,15 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			templateUrl: 'views/amd-shop-services.html',
 			controller: 'MbSeenShopServicesCtrl',
 			controllerAs: 'ctrl',
-			groups: shopViewGroups,
+			groups: ['Shop'],
 		})
-		.addView('/shop/orders', {
-			title: 'Orders',
-			icon: 'event',
-			templateUrl: 'views/amd-shop-orders.html',
-			controller: 'MbSeenShopOrdersCtrl',
-			controllerAs: 'ctrl',
-			groups: shopViewGroups,
-		})//
-		.addView('/shop/orders-board', {
-			title: 'Orders Board',
-			icon: 'dashboard',
-			templateUrl: 'views/amd-shop-orders-board.html',
-			controller: 'MbSeenShopOrdersBoardCtrl',
-			controllerAs: 'ctrl',
-			groups: shopViewGroups,
-		})//
 		.addView('/shop/tags', {
 			title: 'Tags',
 			icon: 'label',
 			templateUrl: 'views/amd-shop-tags.html',
 			controller: 'MbSeenShopTagsCtrl',
 			controllerAs: 'ctrl',
-			groups: shopViewGroups,
+			groups: ['Shop'],
 		})
 		.addView('/shop/zones', {
 			title: 'Zones',
@@ -107,7 +95,7 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 			templateUrl: 'views/amd-shop-zones.html',
 			controller: 'MbSeenShopZonesCtrl',
 			controllerAs: 'ctrl',
-			groups: shopViewGroups,
+			groups: ['Shop'],
 		});
 
 
