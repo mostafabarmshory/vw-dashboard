@@ -24,9 +24,9 @@
 
 
 /**
- * @ngdoc Controller
- * @name AmdShopOrderCtrl
- * @description load the order
+@ngdoc Controller
+@name AmdShopOrderCtrl
+@description load the order
  */
 mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder, 
 	$shop, $mbTranslate, $state, $navigator, $window) {

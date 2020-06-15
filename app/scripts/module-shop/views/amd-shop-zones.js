@@ -21,52 +21,53 @@
  */
 
 /**
- * @ngdoc Controllers
- * @name MbSeenShopZonesCtrl
- * @description Manages list of zones from shop domain
- * 
- * In the shop domain you are allowed to categorize agances into zones. This is a
- * main controller to manage list of zones.
- * 
+@ngdoc Controllers
+@name MbSeenShopZonesCtrl
+@description Manages list of zones from shop domain
+
+In the shop domain you are allowed to categorize agances into zones. This is a
+main controller to manage list of zones.
+
  */
-mblowfish.controller('MbSeenShopZonesCtrl', function(
+mblowfish.addView('/shop/zones', {
+	title: 'Zones',
+	icon: 'layers',
+	templateUrl: 'views/shop/views/zones.html',
+	controllerAs: 'ctrl',
+	groups: ['Shop'],
+	/* @ngInject */
+	controller: function(
         /* angularjs */ $scope, $controller, $element,
         /* seen-shop */ $shop,
         /* mblowfish */ $mbActions) {
 
-	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-		$scope: $scope,
-		$element: $element
-	}));
+		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+			$scope: $scope,
+			$element: $element
+		}));
 
-	// Override the function
-	this.getModelSchema = function() {
-		return $shop.zoneSchema();
-	};
+		// Override the function
+		this.getModelSchema = function() {
+			return $shop.zoneSchema();
+		};
 
-	// get accounts
-	this.getModels = function(parameterQuery) {
-		return $shop.getZones(parameterQuery);
-	};
+		// get accounts
+		this.getModels = function(parameterQuery) {
+			return $shop.getZones(parameterQuery);
+		};
 
-	// get an account
-	this.getModel = function(id) {
-		return $shop.getZone(id);
-	};
+		// get an account
+		this.getModel = function(id) {
+			return $shop.getZone(id);
+		};
 
-	// delete account
-	this.deleteModel = function(model) {
-		return $shop.deleteZone(model.id);
-	};
+		// delete account
+		this.deleteModel = function(model) {
+			return $shop.deleteZone(model.id);
+		};
 
-	this.init({
-		eventType: '/shop/zones',
-		actions: [{
-			title: 'New Zone',
-			icon: 'add',
-			action: function() {
-				$mbActions.exec('create:/shop/zones');
-			}
-		}]
-	});
+		this.init({
+			eventType: AMD_SHOP_ZONE_SP,
+		});
+	}
 });

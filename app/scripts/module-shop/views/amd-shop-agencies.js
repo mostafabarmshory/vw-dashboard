@@ -29,7 +29,7 @@ Manages list of agencies from shop domain
 mblowfish.addView('/shop/agencies', {
 	title: 'Agencies',
 	icon: 'store',
-	templateUrl: 'views/shop/agencies.html',
+	templateUrl: 'views/shop/views/agencies.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	/* @ngInject */

@@ -25,9 +25,7 @@ mblowfish.addAction(AMD_SHOP_PRODUCT_CREATE_ACTION, {// create new category menu
 	icon: 'photo_album',
 	title: 'New Product',
 	groups: ['Shop'],
-	/*
-	 * @ngInject
-	 */
+	/*@ngInject*/
 	action: function($shop, $mbTranslate, $event, $mbDispatcherUtil, $mbDynamicForm) {
 		var data = {};
 		var values = $event.values;

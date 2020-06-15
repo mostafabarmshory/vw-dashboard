@@ -21,51 +21,81 @@
  */
 
 
+
 /**
- * @ngdoc Controller
- * @name AmdShopDeliveryCtrl
- * @description Controller of a Delivery
+@ngdoc Editor
+@name AmdShopZoneCtrl
+@description Manages a zone from shop domain
  */
-mblowfish.addEditor('/shop/delivers/:itemId', {
-	templateUrl: 'views/shop/editors/deliver.html',
+mblowfish.addEditor('/shop/zones/:itemId', {
+	templateUrl: 'views/shop/editors/zone.html',
 	controllerAs: 'ctrl',
 	controller: function(
-    /* angularjs  */ $controller, $element,
-    /* ngRoute    */ $scope, $state, $editor,
-    /* seen-shp   */ $shop, $mbUtil) {
+    /* angularjs  */ $scope, $controller, $element, $mbUtil,
+    /* ngRoute    */ $state, $editor,
+    /* seen-shp   */ $shop) {
 		var itemId = $state.params.itemId;
 		var isEqualId = $mbUtil.isEqualId;
+
 
 		angular.extend(this, $controller('MbSeenAbstractItemCtrl', {
 			$scope: $scope,
 			$element: $element
 		}));
 
-		// delete model
+		/**
+		 * Deletes model
+		 * 
+		 * @param item
+		 * @return promiss to delete item
+		 * @memberof AmdShopZoneCtrl
+		 * @see MbSeenAbstractItemCtrl
+		 */
 		this.deleteModel = function(item) {
-			return $shop.deleteDeliver(item.id);
+			return $shop.deleteZone(item.id);
 		};
 
-		// get model schema
+		/**
+		 * Gets item schema
+		 * 
+		 * @return promise to get schema
+		 * @memberof AmdShopZoneCtrl
+		 * @see MbSeenAbstractItemCtrl
+		 */
 		this.getModelSchema = function() {
-			return $shop.deliverSchema();
+			return $shop.zoneSchema();
 		};
 
-		// get model
+		/**
+		 * Query and get items
+		 * 
+		 * @param queryParameter to apply search
+		 * @return promiss to get items
+		 * @memberof AmdShopZoneCtrl
+		 * @see MbSeenAbstractItemCtrl
+		 */
 		this.getModel = function(id) {
-			return $shop.getDeliver(id);
+			return $shop.getZone(id);
 		};
 
-		// update model
+		/**
+		 * Update current item
+		 * 
+		 * @return promiss to add and return an item
+		 * @memberof AmdShopZoneCtrl
+		 * @see MbSeenAbstractItemCtrl
+		 */
 		this.updateModel = function(item) {
 			return item.update();
 		};
+
+
 
 		//--------------------------------------------------------------------
 		// Load
 		//--------------------------------------------------------------------
 
-		this.addEventHandler(AMD_SHOP_DELIVER_SP, function(event) {
+		this.addEventHandler(AMD_SHOP_ZONE_SP, function(event) {
 			_.forEach(event.values, function(value) {
 				if (isEqualId(value.id, itemId)) {
 					switch (event.key) {
@@ -83,12 +113,14 @@ mblowfish.addEditor('/shop/delivers/:itemId', {
 
 		this
 			.init({
-				eventType: AMD_SHOP_DELIVER_SP,
+				eventType: AMD_SHOP_ZONE_SP,
 				modelId: itemId
 			})
 			.then(function() {
-				$editor.setTitle('Deliver:' + itemId);
+				$editor.setTitle('Zone:' + itemId);
 			});
+
 	}
 });
+
 

@@ -20,39 +20,37 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction('create:/shop/services', {// create new category menu
+mblowfish.addAction(AMD_SHOP_SERVICE_CREATE_ACTION, {// create new category menu
 	icon: 'photo_album',
-	title: 'New Deliver',
-	description: 'Creates new delivers',
-	/*
-	 * @ngInject
-	 */
-	action: function($shop, $window, $mbTranslate, $navigator, $mbDispatcher) {
-		var job = $shop.serviceSchema()
-			.then(function(schema) {
-				return $navigator.openDialog({
-					templateUrl: 'views/dialogs/amd-item-new.html',
-					config: {
-						title: 'New Service',
-						schema: schema,
-						data: {}
-					}
-				});
-			})
-			.then(function(itemData) {
-				return $shop.putProduct(itemData);
-			})
-			.then(function(item) {
-				$mbDispatcher.dispatch('/shop/services', {
-					key: 'create',
-					values: [item]
-				});
-			}, function() {
-				$window.alert($mbTranslate.instant('Failed to create a new service.'));
-			});
+	title: 'New Service',
+	description: 'Creates new service',
+	groups: ['Shop'],
+	/*@ngInject*/
+	action: function($shop, $mbTranslate, $event, $mbDispatcherUtil, $mbDynamicForm) {
+		var data = {};
+		var values = $event.values;
+		if (values && values.length) {
+			data = values[0];
+		}
+
 		// TODO: maso, 2020: add the job into the job lists
 		// $app.addJob('Adding new shop category', job);
-		return job;
+		return $shop.serviceSchema()
+			.then(function(schema) {
+				return $mbDynamicForm
+					.openDialog({
+						title: 'New Service',
+						schema: schema,
+						data: data
+					})
+					.then(function(itemData) {
+						return $shop.putService(itemData)
+							.then(function(item) {
+								$mbDispatcherUtil.fireCreated(AMD_SHOP_SERVICE_SP, [item]);
+							}, function() {
+								alert($mbTranslate.instant('Failed to create a new service.'));
+							});
+					});
+			});
 	},
-	groups: shopActionGroups
 });

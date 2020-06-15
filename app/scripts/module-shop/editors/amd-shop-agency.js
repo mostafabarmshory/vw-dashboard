@@ -27,7 +27,7 @@
  * @description Manages an agency from shop domain
  */
 mblowfish.addEditor('/shop/agencies/:itemId', {
-	templateUrl: 'views/shop/agency.html',
+	templateUrl: 'views/shop/editors/agency.html',
 	controllerAs: 'ctrl',
 	/* @ngInject */
 	controller: function(

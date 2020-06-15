@@ -23,53 +23,54 @@
 
 
 /**
- * @ngdoc Controllers
- * @name MbSeenShopCategoriesCtrl
- * @description Manages list of categories
- * 
- * 
+@ngdoc Controllers
+@name MbSeenShopCategoriesCtrl
+@description Manages list of categories
+
+
  */
-mblowfish.controller('MbSeenShopTagsCtrl', function (
+mblowfish.addView('/shop/tags', {
+	title: 'Tags',
+	icon: 'label',
+	templateUrl: 'views/shop/views/tags.html',
+	controllerAs: 'ctrl',
+	groups: ['Shop'],
+	/* @ngInject */
+	controller: function(
         /* angularjs */ $scope, $controller, $element,
         /* seen-shop */ $shop,
         /* mblowfish */ $mbActions) {
 
-    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-        $scope : $scope,
-        $element: $element
-    }));
+		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+			$scope: $scope,
+			$element: $element
+		}));
 
-    // Override the function
-    this.getModelSchema = function () {
-        return $shop.tagSchema();
-    };
+		// Override the function
+		this.getModelSchema = function() {
+			return $shop.tagSchema();
+		};
 
-    // get accounts
-    this.getModels = function (parameterQuery) {
-        return $shop.getTags(parameterQuery);
-    };
+		// get accounts
+		this.getModels = function(parameterQuery) {
+			return $shop.getTags(parameterQuery);
+		};
 
-    // get an account
-    this.getModel = function (id) {
-        return $shop.getTag(id);
-    };
+		// get an account
+		this.getModel = function(id) {
+			return $shop.getTag(id);
+		};
 
-    // delete account
-    this.deleteModel = function (model) {
-        return $shop.deleteTag(model.id);
-    };
+		// delete account
+		this.deleteModel = function(model) {
+			return $shop.deleteTag(model.id);
+		};
 
-    /***********************************************************
-     * Initialize the controller
-     ***********************************************************/
-    this.init({
-        eventType: '/shop/tags',
-        actions:[{
-            title: 'New tag',
-            icon: 'add',
-            action: function () {
-                $mbActions.exec('create:/shop/tags');
-            }
-        }]
-    });
+		/***********************************************************
+		 * Initialize the controller
+		 ***********************************************************/
+		this.init({
+			eventType: AMD_SHOP_TAG_SP,
+		});
+	}
 });

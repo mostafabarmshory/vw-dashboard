@@ -31,7 +31,7 @@
 mblowfish.addView('/shop/orders-board', {
 	title: 'Orders Board',
 	icon: 'dashboard',
-	templateUrl: 'views/shop/orders-board.html',
+	templateUrl: 'views/shop/views/orders-board.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	controller: function(
@@ -123,7 +123,9 @@ mblowfish.addView('/shop/orders-board', {
 
 		this.showItemDetail = function(order) {
 			$navigator.openDialog({
-				templateUrl: 'views/amd-shop-order2.html',
+				controller: 'AmdShopOrderCtrl',
+				controllerAs: 'ctrl',
+				templateUrl: 'views/shop/order2.html',
 				config: {
 					order: order
 				},
@@ -134,8 +136,6 @@ mblowfish.addView('/shop/orders-board', {
 						}
 					}
 				},
-				controller: 'AmdShopOrderCtrl',
-				controllerAs: 'ctrl'
 			});
 		};
 

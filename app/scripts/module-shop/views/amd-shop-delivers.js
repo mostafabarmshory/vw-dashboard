@@ -30,7 +30,7 @@ Manages list of shop delivers
 mblowfish.addView('/shop/delivers', {
 	title: 'Delivers',
 	icon: 'local_shipping',
-	templateUrl: 'views/shop/delivers.html',
+	templateUrl: 'views/shop/views/delivers.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	controller: function(

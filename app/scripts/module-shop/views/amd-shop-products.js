@@ -31,7 +31,7 @@
 mblowfish.addView('/shop/products', {
 	title: 'Products',
 	icon: 'add_shopping_cart',
-	templateUrl: 'views/shop/products.html',
+	templateUrl: 'views/shop/views/products.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	controller: function(

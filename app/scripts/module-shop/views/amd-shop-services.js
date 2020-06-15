@@ -23,52 +23,53 @@
 
 
 /**
- * @ngdoc Controllers
- * @name MbSeenShopCategoriesCtrl
- * @description Manages list of categories
- * 
+@ngdoc Controllers
+@name MbSeenShopCategoriesCtrl
+@description Manages list of categories
+
  */
-mblowfish.controller('MbSeenShopServicesCtrl', function (
+mblowfish.addView('/shop/services', {
+	title: 'Services',
+	icon: 'cloud_upload',
+	templateUrl: 'views/shop/views/services.html',
+	controllerAs: 'ctrl',
+	groups: ['Shop'],
+	/* @ngInject */
+	controller: function(
         /* angularjs  */ $scope, $controller,
         /* seen-shp   */ $shop,
         /* mblowfish  */ $mbActions) {
 
-    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-        $scope : $scope
-    }));
+		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+			$scope: $scope
+		}));
 
-    // Override the function
-    this.getModelSchema = function () {
-        return $shop.serviceSchema();
-    };
+		// Override the function
+		this.getModelSchema = function() {
+			return $shop.serviceSchema();
+		};
 
-    // get accounts
-    this.getModels = function (parameterQuery) {
-        return $shop.getServices(parameterQuery);
-    };
+		// get accounts
+		this.getModels = function(parameterQuery) {
+			return $shop.getServices(parameterQuery);
+		};
 
-    // get an account
-    this.getModel = function (id) {
-        return $shop.getService(id);
-    };
+		// get an account
+		this.getModel = function(id) {
+			return $shop.getService(id);
+		};
 
-    // delete account
-    this.deleteModel = function (model) {
-        return $shop.deleteService(model.id);
-    };
+		// delete account
+		this.deleteModel = function(model) {
+			return $shop.deleteService(model.id);
+		};
 
 
-    /*************************************************************
-     * 
-     *************************************************************/
-    this.init({
-        eventType: '/shop/services',
-        actions:[{
-            title: 'New service',
-            icon: 'add',
-            action: function () {
-                $mbActions.exec('create:/shop/services');
-            }
-        }]
-    });
+		/*************************************************************
+		 * 
+		 *************************************************************/
+		this.init({
+			eventType: AMD_SHOP_SERVICE_SP,
+		});
+	}
 });

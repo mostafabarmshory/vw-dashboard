@@ -26,7 +26,7 @@
 @description Controller of products list
  */
 mblowfish.addEditor('/shop/products/:productId', {
-	templateUrl: 'views/shop/product.html',
+	templateUrl: 'views/shop/editors/product.html',
 	controllerAs: 'ctrl',
 	/* @ngInject */
 	controller: function($scope, $shop, $state, $mbTranslate, $navigator, $location, $q, QueryParameter, $editor) {

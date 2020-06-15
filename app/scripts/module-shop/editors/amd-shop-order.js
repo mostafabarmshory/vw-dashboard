@@ -1,5 +1,7 @@
-/*
- * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
+/* 
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2016 weburger
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,38 +22,14 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(AMD_SHOP_TAG_CREATE_ACTION, {// create new tag menu
-	priority: 10,
-	icon: 'label',
-	title: 'New Tag',
-	description: 'Creates new tag',
-	groups: ['Shop'],
-	/*@ngInject*/
-	action: function($shop, $mbTranslate, $event, $mbDispatcherUtil, $mbDynamicForm) {
-		var data = {};
-		var values = $event.values;
-		if (values && values.length) {
-			data = values[0];
-		}
 
-		// TODO: maso, 2020: add the job into the job lists
-		// $app.addJob('Adding new shop category', job);
-		return $shop.tagSchema()
-			.then(function(schema) {
-				return $mbDynamicForm
-					.openDialog({
-						title: 'New Tag',
-						schema: schema,
-						data: data
-					})
-					.then(function(itemData) {
-						return $shop.putTag(itemData)
-							.then(function(item) {
-								$mbDispatcherUtil.fireCreated(AMD_SHOP_TAG_SP, [item]);
-							}, function() {
-								alert($mbTranslate.instant('Failed to create a new tag.'));
-							});
-					});
-			});
-	},
+/**
+@ngdoc Editor
+@name AmdShopOrderCtrl
+@description load the order
+ */
+mblowfish.addEditor('/shop/orders/:orderId', {
+	controllerAs: 'ctrl',
+	templateUrl: 'views/shop/editors/order.html',
+	controller: 'AmdShopOrderCtrl',
 });

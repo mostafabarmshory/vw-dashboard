@@ -23,16 +23,15 @@
 
 
 /**
- * @ngdoc Controllers
- * @name MbSeenShopOrdersCtrl
- * @description Manages list of categories
- * 
- * 
+@ngdoc Controllers
+@name MbSeenShopOrdersCtrl
+@description Manages list of categories
+
  */
 mblowfish.addView('/shop/orders', {
 	title: 'Orders',
 	icon: 'event',
-	templateUrl: 'views/shop/orders.html',
+	templateUrl: 'views/shop/views/orders.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	anchore: 'editors',

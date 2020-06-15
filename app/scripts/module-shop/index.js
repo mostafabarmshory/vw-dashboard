@@ -21,14 +21,14 @@
 */
 
 mblowfish.addConstants({
-	AMD_SHOP_AGENCY_SP:   '/shop/agencies',
+	AMD_SHOP_AGENCY_SP: '/shop/agencies',
 	AMD_SHOP_CATEGORY_SP: '/shop/categories',
-	AMD_SHOP_DELIVER_SP:  '/shop/delivers',
-	AMD_SHOP_ORDERS_SP:  '/shop/orders',
-	AMD_SHOP_PRODUCT_SP:  '/shop/products',
-	AMD_SHOP_SERVICE_SP:  '/shop/services',
-	AMD_SHOP_ZONE_SP:     '/shop/zones',
-	AMD_SHOP_TAG_SP:      '/shop/tags',
+	AMD_SHOP_DELIVER_SP: '/shop/delivers',
+	AMD_SHOP_ORDERS_SP: '/shop/orders',
+	AMD_SHOP_PRODUCT_SP: '/shop/products',
+	AMD_SHOP_SERVICE_SP: '/shop/services',
+	AMD_SHOP_ZONE_SP: '/shop/zones',
+	AMD_SHOP_TAG_SP: '/shop/tags',
 
 	AMD_SHOP_AGENCY_DELETE_ACTION: 'amd.shop.agency.delete',
 	AMD_SHOP_AGENCY_CREATE_ACTION: 'amd.shop.agency.create',
@@ -65,127 +65,8 @@ mblowfish.addConstants({
 
 mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvider, $mbIconProvider, $mbActionsProvider) {
 
-
 	$mbIconProvider
 		.addShapes({
 			'shop-zone': '<path id="path2" d="M 23,7 V 1 H 17 V 3 H 7 V 1 H 1 V 7 H 3 V 17 H 1 v 6 h 6 v -2 h 10 v 2 h 6 V 17 H 21 V 7 Z M 3,3 H 5 V 5 H 3 Z M 5,21 H 3 V 19 H 5 Z M 17,19 H 7 V 17 H 5 V 7 H 7 V 5 h 10 v 2 h 2 v 10 h -2 z m 4,2 h -2 v -2 h 2 z M 19,5 V 3 h 2 v 2 z" /><path id="path4" fill="none" d="M0 0h24v24H0z" />'
 		});
-
-
-	$mbViewProvider
-		.addView('/shop/services', {
-			title: 'Services',
-			icon: 'cloud_upload',
-			templateUrl: 'views/amd-shop-services.html',
-			controller: 'MbSeenShopServicesCtrl',
-			controllerAs: 'ctrl',
-			groups: ['Shop'],
-		})
-		.addView('/shop/tags', {
-			title: 'Tags',
-			icon: 'label',
-			templateUrl: 'views/amd-shop-tags.html',
-			controller: 'MbSeenShopTagsCtrl',
-			controllerAs: 'ctrl',
-			groups: ['Shop'],
-		})
-		.addView('/shop/zones', {
-			title: 'Zones',
-			icon: 'layers',
-			templateUrl: 'views/amd-shop-zones.html',
-			controller: 'MbSeenShopZonesCtrl',
-			controllerAs: 'ctrl',
-			groups: ['Shop'],
-		});
-
-
-
-	$mbEditorProvider
-		.addEditor('/shop/services/:serviceId', {
-			templateUrl: 'views/amd-shop-service.html',
-			controller: 'AmdShopServiceCtrl',
-			controllerAs: 'ctrl'
-		})
-		.addEditor('/shop/tags/:tagId', {
-			templateUrl: 'views/amd-shop-tag.html',
-			controller: 'AmdShopTagCtrl',
-			controllerAs: 'ctrl'
-		})
-		.addEditor('/shop/orders/:orderId', {
-			controller: 'AmdShopOrderCtrl',
-			controllerAs: 'ctrl',
-			templateUrl: 'views/amd-shop-order.html',
-		})//
-		.addEditor('/shop/zones/:zoneId', {
-			templateUrl: 'views/amd-shop-zone.html',
-			controller: 'AmdShopZoneCtrl',
-			controllerAs: 'ctrl'
-		});
-
-
-
-
-
-
-	// Resource for list of shop categories
-	$mbResourceProvider
-		.addPage('/shop/categories', {
-			label: 'Categories',
-			templateUrl: 'views/resources/amd-shop-categories.html',
-			/*
-			 * @ngInject
-			 */
-			controller: function($scope) {
-				// TODO: maso, 2018: load selected item
-				$scope.multi = true;
-				this.value = $scope.value;
-				this.items = {};
-				this.setSelected = function(item, selected) {
-					if (_.isUndefined(selected)) {
-						selected = true;
-					}
-					item._selected = selected;
-					$scope.$parent.setValue(this.getSelection());
-				};
-				// this._setSelected = setSelected;
-				this.isSelected = function(item) {
-					this.items[item.id] = item;
-					return item._selected;
-				};
-				this.getSelection = function() {
-					var selection = [];
-					_.forEach(this.items, function(item) {
-						if (item._selected) {
-							selection.push(item);
-						}
-					});
-					return selection;
-				};
-			},
-			controllerAs: 'resourceCtrl',
-			tags: ['/shop/categories']
-		})
-		.addPage('/shop/zones#id', {
-			label: 'Zone',
-			templateUrl: 'views/resources/amd-shop-zones.html',
-			/*
-			 * @ngInject
-			 */
-			controller: function($scope) {
-				// TODO: maso, 2018: load selected item
-				$scope.multi = false;
-				this.value = $scope.value;
-				this.setSelected = function(item) {
-					$scope.$parent.setValue(item.id);
-					$scope.$parent.answer();
-				};
-				this.isSelected = function(item) {
-					return item.id === this.value;
-				};
-			},
-			controllerAs: 'resourceCtrl',
-			priority: 8,
-			tags: ['/shop/zones#id', 'zone_id']
-		});
-
 });

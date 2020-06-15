@@ -30,7 +30,7 @@ Manages list of categories
 mblowfish.addView('/shop/categories', {
 	title: 'Categories',
 	icon: 'folder_special',
-	templateUrl: 'views/shop/categories.html',
+	templateUrl: 'views/shop/views/categories.html',
 	groups: ['Shop'],
 	controllerAs: 'ctrl',
 	/* @ngInject */

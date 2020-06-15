@@ -28,7 +28,7 @@ Manage a shop category.
 
  */
 mblowfish.addEditor('/shop/categories/:categoryId', {
-	templateUrl: 'views/shop/category.html',
+	templateUrl: 'views/shop/editors/category.html',
 	controllerAs: 'ctrl',
 	/* @ngInject */
 	controller: function($editor, $scope, $state, $shop, $controller, $mbTranslate, $mbActions, $mbUtil) {
