@@ -1,12 +1,16 @@
 <div
 	mb-preloading="ctrl.loading"
 	layout="column"
-	flex>
+	ng-init="moreActions = [{
+		title:'New Product', 
+		icon:'add',
+		actionId: AMD_SHOP_PRODUCT_CREATE_ACTION
+	}]">
 	<mb-pagination-bar
 		mb-model="ctrl.queryParameter"
 		mb-reload="ctrl.reload()"
 		mb-sort-keys="ctrl.getSortKeys()"
-		mb-more-actions="ctrl.getActions()"
+		mb-more-actions="moreActions"
 		mb-properties="ctrl.properties">
 	</mb-pagination-bar>
 	<md-content

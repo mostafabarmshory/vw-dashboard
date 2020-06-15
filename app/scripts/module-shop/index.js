@@ -21,14 +21,13 @@
 */
 
 mblowfish.addConstants({
-	AMD_SHOP_AGENCY_SP: '/shop/agencies',
+	AMD_SHOP_AGENCY_SP:   '/shop/agencies',
 	AMD_SHOP_CATEGORY_SP: '/shop/categories',
-	AMD_SHOP_DELIVER_SP: '/shop/agencies',
-	AMD_SHOP_PRODUCT_SP: '/shop/agencies',
-	AMD_SHOP_SERVICE_SP: '/shop/agencies',
-	AMD_SHOP_PRODUCT_SP: '/shop/agencies',
-	AMD_SHOP_ZONE_SP: '/shop/agencies',
-	AMD_SHOP_TAG_SP: '/shop/agencies',
+	AMD_SHOP_DELIVER_SP:  '/shop/delivers',
+	AMD_SHOP_PRODUCT_SP:  '/shop/products',
+	AMD_SHOP_SERVICE_SP:  '/shop/services',
+	AMD_SHOP_ZONE_SP:     '/shop/zones',
+	AMD_SHOP_TAG_SP:      '/shop/tags',
 
 	AMD_SHOP_AGENCY_DELETE_ACTION: 'amd.shop.agency.delete',
 	AMD_SHOP_AGENCY_CREATE_ACTION: 'amd.shop.agency.create',
@@ -70,14 +69,6 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 
 
 	$mbViewProvider
-		.addView('/shop/products', {
-			title: 'Products',
-			icon: 'add_shopping_cart',
-			templateUrl: 'views/amd-shop-products.html',
-			controller: 'MbSeenShopProductsCtrl',
-			controllerAs: 'ctrl',
-			groups: shopViewGroups,
-		})
 		.addView('/shop/services', {
 			title: 'Services',
 			icon: 'cloud_upload',
@@ -122,11 +113,6 @@ mblowfish.config(function($mbResourceProvider, $mbViewProvider, $mbEditorProvide
 
 
 	$mbEditorProvider
-		.addEditor('/shop/products/:productId', {
-			templateUrl: 'views/amd-shop-product.html',
-			controller: 'AmdShopProductCtrl',
-			controllerAs: 'ctrl'
-		})//
 		.addEditor('/shop/services/:serviceId', {
 			templateUrl: 'views/amd-shop-service.html',
 			controller: 'AmdShopServiceCtrl',

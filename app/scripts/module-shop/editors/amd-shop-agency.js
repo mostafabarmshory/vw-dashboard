@@ -65,7 +65,6 @@ mblowfish.addEditor('/shop/agencies/:itemId', {
 		//--------------------------------------------------------------------
 		// Load
 		//--------------------------------------------------------------------
-
 		this.addEventHandler(AMD_SHOP_AGENCY_SP, function(event) {
 			_.forEach(event.values, function(value) {
 				if (isEqualId(value.id, itemId)) {
@@ -80,8 +79,8 @@ mblowfish.addEditor('/shop/agencies/:itemId', {
 				}
 			});
 		});
-		
-		
+
+
 		this
 			.init({
 				eventType: AMD_SHOP_AGENCY_SP,
