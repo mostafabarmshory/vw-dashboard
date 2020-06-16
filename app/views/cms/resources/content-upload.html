@@ -1,0 +1,24 @@
+<div
+	layout="column"
+	flex>
+	<lf-ng-md-file-input
+		lf-files="ctrl.files"
+		accept="image/*"
+		progress
+		preview
+		drag
+		flex>
+	</lf-ng-md-file-input>
+	<!-- Extra option bar -->
+	<md-content layout-padding>
+		<div
+			layout="row">
+			<md-checkbox
+				ng-model="_absolutPathFlag"
+				ng-change="ctrl.setAbsolute(_absolutPathFlag)"
+				aria-label="Absolute path of the image">
+				<span mb-translate>Absolute path</span>
+			</md-checkbox>
+		</div>
+	</md-content>
+</div>

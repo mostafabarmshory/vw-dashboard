@@ -4,7 +4,7 @@ mblowfish.controller('AmdCmsContentUrlResourceCtrl', function($scope, $resource,
 	/*
 	 * Extends collection controller
 	 */
-	angular.extend(this, $controller('AmWbSeenCmsContentsCtrl', {
+	angular.extend(this, $controller('MbSeenCmsContentsCtrl', {
 		$scope: $scope
 	}));
 
@@ -26,8 +26,8 @@ mblowfish.controller('AmdCmsContentUrlResourceCtrl', function($scope, $resource,
 	this.isAbsolute = function() {
 		return this.absolute;
 	};
-	
-	function getDomain(){
+
+	function getDomain() {
 		// XXX: maso, 2020:
 		return '';
 	}
