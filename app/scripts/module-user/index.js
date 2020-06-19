@@ -51,5 +51,5 @@ mblowfish
 				groups: ['Users Management'],
 				title: 'New group',
 				icon: 'group_add',
-			})
+			});
 	});

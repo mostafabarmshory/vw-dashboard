@@ -41,7 +41,7 @@ mblowfish.controller('/ums/groups/:groupId', {
 			roleLoading: true,
 			groupLoading: true,
 			userLoading: true
-		}
+		};
 
 		/**
 		 * Remove the group

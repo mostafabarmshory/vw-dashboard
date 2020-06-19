@@ -62,26 +62,26 @@ mblowfish.controller('MbAccountContainerCtrl', function(
 		if (ctrl.isProcessingLogin) {
 			return false;
 		}
-		return ctrl.isProcessingLogin = $mbAccount.login(cridet)
-			.catch(function(error) {
+		return (ctrl.isProcessingLogin = $mbAccount.login(cridet)
+			.catch(function(/*error*/) {
 				// TODO: maso, 2020: chanage state to error
 			})
 			.finally(function() {
 				delete ctrl.isProcessingLogin;
-			});
+			}));
 	}
 
 	function logout() {
 		if (ctrl.isProcessingLogout) {
 			return false;
 		}
-		return ctrl.isProcessingLogout = $mbAccount.logout()//
-			.catch(function(error) {
+		return (ctrl.isProcessingLogout = $mbAccount.logout()//
+			.catch(function(/*error*/) {
 				// TODO: maso, 2020: chanage state to error
 			})
 			.finally(function() {
 				delete ctrl.isProcessingLogout;
-			});
+			}));
 	}
 
 	/**
@@ -91,7 +91,7 @@ mblowfish.controller('MbAccountContainerCtrl', function(
 	 @memberof MbAccountCtrl
 	 @returns {promiss} to change password
 	 */
-	function recoverPasswrodRequest(data) {
+	function recoverPasswrodRequest(data, form) {
 		if (ctrl.changingPassword) {
 			return;
 		}

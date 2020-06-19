@@ -34,4 +34,4 @@ mblowfish.addResource('amd-seen-user-roles', {
 			isSelected: isSelected,
 		});
 	}
-})
+});

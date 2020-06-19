@@ -31,7 +31,7 @@ mblowfish.addEditor('/ums/accounts/:accountId', {
 	controllerAs: 'ctrl',
 	/* @ngInject */
 	controller: function(
-	/* AngularJS */ $usr, $state, $q, $window,
+	/* AngularJS */ $usr, $state, $q, $window, $editor,
 	/* Mblowfish */ $mbResource, $mbTranslate,
 	/* Seen User */ UserAccount, UserProfile) {
 
@@ -54,14 +54,14 @@ mblowfish.addEditor('/ums/accounts/:accountId', {
 		var profile = new UserProfile();
 
 
-		function findIndex(array, item) {
-			for (var i = 0; i < array.length; i++) {
-				if (array[i].id === item.id) {
-					return i;
-				}
-			}
-			return -1;
-		}
+//		function findIndex(array, item) {
+//			for (var i = 0; i < array.length; i++) {
+//				if (array[i].id === item.id) {
+//					return i;
+//				}
+//			}
+//			return -1;
+//		}
 
 		//------------------------------------------------------------
 		// Functions: Account

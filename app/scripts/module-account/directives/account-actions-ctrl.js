@@ -35,7 +35,7 @@ mblowfish.directive('mbUserMenu', function($mbAccount, $mdSidenav) {
 	 */
 	function postLink($scope) {
 		// maso, 2017: Get user menu
-		$scope.menu = $actions.group('mb.user');
+		$scope.menu = $mbAccount.group('mb.user');
 		$scope.logout = $mbAccount.logout;
 		$scope.settings = function() {
 			return $mdSidenav('settings').toggle();

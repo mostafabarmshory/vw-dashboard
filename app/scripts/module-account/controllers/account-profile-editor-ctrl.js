@@ -53,7 +53,7 @@ mblowfish.controller('MbProfileCtrl', function($scope, $rootScope, $mbTranslate,
 				ctrl.user = account;
 				return ctrl.loadProfile();
 			});
-	}
+	};
 
 	this.loadProfile = function() {
 		if (this.loadinProfile) {
@@ -71,7 +71,7 @@ mblowfish.controller('MbProfileCtrl', function($scope, $rootScope, $mbTranslate,
 			.finally(function() {
 				ctrl.loadingProfile = false;
 			});
-	}
+	};
 
     /**
      * Save current user
@@ -94,11 +94,11 @@ mblowfish.controller('MbProfileCtrl', function($scope, $rootScope, $mbTranslate,
 			.finally(function() {
 				ctrl.savingProfile = false;
 			});
-	}
+	};
 
 	this.back = function() {
 		$window.history.back();
-	}
+	};
 
 	this.deleteAvatar = function() {
 		var ctrl = this;
@@ -110,7 +110,7 @@ mblowfish.controller('MbProfileCtrl', function($scope, $rootScope, $mbTranslate,
 			.finally(function() {
 				ctrl.avatarState = 'normal';
 			});
-	}
+	};
 
 	this.uploadAvatar = function(files) {
 		if (!angular.isArray(files) || !files.length) {
@@ -127,15 +127,15 @@ mblowfish.controller('MbProfileCtrl', function($scope, $rootScope, $mbTranslate,
 				ctrl.avatarLoading = false;
 				ctrl.avatarState = 'normal';
 			});
-	}
+	};
 
 	this.editAvatar = function() {
 		this.avatarState = 'edit';
-	}
+	};
 
 	this.cancelEditAvatar = function() {
 		this.avatarState = 'normal';
-	}
+	};
 
     /*
      * To support old version of the controller

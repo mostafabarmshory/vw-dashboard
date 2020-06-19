@@ -34,4 +34,6 @@ mblowfish.addResource('amd-seen-user-groups', {
 			isSelected: isSelected,
 		});
 	}
-})
+});
+
+

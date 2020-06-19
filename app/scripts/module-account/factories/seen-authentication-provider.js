@@ -7,8 +7,8 @@ mblowfish.factory('AmdUserAtuthenticationProvider', function(
 
 	//>> Static methosd
 	var USER_DETAIL_GRAPHQL = '{id, login, profiles{first_name, last_name, language, timezone}, roles{id, application, code_name}, groups{id, name, roles{id, application, code_name}}}';
-	rolesToPermissions = $mbUtil.rolesToPermissions;
-	httpParamSerializerJQLike = $httpParamSerializerJQLike;
+	var rolesToPermissions = $mbUtil.rolesToPermissions;
+	var httpParamSerializerJQLike = $httpParamSerializerJQLike;
 
 
 	/*
@@ -20,7 +20,7 @@ mblowfish.factory('AmdUserAtuthenticationProvider', function(
 		 in role list then the following var is added in user:
 		 */
 		//>> Load principal
-		permissions = rolesToPermissions(accountData.roles || []);
+		var permissions = rolesToPermissions(accountData.roles || []);
 		_.forEach(accountData.groups, function(group) {
 			_.assign(permissions, rolesToPermissions(group.roles || []));
 		});
@@ -35,12 +35,12 @@ mblowfish.factory('AmdUserAtuthenticationProvider', function(
 	}
 
 
-	Proivder = function() {
+	var Proivder = function() {
 		MbAuthenticationProvider.apply(this, arguments);
-	}
+	};
 	Proivder.prototype = Object.create(MbAuthenticationProvider.prototype);
 
-	Proivder.prototype.supports = function(auth) {
+	Proivder.prototype.supports = function(/*auth*/) {
 		return true;
 	};
 
@@ -50,7 +50,7 @@ mblowfish.factory('AmdUserAtuthenticationProvider', function(
 			graphql: USER_DETAIL_GRAPHQL
 		};
 		if (auth.password && auth.login) {
-			promise = http({
+			promise = $http({
 				method: 'POST',
 				url: '/api/v2/user/login',
 				data: httpParamSerializerJQLike(_.assign({}, auth, extParams)),
