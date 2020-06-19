@@ -1,5 +1,5 @@
-mblowfish.addResource('amd-seen-roles', {
-	title: 'Roles',
+mblowfish.addResource('amd-seen-user-roles', {
+	title: 'Account Roles',
 	templateUrl: 'views/user/resources/roles.html',
 	tags: [AMD_USER_ROLES_RT],
 	controllerAs: 'ctrl',

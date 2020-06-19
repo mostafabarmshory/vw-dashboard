@@ -1,5 +1,4 @@
 <div 
-	ng-controller="MbSeenUserGroupsCtrl as ctrl"
 	mb-preloading="ctrl.state === 'busy'"
 	layout="column"
 	flex>
@@ -18,26 +17,24 @@
 		<md-list flex>
 			<md-list-item 
 				ng-repeat="group in ctrl.items track by group.id"
-				ng-click="multi || resourceCtrl.setSelected(group)"
+				ng-click="multi || ctrl.setSelected(group, !group.selected)"
 				class="md-3-line">
 				<mb-icon>group</mb-icon>
 				<div 
 					class="md-list-item-text" 
 					layout="column">
-					<h3>{{group.name}}</h3>
+					<h3>{{::group.name}}</h3>
 					<h4></h4>
-					<p>{{group.description}}</p>
+					<p>{{::group.description}}</p>
 				</div>
 				<md-checkbox 
-					ng-if="multi"
 					class="md-secondary"
-					ng-init="group.selected = resourceCtrl.isSelected(group)" 
+					ng-init="group.selected = ctrl.isSelected(group)" 
 					ng-model="group.selected"
 					ng-click="resourceCtrl.setSelected(group, group.selected)">
 				</md-checkbox>
 				<md-divider md-inset></md-divider>
 			</md-list-item>
-			<!-- حالت لود را تعیین می‌کند. -->
 		</md-list>
 	</md-content>
 </div>

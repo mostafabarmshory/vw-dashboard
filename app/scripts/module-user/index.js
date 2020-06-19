@@ -26,7 +26,8 @@ mblowfish
 		//------------------------------------------------------------
 		// Resources Types
 		//------------------------------------------------------------
-		AMD_USER_ROLES_RT: '/cms/contents',
+		AMD_USER_ROLES_RT: '/user/roles',
+		AMD_USER_GROUPS_RT: '/user/groups',
 	})
 	.config(function($mbIconProvider, $mbViewProvider) {
 		$mbIconProvider

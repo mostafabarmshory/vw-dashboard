@@ -54,8 +54,6 @@ mblowfish.addEditor('/ums/accounts/:accountId', {
 		var profile = new UserProfile();
 
 
-
-
 		function findIndex(array, item) {
 			for (var i = 0; i < array.length; i++) {
 				if (array[i].id === item.id) {
@@ -64,8 +62,6 @@ mblowfish.addEditor('/ums/accounts/:accountId', {
 			}
 			return -1;
 		}
-
-
 
 		//------------------------------------------------------------
 		// Functions: Account
@@ -190,7 +186,7 @@ mblowfish.addEditor('/ums/accounts/:accountId', {
 		// Functions: groups
 		//------------------------------------------------------------
 
-		function removeGroup(group) {
+		function deleteGroup(group) {
 			if (ctrl.groupLoading) {
 				return;
 			}
@@ -210,29 +206,27 @@ mblowfish.addEditor('/ums/accounts/:accountId', {
 				});
 		}
 
-		function changeGroups() {
+		function addGroups() {
 			return $mbResource
-				.get('groups', {
-					data: groups
+				.get(AMD_USER_GROUPS_RT, {
+					$valu: groups,
+					$style: {
+						multi: true,
+						title: 'Select new groups'
+					}
 				})
 				.then(function(list) {
 					// change groups and reload groups
 					var jobs = [];
 					list.forEach(function(item) {
-						if (findIndex(myData, item) < 0) {
-							jobs.push(account.putGroup(item));
-						}
+						jobs.push(account.putGroup(item));
 					});
-					groups.forEach(function(item) {
-						if (findIndex(list, item) < 0) {
-							jobs.push(account.deleteGroup(item));
-						}
-					});
-					$q.all(jobs).finally(function() {
-						groups = list;
-					}).catch(function() {
-						alert($mbTranslate.instant('An error occured while set groups.'));
-					});
+					$q.all(jobs)
+						.finally(function() {
+							groups = list;
+						}).catch(function() {
+							alert($mbTranslate.instant('An error occured while set groups.'));
+						});
 				});
 		}
 
@@ -344,8 +338,8 @@ mblowfish.addEditor('/ums/accounts/:accountId', {
 			deleteRoles: removeRoles,
 			addRoles: addRoles,
 			//>> groups api
-			deleteGroup: removeGroup,
-			updateGroups: changeGroups,
+			deleteGroup: deleteGroup,
+			addGroups: addGroups,
 		});
 
 		//------------------------------------------------------------

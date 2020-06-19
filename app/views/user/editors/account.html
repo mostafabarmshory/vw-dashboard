@@ -164,7 +164,7 @@
 			</md-chip-template>
 		</md-chips>
 		<div 
-			ng-show="!ctrl.roles.items || ctrl.roles.items.length == 0"
+			ng-show="!ctrl.roles || ctrl.roles.length == 0"
 			layout="column" layout-align="center center">
 			<p mb-translate>User has no role.</p>
 		</div>
@@ -190,16 +190,15 @@
 			</md-chip-template>
 		</md-chips>
 		<div 
-			ng-show="!ctrl.groups.items || ctrl.groups.items.length == 0"
+			ng-show="!ctrl.groups || ctrl.groups.length == 0"
 			layout="column" layout-align="center center">
 			<p mb-translate>User is not member of any group.</p>
 		</div>
 		<div layout="row">
 			<span flex></span>
 			<md-button class="md-raised"
-				ng-click="ctrl.updateGroups()">
-				<mb-icon>edit</mb-icon>
-				<span mb-translate>Edit</span>
+				ng-click="ctrl.addGroups($event)">
+				<span mb-translate>Add Group</span>
 			</md-button>
 		</div>
 	</section>
