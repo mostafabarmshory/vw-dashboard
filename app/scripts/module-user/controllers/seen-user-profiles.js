@@ -20,34 +20,44 @@
  * SOFTWARE.
  */
 
+
 /**
- * @ngdoc controller
- * @name AmdGroupNewCtrl
- * @description Creates new group
+ * @ngdoc Controllers
+ * @name AmdAccountsCtrl
+ * @description Manages and display list of accounts
+ * 
+ * This controller is used in accounts list.
+ * 
  */
-mblowfish.controller('AmdGroupNewCtrl', function($scope, $usr, $navigator) {
-	var ctrl = {
-			working: false
+mblowfish.controller('MbSeenUserProfilesCtrl', function ($scope, $usr, $controller) {
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope
+	}));
+
+	// Override the function
+	this.getModelSchema = function(){
+		return $usr.profileSchema();
 	};
-
-	function cancel() {
-		$navigator.openPage('ums/groups');
-	}
-
-	function addGroup(model) {
-		ctrl.working = true;
-		$usr.putGroup(model)//
-		.then(function() {
-			$navigator.openPage('ums/groups');
-		}, function(/*error*/) {
-			// Show error
-		})//
-		.finally(function(){
-			ctrl.working = false;
-		});
-	}
-
-	$scope.cancel = cancel;
-	$scope.addGroup = addGroup;
-	$scope.ctrl = ctrl;
+	
+	// get accounts
+	this.getModels = function(parameterQuery){
+		return $usr.getProfiles(parameterQuery);
+	};
+	
+	// get an account
+	this.getModel = function(id){
+		return $usr.getProfile(id);
+	};
+	
+	// add account profile
+	this.addModel = function(model){
+		return $usr.putProfile(model);
+	};
+	
+	// delete account
+	this.deleteModel = function(model){
+	    return $usr.deleteProfile(model.id);
+	};
+    
+    this.init();
 });

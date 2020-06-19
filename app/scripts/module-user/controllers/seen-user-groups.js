@@ -20,24 +20,45 @@
  * SOFTWARE.
  */
 
+
+
 /**
- * @ngdoc controller
- * @name AmdUserGroupsCtrl
- * @description Manages list of accounts
+ * @ngdoc Controllers
+ * @name MbSeenUserGroupsCtrl
+ * @description Manages list of groups
+ * 
  */
-mblowfish.controller('AmdUserGroupsCtrl', function($scope, $controller, $navigator) {
+mblowfish.controller('MbSeenUserGroupsCtrl', function ($scope, $usr, $controller) {
+    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+        $scope : $scope
+    }));
 
-	angular.extend(this, $controller('MbSeenUserGroupsCtrl', {
-		$scope: $scope
-	}));
+    // Overried the function
+    this.getModelSchema = function () {
+        return $usr.groupSchema();
+    };
+    
+    // get groups
+    this.getModels = function (parameterQuery) {
+        return $usr.getGroups(parameterQuery);
+    };
+    
+    // get a group
+    this.getModel = function (id) {
+        return $usr.getGroup(id);
+    };
+    
+    // Add group
+    this.addModel = function (model) {
+        return $usr.putGroup(model);
+    };
+    
+    // delete group
+    this.deleteModel = function (model) {
+        return $usr.deleteGroup(model.id);
+    };
 
-
-	// Add action
-	this.addAction({
-		title: 'New group',
-		icon: 'add',
-		action: function() {
-			$navigator.openPage('ums/groups/new');
-		}
-	});
+    this.init({
+        eventType: '/user/groups'
+    });
 });

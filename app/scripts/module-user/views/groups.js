@@ -20,35 +20,32 @@
  * SOFTWARE.
  */
 
+/**
+ @ngdoc controller
+ @name AmdUserGroupsCtrl
+ @description Manages list of accounts
+ */
+mblowfish.addView('/ums/groups', {
+	templateUrl: 'views/user/views/groups.html',
+	groups: ['Users Management'],
+	controllerAs: 'ctrl',
+	title: 'Groups',
+	icon: 'group',
+	/* @ngInject */
+	controller: function($scope, $controller, $navigator) {
 
-mblowfish
-	.addConstants({
-		//------------------------------------------------------------
-		// Resources Types
-		//------------------------------------------------------------
-		AMD_USER_ROLES_RT: '/cms/contents',
-	})
-	.config(function($mbIconProvider, $mbViewProvider) {
-		$mbIconProvider
-			.addShape('amd-account', $mbIconProvider.getShape('person'))
-			.addShape('amd-profile', $mbIconProvider.getShape('person'));
+		angular.extend(this, $controller('MbSeenUserGroupsCtrl', {
+			$scope: $scope
+		}));
 
-		// NOTE: views will removed from system and replaced with actions and dialogs
-		$mbViewProvider
-			.addView('/ums/accounts/new', {
-				controllerAs: 'ctrl',
-				templateUrl: 'views/amd-user-user-new.html',
-				groups: ['Users Management'],
-				title: 'New user',
-				icon: 'person_add',
-				controller: 'AmdUserNewCtrl',
-			})
-			.addView('/ums/groups-new', {
-				templateUrl: 'views/amd-user-group-new.html',
-				controller: 'AmdGroupNewCtrl',
-				controllerAs: 'ctrl',
-				groups: ['Users Management'],
-				title: 'New group',
-				icon: 'group_add',
-			})
-	});
+
+		// Add action
+		this.addAction({
+			title: 'New group',
+			icon: 'add',
+			action: function() {
+				$navigator.openPage('ums/groups/new');
+			}
+		});
+	}
+});

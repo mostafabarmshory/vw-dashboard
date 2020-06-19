@@ -20,39 +20,40 @@
  * SOFTWARE.
  */
 
-/**
- * @ngdoc controller
- * @name AmdUserNewCtrl
- * @description Creates new user
- */
-mblowfish.controller('AmdUserNewCtrl', function($scope, $usr, $navigator, $mbLogger) {
 
-	/*
-	 * View controller options
-	 */
-	var ctrl = {
-			working: false
+
+/**
+ * @ngdoc Controllers
+ * @name MbSeenUserRolesCtrl
+ * @description Manages list of roles
+ * 
+ * 
+ */
+mblowfish.controller('MbSeenUserRolesCtrl', function($scope, $usr, $q, $controller) {
+
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope
+	}));
+
+	// Override the function
+	this.getModelSchema = function() {
+		return $usr.roleSchema();
 	};
 
-	function cancel() {
-		$navigator.openPage('ums/accounts');
-	}
+	// get accounts
+	this.getModels = function(parameterQuery) {
+		return $usr.getRoles(parameterQuery);
+	};
 
-	function addUser(model) {
-		ctrl.working = true;
-		$usr.putAccount(model)//
-		.then(function(/* user */) {
-			$navigator.openPage('ums/accounts');
-			$scope.errorMessage = null;
-		}, function(error) {
-			$scope.errorMessage = $mbLogger.errorMessage(error, ctrl.myForm);
-		})//
-		.finally(function(){
-			ctrl.working = false;
-		});
-	}
-	
-	$scope.cancel = cancel;
-	$scope.addUser = addUser;
-	$scope.ctrl = ctrl;
+	// get an account
+	this.getModel = function(id) {
+		return $usr.getRole(id);
+	};
+
+	// delete account
+	this.deleteModel = function(model) {
+		return $usr.deleteRole(model.id);
+	};
+
+	this.init();
 });

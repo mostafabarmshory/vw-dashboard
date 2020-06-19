@@ -21,34 +21,33 @@
  */
 
 
-mblowfish
-	.addConstants({
-		//------------------------------------------------------------
-		// Resources Types
-		//------------------------------------------------------------
-		AMD_USER_ROLES_RT: '/cms/contents',
-	})
-	.config(function($mbIconProvider, $mbViewProvider) {
-		$mbIconProvider
-			.addShape('amd-account', $mbIconProvider.getShape('person'))
-			.addShape('amd-profile', $mbIconProvider.getShape('person'));
 
-		// NOTE: views will removed from system and replaced with actions and dialogs
-		$mbViewProvider
-			.addView('/ums/accounts/new', {
-				controllerAs: 'ctrl',
-				templateUrl: 'views/amd-user-user-new.html',
-				groups: ['Users Management'],
-				title: 'New user',
-				icon: 'person_add',
-				controller: 'AmdUserNewCtrl',
-			})
-			.addView('/ums/groups-new', {
-				templateUrl: 'views/amd-user-group-new.html',
-				controller: 'AmdGroupNewCtrl',
-				controllerAs: 'ctrl',
-				groups: ['Users Management'],
-				title: 'New group',
-				icon: 'group_add',
-			})
-	});
+/**
+ * @ngdoc controller
+ * @name AmdUserAccountsCtrl
+ * @description Manages list of accounts
+ */
+mblowfish.addView('/ums/accounts', {
+	controllerAs: 'ctrl',
+	templateUrl: 'views/user/views/users.html',
+	groups: ['Users Management'],
+	title: 'Users',
+	icon: 'person',
+	/* @ngInject */
+	controller: function($scope, $controller, $navigator) {
+
+		angular.extend(this, $controller('MbSeenUserAccountsCtrl', {
+			$scope: $scope
+		}));
+
+
+		// Add action
+		this.addAction({
+			title: 'New account',
+			icon: 'add',
+			action: function() {
+				$navigator.openPage('ums/accounts/new');
+			}
+		});
+	}
+});

@@ -21,25 +21,40 @@
  */
 
 
-
 /**
- * @ngdoc controller
- * @name AmdUserAccountsCtrl
- * @description Manages list of accounts
+ * @ngdoc Controllers
+ * @name MbSeenUserAccountCtrl
+ * @description Manages and display list of accounts
+ * 
+ * This controller is used in accounts list.
+ * 
  */
-mblowfish.controller('AmdUserAccountsCtrl', function($scope, $controller, $navigator) {
-
-	angular.extend(this, $controller('MbSeenUserAccountsCtrl', {
+mblowfish.controller('MbSeenUserAccountCtrl', function($scope, $usr, $controller) {
+	angular.extend(this, $controller('MbSeenAbstractItemCtrl', {
 		$scope: $scope
 	}));
 
+	// Override the function
+	this.getModelSchema = function() {
+		return $usr.accountSchema();
+	};
 
-	// Add action
-	this.addAction({
-		title: 'New account',
-		icon: 'add',
-		action: function() {
-			$navigator.openPage('ums/accounts/new');
-		}
+	// get an account
+	this.getModel = function(id) {
+		return $usr.getAccount(id);
+	};
+
+	// delete account
+	this.deleteModel = function(model) {
+		return $usr.deleteAccount(model.id);
+	};
+
+	// update account
+	this.updateModel = function(model) {
+		return model.update();
+	};
+
+	this.init({
+		eventType: '/user/accounts'
 	});
 });

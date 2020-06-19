@@ -29,10 +29,13 @@ var APP_KEY = 'vwstudio';
 mblowfish.config(function(
 	$mbApplicationProvider, $mbLayoutProvider, $mbToolbarProvider, $mbActionsProvider,
 	$mbSidenavProvider,
-	//	$mbRouteProvider,
+	$mbAccountProvider,
 	$mbTranslateSanitizationProvider,
 	$mbStorageProvider, $locationProvider) {
 
+
+	$mbAccountProvider
+		.addAuthenticationProvider('AmdUserAtuthenticationProvider');
 
 	$mbTranslateSanitizationProvider
 		.useStrategy(['sanitize']);
@@ -46,10 +49,21 @@ mblowfish.config(function(
 	$mbApplicationProvider
 		.setKey(APP_KEY)
 		.setPreloadingEnabled(true)
-		.setTenantRequired(true)
 		.setAccountDetailRequired(true)
 		.setSettingsRequired(true)
-		.setLogingRequired(true);
+		.setLogingRequired(true)
+		.setLoginComponent({
+			templateUrl: 'views/account/login-default.html',
+			controller: 'MbAccountContainerCtrl',
+			controllerAs: 'ctrl'
+		})
+		.addAction('init', {
+			title: 'Loading Tenant Settings',
+			/* @ngInject */
+			action: function($mbTenant) {
+				return $mbTenant.reload();
+			}
+		});
 
 	//
 	// Application storage prefix

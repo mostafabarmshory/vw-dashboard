@@ -21,34 +21,45 @@
  */
 
 
-mblowfish
-	.addConstants({
-		//------------------------------------------------------------
-		// Resources Types
-		//------------------------------------------------------------
-		AMD_USER_ROLES_RT: '/cms/contents',
-	})
-	.config(function($mbIconProvider, $mbViewProvider) {
-		$mbIconProvider
-			.addShape('amd-account', $mbIconProvider.getShape('person'))
-			.addShape('amd-profile', $mbIconProvider.getShape('person'));
+/**
+ * @ngdoc Controllers
+ * @name MbSeenUserAccountsCtrl
+ * @description Manages and display list of accounts
+ * 
+ * This controller is used in accounts list.
+ * 
+ */
+mblowfish.controller('MbSeenUserAccountsCtrl', function ($scope, $usr, $controller) {
+    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+        $scope : $scope
+    }));
 
-		// NOTE: views will removed from system and replaced with actions and dialogs
-		$mbViewProvider
-			.addView('/ums/accounts/new', {
-				controllerAs: 'ctrl',
-				templateUrl: 'views/amd-user-user-new.html',
-				groups: ['Users Management'],
-				title: 'New user',
-				icon: 'person_add',
-				controller: 'AmdUserNewCtrl',
-			})
-			.addView('/ums/groups-new', {
-				templateUrl: 'views/amd-user-group-new.html',
-				controller: 'AmdGroupNewCtrl',
-				controllerAs: 'ctrl',
-				groups: ['Users Management'],
-				title: 'New group',
-				icon: 'group_add',
-			})
-	});
+    // Overried the function
+    this.getModelSchema = function () {
+        return $usr.accountSchema();
+    };
+    
+    // get accounts
+    this.getModels = function (parameterQuery) {
+        return $usr.getAccounts(parameterQuery);
+    };
+    
+    // get an account
+    this.getModel = function (id) {
+        return $usr.getAccount(id);
+    };
+    
+    // add account
+    this.addModel = function (model) {
+        return $usr.putAccount(model);
+    };
+    
+    // delete account
+    this.deleteModel = function (model) {
+        return $usr.deleteAccount(model.id);
+    };
+
+    this.init({
+        eventType: '/user/account'
+    });
+});

@@ -20,35 +20,34 @@
  * SOFTWARE.
  */
 
+/**
+ * @ngdoc Directives
+ * @name mb-user-menu
+ * @restrict E
+ * @description Display global user menu
+ * 
+ * Load current user action into the scope. It is used to show user menu
+ * in several parts of the system.
+ */
+mblowfish.directive('mbUserMenu', function($mbAccount, $mdSidenav) {
+	/**
+	 * Post link 
+	 */
+	function postLink($scope) {
+		// maso, 2017: Get user menu
+		$scope.menu = $actions.group('mb.user');
+		$scope.logout = $mbAccount.logout;
+		$scope.settings = function() {
+			return $mdSidenav('settings').toggle();
+		};
+	}
 
-mblowfish
-	.addConstants({
-		//------------------------------------------------------------
-		// Resources Types
-		//------------------------------------------------------------
-		AMD_USER_ROLES_RT: '/cms/contents',
-	})
-	.config(function($mbIconProvider, $mbViewProvider) {
-		$mbIconProvider
-			.addShape('amd-account', $mbIconProvider.getShape('person'))
-			.addShape('amd-profile', $mbIconProvider.getShape('person'));
-
-		// NOTE: views will removed from system and replaced with actions and dialogs
-		$mbViewProvider
-			.addView('/ums/accounts/new', {
-				controllerAs: 'ctrl',
-				templateUrl: 'views/amd-user-user-new.html',
-				groups: ['Users Management'],
-				title: 'New user',
-				icon: 'person_add',
-				controller: 'AmdUserNewCtrl',
-			})
-			.addView('/ums/groups-new', {
-				templateUrl: 'views/amd-user-group-new.html',
-				controller: 'AmdGroupNewCtrl',
-				controllerAs: 'ctrl',
-				groups: ['Users Management'],
-				title: 'New group',
-				icon: 'group_add',
-			})
-	});
+	return {
+		restrict: 'E',
+		replace: true,
+		scope: true,
+		templateUrl: 'views/directives/mb-user-menu.html',
+		link: postLink,
+		controller: 'MbAccountCtrl'
+	};
+});
