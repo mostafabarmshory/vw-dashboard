@@ -28,7 +28,7 @@ mblowfish
 		//------------------------------------------------------------
 		AMD_USER_ROLES_RT: '/user/roles',
 		AMD_USER_GROUPS_RT: '/user/groups',
-	})
+	});
 
 mblowfish
 	.config(function($mbIconProvider, $mbViewProvider) {
