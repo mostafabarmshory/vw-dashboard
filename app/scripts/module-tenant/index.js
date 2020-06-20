@@ -51,7 +51,7 @@ mblowfish.config(function($mbEditorProvider, $mbViewProvider, $mbActionsProvider
 
 
 
-	var groupsView = ['Tinant'];
+	var groupsView = ['Tenant'];
 
 	$mbViewProvider
 		.addView('/tenant/tenants', {
@@ -72,6 +72,8 @@ mblowfish.config(function($mbEditorProvider, $mbViewProvider, $mbActionsProvider
 		.addView('/tenant/invoices-new', {
 			templateUrl: 'views/amd-tenant/invoice-new.html',
 			controller: 'AmdTenantInvoiceController',
+			title: 'New invoice',
+			groups: groupsView,
 		}) //
 		.addView('/tenant/settings/security', {
 			templateUrl: 'views/amd-setting-security.html',

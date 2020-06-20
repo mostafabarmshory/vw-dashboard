@@ -44,7 +44,7 @@
  * in filter section.
  * 
  */
-angular.module('mblowfish-core').directive('mbPaginationBar', function(MbAction, $window, $timeout, $parse) {
+mblowfish.directive('mbPaginationBar', function(MbAction, $window, $timeout, $parse) {
 
 	function postLink(scope, element, attrs) {
 

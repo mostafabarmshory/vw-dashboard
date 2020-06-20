@@ -28,6 +28,7 @@
 	
     <!-- build:css(.tmp) styles/main.css -->
 	<!-- injector:css -->
+	<link rel="stylesheet" href="styles/crisp-hack-button.css">
 	<link rel="stylesheet" href="styles/main.css">
 	<link rel="stylesheet" href="styles/module-account.css">
 	<link rel="stylesheet" href="styles/preloader.css">
@@ -91,6 +92,7 @@
 	<script src="scripts/module-spa/index.js"></script>
 	<script src="scripts/module-tenant/index.js"></script>
 	<script src="scripts/module-user/index.js"></script>
+	<script src="scripts/module-account/actions/crisp-chat.js"></script>
 	<script src="scripts/module-account/components/account-toolbar.js"></script>
 	<script src="scripts/module-account/controllers/account-container-ctrl.js"></script>
 	<script src="scripts/module-account/controllers/account-profile-editor-ctrl.js"></script>
@@ -258,7 +260,9 @@
 			mb-mode="docker"></mb-view>
 		<mb-toolbar-group
 			mb-url="/app/status"
-			mb-toolbars="[]"></mb-toolbar-group>
+			mb-toolbars="[
+				'/user/notifications'
+			]"></mb-toolbar-group>
 	</main>
 </body>
 </html>

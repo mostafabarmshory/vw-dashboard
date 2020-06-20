@@ -29,7 +29,9 @@ mblowfish
 	.addConstants({
 		APP_KEY: 'vwstudio',
 		AMD_ACCOUNT_TOOLBAR_COMPONENT: 'vw.account.toolbar.component',
-	})
+	});
+	
+mblowfish
 	.config(function(
 		$mbApplicationProvider, $mbLayoutProvider, $mbToolbarProvider, $mbActionsProvider,
 		$mbSidenavProvider,
@@ -194,6 +196,12 @@ mblowfish
 			items: [
 				AMD_ACCOUNT_TOOLBAR_COMPONENT
 			]
+		}, {
+			url: '/user/notifications',
+			float: 'right',
+			items: [
+				'account.chat'
+			]
 		}]);
 	})
 
@@ -207,7 +215,8 @@ mblowfish
 		$window.$crisp = [];
 		$window.CRISP_WEBSITE_ID = '55019c32-37d1-46ab-b97e-1b524309deb1';
 		$window.loadLibrary('https://client.crisp.chat/l.js');
-	});
+	})
+;
 
 
 /***********************************************************************************

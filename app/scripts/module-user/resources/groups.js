@@ -3,6 +3,7 @@ mblowfish.addResource('amd-seen-user-groups', {
 	templateUrl: 'views/user/resources/groups.html',
 	tags: [AMD_USER_GROUPS_RT],
 	controllerAs: 'ctrl',
+	/* @ngInject */
 	controller: function($scope, $resource, $controller, $style) {
 		angular.extend(this, $controller('MbSeenUserGroupsCtrl', {
 			$scope: $scope

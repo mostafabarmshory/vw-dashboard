@@ -5,4 +5,4 @@ mblowfish.addComponent(AMD_ACCOUNT_TOOLBAR_COMPONENT, {
 	controller: function(){
 		
 	}
-})
+});
