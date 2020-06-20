@@ -1,7 +1,6 @@
 <md-content 
 	style="overflow: auto;">
 	<mb-titled-block 
-		layout-margin
 		mb-title="{{ ::('Account' | translate)}}"
 		layout="column">
 		<div
@@ -68,7 +67,6 @@
 	<mb-titled-block 
 		mb-title="{{::('Public Profile' | translate)}}"
 		mb-progress="ctrl.loading || ctrl.profileUpdating"
-		style="margin: 16px;"
 		layout="column">
 		<table 
 			class="amd-table amd-table-description">
@@ -153,7 +151,6 @@
 
 	<!--order info-->
 	<mb-titled-block 
-		layout-margin
 		mb-title="{{::('Roles' | translate)}}"
 		layout="column">
 		<md-chips 
@@ -179,7 +176,6 @@
 	</mb-titled-block>
 	
 	<mb-titled-block 
-		layout-margin
 		mb-title="{{::('Groups' | translate)}}"
 		layout="column">
 		<md-chips 

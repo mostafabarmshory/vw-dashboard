@@ -1,0 +1,24 @@
+
+md-menu.amd-account-toolbar>.anchor{
+	cursor: pointer;
+	
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+}
+
+
+md-menu.amd-account-toolbar>.anchor img{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	padding: 2px;
+}
+
+md-menu.amd-account-toolbar>.anchor span{
+	font-size: 14px;
+	padding: 4px;
+    line-height: 1;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
