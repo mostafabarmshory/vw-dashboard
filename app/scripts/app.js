@@ -31,7 +31,7 @@ mblowfish
 		AMD_ACCOUNT_TOOLBAR_COMPONENT: 'vw.account.toolbar.component',
 		AMD_ACCOUNT_CHAT_ACTION: 'vw.account.chat',
 	});
-	
+
 mblowfish
 	.config(function(
 		$mbApplicationProvider, $mbLayoutProvider, $mbToolbarProvider, $mbActionsProvider,
@@ -94,62 +94,10 @@ mblowfish
 		//
 		// $mbLayoutProvider.setMode('auto');
 		$mbLayoutProvider
-			.setDefault('Demo Layout')
-			.addLayout('Demo Layout', {
-				settings: {
-					hasHeaders: true,
-					constrainDragToContainer: true,
-					reorderEnabled: true,
-					selectionEnabled: true,
-					popoutWholeStack: false,
-					blockedPopoutsThrowError: true,
-					closePopoutsOnUnload: true,
-					showPopoutIcon: false,
-					showMaximiseIcon: true,
-					showCloseIcon: true
-				},
-				dimensions: {
-					borderWidth: 5,
-					minItemHeight: 16,
-					minItemWidth: 50,
-					headerHeight: 20,
-					dragProxyWidth: 300,
-					dragProxyHeight: 200
-				},
-				content: [{
-					id: 'main',
-					type: 'row',
-					isClosable: false,
-					componentState: {},
-					content: [{
-						type: 'column',
-						isClosable: false,
-						content: [{
-							id: 'editors',
-							type: 'stack',
-							title: 'Editors',
-							isClosable: false,
-							componentState: {},
-							content: [{
-								type: 'component',
-								componentName: 'component',
-								title: 'Welcome',
-								isClosable: false,
-								isEditor: true,
-								url: '/mb/iframe/https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en',
-								componentState: {
-									isEditor: true,
-									url: '/mb/iframe/https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en',
-									params: {
-										url: 'https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en',
-									}
-								}
-							}]
-						}]
-					}]
-				}]
-			});
-
+			.setMode('docker')
+			.addProvider('MbLayoutsLayoutProviderLocal')
+			.addProvider('VwLayoutProviderDefault')
+			.setDefalutLayout('default');
 
 		//
 		// $mbAction: manages all actions
@@ -201,6 +149,7 @@ mblowfish
 			url: '/user/notifications',
 			float: 'right',
 			items: [
+				MB_LAYOUTS_TOOLBAR_COMPONENT,
 				AMD_ACCOUNT_CHAT_ACTION
 			]
 		}]);
@@ -217,7 +166,7 @@ mblowfish
 		$window.CRISP_WEBSITE_ID = '55019c32-37d1-46ab-b97e-1b524309deb1';
 		$window.loadLibrary('https://client.crisp.chat/l.js');
 	})
-;
+	;
 
 
 /***********************************************************************************
@@ -251,4 +200,82 @@ $(window).on('load', function() {
 		});
 });
 
+
+
+
+mblowfish.factory('VwLayoutProviderDefault', function(MbLayoutProvider) {
+
+	DemoLayoutProviderDefault = function() {
+		MbLayoutProvider.apply(this, arguments);
+	}
+	DemoLayoutProviderDefault.prototype = Object.create(MbLayoutProvider.prototype);
+
+	DemoLayoutProviderDefault.prototype.list = function() {
+		return ['default'];
+	};
+	DemoLayoutProviderDefault.prototype.has = function(name) {
+		return name === 'default';
+	};
+	DemoLayoutProviderDefault.prototype.get = function(name) {
+		if (!this.has(name)) {
+			return;
+		}
+		return {
+			settings: {
+				hasHeaders: true,
+				constrainDragToContainer: true,
+				reorderEnabled: true,
+				selectionEnabled: true,
+				popoutWholeStack: false,
+				blockedPopoutsThrowError: true,
+				closePopoutsOnUnload: true,
+				showPopoutIcon: false,
+				showMaximiseIcon: true,
+				showCloseIcon: true
+			},
+			dimensions: {
+				borderWidth: 5,
+				minItemHeight: 16,
+				minItemWidth: 50,
+				headerHeight: 20,
+				dragProxyWidth: 300,
+				dragProxyHeight: 200
+			},
+			content: [{
+				id: 'main',
+				type: 'row',
+				isClosable: false,
+				componentState: {},
+				content: [{
+					type: 'column',
+					isClosable: false,
+					content: [{
+						id: 'editors',
+						type: 'stack',
+						title: 'Editors',
+						isClosable: false,
+						componentState: {},
+						content: [{
+							type: 'component',
+							componentName: 'component',
+							title: 'Welcome',
+							isClosable: false,
+							isEditor: true,
+							url: '/mb/iframe/https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en',
+							componentState: {
+								isEditor: true,
+								url: '/mb/iframe/https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en',
+								params: {
+									url: 'https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en',
+								}
+							}
+						}]
+					}]
+				}]
+			}]
+		};
+	};
+
+	return DemoLayoutProviderDefault;
+});
 
