@@ -205,18 +205,18 @@ $(window).on('load', function() {
 
 mblowfish.factory('VwLayoutProviderDefault', function(MbLayoutProvider) {
 
-	DemoLayoutProviderDefault = function() {
+	function MB_LAYOUTS_TOOLBAR_COMPONENT() {
 		MbLayoutProvider.apply(this, arguments);
 	}
-	DemoLayoutProviderDefault.prototype = Object.create(MbLayoutProvider.prototype);
+	MB_LAYOUTS_TOOLBAR_COMPONENT.prototype = Object.create(MbLayoutProvider.prototype);
 
-	DemoLayoutProviderDefault.prototype.list = function() {
+	MB_LAYOUTS_TOOLBAR_COMPONENT.prototype.list = function() {
 		return ['default'];
 	};
-	DemoLayoutProviderDefault.prototype.has = function(name) {
+	MB_LAYOUTS_TOOLBAR_COMPONENT.prototype.has = function(name) {
 		return name === 'default';
 	};
-	DemoLayoutProviderDefault.prototype.get = function(name) {
+	MB_LAYOUTS_TOOLBAR_COMPONENT.prototype.get = function(name) {
 		if (!this.has(name)) {
 			return;
 		}
@@ -276,6 +276,6 @@ mblowfish.factory('VwLayoutProviderDefault', function(MbLayoutProvider) {
 		};
 	};
 
-	return DemoLayoutProviderDefault;
+	return MB_LAYOUTS_TOOLBAR_COMPONENT;
 });
 
