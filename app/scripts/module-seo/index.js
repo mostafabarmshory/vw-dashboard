@@ -48,7 +48,7 @@ mblowfish.config(function($mbEditorProvider, $mbViewProvider) {
 			title: 'Prerender backends',
 			icon: 'dvr',
 		})
-		.addView('/seo/backends/new', {
+		.addView('/seo/backends-new', {
 			controller: 'AmdSeoBackendNewCtrl',
 			controllerAs: 'ctrl',
 			templateUrl: 'views/amd-seo-backend-new.html',
@@ -64,7 +64,7 @@ mblowfish.config(function($mbEditorProvider, $mbViewProvider) {
 			title: 'Sitemap links',
 			icon: 'link'
 		})
-		.addView('/seo/links/new', {
+		.addView('/seo/links-new', {
 			controller: 'AmdSeoLinkNewCtrl',
 			controllerAs: 'ctrl',
 			templateUrl: 'views/amd-seo-link-new.html',
