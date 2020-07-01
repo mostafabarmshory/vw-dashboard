@@ -1,5 +1,4 @@
 <div 
-	ng-controller="MbSeenShopCategoriesCtrl as ctrl"
 	mb-preloading="ctrl.state === 'busy'"
 	layout="column"
 	flex>
@@ -17,7 +16,7 @@
 		<md-list flex>
 			<md-list-item 
 				ng-repeat="role in ctrl.items track by role.id"
-				ng-click="multi || resourceCtrl.setSelected(role)"
+				ng-click="multi || ctrl.setSelected(role)"
 				class="md-3-line">
 				<mb-icon>accessibility</mb-icon>
 				<div 
@@ -27,9 +26,9 @@
 					<p>{{::role.description}}</p>
 				</div>
 				<md-checkbox class="md-secondary"
-					ng-init="role.selected = resourceCtrl.isSelected(role)" 
+					ng-init="role.selected = ctrl.isSelected(role)" 
 					ng-model="role.selected"
-					ng-click="resourceCtrl.setSelected(role, role.selected)">
+					ng-click="ctrl.setSelected(role, role.selected)">
 				</md-checkbox>
 				<md-divider md-inset></md-divider>
 			</md-list-item>

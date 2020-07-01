@@ -1,5 +1,7 @@
-/*
- * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
+/* 
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2016 weburger
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,26 +22,41 @@
  * SOFTWARE.
  */
 
+
 /**
-@ngdoc View
-@name '/shop/categories'
-@description 
-
-Manages list of categories
+@ngdoc Controller
+@name AmdShopCategoriesCtrl
+@description load the order
  */
-mblowfish.addView('/shop/categories', {
-	title: 'Categories',
-	icon: 'folder_special',
-	templateUrl: 'views/shop/views/categories.html',
-	groups: ['Shop'],
-	controllerAs: 'ctrl',
-	/* @ngInject */
-	controller: function($scope, $controller, $element) {
+mblowfish.controller('AmdShopCategoriesCtrl', function($scope,/* $element,*/ $shop, $controller) {
 
-		angular.extend(this, $controller('AmdShopCategoriesCtrl', {
-			$scope: $scope,
-			$element: $element
-		}));
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope,
+//		$element: $element
+	}));
 
-	}
+	// Override the function
+	this.getModelSchema = function() {
+		return $shop.categorySchema();
+	};
+
+	// get accounts
+	this.getModels = function(parameterQuery) {
+		return $shop.getCategories(parameterQuery);
+	};
+
+	// get an account
+	this.getModel = function(id) {
+		return $shop.getCategory(id);
+	};
+
+	// delete account
+	this.deleteModel = function(model) {
+		return $shop.deleteCategory(model.id);
+	};
+
+	this.init({
+		eventType: AMD_SHOP_CATEGORY_SP,
+	});
 });
+

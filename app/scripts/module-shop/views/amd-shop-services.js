@@ -23,8 +23,8 @@
 
 
 /**
-@ngdoc Controllers
-@name MbSeenShopCategoriesCtrl
+@ngdoc Views
+@name /shop/services
 @description Manages list of categories
 
  */

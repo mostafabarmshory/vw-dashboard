@@ -21,55 +21,28 @@
  */
 
 
-
-/**
-@ngdoc Views
-@name /shop/tags
-@description Manages list of categories
-
-
- */
-mblowfish.addView('/shop/tags', {
-	title: 'Tags',
-	icon: 'label',
-	templateUrl: 'views/shop/views/tags.html',
-	controllerAs: 'ctrl',
-	groups: ['Shop'],
+mblowfish.addAction(AMD_SHOP_CATEGORY_SETPARENT_ACTION, {
 	/* @ngInject */
-	controller: function(
-        /* angularjs */ $scope, $controller, $element,
-        /* seen-shop */ $shop) {
+	action: function($event, $q, ShopCategory, $mbDispatcherUtil, $mbTranslate) {
+		var category = $event.category;
+		var parent = $event.parent;
 
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-			$scope: $scope,
-			$element: $element
-		}));
+		if (!category || !parent) {
+			// TODO: maso, 2020: add log
+			return $q.rject('No value to update');
+		}
 
-		// Override the function
-		this.getModelSchema = function() {
-			return $shop.tagSchema();
-		};
-
-		// get accounts
-		this.getModels = function(parameterQuery) {
-			return $shop.getTags(parameterQuery);
-		};
-
-		// get an account
-		this.getModel = function(id) {
-			return $shop.getTag(id);
-		};
-
-		// delete account
-		this.deleteModel = function(model) {
-			return $shop.deleteTag(model.id);
-		};
-
-		/***********************************************************
-		 * Initialize the controller
-		 ***********************************************************/
-		this.init({
-			eventType: AMD_SHOP_TAG_SP,
-		});
+		if (!(category instanceof ShopCategory)) {
+			category = new ShopCategory(category);
+		}
+		category.parent_id = parent.id;
+		return category
+			.update()
+			.then(function(newCategory) {
+				$mbDispatcherUtil.fireUpdated(AMD_SHOP_CATEGORY_SP, [newCategory]);
+			}, function() {
+				alert($mbTranslate.instant('Fail to update the category.'));
+			});
 	}
 });
+

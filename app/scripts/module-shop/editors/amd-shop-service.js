@@ -21,8 +21,8 @@
  */
 
 /**
-@ngdoc Controller
-@name AmdShopServiceCtrl
+@ngdoc Editors
+@name /shop/services/:serviceId
 @description 
 Controller of a service
  */
@@ -200,12 +200,10 @@ mblowfish.addEditor('/shop/services/:serviceId', {
 		 */
 		function selectCategories() {
 			$mbResource
-				.get('/shop/categories', {
+				.get(AMD_SHOP_CATEGORY_SP, {
 					// TODO: maso, 2020: add initial resources
 				})
-				.then(function(newCats) {
-					addCategories(newCats);
-				});
+				.then(addCategories);
 		}
 
 		/*

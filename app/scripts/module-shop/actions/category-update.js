@@ -47,7 +47,7 @@ mblowfish.addAction(AMD_SHOP_CATEGORY_UPDATE_ACTION, {
 			.then(function() {
 				$mbDispatcherUtil.fireUpdated(AMD_SHOP_CATEGORY_SP, newValues);
 			}, function() {
-				alert($mbTranslate.instant('Fail to delete the category.'));
+				alert($mbTranslate.instant('Fail to update the category.'));
 			});
 	}
 });

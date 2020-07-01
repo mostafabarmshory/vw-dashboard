@@ -6,33 +6,48 @@ mblowfish.addResource('/shop/categories', {
 	/*
 	 * @ngInject
 	 */
-	controller: function($scope) {
+	controller: function($scope, $controller, $resource) {
+		/*
+		 * Extends collection controller
+		 */
+		angular.extend(this, $controller('AmdShopCategoriesCtrl', {
+			$scope: $scope
+		}));
+
 		// TODO: maso, 2018: load selected item
-		$scope.multi = true;
-		this.value = $scope.value;
-		this.items = {};
-		this.setSelected = function(item, selected) {
+		var ctrl = this;
+		//		$scope.multi = true;
+		//		ctrl.value = $scope.value;
+
+		function setSelected(item, selected) {
 			if (_.isUndefined(selected)) {
 				selected = true;
 			}
 			item._selected = selected;
-			$scope.$parent.setValue(this.getSelection());
-		};
+			$resource.setValue(getSelection());
+		}
+
 		// this._setSelected = setSelected;
-		this.isSelected = function(item) {
-			this.items[item.id] = item;
+		function isSelected(item) {
 			return item._selected;
-		};
-		this.getSelection = function() {
+		}
+
+		function getSelection() {
 			var selection = [];
-			_.forEach(this.items, function(item) {
+			_.forEach(ctrl.items, function(item) {
 				if (item._selected) {
 					selection.push(item);
 				}
 			});
 			return selection;
-		};
+		}
+
+		_.assign(ctrl, {
+			getSelection: getSelection,
+			isSelected: isSelected,
+			setSelected: setSelected,
+		});
 	},
-	controllerAs: 'resourceCtrl',
+	controllerAs: 'ctrl',
 	tags: [AMD_SHOP_CATEGORY_SP]
 });

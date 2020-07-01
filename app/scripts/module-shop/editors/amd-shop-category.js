@@ -32,7 +32,7 @@ mblowfish.addEditor('/shop/categories/:categoryId', {
 	controllerAs: 'ctrl',
 	/* @ngInject */
 	controller: function($editor, $scope, $state, $shop, $controller, $mbTranslate, $mbActions, $mbUtil) {
-		
+
 		var isEqualId = $mbUtil.isEqualId;
 		// Extends collection controller from MbAbstractCtrl 
 		angular.extend(this, $controller('MbAbstractCtrl', {
@@ -43,17 +43,17 @@ mblowfish.addEditor('/shop/categories/:categoryId', {
 		// Variables
 		//-------------------------------------------------------------------------
 		var graphqlQuery =
-			'{id,name,description,thumbnail,' +
+			'{id,name,description,thumbnail,parent_id,' +
 			'parent{id,name,description,thumbnail}' +
 			'children{id,name,description,thumbnail}}';
 		//	var categoryProductAssos = AMD_CMS_CONTENT_SP + '/' + $state.params.contentId + '/term-taxonomies';
 		//	var categoryServiceAssos = AMD_CMS_CONTENT_SP + '/' + $state.params.contentId + '/term-taxonomies';
 
 		var ctrl = this;
-		var category;
+		var category = {};
 		var categoryId = $state.params.categoryId;
 		var children = [];
-		var parent;
+		var parent = {};
 
 
 		//-------------------------------------------------------------------------
@@ -97,6 +97,20 @@ mblowfish.addEditor('/shop/categories/:categoryId', {
 			return exec(AMD_SHOP_CATEGORY_DELETE_ACTION, $event);
 		}
 
+		function setParent($value, $event) {
+			if (_.isArray($value)) {
+				$value = $value[0];
+			}
+			if (!_.isObject($value)) {
+				$value = {
+					id: $value,
+				};
+			}
+			$event.category = category;
+			$event.parent = $value;
+			return $mbActions.exec(AMD_SHOP_CATEGORY_SETPARENT_ACTION, $event);
+		}
+
 		//-------------------------------------------------------------------------
 		// End
 		//-------------------------------------------------------------------------
@@ -110,9 +124,9 @@ mblowfish.addEditor('/shop/categories/:categoryId', {
 			ctrl.children = children;
 		}
 
-		function parsParent(parent) {
-			parent = parent;
-			ctrl.parent = parent;
+		function parsParent(parentData) {
+			parent = parentData;
+			ctrl.parent = parentData;
 		}
 
 		function reload() {
@@ -149,6 +163,12 @@ mblowfish.addEditor('/shop/categories/:categoryId', {
 					switch (event.key) {
 						case 'create':
 						case 'update':
+							if (value.parent_id !== parent.id) {
+								$shop.getCategory(value.parent_id)
+									.then(function(category) {
+										_.assign(parent, category);
+									});
+							}
 							_.assign(category, value);
 							break;
 						case 'delete':
@@ -156,7 +176,7 @@ mblowfish.addEditor('/shop/categories/:categoryId', {
 							break;
 					}
 				}
-				if (isEqualId(value.id, category.parent_id)) {
+				if (isEqualId(value.id, parent.id)) {
 					switch (event.key) {
 						case 'create':
 						case 'update':
@@ -199,9 +219,9 @@ mblowfish.addEditor('/shop/categories/:categoryId', {
 			parent: parent,
 			category: category,
 
-
 			deleteCategory: deleteCategory,
 			updateCategory: updateCategory,
+			setParent: setParent,
 
 			addChild: addChild,
 			deleteChild: deleteChild,
