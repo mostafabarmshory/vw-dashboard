@@ -69,12 +69,12 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
      * util function
      */
 	function differenceBy(source, filters, key) {
-		for (var i = 0; i < filters.length; i++) {
+		_.forEach(filters, function(filter) {
 			_.remove(source, function(item) {
-				return item[key] === filters[i][key];
+				return item[key] === filter[key];
 			});
-		}
-	};
+		});
+	}
 
 	function findItemFrom(item, collection) {
 		for (var i = 0; i < collection.length; i++) {
@@ -363,7 +363,7 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 					ctrl.fireDeleted(ctrl.eventType, tempItem);
 				}, function(ex) {
 					$log.error(ex);
-					alert('Fail to delete item.')
+					alert('Fail to delete item.');
 				});
 		}
 		// delete the item
@@ -482,7 +482,7 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 
 		// add actions
 		if (angular.isArray(configs.actions)) {
-			this.addActions(configs.actions)
+			this.addActions(configs.actions);
 		}
 
 		// DEPRECATED: enable create action

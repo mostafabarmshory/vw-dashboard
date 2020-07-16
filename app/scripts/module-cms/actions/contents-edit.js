@@ -1,7 +1,5 @@
-/* 
- * The MIT License (MIT)
- * 
- * Copyright (c) 2016 weburger
+/*
+ * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,41 +20,20 @@
  * SOFTWARE.
  */
 
-
-/**
-@ngdoc Views
-@name CMS Contents
-@description A view of contents
- */
-mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
-	title: 'Contents',
-	controller: function($scope, $controller, $location, $mbActions) {
+mblowfish.addAction(AMD_CMS_CONTENTS_EDIT_ACTION, {
+	icon: 'edit',
+	title: 'Edit',
+	description: 'Open the content with an editor',
+	groups: ['CMS'],
+	action: function($event, $amdCmsEditors) {
 		'ngInject';
-		// Extends with ItemsController
-		angular.extend(this, $controller('MbSeenCmsContentsCtrl', {
-			$scope: $scope
-		}));
-		this.openEditor = function(content) {
-			return $mbActions.exec(AMD_CMS_CONTENTS_EDIT_ACTION, {
-				values: [content]
-			});
-		};
-		this.openProperties = function(content) {
-			return $mbActions.exec(AMD_CMS_CONTENTS_PROPERTIES_ACTION, {
-				values: [content],
-			});
-		};
-		this.addAction({
-			title: 'New content',
-			icon: 'add',
-			action: function() {
-				$location.path(AMD_CMS_VIEW_CONTENT_NEW_PATH);
-			}
+		
+		var values = $event.values;
+		if(!values || !_.isArray(values)){
+			return;
+		}
+		_.forEach(values, function(content){
+			$amdCmsEditors.openContent(content);
 		});
-		this.init();
 	},
-	controllerAs: 'ctrl',
-	templateUrl: 'views/cms/views/contents.html',
-	groups: ['Content Management'],
-	icon: 'image',
 });

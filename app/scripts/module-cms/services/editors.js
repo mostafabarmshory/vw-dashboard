@@ -21,7 +21,11 @@ mblowfish.provider('$amdCmsEditors', function() {
 	// functions
 	//-------------------------------------------------
 	function openContent(content) {
-		// cms/contents/{{::content.id}}
+		// finally
+		return openProperties(content);
+	}
+
+	function openProperties(content) {
 		location.path('cms/contents/' + content.id);
 	}
 
@@ -31,6 +35,7 @@ mblowfish.provider('$amdCmsEditors', function() {
 	//-------------------------------------------------
 	service = {
 		openContent: openContent,
+		openProperties: openProperties,
 	};
 	provider = {
 		$get: function($location) {

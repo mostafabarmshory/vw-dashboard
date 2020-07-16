@@ -45,6 +45,13 @@ mblowfish.addConstants({
 	AMD_CMS_VIEW_CONTENTS_PATH: '/cms/contents',
 	AMD_CMS_VIEW_TERMS_PATH: '/cms/terms',
 	AMD_CMS_VIEW_TERM_TAXONOMIES_PATH: '/cms/term-taxonomies',
+
+
+	//------------------------------------------------------------
+	// ACTIONS
+	//------------------------------------------------------------
+	AMD_CMS_CONTENTS_EDIT_ACTION: 'amd.cms.contents.edit',
+	AMD_CMS_CONTENTS_PROPERTIES_ACTION: 'amd.cms.contents.properties',
 });
 
 

@@ -30,7 +30,7 @@
 mblowfish.controller('AmdContentNewCtrl', function(
 	$scope,/* $frame,*/
 	$cms,
-	$amdCmsEditors, $controller,
+	$mbActions, $controller,
 	$mbCrypto) {
 
 
@@ -64,7 +64,9 @@ mblowfish.controller('AmdContentNewCtrl', function(
 			.then(function(content) {
 				ctrl.fireCreated(AMD_CMS_CONTENT_SP, content);
 				reload();
-				return $amdCmsEditors.openContent(content);
+				return $mbActions.exec(AMD_CMS_CONTENTS_EDIT_ACTION, {
+					values: [content]
+				});
 			}, function(/*error*/) {
 				// TODO: maso, 2020: log the error
 				alert('Fail to create content.');

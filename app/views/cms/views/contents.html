@@ -30,6 +30,27 @@
 					<h4>{{::content.name}}</h4>
 					<p>{{::content.id}}-{{::content.media_type}}-{{::content.state}}</p>
 				</div>
+				<md-menu>
+					<md-button class="md-icon-button"
+						ng-click="$mdMenu.open($event);" 
+						aria-label="remove attachment"><mb-icon>more_vert</mb-icon>
+					</md-button>
+					<md-menu-content width="4">
+						<md-menu-item>
+							<md-button ng-click="ctrl.openEditor(content, $event)">
+								<mb-icon>edit</mb-icon>
+								<span translate>Open</span>
+							</md-button>
+						</md-menu-item>
+						<md-menu-divider></md-menu-divider>
+						<md-menu-item>
+							<md-button ng-click="ctrl.openProperties(content, $event)">
+								<mb-icon>settings</mb-icon>
+								<span translate>Properties</span>
+							</md-button>
+						</md-menu-item>
+					</md-menu-content>
+				</md-menu>
 			</md-list-item>
 		</md-list>
 		<div
