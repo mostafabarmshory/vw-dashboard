@@ -174,6 +174,23 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 		// this.items = _.concat(items, deff);
 		var ctrl = this;
 		_.forEach(items, function(item) {
+			ctrl.items.push(item);
+		});
+		if (this.id) {
+			this.fireEvent(this.id, 'update', this.items);
+		}
+	};
+	this.unshiftViewItems = function(items) {
+		if (!angular.isDefined(items)) {
+			return;
+		}
+		// Push new items
+		differenceBy(items, this.items, 'id');
+		// TODO: maso, 2019: The current version (V3.x) of lodash dose not support concat
+		// update the following part in the next version.
+		// this.items = _.concat(items, deff);
+		var ctrl = this;
+		_.forEach(items, function(item) {
 			ctrl.items.unshift(item);
 		});
 		if (this.id) {
@@ -616,7 +633,7 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 		this._eventHandlerCallBack = function($event) {
 			switch ($event.key) {
 				case 'create':
-					ctrl.pushViewItems($event.values);
+					ctrl.unshiftViewItems($event.values);
 					break;
 				case 'update':
 					ctrl.updateViewItems($event.values);

@@ -1,85 +1,65 @@
-/* 
- * The MIT License (MIT)
- * 
- * Copyright (c) 2016 weburger
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
 
-/**
-@ngdoc Controllers
-@name AmdCmsTermsCtrl
-@description # Manages Terms
- */
-mblowfish.controller('AmdCmsTermsCtrl', function($scope, $cms, $controller) {
+mblowfish.addView(AMD_CMS_VIEW_TERMS_PATH, {
+	title: 'Terms',
+	controller: function($scope, $cms, $controller) {
+		'ngInject';
+		/*
+		 * Extends collection controller
+		 */
+		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+			$scope: $scope
+		}));
 
-    /*
-     * Extends collection controller
-     */
-	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-		$scope: $scope
-	}));
+		// Override the schema function
+		this.getModelSchema = function() {
+			return $cms.termSchema();
+		};
 
-	// Override the schema function
-	this.getModelSchema = function() {
-		return $cms.termSchema();
-	};
+		// get contents
+		this.getModels = function(parameterQuery) {
+			return $cms.getTerms(parameterQuery);
+		};
 
-	// get contents
-	this.getModels = function(parameterQuery) {
-		return $cms.getTerms(parameterQuery);
-	};
+		// get a content
+		this.getModel = function(id) {
+			return $cms.getTerm(id);
+		};
 
-	// get a content
-	this.getModel = function(id) {
-		return $cms.getTerm(id);
-	};
+		// delete account
+		this.deleteModel = function(model) {
+			var ctrl = this;
+			return $cms.deleteTerm(model.id)
+				.then(function() {
+					ctrl.reload();
+				});
+		};
 
-	// delete account
-	this.deleteModel = function(model) {
-		var ctrl = this;
-		return $cms.deleteTerm(model.id)
-			.then(function() {
-				ctrl.reload();
-			});
-	};
+		// adding new term
+		this.addModel = function(model) {
+			return $cms.putTerm(model);
+		};
 
-	// adding new term
-	this.addModel = function(model) {
-		return $cms.putTerm(model);
-	};
+		this.init({
+			// dispatcher path and internal address
+			eventType: AMD_CMS_TERMS_SP,
 
-	this.init({
-		// dispatcher path and internal address
-		eventType: AMD_CMS_TERMS_SP,
-
-		// add creation actions
-		addAction: {
-			title: 'New term',
-			icon: 'add',
-			dialog: 'views/dialogs/amd-term-new.html'
-		},
-		// delete action
-		deleteAction: {
-			title: 'Delete term?'
-		},
-		// list of actions in the view
-		actions: []
-	});
+			// add creation actions
+			addAction: {
+				title: 'New term',
+				icon: 'add',
+				dialog: 'views/dialogs/amd-term-new.html'
+			},
+			// delete action
+			deleteAction: {
+				title: 'Delete term?'
+			},
+			// list of actions in the view
+			actions: []
+		});
+	},
+	controllerAs: 'ctrl',
+	templateUrl: 'views/amd-terms.html',
+	groups: ['Content Management'],
+	icon: 'title',
 });
+

@@ -24,21 +24,32 @@
 
 
 /**
-@ngdoc Controllers
-@name AmdContentsCtrl
-@description ContentsCtrl Controller of the ngMaterialDashboard
+@ngdoc Views
+@name CMS Contents
+@description A view of contents
  */
-mblowfish.controller('AmdContentsCtrl', function($scope, $controller, $location) {
-	// Extends with ItemsController
-	angular.extend(this, $controller('MbSeenCmsContentsCtrl', {
-		$scope: $scope
-	}));
-	this.addAction({
-		title: 'New content',
-		icon: 'add',
-		action: function() {
-			$location.path(AMD_CMS_VIEW_CONTENT_NEW_PATH);
-		}
-	});
-	this.init();
+mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
+	title: 'Contents',
+	controller: function($scope, $controller, $location, $amdCmsEditors) {
+		'ngInject';
+		// Extends with ItemsController
+		angular.extend(this, $controller('MbSeenCmsContentsCtrl', {
+			$scope: $scope
+		}));
+		this.openEditor = function(content) {
+			return $amdCmsEditors.openContent(content);
+		};
+		this.addAction({
+			title: 'New content',
+			icon: 'add',
+			action: function() {
+				$location.path(AMD_CMS_VIEW_CONTENT_NEW_PATH);
+			}
+		});
+		this.init();
+	},
+	controllerAs: 'ctrl',
+	templateUrl: 'views/amd-contents.html',
+	groups: ['Content Management'],
+	icon: 'image',
 });

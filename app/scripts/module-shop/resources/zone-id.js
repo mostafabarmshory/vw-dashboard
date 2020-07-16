@@ -16,7 +16,6 @@ mblowfish.addResource('/shop/zones#id', {
 			return item.id === this.value;
 		};
 	},
-	controllerAs: 'resourceCtrl',
-	priority: 8,
+	controllerAs: 'ctrl',
 	tags: [AMD_SHOP_ZONE_SP + '#id', '/shop/zones#id', 'zone_id']
 });

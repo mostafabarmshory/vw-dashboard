@@ -49,43 +49,8 @@ mblowfish.addConstants({
 
 
 
-mblowfish.config(function(
-	/* Mblowfish */ $mbViewProvider, $mbEditorProvider, $mbResourceProvider) {
+mblowfish.config(function($mbEditorProvider, $mbResourceProvider) {
 
-	var viewGroups = ['Content Management'];
-	$mbViewProvider
-		.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
-			title: 'Contents',
-			controller: 'AmdContentsCtrl',
-			controllerAs: 'ctrl',
-			templateUrl: 'views/amd-contents.html',
-			groups: viewGroups,
-			icon: 'image',
-		})
-		.addView(AMD_CMS_VIEW_CONTENT_NEW_PATH, {
-			title: 'Upload',
-			controller: 'AmdContentNewCtrl',
-			controllerAs: 'ctrl',
-			templateUrl: 'views/amd-content-new.html',
-			groups: viewGroups,
-			icon: 'cloud_upload',
-		}) //
-		.addView(AMD_CMS_VIEW_TERMS_PATH, {
-			title: 'Terms',
-			controller: 'AmdCmsTermsCtrl',
-			controllerAs: 'ctrl',
-			templateUrl: 'views/amd-terms.html',
-			groups: viewGroups,
-			icon: 'title',
-		})
-		.addView(AMD_CMS_VIEW_TERM_TAXONOMIES_PATH, {
-			title: 'Term taxonomis',
-			controller: 'AmdCmsTermTaxonomiesCtrl',
-			controllerAs: 'ctrl',
-			templateUrl: 'views/amd-term-taxonomies.html',
-			groups: viewGroups,
-			icon: 'class',
-		});
 
 	$mbEditorProvider
 		.addEditor('/cms/contents/:contentId', {
