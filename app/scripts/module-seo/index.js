@@ -20,6 +20,30 @@
  * SOFTWARE.
  */
 
+mblowfish.addConstants({
+	//------------------------------------------------------------
+	// Resources Types
+	//------------------------------------------------------------
+
+
+	//------------------------------------------------------------
+	// Stoer Paths
+	//------------------------------------------------------------
+
+
+	//------------------------------------------------------------
+	// Views
+	//------------------------------------------------------------
+
+
+	//------------------------------------------------------------
+	// ACTIONS
+	//------------------------------------------------------------
+	AMD_SEO_CONTENTS_RENDER_ACTION: 'amd.seo.contents.render',
+});
+
+
+
 
 mblowfish.config(function($mbEditorProvider, $mbViewProvider) {
 	$mbEditorProvider
@@ -30,21 +54,15 @@ mblowfish.config(function($mbEditorProvider, $mbViewProvider) {
 		})
 		.addEditor('/seo/links/:itemId', {
 			templateUrl: 'views/amd-seo-link.html',
-		})
-		.addEditor('/seo/crawled-links/:crawledLinkId/render', {
-			templateUrl: 'views/amd-seo-content-render.html',
 		});
 
-
-
-	var viewGroups = ['seo'];
 
 	$mbViewProvider
 		.addView('/seo/backends', {
 			controller: 'AmdSeoBackendsCtrl',
 			controllerAs: 'ctrl',
 			templateUrl: 'views/amd-seo-backends.html',
-			groups: viewGroups,
+			groups: ['seo'],
 			title: 'Prerender backends',
 			icon: 'dvr',
 		})
@@ -52,7 +70,7 @@ mblowfish.config(function($mbEditorProvider, $mbViewProvider) {
 			controller: 'AmdSeoBackendNewCtrl',
 			controllerAs: 'ctrl',
 			templateUrl: 'views/amd-seo-backend-new.html',
-			groups: viewGroups,
+			groups: ['seo'],
 			title: 'New prerender backend',
 			icon: 'add'
 		})
@@ -60,7 +78,7 @@ mblowfish.config(function($mbEditorProvider, $mbViewProvider) {
 			controller: 'AmdSeoLinksCtrl',
 			controllerAs: 'ctrl',
 			templateUrl: 'views/amd-seo-links.html',
-			groups: viewGroups,
+			groups: ['seo'],
 			title: 'Sitemap links',
 			icon: 'link'
 		})
@@ -68,22 +86,14 @@ mblowfish.config(function($mbEditorProvider, $mbViewProvider) {
 			controller: 'AmdSeoLinkNewCtrl',
 			controllerAs: 'ctrl',
 			templateUrl: 'views/amd-seo-link-new.html',
-			groups: viewGroups,
+			groups: ['seo'],
 			title: 'New sitemap link',
 			icon: 'add'
 		})
 		.addView('/seo/sitemap', {
 			templateUrl: 'views/sitemap.html',
-			groups: viewGroups,
+			groups: ['seo'],
 			title: 'View Sitemap',
-			icon: 'public'
-		})
-		.addView('/seo/crawled-links', {
-			templateUrl: 'views/amd-seo-crawled-links.html',
-			controller: 'AmdSeoCrawledLinksCtrl',
-			controllerAs: 'ctrl',
-			groups: viewGroups,
-			title: 'Crawled links',
 			icon: 'public'
 		});
 });
