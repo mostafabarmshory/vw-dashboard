@@ -1,4 +1,7 @@
-mblowfish.controller('AmdLocalSettingsCtrl', function ($scope, $tenant, $q, $http) {
+
+mblowfish.addView('/tenant/settings/local-setting', {
+	templateUrl: 'scripts/module-tenant/views/local-settings.html',
+	controller: function($scope, $tenant, $q, $http) {
 
 		var ctrl = {
 			loadingSettings: false,
@@ -21,12 +24,12 @@ mblowfish.controller('AmdLocalSettingsCtrl', function ($scope, $tenant, $q, $htt
 			$http({
 				method: 'GET',
 				url: 'https://openexchangerates.org/api/currencies.json'
-			}).then(function (response) {
+			}).then(function(response) {
 				var currencies = response.data;
 				// Add Toman to the list
 				var newCurrency = Object.assign({ IRT: 'Iranian Toman' }, currencies);
 				//sort based on keys
-				Object.keys(newCurrency).sort().forEach(function (key) {
+				Object.keys(newCurrency).sort().forEach(function(key) {
 					ctrl.currencies[key] = newCurrency[key];
 				});
 			});
@@ -34,9 +37,9 @@ mblowfish.controller('AmdLocalSettingsCtrl', function ($scope, $tenant, $q, $htt
 
 		function fetchSetting(key) {
 			return $tenant.getSetting(key)
-				.then(function (sett) {
+				.then(function(sett) {
 					return sett;
-				}, function (error) {
+				}, function(error) {
 					if (error.status === 404) {
 						return $tenant.putSetting({
 							'key': key,
@@ -46,7 +49,7 @@ mblowfish.controller('AmdLocalSettingsCtrl', function ($scope, $tenant, $q, $htt
 						throw error;
 					}
 				})//
-				.then(function (settingItem) {
+				.then(function(settingItem) {
 					$scope.settings[key] = settingItem;
 				});
 		}
@@ -63,7 +66,7 @@ mblowfish.controller('AmdLocalSettingsCtrl', function ($scope, $tenant, $q, $htt
 				}
 			}
 			$q.all(promiseList)//
-				.finally(function () {
+				.finally(function() {
 					ctrl.savingSettings = false;
 					toast('Settings saved successfully');
 				});
@@ -77,7 +80,7 @@ mblowfish.controller('AmdLocalSettingsCtrl', function ($scope, $tenant, $q, $htt
 				promiseList.push(fetchSetting(key));
 			}
 			$q.all(promiseList)//
-				.finally(function () {
+				.finally(function() {
 					ctrl.loadingSettings = false;
 				});
 		}
@@ -87,6 +90,9 @@ mblowfish.controller('AmdLocalSettingsCtrl', function ($scope, $tenant, $q, $htt
 
 		loadSettings();
 		loadCurrencies();
-	});
-
-
+	},
+	controllerAs: 'ctrl',
+	groups: ['Tenant'],
+	title: 'Local settings',
+	icon: 'settings_applications',
+});

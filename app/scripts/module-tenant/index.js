@@ -19,119 +19,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-mblowfish.config(function($mbEditorProvider, $mbViewProvider, $mbActionsProvider) {
-	$mbEditorProvider
-		.addEditor('/tenant/tenants/:tenantId', {
-			templateUrl: 'views/amd-tenant-tenant.html',
-			controller: 'AmdTenantTenantController',
-			controllerAs: 'ctrl'
-		})
-		.addEditor('/tenant/tickets/:ticketId', {
-			templateUrl: 'views/amd-tenant/ticket.html',
-			controller: 'AmdTenantTicketController',
-		})
-		.addEditor('/tenant/invoices', {
-			templateUrl: 'views/amd-tenant/invoice-list.html',
-			controller: 'AmdTenantInvoicesController',
-			groups: ['tenant'],
-			name: 'Invoices',
-			icon: 'attach_money',
-		}) //
-		.addEditor('/tenant/invoices/:invoiceId', {
-			templateUrl: 'views/amd-tenant/invoice.html',
-			controller: 'AmdTenantInvoiceController',
-		}) //
-		.addEditor('/receipts/:id', {
-			templateUrl: 'views/amd-tenant-receipt.html',
-			controller: 'AmdTenantReceiptCtrl',
-			helpId: 'receipt'
-		});
 
 
+mblowfish.addConstants({
+	//------------------------------------------------------------
+	// Resources Types
+	//------------------------------------------------------------
+//	AMD_CMS_CONTENT_RT: '/cms/contents',
+//	AMD_CMS_METADATA_RT: '/cms/metadata',
+//	AMD_CMS_TERMTAXONOMIES_RT: '/cms/term-taxonomies',
 
 
-
-	var groupsView = ['Tenant'];
-
-	$mbViewProvider
-		.addView('/tenant/tenants', {
-			templateUrl: 'views/amd-tenant-tenants.html',
-			controller: 'AmdTenantTenantsController',
-			controllerAs: 'ctrl',
-			groups: groupsView,
-			title: 'Tenants',
-			icon: 'business'
-		})
-		.addView('/tenant/tickets', {
-			templateUrl: 'views/amd-tenant/ticket-list.html',
-			controller: 'AmdTenantTicketsController',
-			groups: groupsView,
-			title: 'Tickets',
-			icon: 'question_answer',
-		}) //
-		.addView('/tenant/invoices-new', {
-			templateUrl: 'views/amd-tenant/invoice-new.html',
-			controller: 'AmdTenantInvoiceController',
-			title: 'New invoice',
-			groups: groupsView,
-		}) //
-		.addView('/tenant/settings/security', {
-			templateUrl: 'views/amd-setting-security.html',
-			controller: 'AmdSettingsSecurityCtrl',
-			groups: groupsView,
-			title: 'Security',
-			icon: 'font_download',
-		})
-		.addView('/tenant/settings/local-setting', {
-			templateUrl: 'views/amd-local-setting.html',
-			controller: 'AmdLocalSettingsCtrl',
-			groups: groupsView,
-			title: 'Local settings',
-			icon: 'settings_applications',
-		});
+	//------------------------------------------------------------
+	// Stoer Paths
+	//------------------------------------------------------------
+//	AMD_CMS_CONTENT_SP: '/cms/contents',
+//	AMD_CMS_METADATA_SP: '/cms/metadata',
+//	AMD_CMS_TERMTAXONOMIES_SP: '/cms/term-taxonomies',
+//	AMD_CMS_TERMS_SP: '/cms/terms',
 
 
+	//------------------------------------------------------------
+	// Views
+	//------------------------------------------------------------
+//	AMD_CMS_VIEW_CONTENT_NEW_PATH: '/cms/contents-new',
+//	AMD_CMS_VIEW_CONTENTS_PATH: '/cms/contents',
+//	AMD_CMS_VIEW_TERMS_PATH: '/cms/terms',
+//	AMD_CMS_VIEW_TERM_TAXONOMIES_PATH: '/cms/term-taxonomies',
 
 
-	var EVENT_NAME = '/tenant/tenants';
-
-	$mbActionsProvider
-		.addAction({
-			id: 'create:/tenant/tenants',
-			priority: 10,
-			icon: 'store',
-			title: 'New Tenant',
-			description: 'Creates new sub-tenant in the current one',
-			/*
-			 * @ngInject
-			 */
-			action: function($tenant, $navigator, $mbDispatcher, $window, $mbTranslate) {
-				var job = $tenant.tenantSchema()
-					.then(function(schema) {
-						return $navigator.openDialog({
-							templateUrl: 'views/dialogs/amd-item-new.html',
-							config: {
-								title: 'New Tenant',
-								schema: schema,
-								data: {}
-							}
-						});
-					})
-					.then(function(itemData) {
-						return $tenant.putTenant(itemData);
-					})
-					.then(function(item) {
-						$mbDispatcher.dispatch(EVENT_NAME, {
-							key: 'create',
-							values: [item]
-						});
-					}, function() {
-						$window.alert($mbTranslate.instant('Failed to create a new tenant.'));
-					});
-				// TODO: maso, 2020: add the job into the job lists
-				// $app.addJob('Adding new shop category', job);
-				return job;
-			},
-			groups: ['/tenant/tenants#more']
-		});
+	//------------------------------------------------------------
+	// ACTIONS
+	//------------------------------------------------------------
+//	AMD_CMS_CONTENTS_EDIT_ACTION: 'amd.cms.contents.edit',
+//	AMD_CMS_CONTENTS_PROPERTIES_ACTION: 'amd.cms.contents.properties',
 });
+
+
+
+
+// TODO: maso, 2020: check the following editor
+//		.addEditor('/tenant/invoices', {
+//			templateUrl: 'views/amd-tenant/invoice-list.html',
+//			controller: 'AmdTenantInvoicesController',
+//			groups: ['tenant'],
+//			name: 'Invoices',
+//			icon: 'attach_money',
+//		}) //;
+
+

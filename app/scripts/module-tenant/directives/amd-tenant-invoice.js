@@ -19,59 +19,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-
-/**
- * @ngdoc Controller
- * @name AmdTenantTenantsController
- * @description Manages list of tenants from the current tenant.
- * 
- * Each tenant can create multi sub tenants. This is a controller of the subtenatns.
- */
-mblowfish.controller('AmdTenantTenantsController', function(
-		/* angularjs      */ $scope, $controller,
-		/* seen-tenant    */ $tenant,
-		/* mblowfish-core */ $mbActions
-) {
-
-	// Extends with ItemsController
-	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-		$scope: $scope
-	}));
-
-	/**
-	 * Gets schema of the tenant model
-	 */
-	this.getModelSchema = function() {
-		return $tenant.tenantSchema();
+mblowfish.directive('amdTenantInvoice', function() {
+	function postLink($scope, $element, $attributes, $ctrls) {
+		var ngModel = $ctrls[0];
+		ngModel.$render = function() {
+			$scope.invoice = ngModel.$modelValue;
+		};
+	}
+	return {
+		restrict: 'E',
+		templateUrl: 'views/amd-directives/amd-tenant-invoice.html',
+		scope: {
+			disableId: '<amdDisableId',
+			title: '@'
+		},
+		link: postLink,
+		/*    controller: 'the name of a controller defined in controllers',
+		 * or directly -> controller: function(){
+		 *                      define every ctrls to act on view
+		 *                  }             */
+		require: ['ngModel']
 	};
-
-	// get tenants
-	this.getModels = function(parameterQuery) {
-		return $tenant.getTenants(parameterQuery);
-	};
-
-	// get a tenant
-	this.getModel = function(id) {
-		return $tenant.getTenant(id);
-	};
-
-	// delete tenant
-	this.deleteModel = function(item) {
-		return item.delete();
-	};
-
-	// initial the controller
-	this.init({
-		eventType: '/tenant/tenants'
-	});
-
-	// add actions
-	this.addActions([{
-		title: 'New tenant',
-		icon: 'add',
-		action: function() {
-			$mbActions.exec('create:/tenant/tenants');
-		}
-	}]);
 });
+
