@@ -20,11 +20,46 @@
  * SOFTWARE.
  */
 
+mblowfish.addConstants({
+	//------------------------------------------------------------
+	// Resources Types
+	//------------------------------------------------------------
+//	AMD_CMS_CONTENT_RT: '/cms/contents',
+//	AMD_CMS_METADATA_RT: '/cms/metadata',
+//	AMD_CMS_TERMTAXONOMIES_RT: '/cms/term-taxonomies',
+
+
+	//------------------------------------------------------------
+	// Stoer Paths
+	//------------------------------------------------------------
+//	AMD_CMS_CONTENT_SP: '/cms/contents',
+//	AMD_CMS_METADATA_SP: '/cms/metadata',
+//	AMD_CMS_TERMTAXONOMIES_SP: '/cms/term-taxonomies',
+//	AMD_CMS_TERMS_SP: '/cms/terms',
+	AMD_BANK_GATE_SP: '/bank/backends',
+
+
+	//------------------------------------------------------------
+	// Views
+	//------------------------------------------------------------
+//	AMD_CMS_VIEW_CONTENT_NEW_PATH: '/cms/contents-new',
+//	AMD_CMS_VIEW_CONTENTS_PATH: '/cms/contents',
+//	AMD_CMS_VIEW_TERMS_PATH: '/cms/terms',
+//	AMD_CMS_VIEW_TERM_TAXONOMIES_PATH: '/cms/term-taxonomies',
+
+
+	//------------------------------------------------------------
+	// ACTIONS
+	//------------------------------------------------------------
+	AMD_BANK_GATES_DELETE_ACTION: 'amd.bank.gate.delete',
+	AMD_BANK_GATES_EDIT_ACTION: 'amd.bank.gate.edit',
+	AMD_BANK_GATES_CREATE_ACTION: 'amd.bank.gate.create',
+});
+
+
 
 
 mblowfish.config(function($mbViewProvider, $mbEditorProvider) {
-
-	var viewGroups = ['Finance'];
 
 	$mbViewProvider //
 		.addView('/wallets', {
@@ -33,7 +68,7 @@ mblowfish.config(function($mbViewProvider, $mbEditorProvider) {
 			controller: 'AmdBankWalletsCtrl',
 			controllerAs: 'ctrl',
 			templateUrl: 'views/amd-bank-wallets.html',
-			groups: viewGroups,
+			groups: ['Finance'],
 		})
 		.addView('/wallets-new', {
 			title: 'New wallet',
@@ -41,7 +76,7 @@ mblowfish.config(function($mbViewProvider, $mbEditorProvider) {
 			controller: 'AmdBankWalletNewCtrl',
 			templateUrl: 'views/amd-bank-wallet-new.html',
 			controllerAs: 'ctrl',
-			groups: viewGroups,
+			groups: ['Finance'],
 		})
 		.addView('/my-wallets', {
 			title: 'My wallets',
@@ -49,7 +84,7 @@ mblowfish.config(function($mbViewProvider, $mbEditorProvider) {
 			controller: 'AmdBankWalletsCtrl',
 			templateUrl: 'views/amd-bank-my-wallets.html',
 			controllerAs: 'ctrl',
-			groups: viewGroups,
+			groups: ['Finance'],
 		})
 		.addView('/wallet-to-wallet', {
 			title: 'Wallet to wallet',
@@ -57,7 +92,7 @@ mblowfish.config(function($mbViewProvider, $mbEditorProvider) {
 			templateUrl: 'views/amd-bank-wallet-to-wallet.html',
 			controller: 'AmdBankWalletToWalletCtrl',
 			controllerAs: 'ctrl',
-			groups: viewGroups,
+			groups: ['Finance'],
 		})
 		.addView('/wallets-charge', {
 			title: 'Charge wallet',
@@ -65,21 +100,7 @@ mblowfish.config(function($mbViewProvider, $mbEditorProvider) {
 			templateUrl: 'views/amd-bank-wallet-charge.html',
 			controller: 'AmdBankWalletChargeCtrl',
 			controllerAs: 'ctrl',
-			groups: viewGroups,
-		})
-		.addView('/bank/gates', {
-			title: 'Bank gates',
-			icon: 'attach_money',
-			controller: 'AmdBankGatesCtrl',
-			templateUrl: 'views/amd-bank-gates.html',
-			groups: viewGroups,
-		})
-		.addView('/bank/gates-new', {
-			title: 'New bank gate',
-			icon: 'add',
-			controller: 'AmdBankGateNewCtrl',
-			templateUrl: 'views/amd-bank-gate-new.html',
-			groups: viewGroups,
+			groups: ['Finance'],
 		})
 		.addView('/bank/banks', {
 			title: 'Bank engines',
@@ -87,28 +108,28 @@ mblowfish.config(function($mbViewProvider, $mbEditorProvider) {
 			controller: 'AmdBanksCtrl',
 			controllerAs: 'ctrl',
 			templateUrl: 'views/amd-bank-banks.html',
-			groups: viewGroups,
+			groups: ['Finance'],
 		})
 		.addView('/bank/receipts', {
 			title: 'Recipts',
 			icon: 'receipt',
 			controller: 'AmdBankReceiptsCtrl',
 			templateUrl: 'views/amd-bank-receipts.html',
-			groups: viewGroups,
+			groups: ['Finance'],
 		})
 		.addView('/discounts', {
 			title: 'Discounts',
 			icon: 'money_off',
 			controller: 'AmdDiscountsCtrl',
 			templateUrl: 'views/amd-discount-discounts.html',
-			groups: viewGroups,
+			groups: ['Finance'],
 		})
 		.addView('/discounts-new', {
 			title: 'New Discount',
 			icon: 'card_giftcard',
 			controller: 'AmdDiscountNewCtrl',
 			templateUrl: 'views/amd-discount-new.html',
-			groups: viewGroups,
+			groups: ['Finance'],
 		});
 
 

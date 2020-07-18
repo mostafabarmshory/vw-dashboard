@@ -22,34 +22,34 @@
  * SOFTWARE.
  */
 
-mblowfish.controller('MbSeenCmsContentsCtrl',function ($scope, $cms, $q, $controller) {
+mblowfish.controller('MbSeenCmsContentsCtrl', function($scope, $cms, $q, $controller) {
 
     /*
      * Extends collection controller
      */
-    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-        $scope : $scope
-    }));
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope
+	}));
 
-    // Override the schema function
-    this.getModelSchema = function () {
-        return $cms.contentSchema();
-    };
+	// Override the schema function
+	this.getModelSchema = function() {
+		return $cms.contentSchema();
+	};
 
-    // get contents
-    this.getModels = function (parameterQuery) {
-        return $cms.getContents(parameterQuery);
-    };
+	// get contents
+	this.getModels = function(parameterQuery) {
+		return $cms.getContents(parameterQuery);
+	};
 
-    // get a content
-    this.getModel = function (id) {
-        return $cms.getContent(id);
-    };
+	// get a content
+	this.getModel = function(id) {
+		return $cms.getContent(id);
+	};
 
-    // delete account
-    this.deleteModel = function (content) {
-        return $cms.deleteContent(content.id);
-    };
+	// delete account
+	this.deleteModel = function(content) {
+		return $cms.deleteContent(content.id);
+	};
 
     /**
      * Uploads a file on the server.
@@ -64,26 +64,26 @@ mblowfish.controller('MbSeenCmsContentsCtrl',function ($scope, $cms, $q, $contro
      * This function change the state of the controller into the
      * working.
      */
-    this.uploadFile = function (content, file) {
+	this.uploadFile = function(content, file) {
         /*
          * upload file
          */
-        function uploadContentValue(newContent) {
-            if (file) {
-                return newContent.uploadValue(file)//
-                .then(function () {
-                    return newContent;
-                });
-            }
-            return $q.resolve(newContent);
-        }
+		function uploadContentValue(newContent) {
+			if (file) {
+				return newContent.uploadValue(file)//
+					.then(function() {
+						return newContent;
+					});
+			}
+			return $q.resolve(newContent);
+		}
 
-        // XXX: maso, 2018: check content is not anonymous
-        return $cms.putContent(content)//
-        .then(uploadContentValue);
-    };
+		// XXX: maso, 2018: check content is not anonymous
+		return $cms.putContent(content)//
+			.then(uploadContentValue);
+	};
 
-    this.init({
-        eventType: AMD_CMS_CONTENT_SP
-    });
+	this.init({
+		eventType: AMD_CMS_CONTENT_SP
+	});
 });
