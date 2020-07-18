@@ -57,9 +57,9 @@ mblowfish.addView('/seo/crawled-links', {
 		};
 
 		this.openWithRender = function(content) {
-			$mbActions.exec(AMD_SEO_CONTENTS_RENDER_ACTION, {
+			return $mbActions.exec(AMD_SEO_CONTENTS_RENDER_ACTION, {
 				values: [content]
-			})
+			});
 		};
 	},
 	controllerAs: 'ctrl',

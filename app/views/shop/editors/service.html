@@ -1,201 +1,199 @@
 <md-content
-    class="md-padding"
-    layout-padding
-    style="overflow: auto;">
-    <mb-titled-block 
-        ng-show="!ctrl.edit"
-        mb-progress="ctrl.loading"
-        mb-title="{{'Service' | translate}}"
-        layout="column">
-        <div 
-            layout="row" 
-            layout-xs="column" 
-            layout-align-xs="center center" 
-            layout-padding>
-            <mb-inline
-                ng-model="service.avatar"
-                mb-inline-enable="{{true}}"
-                mb-inline-type="image"
-                mb-inline-on-save="update()">
-                <img width="256px" height="256px" ng-src="{{service.avatar}}" />
-            </mb-inline>
-            <table>
-                <tr>
-                    <td mb-translate="">ID  </td>
-                    <td>: {{service.id}}</td>
-                </tr>
-                <tr>
-                    <td mb-translate="">Title  </td>
-                    <td><mb-inline
-                        ng-model="service.title"
-                        mb-inline-enable="{{true}}"
-                        mb-inline-type="text"
-                        mb-inline-on-save="update()">: {{service.title}}</mb-inline></td>
-                </tr>
-                <tr>
-                    <td mb-translate="">Description  </td>
-                    <td><mb-inline
-                        ng-model="service.description"
-                        mb-inline-enable="{{true}}"
-                        mb-inline-type="text"
-                        mb-inline-on-save="update()">: {{service.description}}</mb-inline></td>
-                </tr>
-                <tr>
-                    <td mb-translate="">Price  </td>
-                    <td><mb-inline
-                        ng-model="service.price"
-                        mb-inline-enable="{{true}}"
-                        mb-inline-type="text"
-                        mb-inline-on-save="update()">: {{service.price}}</mb-inline></td>
-                </tr>
-                <tr>
-                    <td mb-translate="">Off  </td>
-                    <td><mb-inline
-                            ng-model="service.off"
-                            mb-inline-enable="{{true}}"
-                            mb-inline-type="text"
-                            mb-inline-on-save="update()">: {{service.off}}</mb-inline></td>
-                </tr>
-            </table>
-        </div>
-        <div layout-gt-xs="row"
-             layout="column">
-            <span flex></span>
-            <md-button 
-                class = "md-raised md-accent"
-                ng-click="remove()">
-                <span mb-translate="">Delete</span>
-            </md-button>
-        </div>
-    </mb-titled-block>
+	style="overflow: auto;">
+	<mb-titled-block 
+		ng-show="!ctrl.edit"
+		mb-progress="ctrl.loading"
+		mb-title="{{'Service' | translate}}"
+		layout="column">
+		<div 
+			layout="row" 
+			layout-xs="column" 
+			layout-align-xs="center center" 
+			layout-padding>
+			<mb-inline
+				ng-model="service.avatar"
+				mb-inline-enable="{{true}}"
+				mb-inline-type="image"
+				mb-inline-on-save="update()">
+				<img width="256px" height="256px" ng-src="{{service.avatar}}" />
+			</mb-inline>
+			<table>
+				<tr>
+					<td mb-translate="">ID  </td>
+					<td>: {{service.id}}</td>
+				</tr>
+				<tr>
+					<td mb-translate="">Title  </td>
+					<td><mb-inline
+						ng-model="service.title"
+						mb-inline-enable="{{true}}"
+						mb-inline-type="text"
+						mb-inline-on-save="update()">: {{service.title}}</mb-inline></td>
+				</tr>
+				<tr>
+					<td mb-translate="">Description  </td>
+					<td><mb-inline
+						ng-model="service.description"
+						mb-inline-enable="{{true}}"
+						mb-inline-type="text"
+						mb-inline-on-save="update()">: {{service.description}}</mb-inline></td>
+				</tr>
+				<tr>
+					<td mb-translate="">Price  </td>
+					<td><mb-inline
+						ng-model="service.price"
+						mb-inline-enable="{{true}}"
+						mb-inline-type="text"
+						mb-inline-on-save="update()">: {{service.price}}</mb-inline></td>
+				</tr>
+				<tr>
+					<td mb-translate="">Off  </td>
+					<td><mb-inline
+							ng-model="service.off"
+							mb-inline-enable="{{true}}"
+							mb-inline-type="text"
+							mb-inline-on-save="update()">: {{service.off}}</mb-inline></td>
+				</tr>
+			</table>
+		</div>
+		<div layout-gt-xs="row"
+			 layout="column">
+			<span flex></span>
+			<md-button 
+				class = "md-raised md-accent"
+				ng-click="remove()">
+				<span mb-translate="">Delete</span>
+			</md-button>
+		</div>
+	</mb-titled-block>
 
-    <!-- Metafields -->
-    <mb-titled-block
-        ng-show="!ctrl.edit"
-        mb-title="{{'Meta fields' | translate}}"
-        mb-progress="ctrl.loading || ctrl.loadingMetas"
-        layout="column">
-        <table class="mb-table mb-shop-table">
-            <thead>
-                <tr md-colors="{color: 'primary-700'}">
-                    <td style="width: 20%" mb-translate="">Field key</td>
-                    <td style="width: 20%" mb-translate="">Field value</td>
-                    <td style="width: 20%" mb-translate="">Unit</td>
-                    <td style="width: 20%" mb-translate="">Namespace</td>
-                    <td mb-translate style="width: 10%;text-align: center;"></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="meta in metafeilds">
-                    <td>
-            <am-wb-inline
-                ng-model="meta.key"
-                am-wb-inline-enable="false"
-                am-wb-inline-type="text"
-                am-wb-inline-label="{{'Field key'  | translate}}"
-                am-wb-inline-on-save="inlineUpdateMetafield(meta)">
-                <p> {{meta.key}} </p>
-            </am-wb-inline>
-            </td>
-            <td>
-            <am-wb-inline
-                ng-model="meta.value"
-                am-wb-inline-enable="true"
-                am-wb-inline-type="text"
-                am-wb-inline-label="{{'Field value'  | translate}}"
-                am-wb-inline-on-save="inlineUpdateMetafield(meta)">
-                <p> {{meta.value}} </p>
-            </am-wb-inline>
-            </td>
-            <td>
-            <am-wb-inline
-                ng-model="meta.unit"
-                am-wb-inline-enable="true"
-                am-wb-inline-type="text"
-                am-wb-inline-label="{{Unit  | translate}}"
-                am-wb-inline-on-save="inlineUpdateMetafield(meta)">
-                <p> {{meta.unit}} </p>
-            </am-wb-inline>
-            </td>
-            <td>
-            <am-wb-inline
-                ng-model="meta.namespace"
-                am-wb-inline-enable="true"
-                am-wb-inline-type="text"
-                am-wb-inline-label="{{'Namespace'  | translate}}"
-                am-wb-inline-on-save="inlineUpdateMetafield(meta)">
-                <p> {{meta.namespace}} </p>
-            </am-wb-inline>
-            </td>
-            <td style="text-align: center;">
-                <div layout="row">
-                    <md-button class="md-icon-button md-primary"
-                               ng-click="updateMetafield(meta)"
-                               aria-label="edit metafield">
-                        <mb-icon>edit</mb-icon>
-                    </md-button>
-                    <md-button class="md-icon-button md-accent"
-                               ng-click="removeMetafield(meta)"
-                               aria-label="remove variable">
-                        <mb-icon>delete</mb-icon>
-                    </md-button>
-                </div>
-            </td>
-            </tr>
-            </tbody>
-        </table>
-        <div layout="row">
-            <span flex></span>
-            <md-button
-                layout-align="end center"
-                class="md-icon-button md-raised md-primary"
-                ng-click="addMetafield()"
-                aria-label="add meta data">
-                <mb-icon>add</mb-icon>
-            </md-button>
-        </div>
-    </mb-titled-block>
+	<!-- Metafields -->
+	<mb-titled-block
+		ng-show="!ctrl.edit"
+		mb-title="{{'Meta fields' | translate}}"
+		mb-progress="ctrl.loading || ctrl.loadingMetas"
+		layout="column">
+		<table class="mb-table mb-shop-table">
+			<thead>
+				<tr md-colors="{color: 'primary-700'}">
+					<td style="width: 20%" mb-translate="">Field key</td>
+					<td style="width: 20%" mb-translate="">Field value</td>
+					<td style="width: 20%" mb-translate="">Unit</td>
+					<td style="width: 20%" mb-translate="">Namespace</td>
+					<td mb-translate style="width: 10%;text-align: center;"></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="meta in metafeilds">
+					<td>
+			<am-wb-inline
+				ng-model="meta.key"
+				am-wb-inline-enable="false"
+				am-wb-inline-type="text"
+				am-wb-inline-label="{{'Field key'  | translate}}"
+				am-wb-inline-on-save="inlineUpdateMetafield(meta)">
+				<p> {{meta.key}} </p>
+			</am-wb-inline>
+			</td>
+			<td>
+			<am-wb-inline
+				ng-model="meta.value"
+				am-wb-inline-enable="true"
+				am-wb-inline-type="text"
+				am-wb-inline-label="{{'Field value'  | translate}}"
+				am-wb-inline-on-save="inlineUpdateMetafield(meta)">
+				<p> {{meta.value}} </p>
+			</am-wb-inline>
+			</td>
+			<td>
+			<am-wb-inline
+				ng-model="meta.unit"
+				am-wb-inline-enable="true"
+				am-wb-inline-type="text"
+				am-wb-inline-label="{{Unit  | translate}}"
+				am-wb-inline-on-save="inlineUpdateMetafield(meta)">
+				<p> {{meta.unit}} </p>
+			</am-wb-inline>
+			</td>
+			<td>
+			<am-wb-inline
+				ng-model="meta.namespace"
+				am-wb-inline-enable="true"
+				am-wb-inline-type="text"
+				am-wb-inline-label="{{'Namespace'  | translate}}"
+				am-wb-inline-on-save="inlineUpdateMetafield(meta)">
+				<p> {{meta.namespace}} </p>
+			</am-wb-inline>
+			</td>
+			<td style="text-align: center;">
+				<div layout="row">
+					<md-button class="md-icon-button md-primary"
+							   ng-click="updateMetafield(meta)"
+							   aria-label="edit metafield">
+						<mb-icon>edit</mb-icon>
+					</md-button>
+					<md-button class="md-icon-button md-accent"
+							   ng-click="removeMetafield(meta)"
+							   aria-label="remove variable">
+						<mb-icon>delete</mb-icon>
+					</md-button>
+				</div>
+			</td>
+			</tr>
+			</tbody>
+		</table>
+		<div layout="row">
+			<span flex></span>
+			<md-button
+				layout-align="end center"
+				class="md-icon-button md-raised md-primary"
+				ng-click="addMetafield()"
+				aria-label="add meta data">
+				<mb-icon>add</mb-icon>
+			</md-button>
+		</div>
+	</mb-titled-block>
 
-    <!--Categories the service could be assigned to. -->
-    <mb-titled-block 
-        ng-show="!ctrl.edit"
-        mb-progress="ctrl.loading || loadingCategories || updatingCategories"
-        mb-title="{{'Categories' | translate}}"
-        layout="column">
+	<!--Categories the service could be assigned to. -->
+	<mb-titled-block 
+		ng-show="!ctrl.edit"
+		mb-progress="ctrl.loading || loadingCategories || updatingCategories"
+		mb-title="{{'Categories' | translate}}"
+		layout="column">
 
-        <md-list flex ng-if="categories"> 
-            <md-list-item 
-                ng-repeat="category in categories track by $index"
-                class="md-2-line" 
-                ng-href="{{'categories/' + category.id}}">
+		<md-list flex ng-if="categories"> 
+			<md-list-item 
+				ng-repeat="category in categories track by $index"
+				class="md-2-line" 
+				ng-href="{{'categories/' + category.id}}">
 
-                <img ng-if="category.thumbnail" ng-src="{{category.thumbnail}}"  class="md-avatar" />
-                <mb-icon ng-if="!category.thumbnail">folder_special</mb-icon>
-                <div class="md-list-item-text" layout="column">
-                    <h3>{{category.name}}</h3>
-                    <p>{{category.description}}</p>
-                </div>
-                <mb-icon
-                    class="md-secondary"
-                    ng-click="ctrl.removeCategories(category)"
-                    aria-label="delete">delete</mb-icon>
-                <md-divider md-inset></md-divider> 
-            </md-list-item>
-        </md-list>
+				<img ng-if="category.thumbnail" ng-src="{{category.thumbnail}}"  class="md-avatar" />
+				<mb-icon ng-if="!category.thumbnail">folder_special</mb-icon>
+				<div class="md-list-item-text" layout="column">
+					<h3>{{category.name}}</h3>
+					<p>{{category.description}}</p>
+				</div>
+				<mb-icon
+					class="md-secondary"
+					ng-click="ctrl.removeCategories(category)"
+					aria-label="delete">delete</mb-icon>
+				<md-divider md-inset></md-divider> 
+			</md-list-item>
+		</md-list>
 
-        <div layout="column"
-             ng-if="!categories || categories.length === 0">
-            <p style="text-align: center" mb-translate="">Nothing found.</p>
-        </div>
+		<div layout="column"
+			 ng-if="!categories || categories.length === 0">
+			<p style="text-align: center" mb-translate="">Nothing found.</p>
+		</div>
 
-        <div layout="row">
-            <span flex></span>
-            <md-button 
-                class="md-raised md-primary" 
-                ng-click="selectCategories()">
-                <span mb-translate="">Add</span>
-            </md-button>
-        </div>
-    </mb-titled-block>
+		<div layout="row">
+			<span flex></span>
+			<md-button 
+				class="md-raised md-primary" 
+				ng-click="selectCategories()">
+				<span mb-translate="">Add</span>
+			</md-button>
+		</div>
+	</mb-titled-block>
 </md-content>
 
