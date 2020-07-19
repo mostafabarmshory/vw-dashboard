@@ -30,11 +30,11 @@
 					layout="column">
 					<h3>{{gate.title}}</h3>
 					<h4>{{gate.home}}</h4>
-					<p>{{gate.description}}</p>
+					<!--<p>{{gate.description}}</p>-->
 				</div>
 				<md-button
 					class="md-icon-button"
-					ng-click="remove(gate)"
+					ng-click="ctrl.deleteGate(gate)"
 					ng-aria="Remove gate">
 					<mb-icon>delete</mb-icon>
 				</md-button>

@@ -52,8 +52,9 @@ mblowfish.addConstants({
 	// ACTIONS
 	//------------------------------------------------------------
 	AMD_BANK_GATES_DELETE_ACTION: 'amd.bank.gate.delete',
-	AMD_BANK_GATES_EDIT_ACTION: 'amd.bank.gate.edit',
+	AMD_BANK_GATES_EDIT_ACTION:   'amd.bank.gate.edit',
 	AMD_BANK_GATES_CREATE_ACTION: 'amd.bank.gate.create',
+	AMD_BANK_GATES_UPDATE_ACTION: 'amd.bank.gate.update',
 });
 
 
@@ -144,11 +145,6 @@ mblowfish.config(function($mbViewProvider, $mbEditorProvider) {
 			controller: 'AmdBankWalletCtrl',
 			controllerAs: 'ctrl',
 		})
-		.addEditor('/bank/gates/:gateId', {
-			controller: 'AmdBankGateCtrl',
-			controllerAs: 'ctrl',
-			templateUrl: 'views/amd-bank-gate.html',
-		}) //
 		.addEditor('/bank/receipts/:id', {
 			templateUrl: 'views/amd-bank-receipt.html',
 			controller: 'AmdBankReceiptCtrl',

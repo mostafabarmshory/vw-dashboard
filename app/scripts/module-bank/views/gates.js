@@ -3,6 +3,13 @@ mblowfish.addView('/bank/gates', {
 	icon: 'attach_money',
 	controller: function($scope, $controller, $bank, $mbActions) {
 		'ngInject';
+
+		function deleteGate(gate) {
+			return $mbActions.exec(AMD_BANK_GATES_DELETE_ACTION, {
+				values: [gate]
+			});
+		}
+
 		/*
 		 * Extends collection controller
 		 */
@@ -26,16 +33,9 @@ mblowfish.addView('/bank/gates', {
 		};
 
 		// delete account
-		this.deleteModel = function(content) {
-			return $bank.deleteBackend(content.id);
-		};
+		this.deleteModel = deleteGate;
+		this.deleteGate = deleteGate;
 
-		this.deleteGate = function(gate) {
-			return $mbActions.exec(AMD_BANK_GATES_DELETE_ACTION, {
-				values: [gate]
-			});
-		};
-		
 		this.editGate = function(gate) {
 			return $mbActions.exec(AMD_BANK_GATES_EDIT_ACTION, {
 				values: [gate],
@@ -47,6 +47,6 @@ mblowfish.addView('/bank/gates', {
 		});
 	},
 	controllerAs: 'ctrl',
-	templateUrl: 'views/bank/views/gates.html',
+	templateUrl: 'scripts/module-bank/views/gates.html',
 	groups: ['Finance'],
 });

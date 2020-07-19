@@ -1,0 +1,42 @@
+<md-content>
+	<mb-titled-block
+		ng-if="!ctrl.edit"
+		mb-progress="ctrl.loading"
+		mb-title="{{'Gate' | translate}}"
+		layout="column">
+
+		<div layout="row" 
+			 layout-xs="column" 
+			 layout-align-xs="center center" 
+			 layout-padding>
+			<img 
+				width="100px" 
+				height="100px" 
+				style="border-radius: 10px"
+				ng-src="{{gate.symbol|| gate.url|| ('images/bank/' + gate.symbol + '.svg')}}" />
+			<table>
+				<tr>
+					<td mb-translate="">ID</td>
+					<td>: {{::gate.id}}</td>
+				</tr>
+				<tr>
+					<td mb-translate="">Title</td>
+					<td>: {{gate.title}}</td>
+				</tr>
+				<tr>
+					<td mb-translate="">Description</td>
+					<td>: {{gate.description}}</td>
+				</tr>
+			</table>
+		</div>
+		<div layout-gt-xs="row"
+			 layout="column">
+			<span flex></span>
+			<md-button 
+				class = "md-raised md-accent"
+				ng-click="ctrl.deleteGate($event)">
+				<span mb-translate="">Delete</span>
+			</md-button>
+		</div>
+	</mb-titled-block>
+</md-content>

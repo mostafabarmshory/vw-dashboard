@@ -51,6 +51,6 @@ mblowfish.addView('/bank/gates-new', {
 		$scope.newGate = newGate;
 		$scope.loadBankProperties = loadBankProperties;
 	},
-	templateUrl: 'views/bank/views/gates-new.html',
+	templateUrl: 'scripts/module-bank/views/gates-new.html',
 	groups: ['Finance'],
 });
