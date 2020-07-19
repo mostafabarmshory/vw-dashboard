@@ -61,15 +61,25 @@ module.exports = function(grunt) {
 				}
 			},
 			jsTest: {
-				files: ['test/spec/{,*/}*.js'],
+				files: [
+					'test/spec/{,*/}*.js'
+				],
 				tasks: [
 					'newer:jshint:test',
 					'newer:jscs:test',
-					'karma']
+					'karma'
+				]
 			},
 			styles: {
-				files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-				tasks: ['injector', 'newer:copy:styles', 'postcss']
+				files: [
+					'<%= yeoman.app %>/sc/{,*/}*.css',
+					'<%= yeoman.app %>/scripts/**/*.css'
+				],
+				tasks: [
+					'injector',
+					'newer:copy:styles',
+					'postcss'
+				]
 			},
 			gruntfile: {
 				files: ['Gruntfile.js']
@@ -117,7 +127,7 @@ module.exports = function(grunt) {
 								.use('/bower_components', connect.static('./bower_components')));
 						middlewares.push(
 							connect()
-								.use('/app/styles', connect.static('./app/styles')));
+								.use('/app/', connect.static('./app/')));
 						middlewares.push(connect.static(appConfig.app));
 						middlewares.push(connect.static('dist'));
 						options.base.forEach(function(base) {
@@ -435,9 +445,12 @@ module.exports = function(grunt) {
 						dot: true,
 						cwd: '<%= yeoman.app %>',
 						dest: '<%= yeoman.dist %>',
-						src: ['*.{ico,png,txt}', '*.html',
-							'images/{,*/}*.{webp}',
-							'styles/fonts/{,*/}*.*']
+						src: [
+							'*.{ico,png,txt}',
+							'*.html',
+							'images/**/*.{webp}',
+							'styles/fonts/**/*.*'
+						]
 					}, {
 						expand: true,
 						cwd: '.tmp/images',

@@ -60,7 +60,7 @@ mblowfish.addView('/seo/links', {
 		}]);
 	},
 	controllerAs: 'ctrl',
-	templateUrl: 'views/seo/views/links.html',
+	templateUrl: 'scripts/module-seo/views/links.html',
 	groups: ['seo'],
 	title: 'Sitemap links',
 	icon: 'link'

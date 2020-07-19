@@ -20,9 +20,9 @@
 			<label mb-translate>Link (loc)</label>
 			<input name="loc" ng-model="model.loc" type="url" required>
 			<div ng-messages="linkForm.loc.$error">
-		    	<div ng-message="required">{{'This field is required.'  | translate}}</div>
-		    	<div ng-message="url">{{'URL is not valid.'  | translate}}</div>
-		    </div>
+			<div ng-message="required" mb-translate>Link is required.</div>
+			<div ng-message="url" mb-translate>URL is not valid.</div>
+		</div>
 		</md-input-container>
 		<md-input-container>
 			<label mb-translate>Last Modification</label>
@@ -33,20 +33,24 @@
 		<md-input-container>
 			<label mb-translate>Change Frequency</label>
 			<md-select ng-model="model.changefreq">
-              <md-option ng-repeat="item in changeFrequencies" value="{{item.value}}">
-                {{item.title}}
-              </md-option>
-            </md-select>
+				<md-option ng-repeat="item in changeFrequencies" value="{{item.value}}">
+					{{item.title}}
+				</md-option>
+			</md-select>
 		</md-input-container>
 		<md-input-container>
 			<label mb-translate>Priority</label>
-			<input name="priority" type="number" 
-				ng-model="model.priority" 
-				min="0.0" max="1.0" step="0.01">
+			<input
+				name="priority"
+				type="number"
+				ng-model="model.priority"
+				min="0.0"
+				max="1.0"
+				step="0.01">
 			<div ng-messages="linkForm.priority.$error">
-		    	<div ng-message="min">{{'Minimum value is 0.0.'  | translate}}</div>
-		    	<div ng-message="max">{{'Maximum value is 1.0.'  | translate}}</div>
-		    </div>
+			<div ng-message="min" mb-translate>Minimum value is 0.0.</div>
+			<div ng-message="max" mb-translate>Maximum value is 1.0.</div>
+		</div>
 		</md-input-container>
 	
 		<div layout="row">

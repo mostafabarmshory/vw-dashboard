@@ -1,6 +1,6 @@
 
 mblowfish.addView('/seo/crawled-links', {
-	templateUrl: 'views/seo/views/crawled-links.html',
+	templateUrl: 'scripts/module-seo/views/crawled-links.html',
 	controller: function($scope, $navigator, $mbTranslate, $seo, $controller, $mbActions) {
 		'ngInject';
 

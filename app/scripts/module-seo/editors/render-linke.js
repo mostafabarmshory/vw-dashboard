@@ -1,5 +1,5 @@
 mblowfish.addEditor('/seo/crawled-links/:crawledLinkId/render', {
-	templateUrl: 'views/seo/editors/render-link.html',
+	templateUrl: 'scripts/module-seo/editors/render-link.html',
 	controller: function($scope, $element, $state, $sce, $seoContent, $seo) {
 		'ngInject';
 		// controller attributes
