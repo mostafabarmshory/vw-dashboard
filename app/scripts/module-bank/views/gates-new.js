@@ -1,8 +1,11 @@
 mblowfish.addView('/bank/gates-new', {
 	title: 'New bank gate',
 	icon: 'add',
-	controller: function($scope, $bank, $navigator, $mbTranslate) {
-
+	templateUrl: 'scripts/module-bank/views/gates-new.html',
+	groups: ['Finance'],
+	controllerAs: 'ctrl',
+	controller: function($scope, $bank, $mbActions) {
+		'ngInject';
 		/**
 		 * Load banks
 		 * 
@@ -25,22 +28,14 @@ mblowfish.addView('/bank/gates-new', {
 		function newGate(bank, data) {
 			$scope.creatingNewGate = true;
 			data.type = bank.type;
-			return $bank.putBackend(data)//
-				.then(function() {
-					toast($mbTranslate.instant('New bank gate is created successfully'));
-					$navigator.openPage('/bank/gates');
-				}, function() {
-					alert($mbTranslate.instant('Fail to create new bank gate'));
-				})//
-				.finally(function() {
-					$scope.creatingNewGate = false;
-				});
+			return $mbActions.exec(AMD_BANK_GATES_CREATE_ACTION, {
+				values: [data]
+			}).finally(function() {
+				$scope.creatingNewGate = false;
+				// TODO: cleare view
+			});
 		}
 
-		// $scope.$watch('_bank', function(value){
-		//	
-		// return loadBankProperties(value);
-		// });
 		/*
 		 * تمام امکاناتی که در لایه نمایش ارائه می‌شود در اینجا نام گذاری شده است.
 		 */
@@ -50,7 +45,13 @@ mblowfish.addView('/bank/gates-new', {
 		$scope._userValus = {};
 		$scope.newGate = newGate;
 		$scope.loadBankProperties = loadBankProperties;
+
+		_.assign(this, {
+			// variables
+			working: false,
+
+			// functions
+			createGate: newGate
+		});
 	},
-	templateUrl: 'scripts/module-bank/views/gates-new.html',
-	groups: ['Finance'],
 });
