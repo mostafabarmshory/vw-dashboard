@@ -100,42 +100,14 @@ mblowfish
 			.setDefalutLayout('default');
 
 		//
-		// $mbAction: manages all actions
-		//
-		$mbActionsProvider
-			.init({
-				items: {
-					'mb.app.navigator.toggle': {
-						title: 'Navigator',
-						description: 'Tooble Navigator Sidenav',
-						icon: 'menu',
-						/* @ngInject */
-						action: function($mbSidenav) {
-							$mbSidenav.getSidenav('/app/navigator').toggle();
-						}
-					}
-				}
-			});
-
-		$mbSidenavProvider.addSidenav('/app/navigator', {
-			title: 'Navigator',
-			description: 'Navigate all path and routs of the pandel',
-			controller: 'MbNavigatorContainerCtrl',
-			controllerAs: 'ctrl',
-			templateUrl: 'views/mb-navigator.html',
-			locked: 'false',
-			position: 'start'
-		});
-		// $mbRouteProvider.otherwise('/dashboard');
-
-
-		//
 		//  By initializing the main toolbar you can add list of action or component
 		// into the toolbar.
 		//
 		$mbToolbarProvider.init([{
 			url: '/dashboard',
-			items: ['mb.app.navigator.toggle']
+			items: [
+				MB_NAVIGATOR_SIDENAV_TOGGLE_ACTION
+			]
 		}, {
 			url: '/cms',
 			items: []
