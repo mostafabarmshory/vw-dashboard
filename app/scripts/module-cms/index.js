@@ -51,6 +51,8 @@ mblowfish.addConstants({
 	// ACTIONS
 	//------------------------------------------------------------
 	AMD_CMS_CONTENTS_EDIT_ACTION: 'amd.cms.contents.edit',
+	AMD_CMS_CONTENTS_DELETE_ACTION: 'amd.cms.contents.delete',
+	AMD_CMS_CONTENTS_UPDATE_ACTION: 'amd.cms.contents.update',
 	AMD_CMS_CONTENTS_PROPERTIES_ACTION: 'amd.cms.contents.properties',
 });
 
@@ -60,11 +62,6 @@ mblowfish.config(function($mbEditorProvider, $mbResourceProvider) {
 
 
 	$mbEditorProvider
-		.addEditor('/cms/contents/:contentId', {
-			controller: 'AmdContentCtrl',
-			controllerAs: 'ctrl',
-			templateUrl: 'views/amd-content.html',
-		})
 		.addEditor('/cms/terms/:termId', {
 			controller: 'AmdCmsTermCtrl',
 			controllerAs: 'ctrl',

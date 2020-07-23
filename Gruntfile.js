@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 	require('time-grunt')(grunt);
 	//MODIFIED: add require for connect-modewrite
 	var modRewrite = require('connect-modrewrite');
+	var serveStatic = require('serve-static');
 
 	// Automatically load required Grunt tasks
 	require('jit-grunt')(grunt, {
@@ -72,8 +73,7 @@ module.exports = function(grunt) {
 			},
 			styles: {
 				files: [
-					'<%= yeoman.app %>/sc/{,*/}*.css',
-					'<%= yeoman.app %>/scripts/**/*.css'
+					'<%= yeoman.app %>/**/*.css'
 				],
 				tasks: [
 					'injector',
@@ -118,24 +118,26 @@ module.exports = function(grunt) {
 				options: {
 					open: true,
 					middleware: function(connect, options) {
-						var middlewares = [];
+						var middlewares = [
+							modRewrite(['!/api/.*|.*\\..* /index.html [L]']),
+							serveStatic('.tmp'),
+							connect().use('/bower_components', serveStatic('./bower_components')),
+							connect().use('/app/', serveStatic('./app/')),
+							serveStatic(appConfig.app),
+							serveStatic('dist'),
+							function(req, res, next) {
+								res.setHeader('Content-Disposition', 'inline');
+								res.setHeader('content-disposition', 'inline');
+								return next();
+							},
+						];
 						//Matches everything that does not contain a '.' (period)
-						middlewares.push(modRewrite(['!/api/.*|.*\\..* /index.html [L]']));
-						middlewares.push(connect.static('.tmp'));
-						middlewares.push(
-							connect()
-								.use('/bower_components', connect.static('./bower_components')));
-						middlewares.push(
-							connect()
-								.use('/app/', connect.static('./app/')));
-						middlewares.push(connect.static(appConfig.app));
-						middlewares.push(connect.static('dist'));
-						options.base.forEach(function(base) {
-							middlewares.push(connect.static(base));
-						});
 						if (!Array.isArray(options.base)) {
 							options.base = [options.base];
 						}
+						options.base.forEach(function(base) {
+							middlewares.push(serveStatic(base));
+						});
 
 						// Setup the proxy
 						middlewares
@@ -143,7 +145,7 @@ module.exports = function(grunt) {
 
 						// Serve static files
 						options.base.forEach(function(base) {
-							middlewares.push(connect.static(base));
+							middlewares.push(serveStatic(base));
 						});
 
 						return middlewares;
@@ -155,13 +157,13 @@ module.exports = function(grunt) {
 					port: 9001,
 					middleware: function(connect) {
 						return [
-							connect.static('.tmp'),
-							connect.static('test'),
+							serveStatic('.tmp'),
+							serveStatic('test'),
 							connect()
 								.use('/bower_components',
 									connect
 										.static('./bower_components')),
-							connect.static(appConfig.app)];
+							serveStatic(appConfig.app)];
 					}
 				}
 			},
@@ -172,7 +174,7 @@ module.exports = function(grunt) {
 						var middlewares = [];
 						//Matches everything that does not contain a '.' (period)
 						middlewares.push(modRewrite(['!/api/.*|.*\\..* /index.html [L]']));
-						middlewares.push(connect.static(appConfig.dist));
+						middlewares.push(serveStatic(appConfig.dist));
 
 						if (!Array.isArray(options.base)) {
 							options.base = [options.base];
@@ -184,7 +186,7 @@ module.exports = function(grunt) {
 
 						// Serve static files
 						options.base.forEach(function(base) {
-							middlewares.push(connect.static(base));
+							middlewares.push(serveStatic(base));
 						});
 
 						return middlewares;
@@ -332,35 +334,6 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-
-		// The following *-min tasks will produce minified files in the
-		// dist folder
-		// By default, your `index.html`'s <!-- Usemin block --> will
-		// take care of
-		// minification. These next options are pre-configured if you do
-		// not wish
-		// to use the Usemin blocks.
-		//		cssmin: {
-		//			dist: {
-		//				files: {
-		//					'<%= yeoman.dist %>/styles/main.css': [
-		//						'.tmp/styles/{,*/}*.css'
-		//						]
-		//				}
-		//			}
-		//		},
-		//		uglify: {
-		//			dist: {
-		//				files: {
-		//					'<%= yeoman.dist %>/scripts/scripts.js': [
-		//						'<%= yeoman.dist %>/scripts/scripts.js'
-		//						]
-		//				}
-		//			}
-		//		},
-		//		concat: {
-		//			dist: {}
-		//		},
 
 		imagemin: {
 			dist: {
@@ -618,7 +591,7 @@ module.exports = function(grunt) {
 				files: {
 					'<%= yeoman.app %>/index.html': [
 						'<%= yeoman.app %>/scripts/**/*.js',
-						'<%= yeoman.app %>/styles/**/*.css'
+						'<%= yeoman.app %>/**/*.css'
 					],
 				}
 			}
