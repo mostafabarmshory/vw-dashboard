@@ -1,7 +1,7 @@
 
 mblowfish.addEditor('/receipts/:id', {
 	templateUrl: 'views/amd-tenant-receipt.html',
-	controller: function($scope, $state, $tenant, $app, $window) {
+	controller: function($scope, $state, $tenant/*, $app, $window*/) {
 
 		var ctrl = {
 			laoding: false,

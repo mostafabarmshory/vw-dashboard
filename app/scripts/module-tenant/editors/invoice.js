@@ -69,7 +69,7 @@ mblowfish.addEditor('/tenant/invoices/:invoiceId', {
 			$scope.status.success = false;
 		}
 
-		function checkDiscount(code) {
+		function checkDiscount(/*code*/) {
 			// XXX: hadi 1396-11-05: should be used $tenant service to compute discount. $discount service is for other tenants. 
 			// XXX: hadi 1396-11-05: RESTs for discounts of super tenant should be added to $tenant service.  
 

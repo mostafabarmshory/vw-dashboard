@@ -57,9 +57,9 @@ mblowfish.controller('AmdBankWalletToWalletCtrl', function($bank, $rootScope, Qu
 			amount: this.amount,
 			description: this.description
 		})//
-			.then(function(transfer) {
+			.then(function(/*transfer*/) {
 				$window.history.back();
-			}, function(error) {
+			}, function(/*error*/) {
 				alert($mbTranslate.instant('Failed to transfer'));
 			})
 			.finally(function() {

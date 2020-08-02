@@ -56,7 +56,7 @@ mblowfish.addView('/tenant/settings/local-setting', {
 
 		function save() {
 			ctrl.savingSettings = true;
-			var promiseList = []
+			var promiseList = [];
 			for (var i = 0; i < settingKeys.length; i++) {
 				var key = settingKeys[i];
 				if (angular.isDefined($scope.settings[key]) && angular.isFunction($scope.settings[key].update)) {

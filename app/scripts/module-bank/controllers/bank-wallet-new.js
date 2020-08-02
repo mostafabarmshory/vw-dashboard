@@ -29,7 +29,7 @@ mblowfish.controller('AmdBankWalletNewCtrl', function($bank, $navigator, $mbTran
 		}
 		this.creatingWallet = true;
 		var ctrl = this;
-		$bank.putWallet(wallet).then(function(wallet) {
+		$bank.putWallet(wallet).then(function(/*wallet*/) {
 			ctrl.creatingWallet = false;
 			$navigator.openPage('/wallets');
 		}, function() {

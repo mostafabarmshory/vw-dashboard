@@ -50,7 +50,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 
 	// Messages
 	var DELETE_MODEL_MESSAGE = 'Delete the item?';
-	var LOAD_ACTION_FAIL_MESSAGE = 'Fail to load item';
+	//	var LOAD_ACTION_FAIL_MESSAGE = 'Fail to load item';
 	var IMPLEMENT_BY_CHILDREN_ERROR = 'This method must be override in clild class';
 
 	/*
@@ -93,7 +93,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 	 * @return promiss to delete item
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.deleteModel = function(item) {
+	this.deleteModel = function(/*item*/) {
 		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
 	};
 
@@ -114,7 +114,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 	 * @return promiss to get items
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.getModel = function(id) {
+	this.getModel = function(/*id*/) {
 		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
 	};
 
@@ -124,7 +124,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 	 * @memberof SeenAbstractItemCtrl
 	 * @return promiss to add and return an item
 	 */
-	this.updateModel = function(model) {
+	this.updateModel = function(/*model*/) {
 		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
 	};
 
@@ -142,8 +142,8 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 	 * @type Object
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.item;
-	this.itemId;
+//	this.item;
+//	this.itemId;
 
 	/**
 	 * Sets item to view
@@ -161,7 +161,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 	 */
 	this.getItem = function() {
 		return this.item;
-	}
+	};
 
 	/**
 	 * Gets id of the view item
@@ -170,7 +170,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 	 */
 	this.getItemId = function() {
 		return this.itemId;
-	}
+	};
 
 	/**
 	 * Sets id of the view item
@@ -179,7 +179,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 	 */
 	this.setItemId = function(itemId) {
 		this.itemId = itemId;
-	}
+	};
 
 	/**
 	 * Reload item by its ID
@@ -191,20 +191,20 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 		var job = this.getModel(this.itemId)
 			.then(function(item) {
 				ctrl.setItem(item);
-			}, function(error) {
+			}, function(/*error*/) {
 				$window.alert('Fail to load the item ' + ctrl.itemId);
 			});
 		// TODO: maso, 2020: add application job
 		return job;
-	}
+	};
 
 	this.setLastPromis = function(p) {
 		this.__lastPromis = p;
-	}
+	};
 
 	this.getLastPromis = function() {
 		return this.__lastPromis;
-	}
+	};
 
 	/**
 	 * Checks if the state of the controller is busy
@@ -214,7 +214,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 	 */
 	this.isBusy = function() {
 		return this.busy;
-	}
+	};
 
 	/**
 	 * Checks if the state of the controller is dirty
@@ -234,7 +234,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 	 */
 	this.isConfirmationRequired = function() {
 		return this.confirmationRequired;
-	}
+	};
 
 	/**
 	 * Set confirmation
@@ -244,7 +244,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 	 */
 	this.setConfirmationRequired = function(confirmationRequired) {
 		this.confirmationRequired = confirmationRequired;
-	}
+	};
 
 	this.updateItem = function($event) {
 		// prevent default event
@@ -262,7 +262,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 			});
 		// TODO: maso, 2020: add job tos list
 		return job;
-	}
+	};
 
 	/**
 	 * Creates new item with the createItemDialog
@@ -405,7 +405,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 		if (this.seen_abstract_item_supperInit) {
 			this.seen_abstract_item_supperInit(configs);
 		}
-		var ctrl = this;
+//		var ctrl = this;
 		if (!angular.isDefined(configs)) {
 			return;
 		}
@@ -418,7 +418,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 
 		// data query
 		if (configs.dataQuery) {
-			this.setDataQuery(config.dataQuery);
+			this.setDataQuery(configs.dataQuery);
 		}
 
 		// model id

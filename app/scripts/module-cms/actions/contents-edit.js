@@ -27,13 +27,16 @@ mblowfish.addAction(AMD_CMS_CONTENTS_EDIT_ACTION, {
 	groups: ['CMS'],
 	action: function($event, $amdCmsEditors) {
 		'ngInject';
-		
 		var values = $event.values;
-		if(!values || !_.isArray(values)){
+		if (!values || !_.isArray(values)) {
 			return;
 		}
-		_.forEach(values, function(content){
-			$amdCmsEditors.openContent(content);
+		var editorName = $event.editor;
+		if (!_.isUndefined(editorName) && !_.isString(editorName)) {
+			editorName = editorName.name;
+		}
+		_.forEach(values, function(content) {
+			$amdCmsEditors.openContent(content, editorName);
 		});
 	},
 });

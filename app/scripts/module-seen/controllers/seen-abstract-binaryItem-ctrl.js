@@ -64,7 +64,7 @@ mblowfish.controller('MbSeenAbstractBinaryItemCtrl', function($scope, $controlle
 	 * @return promise to delete item
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.deleteModelBinary = function(item) {
+	this.deleteModelBinary = function(/*item*/) {
 		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
 	};
 
@@ -75,7 +75,7 @@ mblowfish.controller('MbSeenAbstractBinaryItemCtrl', function($scope, $controlle
 	 * @return promise to delete item
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.uploadModelBinary = function(item) {
+	this.uploadModelBinary = function(/*item*/) {
 		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
 	};
 
@@ -86,7 +86,7 @@ mblowfish.controller('MbSeenAbstractBinaryItemCtrl', function($scope, $controlle
 	 * @return promise to delete item
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.getModelBinaryUrl = function(item) {
+	this.getModelBinaryUrl = function(/*item*/) {
 		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
 	};
 
@@ -101,7 +101,7 @@ mblowfish.controller('MbSeenAbstractBinaryItemCtrl', function($scope, $controlle
 	//
 	//
 	// -------------------------------------------------------------------------
-	this.itemUrl;
+//	this.itemUrl;
 
 	/**
 	 * Sets itemUrl to view
@@ -126,7 +126,7 @@ mblowfish.controller('MbSeenAbstractBinaryItemCtrl', function($scope, $controlle
 	 * 
 	 * @memberof SeenAbstractBinaryItemCtrl
 	 */
-	this.deleteItemBinary = function() {
+	this.deleteItemBinary = function($event) {
 		// prevent default event
 		if ($event) {
 			$event.preventDefault();
@@ -165,13 +165,13 @@ mblowfish.controller('MbSeenAbstractBinaryItemCtrl', function($scope, $controlle
 	 * Extends init method
 	 */
 	this.supperInit = this.init;
-	this.init = function(config) {
-		var ctrl = this;
+	this.init = function(configs) {
+//		var ctrl = this;
 		if (!angular.isDefined(configs)) {
 			return;
 		}
-		this.setItemUrl(config.url);
-		this.supperInit(config);
+		this.setItemUrl(configs.url);
+		this.supperInit(configs);
 	};
 
 });

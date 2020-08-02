@@ -28,7 +28,7 @@
  * 
  * 
  */
-mblowfish.controller('AmdDiscountsCtrl', function($scope, /*$discount, */$navigator, QueryParameter) {
+mblowfish.controller('AmdDiscountsCtrl', function($scope, $discount, $navigator, QueryParameter) {
 
 	var paginatorParameter = new QueryParameter();
 	paginatorParameter.setOrder('id', 'd');

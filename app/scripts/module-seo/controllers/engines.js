@@ -5,6 +5,6 @@
  *
  * # AmdSeoEnginesCtrl Controller of the ngMaterialDashboardSeo
  */
-mblowfish.controller('AmdSeoEnginesCtrl', function ($scope) {
+mblowfish.controller('AmdSeoEnginesCtrl', function (/*$scope*/) {
 
 });

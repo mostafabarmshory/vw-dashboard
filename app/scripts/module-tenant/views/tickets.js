@@ -65,13 +65,12 @@ mblowfish.addView('/tenant/tickets', {
 				.then(function(subject) {
 					return $tenant.putTicket({
 						subject: subject
-					})//
+					});
 				})
 				.then(function(ticket) {
 					$navigator.openPage('tenant/tickets/' + ticket.id);
 				});//
 		}
-		;
 		function remove() { }
 		function open() { }
 

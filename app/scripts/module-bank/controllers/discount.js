@@ -15,9 +15,9 @@ mblowfish.controller('AmdDiscountCtrl', function($scope, /*$discount,*/ $navigat
 	var discount;
 
 
-	function handlError() {
-		alert('faile to load discount');
-	}
+//	function handlError() {
+//		alert('faile to load discount');
+//	}
 
 	/**
 	 * درخواست مورد نظر را از سیستم حذف می‌کند.
@@ -47,7 +47,7 @@ mblowfish.controller('AmdDiscountCtrl', function($scope, /*$discount,*/ $navigat
 				ctrl.savingDiscount = false;
 			}, function() {
 				alert('An error is occured while updating discount.');
-				ctrl.savingDiscount = false
+				ctrl.savingDiscount = false;
 			});
 	}
 

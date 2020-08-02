@@ -30,36 +30,37 @@ mblowfish.controller('amdRepositorySpaCtrl', function($scope, $state, $tenant) {
 	 */
 	function load() {
 		$scope.working = $tenant.getRepositorySpa($state.params.spaId)//
-		.then(function(spa){
-			$scope.spa = spa;
-			return $scope.spa.getPossibleTransitions();
-		})//
-		.then(function(states){
-			$scope.states = states.items;
-		})//
-		.finally(function(){
-			$scope.working = false;
-		});
+			.then(function(spa) {
+				$scope.spa = spa;
+				return $scope.spa.getPossibleTransitions();
+			})//
+			.then(function(states) {
+				$scope.states = states.items;
+			})//
+			.finally(function() {
+				$scope.working = false;
+			});
 		return $scope.working;
 	}
 
 	/**
 	 * Go to the new state.
 	 */
-	function gotoState(state){
-		if($scope.working){
+	function gotoState(state) {
+		if ($scope.working) {
 			return;
 		}
 		// Load data for state
-		return $scope.working = $scope.spa.putTransition(state)//
-		.then(function(){
-			toast('Process done successfully.');
-		}, function(){
-            alert('Process failed.');
-		})//
-		.finally(function(){
-		    $scope.working = false;
-		});
+		$scope.working = $scope.spa.putTransition(state)//
+			.then(function() {
+				toast('Process done successfully.');
+			}, function() {
+				alert('Process failed.');
+			})//
+			.finally(function() {
+				$scope.working = false;
+			});
+		return $scope.working;
 	}
 
 	/*

@@ -24,7 +24,7 @@
  * @name AmdDiscountNewCtrl
  * @description Manages a new discount view
  */
-mblowfish.controller('AmdDiscountNewCtrl', function($scope, /*$discount, */$mbResource, $navigator) {
+mblowfish.controller('AmdDiscountNewCtrl', function($scope, $discount, $mbResource, $navigator) {
 
 	var ctrl = {
 		savingDiscount: false
@@ -39,7 +39,7 @@ mblowfish.controller('AmdDiscountNewCtrl', function($scope, /*$discount, */$mbRe
 		var data = config.model;
 		$discount
 			.newDiscount(data)//
-			.then(function(obj) {
+			.then(function(/*obj*/) {
 				ctrl.savingDiscount = false;
 				$navigator.openPage('discounts');
 			}, function(error) {
@@ -48,7 +48,7 @@ mblowfish.controller('AmdDiscountNewCtrl', function($scope, /*$discount, */$mbRe
 				if (error.data) {
 					message = error.data.message;
 				}
-				alert('Fail to create discount:' + error.data.message);
+				alert(message);
 			});
 	}
 
@@ -68,7 +68,7 @@ mblowfish.controller('AmdDiscountNewCtrl', function($scope, /*$discount, */$mbRe
 		return $mbResource.get('userId')//
 			.then(function(userId) {
 				$scope.config.model.user = userId;
-			})
+			});
 	};
 
 	$scope.cancel = cancel;

@@ -23,7 +23,7 @@ mblowfish.addEditor('/tenant/tenants/:tenantId', {
 					ctrl.loadOwners(tenant.owners);
 					delete tenant.owners;
 					ctrl.tenant = new TenantTenant(tenant);
-				}, function(error) {
+				}, function(/*error*/) {
 					alert($mbTranslate.instant('Failed to load tenant.'));
 				})//
 				.finally(function() {
@@ -107,7 +107,8 @@ mblowfish.addEditor('/tenant/tenants/:tenantId', {
 								ctrl.owners.push(account);
 							}));
 					});
-					return ctrl.ownersPromise = $q.all(jobs);
+					ctrl.ownersPromise = $q.all(jobs);
+					return ctrl.ownersPromise;
 				})
 				.finally(function() {
 					delete ctrl.ownersPromise;

@@ -33,6 +33,7 @@ mblowfish.addAction(AMD_BANK_GATES_DELETE_ACTION, {
 			return;
 		}
 
+		var message = '';
 		if (values.length === 0) {
 			return $q.resolve([]);
 		} else if (values.length === 1) {

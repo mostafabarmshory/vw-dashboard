@@ -22,41 +22,44 @@
  * SOFTWARE.
  */
 
-
-/**
-@ngdoc Views
-@name CMS Contents
-@description A view of contents
- */
-mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
-	title: 'Contents',
-	controller: function($scope, $controller, $location, $mbActions) {
-		'ngInject';
-		// Extends with ItemsController
-		angular.extend(this, $controller('MbSeenCmsContentsCtrl', {
-			$scope: $scope
-		}));
-		this.openEditor = function(content) {
-			return $mbActions.exec(AMD_CMS_CONTENTS_EDIT_ACTION, {
-				values: [content]
-			});
-		};
-		this.openProperties = function(content) {
-			return $mbActions.exec(AMD_CMS_CONTENTS_PROPERTIES_ACTION, {
-				values: [content],
-			});
-		};
-		this.addAction({
-			title: 'New content',
-			icon: 'add',
-			action: function() {
-				$location.path(AMD_CMS_VIEW_CONTENT_NEW_PATH);
-			}
-		});
-		this.init();
-	},
+mblowfish.addEditor('/cms/document-editor/:contentId', {
+	title: 'Document Editor',
+	icon: 'text',
+	template: '<iframe></iframe>',
 	controllerAs: 'ctrl',
-	templateUrl: 'views/cms/views/contents.html',
-	groups: ['Content Management'],
-	icon: 'image',
+	supportedMimetypes: ['text/html'],
+	controller: function($state, $element, $cms, $httpParamSerializer) {
+		//------------------------------------------------------------------
+		// Functions
+		//------------------------------------------------------------------\
+		function loadObject() {
+			$cms.getContent($state.params.contentId)
+				.then(function(content) {
+					_.assign(content, {
+						url: '/api/v2/cms/contents/' + content.id + '/content'
+					});
+					$element.find('iframe')
+						.attr('src', '/vw-document/?' + $httpParamSerializer(content))
+						//.attr('type', content.mime_type)
+						.css({
+							'flex-grow': 1
+						});
+				});
+		}
+
+		//------------------------------------------------------------------
+		// init
+		//------------------------------------------------------------------
+		loadObject();
+	},
 });
+
+
+
+
+
+
+
+
+
+// https://www.viraweb123.ir/vw-document/?url=/api/v2/cms/contents/13688/content

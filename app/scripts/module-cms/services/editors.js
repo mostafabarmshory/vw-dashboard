@@ -22,9 +22,6 @@ mblowfish.provider('$amdCmsEditors', function() {
 	// functions
 	//-------------------------------------------------
 	function getEditors(mimetypeString) {
-		if (editorCache[mimetypeString]) {
-			return editorCache[mimetypeString];
-		}
 		var mimetype = mbMimetype.parse(mimetypeString);
 		var editors = [];
 		var registred = mbEditor.getRegesterdEditors();
@@ -34,26 +31,43 @@ mblowfish.provider('$amdCmsEditors', function() {
 			}
 			_.forEach(editor.supportedMimetypes, function(type) {
 				if (mbMimetype.isEqual(mimetype, type)) {
-					editors.push(name);
+					editor.name = name;
+					editors.push(editor);
 				}
 			});
 		});
-		editorCache[mimetypeString] = editors;
 		return editors;
 	}
 
-	function openContent(content) {
+	function getEditorsName(mimetypeString) {
+		if (editorCache[mimetypeString]) {
+			return editorCache[mimetypeString];
+		}
+		var names = [];
+		var editors = getEditors(mimetypeString);
+		_.forEach(editors, function(editor) {
+			names.push(editor.name);
+		});
+		editorCache[mimetypeString] = names;
+		return names;
+	}
+
+	function openContent(content, name) {
 		if (!content.mime_type) {
 			throw new TypeError('Content type is not define');
 		}
 		// finally
-		var editors = getEditors(content.mime_type);
-		// find editor
-		if (editors.length > 0) {
-			var name = editors[0];
-			var url = name.replace(':contentId', content.id);
-			return location.path(url);
+		if (!name) {
+			var editors = getEditorsName(content.mime_type);
+			if (editors.length > 0) {
+				name = editors[0];
+			}
 		}
+		if (name) {
+			return location.path(name.replace(':contentId', content.id));
+		}
+
+		// find editor
 		return openProperties(content);
 	}
 
@@ -68,6 +82,7 @@ mblowfish.provider('$amdCmsEditors', function() {
 	service = {
 		openContent: openContent,
 		openProperties: openProperties,
+		getEditors: getEditors,
 	};
 	provider = {
 		$get: function($location, $mbMimetype, $mbEditor) {

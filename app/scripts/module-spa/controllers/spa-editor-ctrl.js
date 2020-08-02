@@ -2,7 +2,7 @@
  * Copyright (c) 2015 Phoenix Scholars Co. (http://dpq.co.ir)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
+ * of this software and associated documentation files (the 'Software'), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
@@ -11,7 +11,7 @@
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
  * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -38,7 +38,7 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 	 */
 	this.update = function() {
 		var ctrl = this;
-		return this.working = spa.update()
+		this.working = spa.update()
 			.then(function() {
 				$window.toast('update is successfully.');
 			}, function() {
@@ -46,6 +46,7 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 			}).finally(function() {
 				delete ctrl.working;
 			});
+		return this.working;
 	};
 
 	/**
@@ -56,9 +57,10 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 	 */
 	this.remove = function() {
 		var ctrl = this;
-		return confirm("delete spa " + $scope.spa.id + "?")//
+		return confirm('delete spa ' + $scope.spa.id + '?')//
 			.then(function() {
-				return ctrl.working = spa.delete();//
+				ctrl.working = spa.delete();//
+				return ctrl.working;
 			})//
 			.then(function() {
 				$location.path('/spas');
@@ -68,18 +70,19 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 			.finally(function() {
 				delete ctrl.working;
 			});
-	}
+	};
 
 	/**
 	 * Load the spa
 	 */
 	this.load = function() {
 		var ctrl = this;
-		return ctrl.working = $tenant.getSpa($state.params.spaId)//
+		ctrl.working = $tenant.getSpa($state.params.spaId)//
 			.then(function(spaLoaded) {
 				$scope.spa = spaLoaded;
 				spa = spaLoaded;
-				return ctrl.working = spa.getPossibleTransitions();
+				ctrl.working = spa.getPossibleTransitions();
+				return ctrl.working;
 			})//
 			.then(function(transList) {
 				$scope.transitions = transList;
@@ -87,7 +90,8 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 			.finally(function() {
 				delete ctrl.working;
 			});
-	}
+		return ctrl.working;
+	};
 
 	/**
 	 * تنظیم به عنوان نرم افزار پیش فرض
@@ -119,8 +123,8 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 	 */
 	this.addTransition = function(state) {
 		var ctrl = this;
-		var data = {};
-		return this.working = spa.putTransition(state)
+		//		var data = {};
+		this.working = spa.putTransition(state)
 			.then(function() {
 				return ctrl.load();
 			}, function(error) {
@@ -129,7 +133,8 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 			.finally(function() {
 				delete ctrl.working;
 			});
-	}
+		return this.working;
+	};
 
 	// Load state
 	this.load();

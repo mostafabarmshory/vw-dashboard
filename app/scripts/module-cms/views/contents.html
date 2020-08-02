@@ -32,7 +32,7 @@
 				</div>
 				<md-menu>
 					<md-button class="md-icon-button"
-						ng-click="$mdMenu.open($event);" 
+						ng-click="ctrl.openMenu(content, $mdMenu, $event);" 
 						aria-label="remove attachment"><mb-icon>more_vert</mb-icon>
 					</md-button>
 					<md-menu-content width="4">
@@ -40,6 +40,15 @@
 							<md-button ng-click="ctrl.openEditor(content, $event)">
 								<mb-icon>edit</mb-icon>
 								<span translate>Open</span>
+							</md-button>
+						</md-menu-item>
+						<md-menu-divider></md-menu-divider>
+						<!-- TODO: show preloading -->
+						<md-menu-item
+							ng-repeat="editor in ctrl.editors">
+							<md-button ng-click="ctrl.openWithSelectedEditor(content, editor, $event)">
+								<mb-icon>{{editor.icon}}</mb-icon>
+								<span translate>{{::editor.title}}</span>
 							</md-button>
 						</md-menu-item>
 						<md-menu-divider></md-menu-divider>

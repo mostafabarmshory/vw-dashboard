@@ -35,14 +35,14 @@ mblowfish.addEditor('/tenant/tickets/:ticketId', {
              * List of all comments
              */
 			comments: []
-		}
+		};
 		$scope.ctrl = ctrl;
 
 		/**
 		 * Load ticket
 		 */
 		function loadTicket() {
-			if (ctrl.status == 'loading') {
+			if (ctrl.status === 'loading') {
 				return;
 			}
 			$scope.ticket = null;

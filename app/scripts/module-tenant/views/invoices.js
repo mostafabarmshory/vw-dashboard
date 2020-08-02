@@ -54,4 +54,4 @@ mblowfish.addView('/tenant/invoices', {
 
 	},
 	controllerAs: 'ctrl',
-})
+});

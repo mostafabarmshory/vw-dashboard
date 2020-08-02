@@ -23,6 +23,8 @@
  */
 
 mblowfish.addEditor('/cms/content-viewer/:contentId', {
+	title: 'Content Viewer',
+	icon: 'face',
 	template: '<div></div>',
 	controllerAs: 'ctrl',
 	supportedMimetypes: ['*/*'],
