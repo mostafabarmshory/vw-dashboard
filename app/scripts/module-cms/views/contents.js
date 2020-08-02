@@ -30,6 +30,10 @@
  */
 mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
 	title: 'Contents',
+	controllerAs: 'ctrl',
+	templateUrl: 'scripts/module-cms/views/contents.html',
+	groups: ['Content Management'],
+	icon: 'image',
 	controller: function($scope, $controller, $location, $mbActions, $amdCmsEditors) {
 		'ngInject';
 		// Extends with ItemsController
@@ -72,8 +76,4 @@ mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
 
 		this.init();
 	},
-	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-cms/views/contents.html',
-	groups: ['Content Management'],
-	icon: 'image',
 });

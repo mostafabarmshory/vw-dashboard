@@ -27,6 +27,7 @@ mblowfish.addEditor('/cms/contents/:contentId', {
 	controllerAs: 'ctrl',
 	controller: function($state, $editor, $scope, $window, $controller, $q, $mbResource,
 		$cms, CmsContent, CmsContentMetadata) {
+		'ngInject';
 
 
 		// Extends collection controller from MbAbstractCtrl 
