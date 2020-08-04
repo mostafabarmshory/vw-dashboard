@@ -41,9 +41,10 @@ mblowfish.addEditor('/cms/document-editor/:contentId', {
 					});
 					$element.find('iframe')
 						.attr('src', '/vw-document/?' + $httpParamSerializer(content))
-						//.attr('type', content.mime_type)
 						.css({
-							'flex-grow': 1
+							'flex-grow': 1,
+							'border': 'none',
+							'overflow': 'hidden'
 						});
 				});
 		}
