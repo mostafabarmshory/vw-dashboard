@@ -3,7 +3,7 @@ mblowfish.addView('/tenant/settings/security', {
 	templateUrl: 'scripts/module-tenant/views/security-settings.html',
 	controller: function($scope, $tenant, $q) {
 
-		$scope.options = ["nocaptcha", "recaptcha"];
+		$scope.options = ['nocaptcha', 'recaptcha'];
 
 	    /**
 	     * Gets information of a setting with given key. If there is no such setting
