@@ -38,7 +38,7 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 	 */
 	this.update = function() {
 		var ctrl = this;
-		return this.working = spa.update()
+		this.working = spa.update()
 			.then(function() {
 				$window.toast('update is successfully.');
 			}, function() {
@@ -46,6 +46,7 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 			}).finally(function() {
 				delete ctrl.working;
 			});
+		return this.working;
 	};
 
 	/**
@@ -56,9 +57,10 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 	 */
 	this.remove = function() {
 		var ctrl = this;
-		return confirm("delete spa " + $scope.spa.id + "?")//
+		return confirm('delete spa ' + $scope.spa.id + '?')//
 			.then(function() {
-				return ctrl.working = spa.delete();//
+				ctrl.working = spa.delete();
+				return ctrl.working;//
 			})//
 			.then(function() {
 				$location.path('/spas');
@@ -68,18 +70,19 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 			.finally(function() {
 				delete ctrl.working;
 			});
-	}
+	};
 
 	/**
 	 * Load the spa
 	 */
 	this.load = function() {
 		var ctrl = this;
-		return ctrl.working = $tenant.getSpa($state.params.spaId)//
+		ctrl.working = $tenant.getSpa($state.params.spaId)//
 			.then(function(spaLoaded) {
 				$scope.spa = spaLoaded;
 				spa = spaLoaded;
-				return ctrl.working = spa.getPossibleTransitions();
+				ctrl.working = spa.getPossibleTransitions();
+				return ctrl.working;
 			})//
 			.then(function(transList) {
 				$scope.transitions = transList;
@@ -87,7 +90,8 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 			.finally(function() {
 				delete ctrl.working;
 			});
-	}
+		return ctrl.working;
+	};
 
 	/**
 	 * تنظیم به عنوان نرم افزار پیش فرض
@@ -119,8 +123,7 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 	 */
 	this.addTransition = function(state) {
 		var ctrl = this;
-		var data = {};
-		return this.working = spa.putTransition(state)
+		this.working = spa.putTransition(state)
 			.then(function() {
 				return ctrl.load();
 			}, function(error) {
@@ -129,7 +132,8 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 			.finally(function() {
 				delete ctrl.working;
 			});
-	}
+		return this.working;
+	};
 
 	// Load state
 	this.load();
