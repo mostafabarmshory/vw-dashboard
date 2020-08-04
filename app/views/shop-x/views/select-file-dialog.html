@@ -1,0 +1,33 @@
+<md-dialog 
+	layout="column"
+	ng-cloak
+	flex="50">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2 mb-translate="">{{::style.title}}</h2>
+			<span flex></span>
+			<md-button 
+				class="md-icon-button" 
+				ng-click="answer(config, $event)"
+				ng-disabled="myForm.$invalid">
+				<mb-icon aria-label="Close dialog">done</mb-icon>
+			</md-button>
+			<md-button 
+				class="md-icon-button" 
+				ng-click="cancel($event)">
+				<mb-icon aria-label="Close dialog">close</mb-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-dialog-content 
+		layout="column"
+		mb-preloading="ctrl.importing">
+		<md-input-container>
+			<lf-ng-md-file-input lf-files="config.files" progress preview drag required></lf-ng-md-file-input>
+			<div ng-messages="!lf-files.file[0]">
+		      <div ng-message="required">This is required!</div>
+		    </div>
+		</md-input-container>
+	</md-dialog-content>
+</md-dialog>
+
