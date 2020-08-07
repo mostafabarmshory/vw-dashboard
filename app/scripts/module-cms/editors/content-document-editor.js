@@ -22,6 +22,10 @@
  * SOFTWARE.
  */
 
+/*
+
+@see https://github.com/mozilla/pdf.js/wiki/Viewer-options
+*/
 mblowfish.addEditor('/cms/document-editor/:contentId', {
 	title: 'Document Editor',
 	icon: 'text',
@@ -37,7 +41,7 @@ mblowfish.addEditor('/cms/document-editor/:contentId', {
 			$cms.getContent($state.params.contentId)
 				.then(function(content) {
 					_.assign(content, {
-						url: '/api/v2/cms/contents/' + content.id + '/content'
+						file: '/api/v2/cms/contents/' + content.id + '/content'
 					});
 					$element.find('iframe')
 						.attr('src', '/vw-document/?' + $httpParamSerializer(content))
