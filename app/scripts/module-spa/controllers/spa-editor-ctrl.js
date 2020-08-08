@@ -59,7 +59,7 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 		var ctrl = this;
 		return confirm('delete spa ' + $scope.spa.id + '?')//
 			.then(function() {
-				ctrl.working = spa.delete();//
+				ctrl.working = spa.delete();
 				return ctrl.working;
 			})//
 			.then(function() {
@@ -123,7 +123,6 @@ mblowfish.controller('AmdTenantSpaCtrl', function(
 	 */
 	this.addTransition = function(state) {
 		var ctrl = this;
-		//		var data = {};
 		this.working = spa.putTransition(state)
 			.then(function() {
 				return ctrl.load();
