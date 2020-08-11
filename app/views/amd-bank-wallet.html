@@ -5,7 +5,7 @@
     <mb-titled-block 
         ng-show="!ctrl.edit"
         mb-progress="ctrl.loading || ctrl.saving"
-        mb-title="{{'Wallet'| translate}}"
+        mb-title="{{'Wallet' | translate}}"
         layout="column">
 
         <div layout="row" 
@@ -15,41 +15,41 @@
 
             <table>
                 <tr>
-                    <td translate="">ID </td>
+                    <td mb-translate="">ID </td>
                     <td>: {{ctrl.wallet.id}}</td>
                 </tr>
                 <tr>
-                    <td translate="">Title </td>
+                    <td mb-translate="">Title </td>
                     <td>: {{ctrl.wallet.title}}</td>
                 </tr>
                 <tr>
-                    <td translate="">Currency </td>
+                    <td mb-translate="">Currency </td>
                     <td>: {{ctrl.wallet.currency}}</td>
                 </tr>
                 <tr>
-                    <td translate="">Total deposit </td>
+                    <td mb-translate="">Total deposit </td>
                     <td>: {{ctrl.wallet.total_deposit|| 0}}</td>
                 </tr>
                 <tr>
-                    <td translate="">Total withdrawal </td>
+                    <td mb-translate="">Total withdrawal </td>
                     <td>: {{ctrl.wallet.total_withdraw|| 0}}</td>
                 </tr>
 
                 <tr>
-                    <td translate="">Balance </td>
+                    <td mb-translate="">Balance </td>
                     <td>: {{ctrl.wallet.total_deposit - ctrl.wallet.total_withdraw|| 0}}</td>
                 </tr>
 
                 <tr>
-                    <td translate="">Description </td>
+                    <td mb-translate="">Description </td>
                     <td>: {{ctrl.wallet.description}}</td>
                 </tr>
                 <tr>
-                    <td translate="">Creation Date </td>
+                    <td mb-translate="">Creation Date </td>
                     <td>: {{ctrl.wallet.creation_dtime| mbDate:'jYYYY-jMM-jDD hh:mm:ss'}}</td>
                 </tr>
                 <tr>
-                    <td translate="">Last Modified Date </td>
+                    <td mb-translate="">Last Modified Date </td>
                     <td>: {{ctrl.wallet.modif_dtime| mbDate:'jYYYY-jMM-jDD hh:mm:ss'}}</td>
                 </tr>
             </table>
@@ -61,13 +61,13 @@
                 ng-if="app.user.current.id == ctrl.wallet.owner_id"
                 class = "md-raised md-accent"
                 ng-click="ctrl.remove()">
-                <span translate="">Delete</span>
+                <span mb-translate="">Delete</span>
             </md-button>
             <md-button 
                 ng-if="app.user.current.id == ctrl.wallet.owner_id"
                 class="md-raised md-primary"
                 ng-click="ctrl.edit = true;">
-                <span translate="">Edit</span>
+                <span mb-translate="">Edit</span>
             </md-button>
         </div>
     </mb-titled-block>
@@ -76,7 +76,7 @@
     <mb-titled-block 
         ng-show="ctrl.edit"
         mb-progress="ctrl.saving"
-        mb-title="{{'Edit wallet'| translate}}"
+        mb-title="{{'Edit wallet' | translate}}"
         layout="column">
 
         <form
@@ -85,20 +85,20 @@
             layout="column" 
             flex>
             <md-input-container>
-                <label translate="">Title</label>
+                <label mb-translate="">Title</label>
                 <input ng-model="ctrl.wallet.title" name="title" required></input>
                 <div ng-messages="myForm.title.$error">
-                    <div ng-message="required"><span translate="">This field is required.</span></div>
+                    <div ng-message="required"><span mb-translate="">This field is required.</span></div>
                 </div>
             </md-input-container>
 
             <md-input-container>
-                <label translate="">Currency</label>
+                <label mb-translate="">Currency</label>
                 <input ng-model="ctrl.wallet.currency" required></input>
             </md-input-container>
 
             <md-input-container>
-                <label translate="">Description</label>
+                <label mb-translate="">Description</label>
                 <input ng-model="ctrl.wallet.description"></input>
             </md-input-container>
 
@@ -108,13 +108,13 @@
                 <md-button 
                     class="md-raised md-accent"
                     ng-click="ctrl.edit = false">
-                    <span translate="">Cancel</span>
+                    <span mb-translate="">Cancel</span>
                 </md-button>
                 <md-button
                     class="md-raised md-primary"  
                     ng-disabled="myForm.$invalid"
                     ng-click="ctrl.update()">
-                    <span translate="">Save</span>
+                    <span mb-translate="">Save</span>
                 </md-button>
             </div>
         </form>
@@ -124,15 +124,15 @@
     <md-content>
         <md-tabs md-dynamic-height md-border-bottom>
             <!--Transfers-->
-            <md-tab label="{{'Transfers'| translate}}">
+            <md-tab label="{{'Transfers' | translate}}">
                 <md-content class="md-padding">
+<!--                        ng-controller="AmdBankWalletTransfersCtrl as transferCtrl"-->
                     <div
-                        ng-controller="AmdBankWalletTransfersCtrl as transferCtrl"
                         mb-preloading="transferCtrl.state === 'ideal'"
                         layout="column"
                         flex>
                         <mb-pagination-bar
-                            mb-title="{{'Transfers'| translate}}"
+                            mb-title="{{'Transfers' | translate}}"
                             mb-model="transferCtrl.queryParameter"
                             mb-sort-keys="transferCtrl.getProperties()"
                             mb-more-actions="transferCtrl.moreActions">
@@ -154,12 +154,12 @@
                                     ng-repeat="transfer in transferCtrl.items track by transfer.id"
                                     ng-if="transfer.to_wallet_id === transferCtrl.wallet.id"
                                     class="md-3-line">
-                                    <wb-icon>control_point</wb-icon>
+                                    <mb-icon>control_point</mb-icon>
                                     <div 
                                         class="md-list-item-text" 
                                         layout="column">
-                                        <h3><span translate="">Amount</span>: {{::transfer.amount|| 0}}</h3>
-                                        <h4><span translate>From wallet</span>: {{::transfer.from_wallet_id}}</h4>
+                                        <h3><span mb-translate="">Amount</span>: {{::transfer.amount|| 0}}</h3>
+                                        <h4><span mb-translate>From wallet</span>: {{::transfer.from_wallet_id}}</h4>
                                         <p>{{::transfer.description}}</p>
                                     </div>
                                 </md-list-item>
@@ -167,12 +167,12 @@
                                     ng-repeat="transfer in transferCtrl.items track by transfer.id"
                                     ng-if="transfer.from_wallet_id === transferCtrl.wallet.id"
                                     class="md-3-line">
-                                    <wb-icon>remove_circle_outline</wb-icon>
+                                    <mb-icon>remove_circle_outline</mb-icon>
                                     <div 
                                         class="md-list-item-text" 
                                         layout="column">
-                                        <h3><span translate="">Amount</span>: {{::transfer.amount|| 0}}</h3>
-                                        <h4><span translate>To wallet</span>: {{::transfer.to_wallet_id}}</h4>
+                                        <h3><span mb-translate="">Amount</span>: {{::transfer.amount|| 0}}</h3>
+                                        <h4><span mb-translate>To wallet</span>: {{::transfer.to_wallet_id}}</h4>
                                         <p>{{::transfer.description}}</p>
                                     </div>
                                 </md-list-item>
@@ -182,21 +182,21 @@
                             layout="column"
                             layout-align="center center"
                             ng-if="transferCtrl.state !== 'busy' && (!transferCtrl.items || transferCtrl.items.length === 0)">
-                            <p translate="">No transfers found</p>
+                            <p mb-translate="">No transfers found</p>
                         </div>
                     </div>
                 </md-content>
             </md-tab>
             <!--Payments-->
-            <md-tab label="{{'Payments'| translate}}">
+            <md-tab label="{{'Payments' | translate}}">
                 <md-content class="md-padding">
+<!--                        ng-controller="AmdBankWalletPaymentsCtrl as paymentCtrl"-->
                     <div
-                        ng-controller="AmdBankWalletPaymentsCtrl as paymentCtrl"
                         mb-preloading="paymentCtrl.state === 'ideal'"
                         layout="column"
                         flex>
                         <mb-pagination-bar
-                            mb-title="{{'Payments'| translate}}"
+                            mb-title="{{'Payments' | translate}}"
                             mb-model="paymentCtrl.queryParameter"
                             mb-sort-keys="paymentCtrl.getProperties()"
                             mb-more-actions="paymentCtrl.moreActions">
@@ -218,12 +218,12 @@
                                     ng-repeat="payment in paymentCtrl.items track by payment.id"
                                     ng-href="/wallets/{{ctrl.wallet.id}}/payments/{{payment.id}}"
                                     class="md-3-line">
-                                    <wb-icon>control_point</wb-icon>
+                                    <mb-icon>control_point</mb-icon>
                                     <div 
                                         class="md-list-item-text" 
                                         layout="column">
-                                        <h3><span translate="">Amount</span>: {{::payment.amount|| 0}}</h3>
-                                        <!--<h4><span translate>From wallet</span>: {{::payment.from_wallet_id}}</h4>-->
+                                        <h3><span mb-translate="">Amount</span>: {{::payment.amount|| 0}}</h3>
+                                        <!--<h4><span mb-translate>From wallet</span>: {{::payment.from_wallet_id}}</h4>-->
                                         <p>{{::payment.description}}</p>
                                     </div>
                                 </md-list-item>
@@ -233,7 +233,7 @@
                             layout="column"
                             layout-align="center center"
                             ng-if="paymentCtrl.state !== 'busy' && (!paymentCtrl.items || paymentCtrl.items.length === 0)">
-                            <p translate="">No payments found</p>
+                            <p mb-translate="">No payments found</p>
                         </div>
                     </div>
                 </md-content>

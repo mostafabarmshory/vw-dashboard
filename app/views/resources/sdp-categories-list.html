@@ -17,7 +17,7 @@
 			<md-list-item ng-repeat="object in ctrl.items track by object.id"
 				ng-click="toggleSelect(object)"
 				class="md-3-line">
-				<wb-icon>folder_special</wb-icon>
+				<mb-icon>folder_special</mb-icon>
 				<div class="md-list-item-text" 
 					layout="column">
 					<h3>{{object.id}}</h3>
@@ -35,7 +35,7 @@
 		<div layout="column"
 			layout-align="center center"
 			ng-show="!ctrl.loadingItems && !(ctrl.items && ctrl.items.length)">
-			<h2 translate>Empty list</h2>
+			<h2 mb-translate>Empty list</h2>
 		</div>
 	</md-content>
 </div>

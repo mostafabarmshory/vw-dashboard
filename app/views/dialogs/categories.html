@@ -12,13 +12,13 @@
 	<!-- Categories list -->
 	<div layout="column"
 		ng-if="ctrl.items.length === 0 && !ctrl.loadingItems">
-		<p style="text-align: center" translate="">List is empty.</p>
+		<p style="text-align: center" mb-translate="">List is empty.</p>
 		<div layout="row"
 			layout-align="center center">
 			<md-button class="md-raised" 
 				ng-click="add()">
-				<wb-icon>add</wb-icon>
-				<span translate="">New category</span>
+				<mb-icon>add</mb-icon>
+				<span mb-translate="">New category</span>
 			</md-button>
 		</div>
 	</div>
@@ -28,7 +28,7 @@
 			class="md-2-line" 
 			ng-href="{{'categories/'+pobject.id}}">
 			<img ng-src="{{pobject.avatar}}" ng-if="pobject.avatar" class="md-avatar" />
-			<wb-icon ng-if="!pobject.avatar">folder_special</wb-icon>
+			<mb-icon ng-if="!pobject.avatar">folder_special</mb-icon>
 			<div 
 				class="md-list-item-text" 
 				layout="column">

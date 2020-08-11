@@ -14,13 +14,13 @@
 	<!-- Categories list -->
 	<div layout="column"
 		ng-if="ctrl.items.length == 0 && !ctrl.loading">
-		<p style="text-align: center" translate>List is empty.</p>
+		<p style="text-align: center" mb-translate>List is empty.</p>
 		<div layout="row"
 			layout-align="center center">
 			<md-button class="md-raised" 
 				ng-click="add()">
-				<wb-icon>add</wb-icon>
-				<span translate>New category</span>
+				<mb-icon>add</mb-icon>
+				<span mb-translate>New category</span>
 			</md-button>
 		</div>
 	</div>
@@ -29,7 +29,7 @@
 			ng-repeat="pobject in ctrl.items track by pobject.id"
 			class="md-3-line" 
 			ng-href="{{'sdp/category/'+pobject.id}}">
-			<wb-icon>folder_special</wb-icon>
+			<mb-icon>folder_special</mb-icon>
 			<div 
 				class="md-list-item-text" 
 				layout="column">

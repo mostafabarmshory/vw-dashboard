@@ -1,24 +1,25 @@
 <div  
-	ng-controller="AmdCmsTermTaxonomiesCtrl as ctrl"
-	ng-init="ctrl.setDataQuery('{id, taxonomy, description, count, term{id, name}}')"
-	mb-preloading="ctrl.state === 'busy'"
+	ng-controller="AmdCmsTermTaxonomiesCtrl as ctrlCollection"
+	ng-init="ctrlCollection.setDataQuery('{id, taxonomy, description, count, term{id, name}}')"
+	mb-preloading="ctrlCollection.state === 'busy'"
 	layout="column"
 	flex>
 	<mb-pagination-bar
-        mb-model="ctrl.queryParameter"
-        mb-reload="ctrl.reload()"
-        mb-sort-keys="ctrl.getSortKeys()"
-        mb-more-actions="ctrl.getActions()"
-        mb-properties="ctrl.properties">
+		mb-model="ctrlCollection.queryParameter"
+		mb-reload="ctrlCollection.reload()"
+		mb-sort-keys="ctrlCollection.getSortKeys()"
+		mb-more-actions="ctrlCollection.getActions()"
+		mb-properties="ctrlCollection.properties">
 	</mb-pagination-bar>
 	<md-content
-		mb-infinate-scroll="ctrl.loadNextPage()"
+		mb-infinate-scroll="ctrlCollection.loadNextPage()"
 		layout="column"
 		flex>
 		<md-list flex>
 			<md-list-item 
-				ng-repeat="content in ctrl.items track by content.id"
-				ng-click="multi || resourceCtrl.setSelected(content)"
+				ng-repeat="content in ctrlCollection.items track by content.id"
+				md-colors="resourceCtrl.isSelected(content) ? {background:'accent'} : {}"
+				ng-click="resourceCtrl.toggleSelected(content)"
 				class="md-3-line">
 				<div 
 					class="md-list-item-text" 

@@ -1,0 +1,50 @@
+<md-content 
+	mb-preloading="ctrl.loading"
+	layout-padding
+	flex>
+	
+	<section 
+		layout="column" 
+		layout-align="center center"
+		layout-margin>
+		
+		<table class="receipt-table" 
+			ng-show="!status.assetLoading">
+	        <tbody>
+	            <caption mb-translate>Receipt information</caption>
+	            <tr>
+	                <td mb-translate>Id</td>
+	                <td>{{ctrl.receipt.id}}</td>
+	            </tr>
+	            <tr>
+	                <td mb-translate>Title</td>
+	                <td>{{ctrl.receipt.title}}</td>
+	            </tr>
+	            <tr>
+	                <td mb-translate>Amount</td>
+	                <td>{{ctrl.receipt.amount | iranCurrency:'T'}}</td>
+	            </tr>
+	            <tr>
+	                <td mb-translate>Description</td>
+	                <td>{{ctrl.receipt.description}}</td>
+	            </tr>
+	            <tr>
+	                <td mb-translate>Gate</td>
+	                <td>
+	                        <!--<md-icon md-svg-src="{{ctrl.gate.symbol}}" ng-if="ctrl.gate.symbol"></md-icon>-->
+	                         {{ctrl.receipt.backend}} - {{ctrl.gate.title}}
+	                </td>
+	            </tr>
+	            <tr>
+	                <td mb-translate>Status</td>
+	                <td mb-translate>{{ctrl.receipt.payRef ? 'payed' : 'not payed'}}</td>
+	            </tr>
+	        </tbody>
+		</table>
+	    <md-button 
+	    	ng-disabled="ctrl.receipt.payRef"
+	    	ng-show="!ctrl.receipt.payRef" 
+	    	class="md-raised md-accent" 
+			ng-href="{{ctrl.receipt.callURL}}">{{'complete pay'  | translate}}</md-button>
+	</section>
+</md-content>

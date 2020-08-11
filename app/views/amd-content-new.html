@@ -1,8 +1,4 @@
-<md-content 
-	ng-controller="AmdContentNewCtrl as ctrl"
-	class="md-padding"
-	layout-padding
-	flex>
+<md-content style="overflow: auto;">
 	<form 
 		name="contentForm"
 		ng-action="ctrl.add(config)"
@@ -17,7 +13,7 @@
 			<div ng-messages="contentForm.name.$error">
 				<div ng-message="required">This is required!</div>
 			</div>
-			<wb-icon ng-click="ctrl.generateRandomName()">autorenew</wb-icon>
+			<mb-icon ng-click="ctrl.generateRandomName()">autorenew</mb-icon>
 		</md-input-container>
 		
 		<md-input-container>
@@ -42,14 +38,14 @@
 			<md-button
 				class="md-raised" 
 				ng-click="ctrl.add(config)">
-				<wb-icon aria-label="close">done</wb-icon>
-				<span translate>Add</span>
+				<mb-icon aria-label="close">done</mb-icon>
+				<span mb-translate>Add</span>
 			</md-button>
 			<md-button 
 				class="md-raised" 
 				ng-click="ctrl.cancel()">
-				<wb-icon aria-label="close">close</wb-icon>
-				<span translate>Cancel</span>
+				<mb-icon aria-label="close">close</mb-icon>
+				<span mb-translate>Cancel</span>
 			</md-button>
 		</div>
 	</form>

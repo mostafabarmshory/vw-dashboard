@@ -11,16 +11,16 @@
         flex>
 
         <md-input-container>
-            <label translate="">Title</label>
+            <label mb-translate="">Title</label>
             <input name="title" ng-model="wallet.title" required></input>
             <div 
                 ng-messages="contentForm.title.$error">
-                <div ng-message="required"><span translate="">This field is required.</span></div>
+                <div ng-message="required"><span mb-translate="">This field is required.</span></div>
             </div>
         </md-input-container>
 
         <md-select 
-            placeholder="{{'Currency'| translate}}" 
+            placeholder="{{'Currency' | translate}}" 
             ng-model="wallet.currency" 
             required>
             <md-option 
@@ -33,7 +33,7 @@
         <span flex="5"></span>
         
         <md-input-container>
-            <label translate="">Description</label>
+            <label mb-translate="">Description</label>
             <input ng-model="wallet.description"></input>
         </md-input-container>
 
@@ -43,7 +43,7 @@
                 class="md-raised md-accent" 
                 ng-click="ctrl.cancel()"
                 aria-label="close">
-                <span translate>Cancel</span>
+                <span mb-translate>Cancel</span>
             </md-button>
             <md-button
                 class="md-raised md-primary" 
@@ -51,7 +51,7 @@
                 ng-disabled="contentForm.$invalid"
                 ng-click="ctrl.add(wallet)"
                 aria-label="add wallet">
-                <span translate>Add</span>
+                <span mb-translate>Add</span>
             </md-button>
         </div>
     </form>

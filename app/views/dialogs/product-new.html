@@ -4,18 +4,18 @@
     flex="50">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2 translate="">New product</h2>
+            <h2 mb-translate="">New product</h2>
             <span flex></span>
             <md-button 
                 class="md-icon-button" 
                 ng-click="answer(config)"
                 ng-disabled="myForm.$invalid">
-                <wb-icon aria-label="Close dialog">done</wb-icon>
+                <mb-icon aria-label="Close dialog">done</mb-icon>
             </md-button>
             <md-button 
                 class="md-icon-button" 
                 ng-click="cancel()">
-                <wb-icon aria-label="Close dialog">close</wb-icon>
+                <mb-icon aria-label="Close dialog">close</mb-icon>
             </md-button>
         </div>
     </md-toolbar>
@@ -26,15 +26,15 @@
             layout="column" 
             flex>
             <md-input-container>
-                <label translate="">Name</label>
+                <label mb-translate="">Name</label>
                 <input ng-model="config.title" name="title" required></input>
                 <div ng-messages="myForm.title.$error">
-                    <div ng-message="required" translate="">This field is required.</div>
+                    <div ng-message="required" mb-translate="">This field is required.</div>
                 </div>
             </md-input-container>
 
             <md-input-container>
-                <label translate="">Description</label>
+                <label mb-translate="">Description</label>
                 <input ng-model="config.description"></input>
             </md-input-container>
 
@@ -42,7 +42,7 @@
                 <label tranlate>Price</label>
                 <input ng-model="config.price" type="number" required></input>
                 <div ng-messages="myForm.title.$error">
-                    <div ng-message="required" translate="">This field is required.</div>
+                    <div ng-message="required" mb-translate="">This field is required.</div>
                 </div>
             </md-input-container>
 
@@ -52,17 +52,17 @@
             </md-input-container>
 
             <md-input-container>
-                <label translate="">Manufacturer</label>
+                <label mb-translate="">Manufacturer</label>
                 <input ng-model="config.manufacturer"></input>
             </md-input-container>
 
             <md-input-container>
-                <label translate="">Brand</label>
+                <label mb-translate="">Brand</label>
                 <input ng-model="config.brand"></input>
             </md-input-container>
 
             <md-input-container>
-                <label translate="">Model</label>
+                <label mb-translate="">Model</label>
                 <input ng-model="config.model"></input>
             </md-input-container>
 

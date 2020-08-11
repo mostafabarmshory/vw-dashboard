@@ -4,7 +4,7 @@
 	flex>
 	<mb-titled-block 
 		mb-progress="ctrl.saving"
-		mb-title="{{'New category'| translate}}"
+		mb-title="{{'New category' | translate}}"
 		layout="column">
 		<form
 			name="categoryForm"
@@ -26,7 +26,7 @@
 				</md-input-container>
 				<md-button class="md-icon-button md-raised"
 					ng-click="selectParent()">
-					<wb-icon>touch_app</wb-icon>
+					<mb-icon>touch_app</mb-icon>
 				</md-button>
 			</div>
 			
@@ -35,14 +35,14 @@
 				<md-button 
 					class="md-raised" 
 					ng-click="cancel()">
-	<!-- 				<wb-icon aria-label="close">close</wb-icon> -->
-					<span translate="">Cancel</span>
+	<!-- 				<mb-icon aria-label="close">close</mb-icon> -->
+					<span mb-translate="">Cancel</span>
 				</md-button>
 				<md-button
 					class="md-raised md-primary" 
 					ng-click="add(config)">
-	<!-- 				<wb-icon aria-label="close">done</wb-icon> -->
-					<span translate="">Add</span>
+	<!-- 				<mb-icon aria-label="close">done</mb-icon> -->
+					<span mb-translate="">Add</span>
 				</md-button>
 			</div>
 			

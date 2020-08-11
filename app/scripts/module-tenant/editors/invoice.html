@@ -1,0 +1,35 @@
+<md-content
+	layout="column"
+	layout-align="center center"
+	mb-preloading="status.invoiceLoading || status.gateLoading">
+	
+	<!--'amd-disable-id' define in amdTenantInvoice.js. There, this attribute binds to disableId--> 
+	<amd-tenant-invoice
+		amd-disable-id="true" 
+		title="Invoice details"
+		ng-model="invoice">
+	</amd-tenant-invoice>
+
+	<div
+		layout="column"
+		ng-show="status.success && invoice.status !== 'payed'">
+		<p mb-translate>Select gate to pay</p>
+		<div layout="column" layout-align="center center" ng-if="false">
+			<p>{{error}}</p>
+		</div>
+		<div layout="row" layout-align="center center" ng-if="!status.gateLoading">
+			<md-button 
+				style="text-align: center"
+				ng-repeat="gate in gates"
+				class="md-raised"
+				ng-click="pay(gate, discountCode)">
+				<mb-icon>{{gate.symbol}}</mb-icon>
+				{{gate.title}}
+			</md-button>
+		</div>
+	</div>
+	<div layout="column" layout-align="center center" ng-if="!success">
+		<p>{{error}}</p>
+	</div>
+</md-content>
+

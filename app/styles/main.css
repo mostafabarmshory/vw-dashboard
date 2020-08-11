@@ -1,65 +1,56 @@
-/*
-Rules for sizing the icon.
-*/
-.md-18 {
-	font-size: 18px;
+body {
+	height: 100vh !important;
+	overflow: hidden !important;
+	
+	display: flex;
+	flex-direction: row;
+	
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
 }
 
-.md-24 {
-	font-size: 24px;
+body>main {
+	height: 100% !important;
+	overflow: hidden !important;
+	
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	flex-shrink: 1;
+	
+/*	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;*/
 }
 
-.md-36 {
-	font-size: 36px;
+body>main>mb-toolbar-group {
+	width: 100% !important;
+	flex-grow: 0;
+	flex-shrink: 0;
 }
 
-.md-48 {
-	font-size: 48px;
+body>main>mb-view {
+	width: 100vw !important;
+	flex-grow: 1;
+	flex-shrink: 1;
 }
 
-/*
-Rules for using icons as black on a light background.
-*/
-.md-dark {
-	color: rgba(0, 0, 0, 0.54);
+body>main>mb-status {
+	width: 100vw !important;
+	flex-grow: 0;
+	flex-shrink: 0;
 }
 
-.md-dark.md-inactive {
-	color: rgba(0, 0, 0, 0.26);
+
+.mb_docker_body {
+	width: 100% !important;
 }
 
-/*
-Rules for using icons as white on a dark background.
-*/
-.md-light {
-	color: rgba(255, 255, 255, 1);
-}
-
-.md-light.md-inactive {
-	color: rgba(255, 255, 255, 0.3);
-}
-
-.s24 {
-	width: 24px;
-	height: 24px;
-}
-
-.s36 {
-	width: 36px;
-	height: 36px;
-}
-
-.s48 {
-	width: 48px;
-	height: 48px;
-}
-
-.s64 {
-	width: 64px;
-	height: 64px;
-}
-
-.s128 {
-	width: 128px;
-	height: 128px;
+.mb_docker_panel{
+	width: 100% !important;
 }

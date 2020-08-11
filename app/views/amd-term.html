@@ -3,7 +3,7 @@
     <mb-titled-block 
         ng-show="!ctrl.edit"
         mb-progress="ctrl.loadingTerm || ctrl.savingTerm || ctrl.removingTerm"
-        mb-title="{{'Term'| translate}}"
+        mb-title="{{'Term' | translate}}"
         layout="column">
 
         <div layout="row" 
@@ -13,15 +13,15 @@
 
             <table>
                 <tr>
-                    <td translate="">ID </td>
+                    <td mb-translate="">ID </td>
                     <td>: {{ctrl.term.id}}</td>
                 </tr>
                 <tr>
-                    <td translate="">Name </td>
+                    <td mb-translate="">Name </td>
                     <td>: {{ctrl.term.name}}</td>
                 </tr>
                 <tr>
-                    <td translate="">Slug </td>
+                    <td mb-translate="">Slug </td>
                     <td>: {{ctrl.term.slug}}</td>
                 </tr>
             </table>
@@ -32,12 +32,12 @@
             <md-button 
                 class = "md-raised md-accent"
                 ng-click="ctrl.remove()">
-                <span translate="">Delete</span>
+                <span mb-translate="">Delete</span>
             </md-button>
             <md-button 
                 class="md-raised md-primary"
                 ng-click="ctrl.edit = true;">
-                <span translate="">Edit</span>
+                <span mb-translate="">Edit</span>
             </md-button>
         </div>
     </mb-titled-block>
@@ -45,7 +45,7 @@
     <mb-titled-block 
         ng-show="ctrl.edit"
         mb-progress="ctrl.savingTerm"
-        mb-title="{{'Edit term'| translate}}"
+        mb-title="{{'Edit term' | translate}}"
         layout="column">
 
         <form
@@ -54,18 +54,18 @@
             layout="column" 
             flex>
             <md-input-container>
-                <label translate="">Name</label>
+                <label mb-translate="">Name</label>
                 <input ng-model="ctrl.term.name" name="name" required></input>
                 <div ng-messages="myForm.name.$error">
-                    <div ng-message="required" translate="">This field is required.</div>
+                    <div ng-message="required" mb-translate="">This field is required.</div>
                 </div>
             </md-input-container>
 
             <md-input-container>
-                <label translate="">Slug</label>
+                <label mb-translate="">Slug</label>
                 <input ng-model="ctrl.term.slug" name="slug" required></input>
                 <div ng-messages="myForm.slug.$error">
-                    <div ng-message="required" translate="">This field is required.</div>
+                    <div ng-message="required" mb-translate="">This field is required.</div>
                 </div>
             </md-input-container>
 
@@ -74,13 +74,13 @@
                 <md-button 
                     class="md-raised"
                     ng-click="ctrl.edit = false">
-                    <span translate="">Cancel</span>
+                    <span mb-translate="">Cancel</span>
                 </md-button>
                 <md-button
                     class="md-raised md-primary"  
                     ng-disabled="myForm.$invalid"
                     ng-click="ctrl.save()">
-                    <span translate="">Save</span>
+                    <span mb-translate="">Save</span>
                 </md-button>
             </div>
         </form>
@@ -89,13 +89,13 @@
     <!--Metas of term-->
     <mb-titled-block
         mb-progress="ctrl.loadingMetas || ctrl.updatingMeta || ctrl.addingMeta || ctrl.removingMeta"
-        mb-title="{{'Metas'| translate}}"
+        mb-title="{{'Metas' | translate}}"
         layout="column"
         mb-more-actions="ctrl.metaActions">
 
         <div layout="column"
              ng-if="ctrl.metas.length == 0">
-            <p style="text-align: center" translate="">List is empty.</p>
+            <p style="text-align: center" mb-translate="">List is empty.</p>
         </div>
         <md-list flex>
             <md-list-item 
@@ -104,21 +104,21 @@
                 <div 
                     class="md-list-item-text" 
                     layout="column">
-                    <h3><span translate="">Key</span>: {{meta.key}}</h3>
-                    <h3><span translate="">Value</span>: {{meta.value}}</h3>
+                    <h3><span mb-translate="">Key</span>: {{meta.key}}</h3>
+                    <h3><span mb-translate="">Value</span>: {{meta.value}}</h3>
                 </div>
-                <wb-icon 
+                <mb-icon 
                     class="md-secondary" 
                     ng-click="ctrl.removeMeta(meta, $index)" 
                     aria-label="Delete">
                     delete
-                </wb-icon>
-                <wb-icon 
+                </mb-icon>
+                <mb-icon 
                     class="md-secondary" 
                     ng-click="ctrl.editMeta(meta, $index)" 
                     aria-label="Delete">
                     edit
-                </wb-icon>
+                </mb-icon>
                 <md-divider></md-divider>
             </md-list-item>
         </md-list>
@@ -127,13 +127,13 @@
     <!--taxonomies of term-->
     <mb-titled-block
         mb-progress="ctrl.loadingTaxonomies || ctrl.updatingTaxonomy || ctrl.addingTaxonomy || removingTaxonomy"
-        mb-title="{{'Taxonomies'| translate}}"
+        mb-title="{{'Taxonomies' | translate}}"
         layout="column"
         mb-more-actions="ctrl.taxonomyActions">
 
         <div layout="column"
              ng-if="ctrl.term.taxonomies.length == 0">
-            <p style="text-align: center" translate="">List is empty.</p>
+            <p style="text-align: center" mb-translate="">List is empty.</p>
         </div>
         <md-list flex>
             <md-list-item 
@@ -143,21 +143,21 @@
                 <div 
                     class="md-list-item-text" 
                     layout="column">
-                    <h3><span translate="">Taxonomy</span>: {{tax.taxonomy}}</h3>
-                    <h3><span translate="">Description</span>: {{tax.description}}</h3>
+                    <h3><span mb-translate="">Taxonomy</span>: {{tax.taxonomy}}</h3>
+                    <h3><span mb-translate="">Description</span>: {{tax.description}}</h3>
                 </div>
-                <wb-icon 
+                <mb-icon 
                     class="md-secondary" 
                     ng-click="ctrl.removeTaxonomy(tax, $index)" 
                     aria-label="Delete">
                     delete
-                </wb-icon>
-                <wb-icon 
+                </mb-icon>
+                <mb-icon 
                     class="md-secondary" 
                     ng-click="ctrl.editTaxonomy(tax, $index)" 
                     aria-label="Delete">
                     edit
-                </wb-icon>
+                </mb-icon>
                 <md-divider></md-divider>
             </md-list-item>
         </md-list>

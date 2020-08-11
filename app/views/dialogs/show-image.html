@@ -7,19 +7,19 @@
         <div class="md-toolbar-tools">
             <h2 
                 ng-if="config.attachment.mime_type.includes('image')"
-                translate="">
+                mb-translate="">
                 {{config.attachment.description}}
             </h2>
             <h2 
                 ng-if="!config.attachment.mime_type.includes('image')"
-                translate="">
+                mb-translate="">
                 Unknown type
             </h2>
             <span flex></span>
             <md-button 
                 class="md-icon-button" 
                 ng-click="cancel()">
-                <wb-icon aria-label="Close dialog">close</wb-icon>
+                <mb-icon aria-label="Close dialog">close</mb-icon>
             </md-button>
         </div>
     </md-toolbar>

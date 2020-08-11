@@ -7,12 +7,12 @@
 				<md-button 
 					class="md-icon-button" 
 					ng-click="answer(config.model)">
-					<wb-icon aria-label="close">done</wb-icon>
+					<mb-icon aria-label="close">done</mb-icon>
 				</md-button>
 				<md-button 
 					class="md-icon-button" 
 					ng-click="cancel()">
-					<wb-icon aria-label="close">close</wb-icon>
+					<mb-icon aria-label="close">close</mb-icon>
 				</md-button>
 			</div>
 		</md-toolbar>
@@ -21,7 +21,7 @@
 		
 			<md-input-container ng-repeat="key in ['title', 'description', 'thumbnail', 'content']"
 				flex>
-				<label translate>{{key}}</label>
+				<label mb-translate>{{key}}</label>
 				<input ng-model="config.model[key]">
 			</md-input-container>
 		
@@ -29,14 +29,14 @@
 <!-- 				<label>title</label> -->
 <!-- 				<input ng-model="config.model.title"  name="title" required /> -->
 <!-- 				<div ng-messages="myForm.title.$error"> -->
-<!-- 	              	<div ng-message="required" translate>This is required.</div> -->
+<!-- 	              	<div ng-message="required" mb-translate>This is required.</div> -->
 <!-- 	            </div> -->
 <!-- 			</md-input-container> -->
 <!-- 			<md-input-container> -->
 <!-- 				<label>url key</label> -->
 <!-- 				<input ng-model="config.model.collection_name" name="collectionName" required /> -->
 <!-- 				<div ng-messages="myForm.collectionName.$error"> -->
-<!-- 	              	<div ng-message="required" translate>This is required.</div> -->
+<!-- 	              	<div ng-message="required" mb-translate>This is required.</div> -->
 <!-- 	            </div>  -->
 <!-- 			</md-input-container> -->
 <!-- 			<md-input-container> -->

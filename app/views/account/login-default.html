@@ -1,0 +1,201 @@
+<div 
+	class="default-login-panel"
+	layout="row"
+	layout-align="center center"
+	ng-init="state= isAnonymous()? 'login' : 'info';">
+	<div 
+		md-whiteframe="3"
+		flex="100"
+		flex-gt-sm="50"
+		layout="column">
+		<!-- Toolbar -->
+		<md-toolbar 
+			layout="row" 
+			layout-padding
+			md-colors="{backgroundColor: 'primary-100'}">
+			<!-- TODO: toolbar items -->
+			<img 
+				style="max-width: 50%;"
+				height="160"
+				ng-show="app.config.logo"
+				ng-src="{{app.config.logo}}" />
+			<div>
+				<h3>{{app.config.title}}</h3>
+				<p>{{ app.config.description | limitTo: 250 }}{{app.config.description.length > 250 ? '...' : ''}}</p>
+			</div>
+		</md-toolbar>
+		<md-progress-linear
+			ng-disabled="!(ctrl.loginProcess || ctrl.logoutProcess)"
+			style="margin: 0px; padding: 0px"
+			md-mode="indeterminate"
+			class="md-primary"
+			md-color>
+		</md-progress-linear>
+		
+		<!-- body: login -->
+		<form 
+			id="login"
+			ng-show="state == 'login'"
+			name="loginForm"
+			ng-submit="ctrl.login(credit)" 
+			layout="column" 
+			layout-margin>
+			<div style="text-align: center;"
+				layout-margin
+				ng-show="!ctrl.loginProcess && ctrl.loginState === 'fail'"> 
+				<p><span md-colors="{color:'warn'}" mb-translate>{{loginMessage}}</span></p>
+			</div>
+			<md-input-container>
+				<label mb-translate="">Username</label>
+				<input ng-model="credit.login" name="username" required>
+				<div ng-messages="loginForm.username.$error">
+					<div ng-message="required" mb-translate="">This field is required.</div>
+				</div>
+			</md-input-container>
+			<md-input-container>
+				<label mb-translate="">Password</label>
+				<input ng-model="credit.password" type="password" name="password" required>
+				<div ng-messages="loginForm.password.$error">
+					<div ng-message="required" mb-translate>This field is required.</div>
+				</div>
+			</md-input-container>
+			<!-- adding captcha -->
+			<div
+				vc-recaptcha
+				ng-if="__tenant.settings['captcha.engine'] === 'recaptcha'"
+				key="__tenant.settings['captcha.engine.recaptcha.key']"
+				ng-model="credit.g_recaptcha_response"
+				theme="__app.configs.captcha.theme || 'light'"
+				type="__app.configs.captcha.type || 'image'"
+				lang="__app.setting.local || __app.config.local || 'en'">
+			</div>
+			<input hide type="submit" />
+			<div layout="column" layout-align="center none"
+				layout-gt-xs="row" layout-align-gt-xs="end center"
+				layout-margin>
+				<md-button
+					href="?state=forget"
+					flex-order="1" 
+					flex-order-gt-xs="-1"
+					ng-click="state='forget'">
+					<span mb-translate>Forgot your password?</span>
+				</md-button>
+				<md-button 
+					ng-disabled="ctrl.myForm.$invalid"
+					flex-order="-1" 
+					flex-order-gt-xs="1" 
+					class="md-primary md-raised" 
+					ng-click="ctrl.login(credit, loginForm, $event)">
+					<span mb-translate>Login</span>
+				</md-button>
+			</div>
+		</form>
+		<div
+			ng-show="state=='info'"
+			id="info">
+			<div 
+				layout-margin 
+				ng-show="!app.user.anonymous" 
+				layout="column" 
+				layout-align="none center">
+				<img
+					width="150px" height="150px" ng-show="!uploadAvatar"
+					ng-src="{{app.user.current.avatar}}" />
+				<h3>{{app.user.current.login}}</h3>
+				<p mb-translate>you are logged in. go to one of the following options.</p>
+			</div>
+			<div ng-show="!app.user.anonymous" 
+				layout="column" layout-align="none"
+				layout-gt-xs="row" layout-align-gt-xs="center center"
+				layout-margin>
+				<md-button 
+					ng-click="ctrl.cancel()"
+					flex-order="0" 
+					flex-order-gt-xs="0" 
+					class="md-raised">
+					<mb-icon>settings_backup_restore</mb-icon> 
+					<span mb-translate>Back</span>
+				</md-button>
+				<md-button 
+					ng-href="users/account"
+					flex-order="1" 
+					flex-order-gt-xs="-1" 
+					class="md-raised">
+					<mb-icon>account_circle</mb-icon> 
+					<span mb-translate>Account</span>
+				</md-button>
+			</div>
+		</div>
+		
+		<div
+			id="forget"
+			ng-show="state=='forget'">
+				<form
+				name="ctrl.myForm"
+				ng-submit="sendToken(credit)" 
+				layout="column" 
+				layout-margin>
+				<md-input-container>
+					<label mb-translate>Username</label>
+					<input ng-model="credit.login" name="username">
+				</md-input-container>
+				<md-input-container>
+					<label mb-translate>Email</label>
+					<input ng-model="credit.email" name="email" type="email">
+					<div ng-messages="ctrl.myForm.email.$error">
+						<div ng-message="email" mb-translate>Email is not valid.</div>
+					</div>
+				</md-input-container>
+	<!-- 			<amh-captcha -->
+	<!-- 				ng-model="credit.g_recaptcha_response">Hi -->
+	<!-- 			</amh-captcha> -->
+				<!-- XXX: maso, 2018: adding captcha -->
+				<div
+					ng-if="app.captcha.engine==='recaptcha'"
+					vc-recaptcha
+					ng-model="credit.g_recaptcha_response"
+					theme="app.captcha.theme || 'light'"
+					type="app.captcha.type || 'image'"
+					key="app.captcha.recaptcha.key"
+					lang="app.captcha.language || 'fa'">
+				</div>
+				<input hide type="submit" />
+			</form>
+			<div layout="column" layout-align="center none"
+				layout-gt-xs="row" layout-align-gt-xs="end center"
+				layout-margin>
+				<md-button
+					ng-disabled="(credit.email === undefined && credit.login === undefined) || ctrl.myForm.$invalid"
+					flex-order="0" 
+					flex-order-gt-xs="1" 
+					class="md-primary md-raised" 
+					ng-click="sendToken(credit)">{{'send recover message' | translate}}</md-button>
+	<!--		 	<md-button  -->
+	<!--		 		ng-href="users/login" -->
+	<!--		 		flex-order="0"  -->
+	<!--		 		class="md-raised">{{'login' | translate}}</md-button> -->
+				<md-button 
+					ng-click="cancel()"
+					flex-order="0" 
+					flex-order-gt-xs="0" 
+					class="md-raised">
+					<span>cancel</span>
+				</md-button>
+			</div>
+			
+			<div
+				layout="column"
+				layout-align="none"
+				layout-gt-xs="row"
+				layout-align-gt-xs="center center"
+				layout-margin>
+				<md-button 
+					ng-click="state='login'"
+					flex-order="0" 
+					flex-order-gt-xs="0">
+					<span mb-translate>Login</span>
+				</md-button>
+			</div>
+		</div>
+	</div>
+</div>

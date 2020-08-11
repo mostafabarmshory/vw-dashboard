@@ -1,18 +1,27 @@
 {
 	"name": "vw-dashboard",
-	"moduleName": "myDashboardApp",
-	"version": "5.0.1",
+	"moduleName": "mblowfish-core",
+	"version": "6.0.0",
 	"title": "ViraWeb Dashboard",
 	"description": "ViraWeb123 dashboards allow managers to monitor the contribution of the various departments in their organization.",
 	"license": "MIT",
 	"homepage": "https://dashboard.viraweb123.ir",
 	"dependencies": {
 		"seen-bank": "https://gitlab.com/seen/angular/seen-bank.git#3.0.x",
+		"seen-user": "https://gitlab.com/seen/angular/seen-user.git#3.0.x",
+		"seen-tenant": "https://gitlab.com/seen/angular/seen-tenant.git#3.0.x",
 		"seen-supertenant": "https://gitlab.com/seen/angular/seen-supertenant.git#3.0.x",
-		"seen-shop": "https://gitlab.com/seen/angular/seen-shop.git#3.0.x",
-		"seen-seo": "https://gitlab.com/seen/angular/seen-seo.git#3.0.x",
-		"seen-sdp": "https://gitlab.com/seen/angular/seen-sdp.git#3.0.x",
 		"seen-cms": "https://gitlab.com/seen/angular/seen-cms.git#3.0.x",
+		"seen-monitor": "https://gitlab.com/seen/angular/seen-monitor.git#3.0.x",
+		"seen-shop": "https://gitlab.com/seen/angular/seen-shop.git#3.0.x",
+		"seen-sdp": "https://gitlab.com/seen/angular/seen-sdp.git#3.0.x",
+		"seen-seo": "https://gitlab.com/seen/angular/seen-seo.git#3.0.x",
+		"angular-recaptcha": "4.1.x",
+		"angular-file-saver": "1.1.x",
+		"material-steppers": "2.0.x",
+		"leaflet": "^1.6.0",
+		"tinymce": "5.x",
+		"md-color-picker": "https://github.com/mostafabarmshory/md-color-picker.git#0.2.x",
 		"mblowfish-core": "https://gitlab.com/mblowfish/mblowfish-core.git#3.2.x"
 	},
 	"devDependencies": {
@@ -23,6 +32,6 @@
 	},
 	"appPath": "app",
 	"backend": {
-		"host": "elbaan.viraweb123.ir"
+		"host": "test.viraweb123.ir"
 	}
 }

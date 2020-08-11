@@ -1,0 +1,92 @@
+<md-content  
+    flex
+    layout="column"
+    layout-padding>
+    <mb-titled-block 
+        ng-show="!ctrl.edit"
+        mb-progress="loadingCaptchaOptions || loadingCaptchaSettings || savingSettings"
+        mb-title="{{'Captcha' | translate}}"
+        layout="column">
+
+        <div>
+            <div 
+                layout="column"
+                layout-align-gt-sm="start start">
+                <md-select 
+                    ng-model="captcha.value" 
+                    placeholder='Select a state'>
+                    <md-option 
+                        ng-value="option" 
+                        ng-repeat="option in options">
+                        <span mb-translate="">{{option}}</span>
+                    </md-option>
+                </md-select>
+            </div>
+        </div>
+
+        <div 
+            style="margin-top: 20px;">
+            <div layout="column"
+                 ng-show="captcha.value === 'recaptcha'">
+
+                <md-input-container
+                    style="padding: 0px;margin: 0px;">
+                    <label mb-translate="">Site Key</label>
+                    <input type="text" ng-model="keySetting.value">
+                </md-input-container>
+
+                <md-input-container
+                    style="padding: 0px;margin: 0px;">
+                    <label mb-translate="">Secret Key</label>
+                    <input type="text" ng-model="secretKeySetting.value">
+                </md-input-container>
+
+                <md-input-container
+                    style="padding: 0px;margin: 0px;">
+                    <label mb-translate="">Android Key </label>
+                    <input type="text" ng-model="androidKeySetting.value">
+                </md-input-container>
+
+                <md-input-container
+                    style="padding: 0px;margin: 0px;">
+                    <label mb-translate="">Android Secret Key </label>
+                    <input type="text" ng-model="androidSecretKeySetting.value">
+                </md-input-container>
+            </div>
+        </div>
+    </mb-titled-block>
+    <span flex="2"></span>
+    
+    <mb-titled-block 
+        ng-show="!ctrl.edit"
+        mb-progress="loadingHttpsSettings || savingSettings"
+        mb-title="{{'HTTPS' | translate}}"
+        layout="column">
+        <div 
+            layout="column"
+            style="margin-top: 20px"
+            layout-align-gt-sm="start start">
+            <md-checkbox 
+                ng-model="enable"
+                ng-change="httpsEnableChanged(enable)"
+                aria-label="Enable HTTPS protocol">
+                <span mb-translate="">Enable HTTPS</span>
+            </md-checkbox>
+            <md-checkbox 
+                ng-model="redirect"
+                ng-change="httpsRedirectChanged(redirect)"
+                aria-label="Redirect HTTP to HTTPS">
+                <span mb-translate="">Redirect HTTP to HTTPS</span>
+            </md-checkbox>
+        </div>
+    </mb-titled-block>
+
+    <div>
+        <div layout="row">
+            <span flex></span> 
+            <md-button class="md-raised" ng-href="dashboard" mb-translate="">Cancel</md-button>
+            <md-button class="md-raised md-primary" ng-click="update()" mb-translate="">Save</md-button>
+        </div>
+    </div>
+</md-content>
+

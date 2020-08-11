@@ -1,0 +1,149 @@
+<div 
+    layout="row"
+    flex>
+    <div
+        id="tickets-list"
+        ng-controller="AmdTenantTicketsController"
+        ng-init="nextPage()"
+        layout="column"
+        flex-gt-sm="30"
+        style="background-color: #dcd8d8;height: 100vh">
+        <!-- Group info -->
+        <!-- Action bar -->
+        <mb-pagination-bar
+            mb-model="paginatorParameter"
+            mb-reload="reload()"
+            mb-sort-keys="sortKeys"
+            mb-more-actions="moreActions">
+        </mb-pagination-bar>
+        <md-list 
+            ng-if="ctrl.items.length > 0"
+            flex>
+            <md-list-item 
+                ng-repeat="item in ctrl.items"
+                class="md-3-line" 
+                ng-href="{{'tenant/tickets/' + item.id}}">
+                <div 
+                    class="md-list-item-text" 
+                    layout="column">
+                    <h3>{{item.subject}}</h3>
+                    <h4>{{item.description}}</h4>
+                    <p>{{item.creation_dtime}}, <span mb-translate="">User</span>:{{item.requester}}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+    <md-content 
+        layout="column"
+        flex>
+        <div
+            ng-if="!editing"
+            layout="row"
+            layout-align="center center"
+            style="min-height: 60px">
+            <h2>{{ticket.subject}}</h2>
+            <span flex="5"></span>
+            <md-button
+                class="md-icon-button md-raised"
+                ng-click="toggleEdit()">
+                <mb-icon>edit</mb-icon>
+            </md-button>
+        </div>
+        <div
+            ng-if="editing"
+            layout="row"
+            layout-align="center center"
+            style="min-height: 60px">
+            <md-input-container class="md-block">
+                <label mb-translate="">Subject</label>
+                <input 
+                    ng-model="ticket.subject" 
+                    ng-change="updateSubject()" 
+                    ng-model-options="{updateOn : 'change blur'}">
+            </md-input-container>
+            <md-progress-circular 
+                ng-if="ctrl.status === 'loading'" 
+                md-diameter="96">
+            </md-progress-circular>
+        </div>
+        <md-divider></md-divider>
+        <!-- Comments -->
+        <div layout-padding>
+            <md-progress-circular 
+                ng-if="ctrl.commentsStatus === 'loading'" 
+                md-diameter="96">
+            </md-progress-circular>
+            <div
+                layout="row"
+                ng-if="ctrl.commentsStatus === 'relax'" >
+                <div>
+                    <img 
+                        width="68px"
+                        ng-src="/api/v2/user/accounts/{{app.user.current.id}}/avatar"
+                        class="md-avatar"/>
+                </div>
+                <div
+                    class="triangle-topright"
+                    amd-style-color="{'border-top-color': 'accent.100'}" >
+                </div>
+                <md-whiteframe 
+                    style="margin-bottom: 16px;padding: 10px"
+                    class="md-whiteframe-13dp" 
+                    amd-style-color="{'background-color': 'accent.100'}"
+                    layout ="column">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Title</label>
+                        <input ng-model="_temp.title">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Description</label>
+                        <input ng-model="_temp.description">
+                    </md-input-container>
+                    <div 
+                        layout="row"
+                        layout-align="center center">
+                        <md-button
+                            class="md-raised md-primary"
+                            ng-click="addComment(_temp); _temp = {};"
+                            aria-label="Add comment">
+                            <span mb-translate>send</span>
+                        </md-button>
+                    </div>
+                </md-whiteframe>
+            </div>
+
+            <div
+                ng-repeat="comment in ctrl.comments"
+                layout="row">
+                <div>
+                    <img 
+                        width="68px"
+                        ng-src="/api/v2/user/accounts/{{comment.author}}/avatar" 
+                        class="md-avatar"/>
+                </div>
+                <div
+                    class="triangle-topright"
+                    amd-style-color="{'border-top-color': 'primary.hue-1'}" >
+                </div>
+                <md-whiteframe 
+                    style="margin-bottom: 16px;padding: 10px"
+                    class="md-whiteframe-13dp" 
+                    md-colors="{backgroundColor: 'primary'}"
+                    layout ="column"
+                    layout-align="start start">
+                    <h4 ng-if="comment.title">{{comment.title}}</h4>
+                    <p>{{comment.description}}</p>
+                    <md-seperator/>
+                    <div
+                        layout="row">
+                        <span ng-if="comment.creation_dtime">{{comment.creation_dtime}}</span>
+                        <span ng-if="comment.creation_dtime !== comment.modif_dtime">
+                            <mb-icon>edit</mb-icon>	{{comment.modif_dtime}}
+                        </span>
+                    </div>
+                </md-whiteframe>
+            </div>
+        </div>
+    </md-content>
+</div>
+

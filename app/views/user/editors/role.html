@@ -1,0 +1,131 @@
+<md-content 
+	class="md-padding"
+	layout-padding
+	flex>
+	<section 
+		mb-preloading="ctrl.roleLoading"
+		layout="column" 
+		layout-align="center start"
+		md-whiteframe="1"
+		layout-margin>
+		<table class="amd-table amd-table-description">
+			<tr>
+				<td mb-translate>ID </td>
+				<td>{{role.id}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Name</td>
+				<td>
+					<am-wb-inline
+						ng-model="role.name"
+						am-wb-inline-type="text"
+						am-wb-inline-label="Role name"
+						am-wb-inline-enable="app.user.tenant_owner"
+						am-wb-inline-on-save="save()">
+							{{role.name || '...'}}
+					</am-wb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>Code name</td>
+				<td>
+					<am-wb-inline
+						ng-model="role.code_name"
+						am-wb-inline-type="text"
+						am-wb-inline-label="Role code_name"
+						am-wb-inline-enable="app.user.tenant_owner"
+						am-wb-inline-on-save="save()">
+							{{role.code_name || '...'}}
+					</am-wb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>Application</td>
+				<td>
+					<am-wb-inline
+						ng-model="role.application"
+						am-wb-inline-type="text"
+						am-wb-inline-label="Role application"
+						am-wb-inline-enable="app.user.tenant_owner"
+						am-wb-inline-on-save="save()">
+							{{role.application || '...'}}
+					</am-wb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>Description</td>
+				<td>
+					<am-wb-inline
+						ng-model="role.description"
+						am-wb-inline-type="textarea"
+						am-wb-inline-label="Role description"
+						am-wb-inline-enable="app.user.tenant_owner"
+						am-wb-inline-on-save="save()">
+							{{role.description || '...'}}
+					</am-wb-inline>
+				</td>
+			</tr>
+		</table>
+	</section>
+	
+	<section 
+		mb-preloading="ctrl.groupLoading"
+		layout="column" 
+		md-whiteframe="1"
+		layout-margin>
+		<h3>Groups</h3>
+		<md-chips 
+			ng-model="groups.items"
+			md-on-remove="removeGroup($chip)">
+			<md-chip-template>
+				<strong>{{$chip.name}}</strong>
+				<em>({{$chip.description}})</em>
+			</md-chip-template>
+		</md-chips>
+		<div 
+			ng-show="!groups.items || groups.items.length == 0"
+			layout="column" 
+			layout-align="center center">
+			<p mb-translate>There is no group having this role.</p>
+		</div>
+		<div layout="row">
+			<span flex></span>
+			<md-button class="md-raised" 
+				ng-click="changeGroups()">
+				<mb-icon>edit</mb-icon>
+				<span mb-translate>Edit</span>
+			</md-button>
+		</div>
+	</section>
+	
+	<section 
+		mb-preloading="ctrl.userLoading"
+		layout="column" 
+		md-whiteframe="1"
+		layout-margin>
+		<h3>Users</h3>
+		<md-chips 
+			ng-model="users.items"
+			md-on-remove="removeUser($chip)">
+			<md-chip-template>
+				<strong>{{$chip.first_name}} {{$chip.last_name}}</strong>
+				<em>({{$chip.login}})</em>
+			</md-chip-template>
+		</md-chips>
+		<div 
+			ng-show="!users.items || users.items.length == 0"
+			layout="column" 
+			layout-align="center center">
+			<p mb-translate>There is not user having this role.</p>
+		</div>
+		<div layout="row">
+			<span flex></span>
+			<md-button class="md-raised" 
+				ng-click="changeUsers()">
+				<mb-icon>edit</mb-icon>
+				<span mb-translate>Edit</span>
+			</md-button>
+		</div>
+	</section>
+</md-content>
+

@@ -13,20 +13,20 @@
 	<!-- Assets list -->
 	<div layout="column"
 		ng-if="ctrl.items.length == 0 && !ctrl.loadingItems">
-		<p style="text-align: center" translate>List is empty.</p>
+		<p style="text-align: center" mb-translate>List is empty.</p>
 		<div layout="row"
 			layout-align="center center">
 			<md-button class="md-raised" 
 				ng-click="add()">
-				<wb-icon>add</wb-icon>
-				<span translate>New asset</span>
+				<mb-icon>add</mb-icon>
+				<span mb-translate>New asset</span>
 			</md-button>
 		</div>
 	</div>
 	<md-list flex> 
 		<md-list-item ng-repeat="pobject in ctrl.items track by pobject.id"
 			class="md-3-line" ng-href="{{'sdp/asset/'+pobject.id}}">
-			<wb-icon>folder</wb-icon>
+			<mb-icon>folder</mb-icon>
 			<div class="md-list-item-text" layout="column">
 				<h3>{{pobject.id}}</h3>
 				<h4>{{pobject.name}}</h4>

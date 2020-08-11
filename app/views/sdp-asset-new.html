@@ -4,7 +4,7 @@
 	flex>
 	<mb-titled-block 
 		mb-progress="ctrl.saving"
-		mb-title="{{'New asset'| translate}}"
+		mb-title="{{'New asset' | translate}}"
 		layout="column">
 		<form name="assetForm"
 			ng-action="add(config)"
@@ -37,14 +37,14 @@
 				<md-button 
 					class="md-raised" 
 					ng-click="cancel()">
-	<!-- 				<wb-icon aria-label="close">close</wb-icon> -->
-					<span translate="">Cancel</span>
+	<!-- 				<mb-icon aria-label="close">close</mb-icon> -->
+					<span mb-translate="">Cancel</span>
 				</md-button>
 				<md-button
 					class="md-raised md-primary" 
 					ng-click="add(config)">
-	<!-- 				<wb-icon aria-label="close">done</wb-icon> -->
-					<span translate="">Add</span>
+	<!-- 				<mb-icon aria-label="close">done</mb-icon> -->
+					<span mb-translate="">Add</span>
 				</md-button>
 			</div>
 			

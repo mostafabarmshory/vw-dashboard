@@ -21,14 +21,14 @@
         <md-list flex>
             <md-list-item 
                 ng-repeat="term in ctrl.items track by term.id"
-                ng-href="terms/{{::term.id}}">
+                ng-href="cms/terms/{{::term.id}}">
                 <p>{{::term.name}}</p>
-                <wb-icon 
+                <mb-icon 
                     class="md-secondary" 
                     ng-click="ctrl.deleteItem(term, $event)" 
                     aria-label="Delete">
                     delete
-                </wb-icon>
+                </mb-icon>
             </md-list-item>
         </md-list>
     </md-content>
@@ -36,6 +36,6 @@
         layout="column"
         layout-align="center center"
         ng-if="ctrl.state === 'ideal' && (!ctrl.items || ctrl.items.length == 0)">
-        <h2 translate="">No item found</h2>
+        <h2 mb-translate="">No item found</h2>
     </div>
 </div>

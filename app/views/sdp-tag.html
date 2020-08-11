@@ -3,7 +3,7 @@
 	flex>
 	<mb-titled-block 
 		mb-progress="ctrl.loadingTag || ctrl.savingTag"
-		mb-title="{{'Tag'| translate}}"
+		mb-title="{{'Tag' | translate}}"
 		layout="column">
 		<section ng-show="!ctrl.edit"
 			layout="column">
@@ -36,14 +36,14 @@
 				<md-button 
 					class = "md-raised md-accent"
 					ng-click="remove()">
-	<!-- 				<wb-icon>delete</wb-icon> -->
-					<span translate>Delete</span>
+	<!-- 				<mb-icon>delete</mb-icon> -->
+					<span mb-translate>Delete</span>
 				</md-button>
 				<md-button 
 					class = "md-raised"
 					ng-click="ctrl.edit=true">
-	<!-- 				<wb-icon>edit</wb-icon> -->
-					<span translate>Edit</span>
+	<!-- 				<mb-icon>edit</mb-icon> -->
+					<span mb-translate>Edit</span>
 				</md-button>
 			</div>
 		</section>
@@ -63,14 +63,14 @@
 				<md-button 
 					class="md-raised"
 					ng-click="ctrl.edit=false">
-	<!-- 				<wb-icon>close</wb-icon> -->
-					<span translate>Cancel</span>
+	<!-- 				<mb-icon>close</mb-icon> -->
+					<span mb-translate>Cancel</span>
 				</md-button>
 				<md-button 
 					class="md-raised md-primary"
 					ng-click="save()">
-	<!-- 				<wb-icon>save</wb-icon> -->
-					<span translate>Save</span>
+	<!-- 				<mb-icon>save</mb-icon> -->
+					<span mb-translate>Save</span>
 				</md-button>
 			 </div>
 		</section>

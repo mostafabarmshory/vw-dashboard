@@ -1,0 +1,11 @@
+<table class="my-table">
+	<caption class="md-accent" mb-translate><h2>{{title}}</h2></caption>
+	<tr ng-show="!disableId"><td mb-translate>ID</td><td> {{invoice.id}}</td></tr>
+	<tr><td mb-translate>Title</td><td> {{invoice.title}}</td></tr>
+	<tr><td mb-translate>Amount</td><td> {{invoice.amount}}</td></tr>
+	<tr><td mb-translate>Status</td><td> {{invoice.status}}</td></tr>
+	<tr><td mb-translate>Due Date</td><td> {{invoice.due_time}}</td></tr>
+	<tr><td mb-translate>Creation Datetime</td><td> {{invoice.creation_dtime | mbDate}}</td></tr>
+	<!-- 'disableId' in line 3 defined in amdTenantInvoice.js. -->
+</table>
+

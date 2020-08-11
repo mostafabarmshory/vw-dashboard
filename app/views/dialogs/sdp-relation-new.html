@@ -6,7 +6,7 @@
 			<form  ng-submit="search(temp.query)">
 				<md-input-container 
 					class="md-icon-float md-icon-right md-block">
-					<label translate>Search</label>
+					<label mb-translate>Search</label>
 					<input ng-model="temp.query">
 				</md-input-container>
 				<input type="submit" hide>
@@ -15,12 +15,12 @@
 				class="md-icon-button" 
 				ng-disabled="!config.model.type || !config.model.end_id"
 				ng-click="answer(config.model)">
-				<wb-icon aria-label="close">done</wb-icon>
+				<mb-icon aria-label="close">done</mb-icon>
 			</md-button>
 			<md-button 
 				class="md-icon-button" 
 				ng-click="cancel()">
-				<wb-icon aria-label="close">close</wb-icon>
+				<mb-icon aria-label="close">close</mb-icon>
 			</md-button>
 		</div>
 	</md-toolbar>
@@ -71,7 +71,7 @@
 				<input ng-model="config.model.description"></input>
 			</md-input-container>
 			<md-checkbox ng-model="config.model.bidirectional" aria-label="bidirectional">
-	            {{'bidirectional' | translate}}
+	            {{'bidirectional'  | translate}}
 	        </md-checkbox>
 		</form>
 	</md-dialog-actions>

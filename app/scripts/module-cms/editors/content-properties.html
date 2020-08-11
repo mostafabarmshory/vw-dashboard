@@ -1,0 +1,206 @@
+<md-content
+	style="overflow: auto;">
+	<mb-titled-block 
+		mb-title="Information"
+		mb-more-actions="contentMoreActions"
+		mb-progress="ctrl.isBusy || ctrl.isContentBusy"
+		layout="column"
+		ng-init="contentMoreActions = [{
+			title:'Upload', 
+			icon:'upload',
+			expression: 'ctrl.uploadFile()'
+		}]">
+		<div
+			layout-gt-sm="row"
+			layout="column">
+			<amd-content-preview
+				ng-model="ctrl.content"
+				md-margin
+				flex-gt-sm="100"
+				flex="33">
+			</amd-content-preview>
+			<table
+				md-margin
+				style="min-width: 70%">
+					<tr>
+						<td mb-translate>ID</td>
+						<td>{{::ctrl.content.id}}</td>
+					</tr>
+					<tr>
+						<td mb-translate>Name</td>
+						<td>
+							<mb-inline
+								ng-model="ctrl.content.name"
+								mb-inline-type="text"
+								mb-inline-label="Name"
+								mb-inline-enable="true"
+								mb-inline-on-save="ctrl.updateContent()">{{ctrl.content.name || '...'}}</mb-inline>
+						</td>
+					</tr>
+					<tr>
+						<td mb-translate>Title</td>
+						<td>
+						  <mb-inline
+							  ng-model="ctrl.content.title"
+							  mb-inline-type="text"
+							  mb-inline-label="Title"
+							  mb-inline-enable="true"
+							  mb-inline-on-save="ctrl.updateContent()">
+							  {{ctrl.content.title || '...'}}
+						  </mb-inline>
+						 </td>
+					</tr>
+					<tr>
+						<td mb-translate>Description</td>
+						<td>
+						  <mb-inline
+							  ng-model="ctrl.content.description"
+							  mb-inline-type="textarea"
+							  mb-inline-label="Description"
+							  mb-inline-enable="true"
+							  mb-inline-on-save="ctrl.updateContent()">
+							  {{ctrl.content.description || '...'}}
+						  </mb-inline>
+						 </td>
+					</tr>
+					<tr>
+						<td mb-translate>File name</td>
+						<td>
+						  <mb-inline
+							  ng-model="ctrl.content.file_name"
+							  mb-inline-type="text"
+							  mb-inline-label="File name"
+							  mb-inline-enable="true"
+							  mb-inline-on-save="ctrl.updateContent()">
+							  {{ctrl.content.file_name || '...'}}
+						  </mb-inline>
+						 </td>
+					</tr>
+					<tr>
+						<td mb-translate>File size</td>
+						<td>{{ctrl.content.file_size}}</td>
+					</tr>
+					<tr>
+						<td mb-translate>Media type</td>
+						<td>
+						  <mb-inline
+							  ng-model="ctrl.content.media_type"
+							  mb-inline-type="text"
+							  mb-inline-label="Media type"
+							  mb-inline-enable="true"
+							  mb-inline-on-save="ctrl.updateContent()">
+							  {{ctrl.content.media_type || '...'}}
+						  </mb-inline>
+						 </td>
+					</tr>
+					<tr>
+						<td mb-translate>Mimetype</td>
+						<td>
+						  <mb-inline
+							  ng-model="ctrl.content.mime_type"
+							  mb-inline-type="text"
+							  mb-inline-label="Mimetype"
+							  mb-inline-enable="true"
+							  mb-inline-on-save="ctrl.updateContent()">
+							  {{ctrl.content.mime_type || '...'}}
+						  </mb-inline>
+						 </td>
+					</tr>
+					<tr>
+						<td mb-translate>Downloads count</td>
+						<td>{{::ctrl.content.downloads}}</td>
+					</tr>
+					<tr>
+						<td mb-translate>Creation Date</td>
+						<td>{{ctrl.content.creation_dtime | mbDate}}</td>
+					</tr>
+					<tr>
+						<td mb-translate>Last Modification Date</td>
+						<td>{{ctrl.content.modif_dtime | mbDate}}</td>
+					</tr>
+			</table>
+		</div>
+		<!-- Action bar -->
+		<div 
+			layout="row"
+			ng-show="!ctrl.edit">
+			<span flex></span>
+			<md-button 
+				ng-href="/api/v2/cms/contents/{{ctrl.content.id}}/content"
+				download="{{ctrl.content.file_name || ctrl.content.name}}"
+				target="_blank"
+				class = "md-raised md-primary">
+				<span mb-translate>Download</span>
+			</md-button>
+			<md-button 
+				class = "md-raised md-accent"
+				ng-click="ctrl.deleteContent()">
+				<span mb-translate>Delete</span>
+			</md-button>
+		</div>
+	</mb-titled-block>
+
+
+	<!-- 
+	  --  Term taxonomy
+	  -- This section manages term taxonomies of a content and let you
+	  -- add, remove or update the list.
+	  -->
+	<mb-titled-block
+		mb-progress="ctrl.isBusy || ctrl.isTermtaxonomiesBusy"
+		mb-more-actions="termtaxonomyActions"
+		mb-title="Term Taxonomies"
+		ng-init="termtaxonomyActions = [{
+			title:'Add new term-taxonomy', 
+			icon:'add',
+			expression: 'ctrl.addTermTaxonomy()'
+		}]">
+		<md-chips
+			ng-model="ctrl.termTaxonomies" 
+			name="termTaxonomies" 
+			readonly="true"
+			md-removable="true"
+			md-on-remove="ctrl.deleteTermTaxonomy($chip)"
+			md-max-chips="5" 
+			placeholder="Enter a term"
+			input-aria-label="Terms">
+			<md-chip-template>
+				<strong>{{::$chip.term.name}}</strong>
+				<em>({{::$chip.taxonomy}})</em>
+			</md-chip-template>
+		</md-chips>
+	</mb-titled-block>
+	
+	<!-- 
+	  --  Metadata
+	  -- In this section you can edit and manage all metadata of a
+	  -- content.
+	  -->
+	<mb-titled-block
+		mb-title="Metadata"
+		mb-more-actions="metadataActions"
+		mb-progress="ctrl.isBusy || ctrl.isMetadataBusy"
+		layout="column"
+		ng-init="metadataActions = [{
+			title: 'Add new metadatum',
+			icon: 'add',
+			expression: 'ctrl.createMetadata()'
+		}]">
+		<md-input-container 
+			ng-repeat="m in ctrl.metadata"
+			class="md-icon-float md-icon-right md-block">
+			<label>{{::m.key}}</label>
+			<mb-icon 
+				ng-if="hasAnyRole('tenant.owner', 'cms.editor')">edit</mb-icon>
+			<textarea 
+				ng-enable="hasAnyRole('tenant.owner', 'cms.editor')"
+				ng-model="m.value" 
+				ng-change="ctrl.updateMetadata(m)"
+				ng-model-options="{updateOn:'default change blur',debounce:{default:3000,blur:0,change:0}}"></textarea>
+			<mb-icon
+				ng-if="hasAnyRole('tenant.owner', 'cms.editor')"
+				ng-click="ctrl.deleteMetadata(m)">delete</mb-icon>
+		</md-input-container>
+	</mb-titled-block>
+</md-content>
+

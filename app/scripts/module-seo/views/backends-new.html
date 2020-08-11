@@ -1,0 +1,58 @@
+<md-content
+	mb-preloading="creatingNewGate"
+	layout="column"
+	style="overflow: auto;"
+	layout-padding>
+	<div 
+		layout="column" 
+		layout-align="center center" 
+		ng-cloak>
+		<p mb-translate>Select an engine from the following list:</p>
+		<div 
+			layout="column" 
+			layout-align="center center">
+			<md-select 
+				required md-no-asterisk="false"
+				placeholder="Render engine" 
+				ng-model="_engine" 
+				md-on-open="loadEngines()" 
+				style="min-width: 200px;">
+				<md-option 
+					ng-value="engine" 
+					ng-repeat="engine in engines.items">{{engine.title}}</md-option>
+			</md-select>
+		</div>
+	</div>
+	
+	<div
+		layout="column" 
+		ng-show="properties">
+		<h3>{{selectedEngine.title}}</h3>
+		<p>{{selectedEngine.description}}</p>
+		<md-input-container
+			ng-repeat="property in properties">
+			<label 
+				ng-if="property.type !== 'Boolean'">{{property.title}}</label>
+			<input 
+				ng-if="property.type !== 'Boolean'" 
+				ng-model="_userValus[property.name]"></input>
+			<md-switch
+				ng-if="property.type === 'Boolean'" 
+				ng-model="_userValus[property.name]">
+				{{property.title}}
+			</md-switch>
+		</md-input-container>
+		<div layout="row">
+			<span flex></span>
+			<md-button
+				class="md-primary md-raised"
+				ng-click="newBackend(_engine,_userValus)">
+                <span mb-translate>Create</span>
+			</md-button>
+			<md-button
+				ng-href="settings/seo-backends">
+                <span mb-translate>Cancel</span>
+			</md-button>
+		</div>
+	</div>
+</md-content>

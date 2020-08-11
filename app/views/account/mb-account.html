@@ -1,0 +1,30 @@
+<md-content
+	mb-preloading="ctrl.loadingUser" 
+	class="md-padding"
+	layout-padding
+	flex>
+	
+	<div layout-gt="row">
+		<!-- صفحه حساب کاربری -->
+		<mb-titled-block 
+			mb-title="Account"
+			mb-progress="ctrl.avatarLoading"
+			flex-gt-sm="50">
+			<div
+				layout="column">
+			    <md-input-container>
+			        <label mb-translate>ID</label>
+			        <input ng-model="ctrl.user.id"  disabled>
+			    </md-input-container>
+			    <md-input-container>
+			        <label mb-translate>Username</label>
+			        <input ng-model="ctrl.user.login"  disabled>
+			    </md-input-container>
+			    <md-input-container>
+			        <label mb-translate>Email</label>
+			        <input ng-model="ctrl.user.email" type="email"  disabled>
+			    </md-input-container>
+			</div>
+		</mb-titled-block>
+	</div>
+</md-content>

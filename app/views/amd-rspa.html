@@ -12,27 +12,27 @@
 			class="md-avatar"/>
 		<table class="md-table md-table-description">
 			<tr>
-				<td translate>Title</td>
+				<td mb-translate>Title</td>
 				<td>{{spa.title}}</td>
 			</tr>
 			<tr>
-				<td translate>Description</td>
+				<td mb-translate>Description</td>
 				<td>{{spa.description}}</td>
 			</tr>
 			<tr>
-				<td translate>Name</td>
+				<td mb-translate>Name</td>
 				<td>{{spa.name}}</td>
 			</tr>
 			<tr>
-				<td translate>Version</td>
+				<td mb-translate>Version</td>
 				<td>{{spa.version}}</td>
 			</tr>
 			<tr>
-				<td translate>License</td>
+				<td mb-translate>License</td>
 				<td>{{spa.license}}</td>
 			</tr>
 			<tr>
-				<td translate>Home page</td>
+				<td mb-translate>Home page</td>
 				<td>{{spa.homepage}}</td>
 			</tr>
 		</table>
@@ -43,7 +43,7 @@
 		<md-button
 			class="md-raised"
 			ng-href="spas/repository">
-			<span translate>Back to list</span>
+			<span mb-translate>Back to list</span>
 		</md-button>
 		<span flex></span>
 		<md-button
@@ -51,7 +51,7 @@
 			data-ng-repeat="state in states"
 			data-ng-click="gotoState(state)"
 			data-ng-show="{{state.visible}}">
-			<span translate>{{state.title || state.id}}</span>
+			<span mb-translate>{{state.title || state.id}}</span>
 		</md-button>
 	</div>
 </md-content>

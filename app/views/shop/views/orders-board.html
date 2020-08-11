@@ -1,0 +1,64 @@
+<div
+	id="shop-orders-board"
+	mb-preloading="ctrl.loading">
+	<div 
+		md-colors="{background: 'primary-700'}"
+		id="toolbar"
+		layout="row">
+		<md-button
+			class="md-icon-button md-mini" 
+			ng-click="ctrl.loadNextPage($event)">
+			<mb-icon>replay_30</mb-icon>
+		</md-button>
+		<md-button
+			class="md-icon-button md-mini" 
+			ng-click="ctrl.reload($event)">
+			<mb-icon>replay</mb-icon>
+		</md-button>
+	</div>
+	<md-content 
+		id="body"
+		md-colors="{background: 'primary-300'}">
+		<div 
+			ng-repeat="column in ctrl.board.columns track by column.id"
+			id="dynamic-column-{{column.id}}"
+			md-colors="{background: 'primary-100'}"
+			class="column md-whiteframe-4dp">
+			<div
+				id="title"
+				layout="row"
+				layout-align="none center">
+				<span mb-translate>{{column.title}}</span>
+				<span flex></span>
+				<span>{{column.items.length}} {{'Order'  | translate}}</span>
+			</div>
+			<md-content
+				id="body"
+				mb-preloading="column.loading">
+				<div 
+					ng-repeat="item in column.items track by item.id"
+					id="card-{{item.id}}"
+					class="card"
+					md-colors="{background: 'background'}"
+					layout="column"
+					ng-click="ctrl.showItemDetail(item)">
+					<h4>{{::item.id}} - {{::item.full_name}}</h4>
+					<span>{{::item.phone}}</span>
+					<small style="direction: ltr;">{{::(item.creation_dtime | mbDateTime)}}</small>
+					<small>{{::item.province}} - {{::item.city}} - {{::item.address}}</small>
+				</div>
+			<md-content>
+		</div>
+		<div 
+			id="column-new"
+			md-colors="{background: 'primary-100'}"
+			class="column md-whiteframe-4dp">
+			<md-button
+				class="md-icon-button md-mini" 
+				ng-click="ctrl.addNewColumn($event)">
+				<mb-icon>add</mb-icon>
+			</md-button>
+		</div>
+	</md-content>
+	<div id="footer"></div>
+</div>

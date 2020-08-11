@@ -4,7 +4,7 @@
 	
 	<mb-titled-block 
 		mb-progress="ctrl.loadingAsset || ctrl.savingAsset"
-		mb-title="{{'Asset'| translate}}"
+		mb-title="{{'Asset' | translate}}"
 		layout="column">
 		<section ng-show="!ctrl.edit"
 			layout="column">
@@ -56,14 +56,14 @@
 				<md-button 
 					class = "md-raised md-primary"
 					ng-click="remove()">
-					<wb-icon>delete</wb-icon>
-					<span translate>Delete</span>
+					<mb-icon>delete</mb-icon>
+					<span mb-translate>Delete</span>
 				</md-button>
 				<md-button
 					class="md-raised"
 					ng-click="ctrl.edit=true">
-					<wb-icon>edit</wb-icon>
-					<span translate>Edit</span>
+					<mb-icon>edit</mb-icon>
+					<span mb-translate>Edit</span>
 				</md-button>
 			</div>
 		</section>
@@ -72,7 +72,7 @@
 			layout="column">
 			
 			<md-button class="md-raised" ng-click="changeFile()">
-				{{'change file' | translate}}
+				{{'change file'  | translate}}
 			</md-button>
 			
 			<md-input-container class="md-block" flex-gt-xs>
@@ -105,14 +105,14 @@
 				<md-button
 					class="md-raised" 
 					ng-click="save()">
-					<wb-icon>save</wb-icon>
-					<span translate>Save</span>
+					<mb-icon>save</mb-icon>
+					<span mb-translate>Save</span>
 				</md-button>
 				<md-button 
 					class="md-raised" 
 					ng-click="ctrl.edit=false">
-					<wb-icon>close</wb-icon>
-					<span translate>Cancel</span>
+					<mb-icon>close</mb-icon>
+					<span mb-translate>Cancel</span>
 				</md-button>
 			 </div>
 		</section>
@@ -122,7 +122,7 @@
 	<mb-titled-block
 		mb-progress="ctrl.loadingCategories"
 		layout="column" 
-		mb-title="{{'Categories' | translate}}">
+		mb-title="{{'Categories'  | translate}}">
 		<div class="sdp-chips-list" style="direction:rtl;">
 			<div layout="row" layout-align="start center">
 				<md-chips flex
@@ -135,13 +135,13 @@
 						</span>
 					</md-chip-template>
 				  	<button md-chip-remove class="md-primary chipaction" ng-click="removeFromCategory($chip)">
-						<wb-icon class="block">close</wb-icon>
+						<mb-icon class="block">close</mb-icon>
 				  	</button>
 				</md-chips>
 				<md-button
 					class="md-icon-button md-raised"
 					ng-click="addToCategory()">
-					<wb-icon>add</wb-icon>
+					<mb-icon>add</mb-icon>
 				</md-button>
 			</div>
 			<div 
@@ -155,7 +155,7 @@
 	<!-- tags -->
 	<mb-titled-block
 		mb-progress="ctrl.loadingTags"
-		mb-title="{{'Tags' | translate}}"
+		mb-title="{{'Tags'  | translate}}"
 		layout="column">
 		<div class="sdp-chips-list" style="direction:rtl;">
 			<div layout="row" layout-align="start center">
@@ -169,13 +169,13 @@
 						</span>
 					</md-chip-template>
 				  	<button md-chip-remove class="md-primary chipaction" ng-click="removeTag($chip)">
-						<wb-icon class="block">close</wb-icon>
+						<mb-icon class="block">close</mb-icon>
 				  	</button>
 				</md-chips>
 				<md-button 
 					class="md-icon-button md-raised" 
 					ng-click="addTag()">
-					<wb-icon>add</wb-icon>
+					<mb-icon>add</mb-icon>
 				</md-button>
 			</div>
 			<div ng-show="!ctrl.tags || ctrl.tags.length == 0"
@@ -188,7 +188,7 @@
 	<!-- related assets -->
 	<mb-titled-block 
 		mb-progress="ctrl.loadingRelateds"
-		mb-title="{{'Relateds' | translate}}"
+		mb-title="{{'Relateds'  | translate}}"
 		layout="column">
 		<div class="sdp-chips-list" style="direction:rtl;">
 			<div layout="row" layout-align="start center">
@@ -206,13 +206,13 @@
 				  	<button md-chip-remove 
 				  		class="md-primary chipaction" 
 				  		ng-click="removeRelation($chip)">
-						<wb-icon class="block">close</wb-icon>
+						<mb-icon class="block">close</mb-icon>
 				  	</button>
 				</md-chips>
 				<md-button 
 					class="md-icon-button md-raised"
 					ng-click="addRelation()">
-					<wb-icon>add</wb-icon>
+					<mb-icon>add</mb-icon>
 				</md-button>
 			</div>
 			<div ng-show="!ctrl.relateds || ctrl.relateds.length == 0"

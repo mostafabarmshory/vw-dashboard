@@ -1,0 +1,115 @@
+<md-content
+	style="overflow: auto;">
+	<mb-titled-block
+		id="option"
+		layout="column"
+		mb-title="Options"
+		mb-icon="settings">
+		<div
+			layout="column">
+			<md-checkbox 
+				ng-model="options.removeStyle" 
+				aria-label="Remove style from view">
+				<span mb-translate>Remove style attribute</span>
+			</md-checkbox>
+			<md-checkbox 
+				ng-model="options.removeAngularjsTags" 
+				aria-label="Remove AngularJS attributes from view">
+				<span mb-translate>Remove AngularJS attributes</span>
+			</md-checkbox>
+			<md-checkbox 
+				ng-model="options.removeAngularjsMDTags" 
+				aria-label="Remove AngularJS Material Desing attributes from view">
+				<span mb-translate>Remove AngularJS Material Design attributes</span>
+			</md-checkbox>
+		</div>
+		<div
+			layout="row">
+			<span flex></span>
+			<md-button
+				class="md-raised"
+				ng-href="/api/v2/seo/content/{{ctrl.seoContent.id}}/content"
+				target="_blank"
+				download="{{ctrl.seoContent.file_name}}">
+				<span mb-translate>Download</span>
+			</md-button>
+			<md-button
+				class="md-raised md-primary"
+				ng-click="ctrl.uploadPreview(options)">
+				<span mb-translate>Upload preview</span>
+			</md-button>
+		</div>
+	</mb-titled-block>	
+	<mb-titled-block
+		id="info"
+		layout="column"
+		mb-title="Information"
+		mb-icon="info">
+		<table>
+			<tr>
+				<td mb-translate>URL</td>
+				<td>{{ctrl.seoContent.url}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Title</td>
+				<td>{{ctrl.seoContent.title}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>description</td>
+				<td>{{ctrl.seoContent.description}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>mime_type</td>
+				<td>{{ctrl.seoContent.mime_type}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>file_name</td>
+				<td>{{ctrl.seoContent.file_name}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>file_size</td>
+				<td>{{ctrl.seoContent.file_size}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>downloads</td>
+				<td>{{ctrl.seoContent.downloads}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>creation_dtime</td>
+				<td>{{ctrl.seoContent.creation_dtime}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>modif_dtime</td>
+				<td>{{ctrl.seoContent.modif_dtime}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>expire_dtime</td>
+				<td>
+					<mb-inline 
+					 	ng-model="ctrl.seoContent.expire_dtime" 
+					 	mb-inline-type="date" 
+					 	mb-inline-enable="editable"
+						mb-inline-on-save="ctrl.saveContent()">
+					 	{{ (ctrl.seoContent.expire_dtime | mbDate) || 'empty' }}
+					</am-wb-inline>
+				</td>
+			</tr>
+		</table>
+	</mb-titled-block>	
+	<mb-titled-block
+		id="preview"
+		layout="column"
+		mb-title="Live preview"
+		mb-icon="visibility">
+		<div
+			id="url">
+			{{ctrl.seoContent.url}}
+		</div>
+		<iframe
+			style="width: 90%"
+			ng-src="{{ctrl.currentContenttUrl}}"
+			height="600">
+			IFrame is not supported by your browser
+		</iframe>
+	</mb-titled-block>	
+</md-content>

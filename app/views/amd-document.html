@@ -8,25 +8,25 @@
 				class="md-icon-button" 
 				aria-label="Add"
 				ng-click="addKey()">
-				<wb-icon>add</wb-icon>
+				<mb-icon>add</mb-icon>
 			</md-button>
 			<md-button 
 				class="md-icon-button" 
 				aria-label="Reload"
 				ng-click="reload()">
-				<wb-icon>repeat</wb-icon>
+				<mb-icon>repeat</mb-icon>
 			</md-button>
 			<md-button 
 				class="md-icon-button" 
 				aria-label="Save"
 				ng-click="saveDocument()">
-				<wb-icon>save</wb-icon>
+				<mb-icon>save</mb-icon>
 			</md-button>
 			<md-button 
 				class="md-icon-button" 
 				aria-label="Delete"
 				ng-click="deleteDocument()">
-				<wb-icon>delete</wb-icon>
+				<mb-icon>delete</mb-icon>
 			</md-button>
 		</div>
 	</md-toolbar>
@@ -36,12 +36,12 @@
 		layout="row">
 		<md-input-container
 			flex>
-			<label translate>{{key}}</label>
+			<label mb-translate>{{key}}</label>
 			<input ng-model="document[key]">
 		</md-input-container>
 		<md-button
 			ng-click="removeKey(key)">
-			<wb-icon>delete</wb-icon>
+			<mb-icon>delete</mb-icon>
 		</md-button>
 	</div>
 </div>

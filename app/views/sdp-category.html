@@ -4,7 +4,7 @@
 	mb-infinate-scroll="nextChilds()">
 	<mb-titled-block 
 		mb-progress="ctrl.loadingCategory || ctrl.savingCategory"
-		mb-title="{{'Category'| translate}}"
+		mb-title="{{'Category' | translate}}"
 		layout="column">
 		<section ng-show="!ctrl.edit"
 			layout="column">
@@ -48,14 +48,14 @@
 				<md-button 
 					class = "md-raised md-accent"
 					ng-click="remove()">
-	<!-- 				<wb-icon>delete</wb-icon> -->
-					<span translate>Delete</span>
+	<!-- 				<mb-icon>delete</mb-icon> -->
+					<span mb-translate>Delete</span>
 				</md-button>
 				<md-button 
 					class="md-raised"
 					ng-click="ctrl.edit=true">
-	<!-- 				<wb-icon>edit</wb-icon> -->
-					<span translate>Edit</span>
+	<!-- 				<mb-icon>edit</mb-icon> -->
+					<span mb-translate>Edit</span>
 				</md-button>
 			</div>
 		</section>
@@ -77,7 +77,7 @@
 				</md-input-container>
 				<md-button class="md-icon-button md-raised"
 					ng-click="selectParent()">
-					<wb-icon>touch_app</wb-icon>
+					<mb-icon>touch_app</mb-icon>
 				</md-button>
 			</div>
 			<md-input-container class="md-block" flex-gt-xs>
@@ -94,14 +94,14 @@
 				<md-button 
 					class="md-raised"
 					ng-click="ctrl.edit=false">
-	<!-- 				<wb-icon>close</wb-icon> -->
-					<span translate>Cancel</span>
+	<!-- 				<mb-icon>close</mb-icon> -->
+					<span mb-translate>Cancel</span>
 				</md-button>
 				<md-button
 					class="md-raised md-primary"  
 					ng-click="save()">
-	<!-- 				<wb-icon>save</wb-icon> -->
-					<span translate>Save</span>
+	<!-- 				<mb-icon>save</mb-icon> -->
+					<span mb-translate>Save</span>
 				</md-button>
 			 </div>
 		</section>
@@ -110,14 +110,14 @@
 	<!-- subcategories -->
 		<mb-titled-block
 			mb-progress="ctrl.loadingChilds"
-			mb-title="{{'Subcategories' | translate}}"
+			mb-title="{{'Subcategories'  | translate}}"
 			layout="column">
 			<md-list flex>
 				<md-list-item 
 					ng-repeat="pobject in ctrl.childs track by pobject.id"
 					class="md-3-line" 
 					ng-href="{{'sdp/category/'+pobject.id}}">
-					<wb-icon>folder_special</wb-icon>
+					<mb-icon>folder_special</mb-icon>
 					<div 
 						class="md-list-item-text" 
 						layout="column">

@@ -19,7 +19,7 @@
 			ng-repeat="pobject in ctrl.items track by pobject.id"
 			class="md-3-line" 
 			ng-href="{{'discount/'+pobject.id}}">
-			<wb-icon>card_giftcard</wb-icon>
+			<mb-icon>card_giftcard</mb-icon>
 			<div 
 				class="md-list-item-text" 
 				layout="column">
@@ -48,8 +48,8 @@
 		<p>No discount match with the query. You can add a new discount.</p>
 		<md-button
 			ng-click="add()">
-			<wb-icon>add</wb-icon>
-			<span translate>Add</span>
+			<mb-icon>add</mb-icon>
+			<span mb-translate>Add</span>
 		</md-button>
 	</div>
 </md-content>

@@ -1,5 +1,4 @@
 <md-content
-	ng-controller="AmdTenantSpaCtrl as ctrl"
 	mb-preloading="ctrl.working"
 	layout="column"
 	layout-padding 
@@ -15,7 +14,7 @@
 				class="md-avatar"/>
 			<table class="md-table md-table-description">
 				<tr>
-					<td translate>Title</td>
+					<td mb-translate>Title</td>
 					<td>
 				<mb-inline
 					ng-model="spa.title"
@@ -28,7 +27,7 @@
 				</td>
 				</tr>
 				<tr>
-					<td translate>Description</td>
+					<td mb-translate>Description</td>
 					<td>
 				<mb-inline
 					ng-model="spa.description"
@@ -41,7 +40,7 @@
 				</td>
 				</tr>
 				<tr>
-					<td translate>Name</td>
+					<td mb-translate>Name</td>
 					<td>
 				<mb-inline
 					ng-model="spa.name"
@@ -54,19 +53,19 @@
 				</td>
 				</tr>
 				<tr>
-					<td translate>Version</td>
+					<td mb-translate>Version</td>
 					<td>{{spa.version}}</td>
 				</tr>
 				<tr>
-					<td translate>License</td>
+					<td mb-translate>License</td>
 					<td>{{spa.license}}</td>
 				</tr>
 				<tr>
-					<td translate>Home page</td>
+					<td mb-translate>Home page</td>
 					<td>{{spa.homepage}}</td>
 				</tr>
 				<tr ng-if="spa.last_version !== spa.version">
-					<td translate>New version</td>
+					<td mb-translate>New version</td>
 					<td>{{spa.last_version}}</td>
 				</tr>
 			</table>
@@ -79,24 +78,24 @@
 				data-ng-repeat="trans in transitions.items"
 				data-ng-click="ctrl.addTransition(trans)"
 				data-ng-show="{{trans.visible}}">
-				<span translate>{{trans.title|| trans.id}}</span>
+				<span mb-translate>{{trans.title|| trans.id}}</span>
 			</md-button>
 			<span flex></span>
 			<md-button
 				class="md-raised"
 				target="_blank"
 				ng-href="/{{spa.name}}/">
-				<span translate>Run</span>
+				<span mb-translate>Run</span>
 			</md-button>
 			<md-button
 				class="md-raised"
 				ng-click="ctrl.remove()">
-				<span translate>Delete</span>
+				<span mb-translate>Delete</span>
 			</md-button>
 			<md-button
 				class="md-raised"
 				ng-click="ctrl.setDefault()">
-				<span translate>Set default</span>
+				<span mb-translate>Set default</span>
 			</md-button>
 		</div>
 	</mb-titled-block>
