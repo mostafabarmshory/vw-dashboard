@@ -1,7 +1,7 @@
 {
 	"name": "vw-dashboard",
 	"moduleName": "mblowfish-core",
-	"version": "5.0.1",
+	"version": "6.0.0",
 	"title": "ViraWeb Dashboard",
 	"description": "ViraWeb123 dashboards allow managers to monitor the contribution of the various departments in their organization.",
 	"license": "MIT",
