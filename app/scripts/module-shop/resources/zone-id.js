@@ -14,13 +14,30 @@ mblowfish.addResource('/shop/zones#id', {
 
 		// TODO: maso, 2018: load selected item
 		$scope.multi = false;
-		this.value = $scope.value;
-		this.setSelected = function(item) {
-			this.value = item;
+		var value = $scope.value;
+
+
+		this.setSelected = function(item/*, selected*/) {
+
+			//>> single selection
+			// slect the same
+			if (item === value) {
+				value = undefined;
+				delete item.selected;
+				$resource.setValue(undefined);
+				return;
+			}
+			// delete old selection
+			if (value) {
+				delete value.selected;
+			}
+			// set new value
+			item.selected = true;
+			value = item;
 			$resource.setValue(item.id);
 		};
 		this.isSelected = function(item) {
-			return item.id === this.value;
+			return item.selected;
 		};
 	},
 	controllerAs: 'ctrl',

@@ -25,7 +25,8 @@
 					<h3>{{::role.name}}</h3>
 					<p>{{::role.description}}</p>
 				</div>
-				<md-checkbox class="md-secondary"
+				<md-checkbox
+					class="md-secondary"
 					ng-init="role.selected = ctrl.isSelected(role)" 
 					ng-model="role.selected"
 					ng-click="ctrl.setSelected(role, role.selected)">
