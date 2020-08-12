@@ -35,38 +35,5 @@ mblowfish.addView('/shop/zones', {
 	templateUrl: 'views/shop/views/zones.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
-	/* @ngInject */
-	controller: function(
-        /* angularjs */ $scope, $controller, $element,
-        /* seen-shop */ $shop) {
-
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-			$scope: $scope,
-			$element: $element
-		}));
-
-		// Override the function
-		this.getModelSchema = function() {
-			return $shop.zoneSchema();
-		};
-
-		// get accounts
-		this.getModels = function(parameterQuery) {
-			return $shop.getZones(parameterQuery);
-		};
-
-		// get an account
-		this.getModel = function(id) {
-			return $shop.getZone(id);
-		};
-
-		// delete account
-		this.deleteModel = function(model) {
-			return $shop.deleteZone(model.id);
-		};
-
-		this.init({
-			eventType: AMD_SHOP_ZONE_SP,
-		});
-	}
+	controller: 'AmdShopZonesCtrl'
 });

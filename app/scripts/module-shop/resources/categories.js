@@ -2,11 +2,11 @@
 
 mblowfish.addResource('/shop/categories', {
 	label: 'Categories',
-	templateUrl: 'views/shop/resources/categories.html',
-	/*
-	 * @ngInject
-	 */
+	templateUrl: 'scripts/module-shop/resources/categories.html',
+	controllerAs: 'ctrl',
+	tags: [AMD_SHOP_CATEGORY_SP],
 	controller: function($scope, $controller, $resource) {
+		'ngInject';
 		/*
 		 * Extends collection controller
 		 */
@@ -47,7 +47,5 @@ mblowfish.addResource('/shop/categories', {
 			isSelected: isSelected,
 			setSelected: setSelected,
 		});
-	},
-	controllerAs: 'ctrl',
-	tags: [AMD_SHOP_CATEGORY_SP]
+	}
 });
