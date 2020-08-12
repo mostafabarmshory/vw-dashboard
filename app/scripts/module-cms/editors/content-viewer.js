@@ -29,6 +29,7 @@ mblowfish.addEditor('/cms/content-viewer/:contentId', {
 	controllerAs: 'ctrl',
 	supportedMimetypes: ['*/*'],
 	controller: function($state, $element, $cms) {
+		'ngInject';
 		//------------------------------------------------------------------
 		// Functions
 		//------------------------------------------------------------------\

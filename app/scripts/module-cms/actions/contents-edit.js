@@ -27,7 +27,10 @@ mblowfish.addAction(AMD_CMS_CONTENTS_EDIT_ACTION, {
 	groups: ['CMS'],
 	action: function($event, $amdCmsEditors) {
 		'ngInject';
-		var values = $event.values;
+		var values = [];
+		if($event){
+			values = $event.values;
+		}
 		if (!values || !_.isArray(values)) {
 			return;
 		}
