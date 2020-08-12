@@ -18,7 +18,7 @@
 		<md-list flex>
 			<md-list-item 
 				ng-repeat="content in ctrl.items track by content.id"
-				ng-click="ctrl.openEditor(content)"
+				ng-click="ctrl.openEditor(content, $event)"
 				class="md-3-line">
 				<amd-content-icon 
 					ng-model="content">

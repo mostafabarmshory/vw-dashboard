@@ -38,7 +38,7 @@
 				<div 
 					ng-repeat="item in column.items track by item.id"
 					id="card-{{item.id}}"
-					class="card"
+					class="card {{item.state}}"
 					md-colors="{background: 'background'}"
 					layout="column"
 					ng-click="ctrl.showItemDetail(item)">

@@ -31,14 +31,14 @@
 mblowfish.addView('/shop/orders-board', {
 	title: 'Orders Board',
 	icon: 'dashboard',
-	templateUrl: 'views/shop/views/orders-board.html',
+	templateUrl: 'scripts/module-shop/views/orders-board.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
-	/* @ngInject */
 	controller: function(
         /* angularjs */ $scope, $controller, $element,
         /* seen-shop */ $shop,
         /* mblowfish */ $navigator, $mbStorage) {
+		'ngInject';
 
 		var BOARD_STORAGE_KEY = '/shop/orders/board';
 

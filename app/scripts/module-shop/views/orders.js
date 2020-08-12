@@ -31,14 +31,14 @@
 mblowfish.addView('/shop/orders', {
 	title: 'Orders',
 	icon: 'event',
-	templateUrl: 'views/shop/views/orders.html',
+	templateUrl: 'scripts/module-shop/views/orders.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	anchore: 'editors',
-	/* @ngInject */
 	controller: function(
         /* angularjs */ $scope, $controller, $element,
         /* seen-shop */ $shop) {
+		'ngInject';
 
 		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
 			$scope: $scope,

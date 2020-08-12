@@ -37,13 +37,25 @@ mblowfish
 		$mbApplicationProvider, $mbLayoutProvider, $mbToolbarProvider, $mbActionsProvider,
 		$mbSidenavProvider,
 		$mbAccountProvider,
-		$mbTranslateSanitizationProvider,
+		$mbTranslateSanitizationProvider, $mbTranslateProvider,
 		$mbStorageProvider, $locationProvider) {
 
 
 		$mbAccountProvider
 			.addAuthenticationProvider('AmdUserAtuthenticationProvider');
 
+		// Translation 
+		$mbTranslateProvider
+			.useMissingTranslationHandlerLog()
+			//			.useMissingTranslationHandler('$mbTranslateMissingTranslationHandlerStorage')
+			.useStaticFilesLoader({
+				files: [{
+					prefix: '/api/v2/cms/contents/local-language-',
+					suffix: '/content'
+				}]
+			})
+			.fallbackLanguage(['en', 'fa'])
+			.preferredLanguage('en');
 		$mbTranslateSanitizationProvider
 			.useStrategy(['sanitize']);
 
