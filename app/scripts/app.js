@@ -47,6 +47,7 @@ mblowfish
 		// Translation 
 		$mbTranslateProvider
 			.useMissingTranslationHandlerLog()
+			//			.useMissingTranslationHandler('$mbTranslateMissingTranslationHandlerStorage')
 			.useStaticFilesLoader({
 				files: [{
 					prefix: '/api/v2/cms/contents/local-language-',
