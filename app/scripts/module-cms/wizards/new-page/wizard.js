@@ -12,7 +12,7 @@ mblowfish.wizard(AMD_CMS_CONTENTS_NEWPAGE_WIZARD, {
 	/*
 	Validate data on changes
 	*/
-	onChange: function($wizard) {
+	onChange: function() {
 		'ngInject';
 		// TODO:
 	},
@@ -43,15 +43,15 @@ mblowfish.wizard(AMD_CMS_CONTENTS_NEWPAGE_WIZARD, {
 				content = '<h2>Html Page</h2>';
 				break;
 			case 'svg':
-				mimeType = 'image/svg+xml'
+				mimeType = 'image/svg+xml';
 				content = '<svg width="100" height="100"></svg>';
 				break;
 			case 'txt':
-				mimeType = 'text/plain'
+				mimeType = 'text/plain';
 				content = 'Text Page';
 				break;
 			case 'md':
-				mimeType = 'text/markdown '
+				mimeType = 'text/markdown';
 				content = '##Text Page';
 				break;
 		}

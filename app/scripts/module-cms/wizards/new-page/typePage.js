@@ -12,7 +12,7 @@ mblowfish.wizardPage(AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#type', {
 					return $wizard.getData(key);
 				}
 				$wizard.setData(key, date);
-			}
+			};
 		}
 
 		this.type = createSetterGetter('type');
