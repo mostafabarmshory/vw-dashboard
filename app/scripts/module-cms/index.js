@@ -54,6 +54,12 @@ mblowfish.addConstants({
 	AMD_CMS_CONTENTS_DELETE_ACTION: 'amd.cms.contents.delete',
 	AMD_CMS_CONTENTS_UPDATE_ACTION: 'amd.cms.contents.update',
 	AMD_CMS_CONTENTS_PROPERTIES_ACTION: 'amd.cms.contents.properties',
+	AMD_CMS_CONTENTS_NEWPAGE_ACTION: 'amd.cms.contents.newPage',
+	
+	//------------------------------------------------------------
+	// wizards
+	//------------------------------------------------------------
+	AMD_CMS_CONTENTS_NEWPAGE_WIZARD: '/cms/contents-new-page-wizard',
 });
 
 

@@ -1,7 +1,13 @@
-mblowfish.addView('/tenant/invoices', {
-	templateUrl: 'scripts/module-tenant/views/invoices.html',
-	controller: function($scope, $tenant, QueryParameter, $mbTranslate) {
 
+
+mblowfish.view('/tenant/invoices', {
+	templateUrl: 'scripts/module-tenant/views/invoices.html',
+	controllerAs: 'ctrl',
+	groups: ['Tenant'],
+	title: 'Invoices',
+	icon: 'settings_applications',
+	controller: function($scope, $tenant, QueryParameter, $mbTranslate) {
+		'ngInject';
 		var paginatorParameter = new QueryParameter();
 		var requests = null;
 		var ctrl = {
@@ -52,6 +58,5 @@ mblowfish.addView('/tenant/invoices', {
 		$scope.sortKeys = ['id', 'title', 'amount', 'due_dtime', 'creation_dtime'];
 		$scope.sortKeysTitles = ['Id', 'Title', 'Amount', 'Due time', 'creation time'];
 
-	},
-	controllerAs: 'ctrl',
+	}
 });

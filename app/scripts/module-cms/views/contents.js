@@ -61,13 +61,19 @@ mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
 				values: [content],
 			});
 		};
-		this.addAction({
-			title: 'New content',
-			icon: 'add',
-			action: function() {
-				$location.path(AMD_CMS_VIEW_CONTENT_NEW_PATH);
-			}
-		});
+		this
+			.addAction({
+				title: 'New content',
+				icon: 'add',
+				action: function() {
+					$location.path(AMD_CMS_VIEW_CONTENT_NEW_PATH);
+				}
+			})
+			.addAction({
+				title: 'New Page',
+				icon: 'add',
+				actionId: AMD_CMS_CONTENTS_NEWPAGE_ACTION
+			});
 
 		this.openMenu = function(content, $mdMenu, $event) {
 			this.editors = $amdCmsEditors.getEditors(content.mime_type);
