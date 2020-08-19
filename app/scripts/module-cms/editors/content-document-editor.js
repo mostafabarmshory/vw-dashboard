@@ -40,8 +40,9 @@ mblowfish.addEditor('/cms/document-editor/:contentId', {
 		function loadObject() {
 			$cms.getContent($state.params.contentId)
 				.then(function(content) {
-					_.assign(content, {
-						file: '/api/v2/cms/contents/' + content.id + '/content'
+					content = _.assign(content, {
+						file: '/api/v2/cms/contents/' + content.id + '/content',
+						url: '/api/v2/cms/contents/' + content.id + '/content'
 					});
 					$element.find('iframe')
 						.attr('src', '/vw-document/?' + $httpParamSerializer(content))

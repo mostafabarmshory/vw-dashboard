@@ -1,5 +1,10 @@
 
 mblowfish.addView('/seo/links', {
+	controllerAs: 'ctrl',
+	templateUrl: 'scripts/module-seo/views/links.html',
+	groups: ['seo'],
+	title: 'Sitemap links',
+	icon: 'link',
 	controller: function($scope, $navigator, $seo, $controller) {
 		'ngInject';
 		// Extends with ItemsController
@@ -59,9 +64,4 @@ mblowfish.addView('/seo/links', {
 			}
 		}]);
 	},
-	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-seo/views/links.html',
-	groups: ['seo'],
-	title: 'Sitemap links',
-	icon: 'link'
 });
