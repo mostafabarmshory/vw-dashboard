@@ -29,12 +29,12 @@
  */
 mblowfish.addView('/ums/accounts', {
 	controllerAs: 'ctrl',
-	templateUrl: 'views/user/views/users.html',
+	templateUrl: 'scripts/module-user/views/accounts.html',
 	groups: ['Users Management'],
 	title: 'Users',
 	icon: 'person',
-	/* @ngInject */
 	controller: function($scope, $controller, $navigator) {
+		'ngInject';
 
 		angular.extend(this, $controller('MbSeenUserAccountsCtrl', {
 			$scope: $scope

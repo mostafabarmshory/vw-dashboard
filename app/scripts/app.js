@@ -72,7 +72,7 @@ mblowfish
 			.setSettingsRequired(true)
 			.setLogingRequired(true)
 			.setLoginComponent({
-				templateUrl: 'views/account/login-default.html',
+				templateUrl: 'scripts/module-account/controllers/account-container-login-page.html',
 				controller: 'MbAccountContainerCtrl',
 				controllerAs: 'ctrl'
 			})

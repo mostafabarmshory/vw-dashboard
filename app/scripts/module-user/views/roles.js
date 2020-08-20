@@ -26,13 +26,13 @@
  @description Manages list of accounts
  */
 mblowfish.addView('/ums/roles', {
-	templateUrl: 'views/user/views/roles.html',
+	templateUrl: 'scripts/module-user/views/roles.html',
 	controllerAs: 'ctrl',
 	groups: ['Users Management'],
 	title: 'Roles',
 	icon: 'accessibility',
-	/* @ngInject */
 	controller: function($scope, $controller, $navigator) {
+		'ngInject';
 
 		angular.extend(this, $controller('MbSeenUserRolesCtrl', {
 			$scope: $scope

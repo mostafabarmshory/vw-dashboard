@@ -30,11 +30,11 @@
  * 
  */
 mblowfish.controller('/ums/roles/:roleId', {
-	templateUrl: 'views/user/editors/role.html',
+	templateUrl: 'scripts/module-user/editors/role.html',
 	controllerAs: 'ctrl',
 	protect: true,
-	/* @ngInject */
 	controller: function($scope, $usr, $state, $navigator, $mbResource, $mbTranslate, $q) {
+		'ngInject';
 
 		var ctrl = {
 			roleLoading: true,

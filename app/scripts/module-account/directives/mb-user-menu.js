@@ -46,7 +46,7 @@ mblowfish.directive('mbUserMenu', function($mbAccount, $mdSidenav) {
 		restrict: 'E',
 		replace: true,
 		scope: true,
-		templateUrl: 'views/directives/mb-user-menu.html',
+		templateUrl: 'scripts/module-account/directives/mb-user-menu.html',
 		link: postLink,
 		controller: 'MbAccountCtrl'
 	};

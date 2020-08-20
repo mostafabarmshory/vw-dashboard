@@ -21,37 +21,10 @@
  */
 
 
-mblowfish
-	.addConstants({
-		//------------------------------------------------------------
-		// Resources Types
-		//------------------------------------------------------------
-		AMD_USER_ROLES_RT: '/user/roles',
-		AMD_USER_GROUPS_RT: '/user/groups',
-	});
-
-mblowfish
-	.config(function($mbIconProvider, $mbViewProvider) {
-		$mbIconProvider
-			.addShape('amd-account', $mbIconProvider.getShape('person'))
-			.addShape('amd-profile', $mbIconProvider.getShape('person'));
-
-		// NOTE: views will removed from system and replaced with actions and dialogs
-		$mbViewProvider
-			.addView('/ums/accounts/new', {
-				controllerAs: 'ctrl',
-				templateUrl: 'views/amd-user-user-new.html',
-				groups: ['Users Management'],
-				title: 'New user',
-				icon: 'person_add',
-				controller: 'AmdUserNewCtrl',
-			})
-			.addView('/ums/groups-new', {
-				templateUrl: 'views/amd-user-group-new.html',
-				controller: 'AmdGroupNewCtrl',
-				controllerAs: 'ctrl',
-				groups: ['Users Management'],
-				title: 'New group',
-				icon: 'group_add',
-			});
-	});
+mblowfish.addConstants({
+	//------------------------------------------------------------
+	// Resources Types
+	//------------------------------------------------------------
+	AMD_USER_ROLES_RT: '/user/roles',
+	AMD_USER_GROUPS_RT: '/user/groups',
+});

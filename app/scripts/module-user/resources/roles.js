@@ -1,10 +1,10 @@
 mblowfish.addResource('amd-seen-user-roles', {
 	title: 'Account Roles',
-	templateUrl: 'views/user/resources/roles.html',
+	templateUrl: 'scripts/module-user/resources/roles.html',
 	tags: [AMD_USER_ROLES_RT],
 	controllerAs: 'ctrl',
-	/* @ngInject */
 	controller: function($scope, $resource, $controller, $style) {
+		'ngInject';
 		angular.extend(this, $controller('MbSeenUserRolesCtrl', {
 			$scope: $scope
 		}));

@@ -31,11 +31,11 @@
 Manages a group view
  */
 mblowfish.controller('/ums/groups/:groupId', {
-	templateUrl: 'views/user/editors/group.html',
+	templateUrl: 'scripts/module-user/editors/group.html',
 	controllerAs: 'ctrl',
 	protect: true,
-	/* @ngInject */
 	controller: function($scope, $usr, $state, $navigator, $mbResource, $mbTranslate, $q) {
+		'ngInject';
 
 		var ctrl = {
 			roleLoading: true,
