@@ -14,7 +14,7 @@ mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#roles', {
 		this.setRoles = function(roles) {
 			if (!roles) {
 				roles = [];
-			};
+			}
 			$wizard.setData('roles', roles);
 			ctrl.selectedItem = undefined;
 			ctrl.searchText = undefined;

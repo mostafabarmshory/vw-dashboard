@@ -14,7 +14,7 @@ mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#groups', {
 		this.setGroups = function(groups) {
 			if (!groups) {
 				groups = [];
-			};
+			}
 			$wizard.setData('groups', groups);
 			ctrl.selectedItem = undefined;
 			ctrl.searchText = undefined;

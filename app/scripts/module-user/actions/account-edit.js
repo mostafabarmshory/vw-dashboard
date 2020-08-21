@@ -12,14 +12,14 @@ mblowfish.action(AMD_USER_ACCOUNTS_OPENEDITOR_ACTION, {
 	description: 'Open an editor to edit an account or list of accounts',
 	groups: ['User'],
 	action: function($event, $location) {
+		'ngInject';
 		if (!$event.values) {
 			return;
 		}
 		_.forEach($event.values, function(account) {
-			// XXX: maso, 2020: open editor for the account
+			// maso, 2020: open editor for the account
 			var link = 'ums/accounts/' + account.id;
-
-			$location.url(link)
+			return $location.url(link);
 		});
 	}
 });
