@@ -18,7 +18,7 @@
 		<md-list flex>
 			<md-list-item 
 				ng-repeat="user in ctrl.items track by user.id"
-				ng-href="ums/accounts/{{::user.id}}"
+				ng-click="ctrl.editAccount($event, user)"
 				class="md-3-line">
 				<img 
 					class="md-avatar"

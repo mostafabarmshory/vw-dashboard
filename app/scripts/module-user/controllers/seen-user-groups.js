@@ -23,42 +23,42 @@
 
 
 /**
- * @ngdoc Controllers
- * @name MbSeenUserGroupsCtrl
- * @description Manages list of groups
- * 
+@ngdoc Controllers
+@name MbSeenUserGroupsCtrl
+@description Manages list of groups
+
  */
-mblowfish.controller('MbSeenUserGroupsCtrl', function ($scope, $usr, $controller) {
-    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-        $scope : $scope
-    }));
+mblowfish.controller('MbSeenUserGroupsCtrl', function($scope, $usr, $controller) {
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope
+	}));
 
-    // Overried the function
-    this.getModelSchema = function () {
-        return $usr.groupSchema();
-    };
-    
-    // get groups
-    this.getModels = function (parameterQuery) {
-        return $usr.getGroups(parameterQuery);
-    };
-    
-    // get a group
-    this.getModel = function (id) {
-        return $usr.getGroup(id);
-    };
-    
-    // Add group
-    this.addModel = function (model) {
-        return $usr.putGroup(model);
-    };
-    
-    // delete group
-    this.deleteModel = function (model) {
-        return $usr.deleteGroup(model.id);
-    };
+	// Overried the function
+	this.getModelSchema = function() {
+		return $usr.groupSchema();
+	};
 
-    this.init({
-        eventType: '/user/groups'
-    });
+	// get groups
+	this.getModels = function(parameterQuery) {
+		return $usr.getGroups(parameterQuery);
+	};
+
+	// get a group
+	this.getModel = function(id) {
+		return $usr.getGroup(id);
+	};
+
+	// Add group
+	this.addModel = function(model) {
+		return $usr.putGroup(model);
+	};
+
+	// delete group
+	this.deleteModel = function(model) {
+		return $usr.deleteGroup(model.id);
+	};
+
+	this.init({
+		eventType: AMD_USER_GROUPS_SP
+	});
 });

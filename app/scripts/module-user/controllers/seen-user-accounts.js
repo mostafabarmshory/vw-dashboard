@@ -29,37 +29,37 @@
  * This controller is used in accounts list.
  * 
  */
-mblowfish.controller('MbSeenUserAccountsCtrl', function ($scope, $usr, $controller) {
-    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-        $scope : $scope
-    }));
+mblowfish.controller('MbSeenUserAccountsCtrl', function($scope, $usr, $controller) {
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope
+	}));
 
-    // Overried the function
-    this.getModelSchema = function () {
-        return $usr.accountSchema();
-    };
-    
-    // get accounts
-    this.getModels = function (parameterQuery) {
-        return $usr.getAccounts(parameterQuery);
-    };
-    
-    // get an account
-    this.getModel = function (id) {
-        return $usr.getAccount(id);
-    };
-    
-    // add account
-    this.addModel = function (model) {
-        return $usr.putAccount(model);
-    };
-    
-    // delete account
-    this.deleteModel = function (model) {
-        return $usr.deleteAccount(model.id);
-    };
+	// Overried the function
+	this.getModelSchema = function() {
+		return $usr.accountSchema();
+	};
 
-    this.init({
-        eventType: '/user/account'
-    });
+	// get accounts
+	this.getModels = function(parameterQuery) {
+		return $usr.getAccounts(parameterQuery);
+	};
+
+	// get an account
+	this.getModel = function(id) {
+		return $usr.getAccount(id);
+	};
+
+	// add account
+	this.addModel = function(model) {
+		return $usr.putAccount(model);
+	};
+
+	// delete account
+	this.deleteModel = function(model) {
+		return $usr.deleteAccount(model.id);
+	};
+
+	this.init({
+		eventType: AMD_USER_ACCOUNTS_SP
+	});
 });

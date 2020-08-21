@@ -33,21 +33,23 @@ mblowfish.addView('/ums/accounts', {
 	groups: ['Users Management'],
 	title: 'Users',
 	icon: 'person',
-	controller: function($scope, $controller, $navigator) {
+	controller: function($scope, $controller, $mbActions) {
 		'ngInject';
 
 		angular.extend(this, $controller('MbSeenUserAccountsCtrl', {
 			$scope: $scope
 		}));
 
-
+		this.editAccount = function($event, account){
+			$event.values = [account];
+			return $mbActions.exec(AMD_USER_ACCOUNTS_OPENEDITOR_ACTION, $event);
+		};
+		
 		// Add action
 		this.addAction({
 			title: 'New account',
 			icon: 'add',
-			action: function() {
-				$navigator.openPage('ums/accounts/new');
-			}
+			actionId: AMD_USER_ACCOUNT_CREATE_ACTION
 		});
 	}
 });

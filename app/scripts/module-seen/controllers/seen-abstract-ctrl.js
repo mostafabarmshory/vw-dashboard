@@ -52,8 +52,8 @@ an action.
 - addModel: model
 - addViewItem: view
  */
-mblowfish.controller('MbSeenGeneralAbstractCollectionCtrl', function ($scope, $controller, $q) {
-	
+mblowfish.controller('SeenAbstractCtrl', function($scope, $controller, $q) {
+
 
 	/*
 	 * Extends collection controller from MbAbstractCtrl 
@@ -62,31 +62,31 @@ mblowfish.controller('MbSeenGeneralAbstractCollectionCtrl', function ($scope, $c
 		$scope: $scope
 	}));
 
-	this.getSchema = function () {
+	this.getSchema = function() {
 		if (!angular.isDefined(this.getModelSchema)) {
 			return;
 		}
 		return this.getModelSchema()
-		.then(function (schema) {
-			return schema;
-		});
+			.then(function(schema) {
+				return schema;
+			});
 	};
 
 	//properties is the children of schema.
-	this.getProperties = function () {
+	this.getProperties = function() {
 		if (angular.isDefined(this.properties)) {
 			$q.resolve(this.properties);
 		}
 		var ctrl = this;
 		if (angular.isDefined(ctrl.getModelSchema)) {
 			return this.getSchema()
-			.then(function (schema) {
-				ctrl.properties = schema.children;
-			});
+				.then(function(schema) {
+					ctrl.properties = schema.children;
+				});
 		}
 	};
 
-	this.init = function () {
+	this.init = function() {
 		this.getProperties();
 	};
 });

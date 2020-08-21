@@ -1,0 +1,104 @@
+<!-- TODO: <mb-dynamic-form
+	ng-model="ctrl.profile"
+	ng-model-change="ctrl.setProfile(ctrl.profile)"
+	mb-parameters="ctrl.schema.children">
+</mb-dynamic-form>-->
+
+<md-input-container class="md-block">
+	<label mb-translate>First Name</label>
+	<input 
+		type="text"
+		autocomplete="given-name"
+		md-no-asterisk 
+		name="first_name" 
+		ng-model="ctrl.first_name"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+
+<md-input-container class="md-block">
+	<label mb-translate>Last Name</label>
+	<input 
+		type="text"
+		autocomplete="family-name"
+		md-no-asterisk 
+		name="last_name" 
+		ng-model="ctrl.last_name"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+
+<md-input-container class="md-block">
+	<label mb-translate>Public EMail</label>
+	<input 
+		type="email"
+		autocomplete="email"
+		md-no-asterisk 
+		name="public_email" 
+		ng-model="ctrl.public_email"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+
+<md-input-container class="md-block">
+	<label mb-translate>Language</label>
+	<input 
+		type="text"
+		autocomplete="language"
+		md-no-asterisk 
+		name="language" 
+		ng-model="ctrl.language"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+
+<!--<md-input-container class="md-block">
+	<label mb-translate>Timezone</label>
+	<input 
+		type="text"
+		autocomplete="timezone"
+		md-no-asterisk 
+		name="timezone" 
+		ng-model="ctrl.timezone"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>-->
+
+<md-input-container class="md-block">
+	<label mb-translate>national_code</label>
+	<input 
+		type="text"
+		autocomplete="national_code"
+		md-no-asterisk 
+		name="national_code" 
+		ng-model="ctrl.national_code"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+
+<md-input-container class="md-block">
+	<label mb-translate>Gender</label>
+	<input 
+		type="text"
+		autocomplete="gender"
+		md-no-asterisk 
+		name="gender" 
+		ng-model="ctrl.gender"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+
+<md-input-container class="md-block">
+	<label mb-translate>Weight</label>
+	<input 
+		type="number"
+		autocomplete="weight"
+		md-no-asterisk 
+		name="weight" 
+		ng-model="ctrl.weight"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+
+<!--<md-input-container class="md-block">
+	<label mb-translate>Birthday</label>
+	<input 
+		type="email"
+		autocomplete="email"
+		md-no-asterisk 
+		name="email" 
+		ng-model="ctrl.email"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>-->

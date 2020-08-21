@@ -43,7 +43,7 @@ mblowfish.controller('MbSeenAbstractItemCtrl', function(
 	/*
 	 * Extends collection controller from MbAbstractCtrl 
 	 */
-	angular.extend(this, $controller('MbSeenGeneralAbstractCollectionCtrl', {
+	angular.extend(this, $controller('SeenAbstractCtrl', {
 		$scope: $scope
 	}));
 

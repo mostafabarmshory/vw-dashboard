@@ -61,7 +61,7 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
     /*
      * Extends collection controller from MbAbstractCtrl 
      */
-	angular.extend(this, $controller('MbSeenGeneralAbstractCollectionCtrl', {
+	angular.extend(this, $controller('SeenAbstractCtrl', {
 		$scope: $scope
 	}));
 
@@ -254,6 +254,44 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 		this.items = [];
 		if (this.id) {
 			this.fireEvent(this.id, 'update', this.items);
+		}
+	};
+
+    /**
+     * Load controller actions
+     * 
+     * @return list of actions
+     */
+	this.getActions = function() {
+		return this.actions;
+	};
+
+    /**
+     * Adds new action into the controller
+     * 
+     * @param action to add to list
+     */
+	this.addAction = function(action) {
+		if (_.isUndefined(this.actions)) {
+			this.actions = [];
+		}
+		// TODO: maso, 2018: assert the action is MbAction
+		if (!(action instanceof MbAction)) {
+			action = new MbAction(action);
+		}
+		this.actions.push(action);
+		return this;
+	};
+
+    /**
+     * Adds list of actions to the controller
+     * 
+     * @memberof SeenAbstractCollectionCtrl
+     * @params array of actions
+     */
+	this.addActions = function(actions) {
+		for (var i = 0; i < actions.length; i++) {
+			this.addAction(actions[i]);
 		}
 	};
 
@@ -518,85 +556,6 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 		return this.lastQuery;
 	};
 
-
-    /**
-     * Set a GraphQl format of data
-     * 
-     * By setting this the controller is not sync and you have to reload the
-     * controller. It is better to set the data query at the start time.
-     * 
-     * @memberof SeenAbstractCollectionCtrl
-     * @param graphql
-     */
-	this.setDataQuery = function(grqphql) {
-		this.queryParameter.put('graphql', '{page_number, current_page, items' + grqphql + '}');
-		// TODO: maso, 2018: check if refresh is required
-	};
-
-    /**
-     * Adding custom filter
-     * 
-     * Filters are used to select special types of the items.
-     * 
-     * @memberof SeenAbstractCollectionCtrl
-     * @param key of the filter
-     * @param value of the filter
-     */
-	this.addFilter = function(key, value) {
-		this.queryParameter.setFilter(key, value);
-	};
-
-    /**
-     * Load controller actions
-     * 
-     * @return list of actions
-     */
-	this.getActions = function() {
-		return this.actions;
-	};
-
-    /**
-     * Adds new action into the controller
-     * 
-     * @param action to add to list
-     */
-	this.addAction = function(action) {
-		if (_.isUndefined(this.actions)) {
-			this.actions = [];
-		}
-		// TODO: maso, 2018: assert the action is MbAction
-		if (!(action instanceof MbAction)) {
-			action = new MbAction(action);
-		}
-		this.actions.push(action);
-		return this;
-	};
-
-    /**
-     * Adds list of actions to the controller
-     * 
-     * @memberof SeenAbstractCollectionCtrl
-     * @params array of actions
-     */
-	this.addActions = function(actions) {
-		for (var i = 0; i < actions.length; i++) {
-			this.addAction(actions[i]);
-		}
-	};
-
-    /**
-     * Gets the query parameter
-     * 
-     * NOTE: if you change the query parameter then you are responsible to
-     * call reload the controller too.
-     * 
-     * @memberof SeenAbstractCollectionCtrl
-     * @returns QueryParameter
-     */
-	this.getQueryParameter = function() {
-		return this.queryParameter;
-	};
-
     /**
      * Checks if the state is busy
      * 
@@ -661,6 +620,73 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 		}
 		this.eventType = eventType;
 		this.addEventHandler(this.eventType, callback);
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+	// -------------------------------------------------------------------------
+	// Collection specification
+	// -------------------------------------------------------------------------
+
+    /**
+     * Set a GraphQl format of data
+     * 
+     * By setting this the controller is not sync and you have to reload the
+     * controller. It is better to set the data query at the start time.
+     * 
+     * @memberof SeenAbstractCollectionCtrl
+     * @param graphql
+     */
+	this.setDataQuery = function(grqphql) {
+		this.queryParameter.put('graphql', '{page_number, current_page, items' + grqphql + '}');
+		// TODO: maso, 2018: check if refresh is required
+	};
+
+    /**
+     * Adding custom filter
+     * 
+     * Filters are used to select special types of the items.
+     * 
+     * @memberof SeenAbstractCollectionCtrl
+     * @param key of the filter
+     * @param value of the filter
+     */
+	this.addFilter = function(key, value) {
+		this.queryParameter.setFilter(key, value);
+	};
+
+    /**
+     * Gets the query parameter
+     * 
+     * NOTE: if you change the query parameter then you are responsible to
+     * call reload the controller too.
+     * 
+     * @memberof SeenAbstractCollectionCtrl
+     * @returns QueryParameter
+     */
+	this.getQueryParameter = function() {
+		return this.queryParameter;
+	};
+
+    /**
+     * Sets query string and reload the controller
+     * 
+     * 
+     * @memberof SeenAbstractCollectionCtrl
+     * @returns QueryParameter
+     */
+	this.setQueryString = function(query) {
+		this.queryParameter.setQuery(query);
+		return this.reload();
 	};
 
 });

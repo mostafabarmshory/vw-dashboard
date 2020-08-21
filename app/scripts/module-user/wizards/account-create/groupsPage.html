@@ -1,0 +1,28 @@
+<md-chips 
+	ng-model="ctrl.groups" 
+	ng-change="ctrl.setGroups(ctrl.groups)"
+	md-autocomplete-snap
+	ng-model-options="{debounce: 200}"
+	input-aria-label="Favorite Vegetables">
+	ٰ<md-autocomplete
+		md-selected-item="ctrl.selectedItem"
+		md-search-text="ctrl.searchText"
+		md-items="item in ctrl.setSearchString(ctrl.searchText)"
+		md-item-text="item.name"
+		input-aria-label="Group query"
+		input-aria-describedby="groups"
+		placeholder="Type group name">
+		<md-item-template>
+			<span md-highlight-text="ctrl.searchText">{{::item.name}}</span>
+		</md-item-template>
+		<md-not-found>
+			<span mb-translate>No group found.</span>
+		</md-not-found>
+	</md-autocomplete>
+	<md-chip-template>
+		<span style="padding: 0 16px;">
+			<strong>{{::$chip.name}}</strong>
+		</span>
+	</md-chip-template>
+</md-chips>
+

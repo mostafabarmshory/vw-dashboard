@@ -1,0 +1,55 @@
+<div 
+    layout="column">
+    <!--    <div ng-if="mbDiscountEnable">	
+            <p mb-translate>Enter discount code if you have</p>
+            <div>
+                <md-input-container>
+                    <label mb-translate>Discount code</label>
+                    <input style="text-align:center" ng-model="discountCode">
+                    <div class="hint" ng-if="discount_message" mb-translate>{{discount_message}}</div>
+                </md-input-container>
+                <md-button 
+                    class="md-raised md-primary"  
+                    ng-click="checkDiscount(discountCode)">
+                    <span mb-translate>Check discount</span>
+                </md-button>
+            </div>
+        </div>-->
+    <div
+        layout="column">
+        <md-progress-linear
+            style="min-width:50px;"
+            ng-if="ctrl.loadingGates || ctrl.paying"
+            md-mode="indeterminate"
+            class="md-accent"
+            md-color>
+        </md-progress-linear>
+
+        <div 
+            layout="column"
+            ng-if="!ctrl.loadingGates && ctrl.gates.length">
+            <p mb-translate>Select gate to pay</p>
+            <div 
+                layout="row" 
+                layout-align="center center">
+                <md-button
+                    ng-repeat="gate in ctrl.gates"
+                    ng-click="ctrl.pay(gate)">
+                    <img 
+                        ng-src="{{::gate.symbol}}" 
+                        style="max-height: 64px;border-radius: 4px"
+                        alt="{{::gate.title}}">
+                </md-button>
+            </div>
+        </div>
+        <div 
+            layout="row"
+            ng-if="!ctrl.loadingGates && ctrl.gates && !ctrl.gates.length"
+            layout-align="center center">
+            <p  
+                style="color: red">
+                <span mb-translate>No gate is defined for the currency of the wallet.</span>
+            </p>
+        </div>
+    </div>
+</div>
