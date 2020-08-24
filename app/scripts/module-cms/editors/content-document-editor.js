@@ -31,8 +31,11 @@ mblowfish.addEditor('/cms/document-editor/:contentId', {
 	icon: 'text',
 	template: '<iframe></iframe>',
 	controllerAs: 'ctrl',
-	supportedMimetypes: ['text/html'],
-	controller: function($state, $element, $cms, $httpParamSerializer) {
+	supportedMimetypes: [
+		'text/html',
+		'application/weburger+json'
+	],
+	controller: function($state, $element, $cms, $httpParamSerializer, $mbLocal) {
 		'ngInject';
 		//------------------------------------------------------------------
 		// Functions
@@ -41,6 +44,7 @@ mblowfish.addEditor('/cms/document-editor/:contentId', {
 			$cms.getContent($state.params.contentId)
 				.then(function(content) {
 					content = _.assign(content, {
+						language: $mbLocal.getLanguage(),
 						file: '/api/v2/cms/contents/' + content.id + '/content',
 						url: '/api/v2/cms/contents/' + content.id + '/content'
 					});
