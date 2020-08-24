@@ -55,7 +55,7 @@ mblowfish.addConstants({
 	AMD_CMS_CONTENTS_UPDATE_ACTION: 'amd.cms.contents.update',
 	AMD_CMS_CONTENTS_PROPERTIES_ACTION: 'amd.cms.contents.properties',
 	AMD_CMS_CONTENTS_NEWPAGE_ACTION: 'amd.cms.contents.newPage',
-	
+
 	//------------------------------------------------------------
 	// wizards
 	//------------------------------------------------------------
@@ -64,9 +64,7 @@ mblowfish.addConstants({
 
 
 
-mblowfish.config(function($mbEditorProvider, $mbResourceProvider) {
-
-
+mblowfish.config(function($mbEditorProvider) {
 	$mbEditorProvider
 		.addEditor('/cms/terms/:termId', {
 			controller: 'AmdCmsTermCtrl',
@@ -75,73 +73,5 @@ mblowfish.config(function($mbEditorProvider, $mbResourceProvider) {
 		})
 		.addEditor('/cms/term-taxonomies/:itemId', {
 			templateUrl: 'views/amd-term-taxonomy.html',
-		});
-
-	/* @ngInject */
-	var TermTaxonomiesCtrl = function($scope, $resource) {
-		$scope.multi = false;
-		var value = [];
-		this.toggleSelected = function(item) {
-			if (this.isSelected(item)) {
-				var index = value.indexOf(item);
-				value.splice(index, 1);
-			} else {
-				value.push(item);
-			}
-			$resource.setValue(value);
-		};
-		this.isSelected = function(item) {
-			return value.indexOf(item) >= 0;
-		};
-	};
-
-	$mbResourceProvider
-		.addPage('cms.term-taxonomies', {
-			tags: [AMD_CMS_TERMTAXONOMIES_RT],
-			title: 'Term-Taxonomy',
-			icon: 'label',
-			templateUrl: 'views/resources/amd-term-taxonomy.html',
-			controller: TermTaxonomiesCtrl,
-			controllerAs: 'resourceCtrl',
-			priority: 8
-		})
-		.addPage('cms.term-taxonomies.category', {
-			tags: [AMD_CMS_TERMTAXONOMIES_RT],
-			title: 'Category',
-			icon: 'label',
-			templateUrl: 'views/resources/amd-term-taxonomy-category.html',
-			controller: TermTaxonomiesCtrl,
-			controllerAs: 'resourceCtrl',
-			priority: 8
-		})
-		.addPage('cms.term-taxonomies.tag', {
-			tags: [AMD_CMS_TERMTAXONOMIES_RT],
-			title: 'Tag',
-			icon: 'label',
-			templateUrl: 'views/resources/amd-term-taxonomy-tag.html',
-			controller: TermTaxonomiesCtrl,
-			controllerAs: 'resourceCtrl',
-			priority: 8
-		})
-		.addPage('cms.metadata.keyval', {
-			tags: [AMD_CMS_METADATA_RT],
-			title: 'Metadatum',
-			icon: 'label',
-			/* @ngInject */
-			controller: function($scope, $value, $resource) {
-				var value = _.isArray($value) ? $value : [{}];
-				$scope.meta = value[0];
-				$scope.setKey = function(key) {
-					value[0].key = key;
-					$resource.setValue(value);
-				};
-				$scope.setValue = function(val) {
-					value[0].value = val;
-					$resource.setValue(value);
-				};
-			},
-			controllerAs: 'ctrl',
-			templateUrl: 'views/resources/amd-cms-microdatum.html',
-			priority: 8
 		});
 });
