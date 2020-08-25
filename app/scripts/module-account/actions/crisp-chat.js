@@ -1,9 +1,9 @@
 
-mblowfish.addAction(AMD_ACCOUNT_CHAT_ACTION,{
+mblowfish.addAction(AMD_ACCOUNT_CHAT_ACTION, {
 	title: 'Chat',
 	icon: 'chat',
-	/* @ngAction */
-	action: function(){
+	action: function() {
+		'ngInject';
 		$crisp.push(['do', 'chat:open']);
 	}
 });

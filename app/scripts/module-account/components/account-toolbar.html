@@ -11,23 +11,21 @@
 			ng-src-error="https://www.gravatar.com/avatar/{{authentication.details.id|wbmd5}}?d=identicon&size=32">
 		<span>{{::authentication.details.profiles[0].first_name}} {{::authentication.details.profiles[0].last_name}}</span>
 	</div>
-	<md-menu-content width="3">
-		<!-- maso, 2017: adding user function dynamically. -->
-		<md-menu-item
-			ng-if="menu.items.length"
-			ng-repeat="item in menu.items | orderBy:['-priority']">
-			<md-button 
-				ng-click="item.exec($event)"
-				mb-translate>
-	   			<mb-icon ng-if="item.icon">{{::item.icon}}</mb-icon>
-				<span ng-if="item.title" mb-translate>{{::item.title}}</span>
+	<md-menu-content>
+		<md-menu-item>
+			<md-button
+				ng-click="ctrl.openProfile($event)">
+				<mb-icon style="min-width: 24px;"></mb-icon>
+				<span mb-translate>Profile</span>
 			</md-button>
 		</md-menu-item>
 		<md-menu-divider></md-menu-divider>
 		<md-menu-item>
 			<md-button 
-				ng-click="toggleRightSidebar();logout();"
-				mb-translate>Logout</md-button>
+				ng-click="ctrl.logout($event)">
+				<mb-icon>exit_to_app</mb-icon>
+				<span mb-translate>Logout</span>
+			</md-button>
 		</md-menu-item>
 	</md-menu-content>
 </md-menu>
