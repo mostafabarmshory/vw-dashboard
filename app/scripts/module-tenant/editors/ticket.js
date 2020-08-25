@@ -2,6 +2,7 @@
 mblowfish.addEditor('/tenant/tickets/:ticketId', {
 	templateUrl: 'scripts/module-tenant/editors/ticket.html',
 	controller: function($scope, $state, $tenant, QueryParameter) {
+		'ngInject';
 
 		var paginatorParameter = new QueryParameter();
 		paginatorParameter.setOrder('creation_dtime', 'd');

@@ -2,6 +2,7 @@
 mblowfish.addEditor('/receipts/:id', {
 	templateUrl: 'views/amd-tenant-receipt.html',
 	controller: function($scope, $state, $tenant/*, $app, $window*/) {
+		'ngInject';
 
 		var ctrl = {
 			laoding: false,

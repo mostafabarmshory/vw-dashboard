@@ -3,6 +3,7 @@ mblowfish.addEditor('/tenant/invoices/:invoiceId', {
 	templateUrl: 'scripts/module-tenant/editors/invoice.html',
 	controller: function($scope, $rootScope, $state, $location,
 		/*$discount,*/ $tenant) {
+		'ngInject';
 
 		/**
 		 * Controller status
