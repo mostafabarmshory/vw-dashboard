@@ -3,6 +3,9 @@ mblowfish.addResource('cms.metadata.keyval', {
 	tags: [AMD_CMS_METADATA_RT],
 	title: 'Metadatum',
 	icon: 'label',
+	controllerAs: 'ctrl',
+	templateUrl: 'scripts/module-cms/resources/content-metadata.html',
+	priority: 8,
 	controller: function($scope, $value, $resource) {
 		'ngInject';
 		var value = _.isArray($value) ? $value : [{}];
@@ -16,7 +19,4 @@ mblowfish.addResource('cms.metadata.keyval', {
 			$resource.setValue(value);
 		};
 	},
-	controllerAs: 'ctrl',
-	templateUrl: 'views/resources/amd-cms-microdatum.html',
-	priority: 8
 });

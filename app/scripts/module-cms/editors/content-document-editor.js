@@ -41,10 +41,20 @@ mblowfish.addEditor('/cms/document-editor/:contentId', {
 		// Functions
 		//------------------------------------------------------------------\
 		function loadObject() {
-			$cms.getContent($state.params.contentId)
+			$cms.getContent($state.params.contentId,{
+				graphql: '{id,media_type,mime_type,metas{id,key,value}}'
+			})
 				.then(function(content) {
+					var metas = content.metas;
+					delete content.metas;
+					var language = $mbLocal.getLanguage();
+					_.forEach(metas, function(meta){
+						if(meta.key === 'language'){
+							language = meta.value;
+						}
+					});
 					content = _.assign(content, {
-						language: $mbLocal.getLanguage(),
+						language: language,
 						file: '/api/v2/cms/contents/' + content.id + '/content',
 						url: '/api/v2/cms/contents/' + content.id + '/content'
 					});
