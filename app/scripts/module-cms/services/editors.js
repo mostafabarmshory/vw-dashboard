@@ -57,15 +57,12 @@ mblowfish.provider('$amdCmsEditors', function() {
 			throw new TypeError('Content type is not define');
 		}
 		// finally
-		if (!name) {
-			var editors = getEditorsName(content.mime_type);
-			if (editors.length > 0) {
-				name = editors[0];
-			}
-		}
 		if (name) {
 			return location.path(name.replace(':contentId', content.id));
 		}
+		//		else {
+		//			// TODO: maso, 2020: find editors from settings
+		//		}
 
 		// find editor
 		return openProperties(content);
