@@ -28,8 +28,6 @@
 mblowfish
 	.addConstants({
 		APP_KEY: 'vwstudio',
-		AMD_ACCOUNT_TOOLBAR_COMPONENT: 'vw.account.toolbar.component',
-		AMD_ACCOUNT_CHAT_ACTION: 'vw.account.chat',
 	});
 
 mblowfish
@@ -127,6 +125,7 @@ mblowfish
 			url: '/user/account',
 			float: 'right',
 			items: [
+				AMD_ACCOUNT_MESSAGES_ACTION,
 				AMD_ACCOUNT_TOOLBAR_COMPONENT
 			]
 		}, {

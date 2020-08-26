@@ -39,7 +39,7 @@ Manages current user action:
  */
 mblowfish.controller('MbAccountContainerCtrl', function(
 	/* Angularjs */ $scope, $mbTranslate, $usr,
-	/* MBlowfish */ $mbAccount, $mbLogger) {
+	/* MBlowfish */ $mbAccount, $mbLog) {
 
 
 	// support old systems
@@ -110,7 +110,7 @@ mblowfish.controller('MbAccountContainerCtrl', function(
 				toast($mbTranslate.instant('Password is changed successfully. Login with new password.'));
 			}, function(error) {
 				ctrl.changePassState = 'fail';
-				$scope.changePassMessage = $mbLogger.errorMessage(error, form);
+				$scope.changePassMessage = $mbLog.error(error, form);
 				alert($mbTranslate.instant('Failed to change the password.'));
 			})//
 			.finally(function() {

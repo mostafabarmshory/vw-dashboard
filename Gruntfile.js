@@ -576,10 +576,10 @@ module.exports = function(grunt) {
 				addRootSlash: false,
 				sort: function(a, b) {
 					if (a.endsWith('app.js')) {
-						return -1;
+						return 1;
 					}
 					if (b.endsWith('app.js')) {
-						return 1;
+						return -1;
 					}
 					if (a.endsWith('index.js') && !b.endsWith('index.js')) {
 						return -1;

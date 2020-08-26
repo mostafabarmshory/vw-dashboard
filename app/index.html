@@ -28,13 +28,13 @@
 	
     <!-- build:css(.tmp) styles/main.css -->
 	<!-- injector:css -->
+	<link rel="stylesheet" href="scripts/module-account/components/account-toolbar.css">
 	<link rel="stylesheet" href="scripts/module-bank/editors/bank-gate.css">
 	<link rel="stylesheet" href="scripts/module-cms/editors/content-properties.css">
 	<link rel="stylesheet" href="scripts/module-seo/views/links-new.css">
 	<link rel="stylesheet" href="styles/amd-chips-hack.css">
 	<link rel="stylesheet" href="styles/crisp-hack-button.css">
 	<link rel="stylesheet" href="styles/main.css">
-	<link rel="stylesheet" href="styles/module-account.css">
 	<link rel="stylesheet" href="styles/preloader.css">
 	<link rel="stylesheet" href="styles/shop-orders-board.css">
 	<!-- endinjector -->
@@ -82,7 +82,6 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
 	<!-- injector:js -->
-	<script src="scripts/app.js"></script>
 	<script src="scripts/module-account/index.js"></script>
 	<script src="scripts/module-backup/index.js"></script>
 	<script src="scripts/module-bank/index.js"></script>
@@ -98,12 +97,13 @@
 	<script src="scripts/module-account/actions/change-password.js"></script>
 	<script src="scripts/module-account/actions/crisp-chat.js"></script>
 	<script src="scripts/module-account/actions/logout.js"></script>
+	<script src="scripts/module-account/actions/messages.js"></script>
 	<script src="scripts/module-account/actions/profile-update.js"></script>
 	<script src="scripts/module-account/components/account-toolbar.js"></script>
 	<script src="scripts/module-account/controllers/account-container.js"></script>
-	<script src="scripts/module-account/controllers/account-profile-editor-ctrl.js"></script>
 	<script src="scripts/module-account/directives/mb-user-menu.js"></script>
 	<script src="scripts/module-account/factories/seen-authentication-provider.js"></script>
+	<script src="scripts/module-account/sidenavs/messages.js"></script>
 	<script src="scripts/module-account/views/profile.js"></script>
 	<script src="scripts/module-backup/snapshots-view-ctrl.js"></script>
 	<script src="scripts/module-bank/actions/gates-create.js"></script>
@@ -294,6 +294,7 @@
 	<script src="scripts/module-user/wizards/account-create/profilePage.js"></script>
 	<script src="scripts/module-user/wizards/account-create/rolesPage.js"></script>
 	<script src="scripts/module-user/wizards/account-create/wizard.js"></script>
+	<script src="scripts/app.js"></script>
 	<!-- endinjector -->
 	<!-- endbuild -->
 </head>
