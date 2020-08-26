@@ -54,7 +54,7 @@ an action.
 - addViewItem: view
  */
 mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controller, $q, $navigator,
-	$mbLog,
+	$log,
 	$window, QueryParameter, MbAction) {
 
 
@@ -400,7 +400,7 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 				.then(function() {
 					ctrl.fireDeleted(ctrl.eventType, tempItem);
 				}, function(ex) {
-					$mbLog.error(ex);
+					$log.error(ex);
 					alert('Fail to delete item.');
 				});
 		}
