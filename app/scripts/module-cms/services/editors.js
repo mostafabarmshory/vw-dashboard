@@ -16,7 +16,7 @@ mblowfish.provider('$amdCmsEditors', function() {
 	//-------------------------------------------------
 	// variables
 	//-------------------------------------------------
-	var editorCache = {};
+//	var editorCache = {};
 
 	//-------------------------------------------------
 	// functions
@@ -39,18 +39,18 @@ mblowfish.provider('$amdCmsEditors', function() {
 		return editors;
 	}
 
-	function getEditorsName(mimetypeString) {
-		if (editorCache[mimetypeString]) {
-			return editorCache[mimetypeString];
-		}
-		var names = [];
-		var editors = getEditors(mimetypeString);
-		_.forEach(editors, function(editor) {
-			names.push(editor.name);
-		});
-		editorCache[mimetypeString] = names;
-		return names;
-	}
+//	function getEditorsName(mimetypeString) {
+//		if (editorCache[mimetypeString]) {
+//			return editorCache[mimetypeString];
+//		}
+//		var names = [];
+//		var editors = getEditors(mimetypeString);
+//		_.forEach(editors, function(editor) {
+//			names.push(editor.name);
+//		});
+//		editorCache[mimetypeString] = names;
+//		return names;
+//	}
 
 	function openContent(content, name) {
 		if (!content.mime_type) {
