@@ -5,7 +5,7 @@ mblowfish.addConstants({
 	//------------------------------------------------------------
 	// Components
 	//------------------------------------------------------------
-	AMD_ACCOUNT_MESSAGES_COMPONENT: 'account.messages',
+	AMD_ACCOUNT_MESSAGES_COMPONENT: 'account.messages.component',
 	AMD_ACCOUNT_TOOLBAR_COMPONENT: 'vw.account.toolbar.component',
 
 	//------------------------------------------------------------

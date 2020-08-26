@@ -125,7 +125,7 @@ mblowfish
 			url: '/user/account',
 			float: 'right',
 			items: [
-				AMD_ACCOUNT_MESSAGES_ACTION,
+				AMD_ACCOUNT_MESSAGES_COMPONENT,
 				AMD_ACCOUNT_TOOLBAR_COMPONENT
 			]
 		}, {
