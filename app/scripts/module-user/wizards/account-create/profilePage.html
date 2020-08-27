@@ -1,8 +1,10 @@
 <!-- TODO: <mb-dynamic-form
 	ng-model="ctrl.profile"
-	ng-model-change="ctrl.setProfile(ctrl.profile)"
+	ng-change="ctrl.setProfile(ctrl.profile)"
+	ng-model-options="{debounce: 200}"
 	mb-parameters="ctrl.schema.children">
-</mb-dynamic-form>-->
+</mb-dynamic-form>
+-->
 
 <md-input-container class="md-block">
 	<label mb-translate>First Name</label>

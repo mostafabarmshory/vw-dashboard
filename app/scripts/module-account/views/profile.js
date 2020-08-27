@@ -10,6 +10,7 @@ mblowfish.view(AMD_ACCOUNT_PROFILES_VIEW, {
 	description: 'View or update all profiles.',
 	templateUrl: 'scripts/module-account/views/profile.html',
 	controllerAs: 'ctrl',
+	groups: ['Account'],
 	controller: function($scope, $mbTranslate, $window, UserProfile, $usr) {
 		'ngInject';
 		// set initial data
@@ -142,30 +143,30 @@ mblowfish.view(AMD_ACCOUNT_PROFILES_VIEW, {
 		// Load account information
 		this.loadUser();
 
-//		// re-labeling lf-ng-md-file component for multi languages support
-//		angular.element(function() {
-//
-//			var elm = angular.element('.lf-ng-md-file-input-drag-text');
-//			if (elm[0]) {
-//				elm.text($mbTranslate.instant('Drag & Drop File Here'));
-//			}
-//
-//			elm = angular.element('.lf-ng-md-file-input-button-brower');
-//			if (elm[0] && elm[0].childNodes[1] && elm[0].childNodes[1].data) {
-//				elm[0].childNodes[1].data = ' ' + $mbTranslate.instant('Browse');
-//			}
-//
-//			elm = angular.element('.lf-ng-md-file-input-button-remove');
-//			if (elm[0] && elm[0].childNodes[1] && elm[0].childNodes[1].data) {
-//				elm[0].childNodes[1].data = $mbTranslate.instant('Remove');
-//			}
-//
-//			elm = angular.element('.lf-ng-md-file-input-caption-text-default');
-//			if (elm[0]) {
-//				elm.text($mbTranslate.instant('Select File'));
-//			}
-//
-//		});
+		//		// re-labeling lf-ng-md-file component for multi languages support
+		//		angular.element(function() {
+		//
+		//			var elm = angular.element('.lf-ng-md-file-input-drag-text');
+		//			if (elm[0]) {
+		//				elm.text($mbTranslate.instant('Drag & Drop File Here'));
+		//			}
+		//
+		//			elm = angular.element('.lf-ng-md-file-input-button-brower');
+		//			if (elm[0] && elm[0].childNodes[1] && elm[0].childNodes[1].data) {
+		//				elm[0].childNodes[1].data = ' ' + $mbTranslate.instant('Browse');
+		//			}
+		//
+		//			elm = angular.element('.lf-ng-md-file-input-button-remove');
+		//			if (elm[0] && elm[0].childNodes[1] && elm[0].childNodes[1].data) {
+		//				elm[0].childNodes[1].data = $mbTranslate.instant('Remove');
+		//			}
+		//
+		//			elm = angular.element('.lf-ng-md-file-input-caption-text-default');
+		//			if (elm[0]) {
+		//				elm.text($mbTranslate.instant('Select File'));
+		//			}
+		//
+		//		});
 
 	}
 });
