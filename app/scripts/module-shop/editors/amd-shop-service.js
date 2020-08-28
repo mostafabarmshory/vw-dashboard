@@ -29,11 +29,12 @@ Controller of a service
 mblowfish.addEditor('/shop/services/:serviceId', {
 	templateUrl: 'views/shop/editors/service.html',
 	controllerAs: 'ctrl',
-	/* @ngInject */
+	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function(
 		$scope, $state, $mbTranslate, $location, $navigator, $q,
         /* wb-core   */ $mbResource,
         /* seen-shop */ $shop, ShopService, ShopCategory, ServiceMetafield) {
+		'ngInject';
 
 		this.loading = false;
 		this.updating = false;

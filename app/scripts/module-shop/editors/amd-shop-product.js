@@ -28,8 +28,9 @@
 mblowfish.addEditor('/shop/products/:productId', {
 	templateUrl: 'views/shop/editors/product.html',
 	controllerAs: 'ctrl',
-	/* @ngInject */
+	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function($scope, $shop, $state, $mbTranslate, $navigator, $location, $q, QueryParameter, $editor) {
+		'ngInject';
 
 		var ctrl = {
 			loading: false,

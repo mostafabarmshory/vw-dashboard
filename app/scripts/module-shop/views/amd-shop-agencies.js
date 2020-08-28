@@ -32,10 +32,9 @@ mblowfish.addView('/shop/agencies', {
 	templateUrl: 'views/shop/views/agencies.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
-	/* @ngInject */
-	controller: function(
-        /* angularjs */ $scope, $controller, $element,
-        /* seen-shop */ $shop) {
+	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
+	controller: function($scope, $controller, $element, $shop) {
+		'ngInject';
 
 		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
 			$scope: $scope,

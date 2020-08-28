@@ -35,5 +35,6 @@ mblowfish.addView('/shop/zones', {
 	templateUrl: 'views/shop/views/zones.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
+	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner")',
 	controller: 'AmdShopZonesCtrl'
 });

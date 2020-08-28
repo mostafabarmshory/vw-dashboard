@@ -25,8 +25,9 @@ mblowfish.addAction(AMD_SHOP_ZONE_CREATE_ACTION, {
 	icon: 'photo_album',
 	description: 'Creates new category',
 	groups: ['Shop'],
-	/*@ngInject*/
+	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	action: function($shop, $mbTranslate, $event, $mbDispatcherUtil, $mbDynamicForm) {
+		'ngInject';
 		var data = {};
 		var values = $event.values;
 		if (values && values.length) {

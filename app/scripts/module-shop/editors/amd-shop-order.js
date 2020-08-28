@@ -31,5 +31,6 @@
 mblowfish.addEditor('/shop/orders/:orderId', {
 	controllerAs: 'ctrl',
 	templateUrl: 'views/shop/editors/order.html',
+	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: 'AmdShopOrderCtrl',
 });

@@ -34,6 +34,7 @@ mblowfish.addView('/shop/orders-board', {
 	templateUrl: 'scripts/module-shop/views/orders-board.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
+	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function(
         /* angularjs */ $scope, $controller, $element,
         /* seen-shop */ $shop,

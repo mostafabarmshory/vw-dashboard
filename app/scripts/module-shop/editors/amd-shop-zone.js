@@ -30,11 +30,12 @@
 mblowfish.addEditor('/shop/zones/:itemId', {
 	templateUrl: 'views/shop/editors/zone.html',
 	controllerAs: 'ctrl',
-	/* @ngInject */
+	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function(
     /* angularjs  */ $scope, $controller, $element, $mbUtil,
     /* ngRoute    */ $state, $editor,
     /* seen-shp   */ $shop) {
+	'ngInject';
 		var itemId = $state.params.itemId;
 		var isEqualId = $mbUtil.isEqualId;
 

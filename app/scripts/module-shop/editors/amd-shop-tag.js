@@ -31,8 +31,9 @@ TagCtrl Controller of the saasdmCpanelApp
 mblowfish.addEditor('AmdShopTagCtrl', '/shop/tags/:tagId', {
 	templateUrl: 'views/shop/editors/tag.html',
 	controllerAs: 'ctrl',
-	/* @ngInject */
+	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function($scope, $shop, $mbTranslate, $state, $location) {
+		'ngInject';
 
 		var ctrl = {
 			loading: false,

@@ -29,11 +29,12 @@
 mblowfish.addEditor('/shop/delivers/:itemId', {
 	templateUrl: 'views/shop/editors/deliver.html',
 	controllerAs: 'ctrl',
-	/* @ngInject */
+	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function(
     /* angularjs  */ $controller, $element,
     /* ngRoute    */ $scope, $state, $editor,
     /* seen-shp   */ $shop, $mbUtil) {
+		'ngInject';
 		var itemId = $state.params.itemId;
 		var isEqualId = $mbUtil.isEqualId;
 
