@@ -28,7 +28,7 @@ mblowfish.controller('MbSeenCmsContentsCtrl', function($scope, $cms, $q, $contro
      * Extends collection controller
      */
 	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-		$scope: $scope
+		$scope: $scope,
 	}));
 
 	// Override the schema function

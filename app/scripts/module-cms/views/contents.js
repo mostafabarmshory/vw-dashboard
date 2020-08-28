@@ -34,12 +34,31 @@ mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
 	templateUrl: 'scripts/module-cms/views/contents.html',
 	groups: ['Content Management'],
 	icon: 'image',
-	controller: function($scope, $controller, $location, $mbActions, $amdCmsEditors) {
+	controller: function(
+		$scope, $view, $cms, $controller, $q, MbAction,
+		$location, $mbActions, $amdCmsEditors) {
 		'ngInject';
-		// Extends with ItemsController
-		angular.extend(this, $controller('MbSeenCmsContentsCtrl', {
-			$scope: $scope
-		}));
+
+		// Override the schema function
+		this.getModelSchema = function() {
+			return $cms.contentSchema();
+		};
+
+		// get contents
+		this.getModels = function(parameterQuery) {
+			return $cms.getContents(parameterQuery);
+		};
+
+		// get a content
+		this.getModel = function(id) {
+			return $cms.getContent(id);
+		};
+
+		// delete account
+		this.deleteModel = function(content) {
+			return $cms.deleteContent(content.id);
+		};
+
 		/**
 		Opne the content with an editor
 		 */
@@ -61,25 +80,31 @@ mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
 				values: [content],
 			});
 		};
-		this
-			.addAction({
-				title: 'New content',
-				icon: 'add',
-				action: function() {
-					$location.path(AMD_CMS_VIEW_CONTENT_NEW_PATH);
-				}
-			})
-			.addAction({
-				title: 'New Page',
-				icon: 'add',
-				actionId: AMD_CMS_CONTENTS_NEWPAGE_ACTION
-			});
 
 		this.openMenu = function(content, $mdMenu, $event) {
 			this.editors = $amdCmsEditors.getEditors(content.mime_type);
 			return $mdMenu.open($event);
 		};
 
-		this.init();
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+			$scope: $scope,
+			$view: $view,
+		}));
+		$q.when(this.init())
+			.then(function() {
+				$view.getToolbar()
+					.addAction(new MbAction({
+						title: 'New content',
+						icon: 'add',
+						action: function() {
+							$location.path(AMD_CMS_VIEW_CONTENT_NEW_PATH);
+						}
+					}))
+					.addAction(new MbAction({
+						title: 'New Page',
+						icon: 'note_add',
+						actionId: AMD_CMS_CONTENTS_NEWPAGE_ACTION
+					}));
+			});
 	},
 });
