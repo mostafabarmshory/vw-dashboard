@@ -22,15 +22,31 @@
 
 /* exported AMD_SHOP_ZONE_SP */
 
-mblowfish.addConstants({
-	//------------------------------------------------------------
-	// ACTIONS
-	//------------------------------------------------------------
-	AMD_SHOP_CATEGORY_IMPORTJSON_ACTION: 'amd.shop.category.importJson',
-	AMD_SHOP_PRODUCT_IMPORTCSV_ACTION: 'amd.shop.product.importCsv'
-});
+mblowfish
+	.addConstants({
+		//------------------------------------------------------------
+		// ACTIONS
+		//------------------------------------------------------------
+		AMD_SHOP_CATEGORY_IMPORTJSON_ACTION: 'amd.shop.category.importJson',
+		AMD_SHOP_PRODUCT_IMPORTCSV_ACTION: 'amd.shop.product.importCsv'
+	});
 
-mblowfish.config(function(/*$mbIconProvider*/) {
-
+/*
+NOTE: You are allowed to contribute to modules view if and only if ther were loaded.
+*/
+mblowfish.run(function($mbToolbar) {
+	// Contribute to categories toolbar
+	$mbToolbar.getToolbar(AMD_SHOP_CATEGORIES_VIEW)
+		.addAction(AMD_SHOP_CATEGORY_IMPORTJSON_ACTION);
+	/*
+	This is equal to :
 	
+	$mbView
+		.getView(AMD_SHOP_CATEGORIES_VIEW)
+		.getToolbar()
+		.addAction(AMD_SHOP_CATEGORY_IMPORTJSON_ACTION);
+	*/
+	
+	$mbToolbar.getToolbar(AMD_SHOP_PRODUCTS_VIEW)
+		.addAction(AMD_SHOP_PRODUCT_IMPORTCSV_ACTION);
 });

@@ -20,26 +20,52 @@
  * SOFTWARE.
  */
 
-/**
-@ngdoc View
-@name '/shop/categories'
-@description 
 
-Manages list of categories
+/**
+@ngdoc Views
+@name MbSeenShopDeliversCtrl
+@description 
+Manages list of shop delivers
  */
-mblowfish.addView('/shop/categories', {
-	title: 'Categories',
-	icon: 'folder_special',
-	templateUrl: 'views/shop/views/categories.html',
-	groups: ['Shop'],
+mblowfish.addView(AMD_SHOP_DELIVERS_VIEW, {
+	title: 'Delivers',
+	icon: 'local_shipping',
+	templateUrl: 'scripts/module-shop/views/delivers.html',
 	controllerAs: 'ctrl',
+	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	controller: function($scope, $controller, $element) {
+	controller: function($scope, $controller, $view, $shop) {
 		'ngInject';
-		angular.extend(this, $controller('AmdShopCategoriesCtrl', {
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
-			$element: $element
+			$view: $view
 		}));
 
+		// Override the function
+		this.getModelSchema = function() {
+			return $shop.deliverSchema();
+		};
+
+		// get accounts
+		this.getModels = function(parameterQuery) {
+			return $shop.getDelivers(parameterQuery);
+		};
+
+		// get an account
+		this.getModel = function(id) {
+			return $shop.getDeliver(id);
+		};
+
+		// delete account
+		this.deleteModel = function(model) {
+			return $shop.deleteDeliver(model.id);
+		};
+
+		/*************************************************************
+		 * Load the controller and more actions
+		 *************************************************************/
+		this.init({
+			eventType: AMD_SHOP_DELIVER_SP
+		});
 	}
 });

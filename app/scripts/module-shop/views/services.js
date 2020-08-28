@@ -21,50 +21,55 @@
  */
 
 
+
 /**
- * @ngdoc Controllers
- * @name MbSeenShopProductsCtrl
- * @description Manages list of categories
- * 
- * 
+@ngdoc Views
+@name /shop/services
+@description Manages list of categories
+
  */
-mblowfish.addView('/shop/products', {
-	title: 'Products',
-	icon: 'add_shopping_cart',
-	templateUrl: 'views/shop/views/products.html',
+mblowfish.addView(AMD_SHOP_SERVICES_VIEW, {
+	title: 'Services',
+	icon: 'cloud_upload',
+	templateUrl: 'scripts/module-shop/views/services.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	controller: function($scope, $controller, $shop) {
+	controller: function($scope, $controller, $shop, $view) {
 		'ngInject';
 
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-			$scope: $scope
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+			$scope: $scope,
+			$view: $view,
 		}));
+
 
 		// Override the function
 		this.getModelSchema = function() {
-			return $shop.productSchema();
+			return $shop.serviceSchema();
 		};
 
 		// get accounts
 		this.getModels = function(parameterQuery) {
-			return $shop.getProducts(parameterQuery);
+			return $shop.getServices(parameterQuery);
 		};
 
 		// get an account
 		this.getModel = function(id) {
-			return $shop.getProcudt(id);
+			return $shop.getService(id);
 		};
 
 		// delete account
 		this.deleteModel = function(model) {
-			return $shop.deleteProduct(model.id);
+			return $shop.deleteService(model.id);
 		};
 
+
+		/*************************************************************
+		 * 
+		 *************************************************************/
 		this.init({
-			eventType: AMD_SHOP_PRODUCT_SP,
+			eventType: AMD_SHOP_SERVICE_SP,
 		});
 	}
 });
-

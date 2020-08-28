@@ -23,7 +23,7 @@
 
 mblowfish.addAction(AMD_SHOP_DELIVER_CREATE_ACTION, {
 	title: 'New Deliver',
-	icon: 'photo_album',
+	icon: 'add',
 	description: 'Creates new delivers',
 	groups: ['Shop'],
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',

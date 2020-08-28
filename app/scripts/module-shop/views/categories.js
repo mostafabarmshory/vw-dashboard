@@ -22,47 +22,50 @@
 
 /**
 @ngdoc View
-@name MbSeenShopAgenciesCtrl
+@name '/shop/categories'
 @description 
-Manages list of agencies from shop domain
- */
-mblowfish.addView('/shop/agencies', {
-	title: 'Agencies',
-	icon: 'store',
-	templateUrl: 'views/shop/views/agencies.html',
-	controllerAs: 'ctrl',
-	groups: ['Shop'],
-	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	controller: function($scope, $controller, $element, $shop) {
-		'ngInject';
 
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+Manages list of categories
+ */
+mblowfish.addView(AMD_SHOP_CATEGORIES_VIEW, {
+	title: 'Categories',
+	icon: 'folder_special',
+	templateUrl: 'scripts/module-shop/views/categories.html',
+	groups: ['Shop'],
+	controllerAs: 'ctrl',
+	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
+	controller: function($scope, $controller, $shop, $view) {
+		'ngInject';
+		/*
+		 * Extends collection controller
+		 */
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
-			$element: $element
+			$view: $view,
 		}));
 
 		// Override the function
 		this.getModelSchema = function() {
-			return $shop.agencySchema();
+			return $shop.categorySchema();
 		};
 
 		// get accounts
 		this.getModels = function(parameterQuery) {
-			return $shop.getAgencies(parameterQuery);
+			return $shop.getCategories(parameterQuery);
 		};
 
 		// get an account
 		this.getModel = function(id) {
-			return $shop.getAgency(id);
+			return $shop.getCategory(id);
 		};
 
 		// delete account
 		this.deleteModel = function(model) {
-			return $shop.deleteAgency(model.id);
+			return $shop.deleteCategory(model.id);
 		};
 
 		this.init({
-			eventType: AMD_SHOP_AGENCY_SP,
+			eventType: AMD_SHOP_CATEGORY_SP,
 		});
 	}
 });

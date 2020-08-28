@@ -20,52 +20,52 @@
  * SOFTWARE.
  */
 
-
 /**
-@ngdoc Views
-@name MbSeenShopDeliversCtrl
-@description 
-Manages list of shop delivers
+@ngdoc Controllers
+@name MbSeenShopZonesCtrl
+@description Manages list of zones from shop domain
+
+In the shop domain you are allowed to categorize agances into zones. This is a
+main controller to manage list of zones.
+
  */
-mblowfish.addView('/shop/delivers', {
-	title: 'Delivers',
-	icon: 'local_shipping',
-	templateUrl: 'views/shop/views/delivers.html',
+mblowfish.addView(AMD_SHOP_ZONES_VIEW, {
+	title: 'Zones',
+	icon: 'layers',
+	templateUrl: 'scripts/module-shop/views/zones.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
-	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	controller: function($scope, $controller, $element, $shop) {
+	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner")',
+	controller: function($scope, $view, $controller, $shop) {
 		'ngInject';
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
-			$element: $element
+			$view: $view,
 		}));
 
 		// Override the function
 		this.getModelSchema = function() {
-			return $shop.deliverSchema();
+			return $shop.zoneSchema();
 		};
 
 		// get accounts
 		this.getModels = function(parameterQuery) {
-			return $shop.getDelivers(parameterQuery);
+			return $shop.getZones(parameterQuery);
 		};
 
 		// get an account
 		this.getModel = function(id) {
-			return $shop.getDeliver(id);
+			return $shop.getZone(id);
 		};
 
 		// delete account
 		this.deleteModel = function(model) {
-			return $shop.deleteDeliver(model.id);
+			return $shop.deleteZone(model.id);
 		};
 
-		/*************************************************************
-		 * Load the controller and more actions
-		 *************************************************************/
 		this.init({
-			eventType: AMD_SHOP_DELIVER_SP
+			eventType: AMD_SHOP_ZONE_SP,
 		});
 	}
 });

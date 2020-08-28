@@ -28,7 +28,7 @@ Manage a shop category.
 
  */
 mblowfish.addEditor('/shop/categories/:categoryId', {
-	templateUrl: 'views/shop/editors/category.html',
+	templateUrl: 'scripts/module-shop/editors/category.html',
 	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function($editor, $scope, $state, $shop, $controller, $mbTranslate, $mbActions, $mbUtil) {

@@ -1,7 +1,5 @@
-/* 
- * The MIT License (MIT)
- * 
- * Copyright (c) 2016 weburger
+/*
+ * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,14 +21,54 @@
  */
 
 
+
 /**
-@ngdoc Editor
-@name AmdShopOrderCtrl
-@description load the order
+@ngdoc Views
+@name /shop/tags
+@description Manages list of categories
+
+
  */
-mblowfish.addEditor('/shop/orders/:orderId', {
+mblowfish.addView(AMD_SHOP_TAGS_VIEW, {
+	title: 'Tags',
+	icon: 'label',
+	templateUrl: 'scripts/module-shop/views/tags.html',
 	controllerAs: 'ctrl',
-	templateUrl: 'views/shop/editors/order.html',
+	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	controller: 'AmdShopOrderCtrl',
+	controller: function($scope, $controller, $view, $shop) {
+		'ngInject';
+
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+			$scope: $scope,
+			$view: $view,
+		}));
+
+		// Override the function
+		this.getModelSchema = function() {
+			return $shop.tagSchema();
+		};
+
+		// get accounts
+		this.getModels = function(parameterQuery) {
+			return $shop.getTags(parameterQuery);
+		};
+
+		// get an account
+		this.getModel = function(id) {
+			return $shop.getTag(id);
+		};
+
+		// delete account
+		this.deleteModel = function(model) {
+			return $shop.deleteTag(model.id);
+		};
+
+		/***********************************************************
+		 * Initialize the controller
+		 ***********************************************************/
+		this.init({
+			eventType: AMD_SHOP_TAG_SP,
+		});
+	}
 });

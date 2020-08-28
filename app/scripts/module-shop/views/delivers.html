@@ -1,5 +1,4 @@
 <md-content
-	id="shop_orders_list"
 	mb-preloading="ctrl.loading"
 	mb-infinate-scroll="ctrl.loadNextPage()"
 	layout="column"
@@ -7,18 +6,18 @@
 	flex>
 	<md-list flex>
 		<md-list-item 
-			id="{{::pobject.state}}"
 			ng-repeat="pobject in ctrl.items track by pobject.id"
-			class="md-3-line" 
-			ng-href="{{'shop/orders/' + pobject.id}}">
+			class="md-2-line" 
+			ng-href="{{'shop/delivers/' + pobject.id}}"
+			style="cursor: pointer">
 			<img ng-src="{{pobject.avatar}}" ng-if="pobject.avatar" class="md-avatar" />
-			<mb-icon ng-if="!pobject.avatar">event</mb-icon>
+			<mb-icon ng-if="!pobject.avatar">send</mb-icon>
 			<div 
 				class="md-list-item-text" 
 				layout="column">
-				<h3>{{::pobject.id}} - {{::pobject.full_name}} - (<span mb-translate>{{::pobject.state}}</span>)</h3>
-				<h4>{{::pobject.title}}</h4>
-				<p>{{::pobject.phone}} - {{::(pobject.creation_dtime | mbDateTime)}}</p>
+				<h3>{{pobject.title}}</h3>
+				<!--<h4>{{pobject.id}}</h4>-->
+				<!--<p>{{pobject.description}}</p>-->
 			</div>
 			<md-divider md-inset></md-divider>
 		</md-list-item>

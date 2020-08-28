@@ -47,7 +47,9 @@ mblowfish.controller('SeenAbstractCollectionViewCtrl', function($scope, $control
 		.addAction(new MbAction({
 			title: 'Reload',
 			icon: 'repeat',
-			action: relaodView
+			action: function(){
+				return relaodView();
+			}
 		}))
 		.addComponent(new MbComponent({
 			template: '<div class="mb-collection-toolbar-input"><input ng-model="ctrl.query" ng-change="ctrl.setQuery(ctrl.query)" ng-model-options="{debounce: 1000}"/><mb-icon size="16">search</mb-icon></div>',

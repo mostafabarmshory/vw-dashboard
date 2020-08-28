@@ -27,7 +27,7 @@
 Controller of a service
  */
 mblowfish.addEditor('/shop/services/:serviceId', {
-	templateUrl: 'views/shop/editors/service.html',
+	templateUrl: 'scripts/module-shop/editors/service.html',
 	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function(

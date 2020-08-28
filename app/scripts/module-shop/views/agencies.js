@@ -20,54 +20,51 @@
  * SOFTWARE.
  */
 
-
-
 /**
-@ngdoc Views
-@name /shop/tags
-@description Manages list of categories
-
-
+@ngdoc View
+@name MbSeenShopAgenciesCtrl
+@description 
+Manages list of agencies from shop domain
  */
-mblowfish.addView('/shop/tags', {
-	title: 'Tags',
-	icon: 'label',
-	templateUrl: 'views/shop/views/tags.html',
+mblowfish.view('/shop/agencies', {
+	title: 'Agencies',
+	icon: 'store',
+	templateUrl: 'scripts/module-shop/views/agencies.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	controller: function($scope, $controller, $element, $shop) {
+	controller: function($scope, $controller, $view, $shop) {
 		'ngInject';
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		/*
+		 * Extends collection controller
+		 */
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
-			$element: $element
+			$view: $view,
 		}));
 
 		// Override the function
 		this.getModelSchema = function() {
-			return $shop.tagSchema();
+			return $shop.agencySchema();
 		};
 
 		// get accounts
 		this.getModels = function(parameterQuery) {
-			return $shop.getTags(parameterQuery);
+			return $shop.getAgencies(parameterQuery);
 		};
 
 		// get an account
 		this.getModel = function(id) {
-			return $shop.getTag(id);
+			return $shop.getAgency(id);
 		};
 
 		// delete account
 		this.deleteModel = function(model) {
-			return $shop.deleteTag(model.id);
+			return $shop.deleteAgency(model.id);
 		};
 
-		/***********************************************************
-		 * Initialize the controller
-		 ***********************************************************/
 		this.init({
-			eventType: AMD_SHOP_TAG_SP,
+			eventType: AMD_SHOP_AGENCY_SP,
 		});
 	}
 });

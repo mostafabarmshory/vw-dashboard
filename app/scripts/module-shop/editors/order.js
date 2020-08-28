@@ -1,5 +1,7 @@
-/*
- * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
+/* 
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2016 weburger
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,53 +23,14 @@
  */
 
 
-
 /**
-@ngdoc Views
-@name /shop/services
-@description Manages list of categories
-
+@ngdoc Editor
+@name AmdShopOrderCtrl
+@description load the order
  */
-mblowfish.addView('/shop/services', {
-	title: 'Services',
-	icon: 'cloud_upload',
-	templateUrl: 'views/shop/views/services.html',
+mblowfish.addEditor('/shop/orders/:orderId', {
 	controllerAs: 'ctrl',
-	groups: ['Shop'],
+	templateUrl: 'scripts/module-shop/editors/order.html',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	controller: function($scope, $controller, $shop) {
-		'ngInject';
-
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-			$scope: $scope
-		}));
-
-		// Override the function
-		this.getModelSchema = function() {
-			return $shop.serviceSchema();
-		};
-
-		// get accounts
-		this.getModels = function(parameterQuery) {
-			return $shop.getServices(parameterQuery);
-		};
-
-		// get an account
-		this.getModel = function(id) {
-			return $shop.getService(id);
-		};
-
-		// delete account
-		this.deleteModel = function(model) {
-			return $shop.deleteService(model.id);
-		};
-
-
-		/*************************************************************
-		 * 
-		 *************************************************************/
-		this.init({
-			eventType: AMD_SHOP_SERVICE_SP,
-		});
-	}
+	controller: 'AmdShopOrderCtrl',
 });

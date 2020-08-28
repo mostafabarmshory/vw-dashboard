@@ -20,21 +20,52 @@
  * SOFTWARE.
  */
 
+
 /**
-@ngdoc Controllers
-@name MbSeenShopZonesCtrl
-@description Manages list of zones from shop domain
-
-In the shop domain you are allowed to categorize agances into zones. This is a
-main controller to manage list of zones.
-
+ * @ngdoc Controllers
+ * @name MbSeenShopProductsCtrl
+ * @description Manages list of categories
+ * 
+ * 
  */
-mblowfish.addView('/shop/zones', {
-	title: 'Zones',
-	icon: 'layers',
-	templateUrl: 'views/shop/views/zones.html',
+mblowfish.addView(AMD_SHOP_PRODUCTS_VIEW, {
+	title: 'Products',
+	icon: 'add_shopping_cart',
+	templateUrl: 'scripts/module-shop/views/products.html',
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
-	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner")',
-	controller: 'AmdShopZonesCtrl'
+	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
+	controller: function($scope, $controller, $shop, $view) {
+		'ngInject';
+
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+			$scope: $scope,
+			$view: $view,
+		}));
+
+		// Override the function
+		this.getModelSchema = function() {
+			return $shop.productSchema();
+		};
+
+		// get accounts
+		this.getModels = function(parameterQuery) {
+			return $shop.getProducts(parameterQuery);
+		};
+
+		// get an account
+		this.getModel = function(id) {
+			return $shop.getProcudt(id);
+		};
+
+		// delete account
+		this.deleteModel = function(model) {
+			return $shop.deleteProduct(model.id);
+		};
+
+		this.init({
+			eventType: AMD_SHOP_PRODUCT_SP,
+		});
+	}
 });
+
