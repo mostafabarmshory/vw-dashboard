@@ -1,72 +1,61 @@
-<div  
+<md-content
 	ng-init="ctrl.setDataQuery('{id, title, name, file_name, media_type, mime_type, state}')"
 	mb-preloading="ctrl.loading"
-	layout="column">
-	<!-- TODO: maso, 1395: در حالت خطا یک صفحه با امکان reload اضافه بشه. -->
-<!--	<mb-pagination-bar
-		mb-model="ctrl.queryParameter"
-		mb-reload="ctrl.reload()"
-		mb-sort-keys="ctrl.getSortKeys()"
-		mb-more-actions="ctrl.getActions()"
-		mb-properties="ctrl.properties">
-	</mb-pagination-bar>-->
-	<md-content
-		mb-infinate-scroll="ctrl.loadNextPage()"
+	mb-infinate-scroll="ctrl.loadNextPage()"
+	layout="column"
+	style="max-width: 100%; overflow: auto;"
+	flex>
+	<div
 		layout="column"
-		style="max-width: 100%;"
-		flex>
-		<md-list flex>
-			<md-list-item 
-				ng-repeat="content in ctrl.items track by content.id"
-				ng-click="ctrl.openEditor(content, $event)"
-				class="md-3-line">
-				<amd-content-icon 
-					ng-model="content">
-				</amd-content-icon>
-				<div 
-					class="md-list-item-text" 
-					layout="column">
-					<h3>{{content.title}}</h3>
-					<h4>{{::content.name}}</h4>
-					<p>{{::content.id}}-{{::content.media_type}}-{{::content.state}}</p>
-				</div>
-				<md-menu>
-					<md-button class="md-icon-button"
-						ng-click="ctrl.openMenu(content, $mdMenu, $event);" 
-						aria-label="remove attachment"><mb-icon>more_vert</mb-icon>
-					</md-button>
-					<md-menu-content width="4">
-						<md-menu-item>
-							<md-button ng-click="ctrl.openEditor(content, $event)">
-								<mb-icon>edit</mb-icon>
-								<span translate>Open</span>
-							</md-button>
-						</md-menu-item>
-						<md-menu-divider></md-menu-divider>
-						<!-- TODO: show preloading -->
-						<md-menu-item
-							ng-repeat="editor in ctrl.editors">
-							<md-button ng-click="ctrl.openWithSelectedEditor(content, editor, $event)">
-								<mb-icon>{{editor.icon}}</mb-icon>
-								<span translate>{{::editor.title}}</span>
-							</md-button>
-						</md-menu-item>
-						<md-menu-divider></md-menu-divider>
-						<md-menu-item>
-							<md-button ng-click="ctrl.openProperties(content, $event)">
-								<mb-icon>settings</mb-icon>
-								<span translate>Properties</span>
-							</md-button>
-						</md-menu-item>
-					</md-menu-content>
-				</md-menu>
-			</md-list-item>
-		</md-list>
-		<div
-			layout="column"
-			layout-align="center center"
-			ng-if="ctrl.state === 'ideal' && (!ctrl.items || ctrl.items.length == 0)">
-			<h2 mb-translate="">No content found</h2>
-		</div>
-	</md-content>
-</div>
+		layout-align="center center"
+		ng-if="ctrl.state === 'ideal' && (!ctrl.items || ctrl.items.length == 0)">
+		<h2 mb-translate="">No content found</h2>
+	</div>
+	<md-list flex>
+		<md-list-item 
+			ng-repeat="content in ctrl.items track by content.id"
+			ng-click="ctrl.openEditor(content, $event)"
+			class="md-3-line">
+			<amd-content-icon 
+				ng-model="content">
+			</amd-content-icon>
+			<div 
+				class="md-list-item-text" 
+				layout="column">
+				<h3>{{content.title}}</h3>
+				<h4>{{::content.name}}</h4>
+				<p>{{::content.id}}-{{::content.media_type}}-{{::content.state}}</p>
+			</div>
+			<md-menu>
+				<md-button class="md-icon-button"
+					ng-click="ctrl.openMenu(content, $mdMenu, $event);" 
+					aria-label="remove attachment"><mb-icon>more_vert</mb-icon>
+				</md-button>
+				<md-menu-content width="4">
+					<md-menu-item>
+						<md-button ng-click="ctrl.openEditor(content, $event)">
+							<mb-icon>edit</mb-icon>
+							<span translate>Open</span>
+						</md-button>
+					</md-menu-item>
+					<md-menu-divider></md-menu-divider>
+					<!-- TODO: show preloading -->
+					<md-menu-item
+						ng-repeat="editor in ctrl.editors">
+						<md-button ng-click="ctrl.openWithSelectedEditor(content, editor, $event)">
+							<mb-icon>{{editor.icon}}</mb-icon>
+							<span translate>{{::editor.title}}</span>
+						</md-button>
+					</md-menu-item>
+					<md-menu-divider></md-menu-divider>
+					<md-menu-item>
+						<md-button ng-click="ctrl.openProperties(content, $event)">
+							<mb-icon>settings</mb-icon>
+							<span translate>Properties</span>
+						</md-button>
+					</md-menu-item>
+				</md-menu-content>
+			</md-menu>
+		</md-list-item>
+	</md-list>
+</md-content>

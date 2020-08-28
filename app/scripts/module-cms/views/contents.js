@@ -39,6 +39,11 @@ mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
 		$location, $mbActions, $amdCmsEditors) {
 		'ngInject';
 
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+			$scope: $scope,
+			$view: $view,
+		}));
+
 		// Override the schema function
 		this.getModelSchema = function() {
 			return $cms.contentSchema();
@@ -85,11 +90,7 @@ mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
 			this.editors = $amdCmsEditors.getEditors(content.mime_type);
 			return $mdMenu.open($event);
 		};
-
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
-			$scope: $scope,
-			$view: $view,
-		}));
+		
 		$q.when(this.init())
 			.then(function() {
 				$view.getToolbar()

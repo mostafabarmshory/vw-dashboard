@@ -1,0 +1,28 @@
+<md-content
+	ng-init="ctrl.setDataQuery('{id, name, slug}')"
+	mb-preloading="ctrl.state=='busy'"
+	mb-infinate-scroll="ctrl.loadNextPage()"
+	layout="column"
+	style="max-width: 100%; overflow: auto;"
+	flex>
+	<div
+		layout="column"
+		layout-align="center center"
+		ng-if="ctrl.state === 'ideal' && (!ctrl.items || ctrl.items.length == 0)">
+		<h2 mb-translate="">No item found</h2>
+	</div>
+	<!-- Contents info -->
+	<md-list flex>
+		<md-list-item 
+			ng-repeat="term in ctrl.items track by term.id"
+			ng-href="cms/terms/{{::term.id}}">
+			<p>{{::term.name}}</p>
+			<mb-icon 
+				class="md-secondary" 
+				ng-click="ctrl.deleteItem(term, $event)" 
+				aria-label="Delete">
+				delete
+			</mb-icon>
+		</md-list-item>
+	</md-list>
+</md-content>

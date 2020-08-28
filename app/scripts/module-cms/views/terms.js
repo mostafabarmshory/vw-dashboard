@@ -1,13 +1,17 @@
-
 mblowfish.addView(AMD_CMS_VIEW_TERMS_PATH, {
 	title: 'Terms',
-	controller: function($scope, $cms, $controller) {
+	controllerAs: 'ctrl',
+	templateUrl: 'scripts/module-cms/views/terms.html',
+	groups: ['Content Management'],
+	icon: 'title',
+	controller: function($scope, $cms, $controller, $view) {
 		'ngInject';
 		/*
 		 * Extends collection controller
 		 */
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-			$scope: $scope
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+			$scope: $scope,
+			$view: $view,
 		}));
 
 		// Override the schema function
@@ -57,9 +61,5 @@ mblowfish.addView(AMD_CMS_VIEW_TERMS_PATH, {
 			actions: []
 		});
 	},
-	controllerAs: 'ctrl',
-	templateUrl: 'views/amd-terms.html',
-	groups: ['Content Management'],
-	icon: 'title',
 });
 

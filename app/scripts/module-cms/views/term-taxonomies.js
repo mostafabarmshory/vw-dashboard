@@ -1,14 +1,17 @@
-
-
 mblowfish.addView(AMD_CMS_VIEW_TERM_TAXONOMIES_PATH, {
 	title: 'Term taxonomis',
-	controller: function($scope, $cms, $controller) {
+	controllerAs: 'ctrl',
+	templateUrl: 'scripts/module-cms/views/term-taxonomies.html',
+	groups: ['Content Management'],
+	icon: 'class',
+	controller: function($scope, $cms, $controller, $view) {
 		'ngInject';
 		/*
 		 * Extends collection controller
 		 */
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-			$scope: $scope
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+			$scope: $scope,
+			$view: $view,
 		}));
 
 		// Override the schema function
@@ -53,9 +56,5 @@ mblowfish.addView(AMD_CMS_VIEW_TERM_TAXONOMIES_PATH, {
 			actions: []
 		});
 	},
-	controllerAs: 'ctrl',
-	templateUrl: 'views/amd-term-taxonomies.html',
-	groups: ['Content Management'],
-	icon: 'class',
 });
 

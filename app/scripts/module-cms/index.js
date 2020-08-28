@@ -62,16 +62,3 @@ mblowfish.addConstants({
 	AMD_CMS_CONTENTS_NEWPAGE_WIZARD: '/cms/contents-new-page-wizard',
 });
 
-
-
-mblowfish.config(function($mbEditorProvider) {
-	$mbEditorProvider
-		.addEditor('/cms/terms/:termId', {
-			controller: 'AmdCmsTermCtrl',
-			controllerAs: 'ctrl',
-			templateUrl: 'views/amd-term.html'
-		})
-		.addEditor('/cms/term-taxonomies/:itemId', {
-			templateUrl: 'views/amd-term-taxonomy.html',
-		});
-});

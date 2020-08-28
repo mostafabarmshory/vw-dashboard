@@ -28,47 +28,46 @@
 @name ngMaterialDashboardCms.controller:AmdCmsTermTaxonomyCtrl
 @description # TaxonomyCtrl Controller of the ngMaterialDashboardCms
  */
-mblowfish.controller('AmdCmsTermTaxonomyCtrl', function(
-	/* AngularJS */ $scope, $controller,
-	/* seen-cms  */ $cms
-) {
+mblowfish.editor('/cms/term-taxonomies/:itemId', {
+	templateUrl: 'scripts/module-cms/editors/term-taxonomy.html',
+	controllerAs: 'ctrl',
+	controller: function($scope, $controller, $cms) {
+		/*
+		 * Extends collection controller from MbAbstractCtrl 
+		 */
+		angular.extend(this, $controller('MbSeenAbstractItemCtrl', {
+			$scope: $scope
+		}));
 
-	/*
-	 * Extends collection controller from MbAbstractCtrl 
-	 */
-	angular.extend(this, $controller('MbSeenAbstractItemCtrl', {
-		$scope: $scope
-	}));
+		// -------------------------------------------------------------------------
+		// Model
+		//
+		// We suppose that all model action be override by the new controllers.
+		//
+		// -------------------------------------------------------------------------
+		this.deleteModel = function(item) {
+			return $cms.deleteTermTaxonomy(item.id);
+		};
 
-	// -------------------------------------------------------------------------
-	// Model
-	//
-	// We suppose that all model action be override by the new controllers.
-	//
-	// -------------------------------------------------------------------------
-	this.deleteModel = function(item) {
-		return $cms.deleteTermTaxonomy(item.id);
-	};
+		this.getModelSchema = function() {
+			return $cms.termTaxonomySchema();
+		};
 
-	this.getModelSchema = function() {
-		return $cms.termTaxonomySchema();
-	};
+		this.getModel = function(id) {
+			return $cms.getTermTaxonomy(id);
+		};
 
-	this.getModel = function(id) {
-		return $cms.getTermTaxonomy(id);
-	};
+		this.updateModel = function(model) {
+			return model.update();
+		};
 
-	this.updateModel = function(model) {
-		return model.update();
-	};
-
-	// Loads the controller
-	this.init({
-		eventType: '/cms/term-taxonomies',
-		confirmation: true,
-		//		dataQuery: '{id, name, title}', 
-		//		modelId: $routeParam.modelId,
-	});
-
+		// Loads the controller
+		this.init({
+			eventType: '/cms/term-taxonomies',
+			confirmation: true,
+			//		dataQuery: '{id, name, title}', 
+			//		modelId: $routeParam.modelId,
+		});
+	}
 });
 
