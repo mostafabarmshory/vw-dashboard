@@ -60,7 +60,7 @@ mblowfish.controller('SeenAbstractCollectionViewCtrl', function($scope, $control
 				this.setQuery = function(query) {
 					var ctrl = $view.$handler.$controller;
 					ctrl.setQueryString(query);
-				}
+				};
 			}
 		}))
 		;

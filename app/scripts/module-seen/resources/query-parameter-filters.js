@@ -30,17 +30,17 @@ mblowfish.addResource('seen.qp.filters.rt', {
 			$value.filterMap[property.name] = [];
 			this.filterValuesChanged();
 		};
-		
-		this.clearFilter = function(key){
+
+		this.clearFilter = function(key) {
 			$value.filterMap[key] = [];
 			this.filterValuesChanged();
-		}
-		
-		this.deleteFilter = function(key){
+		};
+
+		this.deleteFilter = function(key) {
 			delete $value.filterMap[key];
 			this.filterValuesChanged();
-		}
-		
+		};
+
 		this.clearFilters = function() {
 			$value.filterMap = {};
 			this.filterValuesChanged();
