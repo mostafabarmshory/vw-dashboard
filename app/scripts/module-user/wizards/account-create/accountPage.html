@@ -1,0 +1,44 @@
+<md-input-container class="md-block">
+	<label mb-translate>Login</label>
+	<input 
+		type="text"
+		autocomplete="email"
+		md-minlength="5" 
+		pattern="[a-z\d\.@_]+"
+		required 
+		md-no-asterisk 
+		name="login" 
+		ng-model="ctrl.login"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+
+<md-input-container class="md-block">
+	<md-switch 
+		name="is_active" 
+		ng-model="ctrl.is_active" 
+		ng-model-options="{getterSetter: true, debounce: 200}">
+		<span mb-translate>Enable the account</span>
+	</md-switch>
+</md-input-container>
+
+<md-input-container class="md-block">
+	<label mb-translate>Email</label>
+	<input 
+		type="email"
+		autocomplete="email"
+		md-no-asterisk 
+		name="email" 
+		ng-model="ctrl.email"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+
+<md-input-container class="md-block">
+	<label mb-translate>Phone</label>
+	<input 
+		type="tel"
+		autocomplete="tel"
+		md-no-asterisk 
+		name="phone" 
+		ng-model="ctrl.phone"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>

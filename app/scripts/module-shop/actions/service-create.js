@@ -25,8 +25,9 @@ mblowfish.addAction(AMD_SHOP_SERVICE_CREATE_ACTION, {// create new category menu
 	title: 'New Service',
 	description: 'Creates new service',
 	groups: ['Shop'],
-	/*@ngInject*/
+	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	action: function($shop, $mbTranslate, $event, $mbDispatcherUtil, $mbDynamicForm) {
+		'ngInject';
 		var data = {};
 		var values = $event.values;
 		if (values && values.length) {

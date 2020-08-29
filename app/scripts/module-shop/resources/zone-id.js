@@ -16,9 +16,7 @@ mblowfish.addResource('/shop/zones#id', {
 		$scope.multi = false;
 		var value = $scope.value;
 
-
 		this.setSelected = function(item/*, selected*/) {
-
 			//>> single selection
 			// slect the same
 			if (item === value) {

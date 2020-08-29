@@ -32,6 +32,13 @@ mblowfish.addConstants({
 	AMD_SHOP_ZONE_SP: '/shop/zones',
 	AMD_SHOP_TAG_SP: '/shop/tags',
 
+	AMD_SHOP_CATEGORIES_VIEW: '/shop/categories',
+	AMD_SHOP_DELIVERS_VIEW: '/shop/delivers',
+	AMD_SHOP_PRODUCTS_VIEW: '/shop/products',
+	AMD_SHOP_SERVICES_VIEW: '/shop/services',
+	AMD_SHOP_TAGS_VIEW: '/shop/tags',
+	AMD_SHOP_ZONES_VIEW: '/shop/zones',
+
 	AMD_SHOP_AGENCY_DELETE_ACTION: 'amd.shop.agency.delete',
 	AMD_SHOP_AGENCY_CREATE_ACTION: 'amd.shop.agency.create',
 	AMD_SHOP_AGENCY_UPDATE_ACTION: 'amd.shop.agency.update',
@@ -64,12 +71,32 @@ mblowfish.addConstants({
 	AMD_SHOP_ZONE_DELETE_ACTION: 'amd.shop.zone.delete',
 	AMD_SHOP_ZONE_CREATE_ACTION: 'amd.shop.zone.create',
 	AMD_SHOP_ZONE_UPDATE_ACTION: 'amd.shop.zone.update',
-});
+})
 
-mblowfish.config(function($mbIconProvider) {
+	.config(function($mbIconProvider) {
 
-	$mbIconProvider
-		.addShapes({
-			'shop-zone': '<path id="path2" d="M 23,7 V 1 H 17 V 3 H 7 V 1 H 1 V 7 H 3 V 17 H 1 v 6 h 6 v -2 h 10 v 2 h 6 V 17 H 21 V 7 Z M 3,3 H 5 V 5 H 3 Z M 5,21 H 3 V 19 H 5 Z M 17,19 H 7 V 17 H 5 V 7 H 7 V 5 h 10 v 2 h 2 v 10 h -2 z m 4,2 h -2 v -2 h 2 z M 19,5 V 3 h 2 v 2 z" /><path id="path4" fill="none" d="M0 0h24v24H0z" />'
-		});
-});
+		$mbIconProvider
+			.addShapes({
+				'shop-zone': '<path id="path2" d="M 23,7 V 1 H 17 V 3 H 7 V 1 H 1 V 7 H 3 V 17 H 1 v 6 h 6 v -2 h 10 v 2 h 6 V 17 H 21 V 7 Z M 3,3 H 5 V 5 H 3 Z M 5,21 H 3 V 19 H 5 Z M 17,19 H 7 V 17 H 5 V 7 H 7 V 5 h 10 v 2 h 2 v 10 h -2 z m 4,2 h -2 v -2 h 2 z M 19,5 V 3 h 2 v 2 z" /><path id="path4" fill="none" d="M0 0h24v24H0z" />'
+			});
+	})
+	.run(function($mbToolbar) {
+		// Contribute actions to views
+		$mbToolbar.getToolbar(AMD_SHOP_CATEGORIES_VIEW)
+			.addAction(AMD_SHOP_CATEGORY_CREATE_ACTION);
+
+		$mbToolbar.getToolbar(AMD_SHOP_PRODUCTS_VIEW)
+			.addAction(AMD_SHOP_PRODUCT_CREATE_ACTION);
+
+		$mbToolbar.getToolbar(AMD_SHOP_DELIVERS_VIEW)
+			.addAction(AMD_SHOP_DELIVER_CREATE_ACTION);
+
+		$mbToolbar.getToolbar(AMD_SHOP_SERVICES_VIEW)
+			.addAction(AMD_SHOP_SERVICE_CREATE_ACTION);
+
+		$mbToolbar.getToolbar(AMD_SHOP_TAGS_VIEW)
+			.addAction(AMD_SHOP_TAG_CREATE_ACTION);
+
+		$mbToolbar.getToolbar(AMD_SHOP_ZONES_VIEW)
+			.addAction(AMD_SHOP_ZONE_CREATE_ACTION);
+	});

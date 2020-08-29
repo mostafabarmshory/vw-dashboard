@@ -28,12 +28,15 @@
 	
     <!-- build:css(.tmp) styles/main.css -->
 	<!-- injector:css -->
+	<link rel="stylesheet" href="scripts/module-account/components/account-toolbar.css">
+	<link rel="stylesheet" href="scripts/module-account/components/messages.css">
 	<link rel="stylesheet" href="scripts/module-bank/editors/bank-gate.css">
 	<link rel="stylesheet" href="scripts/module-cms/editors/content-properties.css">
+	<link rel="stylesheet" href="scripts/module-seen/controllers/abstract-collection-view.css">
 	<link rel="stylesheet" href="scripts/module-seo/views/links-new.css">
+	<link rel="stylesheet" href="styles/amd-chips-hack.css">
 	<link rel="stylesheet" href="styles/crisp-hack-button.css">
 	<link rel="stylesheet" href="styles/main.css">
-	<link rel="stylesheet" href="styles/module-account.css">
 	<link rel="stylesheet" href="styles/preloader.css">
 	<link rel="stylesheet" href="styles/shop-orders-board.css">
 	<!-- endinjector -->
@@ -67,41 +70,45 @@
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/md-color-picker/dist/md-color-picker.js"></script>
+    <script src="bower_components/flux/dist/Flux.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/golden-layout/dist/goldenlayout.min.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/flux/dist/Flux.js"></script>
-    <script src="bower_components/am-wb-core/dist/am-wb-core.min.js"></script>
     <script src="bower_components/ng-appcache/dist/appcache.js"></script>
     <script src="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
     <script src="bower_components/angular-material-persian-datepicker/dist/datePicker.min.js"></script>
-    <script src="bower_components/weakmap-polyfill/weakmap-polyfill.js"></script>
-    <script src="bower_components/loglevel/dist/loglevel.min.js"></script>
     <script src="bower_components/mblowfish-core/dist/mblowfish-core.js"></script>
     <!-- endbower -->
 	<!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
 	<!-- injector:js -->
-	<script src="scripts/app.js"></script>
+	<script src="scripts/module-account/index.js"></script>
 	<script src="scripts/module-backup/index.js"></script>
 	<script src="scripts/module-bank/index.js"></script>
 	<script src="scripts/module-cms/index.js"></script>
 	<script src="scripts/module-jms/index.js"></script>
 	<script src="scripts/module-sdp/index.js"></script>
+	<script src="scripts/module-seen/index.js"></script>
 	<script src="scripts/module-seo/index.js"></script>
 	<script src="scripts/module-shop-x/index.js"></script>
 	<script src="scripts/module-shop/index.js"></script>
 	<script src="scripts/module-spa/index.js"></script>
 	<script src="scripts/module-tenant/index.js"></script>
 	<script src="scripts/module-user/index.js"></script>
+	<script src="scripts/module-account/actions/change-password.js"></script>
 	<script src="scripts/module-account/actions/crisp-chat.js"></script>
+	<script src="scripts/module-account/actions/logout.js"></script>
+	<script src="scripts/module-account/actions/messages.js"></script>
+	<script src="scripts/module-account/actions/profile-update.js"></script>
 	<script src="scripts/module-account/components/account-toolbar.js"></script>
-	<script src="scripts/module-account/controllers/account-container-ctrl.js"></script>
-	<script src="scripts/module-account/controllers/account-profile-editor-ctrl.js"></script>
-	<script src="scripts/module-account/directives/account-actions-ctrl.js"></script>
+	<script src="scripts/module-account/components/messages.js"></script>
+	<script src="scripts/module-account/controllers/account-container.js"></script>
+	<script src="scripts/module-account/directives/mb-user-menu.js"></script>
 	<script src="scripts/module-account/factories/seen-authentication-provider.js"></script>
+	<script src="scripts/module-account/sidenavs/messages.js"></script>
+	<script src="scripts/module-account/views/profile.js"></script>
 	<script src="scripts/module-backup/snapshots-view-ctrl.js"></script>
 	<script src="scripts/module-bank/actions/gates-create.js"></script>
 	<script src="scripts/module-bank/actions/gates-delete.js"></script>
@@ -121,16 +128,19 @@
 	<script src="scripts/module-bank/controllers/discount-new.js"></script>
 	<script src="scripts/module-bank/controllers/discount.js"></script>
 	<script src="scripts/module-bank/controllers/discounts.js"></script>
+	<script src="scripts/module-bank/directives/mb-pay.js"></script>
 	<script src="scripts/module-bank/editors/bank-gate.js"></script>
 	<script src="scripts/module-bank/views/gates-new.js"></script>
 	<script src="scripts/module-bank/views/gates.js"></script>
 	<script src="scripts/module-cms/actions/contents-delete.js"></script>
 	<script src="scripts/module-cms/actions/contents-edit.js"></script>
+	<script src="scripts/module-cms/actions/contents-newPage.js"></script>
 	<script src="scripts/module-cms/actions/contents-properties.js"></script>
 	<script src="scripts/module-cms/actions/contents-update.js"></script>
+	<script src="scripts/module-cms/actions/contents-upload.js"></script>
 	<script src="scripts/module-cms/controllers/content-new-ctrl.js"></script>
 	<script src="scripts/module-cms/controllers/content-url-ctrl.js"></script>
-	<script src="scripts/module-cms/controllers/seen-cms-contents-ctrl.js"></script>
+	<script src="scripts/module-cms/controllers/contents-ctrl.js"></script>
 	<script src="scripts/module-cms/controllers/seen-cms-termTaxonomies-ctrl.js"></script>
 	<script src="scripts/module-cms/dialogs/term-taxonomy-new-dialog-ctrl.js"></script>
 	<script src="scripts/module-cms/directives/content-icon-directive.js"></script>
@@ -139,15 +149,22 @@
 	<script src="scripts/module-cms/editors/content-pdf-viewer.js"></script>
 	<script src="scripts/module-cms/editors/content-properties.js"></script>
 	<script src="scripts/module-cms/editors/content-viewer.js"></script>
-	<script src="scripts/module-cms/editors/term-editor-ctrl.js"></script>
-	<script src="scripts/module-cms/editors/term-taxonomy-editor-ctrl.js"></script>
+	<script src="scripts/module-cms/editors/term-taxonomy.js"></script>
+	<script src="scripts/module-cms/editors/term.js"></script>
+	<script src="scripts/module-cms/resources/category.js"></script>
+	<script src="scripts/module-cms/resources/content-metadata.js"></script>
 	<script src="scripts/module-cms/resources/content-upload.js"></script>
 	<script src="scripts/module-cms/resources/image-url.js"></script>
+	<script src="scripts/module-cms/resources/tag.js"></script>
+	<script src="scripts/module-cms/resources/term-taxonomy.js"></script>
 	<script src="scripts/module-cms/services/editors.js"></script>
 	<script src="scripts/module-cms/views/content-new.js"></script>
 	<script src="scripts/module-cms/views/contents.js"></script>
-	<script src="scripts/module-cms/views/term-taxonomies-view-ctrl.js"></script>
-	<script src="scripts/module-cms/views/terms-view-ctrl.js"></script>
+	<script src="scripts/module-cms/views/term-taxonomies.js"></script>
+	<script src="scripts/module-cms/views/terms.js"></script>
+	<script src="scripts/module-cms/wizards/new-page/propertiesPage.js"></script>
+	<script src="scripts/module-cms/wizards/new-page/typePage.js"></script>
+	<script src="scripts/module-cms/wizards/new-page/wizard.js"></script>
 	<script src="scripts/module-jms/pipeline-editor-ctrl.js"></script>
 	<script src="scripts/module-jms/pipelines-view-ctrl.js"></script>
 	<script src="scripts/module-sdp/controllers/resource-categories-list.js"></script>
@@ -164,11 +181,16 @@
 	<script src="scripts/module-sdp/controllers/sdp-tag.js"></script>
 	<script src="scripts/module-sdp/controllers/sdp-tags.js"></script>
 	<script src="scripts/module-sdp/sdp-downloaded-link-directive.js"></script>
-	<script src="scripts/module-seen/controllers/seen-abstract-binaryItem-ctrl.js"></script>
-	<script src="scripts/module-seen/controllers/seen-abstract-collection-ctrl.js"></script>
-	<script src="scripts/module-seen/controllers/seen-abstract-item-ctrl.js"></script>
-	<script src="scripts/module-seen/controllers/seen-general-abstract-collection-ctrl.js"></script>
+	<script src="scripts/module-seen/actions/query-parameter-filters-update.js"></script>
+	<script src="scripts/module-seen/actions/query-parameter-sorts-update.js"></script>
+	<script src="scripts/module-seen/controllers/abstract-binaryItem-ctrl.js"></script>
+	<script src="scripts/module-seen/controllers/abstract-collection-view.js"></script>
+	<script src="scripts/module-seen/controllers/abstract-collection.js"></script>
+	<script src="scripts/module-seen/controllers/abstract-ctrl.js"></script>
+	<script src="scripts/module-seen/controllers/abstract-item-ctrl.js"></script>
 	<script src="scripts/module-seen/directives/mb-pagination-bar.js"></script>
+	<script src="scripts/module-seen/resources/query-parameter-filters.js"></script>
+	<script src="scripts/module-seen/resources/query-parameter-sorts.js"></script>
 	<script src="scripts/module-seo/actions/contents-render.js"></script>
 	<script src="scripts/module-seo/controllers/backend-new.js"></script>
 	<script src="scripts/module-seo/controllers/backend.js"></script>
@@ -210,28 +232,28 @@
 	<script src="scripts/module-shop/actions/zone-create.js"></script>
 	<script src="scripts/module-shop/actions/zone-delete.js"></script>
 	<script src="scripts/module-shop/actions/zone-update.js"></script>
-	<script src="scripts/module-shop/controllers/amd-shop-categories.js"></script>
-	<script src="scripts/module-shop/controllers/amd-shop-order.js"></script>
+	<script src="scripts/module-shop/controllers/categories.js"></script>
+	<script src="scripts/module-shop/controllers/order.js"></script>
 	<script src="scripts/module-shop/controllers/zones.js"></script>
-	<script src="scripts/module-shop/editors/amd-shop-agency.js"></script>
-	<script src="scripts/module-shop/editors/amd-shop-category.js"></script>
-	<script src="scripts/module-shop/editors/amd-shop-deliver.js"></script>
-	<script src="scripts/module-shop/editors/amd-shop-order.js"></script>
-	<script src="scripts/module-shop/editors/amd-shop-product.js"></script>
-	<script src="scripts/module-shop/editors/amd-shop-service.js"></script>
-	<script src="scripts/module-shop/editors/amd-shop-tag.js"></script>
-	<script src="scripts/module-shop/editors/amd-shop-zone.js"></script>
+	<script src="scripts/module-shop/editors/agency.js"></script>
+	<script src="scripts/module-shop/editors/category.js"></script>
+	<script src="scripts/module-shop/editors/deliver.js"></script>
+	<script src="scripts/module-shop/editors/order.js"></script>
+	<script src="scripts/module-shop/editors/product.js"></script>
+	<script src="scripts/module-shop/editors/service.js"></script>
+	<script src="scripts/module-shop/editors/tag.js"></script>
+	<script src="scripts/module-shop/editors/zone.js"></script>
 	<script src="scripts/module-shop/resources/categories.js"></script>
 	<script src="scripts/module-shop/resources/zone-id.js"></script>
-	<script src="scripts/module-shop/views/amd-shop-agencies.js"></script>
-	<script src="scripts/module-shop/views/amd-shop-categories.js"></script>
-	<script src="scripts/module-shop/views/amd-shop-delivers.js"></script>
-	<script src="scripts/module-shop/views/amd-shop-products.js"></script>
-	<script src="scripts/module-shop/views/amd-shop-services.js"></script>
-	<script src="scripts/module-shop/views/amd-shop-tags.js"></script>
-	<script src="scripts/module-shop/views/amd-shop-zones.js"></script>
+	<script src="scripts/module-shop/views/agencies.js"></script>
+	<script src="scripts/module-shop/views/categories.js"></script>
+	<script src="scripts/module-shop/views/delivers.js"></script>
 	<script src="scripts/module-shop/views/orders-board.js"></script>
 	<script src="scripts/module-shop/views/orders.js"></script>
+	<script src="scripts/module-shop/views/products.js"></script>
+	<script src="scripts/module-shop/views/services.js"></script>
+	<script src="scripts/module-shop/views/tags.js"></script>
+	<script src="scripts/module-shop/views/zones.js"></script>
 	<script src="scripts/module-spa/controllers/repository-spa.js"></script>
 	<script src="scripts/module-spa/controllers/repository-spas.js"></script>
 	<script src="scripts/module-spa/controllers/spa-editor-ctrl.js"></script>
@@ -255,6 +277,8 @@
 	<script src="scripts/module-tenant/views/tickets.js"></script>
 	<script src="scripts/module-user/actions/account-create.js"></script>
 	<script src="scripts/module-user/actions/account-delete.js"></script>
+	<script src="scripts/module-user/actions/account-edit.js"></script>
+	<script src="scripts/module-user/actions/account-update.js"></script>
 	<script src="scripts/module-user/actions/group-create.js"></script>
 	<script src="scripts/module-user/actions/group-delete.js"></script>
 	<script src="scripts/module-user/controllers/seen-user-account.js"></script>
@@ -272,6 +296,14 @@
 	<script src="scripts/module-user/views/accounts.js"></script>
 	<script src="scripts/module-user/views/groups.js"></script>
 	<script src="scripts/module-user/views/roles.js"></script>
+	<script src="scripts/module-user/wizards/account-create/accountPage.js"></script>
+	<script src="scripts/module-user/wizards/account-create/avatarPage.js"></script>
+	<script src="scripts/module-user/wizards/account-create/credentialPage.js"></script>
+	<script src="scripts/module-user/wizards/account-create/groupsPage.js"></script>
+	<script src="scripts/module-user/wizards/account-create/profilePage.js"></script>
+	<script src="scripts/module-user/wizards/account-create/rolesPage.js"></script>
+	<script src="scripts/module-user/wizards/account-create/wizard.js"></script>
+	<script src="scripts/app.js"></script>
 	<!-- endinjector -->
 	<!-- endbuild -->
 </head>

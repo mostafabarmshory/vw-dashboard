@@ -443,9 +443,9 @@ module.exports = function(grunt) {
 			},
 			styles: {
 				expand: true,
-				cwd: '<%= yeoman.app %>/styles',
-				dest: '.tmp/styles/',
-				src: '{,*/}*.css'
+				cwd: '<%= yeoman.app %>',
+				dest: '.tmp/',
+				src: '**/*.css'
 			}
 		},
 
@@ -576,10 +576,10 @@ module.exports = function(grunt) {
 				addRootSlash: false,
 				sort: function(a, b) {
 					if (a.endsWith('app.js')) {
-						return -1;
+						return 1;
 					}
 					if (b.endsWith('app.js')) {
-						return 1;
+						return -1;
 					}
 					if (a.endsWith('index.js') && !b.endsWith('index.js')) {
 						return -1;

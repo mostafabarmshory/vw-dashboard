@@ -1,8 +1,12 @@
 
-mblowfish.addView('/tenant/settings/local-setting', {
+mblowfish.view('/tenant/settings/local-setting', {
 	templateUrl: 'scripts/module-tenant/views/local-settings.html',
+	controllerAs: 'ctrl',
+	groups: ['Tenant'],
+	title: 'Local settings',
+	icon: 'settings_applications',
 	controller: function($scope, $tenant, $q, $http) {
-
+		'ngInject';
 		var ctrl = {
 			loadingSettings: false,
 			savingSettings: false
@@ -91,8 +95,4 @@ mblowfish.addView('/tenant/settings/local-setting', {
 		loadSettings();
 		loadCurrencies();
 	},
-	controllerAs: 'ctrl',
-	groups: ['Tenant'],
-	title: 'Local settings',
-	icon: 'settings_applications',
 });

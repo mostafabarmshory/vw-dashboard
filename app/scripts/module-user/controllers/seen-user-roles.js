@@ -55,5 +55,7 @@ mblowfish.controller('MbSeenUserRolesCtrl', function($scope, $usr, $q, $controll
 		return $usr.deleteRole(model.id);
 	};
 
-	this.init();
+	this.init({
+		eventType: AMD_USER_ROLES_SP
+	});
 });

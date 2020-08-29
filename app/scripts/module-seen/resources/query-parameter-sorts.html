@@ -1,0 +1,59 @@
+<md-toolbar>
+	<div layout="row">
+		<md-button 
+			ng-click="ctrl.deleteAllSorts($event)"
+			aria-label="remove all sorts" 
+			style="margin: 0px;">
+			<span mb-translate>Remove All Sorts</span>
+		</md-button>
+	</div>
+</md-toolbar>
+<md-container flex style="overflow: auto;">
+	<div 
+		ng-repeat="(key,value) in queryParameter.sortMap track by key"
+		class="sorts md-whiteframe-2dp"
+		layout="row"
+		layout-margin
+		layout-padding>
+		<md-input-container 
+			class="md-block"
+			flex>
+			<label>{{key}}</label>
+			<md-select 
+				ng-change="ctrl.setSortValue(key, value)"
+				ng-model="value"
+				flex>
+				<md-option 
+					ng-value="'a'">
+					<em mb-translate>Ascending</em>
+				</md-option>
+				<md-option 
+					ng-value="'d'">
+					<em mb-translate>Descending</em>
+				</md-option>
+			</md-select>
+		</md-input-container>
+		<div 
+			layout="row"
+			id="actions">
+			<mb-icon
+				ng-click="ctrl.deleteSort(key)">delete</mb-icon>
+		</div>
+	</div>
+	<div 
+		class="newSort"
+		layout-margin>
+		 <md-input-container>
+			<label mb-translage>Select a property to add</label>
+			<md-select 
+				ng-change="ctrl.addSort(selectedProperty)"
+				ng-model="selectedProperty">
+				<md-option 
+					ng-repeat="property in schema.children track by property.name"
+					ng-value="property">
+					<em mb-translate>{{property.title}}</em>
+				</md-option>
+			</md-select>
+		 </md-input-container>
+	</div>
+</md-container>

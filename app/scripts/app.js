@@ -4,7 +4,7 @@
  * Copyright (c) 2016 weburger
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
+ * of this software and associated documentation files (the 'Software'), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
@@ -13,7 +13,7 @@
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
  * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -28,8 +28,6 @@
 mblowfish
 	.addConstants({
 		APP_KEY: 'vwstudio',
-		AMD_ACCOUNT_TOOLBAR_COMPONENT: 'vw.account.toolbar.component',
-		AMD_ACCOUNT_CHAT_ACTION: 'vw.account.chat',
 	});
 
 mblowfish
@@ -47,7 +45,7 @@ mblowfish
 		// Translation 
 		$mbTranslateProvider
 			.useMissingTranslationHandlerLog()
-			//			.useMissingTranslationHandler('$mbTranslateMissingTranslationHandlerStorage')
+			//.useMissingTranslationHandler('$mbTranslateMissingTranslationHandlerStorage')
 			.useStaticFilesLoader({
 				files: [{
 					prefix: '/api/v2/cms/contents/local-language-',
@@ -72,7 +70,7 @@ mblowfish
 			.setSettingsRequired(true)
 			.setLogingRequired(true)
 			.setLoginComponent({
-				templateUrl: 'views/account/login-default.html',
+				templateUrl: 'scripts/module-account/controllers/account-container-login-page.html',
 				controller: 'MbAccountContainerCtrl',
 				controllerAs: 'ctrl'
 			})
@@ -127,6 +125,7 @@ mblowfish
 			url: '/user/account',
 			float: 'right',
 			items: [
+				AMD_ACCOUNT_MESSAGES_COMPONENT,
 				AMD_ACCOUNT_TOOLBAR_COMPONENT
 			]
 		}, {
@@ -215,30 +214,75 @@ mblowfish.factory('VwLayoutProviderDefault', function(MbLayoutProvider) {
 				closePopoutsOnUnload: true,
 				showPopoutIcon: false,
 				showMaximiseIcon: true,
-				showCloseIcon: true
+				showCloseIcon: true,
+				responsiveMode: 'onload',
+				tabOverlapAllowance: 0,
+				reorderOnTabMenuClick: true,
+				tabControlOffset: 10
 			},
 			dimensions: {
 				borderWidth: 5,
+				borderGrabWidth: 15,
 				minItemHeight: 16,
 				minItemWidth: 50,
 				headerHeight: 20,
 				dragProxyWidth: 300,
 				dragProxyHeight: 200
 			},
+			labels: {
+				close: 'close',
+				maximise: 'maximise',
+				minimise: 'minimise',
+				popout: 'open in new window',
+				popin: 'pop in',
+				tabDropdown: 'additional tabs'
+			},
 			content: [{
 				id: 'main',
 				type: 'row',
 				isClosable: false,
 				componentState: {},
+				reorderEnabled: true,
+				title: '',
 				content: [{
+					type: 'stack',
+					header: {},
+					isClosable: true,
+					reorderEnabled: true,
+					title: '',
+					activeItemIndex: 0,
+					width: 32.104752667313285,
+					content: [{
+						type: 'component',
+						componentName: 'component',
+						componentState: {
+							params: {},
+							pathParams: {},
+							url: '/mb/ui/views/navigator/',
+							isEditor: false,
+							isView: true
+						},
+						id: '/mb/ui/views/navigator/',
+						isClosable: true,
+						title: 'Navigator',
+						activeItemIndex: 1,
+						reorderEnabled: true
+					}]
+				}, {
 					type: 'column',
 					isClosable: false,
+					reorderEnabled: true,
+					title: '',
+					width: 67.89524733268671,
 					content: [{
 						id: 'editors',
 						type: 'stack',
 						title: 'Editors',
 						isClosable: false,
 						componentState: {},
+						reorderEnabled: true,
+						height: 100,
+						activeItemIndex: 0,
 						content: [{
 							type: 'component',
 							componentName: 'component',
@@ -250,13 +294,19 @@ mblowfish.factory('VwLayoutProviderDefault', function(MbLayoutProvider) {
 								isEditor: true,
 								url: '/mb/iframe/https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en',
 								params: {
-									url: 'https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en',
+									url: 'https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en'
 								}
-							}
+							},
+							reorderEnabled: true
 						}]
 					}]
 				}]
-			}]
+			}],
+			isClosable: true,
+			reorderEnabled: true,
+			title: '',
+			openPopouts: [],
+			maximisedItemId: null
 		};
 	};
 

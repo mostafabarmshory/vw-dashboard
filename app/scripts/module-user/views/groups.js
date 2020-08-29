@@ -26,13 +26,13 @@
  @description Manages list of accounts
  */
 mblowfish.addView('/ums/groups', {
-	templateUrl: 'views/user/views/groups.html',
+	templateUrl: 'scripts/module-user/views/groups.html',
 	groups: ['Users Management'],
 	controllerAs: 'ctrl',
 	title: 'Groups',
 	icon: 'group',
-	/* @ngInject */
 	controller: function($scope, $controller, $navigator) {
+		'ngInject';
 
 		angular.extend(this, $controller('MbSeenUserGroupsCtrl', {
 			$scope: $scope

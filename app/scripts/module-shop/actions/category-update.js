@@ -22,8 +22,9 @@
 
 
 mblowfish.addAction(AMD_SHOP_CATEGORY_UPDATE_ACTION, {
-	/* @ngInject */
+	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	action: function($event, $q, ShopCategory, $mbDispatcherUtil, $mbTranslate) {
+		'ngInject';
 		var values = $event.values;
 		if (!values || !_.isArray(values) || values.length === 0) {
 			// TODO: maso, 2020: add log

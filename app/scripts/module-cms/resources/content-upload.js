@@ -2,12 +2,12 @@
 mblowfish.addResource('cms-upload', {
 	title: 'Upload',
 	icon: 'file_upload',
-	templateUrl: 'views/cms/resources/content-upload.html',
-	/*
-	 * @ngInject
-	 */
+	templateUrl: 'scripts/module-cms/resources/content-upload.html',
+	controllerAs: 'ctrl',
+	priority: 1,
+	tags: ['image-url', 'url', 'avatar', 'thumbnail'],
 	controller: function($scope, $resource, $mbCrypto, $controller) {
-
+		'ngInject';
 		/*
 		 * Extends collection controller
 		 */
@@ -69,10 +69,7 @@ mblowfish.addResource('cms-upload', {
 		// init the controller
 		this.init();
 		$resource.process = process;
-	},
-	controllerAs: 'ctrl',
-	priority: 1,
-	tags: ['image-url', 'url', 'avatar', 'thumbnail']
+	}
 });
 
 

@@ -2,8 +2,7 @@
 mblowfish.addEditor('/tenant/tenants/:tenantId', {
 	templateUrl: 'scripts/module-tenant/editors/tenant.html',
 	controller: function($scope, $state, $q, $tenant, $navigator, $mbTranslate, $mbResource, TenantTenant, TenantAccount) {
-
-
+		'ngInject';
 		/**
 		 * Load tenant
 		 */

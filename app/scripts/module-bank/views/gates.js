@@ -1,7 +1,10 @@
 mblowfish.addView('/bank/gates', {
 	title: 'Bank gates',
 	icon: 'attach_money',
-	controller: function($scope, $controller, $bank, $mbActions) {
+	controllerAs: 'ctrl',
+	templateUrl: 'scripts/module-bank/views/gates.html',
+	groups: ['Finance'],
+	controller: function($scope, $controller, $bank, $mbActions, $view) {
 		'ngInject';
 
 		function deleteGate(gate) {
@@ -13,8 +16,9 @@ mblowfish.addView('/bank/gates', {
 		/*
 		 * Extends collection controller
 		 */
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-			$scope: $scope
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+			$scope: $scope,
+			$view: $view,
 		}));
 
 		// Override the schema function
@@ -46,7 +50,4 @@ mblowfish.addView('/bank/gates', {
 			eventType: AMD_BANK_GATE_SP
 		});
 	},
-	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-bank/views/gates.html',
-	groups: ['Finance'],
 });

@@ -27,14 +27,13 @@
 Edit an account and details sucha as profiles, avatar, roles and groups.
  */
 mblowfish.addEditor('/ums/accounts/:accountId', {
-	templateUrl: 'views/user/editors/account.html',
+	templateUrl: 'scripts/module-user/editors/account.html',
 	controllerAs: 'ctrl',
-	/* @ngInject */
 	controller: function(
 	/* AngularJS */ $usr, $state, $q, $window, $editor,
 	/* Mblowfish */ $mbResource, $mbTranslate,
 	/* Seen User */ UserAccount, UserProfile) {
-
+		'ngInject';
 
 		//------------------------------------------------------------
 		// Variables
@@ -54,14 +53,14 @@ mblowfish.addEditor('/ums/accounts/:accountId', {
 		var profile = new UserProfile();
 
 
-//		function findIndex(array, item) {
-//			for (var i = 0; i < array.length; i++) {
-//				if (array[i].id === item.id) {
-//					return i;
-//				}
-//			}
-//			return -1;
-//		}
+		//		function findIndex(array, item) {
+		//			for (var i = 0; i < array.length; i++) {
+		//				if (array[i].id === item.id) {
+		//					return i;
+		//				}
+		//			}
+		//			return -1;
+		//		}
 
 		//------------------------------------------------------------
 		// Functions: Account

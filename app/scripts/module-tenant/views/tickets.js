@@ -1,7 +1,12 @@
 
 mblowfish.addView('/tenant/tickets', {
 	templateUrl: 'scripts/module-tenant/views/tickets.html',
+	controllerAs: 'ctrl',
+	groups: ['Tenant'],
+	title: 'Tickets',
+	icon: 'question_answer',
 	controller: function($scope, $tenant, $navigator, QueryParameter) {
+		'ngInject';
 
 		var paginatorParameter = new QueryParameter();
 		var requests = null;
@@ -95,8 +100,4 @@ mblowfish.addView('/tenant/tickets', {
 			action: add
 		}];
 	},
-	controllerAs: 'ctrl',
-	groups: ['Tenant'],
-	title: 'Tickets',
-	icon: 'question_answer',
 });

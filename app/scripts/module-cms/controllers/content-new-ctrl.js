@@ -32,6 +32,7 @@ mblowfish.controller('AmdContentNewCtrl', function(
 	$cms,
 	$mbActions, $controller,
 	$mbCrypto) {
+	'ngInject';
 
 
     /*

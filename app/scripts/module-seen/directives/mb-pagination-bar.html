@@ -1,0 +1,251 @@
+<div layout="column" >
+	<div class="wrapper-stack-toolbar-container" style="border-radius: 0px">
+		<!-- Action bar -->
+		<div
+			md-colors="{background: 'primary-hue-1'}">
+			<div
+				class="md-toolbar-tools">
+				<md-button
+					ng-if="mbIcon"
+					md-no-ink class="md-icon-button"
+					aria-label="{{::mbIcon}}">
+					<mb-icon>{{::mbIcon}}</mb-icon>
+				</md-button>
+				<h2 flex md-truncate ng-if="mbTitle">{{::mbTitle}}</h2>
+				<md-button
+					ng-if="mbReload"
+					class="md-icon-button"
+					aria-label="Reload"
+					ng-click="__reload()">
+					<mb-icon>repeat</mb-icon>
+				</md-button>
+				<md-button
+					ng-show="mbSortKeys"
+					class="md-icon-button"
+					aria-label="Sort"
+					ng-click="showSort = !showSort">
+					<mb-icon>sort</mb-icon>
+				</md-button>
+				<md-button
+					ng-show="filterKeys"
+					class="md-icon-button"
+					aria-label="Sort"
+					ng-click="showFilter = !showFilter">
+					<mb-icon>filter_list</mb-icon>
+				</md-button>
+				<md-button
+					ng-show="mbEnableSearch"
+					class="md-icon-button"
+					aria-label="Search"
+					ng-click="showSearch = true; focusToElement('searchInput');">
+					<mb-icon>search</mb-icon>
+				</md-button>
+				<md-button
+					ng-if="exportData"
+					class="md-icon-button"
+					aria-label="Export"
+					ng-click="exportData()">
+					<mb-icon>save</mb-icon>
+				</md-button>
+
+				<span flex ng-if="!mbTitle"></span>
+
+				<md-menu ng-show="mbMoreActions.length">
+					<md-button
+						class="md-icon-button"
+						aria-label="Menu"
+						ng-click="$mdOpenMenu($event)">
+						<mb-icon>more_vert</mb-icon>
+					</md-button>
+					<md-menu-content width="4">
+						<md-menu-item
+							ng-repeat="item in mbMoreActions">
+							<md-button
+								ng-click="runAction(item, $event)"
+								aria-label="{{::item.title}}">
+								<mb-icon ng-show="item.icon">{{::item.icon}}</mb-icon>
+								<span mb-translate="">{{::item.title}}</span>
+							</md-button>
+						</md-menu-item>
+					</md-menu-content>
+				</md-menu>
+			</div>
+		</div>
+
+		<!-- Search -->
+		<div
+			class="stack-toolbar new-box-showing-animation"
+			md-colors="{background: 'primary-hue-2'}"
+			ng-show="showSearch">
+			<div class="md-toolbar-tools">
+				<md-button
+					style="min-width:0px"
+					ng-click="showSearch = false"
+					aria-label="Back">
+					<mb-icon class="icon-rotate-180-for-rtl">arrow_back</mb-icon>
+				</md-button>
+
+				<md-input-container
+					flex md-theme="dark"
+					md-no-float
+					class="md-block fit-input">
+					<input
+						id="searchInput"
+						placeholder="{{::'Search'|translate}}"
+						ng-model="query.searchTerm"
+						ng-change="searchQuery()"
+						ng-model-options="{debounce: 1000}">
+				</md-input-container>
+			</div>
+		</div>
+
+		<!-- Sort -->
+		<div
+			class="stack-toolbar new-box-showing-animation"
+			md-colors="{background: 'primary-hue-2'}"
+			ng-show="showSort">
+			<div class="md-toolbar-tools">
+				<md-button
+					style="min-width:0px"
+					ng-click="showSort = false"
+					aria-label="Back">
+					<mb-icon class="icon-rotate-180-for-rtl">arrow_back</mb-icon>
+				</md-button>
+
+				<h3 mb-translate="">Sort</h3>
+
+				<span style="width: 10px"></span>
+
+				<!-- Menu including sort keys -->
+				<md-menu>
+					<md-button
+						layout="row"
+						style="text-transform: none;"
+						ng-click="$mdMenu.open()">
+						<h3>{{mbSortKeysTitles ? mbSortKeysTitles[mbSortKeys.indexOf(query.sortBy)] : query.sortBy | translate}}</h3>
+					</md-button>
+					<md-menu-content width="4">
+						<md-menu-item ng-repeat="key in mbSortKeys">
+							<md-button ng-click="query.sortBy = key; setSortOrder()">
+								<mb-icon ng-if="query.sortBy === key">check_circle</mb-icon>
+								<mb-icon ng-if="query.sortBy !== key">radio_button_unchecked</mb-icon>
+								{{::mbSortKeysTitles ? mbSortKeysTitles[$index] : key| translate}}
+							</md-button>
+						</md-menu-item>
+					</md-menu-content>
+				</md-menu>
+
+				<!-- Menu including sort type:asce and desc -->
+				<md-menu>
+					<md-button
+						layout="row"
+						style="text-transform: none;"
+						ng-click="$mdMenu.open()">
+						<mb-icon ng-if="!query.sortDesc" class="icon-rotate-180">filter_list</mb-icon>
+						<mb-icon ng-if="query.sortDesc">filter_list</mb-icon>
+						{{query.sortDesc ? 'Descending' : 'Ascending'|translate}}
+					</md-button>
+					<md-menu-content width="4">
+						<md-menu-item>
+							<md-button ng-click="query.sortDesc = false;setSortOrder()">
+								<mb-icon ng-if="!query.sortDesc">check_circle</mb-icon>
+								<mb-icon ng-if="query.sortDesc">radio_button_unchecked</mb-icon>
+								{{::'Ascending'|translate}}
+							</md-button>
+						</md-menu-item>
+						<md-menu-item>
+							<md-button ng-click="query.sortDesc = true;setSortOrder()">
+								<mb-icon ng-if="query.sortDesc">check_circle</mb-icon>
+								<mb-icon ng-if="!query.sortDesc">radio_button_unchecked</mb-icon>
+								{{::'Descending'|translate}}
+							</md-button>
+						</md-menu-item>
+					</md-menu-content>
+				</md-menu>
+			</div>
+		</div>
+
+		<!-- Filter -->
+		<div
+			class="stack-toolbar new-box-showing-animation"
+			md-colors="{background: 'primary-hue-2'}"
+			ng-show="showFilter">
+			<div
+				layout="row"
+				layout-align="space-between center"
+				class="md-toolbar-tools">
+				<div layout="row">
+					<md-button
+						style="min-width:0px"
+						ng-click="showFilter = false"
+						aria-label="Back">
+						<mb-icon class="icon-rotate-180-for-rtl">arrow_back</mb-icon>
+					</md-button>
+					<h3 mb-translate="">Filters</h3>
+				</div>
+				<div
+					layout="row">
+					<md-button
+						ng-if="filters && filters.length"
+						ng-click="applyFilter()"
+						class="md-icon-button">
+						<mb-icon>done</mb-icon>
+					</md-button>
+					<md-button
+						ng-click="addFilter()"
+						class="md-icon-button">
+						<mb-icon>add</mb-icon>
+					</md-button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--menu and input field for every new filter-->
+	<div
+		layout="column"
+		md-colors="{background: 'primary-hue-1'}"
+		ng-show="showFilter && filters.length>0"
+		layout-padding>
+		<!-- Menu including filter keys -->
+		<div
+			ng-repeat="filter in filters track by $index"
+			layout="row"
+			layout-align="space-between center"
+			style="padding-top: 0px;padding-bottom: 0px">
+			<div
+				layout="row"
+				style="width: 50%">
+				<md-input-container
+					style="padding: 0px;margin: 0px;width: 20%">
+					<label mb-translate="">Key</label>
+					<md-select
+						name="filter"
+						ng-model="filter.key"
+						ng-change="showFilterValue=true;"
+						required>
+						<md-option
+							ng-repeat="key in filterKeys"
+							ng-value="key">
+							<span mb-translate="">{{key}}</span>
+						</md-option>
+					</md-select>
+				</md-input-container>
+				<span flex="5"></span>
+				<md-input-container
+					style="padding: 0px;margin: 0px;"
+					ng-if="showFilterValue">
+					<label mb-translate="">Value</label>
+					<input
+						ng-model="filter.value"
+						required>
+				</md-input-container>
+			</div>
+			<md-button
+				ng-if="showFilterValue"
+				ng-click="removeFilter(filter,$index)"
+				class="md-icon-button">
+				<mb-icon>delete</mb-icon>
+			</md-button>
+		</div>
+	</div>
+</div>

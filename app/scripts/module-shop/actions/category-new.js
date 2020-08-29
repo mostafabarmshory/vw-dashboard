@@ -22,11 +22,12 @@
 
 mblowfish.addAction(AMD_SHOP_CATEGORY_CREATE_ACTION, {// create new category menu
 	priority: 10,
-	icon: 'photo_album',
+	icon: 'add',
 	title: 'New Category',
 	description: 'Creates new category',
-	/* @ngInject */
+	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	action: function($event, $shop, $mbTranslate, $mbDynamicForm, $mbDispatcherUtil) {
+		'ngInject';
 		var defVal = {};
 		var values = $event.values;
 		if (values && values.length) {

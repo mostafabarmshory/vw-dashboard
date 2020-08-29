@@ -1,0 +1,30 @@
+<md-input-container class="md-block md-icon-float">
+	<label translate>Name</label>
+	<input 
+		aria-label="Content Name"
+		name="name"
+		ng-model="ctrl.name"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+	<mb-icon
+		ng-click="ctrl.randomName()">loop</mb-icon>
+</md-input-container>
+<md-input-container class="md-block">
+	<label translate>Title</label>
+	<input 
+		aria-label="Content Title"
+		name="title"
+		ng-model="ctrl.title"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+<md-input-container class="md-block">
+	<label translate>Description</label>
+	<textarea 
+		aria-label="Content Description"
+		name="description"
+		ng-model="ctrl.description"
+		ng-model-options="{getterSetter: true, debounce: 200}"></textarea>
+</md-input-container>
+
+
+
+

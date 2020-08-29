@@ -1,8 +1,12 @@
 
-mblowfish.addView('/tenant/tenants', {
+mblowfish.view('/tenant/tenants', {
 	templateUrl: 'scripts/module-tenant/views/tenants.html',
+	controllerAs: 'ctrl',
+	groups: ['Tenant'],
+	title: 'Tenants',
+	icon: 'business',
 	controller: function($scope, $controller, $tenant, $mbActions) {
-
+		'ngInject';
 		// Extends with ItemsController
 		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
 			$scope: $scope
@@ -43,9 +47,5 @@ mblowfish.addView('/tenant/tenants', {
 				$mbActions.exec('create:/tenant/tenants');
 			}
 		}]);
-	},
-	controllerAs: 'ctrl',
-	groups: ['Tenant'],
-	title: 'Tenants',
-	icon: 'business'
+	}
 });

@@ -1,0 +1,57 @@
+<div
+	layout="column"
+	flex>
+	<md-toolbar>
+		<div layout="row">
+			 <md-menu style="margin: 0px;">
+				<md-button 
+					ng-click="$mdMenu.open($event)"
+					aria-label="Add filter" 
+					style="margin: 0px;">
+					<span mb-translate>Add Filter</span>
+				</md-button>
+				<md-menu-content width="4">
+					<md-menu-item
+						ng-repeat="property in schema.children track by property.name">
+						<md-button
+							ng-click="ctrl.addFilter(property)">
+							<span mb-translage>{{property.title}}</span>
+						</md-button>
+					</md-menu-item>
+				</md-menu-content>
+			</md-menu>
+			<md-button 
+				ng-click="ctrl.clearFilters($event)"
+				aria-label="remove all filter" 
+				style="margin: 0px;">
+				<span mb-translate>Remove All Filter</span>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-content>
+		<mb-titled-block
+			ng-repeat="(key,values) in queryParameter.filterMap track by $index"
+			mb-title="{{'Key'|translate}}: {{key}}">
+			<md-chips
+				ng-model="values"
+				md-add-on-blur="true"
+				ng-change="ctrl.filterValuesChanged($event)" 
+				input-aria-label="Filter values">
+			</md-chips>
+			<div
+				layout="row">
+				<span flex></span>
+				<md-button 
+					ng-click="ctrl.deleteFilter(key)"
+					class="md-raised">
+					<span mb-translate>Delete</span>
+				</md-button>
+				<md-button
+					ng-click="ctrl.clearFilter(key)"
+					 class="md-raised">
+					<span mb-translate>Reset</span>
+				</md-button>
+			</div>
+		</div>
+	</md-content>
+</div>

@@ -1,5 +1,6 @@
 {
 	"private": true,
+	"version": "6.0.2",
 	"devDependencies": {
 		"angular-jsdoc": "^1.5.0",
 		"autoprefixer-core": "^5.2.1",

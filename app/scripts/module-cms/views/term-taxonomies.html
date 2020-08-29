@@ -1,0 +1,35 @@
+<md-content
+	ng-init="ctrl.setDataQuery('{id, taxonomy, description, count, term{id, name}}')"
+	mb-preloading="ctrl.loading"
+	mb-infinate-scroll="ctrl.loadNextPage()"
+	layout="column"
+	style="max-width: 100%; overflow: auto;"
+	flex>
+	<div
+		layout="column"
+		layout-align="center center"
+		ng-if="ctrl.state === 'ideal' && (!ctrl.items || ctrl.items.length == 0)">
+		<h2 mb-translate="">No item found</h2>
+	</div>
+	<!-- Contents info -->
+	<md-list flex>
+		<md-list-item 
+			ng-repeat="content in ctrl.items track by content.id"
+			ng-href="cms/term-taxonomies/{{::content.id}}"
+			class="md-3-line">
+			<div 
+				class="md-list-item-text" 
+				layout="column">
+				<h3>{{::content.term.name}} ({{::content.count}})</h3>
+				<h4>{{::content.taxonomy}}</h4>
+				<p>{{::content.description}}</p>
+			</div>
+			<mb-icon 
+				class="md-secondary" 
+				ng-click="ctrl.deleteItem(content, $event)" 
+				aria-label="Delete">
+				delete
+			</mb-icon>
+		</md-list-item>
+	</md-list>
+</md-content>

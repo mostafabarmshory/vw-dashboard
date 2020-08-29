@@ -2,9 +2,9 @@
 mblowfish.addResource('cms-image-url', {
 	title: 'Images',
 	icon: 'image',
-	templateUrl: 'views/cms/resources/image-url.html',
-	controller: 'AmdCmsContentUrlResourceCtrl',
-	controllerAs: 'ctrl',
+	templateUrl: 'scripts/module-cms/resources/image-url.html',
 	priority: 10,
-	tags: ['image-url', 'avatar', 'thumbnail']
+	tags: ['image-url', 'avatar', 'thumbnail'],
+	controllerAs: 'ctrl',
+	controller: 'AmdCmsContentUrlResourceCtrl',
 });

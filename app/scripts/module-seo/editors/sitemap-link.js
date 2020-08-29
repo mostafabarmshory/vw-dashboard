@@ -1,6 +1,7 @@
 mblowfish.addEditor('/seo/links/:itemId', {
 	templateUrl: 'scripts/module-seo/editors/sitemap-link.html',
 	controller: function($scope, $controller, $seo) {
+		'ngInject';
 		/*
 		 * Extends collection controller from MbAbstractCtrl 
 		 */

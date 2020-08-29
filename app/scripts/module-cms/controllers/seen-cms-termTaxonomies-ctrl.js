@@ -22,36 +22,36 @@
  * SOFTWARE.
  */
 
-mblowfish.controller('MbSeenCmsTermTaxonomiesCtrl',function ($scope, $cms, $controller) {
+mblowfish.controller('MbSeenCmsTermTaxonomiesCtrl', function($scope, $cms, $controller) {
 
     /*
      * Extends collection controller
      */
-    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-        $scope : $scope
-    }));
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope
+	}));
 
-    // Override the schema function
-    this.getModelSchema = function () {
-        return $cms.termTaxonomySchema();
-    };
+	// Override the schema function
+	this.getModelSchema = function() {
+		return $cms.termTaxonomySchema();
+	};
 
-    // get contents
-    this.getModels = function (parameterQuery) {
-        return $cms.getTermTaxonomies(parameterQuery);
-    };
+	// get contents
+	this.getModels = function(parameterQuery) {
+		return $cms.getTermTaxonomies(parameterQuery);
+	};
 
-    // get a content
-    this.getModel = function (id) {
-        return $cms.getTermTaxonomy(id);
-    };
+	// get a content
+	this.getModel = function(id) {
+		return $cms.getTermTaxonomy(id);
+	};
 
-    // delete account
-    this.deleteModel = function (content) {
-        return $cms.deleteTermTaxonomy(content.id);
-    };
+	// delete account
+	this.deleteModel = function(content) {
+		return $cms.deleteTermTaxonomy(content.id);
+	};
 
-    this.init({
-        eventType: AMD_CMS_TERMTAXONOMIES_SP
-    });
+	this.init({
+		eventType: AMD_CMS_TERMTAXONOMIES_SP
+	});
 });

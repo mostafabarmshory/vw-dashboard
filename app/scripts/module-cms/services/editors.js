@@ -16,7 +16,7 @@ mblowfish.provider('$amdCmsEditors', function() {
 	//-------------------------------------------------
 	// variables
 	//-------------------------------------------------
-	var editorCache = {};
+//	var editorCache = {};
 
 	//-------------------------------------------------
 	// functions
@@ -39,33 +39,30 @@ mblowfish.provider('$amdCmsEditors', function() {
 		return editors;
 	}
 
-	function getEditorsName(mimetypeString) {
-		if (editorCache[mimetypeString]) {
-			return editorCache[mimetypeString];
-		}
-		var names = [];
-		var editors = getEditors(mimetypeString);
-		_.forEach(editors, function(editor) {
-			names.push(editor.name);
-		});
-		editorCache[mimetypeString] = names;
-		return names;
-	}
+//	function getEditorsName(mimetypeString) {
+//		if (editorCache[mimetypeString]) {
+//			return editorCache[mimetypeString];
+//		}
+//		var names = [];
+//		var editors = getEditors(mimetypeString);
+//		_.forEach(editors, function(editor) {
+//			names.push(editor.name);
+//		});
+//		editorCache[mimetypeString] = names;
+//		return names;
+//	}
 
 	function openContent(content, name) {
 		if (!content.mime_type) {
 			throw new TypeError('Content type is not define');
 		}
 		// finally
-		if (!name) {
-			var editors = getEditorsName(content.mime_type);
-			if (editors.length > 0) {
-				name = editors[0];
-			}
-		}
 		if (name) {
 			return location.path(name.replace(':contentId', content.id));
 		}
+		//		else {
+		//			// TODO: maso, 2020: find editors from settings
+		//		}
 
 		// find editor
 		return openProperties(content);

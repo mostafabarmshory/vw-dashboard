@@ -1,8 +1,12 @@
 
-mblowfish.addView('/tenant/settings/security', {
+mblowfish.view('/tenant/settings/security', {
 	templateUrl: 'scripts/module-tenant/views/security-settings.html',
+	groups: ['Tenant'],
+	title: 'Security',
+	icon: 'font_download',
+	controllerAs: 'ctrl',
 	controller: function($scope, $tenant, $q) {
-
+		'ngInject';
 		$scope.options = ['nocaptcha', 'recaptcha'];
 
 	    /**
@@ -155,7 +159,4 @@ mblowfish.addView('/tenant/settings/security', {
 		loadCaptchaSetting();
 		loadHttpsSetting();
 	},
-	groups: ['Tenant'],
-	title: 'Security',
-	icon: 'font_download',
 });

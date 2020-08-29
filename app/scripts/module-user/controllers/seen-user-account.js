@@ -55,6 +55,6 @@ mblowfish.controller('MbSeenUserAccountCtrl', function($scope, $usr, $controller
 	};
 
 	this.init({
-		eventType: '/user/accounts'
+		eventType: AMD_USER_ACCOUNTS_SP
 	});
 });

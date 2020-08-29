@@ -31,17 +31,32 @@ mblowfish.addEditor('/cms/document-editor/:contentId', {
 	icon: 'text',
 	template: '<iframe></iframe>',
 	controllerAs: 'ctrl',
-	supportedMimetypes: ['text/html'],
-	controller: function($state, $element, $cms, $httpParamSerializer) {
+	supportedMimetypes: [
+		'text/html',
+		'application/weburger+json'
+	],
+	controller: function($state, $element, $cms, $httpParamSerializer, $mbLocal) {
 		'ngInject';
 		//------------------------------------------------------------------
 		// Functions
 		//------------------------------------------------------------------\
 		function loadObject() {
-			$cms.getContent($state.params.contentId)
+			$cms.getContent($state.params.contentId,{
+				graphql: '{id,media_type,mime_type,metas{id,key,value}}'
+			})
 				.then(function(content) {
-					_.assign(content, {
-						file: '/api/v2/cms/contents/' + content.id + '/content'
+					var metas = content.metas;
+					delete content.metas;
+					var language = $mbLocal.getLanguage();
+					_.forEach(metas, function(meta){
+						if(meta.key === 'language'){
+							language = meta.value;
+						}
+					});
+					content = _.assign(content, {
+						language: language,
+						file: '/api/v2/cms/contents/' + content.id + '/content',
+						url: '/api/v2/cms/contents/' + content.id + '/content'
 					});
 					$element.find('iframe')
 						.attr('src', '/vw-document/?' + $httpParamSerializer(content))

@@ -1,6 +1,11 @@
 mblowfish.addView('/seo/links-new', {
+	controllerAs: 'ctrl',
+	templateUrl: 'scripts/module-seo/views/links-new.html',
+	groups: ['seo'],
+	title: 'New sitemap link',
+	icon: 'add',
 	controller: function($scope, $seo, $navigator) {
-
+		'ngInject';
 		var ctrl = {
 			status: 'relax'
 		};
@@ -54,9 +59,4 @@ mblowfish.addView('/seo/links-new', {
 		$scope.cancel = cancel;
 		$scope.ctrl = ctrl;
 	},
-	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-seo/views/links-new.html',
-	groups: ['seo'],
-	title: 'New sitemap link',
-	icon: 'add'
 });
