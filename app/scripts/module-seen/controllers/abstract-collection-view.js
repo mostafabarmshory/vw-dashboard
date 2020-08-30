@@ -47,7 +47,7 @@ mblowfish.controller('SeenAbstractCollectionViewCtrl', function($scope, $control
 		.addAction(new MbAction({
 			title: 'Reload',
 			icon: 'repeat',
-			action: function(){
+			action: function() {
 				return relaodView();
 			}
 		}))
@@ -55,6 +55,7 @@ mblowfish.controller('SeenAbstractCollectionViewCtrl', function($scope, $control
 			template: '<div class="mb-collection-toolbar-input"><input ng-model="ctrl.query" ng-change="ctrl.setQuery(ctrl.query)" ng-model-options="{debounce: 1000}"/><mb-icon size="16">search</mb-icon></div>',
 			controllerAs: 'ctrl',
 			controller: function($element) {
+				'ngInject';
 				$element
 					.addClass('mb-collection-toolbar-float-left');
 				this.setQuery = function(query) {
@@ -62,7 +63,6 @@ mblowfish.controller('SeenAbstractCollectionViewCtrl', function($scope, $control
 					ctrl.setQueryString(query);
 				};
 			}
-		}))
-		;
+		}));
 
 });
