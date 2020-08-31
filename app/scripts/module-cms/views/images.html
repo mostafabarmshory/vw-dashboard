@@ -3,14 +3,15 @@
 	mb-preloading="ctrl.loading"
 	mb-infinate-scroll="ctrl.loadNextPage()"
 	layout="column"
-	style="max-width: 100%; overflow: auto;"
+	class="cms-views-images"
 	flex>
 	<div
 		ng-repeat="image in ctrl.items track by image.id"
 		ng-click="ctrl.openEditor(image, $event)"
-		layout="row">
+		layout="row"
+		class="item">
 		<img
-			style="width: 256px; height: 256px;"
+			alt="{{img.title}}"
 			ng-src="/api/v2/cms/contents/{{::image.id}}/content">
 		<div 
 			class="md-list-item-text" 

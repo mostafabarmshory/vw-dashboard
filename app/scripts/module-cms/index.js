@@ -56,10 +56,21 @@ mblowfish.addConstants({
 	AMD_CMS_CONTENTS_UPDATE_ACTION: 'amd.cms.contents.update',
 	AMD_CMS_CONTENTS_PROPERTIES_ACTION: 'amd.cms.contents.properties',
 	AMD_CMS_CONTENTS_NEWPAGE_ACTION: 'amd.cms.contents.newPage',
+	AMD_CMS_TERMS_CREATE_ACTION: 'cms.terms.create',
+	AMD_CMS_TERMS_DELETE_ACTION: 'cms.terms.delete',
 
 	//------------------------------------------------------------
 	// wizards
 	//------------------------------------------------------------
-	AMD_CMS_CONTENTS_NEWPAGE_WIZARD: '/cms/contents-new-page-wizard',
+	AMD_CMS_CONTENTS_NEWPAGE_WIZARD: '/cms/wizards/new-page',
+	AMD_CMS_TERM_NEW_WIZARD: '/cms/wizards/new-term',
+});
+
+mblowfish.run(function($mbToolbar) {
+	'ngInject';
+
+	$mbToolbar.getToolbar(AMD_CMS_VIEW_TERMS_PATH)
+		.addAction(AMD_CMS_TERMS_CREATE_ACTION);
+
 });
 
