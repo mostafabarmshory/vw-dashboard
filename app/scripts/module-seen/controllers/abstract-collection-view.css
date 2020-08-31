@@ -1,9 +1,9 @@
 .mb-collection-toolbar-float-left {
-	float:left;
+	float:right;
 }
 
 [dir=rtl].mb-collection-toolbar-float-left {
-	float:right;
+	float:left;
 }
 
 .mb-collection-toolbar-input{
