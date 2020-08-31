@@ -1,0 +1,24 @@
+<md-content
+	ng-init="ctrl.setDataQuery('{id, title, name, file_name, media_type, mime_type, state}')"
+	mb-preloading="ctrl.loading"
+	mb-infinate-scroll="ctrl.loadNextPage()"
+	layout="column"
+	style="max-width: 100%; overflow: auto;"
+	flex>
+	<div
+		ng-repeat="image in ctrl.items track by image.id"
+		ng-click="ctrl.openEditor(image, $event)"
+		layout="row">
+		<img
+			style="width: 256px; height: 256px;"
+			ng-src="/api/v2/cms/contents/{{::image.id}}/content">
+		<div 
+			class="md-list-item-text" 
+			layout="column"
+			flex>
+			<h3>{{image.title}}</h3>
+			<h4>{{::image.name}}</h4>
+			<p>{{::image.id}}-{{image.state}}</p>
+		</div>
+	</md-list-item>
+</md-content>
