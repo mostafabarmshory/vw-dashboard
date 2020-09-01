@@ -29,15 +29,15 @@ mblowfish.addView(AMD_CMS_VIEW_TERM_TAXONOMIES_PATH, {
 			return $cms.getTermTaxonomy(id);
 		};
 
-		// add a model
-		this.addModel = function(model) {
-			return $cms.putTermTaxonomy(model);
-		};
-
-		// delete model
-		this.deleteModel = function(model) {
-			return $cms.deleteTermTaxonomy(model.id);
-		};
+//		// add a model
+//		this.addModel = function(model) {
+//			return $cms.putTermTaxonomy(model);
+//		};
+//
+//		// delete model
+//		this.deleteModel = function(model) {
+//			return $cms.deleteTermTaxonomy(model.id);
+//		};
 
 
 		/*
@@ -45,15 +45,15 @@ mblowfish.addView(AMD_CMS_VIEW_TERM_TAXONOMIES_PATH, {
 		 */
 		this.init({
 			eventType: AMD_CMS_TERMTAXONOMIES_SP,
-			addAction: {
-				title: 'New term-taxonomy',
-				icon: 'add',
-				dialog: 'views/dialogs/amd-term-taxonomy-new.html'
-			},
-			deleteAction: {
-				title: 'Delete term-taxonomy?'
-			},
-			actions: []
+//			addAction: {
+//				title: 'New term-taxonomy',
+//				icon: 'add',
+//				dialog: 'views/dialogs/amd-term-taxonomy-new.html'
+//			},
+//			deleteAction: {
+//				title: 'Delete term-taxonomy?'
+//			},
+//			actions: []
 		});
 	},
 });

@@ -1,0 +1,35 @@
+<md-input-container
+	class="md-block md-icon-float">
+	<label mb-translate>Taxonomy</label>
+	<input 
+		aria-label="taxonomy"
+		name="taxonomy"
+		ng-model-options="{getterSetter: true, debounce: 200}"
+		ng-model="ctrl.taxonomy">
+</md-input-container>
+
+<md-autocomplete flex required
+	md-clear-button="true"
+	md-input-name="termId"
+	md-selected-item="ctrl.selectedItem"
+	md-selected-item-change="ctrl.setTerm(ctrl.selectedItem)"
+	md-search-text="ctrl.searchText"
+	md-items="item in ctrl.querySearch(ctrl.searchText)"
+	md-item-text="item.name"
+	md-require-match
+	md-floating-label="{{'Term'| translate}}">
+	<md-item-template>
+		<span md-highlight-text="ctrl.searchText">{{::item.name}}</span>
+	</md-item-template>
+</md-autocomplete>
+
+<md-input-container
+	class="md-block md-icon-float">
+	<label mb-translate>Description</label>
+	<textarea 
+		aria-label="description"
+		name="description"
+		ng-model-options="{getterSetter: true, debounce: 200}"
+		ng-model="ctrl.description"></textarea>
+</md-input-container>
+

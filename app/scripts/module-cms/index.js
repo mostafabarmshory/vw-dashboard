@@ -58,12 +58,15 @@ mblowfish.addConstants({
 	AMD_CMS_CONTENTS_NEWPAGE_ACTION: 'amd.cms.contents.newPage',
 	AMD_CMS_TERMS_CREATE_ACTION: 'cms.terms.create',
 	AMD_CMS_TERMS_DELETE_ACTION: 'cms.terms.delete',
+	AMD_CMS_TERM_TAXONOMIES_CREATE_ACTION: 'cms.termTaxonomies.create',
+	AMD_CMS_TERM_TAXONOMIES_DELETE_ACTION: 'cms.termTaxonomies.delete',
 
 	//------------------------------------------------------------
 	// wizards
 	//------------------------------------------------------------
 	AMD_CMS_CONTENTS_NEWPAGE_WIZARD: '/cms/wizards/new-page',
 	AMD_CMS_TERM_NEW_WIZARD: '/cms/wizards/new-term',
+	AMD_CMS_TERM_TAXONOMY_NEW_WIZARD: '/cms/wizards/new-term-taxonomy',
 });
 
 mblowfish.run(function($mbToolbar) {
@@ -71,6 +74,10 @@ mblowfish.run(function($mbToolbar) {
 
 	$mbToolbar.getToolbar(AMD_CMS_VIEW_TERMS_PATH)
 		.addAction(AMD_CMS_TERMS_CREATE_ACTION);
+		
+	$mbToolbar.getToolbar(AMD_CMS_VIEW_TERM_TAXONOMIES_PATH)
+		.addAction(AMD_CMS_TERM_TAXONOMIES_CREATE_ACTION);
+		
 
 });
 
