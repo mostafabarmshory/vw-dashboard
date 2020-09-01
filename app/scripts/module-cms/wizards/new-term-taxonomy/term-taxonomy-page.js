@@ -26,7 +26,7 @@ mblowfish.wizardPage(AMD_CMS_TERMTAXONOMY_NEW_WIZARD + '#term-taxonomy', {
 				termId = term.id;
 			}
 			$wizard.setData('term_id', termId);
-		}
+		};
 
 		/**
 		 * Search for states
