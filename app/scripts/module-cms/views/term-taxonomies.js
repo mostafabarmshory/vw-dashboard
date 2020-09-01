@@ -1,10 +1,10 @@
-mblowfish.addView(AMD_CMS_VIEW_TERM_TAXONOMIES_PATH, {
+mblowfish.addView(AMD_CMS_VIEW_TERMTAXONOMIES_PATH, {
 	title: 'Term taxonomis',
 	controllerAs: 'ctrl',
 	templateUrl: 'scripts/module-cms/views/term-taxonomies.html',
 	groups: ['Content Management'],
 	icon: 'class',
-	controller: function($scope, $cms, $controller, $view) {
+	controller: function($scope, $cms, $controller, $view, $mbActions) {
 		'ngInject';
 		/*
 		 * Extends collection controller
@@ -29,31 +29,13 @@ mblowfish.addView(AMD_CMS_VIEW_TERM_TAXONOMIES_PATH, {
 			return $cms.getTermTaxonomy(id);
 		};
 
-//		// add a model
-//		this.addModel = function(model) {
-//			return $cms.putTermTaxonomy(model);
-//		};
-//
-//		// delete model
-//		this.deleteModel = function(model) {
-//			return $cms.deleteTermTaxonomy(model.id);
-//		};
+		this.deleteTermTaxonomy = function(termTaxonomy, $event) {
+			$event.values = [termTaxonomy];
+			$mbActions.exec(AMD_CMS_TERMTAXONOMIES_DELETE_ACTION, $event);
+		};
 
-
-		/*
-		 * init ctrl
-		 */
 		this.init({
 			eventType: AMD_CMS_TERMTAXONOMIES_SP,
-//			addAction: {
-//				title: 'New term-taxonomy',
-//				icon: 'add',
-//				dialog: 'views/dialogs/amd-term-taxonomy-new.html'
-//			},
-//			deleteAction: {
-//				title: 'Delete term-taxonomy?'
-//			},
-//			actions: []
 		});
 	},
 });

@@ -1,5 +1,5 @@
 
-mblowfish.addAction(AMD_CMS_TERM_TAXONOMIES_CREATE_ACTION, {
+mblowfish.addAction(AMD_CMS_TERMTAXONOMIES_CREATE_ACTION, {
 	icon: 'add',
 	title: 'New Term Taxonomy',
 	description: 'Creates a new teram-taxonomy',
@@ -9,7 +9,7 @@ mblowfish.addAction(AMD_CMS_TERM_TAXONOMIES_CREATE_ACTION, {
 
 		var values = $event.values;
 		if (!values || !_.isArray(values)) {
-			return $mbWizard.openWizard(AMD_CMS_TERM_TAXONOMY_NEW_WIZARD);
+			return $mbWizard.openWizard(AMD_CMS_TERMTAXONOMY_NEW_WIZARD);
 		}
 
 		var jobs = [],

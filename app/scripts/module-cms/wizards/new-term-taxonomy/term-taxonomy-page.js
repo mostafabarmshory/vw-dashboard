@@ -1,6 +1,6 @@
 
 
-mblowfish.wizardPage(AMD_CMS_TERM_TAXONOMY_NEW_WIZARD + '#term-taxonomy', {
+mblowfish.wizardPage(AMD_CMS_TERMTAXONOMY_NEW_WIZARD + '#term-taxonomy', {
 	title: 'Tearm-Taxonomy',
 	description: 'A term taxonomy is a low level labeling system.',
 	templateUrl: 'scripts/module-cms/wizards/new-term-taxonomy/term-taxonomy-page.html',
