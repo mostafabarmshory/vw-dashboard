@@ -23,6 +23,8 @@
 /**
 XXX: refactor to
 
+@deprecated
+
 @ngdoc Directives
 @name mb-query-parameter-toolbar
 
@@ -71,7 +73,7 @@ in filter section.
 mblowfish.directive('mbPaginationBar', function(MbAction, $window, $timeout, $parse) {
 	return {
 		restrict: 'E',
-		templateUrl: 'scripts/module-seen/directives/mb-pagination-bar.html',
+		templateUrl: 'scripts/directives/mb-pagination-bar.html',
 		scope: {
             /*
              * مدل صفحه بندی را تعیین می‌کند که ما اینجا دستکاری می‌کنیم.

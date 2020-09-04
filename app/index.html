@@ -28,12 +28,12 @@
 	
     <!-- build:css(.tmp) styles/main.css -->
 	<!-- injector:css -->
+	<link rel="stylesheet" href="scripts/controllers/abstract-collection-view.css">
 	<link rel="stylesheet" href="scripts/module-account/components/account-toolbar.css">
 	<link rel="stylesheet" href="scripts/module-account/components/messages.css">
 	<link rel="stylesheet" href="scripts/module-bank/editors/bank-gate.css">
 	<link rel="stylesheet" href="scripts/module-cms/editors/content-properties.css">
 	<link rel="stylesheet" href="scripts/module-cms/views/images.css">
-	<link rel="stylesheet" href="scripts/module-seen/controllers/abstract-collection-view.css">
 	<link rel="stylesheet" href="scripts/module-seo/views/links-new.css">
 	<link rel="stylesheet" href="styles/amd-chips-hack.css">
 	<link rel="stylesheet" href="styles/crisp-hack-button.css">
@@ -85,19 +85,31 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
 	<!-- injector:js -->
+	<script src="scripts/index.js"></script>
 	<script src="scripts/module-account/index.js"></script>
 	<script src="scripts/module-backup/index.js"></script>
 	<script src="scripts/module-bank/index.js"></script>
 	<script src="scripts/module-cms/index.js"></script>
 	<script src="scripts/module-jms/index.js"></script>
 	<script src="scripts/module-sdp/index.js"></script>
-	<script src="scripts/module-seen/index.js"></script>
 	<script src="scripts/module-seo/index.js"></script>
 	<script src="scripts/module-shop-x/index.js"></script>
 	<script src="scripts/module-shop/index.js"></script>
 	<script src="scripts/module-spa/index.js"></script>
 	<script src="scripts/module-tenant/index.js"></script>
 	<script src="scripts/module-user/index.js"></script>
+	<script src="scripts/actions/model-delete.js"></script>
+	<script src="scripts/actions/model-transitions-create.js"></script>
+	<script src="scripts/actions/model-update.js"></script>
+	<script src="scripts/actions/query-parameter-filters-update.js"></script>
+	<script src="scripts/actions/query-parameter-sorts-update.js"></script>
+	<script src="scripts/controllers/abstract-binaryItem-ctrl.js"></script>
+	<script src="scripts/controllers/abstract-collection-view.js"></script>
+	<script src="scripts/controllers/abstract-collection.js"></script>
+	<script src="scripts/controllers/abstract-item-editor.js"></script>
+	<script src="scripts/controllers/abstract-item.js"></script>
+	<script src="scripts/controllers/abstract.js"></script>
+	<script src="scripts/directives/mb-pagination-bar.js"></script>
 	<script src="scripts/module-account/actions/change-password.js"></script>
 	<script src="scripts/module-account/actions/crisp-chat.js"></script>
 	<script src="scripts/module-account/actions/logout.js"></script>
@@ -192,16 +204,6 @@
 	<script src="scripts/module-sdp/controllers/sdp-tag.js"></script>
 	<script src="scripts/module-sdp/controllers/sdp-tags.js"></script>
 	<script src="scripts/module-sdp/sdp-downloaded-link-directive.js"></script>
-	<script src="scripts/module-seen/actions/query-parameter-filters-update.js"></script>
-	<script src="scripts/module-seen/actions/query-parameter-sorts-update.js"></script>
-	<script src="scripts/module-seen/controllers/abstract-binaryItem-ctrl.js"></script>
-	<script src="scripts/module-seen/controllers/abstract-collection-view.js"></script>
-	<script src="scripts/module-seen/controllers/abstract-collection.js"></script>
-	<script src="scripts/module-seen/controllers/abstract-ctrl.js"></script>
-	<script src="scripts/module-seen/controllers/abstract-item-ctrl.js"></script>
-	<script src="scripts/module-seen/directives/mb-pagination-bar.js"></script>
-	<script src="scripts/module-seen/resources/query-parameter-filters.js"></script>
-	<script src="scripts/module-seen/resources/query-parameter-sorts.js"></script>
 	<script src="scripts/module-seo/actions/contents-render.js"></script>
 	<script src="scripts/module-seo/controllers/backend-new.js"></script>
 	<script src="scripts/module-seo/controllers/backend.js"></script>
@@ -265,13 +267,13 @@
 	<script src="scripts/module-shop/views/services.js"></script>
 	<script src="scripts/module-shop/views/tags.js"></script>
 	<script src="scripts/module-shop/views/zones.js"></script>
-	<script src="scripts/module-spa/controllers/repository-spa.js"></script>
-	<script src="scripts/module-spa/controllers/repository-spas.js"></script>
-	<script src="scripts/module-spa/controllers/spa-editor-ctrl.js"></script>
-	<script src="scripts/module-spa/controllers/spa-upload.js"></script>
-	<script src="scripts/module-spa/controllers/spas-views-ctrl.js"></script>
-	<script src="scripts/module-spa/market-spa-factory.js"></script>
-	<script src="scripts/module-spa/marketplace-service.js"></script>
+	<script src="scripts/module-spa/editors/repository-spa.js"></script>
+	<script src="scripts/module-spa/editors/spa.js"></script>
+	<script src="scripts/module-spa/factories/market-spa-factory.js"></script>
+	<script src="scripts/module-spa/services/marketplace-service.js"></script>
+	<script src="scripts/module-spa/views/repository-spas.js"></script>
+	<script src="scripts/module-spa/views/spa-upload.js"></script>
+	<script src="scripts/module-spa/views/spas.js"></script>
 	<script src="scripts/module-tenant/actions/tenants-create.js"></script>
 	<script src="scripts/module-tenant/directives/amd-tenant-invoice.js"></script>
 	<script src="scripts/module-tenant/editors/invoice.js"></script>
@@ -314,6 +316,10 @@
 	<script src="scripts/module-user/wizards/account-create/profilePage.js"></script>
 	<script src="scripts/module-user/wizards/account-create/rolesPage.js"></script>
 	<script src="scripts/module-user/wizards/account-create/wizard.js"></script>
+	<script src="scripts/resources/query-parameter-filters.js"></script>
+	<script src="scripts/resources/query-parameter-sorts.js"></script>
+	<script src="scripts/wizards/model-transition-data/transition-properties.js"></script>
+	<script src="scripts/wizards/model-transition-data/wizard.js"></script>
 	<script src="scripts/app.js"></script>
 	<!-- endinjector -->
 	<!-- endbuild -->

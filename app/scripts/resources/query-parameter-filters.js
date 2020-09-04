@@ -10,7 +10,7 @@ mblowfish.addResource('seen.qp.filters.rt', {
 	tags: [SEEN_QP_FILTERS_RT, SEEN_QP_RT],
 	title: 'Sort editor',
 	icon: 'sort',
-	templateUrl: 'scripts/module-seen/resources/query-parameter-filters.html',
+	templateUrl: 'scripts/resources/query-parameter-filters.html',
 	controllerAs: 'ctrl',
 	priority: 8,
 	controller: function($scope, $value, $schema, $resource) {
