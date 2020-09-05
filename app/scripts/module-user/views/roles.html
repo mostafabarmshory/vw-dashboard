@@ -1,14 +1,14 @@
 <div 
 	layout="column"
 	flex>
-    <!-- TODO: maso, 1395: در حالت خطا یک صفحه با امکان reload اضافه بشه. -->
-    <mb-pagination-bar
-        mb-model="ctrl.queryParameter"
-        mb-reload="ctrl.reload()"
-        mb-sort-keys="ctrl.getSortKeys()"
-        mb-more-actions="ctrl.getActions()"
-        mb-properties="ctrl.properties">
-    </mb-pagination-bar>
+	<!-- TODO: maso, 1395: در حالت خطا یک صفحه با امکان reload اضافه بشه. -->
+	<mb-pagination-bar
+		mb-model="ctrl.queryParameter"
+		mb-reload="ctrl.reload()"
+		mb-sort-keys="ctrl.getSortKeys()"
+		mb-more-actions="ctrl.getActions()"
+		mb-properties="ctrl.properties">
+	</mb-pagination-bar>
 	
 	<md-content
 		mb-preloading="ctrl.state === 'busy'"
@@ -24,7 +24,7 @@
 				<div 
 					class="md-list-item-text" 
 					layout="column">
-					<h3>{{::role.name}}</h3>
+					<h3>{{::role.application}}.{{::role.name}}</h3>
 					<p>{{::role.description}}</p>
 				</div>
 				<md-divider md-inset></md-divider>

@@ -13,7 +13,7 @@ mblowfish.addAction(SEEN_MODEL_UPDATE_ACTION, {
 	title: 'Update Models',
 	description: 'Update list of models',
 	groups: ['seen'],
-	action: function($event, $mbDispatcherUtil, $q, $mbTranslate) {
+	action: function($event, $mbDispatcherUtil, $q, $mbTranslate, $mbLog) {
 		'ngInject';
 
 		var values = $event.values;
@@ -27,20 +27,18 @@ mblowfish.addAction(SEEN_MODEL_UPDATE_ACTION, {
 
 		// TODO: maso, 2020: add the job into the job lists
 		// $app.addJob('Adding new shop category', job);
-		return updateModels();
-
 		function updateModel(value) {
 			var promise;
-			if (_.isFunction($event.deleteModel)) {
-				promise = $event.deleteModel(value);
+			if (_.isFunction($event.updateModel)) {
+				promise = $event.updateModel(value);
 			} else {
-				promise = value.delete();
+				promise = value.update();
 			}
 			promise.then(function() {
 				successModel.push(value);
 			}, function(error) {
 				faildModel.push(value);
-				$mbLob.eroor(error);
+				$mbLog.error(error);
 			});
 			jobs.push(promise);
 		}
@@ -48,7 +46,7 @@ mblowfish.addAction(SEEN_MODEL_UPDATE_ACTION, {
 		function fireEvents() {
 			// 2- fire
 			if ($event.storePath && successModel.length) {
-				$mbDispatcherUtil.fireDeleted($event.storePath, successModel);
+				$mbDispatcherUtil.fireUpdated($event.storePath, successModel);
 			}
 			// show error
 			if (faildModel.length) {
@@ -67,5 +65,8 @@ mblowfish.addAction(SEEN_MODEL_UPDATE_ACTION, {
 			return $q.all(jobs)
 				.then(fireEvents);
 		}
+		
+		return updateModels();
+
 	},
 });

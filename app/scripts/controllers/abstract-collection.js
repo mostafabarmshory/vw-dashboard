@@ -77,6 +77,7 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 	}
 
 	function findItemFrom(item, collection) {
+		item.id = _.toNumber(item.id);
 		for (var i = 0; i < collection.length; i++) {
 			if (collection[i].id === item.id) {
 				return collection[i];

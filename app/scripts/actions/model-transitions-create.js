@@ -10,7 +10,7 @@ This action prform list of transitions into the list of models
 mblowfish.action(SEEN_MODEL_TRANSITIONS_CREATE, {
 	title: 'Put a transition',
 	icon: 'settings',
-	action: function($event, $q, $mbLog, $mbDispatcherUtil) {
+	action: function($event, $q, $mbLog, $mbDispatcherUtil, $mbWizard) {
 		'ngInject';
 		//>> precondition
 		var values = $event.values || [];
@@ -51,7 +51,7 @@ mblowfish.action(SEEN_MODEL_TRANSITIONS_CREATE, {
 							successModel.push(newModel);
 						}, function(error){
 							// TODO: maso, 2020: show error the the client
-							faildModel.push(error)
+							faildModel.push(error);
 							$mbLog.error(error);
 						}));
 				});

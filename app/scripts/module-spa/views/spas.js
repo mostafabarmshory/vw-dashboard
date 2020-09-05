@@ -32,36 +32,8 @@ mblowfish.view(TENANT_SPAS_VIEW, {
 		};
 
 		this.init({
-			eventType: '/spas'
+			eventType: TENANT_SPAS_SP
 		});
 
-//		/**
-//		 * add an spa
-//		 */
-//		this.addSpa = function() {
-//			$navigator.openPage('spas/upload');
-//		};
-//
-//		/**
-//		 * Add an spa from repository
-//		 */
-//		this.addSpaFromRepo = function() {
-//			$navigator.openPage('spas/repository');
-//		};
-//		this.sortKeys = ['id', 'creation_dtime'];
-//		var ctrl = this;
-//		this.addActions([{
-//			title: 'Upload spa',
-//			icon: 'add',
-//			action: function() {
-//				ctrl.addSpa();
-//			}
-//		}, {
-//			title: 'Add spa from repository',
-//			icon: 'add',
-//			action: function() {
-//				ctrl.addSpaFromRepo();
-//			}
-//		}]);
 	},
 });

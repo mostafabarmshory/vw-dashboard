@@ -1,4 +1,3 @@
-
 /**
 
 Required:
@@ -13,7 +12,7 @@ mblowfish.addAction(SEEN_MODEL_DELETE_ACTION, {
 	title: 'Delete Models',
 	description: 'Delete list of models',
 	groups: ['seen'],
-	action: function($event, $mbDispatcherUtil, $q, $mbTranslate) {
+	action: function($event, $mbDispatcherUtil, $q, $mbTranslate, $mbLog) {
 		'ngInject';
 
 		var values = $event.values;
@@ -32,11 +31,6 @@ mblowfish.addAction(SEEN_MODEL_DELETE_ACTION, {
 			successModel = [],
 			faildModel = [];
 
-		// TODO: maso, 2020: add the job into the job lists
-		// $app.addJob('Adding new shop category', job);
-		return confirm(message)//
-			.then(deleteModels);
-
 		function deleteModel(value) {
 			var promise;
 			if (_.isFunction($event.deleteModel)) {
@@ -48,7 +42,7 @@ mblowfish.addAction(SEEN_MODEL_DELETE_ACTION, {
 				successModel.push(value);
 			}, function(error) {
 				faildModel.push(value);
-				$mbLob.eroor(error);
+				$mbLog.error(error);
 			});
 			jobs.push(promise);
 		}
@@ -75,5 +69,10 @@ mblowfish.addAction(SEEN_MODEL_DELETE_ACTION, {
 			return $q.all(jobs)
 				.then(fireEvents);
 		}
+
+		// TODO: maso, 2020: add the job into the job lists
+		// $app.addJob('Adding new shop category', job);
+		return confirm(message)//
+			.then(deleteModels);
 	},
 });

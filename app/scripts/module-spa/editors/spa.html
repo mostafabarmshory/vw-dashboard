@@ -21,7 +21,7 @@
 						<td>
 							<mb-inline
 								ng-model="ctrl.model.name"
-								ng-change="ctrl.update()"
+								ng-change="ctrl.updateModel($event)"
 								mb-inline-type="text"
 								mb-inline-label="Name"
 								mb-inline-enable="true">{{ctrl.model.name}}</mb-inline>

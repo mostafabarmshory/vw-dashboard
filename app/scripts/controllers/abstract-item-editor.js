@@ -62,7 +62,7 @@ mblowfish.controller('SeenAbstractItemEditorCtrl', function($scope, $controller,
 				if (value.id === ctrl.model.id) {
 					isMatch = true;
 				}
-			})
+			});
 			if (!isMatch) {
 				return;
 			}
@@ -70,7 +70,6 @@ mblowfish.controller('SeenAbstractItemEditorCtrl', function($scope, $controller,
 				case 'delete':
 					$editor.close();
 					break;
-				case 'updated':
 				default:
 					if (_.isFunction(ctrl.reload)) {
 						ctrl.reload();
@@ -147,7 +146,7 @@ mblowfish.controller('SeenAbstractItemEditorCtrl', function($scope, $controller,
 		if (!_.isFunction(this.model.delete)) {
 			deleteModel = function() {
 				ctrl.deleteItem();
-			}
+			};
 		}
 		return this.setJob($mbActions.exec(SEEN_MODEL_DELETE_ACTION, _.assign($event || {}, {
 			values: [this.model],
@@ -168,7 +167,7 @@ mblowfish.controller('SeenAbstractItemEditorCtrl', function($scope, $controller,
 		if (!_.isFunction(this.model.update)) {
 			updateModel = function() {
 				ctrl.updateItem();
-			}
+			};
 		}
 		return this.setJob($mbActions.exec(SEEN_MODEL_UPDATE_ACTION, _.assign($event || {}, {
 			values: [this.model],
