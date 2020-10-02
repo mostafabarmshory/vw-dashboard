@@ -20,16 +20,9 @@
  * SOFTWARE.
  */
 
-//	$mbEditorProvider
-//		.addEditor('/sdp/menu/:collectionId/item/:documentId', {
-//			controller: 'SdpEventMenuItemCtrl',
-//			templateUrl: 'views/sdp-event-menu-item.html',
-//		})//
-//		.addEditor('/sdp/menu/:collectionId/item/:documentId/new', {
-//			controller: 'SdpEventMenuItemNewCtrl',
-//			templateUrl: 'views/sdp-event-menu-item-new.html',
-//		})
-//		.addEditor('/sdp/item/:collectionId/document/:documentId', {
-//			controller: 'AmdDocumentCtrl',
-//			templateUrl: 'views/sdp-event-document.html',
-//		});
+mblowfish.resource('sdp-category-list', {
+	label: 'Category list',
+	templateUrl: 'views/resources/sdp-category-list.html',
+	controller: 'SdpCategoryListResourceCtrl',
+	tags: ['sdp-category']
+});

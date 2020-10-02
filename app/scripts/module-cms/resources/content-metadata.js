@@ -1,5 +1,5 @@
 
-mblowfish.addResource('cms.metadata.keyval', {
+mblowfish.resource('cms.metadata.keyval', {
 	tags: [AMD_CMS_METADATA_RT],
 	title: 'Metadatum',
 	icon: 'label',

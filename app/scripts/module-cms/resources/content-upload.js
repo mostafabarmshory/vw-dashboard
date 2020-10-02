@@ -1,5 +1,5 @@
 
-mblowfish.addResource('cms-upload', {
+mblowfish.resource('cms-upload', {
 	title: 'Upload',
 	icon: 'file_upload',
 	templateUrl: 'scripts/module-cms/resources/content-upload.html',
