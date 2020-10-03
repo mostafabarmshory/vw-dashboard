@@ -111,6 +111,7 @@
 		"AMD_SHOP_ZONES_VIEW": false,
 		
 		
+		"AMD_USER_ACCOUNT_ID_RT": false,
 		"AMD_USER_ROLES_RT": false,
 		"AMD_USER_GROUPS_RT": false,
 		"AMD_USER_ACCOUNTS_SP": false,
