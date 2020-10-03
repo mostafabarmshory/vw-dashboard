@@ -27,6 +27,9 @@ mblowfish.addConstants({
 	//------------------------------------------------------------
 	AMD_USER_ROLES_RT: '/user/roles',
 	AMD_USER_GROUPS_RT: '/user/groups',
+	
+	AMD_USER_ACCOUNTS_RT: '/user/accounts',
+	AMD_USER_ACCOUNT_ID_RT: '/user/account#id',
 
 	//------------------------------------------------------------
 	// Storage path

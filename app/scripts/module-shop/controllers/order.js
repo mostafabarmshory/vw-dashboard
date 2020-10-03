@@ -28,8 +28,15 @@
 @name AmdShopOrderCtrl
 @description load the order
  */
-mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder, 
-	$shop, $mbTranslate, $state, $navigator, $window) {
+mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder, $controller, $scope,
+	$shop, $mbTranslate, $state, $navigator, $window, $mbActions) {
+
+	/*
+	 * Extends collection controller from MbAbstractCtrl 
+	 */
+	angular.extend(this, $controller('SeenAbstractCtrl', {
+		$scope: $scope
+	}));
 
 	this.order = {};
 	this.actions = [];
@@ -97,36 +104,13 @@ mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder,
 			});
 	};
 
-	this.doAction = function(transition) {
-		if (this.actionDoing) {
-			return;
-		}
-		this.actionDoing = true;
-		var promise;
-		var action = {
-			action: transition.id
-		};
-		var ctrl = this;
-		if (!transition.properties) {
-			promise = this.order.putTransition(action);
-		} else {
-			promise = $navigator.openDialog({
-				templateUrl: 'views/dialogs/action-properties.html',
-				config: {
-					action: action,
-					properties: transition.properties
-				}
-			})
-				.then(function(action) {
-					return ctrl.order.putTransition(action);
-				});
-		}
-		return promise//
-			//TODO: handle the response
-			.finally(function() {
-				ctrl.actionDoing = false;
-				ctrl.loadOrder();
-			});
+	this.doAction = function(transition, $event) {
+		return $mbActions
+			.exec(SEEN_MODEL_TRANSITIONS_CREATE, _.assign($event || {}, {
+				values: [this.order],
+				transition: transition,
+				storePath: AMD_SHOP_ORDERS_SP
+			}));
 	};
 
 	this.showImage = function(order, attachment) {
@@ -143,8 +127,8 @@ mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder,
 		var str = 'tel:' + this.order.phone;
 		$window.open(str);
 	};
-	
-	this.showDetailOfHistory = function(history){
+
+	this.showDetailOfHistory = function(history) {
 		$navigator.openDialog({
 			templateUrl: 'views/shop/order-history-detail-dialog.html',
 			config: {
@@ -153,6 +137,35 @@ mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder,
 		});
 	};
 
-	this.loadOrder();
+
+	this.loadOrderController = function() {
+		var ctrl = this;
+		ctrl.addEventHandler(AMD_SHOP_ORDERS_SP, function($event) {
+			var flag = false;
+			var order = ctrl.order;
+			_.forEach($event.values, function(value) {
+				if (_.isEqual(value.id, order.id)) {
+					flag = true;
+				}
+			});
+			if (!flag) {
+				return;
+			}
+			//			switch ($event.key) {
+			//				case 'updated':
+			//					ctrl.loadOrder();
+			//					break;
+			//			case 'removed':
+			//				ctrl.removeViewItems($event.values);
+			//				break;
+			//				default:
+			//					break;
+			//			}
+			ctrl.loadOrder();
+		});
+		ctrl.loadOrder();
+	};
+
+	this.loadOrderController();
 });
 

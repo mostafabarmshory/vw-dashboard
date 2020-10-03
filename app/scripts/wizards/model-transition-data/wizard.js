@@ -17,17 +17,23 @@ mblowfish.wizard(SEEN_MODEL_TRANSITION_DATA_WIZARD, {
 	/*
 	Check if it is possible to finish
 	*/
-	canFinish: function($wizard) {
+	canFinish: function() {
 		'ngInject';
-		// TODO
-		return $wizard.data.name;
+		// TODO: check the data is valid
+		return true;
 	},
 
 	/*
 	Perform final job
 	*/
-	performFinish: function() {
+	performFinish: function($mbActions, $values, $transition, $storePath, $wizard) {
 		'ngInject';
+		return $mbActions.exec(SEEN_MODEL_TRANSITIONS_CREATE, {
+			values: $values,
+			transition: $transition,
+			storePath: $storePath,
+			data: $wizard.data,
+		});
 	},
 });
 
