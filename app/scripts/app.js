@@ -55,7 +55,7 @@ mblowfish
 			.fallbackLanguage(['en', 'fa'])
 			.preferredLanguage('en');
 		$mbTranslateSanitizationProvider
-			.useStrategy(['sanitize']);
+			.useStrategy(['sanitizeParameters']);
 
 		//
 		// Application ID
