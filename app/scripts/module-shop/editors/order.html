@@ -91,13 +91,12 @@
 						layout="row" 
 						layout-align="end center" 
 						layout-wrap>
-
 						<md-button 
-							ng-if="action.visible"
-							class="md-primary md-raised"
+							ng-show="::action.visible"
+							class="md-raised"
 							ng-repeat="action in ctrl.actions"
 							ng-click="ctrl.doAction(action)">
-							{{action.title  | translate}}
+							<span mb-translate>{{::action.title}}</span>
 						</md-button>
 					</div>
 				</div>
