@@ -1,0 +1,26 @@
+<md-content
+	mb-preloading="ctrl.loading"
+	mb-infinate-scroll="ctrl.loadNextPage()"
+	layout="column"
+	flex>
+	<md-list 
+		ng-if="ctrl.items.length"
+		flex>
+		<md-list-item 
+			ng-repeat="spa in ctrl.items"
+			class="md-3-line" 
+			ng-href="spas/repository/{{::spa.id}}">
+			<img 
+				ng-src="/{{::spa.name}}/images/logo.svg" 
+				ng-src-error="/{{::spa.name}}/favicon.png" 
+				class="md-avatar"/>
+			<div 
+				class="md-list-item-text" 
+				layout="column">
+				<h3>{{::spa.title}}</h3>
+				<h4>{{::spa.name}} - {{::spa.version}}</h4>
+			</div>
+		</md-list-item>
+	</md-list>
+</md-content>
+

@@ -1,0 +1,17 @@
+<md-input-container class="md-block md-icon-float">
+	<label mb-translate>Name</label>
+	<input 
+		aria-label="Term name"
+		name="name"
+		ng-model-options="{getterSetter: true, debounce: 200}"
+		ng-model="ctrl.name">
+</md-input-container>
+<md-input-container class="md-block md-icon-float">
+	<label mb-translate>Slug</label>
+	<input 
+		aria-label="Term slug"
+		name="slug"
+		ng-model="ctrl.slug"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+

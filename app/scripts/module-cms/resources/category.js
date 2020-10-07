@@ -1,6 +1,6 @@
 
 
-mblowfish.addResource('cms.term-taxonomies.category', {
+mblowfish.resource('cms.term-taxonomies.category', {
 	tags: [AMD_CMS_TERMTAXONOMIES_RT],
 	title: 'Category',
 	icon: 'label',

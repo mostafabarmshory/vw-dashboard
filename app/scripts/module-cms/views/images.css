@@ -1,0 +1,18 @@
+
+.cms-views-images{
+	max-width: 100%;
+	overflow: auto !important;
+}
+
+.cms-views-images .item {
+	margin: 2px;
+	
+	border: solid;
+	border-width: 1px;
+	border-radius: 8px;
+}
+
+.cms-views-images .item img {
+	max-width: 256px; 
+	max-height: 256px;
+}

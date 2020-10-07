@@ -1,5 +1,5 @@
 
-mblowfish.addResource('cms.term-taxonomies', {
+mblowfish.resource('cms.term-taxonomies', {
 	tags: [AMD_CMS_TERMTAXONOMIES_RT],
 	title: 'Term-Taxonomy',
 	icon: 'label',

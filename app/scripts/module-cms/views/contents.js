@@ -91,7 +91,9 @@ mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
 			return $mdMenu.open($event);
 		};
 		
-		$q.when(this.init())
+		$q.when(this.init({
+			eventType: AMD_CMS_CONTENT_SP,
+		}))
 			.then(function() {
 				$view.getToolbar()
 					.addAction(new MbAction({

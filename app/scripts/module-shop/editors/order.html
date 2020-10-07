@@ -1,5 +1,4 @@
-<md-content
-	style="overflow: auto;">
+<md-content>
 	<div 
 		ng-if="ctrl.loading || ctrl.actionLoading || ctrl.actionDoing"
 		layout="row" 
@@ -11,6 +10,7 @@
 			layout-align="center center">
 		</md-progress-circular>
 	</div>
+
 
 	<!--main div-->
 	<div
@@ -24,8 +24,7 @@
 			layout="column"
 			layout-align="start stretch"
 			flex="100"
-			flex-gt-md="50"
-			layout-margin>
+			flex-gt-md="50">
 
 			<!--order info-->
 			<mb-titled-block 
@@ -41,15 +40,15 @@
 							<td>: {{ctrl.order.id}}</td>
 						</tr>
 						<tr class="noprint">
-							<td mb-translate="">Title  </td>
+							<td mb-translate="">Title</td>
 							<td>: {{ctrl.order.title}}</td>
 						</tr>
 						<tr>
-							<td mb-translate="">Full name  </td>
+							<td mb-translate="">Full name</td>
 							<td>: {{ctrl.order.full_name}}</td>
 						</tr>
 						<tr>
-							<td mb-translate="">Phone  </td>
+							<td mb-translate="">Phone</td>
 							<td> 
 								<div layout="row">
 									<p style="margin: 0px;padding: 0px;align-self: center">{{ctrl.order.phone}}</p>
@@ -64,7 +63,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td mb-translate="">Address  </td>
+							<td mb-translate="">Address</td>
 							<td>: {{ctrl.order.province}} - {{ctrl.order.city}} - {{ctrl.order.address}}</td>
 						</tr>
 						<tr class="noprint">
@@ -92,122 +91,13 @@
 						layout="row" 
 						layout-align="end center" 
 						layout-wrap>
-
 						<md-button 
-							ng-if="action.visible"
-							class="md-primary md-raised"
+							ng-show="::action.visible"
+							class="md-raised"
 							ng-repeat="action in ctrl.actions"
 							ng-click="ctrl.doAction(action)">
-							{{action.title  | translate}}
+							<span mb-translate>{{::action.title}}</span>
 						</md-button>
-					</div>
-				</div>
-			</mb-titled-block>
-
-			<!--order metafields-->
-			<mb-titled-block 
-				mb-title="{{'Order metafields' | translate}}"
-				layout="column">
-				<div layout="column">
-					<table>
-						<tr ng-repeat="item in ctrl.order.metafields">
-							<td>{{item.key}}</td>
-							<td>: {{item.value}}</td>
-						</tr>
-					</table>
-				 </div>
-			</mb-titled-block>
-
-			<!--Order items-->
-			<mb-titled-block 
-				mb-title="{{'Order items' | translate}}"
-				layout="column">
-				<div 
-					id="order-items">
-
-					<table align="center" class="mb-table mb-shop-table">
-						<thead>
-							<tr md-colors="{color: 'primary-700'}">
-								<td style="width: 5%"></td>
-								<td align="center" mb-translate="" style="width: 60%">Title</td>
-								<td align="center" mb-translate="" style="width: 10%">Unit/price</td>
-								<td align="center" mb-translate="" style="width: 10%">Count</td>
-								<td align="center" mb-translate="" style="width: 10%">Price</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="item in ctrl.order.order_items track by $index">
-								<td align="center">
-						<mb-icon ng-if="item.item_type === 'service'" class="noprint">cloud_upload</mb-icon>
-						<mb-icon ng-if="item.item_type === 'product'" class="noprint">add_shopping_cart</mb-icon>
-						<mb-icon ng-if="item.item_type === 'deliver'" class="noprint">send</mb-icon>
-						</td>
-						<td>
-							<p>{{item.title}}</p>
-						</td>
-						<td align="center">
-							<p>{{item.price| number}}</p>
-						</td>
-						<td align="center">
-							<p>{{item.count}}</p>
-						</td>
-						<td align="center">
-							<p>{{item.price * item.count| number}}</p>
-						</td>
-						</tr>
-						<tr style="border-bottom: none">
-							<td style="width: 5%"></td>
-							<td align="start" style="width: 60%">
-								<h3 mb-translate="">Total price</h3>
-							</td>
-							<td style="width: 10%"></td>
-							<td style="width: 10%"></td>
-							<td ng-if="ctrl.order.order_items.length > 0" align="center" style="width: 10%">
-								<h3>{{ctrl.totalP| number}}</h3>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</div>
-			</mb-titled-block>
-			<!--Order attachments-->
-			<mb-titled-block 
-				mb-title="{{'Order attachments' | translate}}"
-				layout="column"
-				class="noprint">
-				<div 
-					id="order-attachments">
-					<md-list>
-						<md-list-item
-							ng-repeat="attachment in ctrl.order.attachments"
-							ng-click="ctrl.showImage(ctrl.order, attachment)"> 
-							<img
-								ng-if="attachment.mime_type.startsWith('image')"
-								class="md-avatar"
-								ng-src="/api/v2/shop/orders/{{ctrl.order.id}}/attachments/{{attachment.id}}/content"
-								ng-src-error="resources/images/baseline-help-24px.svg"/>
-							<img
-								ng-if="!attachment.mime_type.startsWith('image')"
-								class="md-avatar"
-								ng-src="src/resources/images/unknown-file.png"/>
-
-							<p>{{attachment.description}}</p>
-
-							<md-button 
-								class="md-icon-button" 
-								aria-label="Download attachment"
-								ng-href="/api/v2/shop/orders/{{ctrl.order.id}}/attachments/{{attachment.id}}/content"
-								target="_blank"
-								download="{{attachment.file_name}}">
-								<mb-icon>cloud_download</mb-icon>
-								<md-tooltip><span mb-translate="">Download</span></md-tooltip>
-							</md-button>
-						</md-list-item>
-					</md-list>
-
-					<div
-						ng-if="ctrl.order.attachments.length === 0">
-						<p mb-translate="">No attachments</p>
 					</div>
 				</div>
 			</mb-titled-block>
@@ -219,8 +109,7 @@
 			layout="column"
 			layout-align="start stretch"
 			flex="100"
-			flex-gt-md="50"
-			layout-margin>
+			flex-gt-md="50">
 
 			<mb-titled-block 
 				mb-title="{{'Customer information' | translate}}"
@@ -291,6 +180,192 @@
 					</div>
 				</md-list>
 			</mb-titled-block>
+			<!--order metafields-->
+			<mb-titled-block 
+				mb-title="{{'Order metafields' | translate}}"
+				layout="column">
+				<div layout="column">
+					<table>
+						<tr ng-repeat="item in ctrl.order.metafields">
+							<td>{{item.key}}</td>
+							<td>: {{item.value}}</td>
+						</tr>
+					</table>
+				 </div>
+			</mb-titled-block>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<!--Order items-->
+			<mb-titled-block 
+				mb-title="{{'Order items' | translate}}"
+				layout="column">
+				<div 
+					id="order-items">
+
+					<table align="center" class="mb-table mb-shop-table">
+						<thead>
+							<tr md-colors="{color: 'primary-700'}">
+								<td style="width: 5%"></td>
+								<td align="center" mb-translate="" style="width: 60%">Title</td>
+								<td align="center" mb-translate="" style="width: 10%">Unit/price</td>
+								<td align="center" mb-translate="" style="width: 10%">Count</td>
+								<td align="center" mb-translate="" style="width: 10%">Price</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in ctrl.order.order_items track by $index">
+								<td align="center">
+						<mb-icon ng-if="item.item_type === 'service'" class="noprint">cloud_upload</mb-icon>
+						<mb-icon ng-if="item.item_type === 'product'" class="noprint">add_shopping_cart</mb-icon>
+						<mb-icon ng-if="item.item_type === 'deliver'" class="noprint">send</mb-icon>
+						</td>
+						<td>
+							<p>{{item.title}}</p>
+						</td>
+						<td align="center">
+							<p>{{item.price| number}}</p>
+						</td>
+						<td align="center">
+							<p>{{item.count}}</p>
+						</td>
+						<td align="center">
+							<p>{{item.price * item.count| number}}</p>
+						</td>
+						</tr>
+						<tr style="border-bottom: none">
+							<td style="width: 5%"></td>
+							<td align="start" style="width: 60%">
+								<h3 mb-translate="">Total price</h3>
+							</td>
+							<td style="width: 10%"></td>
+							<td style="width: 10%"></td>
+							<td ng-if="ctrl.order.order_items.length > 0" align="center" style="width: 10%">
+								<h3>{{ctrl.totalP| number}}</h3>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</mb-titled-block>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--main div-->
+	<div
+		id="order-main-div"
+		layout="column"
+		layout-gt-md="row">
+
+		<!--Left div-->
+		<div 
+			id="order-left-div"
+			layout="column"
+			layout-align="start stretch"
+			flex="100"
+			flex-gt-md="50">
+			<!--Order attachments-->
+			<mb-titled-block 
+				mb-title="{{'Order attachments' | translate}}"
+				layout="column"
+				class="noprint">
+				<div 
+					id="order-attachments">
+					<md-list>
+						<md-list-item
+							ng-repeat="attachment in ctrl.order.attachments"
+							ng-click="ctrl.showImage(ctrl.order, attachment)"> 
+							<img
+								ng-if="attachment.mime_type.startsWith('image')"
+								class="md-avatar"
+								ng-src="/api/v2/shop/orders/{{ctrl.order.id}}/attachments/{{attachment.id}}/content"
+								ng-src-error="resources/images/baseline-help-24px.svg"/>
+							<img
+								ng-if="!attachment.mime_type.startsWith('image')"
+								class="md-avatar"
+								ng-src="src/resources/images/unknown-file.png"/>
+
+							<p>{{attachment.description}}</p>
+
+							<md-button 
+								class="md-icon-button" 
+								aria-label="Download attachment"
+								ng-href="/api/v2/shop/orders/{{ctrl.order.id}}/attachments/{{attachment.id}}/content"
+								target="_blank"
+								download="{{attachment.file_name}}">
+								<mb-icon>cloud_download</mb-icon>
+								<md-tooltip><span mb-translate="">Download</span></md-tooltip>
+							</md-button>
+						</md-list-item>
+					</md-list>
+
+					<div
+						ng-if="ctrl.order.attachments.length === 0">
+						<p mb-translate="">No attachments</p>
+					</div>
+				</div>
+			</mb-titled-block>
+		</div>
+		<!--Right div-->
+		<div 
+			id="order-right-div"
+			class="noprint"
+			layout="column"
+			layout-align="start stretch"
+			flex="100"
+			flex-gt-md="50">
 
 			<!--History-->
 			<mb-titled-block 

@@ -1,5 +1,4 @@
 <div 
-	mb-preloading="ctrl.state === 'busy'"
 	layout="column"
 	flex>
 	<mb-pagination-bar
@@ -10,6 +9,7 @@
 	</mb-pagination-bar>
 	
 	<md-content
+		mb-preloading="ctrl.state === 'busy'"
 		mb-infinate-scroll="ctrl.loadNextPage()"
 		layout="column"
 		flex>
@@ -22,7 +22,7 @@
 				<div 
 					class="md-list-item-text" 
 					layout="column">
-					<h3>{{::role.name}}</h3>
+					<h3>{{::role.application}}.{{::role.name}}</h3>
 					<p>{{::role.description}}</p>
 				</div>
 				<md-checkbox 

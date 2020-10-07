@@ -1,5 +1,5 @@
 
-mblowfish.addResource('cms-image-url', {
+mblowfish.resource('cms-image-url', {
 	title: 'Images',
 	icon: 'image',
 	templateUrl: 'scripts/module-cms/resources/image-url.html',

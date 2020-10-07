@@ -32,6 +32,8 @@ mblowfish.editor('/cms/term-taxonomies/:itemId', {
 	templateUrl: 'scripts/module-cms/editors/term-taxonomy.html',
 	controllerAs: 'ctrl',
 	controller: function($scope, $controller, $cms) {
+		'ngInject';
+		
 		/*
 		 * Extends collection controller from MbAbstractCtrl 
 		 */

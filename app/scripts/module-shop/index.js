@@ -74,6 +74,7 @@ mblowfish.addConstants({
 })
 
 	.config(function($mbIconProvider) {
+		'ngInject';
 
 		$mbIconProvider
 			.addShapes({
@@ -81,6 +82,7 @@ mblowfish.addConstants({
 			});
 	})
 	.run(function($mbToolbar) {
+		'ngInject';
 		// Contribute actions to views
 		$mbToolbar.getToolbar(AMD_SHOP_CATEGORIES_VIEW)
 			.addAction(AMD_SHOP_CATEGORY_CREATE_ACTION);

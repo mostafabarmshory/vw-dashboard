@@ -20,44 +20,31 @@
  * SOFTWARE.
  */
 
-mblowfish.config(function($mbEditorProvider, $mbViewProvider) {
-	$mbEditorProvider
-		.addEditor('/spas/repository/:spaId', {
-			controller: 'amdRepositorySpaCtrl',
-			templateUrl: 'views/amd-rspa.html',
-		})
-		.addEditor('/spas/:spaId', {
-			templateUrl: 'views/amd-spa.html',
-			controller: 'AmdTenantSpaCtrl',
-			controllerAs: 'ctrl'
-		});
+mblowfish.addConstants({
+	//------------------------------------------------------------
+	// Resources Types
+	//------------------------------------------------------------
+	TENANT_SPAS_RT: '/tenant/spas',
 
 
+	//------------------------------------------------------------
+	// Stoer Paths
+	//------------------------------------------------------------
+	TENANT_SPAS_SP: '/tenant/spas',
 
-	var viewGroups = ['Applications'];
+	//------------------------------------------------------------
+	// Views
+	//------------------------------------------------------------
+	TENANT_SPAS_VIEW: '/tenant/spas',
+	TENANT_SPAS_UPLOAD_VIEW: '/tenant/spas-upload',
+	TENANT_REPOSITORYSPAS_VIEW: '/tentan/repository-spas',
 
-	$mbViewProvider
-		.addView('/spas', {
-			controller: 'amdSpasCtrl',
-			controllerAs: 'ctrl',
-			templateUrl: 'views/amd-spas.html',
-			title: 'spas',
-			icon: 'apps',
-			groups: viewGroups,
-		}) //
-		.addView('/spas-upload', {
-			controller: 'amdSpaUploadCtrl',
-			templateUrl: 'views/amd-spa-upload.html',
-			title: 'Upload spa',
-			icon: 'file_upload',
-			groups: viewGroups,
-		}) //
-		.addView('/spas-repository', {
-			controller: 'amdReposiotrySpasCtrl',
-			controllerAs: 'ctrl',
-			templateUrl: 'views/amd-rspas.html',
-			title: 'Repository',
-			icon: 'cloud_upload',
-			groups: viewGroups,
-		});
+	//------------------------------------------------------------
+	// ACTIONS
+	//------------------------------------------------------------
+	
+	//------------------------------------------------------------
+	// wizards
+	//------------------------------------------------------------
 });
+

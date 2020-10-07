@@ -35,6 +35,7 @@ mblowfish
 NOTE: You are allowed to contribute to modules view if and only if ther were loaded.
 */
 mblowfish.run(function($mbToolbar) {
+	'ngInject';
 	// Contribute to categories toolbar
 	$mbToolbar.getToolbar(AMD_SHOP_CATEGORIES_VIEW)
 		.addAction(AMD_SHOP_CATEGORY_IMPORTJSON_ACTION);
@@ -46,7 +47,7 @@ mblowfish.run(function($mbToolbar) {
 		.getToolbar()
 		.addAction(AMD_SHOP_CATEGORY_IMPORTJSON_ACTION);
 	*/
-	
+
 	$mbToolbar.getToolbar(AMD_SHOP_PRODUCTS_VIEW)
 		.addAction(AMD_SHOP_PRODUCT_IMPORTCSV_ACTION);
 });

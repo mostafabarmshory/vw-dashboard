@@ -35,7 +35,7 @@ mblowfish.wizard(AMD_CMS_CONTENTS_NEWPAGE_WIZARD, {
 		switch (data.type) {
 			default:
 			case 'wb':
-				mimeType = 'application/json+weburger';
+				mimeType = 'application/weburger+json';
 				content = '{}';
 				break;
 			case 'html':

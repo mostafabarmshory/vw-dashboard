@@ -32,7 +32,8 @@ mblowfish.editor('/cms/terms/:termId', {
 	controllerAs: 'ctrl',
 	templateUrl: 'scripts/module-cms/editors/term.html',
 	controller: function($navigator, $cms, $mbTranslate, $state, $location, QueryParameter) {
-
+		'ngInject';
+		
 		this.loadingTerm = true;
 		this.savingTerm = false;
 		this.edit = false;
