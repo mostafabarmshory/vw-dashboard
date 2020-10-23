@@ -77,7 +77,5 @@ mblowfish.run(function($mbToolbar) {
 		
 	$mbToolbar.getToolbar(AMD_CMS_VIEW_TERMTAXONOMIES_PATH)
 		.addAction(AMD_CMS_TERMTAXONOMIES_CREATE_ACTION);
-		
-
 });
 

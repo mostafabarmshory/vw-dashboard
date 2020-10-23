@@ -1,0 +1,18 @@
+<md-content
+	mb-preloading="ctrl.loading"
+	mb-infinate-scroll="ctrl.loadNextPage()">
+	<md-list flex>
+		<md-list-item 
+			ng-repeat="asset in ctrl.items track by asset.id"
+			ng-click="ctrl.openEditor(asset, $event)"
+			class="md-3-line">
+			<mb-icon>folder</mb-icon>
+			<div class="md-list-item-text" layout="column">
+				<h3>{{asset.id}}</h3>
+				<h4>{{asset.name}}</h4>
+				<p>{{asset.description}}</p>
+			</div>
+		</md-list-item>
+	</md-list>
+</md-content>
+
