@@ -25,37 +25,64 @@ mblowfish.addConstants({
 	//------------------------------------------------------------
 	//	AMD_CMS_TERMTAXONOMIES_RT: '/cms/term-taxonomies',
 
-
 	//------------------------------------------------------------
 	// Stoer Paths
 	//------------------------------------------------------------
 	SDP_ASSETS_SP: '/sdp/assets',
+	SDP_DRIVES_SP: '/sdp/assets',
+	SDP_TAGS_SP: '/sdp/tags',
+	SDP_CATEGORIES_SP: '/sdp/categories',
+	SDP_LINKS_SP: '/sdp/links',
 
 	//------------------------------------------------------------
 	// Views
 	//------------------------------------------------------------
-	//	AMD_CMS_VIEW_CONTENT_NEW_PATH: '/cms/contents-new',
-
+	SDP_VIEW_DRIVES_PATH: '/sdp/storages',
+	SDP_VIEW_LINKS_PATH: '/sdp/links',
+	SDP_VIEW_CATEGORIES_PATH: '/sdp/categories',
+	SDP_VIEW_TAGS_PATH: '/sdp/tags',
 
 	//------------------------------------------------------------
 	// ACTIONS
 	//------------------------------------------------------------
 	//	AMD_CMS_TERMTAXONOMIES_DELETE_ACTION: 'cms.termTaxonomies.delete',
-	SDP_ASSET_EDIT_ACTION: 'sdp.assets.edit',
-	SDP_ASSET_DELETE_ACTION: 'sdp.assets.delete',
+	SDP_ASSETS_EDIT_ACTION: 'sdp.assets.edit',
+	SDP_ASSETS_DELETE_ACTION: 'sdp.assets.delete',
+	SDP_ASSETS_CREATE_ACTION: 'sdp.assets.create',
+
+	SDP_TAGS_EDIT_ACTION: 'sdp.tags.edit',
+	SDP_TAGS_DELETE_ACTION: 'sdp.tags.delete',
+	SDP_TAGS_CREATE_ACTION: 'sdp.tags.create',
+
+	SDP_CATEGORIES_EDIT_ACTION: 'sdp.categories.edit',
+	SDP_CATEGORIES_DELETE_ACTION: 'sdp.categories.delete',
+	SDP_CATEGORIES_CREATE_ACTION: 'sdp.categories.create',
+
+	SDP_DRIVES_EDIT_ACTION: 'sdp.drives.edit',
+	SDP_DRIVES_DELETE_ACTION: 'sdp.drives.delete',
+	SDP_DRIVES_CREATE_ACTION: 'sdp.drives.create',
 
 	//------------------------------------------------------------
 	// wizards
 	//------------------------------------------------------------
-	//	AMD_CMS_TERMTAXONOMY_NEW_WIZARD: '/cms/wizards/new-term-taxonomy',
+	SDP_CATEGORY_CREATE_WIZARD: '/sdp/wizards/new-category',
+	SDP_TAG_CREATE_WIZARD: '/sdp/wizards/new-tag',
+	SDP_DRIVE_CREATE_WIZARD: '/sdp/wizards/new-storage',
 });
 
-//mblowfish.run(function($mbToolbar) {
-//	'ngInject';
-//
-//	$mbToolbar.getToolbar(AMD_CMS_VIEW_TERMS_PATH)
-//		.addAction(AMD_CMS_TERMS_CREATE_ACTION);
-//		
-//	$mbToolbar.getToolbar(AMD_CMS_VIEW_TERMTAXONOMIES_PATH)
-//		.addAction(AMD_CMS_TERMTAXONOMIES_CREATE_ACTION);
-//});
+mblowfish.run(function($mbToolbar) {
+	'ngInject';
+
+	$mbToolbar
+		.getToolbar(SDP_VIEW_CATEGORIES_PATH)
+		.addAction(SDP_CATEGORIES_CREATE_ACTION);
+
+	$mbToolbar
+		.getToolbar(SDP_VIEW_TAGS_PATH)
+		.addAction(SDP_TAGS_CREATE_ACTION);
+
+	$mbToolbar
+		.getToolbar(SDP_VIEW_DRIVES_PATH)
+		.addAction(SDP_DRIVES_CREATE_ACTION);
+
+});

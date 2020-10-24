@@ -20,10 +20,10 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(SDP_ASSETS_EDIT_ACTION, {
+mblowfish.addAction(SDP_DRIVES_EDIT_ACTION, {
 	icon: 'edit',
 	title: 'Edit',
-	description: 'Open assets with an editor',
+	description: 'Open a storage with an editor',
 	groups: ['SDP'],
 	action: function($event, $location) {
 		'ngInject';
@@ -34,8 +34,8 @@ mblowfish.addAction(SDP_ASSETS_EDIT_ACTION, {
 		if (!values || !_.isArray(values)) {
 			return;
 		}
-		_.forEach(values, function(asset) {
-			$location.path('/sdp/assets/' + asset.id);
+		_.forEach(values, function(model) {
+			$location.path('/sdp/storages/' + model.id);
 		});
 	},
 });

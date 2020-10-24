@@ -6,11 +6,11 @@
  */
 mblowfish.controller('SdpDownloadedFilesLinkCtrl', function($scope, $sdp, QueryParameter) {
 	$scope.mainWaiting = true;
-    $scope.flag = false;
-    var paginatorParameter = new QueryParameter();
+	$scope.flag = false;
+	var paginatorParameter = new QueryParameter();
 	var requests = null;
-	
-       
+
+
 	/**
 	 * لود کردن داده‌های صفحه بعد
 	 * 
@@ -28,20 +28,20 @@ mblowfish.controller('SdpDownloadedFilesLinkCtrl', function($scope, $sdp, QueryP
 		}
 		$scope.loadingLinks = true;
 		$sdp.getLinks(paginatorParameter)//
-		.then(function(items) {
-            $scope.mainWaiting = false;
-            $scope.error = null;
-            requests = items;
-            $scope.items = $scope.items.concat(requests.items);
-            if(items.length===0){
-                $scope.flag = true;
-            }
-		}, function(error) {
-            $scope.error = error;
-		})
-        .finally(function(){
-            $scope.loadingLinks = false;
-        });
+			.then(function(items) {
+				$scope.mainWaiting = false;
+				$scope.error = null;
+				requests = items;
+				$scope.items = $scope.items.concat(requests.items);
+				if (items.length === 0) {
+					$scope.flag = true;
+				}
+			}, function(error) {
+				$scope.error = error;
+			})
+			.finally(function() {
+				$scope.loadingLinks = false;
+			});
 	}
 
 	/**
@@ -55,11 +55,11 @@ mblowfish.controller('SdpDownloadedFilesLinkCtrl', function($scope, $sdp, QueryP
 		nextPage();
 	}
 
-//	function add() {};
-//	function remove() {};
-//	function open() {}
-	
-	
+	//	function add() {};
+	//	function remove() {};
+	//	function open() {}
+
+
 	/*
 	 * تمام امکاناتی که در لایه نمایش ارائه می‌شود در اینجا نام گذاری
 	 * شده است.
@@ -68,6 +68,6 @@ mblowfish.controller('SdpDownloadedFilesLinkCtrl', function($scope, $sdp, QueryP
 	$scope.nextPage = nextPage;
 	$scope.paginatorParameter = paginatorParameter;
 	$scope.reload = reload;
-	$scope.sortKeys = [ 'id', 'creation_dtime' ];
+	$scope.sortKeys = ['id', 'creation_dtime'];
 
 });

@@ -38,7 +38,7 @@ mblowfish.view('/sdp/assets', {
 		 */
 		this.openEditor = function(asset, $event) {
 			$event.values = [asset];
-			return $mbActions.exec(SDP_ASSET_EDIT_ACTION, $event);
+			return $mbActions.exec(SDP_ASSETS_EDIT_ACTION, $event);
 		};
 
 		this.init({
