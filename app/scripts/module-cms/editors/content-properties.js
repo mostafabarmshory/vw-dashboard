@@ -25,7 +25,7 @@
 mblowfish.addEditor('/cms/contents/:contentId', {
 	templateUrl: 'scripts/module-cms/editors/content-properties.html',
 	controllerAs: 'ctrl',
-	controller: function($state, $editor, $scope, $window, $controller, $q, $mbResource,
+	controller: function($state, $editor, $scope, $mbActions, $controller, $q, $mbResource,
 		$cms, CmsContent, CmsContentMetadata) {
 		'ngInject';
 
@@ -207,22 +207,10 @@ mblowfish.addEditor('/cms/contents/:contentId', {
 				});
 		}
 
-		function deleteMetadata(microdata) {
-			return confirm('Delete the microdata')
-				.then(function() {
-					ctrl.isMicrodataBusy = microdata.delete()
-						.then(function() {
-							ctrl.fireDeleted(AMD_CMS_METADATA_SP, microdata);
-							$window.toast('Microdata is removed successfully');
-						}, function(/*error*/) {
-							// TODO: maso, 2020: log errors
-							alert('Fail to delete Microdatum.');
-						})
-						.finally(function() {
-							delete ctrl.isMicrodataBusy;
-						});
-					return ctrl.isMicrodataBusy;
-				});
+		function deleteMetadata(microdata, $event) {
+			$event = $event || {};
+			$event.values = [microdata];
+			return $mbActions.exec(AMD_CMS_CONTENT_METADATA_DELET_ACTION, $event);
 		}
 
 		function updateMetadata(microdata) {
