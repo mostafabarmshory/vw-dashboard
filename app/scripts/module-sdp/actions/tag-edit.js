@@ -20,35 +20,22 @@
  * SOFTWARE.
  */
 
-/**
- * @ngdoc controller
- * @name AmdContentNewCtrl
- * @description Mange content new
- */
-mblowfish.controller('SdpTagNewCtrl', function($scope, $sdp, $navigator) {
-
-    var ctrl = {
-        saving : false
-    };
-
-    function cancel() {
-        $navigator.openPage('/sdp/tags');
-    }
-
-    function add(conf) {
-        ctrl.saving = true;
-        var data = conf.model;
-        $sdp.putTag(data)//
-        .then(function(obj) {
-            ctrl.saving = false;
-            $navigator.openPage('/sdp/tag/' + obj.id);
-        }, function() {
-            ctrl.saving = false;
-            alert('Fail to create new tag.');
-        });
-    }
-
-    $scope.cancel = cancel;
-    $scope.add = add;
-    $scope.ctrl = ctrl;
+mblowfish.addAction(SDP_TAGS_EDIT_ACTION, {
+	icon: 'edit',
+	title: 'Edit',
+	description: 'Open a tag with an editor',
+	groups: ['SDP'],
+	action: function($event, $location) {
+		'ngInject';
+		var values = [];
+		if ($event) {
+			values = $event.values;
+		}
+		if (!values || !_.isArray(values)) {
+			return;
+		}
+		_.forEach(values, function(model) {
+			$location.path('/sdp/tags/' + model.id);
+		});
+	},
 });

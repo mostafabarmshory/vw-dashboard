@@ -198,7 +198,6 @@
 				ng-change="ctrl.updateMetadata(m)"
 				ng-model-options="{updateOn:'default change blur',debounce:{default:3000,blur:0,change:0}}"></textarea>
 			<mb-icon
-				ng-if="hasAnyRole('tenant.owner', 'cms.editor')"
 				ng-click="ctrl.deleteMetadata(m)">delete</mb-icon>
 		</md-input-container>
 	</mb-titled-block>

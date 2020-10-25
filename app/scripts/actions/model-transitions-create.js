@@ -25,7 +25,9 @@ mblowfish.action(SEEN_MODEL_TRANSITIONS_CREATE, {
 		}
 		//>> Get parameters
 		var action = {
-			action: transition.id
+			// TODO: maso, 2020: document a unique type
+			action: transition.id,
+			id: transition.id
 		};
 
 		if (transition.properties && transition.properties.length) {

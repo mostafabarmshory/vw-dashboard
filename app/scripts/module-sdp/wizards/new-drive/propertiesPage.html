@@ -1,0 +1,24 @@
+<md-input-container class="md-block md-icon-float">
+	<label translate>Title</label>
+	<input 
+		aria-label="Title"
+		name="title"
+		ng-model="ctrl.title"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+<md-input-container class="md-block">
+	<label translate>Home</label>
+	<textarea 
+		aria-label="Home"
+		name="home"
+		ng-model="ctrl.home"
+		ng-model-options="{getterSetter: true, debounce: 200}"></textarea>
+</md-input-container>
+<md-input-container class="md-block">
+	<label translate>Description</label>
+	<textarea 
+		aria-label="Content Description"
+		name="description"
+		ng-model="ctrl.description"
+		ng-model-options="{getterSetter: true, debounce: 200}"></textarea>
+</md-input-container>

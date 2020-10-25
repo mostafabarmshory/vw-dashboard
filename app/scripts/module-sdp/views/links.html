@@ -1,0 +1,13 @@
+<md-content mb-preloading="ctrl.loading" mb-infinate-scroll="ctrl.loadNextPage()">
+	<md-list flex>
+		<md-list-item ng-repeat="link in ctrl.items track by link.id" ng-click="ctrl.openEditor(link, $event)"
+			class="md-3-line">
+			<mb-icon>folder</mb-icon>
+			<div class="md-list-item-text" layout="column">
+				<h3>{{::link.id}}</h3>
+				<h4>{{link.name}}</h4>
+				<p>{{link.description}}</p>
+			</div>
+		</md-list-item>
+	</md-list>
+</md-content>

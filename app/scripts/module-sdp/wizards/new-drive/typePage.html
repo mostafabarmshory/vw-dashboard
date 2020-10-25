@@ -1,0 +1,9 @@
+<md-radio-group 
+	ng-model="ctrl.type" 
+	ng-model-options="{getterSetter: true, debounce: 200}"
+	aria-labelledby="dirverType">
+	<md-radio-button ng-repeat="driver in ctrl.drivers track by driver.type" ng-value="driver.type">
+		<span mb-translate>{{ ::driver.title }}</span><br />
+		<span class="ipsum" ng-if="driver.type == ctrl.driver()" mb-translate>{{::driver.description}}</span>
+	</md-radio-button>
+</md-radio-group>

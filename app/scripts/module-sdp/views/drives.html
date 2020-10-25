@@ -1,0 +1,13 @@
+<md-content mb-preloading="ctrl.loading" mb-infinate-scroll="ctrl.loadNextPage()">
+	<md-list flex>
+		<md-list-item ng-repeat="drive in ctrl.items track by drive.id" ng-click="ctrl.openEditor(drive, $event)"
+			class="md-3-line">
+			<mb-icon>storage</mb-icon>
+			<div class="md-list-item-text" layout="column">
+				<h3>{{::drive.id}}</h3>
+				<h4>{{drive.title}}</h4>
+				<p>{{drive.description}}</p>
+			</div>
+		</md-list-item>
+	</md-list>
+</md-content>

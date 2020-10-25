@@ -20,58 +20,37 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(AMD_CMS_CONTENTS_NEWPAGE_ACTION, {
-	icon: 'new',
-	title: 'New Page',
-	description: 'Creates a new page',
-	groups: ['CMS'],
-	action: function($event, $cms, $mbWizard, $q, $mbDispatcherUtil, $mbActions) {
+mblowfish.addAction(SDP_DRIVES_CREATE_ACTION, {
+	icon: 'add',
+	title: 'New Storage',
+	description: 'Creates a new storage of assets',
+	groups: ['SDP'],
+	action: function($event, $sdp, $mbWizard, $q, $mbDispatcherUtil, $mbActions) {
 		'ngInject';
 		var values = [];
 		if ($event) {
 			values = $event.values;
 		}
 		if (!values || !_.isArray(values)) {
-			return $mbWizard.openWizard(AMD_CMS_CONTENTS_NEWPAGE_WIZARD);
+			return $mbWizard.openWizard(SDP_DRIVE_CREATE_WIZARD);
 		}
 		var jobs = [],
-			contents = [];
+			models = [];
 		_.forEach(values, function(value) {
-			var content = value.content;
-			var metadata = value.metadata;
-			delete value.content;
-			delete value.metadata;
-			var promise = $cms.putContent(value);
-			if (content) {
-				promise = promise.then(function(newContent) {
-					contents.push(newContent);
-					var newJobs = [];
-					newJobs.push(newContent.uploadValue(content));
-					if (metadata) {
-						_.forEach(metadata, function(item) {
-							newJobs.push(newContent.putMetadatum(item));
-						});
-					}
-					return $q.all(newJobs)
-						.finally(function() {
-							return newContent;
-						});
+			var promise = $sdp
+				.putDrive(value)
+				.then(function(model) {
+					models.push(model);
 				});
-			} else {
-				promise
-					.then(function(newContent) {
-						contents.push(newContent);
-					});
-			}
 			jobs.push(promise);
 		});
 
 
 		return $q.all(jobs)
 			.then(function() {
-				$mbDispatcherUtil.fireCreated(AMD_CMS_CONTENT_SP, contents);
-				return $mbActions.exec(AMD_CMS_CONTENTS_EDIT_ACTION, {
-					values: contents
+				$mbDispatcherUtil.fireCreated(SDP_DRIVES_SP, models);
+				return $mbActions.exec(SDP_DRIVES_EDIT_ACTION, {
+					values: models
 				});
 			});
 	},
