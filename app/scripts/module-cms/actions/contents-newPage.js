@@ -38,17 +38,31 @@ mblowfish.addAction(AMD_CMS_CONTENTS_NEWPAGE_ACTION, {
 			contents = [];
 		_.forEach(values, function(value) {
 			var content = value.content;
+			var metadata = value.metadata;
 			delete value.content;
+			delete value.metadata;
 			var promise = $cms.putContent(value);
 			if (content) {
 				promise = promise.then(function(newContent) {
-					return newContent.uploadValue(content);
-				});
-			}
-			promise
-				.then(function(newContent) {
 					contents.push(newContent);
+					var newJobs = [];
+					newJobs.push(newContent.uploadValue(content));
+					if (metadata) {
+						_.forEach(metadata, function(item) {
+							newJobs.push(newContent.putMetadatum(item));
+						});
+					}
+					return $q.all(newJobs)
+						.finally(function() {
+							return newContent;
+						});
 				});
+			} else {
+				promise
+					.then(function(newContent) {
+						contents.push(newContent);
+					});
+			}
 			jobs.push(promise);
 		});
 

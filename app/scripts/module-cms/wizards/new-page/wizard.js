@@ -6,6 +6,8 @@ mblowfish.wizard(AMD_CMS_CONTENTS_NEWPAGE_WIZARD, {
 	pages: [
 		AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#properties',
 		AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#type',
+		AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#metadata',
+		AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#og',
 		// TODO: add extra pages
 	],
 
@@ -58,7 +60,17 @@ mblowfish.wizard(AMD_CMS_CONTENTS_NEWPAGE_WIZARD, {
 		data.media_type = 'page';
 		data.mime_type = mimeType;
 		data.content = content;
-		
+
+		// convert metadata map to list
+		var metadata = data.metadata || {};
+		data.metadata = [];
+		_.forEach(metadata, function(value, key) {
+			data.metadata.push({
+				key: key,
+				value: value
+			});
+		});
+
 		return $mbActions.exec(AMD_CMS_CONTENTS_NEWPAGE_ACTION, {
 			values: [data]
 		});

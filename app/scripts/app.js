@@ -185,6 +185,14 @@ $(window).on('load', function() {
 
 
 
+mblowfish.editor('/welcome', {
+	title: 'Browser',
+	description: 'Open external page',
+	controllerAs: 'ctrl',
+	template: '<iframe class="mb-module-iframe" ng-src="https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en"></iframe>',
+	groups: ['Utilities'],
+});
+
 
 mblowfish.factory('VwLayoutProviderDefault', function(MbLayoutProvider) {
 
@@ -289,15 +297,15 @@ mblowfish.factory('VwLayoutProviderDefault', function(MbLayoutProvider) {
 							title: 'Welcome',
 							isClosable: false,
 							isEditor: true,
-							url: '/mb/iframe/https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en',
+							id: '/welcome',
+							reorderEnabled: true,
 							componentState: {
+								params: {},
+								pathParams: {},
+								url: '/welcome',
 								isEditor: true,
-								url: '/mb/iframe/https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en',
-								params: {
-									url: 'https://www.viraweb123.ir/wb/content/angular-material-dashboard-default-en'
-								}
+								isView: false
 							},
-							reorderEnabled: true
 						}]
 					}]
 				}]
