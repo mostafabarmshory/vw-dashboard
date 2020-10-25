@@ -17,8 +17,6 @@ mblowfish.editor('/sdp/assets/:modelId', {
 			$editor: $editor
 		}));
 
-
-
 		/*
 		Loading asset and initialize editor
 		 */
@@ -47,6 +45,6 @@ mblowfish.editor('/sdp/assets/:modelId', {
 					.setStorePath(SDP_ASSETS_SP);
 			}, function() {
 				// TODO: asset not found
-			})
+			});
 	}
 });

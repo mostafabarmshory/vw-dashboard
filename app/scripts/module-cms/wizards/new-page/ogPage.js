@@ -25,7 +25,7 @@ mblowfish.wizardPage(AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#og', {
 					return metadata[key];
 				}
 				setMetadata(key, date);
-			}
+			};
 		}
 
 		this.title = getterSetter('og:title');
