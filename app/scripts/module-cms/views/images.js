@@ -10,9 +10,21 @@ mblowfish.addView(AMD_CMS_VIEW_IMAGES_PATH, {
 	groups: ['Content Management'],
 	icon: 'collections',
 	controllerAs: 'ctrl',
-	controller: function($scope, $view, $cms, $controller, $mbActions) {
+	controller: function($scope, $view, $cms, $controller, $mbActions, $amdCmsEditors) {
 		'ngInject';
+		
+		//-----------------------------------------------------------------------
+		// Utilities
+		//-----------------------------------------------------------------------
+		function contentToImage(content){
+			var imagePath = '/api/v2/cms/contents/' + content.id + '/content';
+			var image = '<img src="' + imagePath + '" />';
+			return image;
+		}
 
+		//-----------------------------------------------------------------------
+		// Controller
+		//-----------------------------------------------------------------------
 		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
@@ -44,6 +56,32 @@ mblowfish.addView(AMD_CMS_VIEW_IMAGES_PATH, {
 		this.openEditor = function(content, $event) {
 			$event.values = [content];
 			return $mbActions.exec(AMD_CMS_CONTENTS_EDIT_ACTION, $event);
+		};
+
+		this.openMenu = function(content, $mdMenu, $event) {
+			this.editors = $amdCmsEditors.getEditors(content.mime_type);
+			return $mdMenu.open($event);
+		};
+
+		this.deleteImage = function(content, $event) {
+			// TODO:
+		};
+
+		this.openProperties = function(content) {
+			return $mbActions.exec(AMD_CMS_CONTENTS_PROPERTIES_ACTION, {
+				values: [content],
+			});
+		};
+		
+		this.loadContentDargData = function(content, $event) {
+			var dataTransfer = $event.originalEvent.dataTransfer;
+
+			var imagePath = '/api/v2/cms/contents/' + content.id + '/content';
+			var dragImage = angular.element('<img width="200" src="' + imagePath + '" />');
+			dataTransfer.setData('text/html', contentToImage(content));
+			dataTransfer.setData('text/plain', imagePath);
+			dataTransfer.setData('text/uri-list', imagePath);
+			dataTransfer.setDragImage(dragImage[0], 0, 0);
 		};
 
 		this.init({
