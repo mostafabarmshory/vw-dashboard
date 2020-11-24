@@ -1,4 +1,4 @@
-mblowfish.addAction('create:/tenant/tenants', {
+mblowfish.addAction(TENANT_TENANTS_CREATE_ACTION, {
 	priority: 10,
 	icon: 'store',
 	title: 'New Tenant',

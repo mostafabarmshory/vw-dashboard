@@ -5,21 +5,57 @@
 	layout="column"
 	class="cms-views-images"
 	flex>
-	<div
-		ng-repeat="image in ctrl.items track by image.id"
-		ng-click="ctrl.openEditor(image, $event)"
-		layout="row"
-		class="item">
-		<img
-			alt="{{img.title}}"
-			ng-src="/api/v2/cms/contents/{{::image.id}}/content">
-		<div 
-			class="md-list-item-text" 
-			layout="column"
-			flex>
-			<h3>{{image.title}}</h3>
-			<h4>{{::image.name}}</h4>
-			<p>{{::image.id}}-{{image.state}}</p>
-		</div>
-	</md-list-item>
+	<md-list>
+		<md-list-item 
+			ng-repeat="image in ctrl.items track by image.id"
+			ng-click="ctrl.openEditor(image, $event)"
+			class="noright"
+			mb-draggable="true"
+			mb-on-dragstart="ctrl.loadContentDargData(image, $event)">
+			<img 
+				alt="{{img.title}}"
+				ng-src="/api/v2/cms/contents/{{::image.id}}/content" 
+				class="md-avatar" />
+			<p>{{image.title}}</p>
+			<md-menu>
+				<md-button class="md-icon-button"
+					ng-click="ctrl.openMenu(image, $mdMenu, $event);" 
+					aria-label="remove attachment"><mb-icon>more_vert</mb-icon>
+				</md-button>
+				<md-menu-content width="4">
+					<md-menu-item>
+						<md-button ng-click="ctrl.deleteImage(image, $event)">
+							<mb-icon>delete</mb-icon>
+							<span translate>Delete</span>
+						</md-button>
+					</md-menu-item>
+					<md-menu-item>
+						<md-button 
+							target="_blank"
+							download="{{::image.name}}"
+							ng-href="/api/v2/cms/contents/{{::image.id}}/content">
+							<mb-icon>download</mb-icon>
+							<span translate>Download</span>
+						</md-button>
+					</md-menu-item>
+					<md-menu-divider></md-menu-divider>
+					<!-- TODO: show preloading -->
+					<md-menu-item
+						ng-repeat="editor in ctrl.editors">
+						<md-button ng-click="ctrl.openWithSelectedEditor(image, editor, $event)">
+							<mb-icon>{{editor.icon}}</mb-icon>
+							<span translate>{{::editor.title}}</span>
+						</md-button>
+					</md-menu-item>
+					<md-menu-divider></md-menu-divider>
+					<md-menu-item>
+						<md-button ng-click="ctrl.openProperties(image, $event)">
+							<mb-icon>settings</mb-icon>
+							<span translate>Properties</span>
+						</md-button>
+					</md-menu-item>
+				</md-menu-content>
+			</md-menu>
+		</md-list-item>
+	</md-list>
 </md-content>
