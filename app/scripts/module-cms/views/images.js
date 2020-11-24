@@ -63,7 +63,7 @@ mblowfish.addView(AMD_CMS_VIEW_IMAGES_PATH, {
 			return $mdMenu.open($event);
 		};
 
-		this.deleteImage = function(content, $event) {
+		this.deleteImage = function(/*content, $event*/) {
 			// TODO:
 		};
 
