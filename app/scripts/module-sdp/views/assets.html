@@ -1,12 +1,15 @@
-<md-content mb-preloading="ctrl.loading" mb-infinate-scroll="ctrl.loadNextPage()">
+<md-content mb-infinate-scroll="ctrl.loadNextPage()">
 	<md-list flex>
 		<md-list-item ng-repeat="asset in ctrl.items track by asset.id" ng-click="ctrl.openEditor(asset, $event)"
 			class="md-3-line">
-			<mb-icon>folder</mb-icon>
+			<img ng-if="asset.cover" class="md-avatar"
+				ng-src-error="https://www.gravatar.com/avatar/{{ ::asset.id | wbmd5 }}?d=identicon&size=32"
+				ng-src="{{asset.cover}}">
+			<mb-icon ng-if="!asset.cover">folder</mb-icon>
 			<div class="md-list-item-text" layout="column">
-				<h3>{{::asset.id}}</h3>
-				<h4>{{asset.name}}</h4>
-				<p>{{asset.description}}</p>
+				<h3>{{asset.title}}</h3>
+				<p>{{::asset.id}}</p>
+				<!--<p>{{asset.description}}</p>-->
 			</div>
 		</md-list-item>
 	</md-list>

@@ -2,7 +2,7 @@
 	id="shop-orders-board"
 	mb-preloading="ctrl.loading">
 	<div 
-		md-colors="{background: 'primary-700'}"
+		mb-colors="{background: 'primary-700'}"
 		id="toolbar"
 		layout="row">
 		<md-button
@@ -18,11 +18,11 @@
 	</div>
 	<md-content 
 		id="body"
-		md-colors="{background: 'primary-300'}">
+		mb-colors="{background: 'primary-300'}">
 		<div 
 			ng-repeat="column in ctrl.board.columns track by column.id"
 			id="dynamic-column-{{column.id}}"
-			md-colors="{background: 'primary-100'}"
+			mb-colors="{background: 'primary-100'}"
 			class="column md-whiteframe-4dp">
 			<div
 				id="title"
@@ -39,7 +39,7 @@
 					ng-repeat="item in column.items track by item.id"
 					id="card-{{item.id}}"
 					class="card {{item.state}}"
-					md-colors="{background: 'background'}"
+					mb-colors="{background: 'background'}"
 					layout="column"
 					ng-click="ctrl.showItemDetail(item)">
 					<h4>{{::item.id}} - {{::item.full_name}}</h4>
@@ -51,7 +51,7 @@
 		</div>
 		<div 
 			id="column-new"
-			md-colors="{background: 'primary-100'}"
+			mb-colors="{background: 'primary-100'}"
 			class="column md-whiteframe-4dp">
 			<md-button
 				class="md-icon-button md-mini" 

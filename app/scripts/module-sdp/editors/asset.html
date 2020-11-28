@@ -1,158 +1,208 @@
-<md-content
-	layout-margin
-	flex>
-	
+<md-content>
+	<!-- Model properties -->
 	<mb-titled-block 
-		mb-title="{{'Asset' | translate}}"
+		mb-title="{{'Properties' | translate}}" 
 		layout="column">
-		<section ng-show="!ctrl.edit"
-			layout="column">
-			<table>
-				<tr>
-					<td mb-translate>ID</td>
-					<td>: {{::ctrl.model.id}}</td>
-				</tr>
-				<tr>
-					<td mb-translate>Title</td>
-					<td>: {{ctrl.model.title}}</td>
-				</tr>
-			</table>
-			<!-- Action bar -->
-			<div layout="row">
-				<span flex></span>
-				<md-button 
-					class = "md-raised md-primary"
-					ng-click="remove()">
-					<mb-icon>delete</mb-icon>
-					<span mb-translate>Delete</span>
-				</md-button>
-				<md-button
-					class="md-raised"
-					ng-click="ctrl.edit=true">
-					<mb-icon>edit</mb-icon>
-					<span mb-translate>Edit</span>
-				</md-button>
-			</div>
-		</section>
-	
-		<section ng-show="ctrl.edit"
-			layout="column">
+		<table mb-table>
+			<!-- Asset and description -->
+			<tr>
+				<td mb-translate>ID</td>
+				<td>{{::ctrl.model.id}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Title</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.model.title"
+						mb-inline-type="text"
+						mb-inline-label="Title"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateModel()">{{ctrl.model.title || '...'}}</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>Description</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.model.description"
+						mb-inline-type="text"
+						mb-inline-label="Description"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateModel()">{{ctrl.model.description || '...'}}</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>Cover</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.model.cover"
+						mb-inline-type="String"
+						mb-inline-label="Cover"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateModel()">{{ctrl.model.cover || '...'}}</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>Create Date</td>
+				<td>{{ctrl.model.creation_dtime}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Last Modification Date</td>
+				<td>{{ctrl.model.modif_dtime}}</td>
+			</tr>
 			
-			<md-button class="md-raised" ng-click="changeFile()">
-				{{'change file'  | translate}}
-			</md-button>
+			<!-- File -->
+			<tr>
+				<td mb-translate>File Name</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.model.file_name"
+						mb-inline-type="String"
+						mb-inline-label="Name"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateModel()">{{ctrl.model.file_name || '...'}}</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>File Path</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.model.path"
+						mb-inline-type="String"
+						mb-inline-label="Path"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateModel()">{{ctrl.model.path || '...'}}</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>File Size</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.model.size"
+						mb-inline-type="Integer"
+						mb-inline-label="Size"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateModel()">{{ctrl.model.size || '...'}}</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>File Mimetype</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.model.mime_type"
+						mb-inline-type="String"
+						mb-inline-label="Mimetype"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateModel()">{{ctrl.model.mime_type || '...'}}</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>File Media Type</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.model.media_type"
+						mb-inline-type="String"
+						mb-inline-label="Media Type"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateModel()">{{ctrl.model.media_type || '...'}}</mb-inline>
+				</td>
+			</tr>
 			
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Name</label>
-				<input ng-model="asset.name">
-			</md-input-container>
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Description</label>
-				<input ng-model="asset.description">
-			</md-input-container>
-			<md-input-container ng-if="asset.type === 'file'" class="md-block" flex-gt-xs>
-				<label>Price</label>
-				<input ng-model="asset.price">
-			</md-input-container>
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Parent</label>
-				<input ng-model="asset.parent">
-			</md-input-container>
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Content</label>
-				<input ng-model="asset.content">
-			</md-input-container>
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Thumbnail</label>
-				<input ng-model="asset.thumbnail">
-			</md-input-container>
-		
-			 <div layout="row">
-				<span flex></span>
-				<md-button
-					class="md-raised" 
-					ng-click="save()">
-					<mb-icon>save</mb-icon>
-					<span mb-translate>Save</span>
-				</md-button>
-				<md-button 
-					class="md-raised" 
-					ng-click="ctrl.edit=false">
-					<mb-icon>close</mb-icon>
-					<span mb-translate>Cancel</span>
-				</md-button>
-			 </div>
-		</section>
+			<!-- Management -->
+			<tr>
+				<td mb-translate>Price</td>
+				<td>
+					<mb-inline
+						ng-model="ctrl.model.price"
+						mb-inline-type="float"
+						mb-inline-label="Media Type"
+						mb-inline-enable="true"
+						mb-inline-on-save="ctrl.updateModel()">{{ctrl.model.media_type || '...'}}</mb-inline>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>Download</td>
+				<td>{{ctrl.model.download}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>State</td>
+				<td>{{ctrl.model.state}}</td>
+			</tr>
+			
+			<!-- Storage -->
+			<tr>
+				<td mb-translate>Parent</td>
+				<td>{{ctrl.model.parent_id}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Owner</td>
+				<td>{{ctrl.model.owner_id}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Drive</td>
+				<td>{{ctrl.model.drive_id}}</td>
+			</tr>
+		</table>
+		<!-- Action bar -->
+		<div 
+			style="width: 100%;"
+			layout="row">
+			<span flex></span>
+			<mb-button 
+				class="md-raised md-primary" 
+				ng-click="ctrl.deleteModel()">
+				<mb-icon>delete</mb-icon>
+				<span mb-translate>Delete</span>
+			</mb-button>
+		</div>
 	</mb-titled-block>
 
 	<!-- categories -->
-	<mb-titled-block
-		layout="column" 
-		mb-title="{{'Categories'  | translate}}">
+	<mb-titled-block mb-title="{{'Categories'  | translate}}" layout="column">
 		<div class="sdp-chips-list" style="direction:rtl;">
 			<div layout="row" layout-align="start center">
-				<md-chips flex
-					class="custom-chips" 
-					ng-model="ctrl.categories" 
-					md-removable="true">
+				<md-chips flex class="custom-chips" ng-model="ctrl.categories" md-removable="true">
 					<md-chip-template>
 						<span>
 							<strong>{{$chip.id}} - {{$chip.name}}</strong>
 						</span>
 					</md-chip-template>
-				  	<button md-chip-remove class="md-primary chipaction" ng-click="removeFromCategory($chip)">
+					<button md-chip-remove class="md-primary chipaction" ng-click="removeFromCategory($chip)">
 						<mb-icon class="block">close</mb-icon>
-				  	</button>
+					</button>
 				</md-chips>
-				<md-button
-					class="md-icon-button md-raised"
-					ng-click="addToCategory()">
+				<md-button class="md-icon-button md-raised" ng-click="addToCategory()">
 					<mb-icon>add</mb-icon>
 				</md-button>
 			</div>
-			<div 
-				ng-if="!ctrl.categories || ctrl.categories.length == 0"
-				layout="column" layout-align="center center">
+			<div ng-if="!ctrl.categories || ctrl.categories.length == 0" layout="column" layout-align="center center">
 				<p>This asset is not contained in any category</p>
 			</div>
 		</div>
 	</mb-titled-block>
-	
+
 	<!-- tags -->
-	<mb-titled-block
-		mb-title="{{'Tags'  | translate}}"
-		layout="column">
+	<mb-titled-block mb-title="{{'Tags'  | translate}}" layout="column">
 		<div class="sdp-chips-list" style="direction:rtl;">
 			<div layout="row" layout-align="start center">
-				<md-chips flex
-					class="custom-chips"
-					ng-model="ctrl.tags" 
-					md-removable="true">
+				<md-chips flex class="custom-chips" ng-model="ctrl.tags" md-removable="true">
 					<md-chip-template>
 						<span>
 							<strong>{{$chip.id}} - {{$chip.name}}</strong>
 						</span>
 					</md-chip-template>
-				  	<button md-chip-remove class="md-primary chipaction" ng-click="removeTag($chip)">
+					<button md-chip-remove class="md-primary chipaction" ng-click="removeTag($chip)">
 						<mb-icon class="block">close</mb-icon>
-				  	</button>
+					</button>
 				</md-chips>
-				<md-button 
-					class="md-icon-button md-raised" 
-					ng-click="addTag()">
+				<md-button class="md-icon-button md-raised" ng-click="addTag()">
 					<mb-icon>add</mb-icon>
 				</md-button>
 			</div>
-			<div ng-show="!ctrl.tags || ctrl.tags.length == 0"
-				layout="column" layout-align="center center">
+			<div ng-show="!ctrl.tags || ctrl.tags.length == 0" layout="column" layout-align="center center">
 				<p>This asset has no any tag.</p>
 			</div>
 		</div>
 	</mb-titled-block>
-	
+
 </md-content>
-
-
-
-
-

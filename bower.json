@@ -1,6 +1,6 @@
 {
 	"name": "vw-dashboard",
-	"moduleName": "vw-dashboard",
+	"moduleName": "mblowfish-core",
 	"version": "6.0.5",
 	"title": "ViraWeb Dashboard",
 	"description": "ViraWeb123 dashboards allow managers to monitor the contribution of the various departments in their organization.",
@@ -21,7 +21,6 @@
 		"material-steppers": "2.0.x",
 		"leaflet": "^1.6.0",
 		"tinymce": "5.x",
-		"md-color-picker": "https://github.com/mostafabarmshory/md-color-picker.git#0.2.x",
 		"mblowfish-core": "https://gitlab.com/mblowfish/mblowfish-core.git#3.2.x"
 	},
 	"devDependencies": {
@@ -32,6 +31,6 @@
 	},
 	"appPath": "app",
 	"backend": {
-		"host": "elbaan.com"
+		"host": "knowsmore.viraweb123.ir"
 	}
 }
