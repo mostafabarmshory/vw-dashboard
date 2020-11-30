@@ -9,7 +9,7 @@ Required:
  */
 mblowfish.addAction(SEEN_MODEL_DELETE_ACTION, {
 	icon: 'delete',
-	title: 'Delete Models',
+	title: 'Delete',
 	description: 'Delete list of models',
 	groups: ['seen'],
 	action: function($event, $mbDispatcherUtil, $q, $mbTranslate, $mbLog) {
@@ -62,6 +62,12 @@ mblowfish.addAction(SEEN_MODEL_DELETE_ACTION, {
 			/* 
 			TODO: maso, 2020: support bulkey delete from server
 			START: {
+				seen.deleteModels(values)
+					.then(function(){
+						// success
+					}, function(){
+						// fail
+					});
 			*/
 			_.forEach(values, deleteModel);
 

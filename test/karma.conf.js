@@ -56,7 +56,6 @@ module.exports = function(config) {
 			'bower_components/angular-material/angular-material.js',
 			'bower_components/golden-layout/dist/goldenlayout.min.js',
 			'bower_components/ng-appcache/dist/appcache.js',
-			'bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js',
 			'bower_components/angular-material-persian-datepicker/dist/datePicker.min.js',
 			'bower_components/mblowfish-core/dist/mblowfish-core.js',
 			'bower_components/angular-mocks/angular-mocks.js',

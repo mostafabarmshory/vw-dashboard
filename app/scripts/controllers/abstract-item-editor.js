@@ -127,11 +127,9 @@ mblowfish.controller('SeenAbstractItemEditorCtrl', function($scope, $controller,
 	@memberof SeenAbstractItemEditorCtrl
 	 */
 	this.putTransition = function(transition, $event) {
-		return this.setJob($mbActions.exec(SEEN_MODEL_TRANSITIONS_CREATE, _.assign($event || {}, {
-			values: [this.model],
+		return this.execOnModel(SEEN_MODEL_DELETE_ACTION, $_.assign($event || {}, {
 			transition: transition,
-			storePath: this.storePath,
-		})));
+		}));
 	};
 
 	/**
@@ -141,18 +139,7 @@ mblowfish.controller('SeenAbstractItemEditorCtrl', function($scope, $controller,
 	@memberof SeenAbstractItemEditorCtrl
 	 */
 	this.deleteModel = function($event) {
-		var deleteModel;
-		var ctrl = this;
-		if (!_.isFunction(this.model.delete)) {
-			deleteModel = function() {
-				ctrl.deleteItem();
-			};
-		}
-		return this.setJob($mbActions.exec(SEEN_MODEL_DELETE_ACTION, _.assign($event || {}, {
-			values: [this.model],
-			storePath: this.storePath,
-			deleteModel: deleteModel,
-		})));
+		return this.execOnModel(SEEN_MODEL_DELETE_ACTION, $event);
 	};
 
 	/**
@@ -162,18 +149,62 @@ mblowfish.controller('SeenAbstractItemEditorCtrl', function($scope, $controller,
 	@memberof SeenAbstractItemEditorCtrl
 	 */
 	this.updateModel = function($event) {
-		var updateModel;
 		var ctrl = this;
+		return this.execOnModel(SEEN_MODEL_UPDATE_ACTION, $event)
+			.then(function(){
+				ctrl.setDerty(false);
+			});
+	};
+
+	/**
+	Execute a command on the current model item
+	
+	Delete and update are common action, and if there is no action, default controller
+	action (updateItem, deleteItem) are used insted.
+	
+	@param String commandId to execute
+	@param Event $event related to the source event
+	@returns a promise to complete the job
+	@memberof SeenAbstractItemEditorCtrl
+	
+	 */
+	this.execOnModel = function(commandId, $event) {
+		var
+			updateModelFunction,
+			deleteModelFunction,
+			ctrl = this;
 		if (!_.isFunction(this.model.update)) {
-			updateModel = function() {
+			updateModelFunction = function() {
 				ctrl.updateItem();
 			};
 		}
-		return this.setJob($mbActions.exec(SEEN_MODEL_UPDATE_ACTION, _.assign($event || {}, {
+		if (!_.isFunction(this.model.delete)) {
+			deleteModelFunction = function() {
+				ctrl.deleteItem();
+			};
+		}
+		return this.setJob($mbActions.exec(commandId, _.assign($event || {}, {
 			values: [this.model],
 			storePath: this.storePath,
-			updateModel: updateModel,
+			updateModel: updateModelFunction,
+			deleteModel: deleteModelFunction,
 		})));
+	};
+
+	/**
+	Clears all errors and unlock the editor
+	 */
+	this.clearError = function() {
+		// XXX: maso, 2020: clear all errors
+	};
+
+	/**
+	Display error and loack the editor
+	
+	The error is 'Object Not Found'
+	 */
+	this.setObjectNotFoundError = function() {
+		// XXX: maso, 2020: load error in editor area
 	};
 
 	/**
@@ -198,5 +229,19 @@ mblowfish.controller('SeenAbstractItemEditorCtrl', function($scope, $controller,
 	this.setTransitions = function(transitions) {
 		this.transitions = transitions;
 		return this;
+	};
+
+	this.setTitle = function(title) {
+		$editor.setTitle(title);
+		return this;
+	};
+
+	this.setDerty = function(derty) {
+		$editor.setDerty(derty);
+		return this;
+	};
+
+	this.isDerty = function() {
+		return $editor.isDerty();
 	};
 });

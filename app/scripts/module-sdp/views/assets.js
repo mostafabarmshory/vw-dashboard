@@ -7,7 +7,7 @@ mblowfish.view('/sdp/assets', {
 	groups: ['Digital Assets'],
 	templateUrl: 'scripts/module-sdp/views/assets.html',
 	controllerAs: 'ctrl',
-	controller: function($scope, $view, $sdp, $controller, $mbActions, $mbLog, MbAction) {
+	controller: function($scope, $view, $sdp, $controller, MbAction) {
 		'ngInject';
 
 		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
@@ -30,30 +30,11 @@ mblowfish.view('/sdp/assets', {
 			return $sdp.getAsset(id);
 		};
 
-		//		// delete account
-		//		this.deleteModel = function(asset) {
-		//			return $sdp.deleteAsset(asset.id);
-		//		};
-
-		/**
-		Opne the content with an editor
-		 */
-		this.openEditor = function(asset, $event) {
-			$event.values = [asset];
-			return $mbActions.exec(SDP_ASSETS_EDIT_ACTION, $event);
-		};
-
-		this.showDetail = function(asset, $event) {
-			$event.values = [asset];
-			return $mbActions.exec(SDP_ASSETS_DETAILS_ACTION, $event);
-		};
-
 		this.init({
 			eventType: SDP_ASSETS_SP,
 		});
 
 		var ctrl = this;
-
 		$view.getToolbar()
 			.addAction(new MbAction({
 				title: 'Delete',
@@ -63,11 +44,7 @@ mblowfish.view('/sdp/assets', {
 				},
 				/* @ngInject */
 				action: function($event) {
-					confirm('Delete Selected Items?')
-						.then(function() {
-							$event.values = ctrl.getSelection();
-							return $mbActions.exec(SDP_ASSETS_DETAILS_ACTION, $event);
-						});
+					return ctrl.execOnModel(SEEN_MODEL_DELETE_ACTION, ctrl.getSelection(), $event);
 				}
 			}))
 			.addAction(new MbAction({
@@ -78,8 +55,7 @@ mblowfish.view('/sdp/assets', {
 				},
 				/* @ngInject */
 				action: function($event) {
-					$event.values = ctrl.getSelection();
-					return $mbActions.exec(SDP_ASSETS_EDIT_ACTION, $event);
+					return ctrl.execOnModel(SDP_ASSETS_EDIT_ACTION, ctrl.getSelection(), $event);
 				}
 			}))
 			.addAction(new MbAction({
@@ -90,8 +66,7 @@ mblowfish.view('/sdp/assets', {
 				},
 				/* @ngInject */
 				action: function($event) {
-					$event.values = ctrl.getSelection();
-					return $mbActions.exec(SDP_ASSETS_DETAILS_ACTION, $event);
+					return ctrl.execOnModel(SDP_ASSETS_DETAILS_ACTION, ctrl.getSelection(), $event);
 				}
 			}));
 	},

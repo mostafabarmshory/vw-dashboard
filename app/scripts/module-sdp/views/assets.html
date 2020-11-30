@@ -1,7 +1,9 @@
-<md-content mb-infinate-scroll="ctrl.loadNextPage()" >
-	<md-list ng-cloak>
+<md-content 
+	mb-infinate-scroll="ctrl.loadNextPage()" 
+	ng-cloak>
+	<md-list>
 		<md-list-item 
-			ng-click="ctrl.showDetail(asset, $event)" 
+			ng-click="ctrl.execOnModel(SDP_ASSETS_DETAILS_ACTION, asset, $event)" 
 			ng-repeat="asset in ctrl.items track by asset.id"
 			class="noright">
 			<img

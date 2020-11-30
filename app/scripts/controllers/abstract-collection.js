@@ -54,7 +54,7 @@ an action.
 - addViewItem: view
  */
 mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controller, $q, $navigator,
-	$mbLog,
+	$mbLog, $mbActions,
 	$window, QueryParameter) {
 
 
@@ -92,8 +92,8 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 
 
 	// Messages
-//	var ADD_ACTION_FAIL_MESSAGE = 'Fail to add new item';
-//	var DELETE_MODEL_MESSAGE = 'Delete item?';
+	//	var ADD_ACTION_FAIL_MESSAGE = 'Fail to add new item';
+	//	var DELETE_MODEL_MESSAGE = 'Delete item?';
 
     /**
      * State of the controller
@@ -341,6 +341,29 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 
 	this.getSelectionSize = function() {
 		return this.$selectedModels.length;
+	};
+
+
+	/**
+	Executes a command on models
+	
+	- storePath: the dispatcher path to fire changes
+	- values: list of model to perform
+	
+	
+	@memberof SeenAbstractCollectionCtrl
+	@param String command id to execute
+	@param SeenModel model to be delete it may be a list or array of items
+	@param Event $event the source event 
+	 */
+	this.execOnModel = function(command, model, $event) {
+		$event.storePath = this.eventType;
+		if (_.isArray(model)) {
+			$event.values = model;
+		} else {
+			$event.values = [model];
+		}
+		return $mbActions.exec(command, $event);
 	};
 
 

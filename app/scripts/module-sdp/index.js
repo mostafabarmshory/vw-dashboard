@@ -46,7 +46,6 @@ mblowfish.addConstants({
 	// ACTIONS
 	//------------------------------------------------------------
 	SDP_ASSETS_EDIT_ACTION: 'sdp.assets.edit',
-	SDP_ASSETS_DELETE_ACTION: 'sdp.assets.delete',
 	SDP_ASSETS_CREATE_ACTION: 'sdp.assets.create',
 	SDP_ASSETS_DETAILS_ACTION: 'sdp.assets.details',
 
@@ -59,8 +58,8 @@ mblowfish.addConstants({
 	SDP_CATEGORIES_CREATE_ACTION: 'sdp.categories.create',
 
 	SDP_DRIVES_EDIT_ACTION: 'sdp.drives.edit',
-	SDP_DRIVES_DELETE_ACTION: 'sdp.drives.delete',
 	SDP_DRIVES_CREATE_ACTION: 'sdp.drives.create',
+	SDP_DRIVES_DETAILS_ACTION: 'sdp.drives.details',
 
 	//------------------------------------------------------------
 	// wizards

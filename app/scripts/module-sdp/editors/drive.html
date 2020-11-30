@@ -1,0 +1,41 @@
+<md-content>
+	<!-- Model properties -->
+	<mb-titled-block mb-title="{{'Properties' | translate}}" layout="column">
+		<md-input-container class="md-block">
+			<label mb-translate>ID</label>
+			<input ng-model="ctrl.model.id" disabled>
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label mb-translate>Title</label>
+			<input ng-model="ctrl.model.title" ng-change="ctrl.setDerty(true)">
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label mb-translate>Description</label>
+			<textarea ng-model="ctrl.model.description" ng-change="ctrl.setDerty(true)"></textarea>
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label mb-translate>Home</label>
+			<input ng-model="ctrl.model.home" ng-change="ctrl.setDerty(true)">
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label mb-translate>Deriver</label>
+			<input ng-model="ctrl.model.driver" disabled>
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label mb-translate>Creation Date</label>
+			<input ng-model="ctrl.model.creation_dtime" disabled>
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label mb-translate>Last Modification Date</label>
+			<input ng-model="ctrl.model.modif_dtime" disabled>
+		</md-input-container>
+		<div layout="row" layout-wrap>
+			<md-button ng-click="ctrl.updateModel($event)">
+				<span mb-translate>Save</span>
+			</md-button>
+			<md-button ng-click="ctrl.deleteModel($event)">
+				<span mb-translate>Delete</span>
+			</md-button>
+		</div>
+	</mb-titled-block>
+</md-content>
