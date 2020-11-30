@@ -33,7 +33,7 @@ mblowfish
 mblowfish
 	.config(function(
 		$mbApplicationProvider, $mbLayoutProvider, $mbToolbarProvider, $mbActionsProvider,
-		$mbSidenavProvider,
+//		$mbSidenavProvider,
 		$mbAccountProvider,
 		$mbTranslateSanitizationProvider, $mbTranslateProvider,
 		$mbStorageProvider, $locationProvider) {
@@ -175,7 +175,6 @@ $(window).on('load', function() {
 					'vcRecaptcha', //https://github.com/VividCortex/angular-recaptcha
 					'ngFileSaver',//
 					'mdSteppers',//
-					'mdColorPicker',
 				]);
 			} catch (error) {
 				console.log(error);

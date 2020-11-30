@@ -23,10 +23,16 @@
 		layout="column"
 		mb-preloading="ctrl.importing">
 		<md-input-container>
-			<lf-ng-md-file-input lf-files="config.files" progress preview drag required></lf-ng-md-file-input>
+			<mb-file-input 
+				ng-model="config.files"
+				mb-progress 
+				mb-preview 
+				mb-drag 
+				mb-required>
+			</mb-file-input>
 			<div ng-messages="!lf-files.file[0]">
-		      <div ng-message="required">This is required!</div>
-		    </div>
+				<div ng-message="required">This is required!</div>
+			</div>
 		</md-input-container>
 	</md-dialog-content>
 </md-dialog>

@@ -45,10 +45,10 @@ mblowfish.addConstants({
 	//------------------------------------------------------------
 	// ACTIONS
 	//------------------------------------------------------------
-	//	AMD_CMS_TERMTAXONOMIES_DELETE_ACTION: 'cms.termTaxonomies.delete',
 	SDP_ASSETS_EDIT_ACTION: 'sdp.assets.edit',
 	SDP_ASSETS_DELETE_ACTION: 'sdp.assets.delete',
 	SDP_ASSETS_CREATE_ACTION: 'sdp.assets.create',
+	SDP_ASSETS_DETAILS_ACTION: 'sdp.assets.details',
 
 	SDP_TAGS_EDIT_ACTION: 'sdp.tags.edit',
 	SDP_TAGS_DELETE_ACTION: 'sdp.tags.delete',

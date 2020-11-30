@@ -2,12 +2,12 @@
 	mb-preloading="ctrl.uploading"
 	layout="column"
 	flex>
-	<lf-ng-md-file-input 
-		lf-files="files"
-		accept="application/zip"
-		progress
-		drag>
-	</lf-ng-md-file-input>
+	<mb-file-input 
+		ng-model="files"
+		mb-accept="application/zip"
+		mb-progress
+		mb-drag>
+	</mb-file-input>
 	<div
 		layout="row">
 		<span flex></span>

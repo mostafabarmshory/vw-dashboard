@@ -17,18 +17,25 @@
 		</md-input-container>
 		
 		<md-input-container>
-			<label>Description</label>
-			<input ng-model="config.model.description"></input>
-		</md-input-container>
-		
-		<md-input-container>
 			<label>Title</label>
 			<input ng-model="config.model.title"></input>
 		</md-input-container>
-		
+
 		<md-input-container>
-			<lf-ng-md-file-input lf-files="config.files" progress preview drag required></lf-ng-md-file-input>
-			<div ng-messages="!lf-files.file[0]">
+			<label>Description</label>
+			<input ng-model="config.model.description"></input>
+		</md-input-container>
+
+		<md-input-container>
+			<mb-file-input 
+				name="files"
+				mg-model="config.files" 
+				mb-progress 
+				mb-preview 
+				mb-drag 
+				mb-required>
+			</mb-file-input>
+			<div ng-messages="contentForm.files.$error">
 				<div ng-message="required">This is required!</div>
 			</div>
 		</md-input-container>

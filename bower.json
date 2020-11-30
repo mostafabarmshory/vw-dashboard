@@ -27,10 +27,11 @@
 		"angular-mocks": "1.8.x"
 	},
 	"resolutions": {
-		"angular": "1.8.x"
+		"angular": "1.8.x",
+		"angular-material": "1.2.x"
 	},
 	"appPath": "app",
-	"backend": {
+	"backend": { 
 		"host": "knowsmore.viraweb123.ir"
 	}
 }
