@@ -1,4 +1,6 @@
 
+
+
 mblowfish.view('/sdp/assets', {
 	title: 'Assets',
 	icon: 'web_asset',
@@ -59,11 +61,12 @@ mblowfish.view('/sdp/assets', {
 				hide: function() {
 					return !ctrl.hasSelected();
 				},
-				action: function() {
+				/* @ngInject */
+				action: function($event) {
 					confirm('Delete Selected Items?')
 						.then(function() {
 							$event.values = ctrl.getSelection();
-							return $mbActions.exec(SDP_ASSETS_DELETE_ACTION, $event);
+							return $mbActions.exec(SDP_ASSETS_DETAILS_ACTION, $event);
 						});
 				}
 			}))
@@ -73,6 +76,7 @@ mblowfish.view('/sdp/assets', {
 				hide: function() {
 					return !ctrl.hasSelected();
 				},
+				/* @ngInject */
 				action: function($event) {
 					$event.values = ctrl.getSelection();
 					return $mbActions.exec(SDP_ASSETS_EDIT_ACTION, $event);
@@ -84,6 +88,7 @@ mblowfish.view('/sdp/assets', {
 				hide: function() {
 					return ctrl.getSelectionSize() !== 1;
 				},
+				/* @ngInject */
 				action: function($event) {
 					$event.values = ctrl.getSelection();
 					return $mbActions.exec(SDP_ASSETS_DETAILS_ACTION, $event);

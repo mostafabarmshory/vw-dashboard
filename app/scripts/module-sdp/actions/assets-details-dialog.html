@@ -1,0 +1,97 @@
+<md-dialog-content layout="column">
+	<div layout="row">
+		<img style="width:40px; height: 40px; margin: 8px; border-radius: 50%; box-sizing: content-box;"
+			ng-src="{{::asset.cover}}" ng-src-error="" alt="">
+		<h3>{{::asset.title}}</h3>
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="exec(SDP_ASSETS_EDIT_ACTION, $event, true)">
+			<mb-icon>edit</mb-icon>
+		</md-button>
+		
+		
+		<md-button class="md-icon-button" ng-click="close()">
+			<mb-icon>close</mb-icon>
+		</md-button>
+	</div>
+	<md-content>
+		<div 
+			layout="row"
+			layout-align="center start">
+			<img ng-src="{{::asset.cover}}" ng-src-error="" alt=""
+				style="max-width: 250px; height: auto;  margin: 8px; border-radius: 8px; box-sizing: content-box;">
+			<table mb-table>
+				<!-- Asset and description -->
+				<tr>
+					<td mb-translate>ID</td>
+					<td>{{::asset.id}}</td>
+				</tr>
+				<tr>
+					<td mb-translate>Title</td>
+					<td>{{::asset.title}}</td>
+				</tr>
+				<tr>
+					<td mb-translate>Description</td>
+					<td><p>{{::asset.description}}</p></td>
+				</tr>
+				<tr>
+					<td mb-translate>Create Date</td>
+					<td>{{::asset.creation_dtime}}</td>
+				</tr>
+				<tr>
+					<td mb-translate>Last Modification Date</td>
+					<td>{{::asset.modif_dtime}}</td>
+				</tr>
+
+				<!-- File -->
+				<tr>
+					<td mb-translate>File Name</td>
+					<td>{{asset.file_name}}</td>
+				</tr>
+				<tr>
+					<td mb-translate>File Path</td>
+					<td>{{::asset.path}}</td>
+				</tr>
+				<tr>
+					<td mb-translate>File Size</td>
+					<td>{{::asset.size}}</td>
+				</tr>
+				<tr>
+					<td mb-translate>File Mimetype</td>
+					<td>{{asset.mime_type}}</td>
+				</tr>
+				<tr>
+					<td mb-translate>File Media Type</td>
+					<td>{{::asset.media_type}}</td>
+				</tr>
+
+				<!-- Management -->
+				<tr>
+					<td mb-translate>Price</td>
+					<td>{{::asset.price}}</td>
+				</tr>
+				<tr>
+					<td mb-translate>Download</td>
+					<td>{{::asset.download}}</td>
+				</tr>
+				<tr>
+					<td mb-translate>State</td>
+					<td>{{::asset.state}}</td>
+				</tr>
+
+				<!-- Storage -->
+				<tr>
+					<td mb-translate>Parent</td>
+					<td>{{::asset.parent_id}}</td>
+				</tr>
+				<tr>
+					<td mb-translate>Owner</td>
+					<td>{{::asset.owner_id}}</td>
+				</tr>
+				<tr>
+					<td mb-translate>Drive</td>
+					<td>{{::asset.drive_id}}</td>
+				</tr>
+			</table>
+		</div>
+	</md-content>
+</md-dialog-content>

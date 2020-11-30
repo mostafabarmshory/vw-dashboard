@@ -54,7 +54,7 @@ an action.
 - addViewItem: view
  */
 mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controller, $q, $navigator,
-	$log,
+	$mbLog,
 	$window, QueryParameter) {
 
 
@@ -92,8 +92,8 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 
 
 	// Messages
-	var ADD_ACTION_FAIL_MESSAGE = 'Fail to add new item';
-	var DELETE_MODEL_MESSAGE = 'Delete item?';
+//	var ADD_ACTION_FAIL_MESSAGE = 'Fail to add new item';
+//	var DELETE_MODEL_MESSAGE = 'Delete item?';
 
     /**
      * State of the controller
@@ -341,7 +341,7 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 
 	this.getSelectionSize = function() {
 		return this.$selectedModels.length;
-	}
+	};
 
 
 	// -------------------------------------------------------------------------
