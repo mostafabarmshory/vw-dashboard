@@ -174,7 +174,6 @@ $(window).on('load', function() {
 
 					'vcRecaptcha', //https://github.com/VividCortex/angular-recaptcha
 					'ngFileSaver',//
-					'mdSteppers',//
 				]);
 			} catch (error) {
 				console.log(error);

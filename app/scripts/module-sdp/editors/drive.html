@@ -30,10 +30,16 @@
 			<input ng-model="ctrl.model.modif_dtime" disabled>
 		</md-input-container>
 		<div layout="row" layout-wrap>
-			<md-button ng-click="ctrl.updateModel($event)">
+			<span flex></span>
+			<md-button 
+				class="md-raised md-primary"
+				ng-disabled="!ctrl.isDerty()"
+				ng-click="ctrl.updateModel($event)">
 				<span mb-translate>Save</span>
 			</md-button>
-			<md-button ng-click="ctrl.deleteModel($event)">
+			<md-button 
+				class="md-raised md-accent"
+				ng-click="ctrl.deleteModel($event)">
 				<span mb-translate>Delete</span>
 			</md-button>
 		</div>

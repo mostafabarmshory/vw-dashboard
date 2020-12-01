@@ -22,7 +22,8 @@
 
 mblowfish.resource('sdp-category-list', {
 	label: 'Category list',
-	templateUrl: 'views/resources/sdp-category-list.html',
+	templateUrl: 'scripts/module-sdp/resources/category.html',
+	tags: ['sdp-category'],
+	controllerAs: 'ctrl',
 	controller: 'SdpCategoryListResourceCtrl',
-	tags: ['sdp-category']
 });

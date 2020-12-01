@@ -9,12 +9,6 @@ mblowfish.editor('/sdp/storages/:modelId', {
 	controllerAs: 'ctrl',
 	controller: function($scope, $element, $controller, $sdp, $editor, $state, SdpDrive, $mbTranslate) {
 		'ngInject';
-		// XXX: add fields path,
-		//		var graphQl = '{' +
-		//			'id,title,size,file_name,download,creation_dtime,modif_dtime,description,mime_type,media_type,price,cover,state,parent_id,owner_id,drive_id,' +
-		//			'categories{id, name},' +
-		//			'tags{id, name},' +
-		//			'}';
 
 		angular.extend(this, $controller('SeenAbstractItemEditorCtrl', {
 			$scope: $scope,
@@ -29,15 +23,13 @@ mblowfish.editor('/sdp/storages/:modelId', {
 
 		function setDriveData(data) {
 			ctrl.setStorePath(SDP_DRIVES_SP)
-				.setTitle('Drive' + ':' + $state.params.modelId)
+				.setTitle($mbTranslate('Drive') + ':' + $state.params.modelId)
 				.setDerty(false);
 			return ctrl.setModel(new SdpDrive(data));
 		}
 
 		$sdp
-			.getDrive($state.params.modelId, {
-				// graphql: graphQl
-			})
+			.getDrive($state.params.modelId)
 			.then(setDriveData, function() {
 				ctrl.setObjectNotFoundError();
 			});

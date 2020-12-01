@@ -53,9 +53,9 @@ an action.
 - addModel: model
 - addViewItem: view
  */
-mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controller, $q, $navigator,
+mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controller, $q,
 	$mbLog, $mbActions,
-	$window, QueryParameter) {
+	QueryParameter) {
 
 
     /*
@@ -175,9 +175,6 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 		_.forEach(items, function(item) {
 			ctrl.items.push(item);
 		});
-		if (this.id) {
-			this.fireEvent(this.id, 'update', this.items);
-		}
 	};
 
 	this.unshiftViewItems = function(items) {
@@ -193,9 +190,6 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 		_.forEach(items, function(item) {
 			ctrl.items.unshift(item);
 		});
-		if (this.id) {
-			this.fireEvent(this.id, 'update', this.items);
-		}
 	};
 
     /**
@@ -213,9 +207,6 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 	this.removeViewItems = function(items) {
 		differenceBy(this.items, items, 'id');
 		differenceBy(this.$selectedModels, items, 'id');
-		if (this.id) {
-			this.fireEvent(this.id, 'update', this.items);
-		}
 	};
 
     /**
@@ -253,66 +244,11 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
      */
 	this.clearViewItems = function() {
 		this.items = [];
-		if (this.id) {
-			this.fireEvent(this.id, 'update', this.items);
-		}
+		return this;
 	};
 
-	//    /**
-	//     * Load controller actions
-	//     * 
-	//     * @return list of actions
-	//     */
-	//	this.getActions = function() {
-	//		return this.actions;
-	//	};
-	//
-	//    /**
-	//     * Adds new action into the controller
-	//     * 
-	//     * @param action to add to list
-	//     */
-	//	this.addAction = function(action) {
-	//		if (_.isUndefined(this.actions)) {
-	//			this.actions = [];
-	//		}
-	//		// TODO: maso, 2018: assert the action is MbAction
-	//		if (!(action instanceof MbAction)) {
-	//			action = new MbAction(action);
-	//		}
-	//		this.actions.push(action);
-	//		return this;
-	//	};
-	//
-	//    /**
-	//     * Adds list of actions to the controller
-	//     * 
-	//     * @memberof SeenAbstractCollectionCtrl
-	//     * @params array of actions
-	//     */
-	//	this.addActions = function(actions) {
-	//		for (var i = 0; i < actions.length; i++) {
-	//			this.addAction(actions[i]);
-	//		}
-	//	};
-
 	this.toggleSelection = function(model, $event) {
-		model.$selected = !model.$selected;
-		if (model.$selected) {
-			this.$selectedModels.push(model);
-		} else {
-			var index = this.$selectedModels.indexOf(model);
-			if (index > -1) {
-				this.$selectedModels.splice(index, 1);
-				this.fireEvent(this.id, 'selection', this.$selectedModels);
-			}
-		}
-		try {
-			$event.stopPropagation();
-			$event.preventDefault();
-		} catch (ex) {
-			$mbLog.error(ex);
-		}
+		return this.setSelected(model, !model.$selected, $event);
 	};
 
 	this.hasSelected = function() {
@@ -325,7 +261,7 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 			item.$selected = true;
 			list.push(item);
 		});
-		this.fireEvent(this.id, 'selection', list);
+		return this;
 	};
 
 	this.clearSelection = function() {
@@ -333,7 +269,7 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 			item.$selected = false;
 		});
 		this.$selectedModels = [];
-		this.fireEvent(this.id, 'selection', this.$selectedModels);
+		return this;
 	};
 
 	this.getSelection = function() {
@@ -342,6 +278,35 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 
 	this.getSelectionSize = function() {
 		return this.$selectedModels.length;
+	};
+
+	this.isSelected = function(model) {
+		return model.$selected;
+	};
+
+	this.setSelected = function(model, selection, $event) {
+		var index = this.$selectedModels.indexOf(model);
+		model.$selected = selection;
+		if ((selection && index > -1) || (!selection && index < 0)) {
+			return;
+		}
+		if (model.$selected) {
+			this.$selectedModels.push(model);
+		} else {
+			while (index > -1) {
+				this.$selectedModels.splice(index, 1);
+				index = this.$selectedModels.indexOf(model);
+			}
+		}
+		try {
+			if ($event) {
+				$event.stopPropagation();
+				$event.preventDefault();
+			}
+		} catch (ex) {
+			$mbLog.error(ex);
+		}
+		return this;
 	};
 
 
@@ -434,59 +399,6 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 	//
 	// -------------------------------------------------------------------------
 
-	//    /**
-	//     * Creates new item with the createItemDialog
-	//     * 
-	//     * XXX: maso, 2019: handle state machine
-	//     */
-	//	this.addItem = function() {
-	//		var ctrl = this;
-	//		$navigator.openDialog({
-	//			templateUrl: this._addDialog,
-	//			config: {
-	//				model: {}
-	//			}
-	//		}).then(function(model) {
-	//			return ctrl.addModel(model);
-	//		}).then(function(item) {
-	//			ctrl.fireCreated(ctrl.eventType, item);
-	//		}, function() {
-	//			$window.alert(ADD_ACTION_FAIL_MESSAGE);
-	//		});
-	//	};
-
-	//    /**
-	//     * Creates new item with the createItemDialog
-	//     */
-	//	this.deleteItem = function(item, $event) {
-	//		// prevent default evetn
-	//		if ($event) {
-	//			$event.preventDefault();
-	//			$event.stopPropagation();
-	//		}
-	//		// XXX: maso, 2019: update state
-	//		var ctrl = this;
-	//		var tempItem = _.clone(item);
-	//		function _deleteInternal() {
-	//			return ctrl.deleteModel(item)
-	//				.then(function() {
-	//					ctrl.fireDeleted(ctrl.eventType, tempItem);
-	//				}, function(ex) {
-	//					$log.error(ex);
-	//					alert('Fail to delete item.');
-	//				});
-	//		}
-	//		// delete the item
-	//		if (this.deleteConfirm) {
-	//			confirm(DELETE_MODEL_MESSAGE)
-	//				.then(function() {
-	//					return _deleteInternal();
-	//				});
-	//		} else {
-	//			return _deleteInternal();
-	//		}
-	//	};
-
     /**
      * Reload the controller
      * 
@@ -513,8 +425,6 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 		}
 		return safeReload();
 	};
-
-
 
     /**
      * Loads next page

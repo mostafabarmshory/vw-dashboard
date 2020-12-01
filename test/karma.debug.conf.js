@@ -13,8 +13,7 @@ module.exports = function(config) {
 		// testing framework to use (jasmine/mocha/qunit/...)
 		// as well as any additional frameworks (requirejs/chai/sinon/...)
 		frameworks: [
-			'jasmine',
-			'detectBrowsers'
+			'jasmine'
 		],
 
 		detectBrowsers: {
@@ -75,37 +74,15 @@ module.exports = function(config) {
 		// coverage reporter generates the coverage
 		reporters: [
 			'progress',
-			'coverage'
 		],
 
-		// optionally, configure the reporter
-		coverageReporter: {
-			dir: 'coverage/',
-			reporters: [{
-				type: 'lcovonly',
-				file: 'lcov.info'
-			}, {
-				type: 'text-summary'
-			}]
-		},
-
 		preprocessors: {
-			'src/scripts/**/*.js': ['coverage']
 		},
 
 		// Which plugins to enable
 		plugins: [
 			'karma-jasmine',
-			'karma-coverage',
-
 			'karma-chrome-launcher',
-			'karma-edge-launcher',
-			'karma-firefox-launcher',
-			'karma-ie-launcher',
-			'karma-safari-launcher',
-			'karma-safaritechpreview-launcher',
-			'karma-opera-launcher',
-			'karma-detect-browsers'
 		],
 
 		singleRun: false,

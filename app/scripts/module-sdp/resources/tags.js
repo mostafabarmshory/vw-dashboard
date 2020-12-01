@@ -22,7 +22,8 @@
 
 mblowfish.resource('sdp-tag-list', {
 	label: 'Tag list',
-	templateUrl: 'views/resources/sdp-tag-list.html',
+	templateUrl: 'scripts/module-sdp/resources/tags.html',
+	tags: ['sdp-tag'],
+	controllerAs: 'ctrl',
 	controller: 'SdpTagListResourceCtrl',
-	tags: ['sdp-tag']
 });

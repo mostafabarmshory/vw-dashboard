@@ -18,9 +18,6 @@
 		"seen-seo": "https://gitlab.com/seen/angular/seen-seo.git#3.0.x",
 		"angular-recaptcha": "4.1.x",
 		"angular-file-saver": "1.1.x",
-		"material-steppers": "2.0.x",
-		"leaflet": "^1.6.0",
-		"tinymce": "5.x",
 		"mblowfish-core": "https://gitlab.com/mblowfish/mblowfish-core.git#3.2.x"
 	},
 	"devDependencies": {

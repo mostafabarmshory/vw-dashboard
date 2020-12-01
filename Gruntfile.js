@@ -280,7 +280,10 @@ module.exports = function(grunt) {
 
 			test: {
 				devDependencies: true,
-				src: '<%= karma.unit.configFile %>',
+				src: [
+					'<%= karma.unit.configFile %>',
+					'<%= karma.debug.configFile %>',
+				],
 				ignorePath: /\.\.\//,
 				fileTypes: {
 					js: {
@@ -383,7 +386,7 @@ module.exports = function(grunt) {
 				},
 				cwd: '<%= yeoman.app %>',
 				src: [
-					'scripts/**/*.html', 
+					'scripts/**/*.html',
 					'views/**/*.html'
 				],
 				dest: '.tmp/templateCache.js'
@@ -465,6 +468,12 @@ module.exports = function(grunt) {
 			unit: {
 				configFile: 'test/karma.conf.js',
 				singleRun: true
+			},
+			debug: {
+				configFile: 'test/karma.debug.conf.js',
+				port: 9999,
+				singleRun: false,
+				browsers: ['Chrome']
 			}
 		},
 
@@ -669,7 +678,17 @@ module.exports = function(grunt) {
 		'concurrent:test',
 		'postcss',
 		'connect:test',
-		'karma'
+		'karma:unit'
+	]);
+
+	grunt.registerTask('debug', [
+		'clean:server',
+		'wiredep',
+		'injector',
+		'concurrent:test',
+		'postcss',
+		'connect:test',
+		'karma:debug'
 	]);
 
 	grunt.registerTask('build', [
