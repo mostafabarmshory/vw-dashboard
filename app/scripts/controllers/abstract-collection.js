@@ -212,6 +212,7 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
      */
 	this.removeViewItems = function(items) {
 		differenceBy(this.items, items, 'id');
+		differenceBy(this.$selectedModels, items, 'id');
 		if (this.id) {
 			this.fireEvent(this.id, 'update', this.items);
 		}
