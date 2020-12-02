@@ -58,6 +58,7 @@ mblowfish.addConstants({
 	SDP_CATEGORIES_EDIT_ACTION: 'sdp.categories.edit',
 	SDP_CATEGORIES_DELETE_ACTION: 'sdp.categories.delete',
 	SDP_CATEGORIES_CREATE_ACTION: 'sdp.categories.create',
+	SDP_CATEGORIES_DETAILS_ACTION: 'sdp.categories.details',
 
 	SDP_DRIVES_EDIT_ACTION: 'sdp.drives.edit',
 	SDP_DRIVES_CREATE_ACTION: 'sdp.drives.create',

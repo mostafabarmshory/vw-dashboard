@@ -1,0 +1,44 @@
+<md-dialog-content layout="column">
+	<div 
+		layout="row"
+		layout-align="center center">
+		<mb-icon layout-margin>category</mb-icon>
+		<h3>{{::category.name}}</h3>
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="exec(SDP_CATEGORIES_EDIT_ACTION, $event, true)">
+			<mb-icon>edit</mb-icon>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="close()">
+			<mb-icon>close</mb-icon>
+		</md-button>
+	</div>
+	<md-content>
+		<table mb-table>
+			<!-- Asset and description -->
+			<tr>
+				<td mb-translate>ID</td>
+				<td>{{::category.id}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Name</td>
+				<td>{{::category.name}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Description</td>
+				<td><p>{{::category.description}}</p></td>
+			</tr>
+			<tr>
+				<td mb-translate>Create Date</td>
+				<td>{{::asset.creation_dtime}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Last Modification Date</td>
+				<td>{{::asset.modif_dtime}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Parent ID</td>
+				<td>{{asset.parent_id}}</td>
+			</tr>
+		</table>
+	</md-content>
+</md-dialog-content>

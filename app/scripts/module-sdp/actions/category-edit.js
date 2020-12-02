@@ -25,7 +25,7 @@ mblowfish.addAction(SDP_CATEGORIES_EDIT_ACTION, {
 	title: 'Edit',
 	description: 'Open a category with an editor',
 	groups: ['SDP'],
-	action: function($event, $location) {
+	action: function($event, $location, $timeout) {
 		'ngInject';
 		var values = [];
 		if ($event) {
@@ -34,8 +34,10 @@ mblowfish.addAction(SDP_CATEGORIES_EDIT_ACTION, {
 		if (!values || !_.isArray(values)) {
 			return;
 		}
-		_.forEach(values, function(model) {
-			$location.path('/sdp/categories/' + model.id);
+		_.forEach(values, function(model, idx) {
+			$timeout(function() {
+				$location.path('/sdp/categories/' + model.id);
+			}, idx * 100);
 		});
 	},
 });
