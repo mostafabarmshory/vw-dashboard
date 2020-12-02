@@ -20,24 +20,37 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(SDP_ASSETS_EDIT_ACTION, {
-	icon: 'edit',
-	title: 'Edit',
-	description: 'Open assets with an editor',
+mblowfish.addAction(SDP_ASSETS_CREATE_ACTION, {
+	icon: 'add',
+	title: 'New',
+	description: 'Create assets',
 	groups: ['SDP'],
-	action: function($event, $location, $timeout) {
+	action: function($event, $q, $mbActions, $mbDispatcherUtil, $mbWizard) {
 		'ngInject';
 		var values = [];
 		if ($event) {
 			values = $event.values;
 		}
 		if (!values || !_.isArray(values)) {
-			return;
+			return $mbWizard.openWizard(SDP_ASSET_CREATE_WIZARD);
 		}
-		_.forEach(values, function(asset, idx) {
-			$timeout(function() {
-				$location.path('/sdp/assets/' + asset.id);
-			}, idx * 100);
+
+		var jobs = [],
+			models = [];
+		_.forEach(values, function(value) {
+			jobs.push($sdp
+				.putAsset(value)
+				.then(function(model) {
+					models.push(model);
+				}));
 		});
+
+		return $q.all(jobs)
+			.then(function() {
+				$mbDispatcherUtil.fireCreated(SDP_DRIVES_SP, models);
+				return $mbActions.exec(SDP_ASSETS_EDIT_ACTION, {
+					values: models
+				});
+			});
 	},
 });

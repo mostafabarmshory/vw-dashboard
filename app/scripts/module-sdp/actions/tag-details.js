@@ -20,24 +20,51 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(SDP_ASSETS_EDIT_ACTION, {
-	icon: 'edit',
-	title: 'Edit',
-	description: 'Open assets with an editor',
+mblowfish.addAction(SDP_TAGS_DETAILS_ACTION, {
+	icon: 'preview',
+	title: 'Details',
+	description: 'Show details of a tag',
 	groups: ['SDP'],
-	action: function($event, $location, $timeout) {
+	action: function($event, $mbDialog,  $rootScope, $rootElement, $mbActions) {
 		'ngInject';
-		var values = [];
-		if ($event) {
-			values = $event.values;
-		}
-		if (!values || !_.isArray(values)) {
+		var values = $event.values;
+		if (!values || !_.isArray(values) || values.length < 1) {
 			return;
 		}
-		_.forEach(values, function(asset, idx) {
-			$timeout(function() {
-				$location.path('/sdp/assets/' + asset.id);
-			}, idx * 100);
+
+		return $mbDialog.show({
+			templateUrl: 'scripts/module-sdp/actions/tag-details-dialog.html',
+			locals: {
+				$tag: values[0]
+			},
+			scope: $rootScope.$new(),
+			parent: $rootElement,
+			targetEvent: $event,
+			clickOutsideToClose: true,
+			openFrom: $event.target,
+			closeTo: $event.target,
+			preserveScope: false,
+			hasBackdrop: true,
+			escapeToClose: true,
+			focusOnOpen: true,
+			fullscreen: true,
+			multiple: true,
+			autoWrap: true,
+			controllerAs: 'ctrl',
+			/*@ngInject*/
+			controller: function($scope, $mdDialog, $tag) {
+				$scope.tag = $tag;
+				$scope.close = function() {
+					$mdDialog.hide();
+				};
+				$scope.exec = function(actionId, $event, close) {
+					$event.values = [$tag];
+					$mbActions.exec(actionId, $event);
+					if (close) {
+						$mdDialog.hide();
+					}
+				};
+			}
 		});
 	},
 });

@@ -1,0 +1,34 @@
+<md-dialog-content layout="column">
+	<div 
+		layout="row"
+		layout-align="center center">
+		<mb-icon class="md-avatar-icon" layout-margin>label</mb-icon>
+		<h3>{{::tag.name}}</h3>
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="exec(SDP_TAGS_EDIT_ACTION, $event, true)">
+			<mb-icon>edit</mb-icon>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="close()">
+			<mb-icon>close</mb-icon>
+		</md-button>
+	</div>
+	<md-content>
+		<table mb-table>
+			<!-- Asset and description -->
+			<tr>
+				<td mb-translate>ID</td>
+				<td>{{::tag.id}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Name</td>
+				<td>{{::tag.name}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Description</td>
+				<td>
+					<p>{{::tag.description}}</p>
+				</td>
+			</tr>
+		</table>
+	</md-content>
+</md-dialog-content>

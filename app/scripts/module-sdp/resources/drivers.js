@@ -30,15 +30,18 @@ mblowfish.resource('sdp-driver-list', {
 			eventType: SDP_DRIVES_SP,
 		});
 
-		this.toggleResourceSelection = function(driver) {
-			this.setResourceSelected(driver, !driver.$selected);
+		//-------------------------------------------------------
+		// Common in all resources
+		//-------------------------------------------------------
+		this.toggleResourceSelection = function(item) {
+			this.setResourceSelected(item, !item.$selected);
 		};
 
-		this.setResourceSelected = function(drive, selection) {
+		this.setResourceSelected = function(item, selection) {
 			if (!$options.multi) {
 				this.clearSelection();
 			}
-			this.setSelected(drive, selection);
+			this.setSelected(item, selection);
 			if ($options.object) {
 				$resource.setValue(ctrl.getSelection());
 			} else {

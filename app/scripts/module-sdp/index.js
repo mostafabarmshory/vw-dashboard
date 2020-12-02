@@ -41,6 +41,7 @@ mblowfish.addConstants({
 	SDP_VIEW_LINKS_PATH: '/sdp/links',
 	SDP_VIEW_CATEGORIES_PATH: '/sdp/categories',
 	SDP_VIEW_TAGS_PATH: '/sdp/tags',
+	SDP_VIEW_ASSETS_PATH: '/sdp/assets',
 
 	//------------------------------------------------------------
 	// ACTIONS
@@ -52,6 +53,7 @@ mblowfish.addConstants({
 	SDP_TAGS_EDIT_ACTION: 'sdp.tags.edit',
 	SDP_TAGS_DELETE_ACTION: 'sdp.tags.delete',
 	SDP_TAGS_CREATE_ACTION: 'sdp.tags.create',
+	SDP_TAGS_DETAILS_ACTION: 'sdp.tags.details',
 
 	SDP_CATEGORIES_EDIT_ACTION: 'sdp.categories.edit',
 	SDP_CATEGORIES_DELETE_ACTION: 'sdp.categories.delete',
@@ -67,6 +69,7 @@ mblowfish.addConstants({
 	SDP_CATEGORY_CREATE_WIZARD: '/sdp/wizards/new-category',
 	SDP_TAG_CREATE_WIZARD: '/sdp/wizards/new-tag',
 	SDP_DRIVE_CREATE_WIZARD: '/sdp/wizards/new-storage',
+	SDP_ASSET_CREATE_WIZARD: '/sdp/wizards/new-asset',
 });
 
 mblowfish.run(function($mbToolbar) {
@@ -83,6 +86,11 @@ mblowfish.run(function($mbToolbar) {
 	$mbToolbar
 		.getToolbar(SDP_VIEW_DRIVES_PATH)
 		.addAction(SDP_DRIVES_CREATE_ACTION);
+
+	$mbToolbar
+		.getToolbar(SDP_VIEW_ASSETS_PATH)
+		.addAction(SDP_ASSETS_CREATE_ACTION);
+
 });
 
 
