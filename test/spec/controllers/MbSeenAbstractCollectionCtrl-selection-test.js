@@ -1,3 +1,5 @@
+'use strict';
+
 describe('MbSeenAbstractCollectionCtrl controller', function() {
 	// load the controller's module
 	var
@@ -22,7 +24,6 @@ describe('MbSeenAbstractCollectionCtrl controller', function() {
 			'seen-cms',
 			'seen-monitor',
 			'seen-shop',
-			'seen-sdp',
 			'seen-seo',
 
 			'vcRecaptcha', //https://github.com/VividCortex/angular-recaptcha

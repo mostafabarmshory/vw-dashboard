@@ -99,7 +99,7 @@ mblowfish.view(AMD_ACCOUNT_PROFILES_VIEW, {
 			if (!angular.isArray(files) || !files.length) {
 			}
 			var file = null;
-			file = files[0].lfFile;
+			file = files[0];
 			this.avatarLoading = true;
 			var ctrl = this;
 			this.user.uploadAvatar(file)

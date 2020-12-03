@@ -57,7 +57,7 @@ mblowfish.controller('AmdContentNewCtrl', function(
 		var promise = $cms.putContent(data);
 		if (config.files[0]) {
 			promise = promise.then(function(content) {
-				var file = config.files[0].lfFile;
+				var file = config.files[0];
 				return content.uploadValue(file);
 			});
 		}

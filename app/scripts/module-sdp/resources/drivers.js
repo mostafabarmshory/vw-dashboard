@@ -48,7 +48,7 @@ mblowfish.resource('sdp-driver-list', {
 				var ids = [];
 				_.forEach(ctrl.getSelection(), function(model) {
 					ids.push(model.id);
-				})
+				});
 				$resource.setValue(ids);
 			}
 		};

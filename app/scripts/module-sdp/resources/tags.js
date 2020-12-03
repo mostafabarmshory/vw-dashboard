@@ -69,7 +69,7 @@ mblowfish.resource('sdp-tag-list', {
 				var ids = [];
 				_.forEach(ctrl.getSelection(), function(model) {
 					ids.push(model.id);
-				})
+				});
 				$resource.setValue(ids);
 			}
 		};

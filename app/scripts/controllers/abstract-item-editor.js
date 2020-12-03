@@ -127,7 +127,7 @@ mblowfish.controller('SeenAbstractItemEditorCtrl', function($scope, $controller,
 	@memberof SeenAbstractItemEditorCtrl
 	 */
 	this.putTransition = function(transition, $event) {
-		return this.execOnModel(SEEN_MODEL_DELETE_ACTION, $_.assign($event || {}, {
+		return this.execOnModel(SEEN_MODEL_DELETE_ACTION, _.assign($event || {}, {
 			transition: transition,
 		}));
 	};

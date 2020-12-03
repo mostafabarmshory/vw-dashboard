@@ -102,7 +102,7 @@ mblowfish.addAction(AMD_SHOP_CATEGORY_IMPORTJSON_ACTION, {// import categories m
 					templateUrl: 'views/shop-x/views/select-file-dialog.html'
 				})
 				.then(function(res) {
-					var file = res.files[0].lfFile;
+					var file = res.files[0];
 					processFileContent(file, processData);
 				});
 

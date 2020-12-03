@@ -49,7 +49,7 @@ mblowfish.addView('/seo/crawled-links', {
 					}
 				})//
 				.then(function(config) {
-					return pobject.uploadValue(config.files[0].lfFile);//
+					return pobject.uploadValue(config.files[0]);//
 				}, function() { })
 				.catch(function() {
 					alert($mbTranslate.instant('Failed to upload content'));
