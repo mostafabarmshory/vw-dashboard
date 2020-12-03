@@ -25,7 +25,7 @@ mblowfish.addAction(SDP_ASSETS_CREATE_ACTION, {
 	title: 'New',
 	description: 'Create assets',
 	groups: ['SDP'],
-	action: function($event, $q, $mbActions, $mbDispatcherUtil, $mbWizard) {
+	action: function($event, $sdp, $q, $mbActions, $mbDispatcherUtil, $mbWizard) {
 		'ngInject';
 		var values = [];
 		if ($event) {
@@ -34,14 +34,50 @@ mblowfish.addAction(SDP_ASSETS_CREATE_ACTION, {
 		if (!values || !_.isArray(values)) {
 			return $mbWizard.openWizard(SDP_ASSET_CREATE_WIZARD);
 		}
+		
+		function setMetadata(asset, metadate){
+			var jobs = [];
+			_.forEach(metadate, function(metadatum){
+				jobs.push(asset.putMetadatum(metadatum));
+			});
+			return jobs;
+		}
+		
+		function setTags(asset, tags){
+			var jobs = [];
+			_.forEach(tags, function(tag){
+				tag.tagId = tag.id;
+				jobs.push(asset.putTag(tag));
+			});
+			return jobs;
+		}
+		
+		function setCategories(asset, categories){
+			var jobs = [];
+			_.forEach(categories, function(category){
+				category.categoryId = category.id;
+				jobs.push(asset.putCategory(category));
+			});
+			return jobs;
+		}
 
 		var jobs = [],
 			models = [];
 		_.forEach(values, function(value) {
+			var metadata = value.metadata;
+			var tags = value.tags;
+			var categories = value.categories;
+			delete value.metadata;
+			delete value.tags;
+			delete value.categories;
 			jobs.push($sdp
 				.putAsset(value)
 				.then(function(model) {
 					models.push(model);
+					return $q.all(_.concat(
+						setMetadata(model, metadata),
+						setTags(model, tags),
+						setCategories(model, categories)));
 				}));
 		});
 

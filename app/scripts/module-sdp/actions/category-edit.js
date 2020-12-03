@@ -39,5 +39,6 @@ mblowfish.addAction(SDP_CATEGORIES_EDIT_ACTION, {
 				$location.path('/sdp/categories/' + model.id);
 			}, idx * 100);
 		});
+		return values;
 	},
 });

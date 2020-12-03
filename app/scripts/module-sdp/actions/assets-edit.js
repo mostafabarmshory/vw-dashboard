@@ -39,5 +39,6 @@ mblowfish.addAction(SDP_ASSETS_EDIT_ACTION, {
 				$location.path('/sdp/assets/' + asset.id);
 			}, idx * 100);
 		});
+		return values;
 	},
 });

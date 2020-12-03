@@ -27,6 +27,6 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#ebook-properties', {
 	},
 	isPageComplete: function($wizard) {
 		'ngInject';
-		return $wizard.data.name;
+		return $wizard.data.title;
 	}
 });

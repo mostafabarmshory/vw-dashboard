@@ -28,6 +28,11 @@ mblowfish.wizard(SDP_CATEGORY_CREATE_WIZARD, {
 	*/
 	performFinish: function($wizard, $mbActions) {
 		'ngInject';
+		var parent = $wizard.data.parent;
+		if (parent) {
+			$wizard.data.parent_id = parent.id;
+		}
+		delete $wizard.data.parent;
 		return $mbActions.exec(SDP_CATEGORIES_CREATE_ACTION, {
 			values: [$wizard.data]
 		});

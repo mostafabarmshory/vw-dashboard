@@ -62,7 +62,7 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#type', {
 		var key;
 		switch ($wizard.data.media_type) {
 			case 'ebook':
-				key = '#type';
+				key = '#ebook-properties';
 				break;
 			default:
 				key = '#notsupport';

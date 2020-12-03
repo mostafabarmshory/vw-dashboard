@@ -39,5 +39,6 @@ mblowfish.addAction(SDP_TAGS_EDIT_ACTION, {
 				$location.path('/sdp/tags/' + model.id);
 			}, idx * 100);
 		});
+		return values;
 	},
 });

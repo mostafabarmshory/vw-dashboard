@@ -15,16 +15,16 @@ mblowfish.wizard(SDP_ASSET_CREATE_WIZARD, {
 		//------------------------------------------------------
 		// ebook
 		SDP_ASSET_CREATE_WIZARD + '#ebook-properties',
-//		SDP_ASSET_CREATE_WIZARD + '#publisher',
+		SDP_ASSET_CREATE_WIZARD + '#author',
+		SDP_ASSET_CREATE_WIZARD + '#genre',
+		SDP_ASSET_CREATE_WIZARD + '#publisher',
 		SDP_ASSET_CREATE_WIZARD + '#tags', // -> #file
 		
-		// audiobook
-//		SDP_ASSET_CREATE_WIZARD + '#audio_book-properties',
-//		SDP_ASSET_CREATE_WIZARD + '#tags', // -> #file
-
-		// Video Book
-//		SDP_ASSET_CREATE_WIZARD + '#vidiobook-pproperties',
-//		SDP_ASSET_CREATE_WIZARD + '#tags', // -> #file
+		/*
+		NOTE: to add an asset type pages, puth the tags as the 
+		latest one. The tag page jump to the file page and 
+		finish the wizard.
+		*/
 		//------------------------------------------------------
 		//3- general pages
 		//------------------------------------------------------
@@ -137,9 +137,10 @@ mblowfish.wizard(SDP_ASSET_CREATE_WIZARD, {
 			}];
 			// - categories
 			data.categories = _.concat(
-				source.publisher || [],
-				source.author || [],
-				source.gener || []
+				data.categories,
+				source.publishers || [],
+				source.authors || [],
+				source.genres || []
 			);
 		}
 
@@ -159,6 +160,7 @@ mblowfish.wizard(SDP_ASSET_CREATE_WIZARD, {
 		setFile(data, $wizard.data);
 		setMarketingData(data, $wizard.data);
 		setTags(data, $wizard.data);
+		data.media_type = $wizard.data.media_type;
 		switch ($wizard.data.media_type) {
 			case 'ebook':
 				setEbookData(data, $wizard.data);

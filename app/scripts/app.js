@@ -169,7 +169,6 @@ $(window).on('load', function() {
 					'seen-cms',
 					'seen-monitor',
 					'seen-shop',
-					'seen-sdp',
 					'seen-seo',
 
 					'vcRecaptcha', //https://github.com/VividCortex/angular-recaptcha

@@ -15,15 +15,8 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#market', {
 			};
 		}
 
-		this.title = createSetterGetter('title');
-		this.abstract = createSetterGetter('abstract');
-		this.cover = createSetterGetter('cover');
-		this.isbn = createSetterGetter('isbn');
-		this.edition = createSetterGetter('edition');
-		this.date_published = createSetterGetter('date_published');	
-		this.page = createSetterGetter('page');	
-		this.age_range = createSetterGetter('age_range');	
-		this.language = createSetterGetter('language');	
+		this.price = createSetterGetter('price');
+		this.state = createSetterGetter('state');
 	},
 	isPageComplete: function($wizard) {
 		'ngInject';

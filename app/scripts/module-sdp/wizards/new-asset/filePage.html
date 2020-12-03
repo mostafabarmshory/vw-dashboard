@@ -1,20 +1,55 @@
 <md-input-container class="md-block md-icon-float">
-	<label translate>Name</label>
+	<label translate>File Name</label>
 	<input 
-		aria-label="Content Name"
-		name="name"
-		ng-model="ctrl.name"
+		aria-label="File Name"
+		name="file_name"
+		ng-model="ctrl.file_name"
 		ng-model-options="{getterSetter: true, debounce: 200}">
 </md-input-container>
-<md-input-container class="md-block">
-	<label translate>Description</label>
-	<textarea 
-		aria-label="Content Description"
-		name="description"
-		ng-model="ctrl.description"
-		ng-model-options="{getterSetter: true, debounce: 200}"></textarea>
+
+<md-input-container class="md-block md-icon-float">
+	<label translate>File Path</label>
+	<input 
+		aria-label="File Path"
+		name="path"
+		ng-model="ctrl.path"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+
+<md-input-container class="md-block md-icon-float">
+	<label translate>File Size</label>
+	<input 
+		placeholder="In byte for example 1024 (1k)"
+		aria-label="File size"
+		name="size"
+		ng-model="ctrl.size"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+
+<md-input-container class="md-block md-icon-float">
+	<label translate>Mimetype</label>
+	<input 
+		placeholder="application/json"
+		aria-label="File Mimetype"
+		name="size"
+		ng-model="ctrl.mime_type"
+		ng-model-options="{getterSetter: true, debounce: 200}">
 </md-input-container>
 
 
-
-
+<md-autocomplete 
+	required
+	md-input-name="drive" 
+	md-no-cache="false"
+	md-selected-item="ctrl.drive"
+	md-search-text="ctrl.searchText"
+	md-items="item in ctrl.driveSearch(ctrl.searchText)"
+	md-item-text="item.title"
+	md-escape-options="clear"
+	md-floating-label="Drive"
+	input-aria-describedby="category">
+	<md-item-template>
+		<mb-icon>storage</mb-icon>
+		<span md-highlight-text="ctrl.searchText">{{::item.id}} - {{::item.title}}</span>
+	</md-item-template>
+</md-autocomplete>
