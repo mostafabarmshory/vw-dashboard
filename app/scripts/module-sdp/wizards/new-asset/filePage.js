@@ -6,7 +6,7 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#file', {
 	controller: function($scope, $wizard, $sdp, QueryParameter) {
 		'ngInject';
 
-
+		this.drive = $wizard.data.drive;
 		var queryParameter = new QueryParameter();
 		queryParameter.setOrder('id', 'd');
 

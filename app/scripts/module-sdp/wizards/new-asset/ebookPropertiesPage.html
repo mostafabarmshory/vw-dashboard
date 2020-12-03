@@ -14,13 +14,15 @@
 		ng-model="ctrl.abstract"
 		ng-model-options="{getterSetter: true, debounce: 200}"></textarea>
 </md-input-container>
-<md-input-container class="md-block">
+<md-input-container 
+	class="md-icon-float md-icon-right md-block">
 	<label translate>Cover</label>
 	<input 
 		aria-label="Book Cover"
 		name="cover"
 		ng-model="ctrl.cover"
 		ng-model-options="{getterSetter: true, debounce: 200}">
+	<mb-icon ng-click="ctrl.setCover($event)">more_horiz</mb-icon>
 </md-input-container>
 <md-input-container class="md-block">
 	<label translate>ISBN</label>
@@ -38,17 +40,17 @@
 		ng-model="ctrl.edition"
 		ng-model-options="{getterSetter: true, debounce: 200}">
 </md-input-container>
-<md-input-container class="md-block">
-	<label translate>Date Published</label>
-	<input 
-		aria-label="Book Date Published"
-		name="date_published"
-		ng-model="ctrl.date_published"
-		ng-model-options="{getterSetter: true, debounce: 200}">
-</md-input-container>
+<mb-datepicker
+	ng-model="ctrl.date_published"
+	ng-model-options="{getterSetter: true, debounce: 200}"
+	aria-label="Book Date Published"
+	name="date_published"
+	mb-placeholder="Date Published">
+</mb-datepicker>
 <md-input-container class="md-block">
 	<label translate>Number of Pages</label>
 	<input 
+		type="number"
 		aria-label="Book Pages"
 		name="pages"
 		ng-model="ctrl.pages"
