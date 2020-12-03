@@ -37,7 +37,6 @@ module.exports = function(config) {
 			'bower_components/seen-cms/dist/seen-cms.js',
 			'bower_components/seen-monitor/dist/seen-monitor.js',
 			'bower_components/seen-shop/dist/seen-shop.js',
-			'bower_components/seen-sdp/dist/seen-sdp.js',
 			'bower_components/seen-seo/dist/seen-seo.js',
 			'bower_components/angular-recaptcha/release/angular-recaptcha.js',
 			'bower_components/blob-polyfill/Blob.js',
