@@ -5,12 +5,21 @@
 	dir="{{app.dir}}"
 	manifest="<!-- injector:base-path --><!-- endinjector -->manifest.appcache">
 <head>
-	<title>Dashboard</title>
 	<meta charset="utf-8">
-	<meta name="description" content="Angular admin dashboard with material design">
-	<meta name="author" content="flatlogic.com">
+	
+	<title>VW Dashboard</title>
+	<meta name="description" content="A digital dashboard allows managers to monitor the contribution of the various departments in their organization.">
+	<meta name="author" content="viraweb123.ir">
+	<link rel="icon" href="favicon.ico">
+	
+	<meta name="og:image" content="favicon.svg">
+	<meta name="og:title" content="VW Dashboard">
+	<meta name="og:description" content="A digital dashboard allows managers to monitor the contribution of the various departments in their organization.">
+	
 	<meta name="viewport" content="width=device-width">
 	<meta name="robots" content="noindex, nofollow">
+	
+	
 
 	<!--  injector:base-tag -->
 	<base href="/" >
@@ -101,6 +110,8 @@
 	<script src="scripts/controllers/abstract-item.js"></script>
 	<script src="scripts/controllers/abstract.js"></script>
 	<script src="scripts/directives/mb-pagination-bar.js"></script>
+	<script src="scripts/editors/welcome.js"></script>
+	<script src="scripts/factories/layout-provider-default.js"></script>
 	<script src="scripts/module-account/actions/change-password.js"></script>
 	<script src="scripts/module-account/actions/crisp-chat.js"></script>
 	<script src="scripts/module-account/actions/logout.js"></script>
@@ -136,18 +147,16 @@
 	<script src="scripts/module-bank/editors/bank-gate.js"></script>
 	<script src="scripts/module-bank/views/gates-new.js"></script>
 	<script src="scripts/module-bank/views/gates.js"></script>
+	<script src="scripts/module-cms/actions/contents-create.js"></script>
 	<script src="scripts/module-cms/actions/contents-delete.js"></script>
 	<script src="scripts/module-cms/actions/contents-edit.js"></script>
 	<script src="scripts/module-cms/actions/contents-metadata-delete.js"></script>
 	<script src="scripts/module-cms/actions/contents-newPage.js"></script>
 	<script src="scripts/module-cms/actions/contents-properties.js"></script>
-	<script src="scripts/module-cms/actions/contents-update.js"></script>
-	<script src="scripts/module-cms/actions/contents-upload.js"></script>
 	<script src="scripts/module-cms/actions/term-taxonomies-create.js"></script>
 	<script src="scripts/module-cms/actions/term-taxonomies-delete.js"></script>
 	<script src="scripts/module-cms/actions/terms-create.js"></script>
 	<script src="scripts/module-cms/actions/terms-delete.js"></script>
-	<script src="scripts/module-cms/controllers/content-new-ctrl.js"></script>
 	<script src="scripts/module-cms/controllers/content-url-ctrl.js"></script>
 	<script src="scripts/module-cms/controllers/contents-ctrl.js"></script>
 	<script src="scripts/module-cms/controllers/seen-cms-termTaxonomies-ctrl.js"></script>

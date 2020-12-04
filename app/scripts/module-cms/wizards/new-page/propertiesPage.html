@@ -1,5 +1,6 @@
-<md-input-container class="md-block md-icon-float">
-	<label translate>Name</label>
+<md-input-container 
+	class="md-icon-float md-icon-right md-block">
+	<label mb-translate>Name</label>
 	<input 
 		aria-label="Content Name"
 		name="name"
@@ -9,7 +10,7 @@
 		ng-click="ctrl.randomName()">loop</mb-icon>
 </md-input-container>
 <md-input-container class="md-block">
-	<label translate>Title</label>
+	<label mb-translate>Title</label>
 	<input 
 		aria-label="Content Title"
 		name="title"
@@ -17,7 +18,7 @@
 		ng-model-options="{getterSetter: true, debounce: 200}">
 </md-input-container>
 <md-input-container class="md-block">
-	<label translate>Description</label>
+	<label mb-translate>Description</label>
 	<textarea 
 		aria-label="Content Description"
 		name="description"
