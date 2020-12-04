@@ -10,20 +10,6 @@ mblowfish.addEditor('/spas/:spaId', {
 			$editor: $editor
 		}));
 
-		/*
-		A custom delete item process
-		*/
-		//		this.updateItem = function(){
-		//			return this.model.update();
-		//		}
-		
-		/*
-		A custom update item process
-		*/
-		//		this.deleteItem = function(){
-		//			return this.model.delete();
-		//		}
-
 		/**
 		 Reload data
 	
