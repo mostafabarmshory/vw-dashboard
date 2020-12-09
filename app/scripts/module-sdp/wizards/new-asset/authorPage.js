@@ -1,5 +1,5 @@
 mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#author', {
-	title: 'Publisher',
+	title: 'Authors	',
 	description: 'There may be one or many author for a book, video, or other asset. Search and add them in the form.',
 	templateUrl: 'scripts/module-sdp/wizards/new-asset/authorPage.html',
 	controllerAs: 'ctrl',

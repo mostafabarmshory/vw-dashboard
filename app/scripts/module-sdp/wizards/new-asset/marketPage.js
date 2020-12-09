@@ -1,6 +1,6 @@
 mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#market', {
-	title: 'Properties',
-	description: 'Each tag is known with name and description in the Dashboard. Fill the forme to define a new one.',
+	title: 'Market',
+	description: 'Price, state and other properties are used in selling and market.',
 	templateUrl: 'scripts/module-sdp/wizards/new-asset/marketPage.html',
 	controllerAs: 'ctrl',
 	controller: function($wizard) {
