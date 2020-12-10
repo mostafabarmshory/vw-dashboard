@@ -29,20 +29,6 @@ mblowfish.addView(AMD_CMS_VIEW_TERMS_PATH, {
 			return $cms.getTerm(id);
 		};
 
-//		// delete account
-//		this.deleteModel = function(model) {
-//			var ctrl = this;
-//			return $cms.deleteTerm(model.id)
-//				.then(function() {
-//					ctrl.reload();
-//				});
-//		};
-//
-//		// adding new term
-//		this.addModel = function(model) {
-//			return $cms.putTerm(model);
-//		};
-
 		this.deleteTerm = function(term, $event){
 			$event.values = [term];
 			return $mbActions.exec(AMD_CMS_TERMS_DELETE_ACTION, $event);

@@ -1,4 +1,4 @@
-mblowfish.addView('/seo/links-new', {
+mblowfish.view('/seo/links-new', {
 	controllerAs: 'ctrl',
 	templateUrl: 'scripts/module-seo/views/links-new.html',
 	groups: ['seo'],
