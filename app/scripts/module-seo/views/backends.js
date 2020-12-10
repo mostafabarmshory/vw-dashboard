@@ -8,7 +8,7 @@ mblowfish.view('/seo/backends', {
 		'ngInject';
 		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
-			$view, $view,
+			$view: $view,
 		}));
 
 		// Overried the function
