@@ -39,6 +39,12 @@ mblowfish
 		$mbStorageProvider, $locationProvider) {
 
 
+		//
+		// $mbAction: manages all actions
+		//
+		$mbActionsProvider
+			.setShortkeysEnabled(true);
+
 		$mbAccountProvider
 			.addAuthenticationProvider('AmdUserAtuthenticationProvider');
 
