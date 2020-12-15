@@ -1,10 +1,7 @@
 
 
 mblowfish.addAction(SDP_ASSETS_DETAILS_ACTION, {
-	icon: 'preview',
-	title: 'Preview',
-	description: 'Show details of an asset',
-	groups: ['SDP'],
+	demon: true,
 	action: function($event, $mbDialog,  $rootScope, $rootElement, $mbActions) {
 		'ngInject';
 		var values = $event.values;

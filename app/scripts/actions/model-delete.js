@@ -8,10 +8,7 @@ Required:
 
  */
 mblowfish.addAction(SEEN_MODEL_DELETE_ACTION, {
-	icon: 'delete',
-	title: 'Delete',
-	description: 'Delete list of models',
-	groups: ['seen'],
+	demon: true,
 	action: function($event, $mbDispatcherUtil, $q, $mbTranslate, $mbLog) {
 		'ngInject';
 

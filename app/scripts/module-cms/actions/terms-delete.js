@@ -1,9 +1,6 @@
 
 mblowfish.addAction(AMD_CMS_TERMS_DELETE_ACTION, {
-	icon: 'delete',
-	title: 'Delete Terms',
-	description: 'Delete list of terms',
-	groups: ['CMS'],
+	demon: true,
 	action: function($event, $mbDispatcherUtil, $q, $mbTranslate, $cms) {
 		'ngInject';
 
@@ -11,9 +8,9 @@ mblowfish.addAction(AMD_CMS_TERMS_DELETE_ACTION, {
 		if (!values || !_.isArray(values)) {
 			return $q.reject('No term specified.');
 		}
-		
+
 		var message;
-		 if (values.length === 1) {
+		if (values.length === 1) {
 			message = $mbTranslate.instant('Delete item (Undo is not support)?');
 		} else {
 			message = $mbTranslate.instant('Delete items (Undo is not support)?');

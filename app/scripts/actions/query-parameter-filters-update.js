@@ -1,6 +1,5 @@
 mblowfish.action(SEEN_QP_FILTERS_UPDATE_ACTION, {
-	title: 'Update sorts',
-	icon: 'sort',
+	demon: true,
 	action: function($event, $q, $mbResource) {
 		'ngInject';
 		var values = $event.values || [];

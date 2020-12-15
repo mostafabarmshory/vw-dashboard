@@ -1,7 +1,7 @@
 
 mblowfish.addAction(AMD_CMS_TERMTAXONOMIES_CREATE_ACTION, {
 	icon: 'add',
-	title: 'New Term Taxonomy',
+	title: 'CMS: New Term Taxonomy',
 	description: 'Creates a new teram-taxonomy',
 	groups: ['CMS'],
 	action: function($event, $mbDispatcherUtil, $mbWizard, $cms, $q) {
