@@ -1,55 +1,43 @@
-<div  
+<md-content
 	ng-init="ctrl.setDataQuery('{id, is_active, date_joined, last_login, profiles{first_name,last_name}}')"
-	mb-preloading="ctrl.state === 'busy'"
+	mb-preloading="ctrl.loading"
+	mb-infinate-scroll="ctrl.loadNextPage()"
 	layout="column"
 	flex>
-	<!-- TODO: maso, 1395: در حالت خطا یک صفحه با امکان reload اضافه بشه. -->
-	<mb-pagination-bar
-		mb-model="ctrl.queryParameter"
-		mb-reload="ctrl.reload()"
-		mb-sort-keys="ctrl.getSortKeys()"
-		mb-more-actions="ctrl.getActions()"
-		mb-properties="ctrl.properties">
-	</mb-pagination-bar>
-	<md-content
-		mb-infinate-scroll="ctrl.loadNextPage()"
-		layout="column"
-		flex>
-		<md-list flex>
-			<md-list-item 
-				ng-repeat="user in ctrl.items track by user.id"
-				ng-click="ctrl.editAccount($event, user)"
-				class="md-3-line">
-				<img 
-					class="md-avatar"
-					ng-src="/api/v2/user/accounts/{{::user.id}}/avatar" 
-					ng-src-error="https://www.gravatar.com/avatar/{{ ::user.id | wbmd5 }}?d=identicon&size=32"/>
-				<div 
-					class="md-list-item-text" 
-					layout="column">
-					<h3>{{user.profiles[0].first_name}} - {{user.profiles[0].last_name}}</h3>
-					<h4>
-						<span ng-show="user.is_active">
-							<span mb-translate>Active</span>,
-						</span>
-						<span ng-show="!user.is_active">
-							<span mb-translate>Inactive</span>,
-						</span>
-					</h4>
-					<p>
-						<span mb-translate>Joined</span>: {{user.date_joined}},
-						<span mb-translate>Last Login</span>: {{user.last_login}},
-					</p>
-				</div>
-				<md-checkbox 
-					ng-if="multi"
-					class="md-secondary"
-					ng-init="user.selected = resourceCtrl.isSelected(user)" 
-					ng-model="user.selected"
-					ng-change="resourceCtrl.setSelected(user, user.selected)">
-				</md-checkbox>
-				<md-divider md-inset></md-divider>
-			</md-list-item>
-		</md-list>
-	</md-content>
-</div>
+	<md-list flex>
+		<md-list-item 
+			ng-repeat="user in ctrl.items track by user.id"
+			ng-click="ctrl.editAccount($event, user)"
+			class="md-3-line">
+			<img 
+				class="md-avatar"
+				ng-src="/api/v2/user/accounts/{{::user.id}}/avatar" 
+				ng-src-error="https://www.gravatar.com/avatar/{{ ::user.id | wbmd5 }}?d=identicon&size=32"/>
+			<div 
+				class="md-list-item-text" 
+				layout="column">
+				<h3>{{user.profiles[0].first_name}} - {{user.profiles[0].last_name}}</h3>
+				<h4>
+					<span ng-show="user.is_active">
+						<span mb-translate>Active</span>,
+					</span>
+					<span ng-show="!user.is_active">
+						<span mb-translate>Inactive</span>,
+					</span>
+				</h4>
+				<p>
+					<span mb-translate>Joined</span>: {{user.date_joined}},
+					<span mb-translate>Last Login</span>: {{user.last_login}},
+				</p>
+			</div>
+			<md-checkbox 
+				ng-if="multi"
+				class="md-secondary"
+				ng-init="user.selected = resourceCtrl.isSelected(user)" 
+				ng-model="user.selected"
+				ng-change="resourceCtrl.setSelected(user, user.selected)">
+			</md-checkbox>
+			<md-divider md-inset></md-divider>
+		</md-list-item>
+	</md-list>
+</md-content>

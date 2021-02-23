@@ -31,21 +31,41 @@ mblowfish.addView('/ums/groups', {
 	controllerAs: 'ctrl',
 	title: 'Groups',
 	icon: 'group',
-	controller: function($scope, $controller, $navigator) {
+	controller: function($scope, $controller, $usr, $view) {
 		'ngInject';
 
-		angular.extend(this, $controller('MbSeenUserGroupsCtrl', {
-			$scope: $scope
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+			$scope: $scope,
+			$view: $view,
 		}));
 
+		// Overried the function
+		this.getModelSchema = function() {
+			return $usr.groupSchema();
+		};
 
-		// Add action
-		this.addAction({
-			title: 'New group',
-			icon: 'add',
-			action: function() {
-				$navigator.openPage('ums/groups/new');
-			}
+		// get groups
+		this.getModels = function(parameterQuery) {
+			return $usr.getGroups(parameterQuery);
+		};
+
+		// get a group
+		this.getModel = function(id) {
+			return $usr.getGroup(id);
+		};
+
+		// Add group
+		this.addModel = function(model) {
+			return $usr.putGroup(model);
+		};
+
+		// delete group
+		this.deleteModel = function(model) {
+			return $usr.deleteGroup(model.id);
+		};
+
+		this.init({
+			eventType: AMD_USER_GROUPS_SP
 		});
 	}
 });

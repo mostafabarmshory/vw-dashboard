@@ -33,23 +33,47 @@ mblowfish.addView('/ums/accounts', {
 	groups: ['Users Management'],
 	title: 'Users',
 	icon: 'person',
-	controller: function($scope, $controller, $mbActions) {
+	controller: function($scope, $controller, $mbActions, $usr, $view) {
 		'ngInject';
 
-		angular.extend(this, $controller('MbSeenUserAccountsCtrl', {
-			$scope: $scope
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+			$scope: $scope,
+			$view: $view,
 		}));
 
-		this.editAccount = function($event, account){
+		// Overried the function
+		this.getModelSchema = function() {
+			return $usr.accountSchema();
+		};
+
+		// get accounts
+		this.getModels = function(parameterQuery) {
+			return $usr.getAccounts(parameterQuery);
+		};
+
+		// get an account
+		this.getModel = function(id) {
+			return $usr.getAccount(id);
+		};
+
+		// add account
+		this.addModel = function(model) {
+			return $usr.putAccount(model);
+		};
+
+		// delete account
+		this.deleteModel = function(model) {
+			return $usr.deleteAccount(model.id);
+		};
+
+
+		this.editAccount = function($event, account) {
 			$event.values = [account];
 			return $mbActions.exec(AMD_USER_ACCOUNTS_OPENEDITOR_ACTION, $event);
 		};
-		
-		// Add action
-		this.addAction({
-			title: 'New account',
-			icon: 'add',
-			actionId: AMD_USER_ACCOUNT_CREATE_ACTION
+
+		this.init({
+			eventType: AMD_USER_ACCOUNTS_SP
 		});
 	}
 });

@@ -31,21 +31,36 @@ mblowfish.addView('/ums/roles', {
 	groups: ['Users Management'],
 	title: 'Roles',
 	icon: 'accessibility',
-	controller: function($scope, $controller, $navigator) {
+	controller: function($scope, $controller, $usr, $view) {
 		'ngInject';
 
-		angular.extend(this, $controller('MbSeenUserRolesCtrl', {
-			$scope: $scope
+		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+			$scope: $scope,
+			$view: $view,
 		}));
+		
+		// Override the function
+		this.getModelSchema = function() {
+			return $usr.roleSchema();
+		};
 
+		// get accounts
+		this.getModels = function(parameterQuery) {
+			return $usr.getRoles(parameterQuery);
+		};
 
-		// Add action
-		this.addAction({
-			title: 'New group',
-			icon: 'add',
-			action: function() {
-				$navigator.openPage('ums/groups/new');
-			}
+		// get an account
+		this.getModel = function(id) {
+			return $usr.getRole(id);
+		};
+
+		// delete account
+		this.deleteModel = function(model) {
+			return $usr.deleteRole(model.id);
+		};
+
+		this.init({
+			eventType: AMD_USER_ROLES_SP
 		});
 	}
 });
