@@ -51,7 +51,7 @@ mblowfish.addAction(SEEN_MODEL_DELETE_ACTION, {
 			}
 			// show error
 			if (faildModel.length) {
-				alert($mbTranslate('Failt to delete some items'));
+				alert($mbTranslate.instant('Failt to delete some items'));
 			}
 		}
 
@@ -70,7 +70,7 @@ mblowfish.addAction(SEEN_MODEL_DELETE_ACTION, {
 
 			/*}*/
 			return $q.all(jobs)
-				.then(fireEvents);
+				.finally(fireEvents);
 		}
 
 		// TODO: maso, 2020: add the job into the job lists

@@ -100,7 +100,7 @@ mblowfish.addAction(AMD_SHOP_CATEGORY_IMPORTJSON_ACTION, {// import categories m
 				config: {},
 				controller: 'AmdNavigatorDialogCtrl',
 				controllerAs: 'ctrl',
-				templateUrl: 'views/shop-x/views/select-file-dialog.html'
+				templateUrl: 'scripts/module-shop-x/actions/select-file-dialog.html'
 			})
 			.then(function(res) {
 				var file = res.files[0];

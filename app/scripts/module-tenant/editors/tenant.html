@@ -3,84 +3,54 @@
 		mb-progress="ctrl.loading || ctrl.removing"
 		mb-title="{{'Tenant' | translate}}"
 		layout="column">
-
-		<div layout-padding>
-			<table>
-				<tr>
-					<td mb-translate="">ID</td>
-					<td>: {{::ctrl.tenant.id}}</td>
-				</tr>
-				<tr>
-					<td mb-translate="">Title</td>
-					<td><mb-inline
-							mb-inline-type="text"
-							mb-inline-enable="{{true}}"
-							mb-inline-on-save="ctrl.update()"
-							ng-model="ctrl.tenant.title">: {{ctrl.tenant.title}}</mb-inline></td>
-				</tr>
-				<tr>
-					<td mb-translate="">Description</td>
-					<td><mb-inline
-							mb-inline-type="text"
-							mb-inline-enable="{{true}}"
-							mb-inline-on-save="ctrl.update()"
-							ng-model="ctrl.tenant.description">: {{ctrl.tenant.description}}</mb-inline></td>
-				</tr>
-				<tr>
-					<td mb-translate="">Subdomain</td>
-					<td><mb-inline
-						mb-inline-type="text"
-						mb-inline-enable="{{true}}"
-						mb-inline-on-save="ctrl.update()"
-						ng-model="ctrl.tenant.subdomain">: {{ctrl.tenant.subdomain}}</mb-inline></td>
-				</tr>
-				<tr>
-					<td mb-translate="">Domain</td>
-					<td><mb-inline
-						mb-inline-type="text"
-						mb-inline-enable="{{true}}"
-						mb-inline-on-save="ctrl.update()"
-						ng-model="ctrl.tenant.domain">: {{ctrl.tenant.domain}}</mb-inline></td>
-				</tr>
-				<tr>
-					<td mb-translate="">Parent</td>
-					<td><mb-inline
-						mb-inline-type="tenant_id"
-						mb-inline-enable="{{true}}"
-						mb-inline-on-save="ctrl.update()"
-						ng-model="ctrl.tenant.parent_id">: {{ctrl.tenant.parent_id}}</mb-inline></td>
-				</tr>
-				<tr>
-					<td mb-translate="">Validate</td>
-					<td><mb-inline
-						mb-inline-type="boolean"
-						mb-inline-enable="{{true}}"
-						mb-inline-on-save="ctrl.update()"
-						ng-model="ctrl.tenant.validate">: {{ctrl.tenant.validate}}</mb-inline></td>
-				</tr>
-				<tr>
-					<td mb-translate="">Creation Date</td>
-					<td>: {{ctrl.tenant.creation_dtime| mbDate:'jYYYY-jMM-jDD'}}</td>
-				</tr>
-				<tr>
-					<td mb-translate="">Last Modified Date</td>
-					<td>: {{ctrl.tenant.modif_dtime| mbDate:'jYYYY-jMM-jDD'}}</td>
-				</tr>
-			</table>
-		</div>
-		<div ng-show="!ctrl.edit" layout-gt-xs="row"
-			 layout="column">
+		
+		<md-input-container class="md-block">
+			<label mb-translate>ID</label>
+			<input ng-model="ctrl.model.id" disabled>
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label mb-translate>Title</label>
+			<input ng-model="ctrl.model.title" ng-change="ctrl.setDerty(true)">
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label mb-translate>Description</label>
+			<textarea ng-model="ctrl.model.description" ng-change="ctrl.setDerty(true)"></textarea>
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label mb-translate>Subdomain</label>
+			<input ng-model="ctrl.model.subdomain" ng-change="ctrl.setDerty(true)">
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label mb-translate>Domain</label>
+			<input ng-model="ctrl.model.domain" ng-change="ctrl.setDerty(true)">
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label mb-translate>Parent</label>
+			<input ng-model="ctrl.model.parent_id" ng-change="ctrl.setDerty(true)">
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label mb-translate>Validate</label>
+			<input ng-model="ctrl.model.validate" ng-change="ctrl.setDerty(true)">
+		</md-input-container>
+		
+		
+		<div layout="row" layout-wrap>
 			<span flex></span>
 			<md-button 
-				class = "md-raised md-accent"
-				ng-click="ctrl.remove()"
-				aria-label="Delete tenant">
-				<span mb-translate="">Delete</span>
+				class="md-raised md-primary"
+				ng-disabled="!ctrl.isDerty()"
+				ng-click="ctrl.updateModel($event)">
+				<span mb-translate>Save</span>
+			</md-button>
+			<md-button 
+				class="md-raised md-accent"
+				ng-click="ctrl.deleteModel($event)">
+				<span mb-translate>Delete</span>
 			</md-button>
 			<md-button 
 				class = "md-raised"
-				ng-href="http://{{ctrl.tenant.domain}}"
-				aria-label="Delete tenant">
+				ng-href="http://{{ctrl.model.domain}}"
+				aria-label="Go to tenant">
 				<span mb-translate="">Go to</span>
 			</md-button>
 		</div>
