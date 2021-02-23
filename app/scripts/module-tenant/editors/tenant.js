@@ -97,7 +97,7 @@ mblowfish.addEditor('/tenant/tenants/:tenantId', {
 			}
 			var ctrl = this;
 			$mbResource
-				.get('/user/accounts')
+				.get(AMD_USER_ACCOUNTS_RT)
 				.then(function(accounts) {
 					var jobs = [];
 					_.forEach(accounts, function(account) {

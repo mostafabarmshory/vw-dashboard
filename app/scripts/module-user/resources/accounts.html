@@ -1,5 +1,4 @@
 <div  
-	ng-controller="MbSeenUserAccountsCtrl as ctrl"
 	ng-init="ctrl.setDataQuery('{id, login, is_active, date_joined, last_login, profiles{first_name,last_name}, avatars{id}}')"
 	mb-preloading="ctrl.state === 'busy'"
 	layout="column"
@@ -17,7 +16,7 @@
 		<md-list flex>
 			<md-list-item 
 				ng-repeat="user in ctrl.items track by user.id"
-				ng-click="multi || resourceCtrl.setSelected(user)"
+				ng-click="ctrl.setSelected(user, !user.selected)"
 				class="md-3-line">
 				<img 
 					class="md-avatar"
@@ -30,11 +29,10 @@
 					<h3>{{user.profiles[0].first_name}} {{user.profiles[0].last_name}}</h3>
 				</div>
 				<md-checkbox 
-					ng-if="multi"
 					class="md-secondary"
-					ng-init="user.selected = resourceCtrl.isSelected(user)" 
+					ng-init="user.selected = ctrl.isSelected(user)" 
 					ng-model="user.selected"
-					ng-change="resourceCtrl.setSelected(user, user.selected)">
+					ng-change="ctrl.setSelected(user, user.selected)">
 				</md-checkbox>
 				<md-divider md-inset></md-divider>
 			</md-list-item>
