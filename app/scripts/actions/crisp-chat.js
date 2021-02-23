@@ -1,6 +1,8 @@
 
 mblowfish.addAction(AMD_ACCOUNT_CHAT_ACTION, {
-	title: 'Chat',
+	group: 'Support',
+	title: 'Live Chat',
+	description: 'Live chat with support team',
 	icon: 'chat',
 	action: function() {
 		'ngInject';

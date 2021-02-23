@@ -25,7 +25,7 @@ mblowfish.addAction(AMD_SHOP_DELIVER_CREATE_ACTION, {
 	title: 'New Deliver',
 	icon: 'add',
 	description: 'Creates new delivers',
-	groups: ['Shop'],
+	group: 'Shop',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	action: function($shop, $mbTranslate, $event, $mbDispatcherUtil, $mbDynamicForm) {
 		'ngInject';

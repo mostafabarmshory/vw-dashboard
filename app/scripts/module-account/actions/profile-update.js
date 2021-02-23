@@ -8,6 +8,8 @@ NOTE: do not use the action into the view directly.
  */
 
 mblowfish.addAction(AMD_ACCOUNT_PROFILE_UPDATE_ACTION, {
+	demon: true,
+	group: 'Account',
 	action: function($mbView) {
 		
 		// open the profiles view

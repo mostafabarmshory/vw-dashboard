@@ -2,7 +2,7 @@ mblowfish.addAction(SDP_DRIVES_CREATE_ACTION, {
 	icon: 'add',
 	title: 'SDP: New Storage',
 	description: 'Creates a new storage of assets',
-	groups: ['SDP'],
+	group: 'SDP',
 	action: function($event, $sdp, $mbWizard, $q, $mbDispatcherUtil, $mbActions) {
 		'ngInject';
 		var values = [];

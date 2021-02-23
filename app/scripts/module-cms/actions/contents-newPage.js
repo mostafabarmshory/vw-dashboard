@@ -3,7 +3,7 @@ mblowfish.addAction(AMD_CMS_CONTENTS_NEWPAGE_ACTION, {
 	icon: 'add',
 	title: 'CMS: New Page',
 	description: 'Creates a new page',
-	groups: ['CMS'],
+	group: 'CMS',
 	action: function($event, $mbWizard, $mbActions) {
 		'ngInject';
 		var values = [];

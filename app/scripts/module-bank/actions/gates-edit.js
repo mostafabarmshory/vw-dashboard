@@ -24,7 +24,7 @@ mblowfish.addAction(AMD_BANK_GATES_EDIT_ACTION, {
 	icon: 'edit',
 	title: 'Edit',
 	description: 'Open gates with an editor',
-	groups: ['bank'],
+	group: 'Bank',
 	action: function($event, $location) {
 		'ngInject';
 

@@ -2,7 +2,7 @@ mblowfish.addAction(SDP_TAGS_CREATE_ACTION, {
 	icon: 'add',
 	title: 'SDP: New Tag',
 	description: 'Creates a new tag',
-	groups: ['SDP'],
+	group: 'SDP',
 	action: function($event, $sdp, $mbWizard, $q, $mbDispatcherUtil, $mbActions) {
 		'ngInject';
 		var values = [];

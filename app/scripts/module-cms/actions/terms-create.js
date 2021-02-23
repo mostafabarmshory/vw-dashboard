@@ -3,7 +3,7 @@ mblowfish.addAction(AMD_CMS_TERMS_CREATE_ACTION, {
 	icon: 'add',
 	title: 'CMS: New Term',
 	description: 'Creates a new teram',
-	groups: ['CMS'],
+	group: 'CMS',
 	action: function($event, $mbDispatcherUtil, $mbWizard, $cms, $q) {
 		'ngInject';
 

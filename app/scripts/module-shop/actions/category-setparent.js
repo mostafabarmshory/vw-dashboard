@@ -22,6 +22,8 @@
 
 
 mblowfish.addAction(AMD_SHOP_CATEGORY_SETPARENT_ACTION, {
+	demon: true,
+	group: 'Shop',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	action: function($event, $q, ShopCategory, $mbDispatcherUtil, $mbTranslate) {
 		'ngInject';

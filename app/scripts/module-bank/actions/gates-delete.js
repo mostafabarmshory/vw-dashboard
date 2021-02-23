@@ -24,7 +24,7 @@ mblowfish.addAction(AMD_BANK_GATES_DELETE_ACTION, {
 	icon: 'delete',
 	title: 'Delete',
 	description: 'Delete gates',
-	groups: ['bank'],
+	group: 'Bank',
 	action: function($event, $q, $mbTranslate, $bank, $mbDispatcherUtil) {
 		'ngInject';
 

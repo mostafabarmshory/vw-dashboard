@@ -120,7 +120,8 @@ mblowfish
 		$mbToolbarProvider.init([{
 			url: '/dashboard',
 			items: [
-				MB_NAVIGATOR_SIDENAV_TOGGLE_ACTION
+				MB_NAVIGATOR_SIDENAV_TOGGLE_ACTION,
+				MB_NAVIGATOR_CMDLINE_TOGGLE_ACTION
 			]
 		}, {
 			url: '/cms',

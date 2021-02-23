@@ -23,6 +23,7 @@
 mblowfish.addAction(AMD_SHOP_PRODUCT_IMPORTCSV_ACTION, {// import products menu
 	priority: 10,
 	icon: 'cloud_upload',
+	group: 'Shop',
 	title: 'Import Products',
 	description: 'Imports products from a CSV file',
 	/* @ngInject */

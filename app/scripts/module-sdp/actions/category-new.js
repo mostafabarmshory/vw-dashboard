@@ -3,7 +3,7 @@ mblowfish.addAction(SDP_CATEGORIES_CREATE_ACTION, {
 	icon: 'add',
 	title: 'SDP: New Category',
 	description: 'Creates a new category',
-	groups: ['SDP'],
+	group: 'SDP',
 	action: function($event, $sdp, $mbWizard, $q, $mbDispatcherUtil, $mbActions) {
 		'ngInject';
 		var values = [];

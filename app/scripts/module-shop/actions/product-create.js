@@ -24,7 +24,8 @@
 mblowfish.addAction(AMD_SHOP_PRODUCT_CREATE_ACTION, {// create new category menu
 	icon: 'add',
 	title: 'New Product',
-	groups: ['Shop'],
+	demon: true,
+	group: 'Shop',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	action: function($shop, $mbTranslate, $event, $mbDispatcherUtil, $mbDynamicForm) {
 		'ngInject';

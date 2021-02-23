@@ -3,7 +3,7 @@ mblowfish.addAction(AMD_CMS_TERMTAXONOMIES_CREATE_ACTION, {
 	icon: 'add',
 	title: 'CMS: New Term Taxonomy',
 	description: 'Creates a new teram-taxonomy',
-	groups: ['CMS'],
+	group: 'CMS',
 	action: function($event, $mbDispatcherUtil, $mbWizard, $cms, $q) {
 		'ngInject';
 

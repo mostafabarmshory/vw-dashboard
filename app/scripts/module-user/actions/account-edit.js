@@ -10,7 +10,7 @@ mblowfish.action(AMD_USER_ACCOUNTS_OPENEDITOR_ACTION, {
 	icon: 'new',
 	title: 'Edit an Account',
 	description: 'Open an editor to edit an account or list of accounts',
-	groups: ['User'],
+	group: 'User',
 	action: function($event, $location) {
 		'ngInject';
 		if (!$event.values) {

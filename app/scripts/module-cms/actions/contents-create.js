@@ -24,7 +24,7 @@ mblowfish.addAction(AMD_CMS_CONTENTS_CREATE_ACTION, {
 	icon: 'new',
 	title: 'New Content',
 	description: 'Creates a new content',
-	groups: ['CMS'],
+	group: 'CMS',
 	action: function($event, $cms, $q, $mbDispatcherUtil, $mbActions) {
 		'ngInject';
 		var values = [];
