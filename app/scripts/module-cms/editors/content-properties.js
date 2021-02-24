@@ -118,7 +118,7 @@ mblowfish.addEditor('/cms/contents/:contentId', {
 			ctrl.isCuntentBusy = $mbResource
 				.get('file', {
 					$style: {
-						accept: '.*'
+						accept: '*/*'
 					}
 				})
 				.then(function(file) {

@@ -203,6 +203,9 @@
 		"TENANT_TENANTS_CREATE_ACTION": false,
 		"TENANT_TENANTS_VIEW_PATH": false,
 		
+		"AMD_USER_ACCOUNTS_RT": false,
+		"AMD_USER_ACCOUNTS_RT": false,
+		"MB_NAVIGATOR_CMDLINE_TOGGLE_ACTION": false,
 		"xxx": false
 	}
 }
