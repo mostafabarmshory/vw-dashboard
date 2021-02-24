@@ -26,7 +26,7 @@ Hre is list of an asset attributes:
 mblowfish.editor('/sdp/assets/:modelId', {
 	templateUrl: 'scripts/module-sdp/editors/asset.html',
 	controllerAs: 'ctrl',
-	controller: function($scope, $element, $controller, $sdp, $editor, $state, SdpAsset, $mbTranslate, $mbResource) {
+	controller: function($scope, $element, $controller, $sdp, $editor, $state, SdpAsset, $mbResource) {
 		'ngInject';
 		// XXX: add fields path,
 		var graphQl = '{' +
@@ -41,13 +41,13 @@ mblowfish.editor('/sdp/assets/:modelId', {
 			$editor: $editor
 		}));
 		
-		this.setImageUlr = function (propertyName){
+		this.setImageUrl = function (propertyName){
 			var ctrl = this;
 			return $mbResource
 				.get('image-url', {})
 				.then(function(url){
 					ctrl.model[propertyName] = url;
-					ctrl.setDirty(true);
+					ctrl.setDerty(true);
 				});
 		};
 
@@ -67,7 +67,7 @@ mblowfish.editor('/sdp/assets/:modelId', {
 			ctrl.tags = dataList;
 		}
 		
-		$editor.setTitle($mbTranslate('Asset') + ':' + $state.params.modelId);
+		$editor.setTitle('Asset:' + $state.params.modelId);
 		$sdp
 			.getAsset($state.params.modelId, {
 				graphql: graphQl
