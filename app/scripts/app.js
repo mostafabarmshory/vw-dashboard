@@ -168,14 +168,14 @@ $(window).on('load', function() {
 			try {
 				mblowfish.bootstrap(document.documentElement, [
 					//	load legecy angular modules
-					'seen-core',
-					'seen-user',
-					'seen-tenant',
-					'seen-supertenant',
-					'seen-cms',
-					'seen-monitor',
-					'seen-shop',
-					'seen-seo',
+//					'seen-core',
+//					'seen-user',
+//					'seen-tenant',
+//					'seen-supertenant',
+//					'seen-cms',
+//					'seen-monitor',
+//					'seen-shop',
+//					'seen-seo',
 
 					'vcRecaptcha', //https://github.com/VividCortex/angular-recaptcha
 					'ngFileSaver',//

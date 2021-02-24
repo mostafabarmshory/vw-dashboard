@@ -24,6 +24,8 @@
 		"_": false,
 		"$crisp": false,
 		"APP_KEY": false,
+		"Mustache": false,
+		"File": false,
 		
 		"AMD_CMS_CONTENT_SP": false,
 		"AMD_CMS_TERMS_SP": false,

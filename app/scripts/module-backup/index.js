@@ -20,19 +20,6 @@
  * SOFTWARE.
  */
 
-mblowfish
-	.factory('BackupSnapshot', seen.factory({
-		url: '/api/v2/backup/snapshots',
-		resources: []
-	}))
-	.service('$backup', seen.service({
-		resources: [{
-			name: 'Snapshot',
-			factory: 'BackupSnapshot',
-			type: 'collection',
-			url: '/api/v2/backup/snapshots'
-		}]
-	}));
 
 
 mblowfish.config(function($mbActionsProvider,$mbViewProvider) {
