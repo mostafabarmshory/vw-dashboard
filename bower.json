@@ -1,7 +1,7 @@
 {
 	"name": "vw-dashboard",
 	"moduleName": "mblowfish-core",
-	"version": "6.0.5",
+	"version": "6.0.6",
 	"title": "ViraWeb Dashboard",
 	"description": "ViraWeb123 dashboards allow managers to monitor the contribution of the various departments in their organization.",
 	"license": "MIT",
@@ -18,7 +18,7 @@
 		"seen-seo": "https://gitlab.com/seen/angular/seen-seo.git#3.0.x",
 		"angular-recaptcha": "4.1.x",
 		"angular-file-saver": "1.1.x",
-		"mblowfish-core": "https://gitlab.com/mblowfish/mblowfish-core.git#3.2.x"
+		"mblowfish-core": "https://gitlab.com/mblowfish/mblowfish-core.git#4.1.x"
 	},
 	"devDependencies": {
 		"angular-mocks": "1.8.x"
