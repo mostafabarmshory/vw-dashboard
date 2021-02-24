@@ -1,14 +1,14 @@
 <div
 	layout="column"
 	flex>
-	<lf-ng-md-file-input
-		lf-files="ctrl.files"
-		accept="image/*"
-		progress
-		preview
-		drag
+	<mb-file-input
+		ng-model="ctrl.files"
+		mb-accept="image/*"
+		mb-progress
+		mb-preview
+		mb-drag
 		flex>
-	</lf-ng-md-file-input>
+	</mb-file-input>
 	<!-- Extra option bar -->
 	<md-content layout-padding>
 		<div

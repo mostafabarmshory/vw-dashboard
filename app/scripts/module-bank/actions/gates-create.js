@@ -24,7 +24,7 @@ mblowfish.addAction(AMD_BANK_GATES_CREATE_ACTION, {
 	icon: 'store',
 	title: 'New Gate',
 	description: 'Creates new gate in bank domain',
-	groups: ['Shop'],
+	group: 'Bank',
 	action: function($bank, $mbTranslate, $event, $mbDispatcherUtil, $q) {
 		'ngInject';
 

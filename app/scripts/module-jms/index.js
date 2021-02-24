@@ -21,77 +21,77 @@
  */
 
 
-mblowfish
-
-	/**
-	 * @ngdoc Factories
-	 * @name SuperJmsPipeline
-	 * @description the pipline access
-	 * 
-	 */
-	.factory('SuperJmsPipeline', seen.factory({
-		url: '/api/v2/superjms/pipelines'
-	})) //
-
-	/**
-	 * @ngdoc service
-	 * @name $superjms
-	 * @description Job management service on all tenants
-	 * 
-	 * Manages jobs of all tenants
-	 * 
-	 */
-	.service('$superjms', seen.service({
-		resources: [{
-			name: 'Pipeline',
-			factory: 'SuperJmsPipeline',
-			type: 'collection',
-			url: '/api/v2/superjms/pipelines'
-		}]
-	}))
-
-	/**
-	 * @ngdoc Factories
-	 * @name JmsPipeline
-	 * @description a pipeline manager
-	 * 
-	 */
-	.factory('JmsPipeline', seen.factory({
-		url: '/api/v2/jms/pipelines'
-	})) //
-
-	/**
-	 * @ngdoc service
-	 * @name $jms
-	 * @description Job management service
-	 * 
-	 * Manages jobs
-	 * 
-	 */
-	.service('$jms', seen.service({
-		resources: [{
-			name: 'Pipeline',
-			factory: 'JmsPipeline',
-			type: 'collection',
-			url: '/api/v2/jms/pipelines'
-		}]
-	}))
-
-	.config(function($mbViewProvider, $mbEditorProvider) {
-		var viewGroups = ['Job Management'];
-		$mbViewProvider
-			.addView('/pipelines', {
-				title: 'Jobs',
-				icon: 'dvr',
-				controller: 'AmdJmsPipelinesCtrl',
-				templateUrl: 'views/amd-jms-pipelines.html',
-				groups: viewGroups,
-			});
-
-		$mbEditorProvider
-			.addEditor('/pipelines/:pipelineId', {
-				controller: 'AmdJmsPipelineCtrl',
-				controllerAs: 'ctrl',
-				templateUrl: 'views/amd-jms-pipeline.html',
-			});
-	});
+//mblowfish
+//
+//	/**
+//	 * @ngdoc Factories
+//	 * @name SuperJmsPipeline
+//	 * @description the pipline access
+//	 * 
+//	 */
+//	.factory('SuperJmsPipeline', seen.factory({
+//		url: '/api/v2/superjms/pipelines'
+//	})) //
+//
+//	/**
+//	 * @ngdoc service
+//	 * @name $superjms
+//	 * @description Job management service on all tenants
+//	 * 
+//	 * Manages jobs of all tenants
+//	 * 
+//	 */
+//	.service('$superjms', seen.service({
+//		resources: [{
+//			name: 'Pipeline',
+//			factory: 'SuperJmsPipeline',
+//			type: 'collection',
+//			url: '/api/v2/superjms/pipelines'
+//		}]
+//	}))
+//
+//	/**
+//	 * @ngdoc Factories
+//	 * @name JmsPipeline
+//	 * @description a pipeline manager
+//	 * 
+//	 */
+//	.factory('JmsPipeline', seen.factory({
+//		url: '/api/v2/jms/pipelines'
+//	})) //
+//
+//	/**
+//	 * @ngdoc service
+//	 * @name $jms
+//	 * @description Job management service
+//	 * 
+//	 * Manages jobs
+//	 * 
+//	 */
+//	.service('$jms', seen.service({
+//		resources: [{
+//			name: 'Pipeline',
+//			factory: 'JmsPipeline',
+//			type: 'collection',
+//			url: '/api/v2/jms/pipelines'
+//		}]
+//	}))
+//
+//	.config(function($mbViewProvider, $mbEditorProvider) {
+//		var viewGroups = ['Job Management'];
+//		$mbViewProvider
+//			.addView('/pipelines', {
+//				title: 'Jobs',
+//				icon: 'dvr',
+//				controller: 'AmdJmsPipelinesCtrl',
+//				templateUrl: 'views/amd-jms-pipelines.html',
+//				groups: viewGroups,
+//			});
+//
+//		$mbEditorProvider
+//			.addEditor('/pipelines/:pipelineId', {
+//				controller: 'AmdJmsPipelineCtrl',
+//				controllerAs: 'ctrl',
+//				templateUrl: 'views/amd-jms-pipeline.html',
+//			});
+//	});

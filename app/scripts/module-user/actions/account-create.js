@@ -46,7 +46,7 @@ mblowfish.action(AMD_USER_ACCOUNT_CREATE_ACTION, {
 	icon: 'new',
 	title: 'New Account',
 	description: 'Creates a new account and set all roles and groups.',
-	groups: ['User'],
+	group: 'User',
 	action: function($event, $usr, $mbWizard, $q, $mbDispatcherUtil, $mbActions) {
 		'ngInject';
 

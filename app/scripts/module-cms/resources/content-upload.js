@@ -48,7 +48,7 @@ mblowfish.resource('cms-upload', {
 			data.description = ctrl.description || 'Auto loaded content';
 			var file = null;
 			if (angular.isArray(ctrl.files) && ctrl.files.length) {
-				file = ctrl.files[0].lfFile;
+				file = ctrl.files[0];
 				data.title = file.name;
 			}
 			// upload data to server

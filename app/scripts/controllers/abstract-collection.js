@@ -53,9 +53,9 @@ an action.
 - addModel: model
 - addViewItem: view
  */
-mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controller, $q, $navigator,
-	$log,
-	$window, QueryParameter, MbAction) {
+mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controller, $q,
+	$mbLog, $mbActions,
+	QueryParameter) {
 
 
     /*
@@ -92,11 +92,8 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 
 
 	// Messages
-	var ADD_ACTION_FAIL_MESSAGE = 'Fail to add new item';
-	var DELETE_MODEL_MESSAGE = 'Delete item?';
-
-	this.actions = [];
-
+	//	var ADD_ACTION_FAIL_MESSAGE = 'Fail to add new item';
+	//	var DELETE_MODEL_MESSAGE = 'Delete item?';
 
     /**
      * State of the controller
@@ -158,6 +155,7 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
      * @memberof MbSeenAbstractCollectionCtrl
      */
 	this.items = [];
+	this.$selectedModels = [];
 
     /**
      * Adds items to view
@@ -177,10 +175,8 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 		_.forEach(items, function(item) {
 			ctrl.items.push(item);
 		});
-		if (this.id) {
-			this.fireEvent(this.id, 'update', this.items);
-		}
 	};
+
 	this.unshiftViewItems = function(items) {
 		if (!angular.isDefined(items)) {
 			return;
@@ -194,9 +190,6 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 		_.forEach(items, function(item) {
 			ctrl.items.unshift(item);
 		});
-		if (this.id) {
-			this.fireEvent(this.id, 'update', this.items);
-		}
 	};
 
     /**
@@ -213,9 +206,7 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
      */
 	this.removeViewItems = function(items) {
 		differenceBy(this.items, items, 'id');
-		if (this.id) {
-			this.fireEvent(this.id, 'update', this.items);
-		}
+		differenceBy(this.$selectedModels, items, 'id');
 	};
 
     /**
@@ -253,47 +244,92 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
      */
 	this.clearViewItems = function() {
 		this.items = [];
-		if (this.id) {
-			this.fireEvent(this.id, 'update', this.items);
-		}
-	};
-
-    /**
-     * Load controller actions
-     * 
-     * @return list of actions
-     */
-	this.getActions = function() {
-		return this.actions;
-	};
-
-    /**
-     * Adds new action into the controller
-     * 
-     * @param action to add to list
-     */
-	this.addAction = function(action) {
-		if (_.isUndefined(this.actions)) {
-			this.actions = [];
-		}
-		// TODO: maso, 2018: assert the action is MbAction
-		if (!(action instanceof MbAction)) {
-			action = new MbAction(action);
-		}
-		this.actions.push(action);
 		return this;
 	};
 
-    /**
-     * Adds list of actions to the controller
-     * 
-     * @memberof SeenAbstractCollectionCtrl
-     * @params array of actions
-     */
-	this.addActions = function(actions) {
-		for (var i = 0; i < actions.length; i++) {
-			this.addAction(actions[i]);
+	this.toggleSelection = function(model, $event) {
+		return this.setSelected(model, !model.$selected, $event);
+	};
+
+	this.hasSelected = function() {
+		return this.$selectedModels.length > 0;
+	};
+
+	this.selectAll = function() {
+		var list = this.$selectedModels = [];
+		_.forEach(this.items, function(item) {
+			item.$selected = true;
+			list.push(item);
+		});
+		return this;
+	};
+
+	this.clearSelection = function() {
+		_.forEach(this.items, function(item) {
+			item.$selected = false;
+		});
+		this.$selectedModels = [];
+		return this;
+	};
+
+	this.getSelection = function() {
+		return this.$selectedModels;
+	};
+
+	this.getSelectionSize = function() {
+		return this.$selectedModels.length;
+	};
+
+	this.isSelected = function(model) {
+		return model.$selected;
+	};
+
+	this.setSelected = function(model, selection, $event) {
+		var index = this.$selectedModels.indexOf(model);
+		model.$selected = selection;
+		if ((selection && index > -1) || (!selection && index < 0)) {
+			return;
 		}
+		if (model.$selected) {
+			this.$selectedModels.push(model);
+		} else {
+			while (index > -1) {
+				this.$selectedModels.splice(index, 1);
+				index = this.$selectedModels.indexOf(model);
+			}
+		}
+		try {
+			if ($event) {
+				$event.stopPropagation();
+				$event.preventDefault();
+			}
+		} catch (ex) {
+			$mbLog.error(ex);
+		}
+		return this;
+	};
+
+
+	/**
+	Executes a command on models
+	
+	- storePath: the dispatcher path to fire changes
+	- values: list of model to perform
+	
+	
+	@memberof SeenAbstractCollectionCtrl
+	@param String command id to execute
+	@param SeenModel model to be delete it may be a list or array of items
+	@param Event $event the source event 
+	 */
+	this.execOnModel = function(command, model, $event) {
+		$event.storePath = this.eventType;
+		if (_.isArray(model)) {
+			$event.values = model;
+		} else {
+			$event.values = [model];
+		}
+		return $mbActions.exec(command, $event);
 	};
 
 
@@ -364,59 +400,6 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 	// -------------------------------------------------------------------------
 
     /**
-     * Creates new item with the createItemDialog
-     * 
-     * XXX: maso, 2019: handle state machine
-     */
-	this.addItem = function() {
-		var ctrl = this;
-		$navigator.openDialog({
-			templateUrl: this._addDialog,
-			config: {
-				model: {}
-			}
-		}).then(function(model) {
-			return ctrl.addModel(model);
-		}).then(function(item) {
-			ctrl.fireCreated(ctrl.eventType, item);
-		}, function() {
-			$window.alert(ADD_ACTION_FAIL_MESSAGE);
-		});
-	};
-
-    /**
-     * Creates new item with the createItemDialog
-     */
-	this.deleteItem = function(item, $event) {
-		// prevent default evetn
-		if ($event) {
-			$event.preventDefault();
-			$event.stopPropagation();
-		}
-		// XXX: maso, 2019: update state
-		var ctrl = this;
-		var tempItem = _.clone(item);
-		function _deleteInternal() {
-			return ctrl.deleteModel(item)
-				.then(function() {
-					ctrl.fireDeleted(ctrl.eventType, tempItem);
-				}, function(ex) {
-					$log.error(ex);
-					alert('Fail to delete item.');
-				});
-		}
-		// delete the item
-		if (this.deleteConfirm) {
-			confirm(DELETE_MODEL_MESSAGE)
-				.then(function() {
-					return _deleteInternal();
-				});
-		} else {
-			return _deleteInternal();
-		}
-	};
-
-    /**
      * Reload the controller
      * 
      * Remove all old items and reload the controller state. If the controller
@@ -442,8 +425,6 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 		}
 		return safeReload();
 	};
-
-
 
     /**
      * Loads next page
@@ -517,11 +498,6 @@ mblowfish.controller('MbSeenAbstractCollectionCtrl', function($scope, $controlle
 		this.state = STATE_IDEAL;
 		if (!angular.isDefined(configs)) {
 			return;
-		}
-
-		// add actions
-		if (angular.isArray(configs.actions)) {
-			this.addActions(configs.actions);
 		}
 
 		// DEPRECATED: enable create action

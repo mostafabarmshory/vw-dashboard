@@ -22,7 +22,56 @@
 
 mblowfish.resource('sdp-tag-list', {
 	label: 'Tag list',
-	templateUrl: 'views/resources/sdp-tag-list.html',
-	controller: 'SdpTagListResourceCtrl',
-	tags: ['sdp-tag']
+	templateUrl: 'scripts/module-sdp/resources/tags.html',
+	tags: ['sdp-tag'],
+	controllerAs: 'ctrl',
+	controller: function($scope, $options, $resource, $sdp, $controller) {
+		'ngInject';
+		var ctrl = this;
+		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+			$scope: $scope
+		}));
+
+		// Override the schema function
+		this.getModelSchema = function() {
+			return $sdp.tagSchema();
+		};
+
+		// get contents
+		this.getModels = function(parameterQuery) {
+			return $sdp.getTags(parameterQuery);
+		};
+
+		// get a content
+		this.getModel = function(id) {
+			return $sdp.getTag(id);
+		};
+
+		this.init({
+			eventType: SDP_TAGS_SP,
+		});
+		
+		//-------------------------------------------------------
+		// Common in all resources
+		//-------------------------------------------------------
+		this.toggleResourceSelection = function(item) {
+			this.setResourceSelected(item, !item.$selected);
+		};
+
+		this.setResourceSelected = function(item, selection) {
+			if (!$options.multi) {
+				this.clearSelection();
+			}
+			this.setSelected(item, selection);
+			if ($options.object) {
+				$resource.setValue(ctrl.getSelection());
+			} else {
+				var ids = [];
+				_.forEach(ctrl.getSelection(), function(model) {
+					ids.push(model.id);
+				});
+				$resource.setValue(ids);
+			}
+		};
+	}
 });

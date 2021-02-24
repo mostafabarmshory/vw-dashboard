@@ -16,15 +16,15 @@
 			<div layout="row"
 				style="flex-grow: 1; min-height: 100px;" 
 				layout-align="center center">
-				<lf-ng-md-file-input
+				<mb-file-input
 					style="flex-grow: 1; padding: 10px;"
 					ng-show="ctrl.avatarState === 'edit'"
-					lf-files="ctrl.avatarFiles"
-					accept="image/*"
-					progress
-					preview
-					drag>
-				</lf-ng-md-file-input>
+					ng-model="ctrl.avatarFiles"
+					mb-accept="image/*"
+					mb-progress
+					mb-preview
+					mb-drag>
+				</mb-file-input>
 				<img
 					style="max-width: 300px; max-height: 300px; min-width: 24px; min-height: 24px;"
 					ng-if="ctrl.avatarState === 'normal'"

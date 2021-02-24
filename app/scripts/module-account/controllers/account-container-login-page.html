@@ -12,7 +12,7 @@
 		<md-toolbar 
 			layout="row" 
 			layout-padding
-			md-colors="{backgroundColor: 'primary-100'}">
+			mb-colors="{backgroundColor: 'primary-100'}">
 			<!-- TODO: toolbar items -->
 			<img 
 				style="max-width: 50%;"
@@ -29,7 +29,7 @@
 			style="margin: 0px; padding: 0px"
 			md-mode="indeterminate"
 			class="md-primary"
-			md-color>
+			mb-color>
 		</md-progress-linear>
 		
 		<!-- body: login -->
@@ -43,7 +43,7 @@
 			<div style="text-align: center;"
 				layout-margin
 				ng-show="!ctrl.loginProcess && ctrl.loginState === 'fail'"> 
-				<p><span md-colors="{color:'warn'}" mb-translate>{{loginMessage}}</span></p>
+				<p><span mb-colors="{color:'warn'}" mb-translate>{{loginMessage}}</span></p>
 			</div>
 			<md-input-container>
 				<label mb-translate="">Username</label>

@@ -156,14 +156,15 @@ mblowfish.addEditor('/ums/accounts/:accountId', {
 				});
 		}
 
-		function addRoles() {
+		function addRoles($event) {
 			return $mbResource
 				.get(AMD_USER_ROLES_RT, {
 					$values: roles,
 					$style: {
 						title: 'Select new roles',
 						multi: true,
-					}
+					},
+					targetEvent: $event
 				})
 				.then(function(list) {
 					// change roles and reload roles
@@ -205,14 +206,15 @@ mblowfish.addEditor('/ums/accounts/:accountId', {
 				});
 		}
 
-		function addGroups() {
+		function addGroups($event) {
 			return $mbResource
 				.get(AMD_USER_GROUPS_RT, {
 					$valu: groups,
 					$style: {
 						multi: true,
 						title: 'Select new groups'
-					}
+					},
+					targetEvent: $event
 				})
 				.then(function(list) {
 					// change groups and reload groups

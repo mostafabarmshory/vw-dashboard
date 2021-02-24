@@ -23,6 +23,7 @@
 mblowfish.addAction(AMD_SHOP_PRODUCT_IMPORTCSV_ACTION, {// import products menu
 	priority: 10,
 	icon: 'cloud_upload',
+	group: 'Shop',
 	title: 'Import Products',
 	description: 'Imports products from a CSV file',
 	/* @ngInject */
@@ -100,10 +101,10 @@ mblowfish.addAction(AMD_SHOP_PRODUCT_IMPORTCSV_ACTION, {// import products menu
 			config: {},
 			controller: 'AmdNavigatorDialogCtrl',
 			controllerAs: 'ctrl',
-			templateUrl: 'views/shop-x/views/select-file-dialog.html'
+			templateUrl: 'scripts/module-shop-x/actions/select-file-dialog.html'
 		})
 			.then(function(res) {
-				var file = res.files[0].lfFile;
+				var file = res.files[0];
 				processFileContent(file, processData);
 			});
 	},

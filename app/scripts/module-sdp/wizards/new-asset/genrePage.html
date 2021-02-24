@@ -1,0 +1,31 @@
+<md-chips 
+	ng-model="ctrl.genres" 
+	md-autocomplete-snap
+	input-aria-label="Genre">
+	<md-autocomplete 
+		input-aria-describedby="autocompleteTitle" 
+		placeholder="Search for a Genre"
+		md-no-cache="true"
+		md-autoselect="true"
+		md-selected-item="ctrl.selectedItem" 
+		md-search-text="ctrl.searchText"
+		md-items="item in ctrl.categorySearch(ctrl.searchText)" 
+		md-item-text="item.name"
+		md-clear-button="true">
+		<md-item-template>
+			<span md-highlight-text="ctrl.searchText">{{item.id}} - {{item.name}}</span>
+		</md-item-template>
+		<md-not-found>
+			<md-button
+				style="width: 100%"
+				ng-click="ctrl.createNewCategory(ctrl.searchText, $event)">
+				<span mb-translate>Create the Genre</span> (<em>{{ctrl.searchText}}</em>)
+			</md-button>
+		</md-not-found>
+	</md-autocomplete>
+	<md-chip-template>
+		<span>
+			<strong># {{$chip.name}}</strong>
+		</span>
+	</md-chip-template>
+</md-chips>

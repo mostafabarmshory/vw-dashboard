@@ -1,9 +1,6 @@
 
 mblowfish.addAction(AMD_CMS_CONTENT_METADATA_DELET_ACTION, {
-	icon: 'add',
-	title: 'New Term',
-	description: 'Creates a new teram',
-	groups: ['CMS'],
+	demon: true,
 	action: function($event, $mbDispatcherUtil) {
 		'ngInject';
 

@@ -1,132 +1,68 @@
 <md-content 
-	layout-margin
-	flex
 	mb-infinate-scroll="nextChilds()">
 	<mb-titled-block 
-		mb-progress="ctrl.loadingCategory || ctrl.savingCategory"
-		mb-title="{{'Category' | translate}}"
+		mb-progress="ctrl.loadingTag || ctrl.savingTag"
+		mb-title="{{'Properties' | translate}}"
 		layout="column">
-		<section ng-show="!ctrl.edit"
-			layout="column">
-			<table>
-				<tr>
-					<td>ID </td>
-					<td>: {{category.id}}</td>
-				</tr>
-				<tr>
-					<td>Name </td>
-					<td>: {{category.name}}</td>
-				</tr>
-				<tr>
-					<td>Description </td>
-					<td>: {{category.description}}</td>
-				</tr>
-				<tr>
-					<td>Creation Date </td>
-					<td>: {{category.creation_dtime}}</td>
-				</tr>
-				<tr>
-					<td>Last Modif Date </td>
-					<td>: {{category.modif_dtime}}</td>
-				</tr>
-				<tr>
-					<td>Parent </td>
-					<td>: {{category.parent_id}}</td>
-				</tr>
-				<tr>
-					<td>Content ID </td>
-					<td>: {{category.content}}</td>
-				</tr>
-				<tr>
-					<td>Thumbnial ID </td>
-					<td>: {{category.thumbnail}}</td>
-				</tr>
-			</table>
-			<!-- Action bar -->
-			<div ng-show="!ctrl.edit" layout="row">
-				<span flex></span>
-				<md-button 
-					class = "md-raised md-accent"
-					ng-click="remove()">
-	<!-- 				<mb-icon>delete</mb-icon> -->
-					<span mb-translate>Delete</span>
-				</md-button>
-				<md-button 
-					class="md-raised"
-					ng-click="ctrl.edit=true">
-	<!-- 				<mb-icon>edit</mb-icon> -->
-					<span mb-translate>Edit</span>
-				</md-button>
-			</div>
-		</section>
-	
-		<section ng-show="ctrl.edit"
-			layout="column">
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Name</label>
-				<input ng-model="category.name">
-			</md-input-container>
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Description</label>
-				<input ng-model="category.description">
-			</md-input-container>
-			<div layout="row">
-				<md-input-container class="md-block" flex-gt-xs>
-					<label>Parent</label>
-					<input ng-model="category.parent_id">
-				</md-input-container>
-				<md-button class="md-icon-button md-raised"
-					ng-click="selectParent()">
-					<mb-icon>touch_app</mb-icon>
-				</md-button>
-			</div>
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Content</label>
-				<input ng-model="category.content">
-			</md-input-container>
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Thumbnail</label>
-				<input ng-model="category.thumbnail">
-			</md-input-container>
+		<md-input-container 
+			class="md-block">
+			<label mb-translate>ID</label>
+			<input 
+				ng-model="ctrl.model.id"
+				disabled>
+		</md-input-container>
 		
-			 <div layout="row">
-				<span flex></span>
-				<md-button 
-					class="md-raised"
-					ng-click="ctrl.edit=false">
-	<!-- 				<mb-icon>close</mb-icon> -->
-					<span mb-translate>Cancel</span>
-				</md-button>
-				<md-button
-					class="md-raised md-primary"  
-					ng-click="save()">
-	<!-- 				<mb-icon>save</mb-icon> -->
-					<span mb-translate>Save</span>
-				</md-button>
-			 </div>
-		</section>
+		<md-input-container 
+			class="md-block">
+			<label mb-translate>Name</label>
+			<input 
+				ng-model="ctrl.model.name"
+				ng-change="ctrl.setDerty(true)">
+		</md-input-container>
+		<md-input-container 
+			class="md-block">
+			<label mb-translate>Description</label>
+			<textarea
+				ng-model="ctrl.model.description"
+				ng-change="ctrl.setDerty(true)"></textarea>
+		</md-input-container>
+		<md-input-container 
+			class="md-block">
+			<label mb-translate>Parent ID</label>
+			<input 
+				ng-model="ctrl.model.parent_id"
+				ng-change="ctrl.setDerty(true)">
+		</md-input-container>
+		
+		<md-input-container 
+			class="md-block">
+			<label mb-translate>Creation Date</label>
+			<input
+				ng-model="ctrl.model.creation_dtime"
+				disabled>
+		</md-input-container>
+		<md-input-container 
+			class="md-block">
+			<label mb-translate>Last Modification Date</label>
+			<input
+				ng-model="ctrl.model.creation_dtime"
+				disabled>
+		</md-input-container>
+		
+		<!-- Action bar -->
+		<div layout="row">
+			<span flex></span>
+			<md-button 
+				class="md-raised md-primary"
+				ng-disabled="!ctrl.isDerty()"
+				ng-click="ctrl.updateModel()">
+				<span mb-translate>Save</span>
+			</md-button>
+			<md-button 
+				class = "md-raised md-accent"
+				ng-click="ctrl.deleteModel($event)">
+				<span mb-translate>Delete</span>
+			</md-button>
+		</div>
 	</mb-titled-block>
-
-	<!-- subcategories -->
-		<mb-titled-block
-			mb-progress="ctrl.loadingChilds"
-			mb-title="{{'Subcategories'  | translate}}"
-			layout="column">
-			<md-list flex>
-				<md-list-item 
-					ng-repeat="pobject in ctrl.childs track by pobject.id"
-					class="md-3-line" 
-					ng-href="{{'sdp/category/'+pobject.id}}">
-					<mb-icon>folder_special</mb-icon>
-					<div 
-						class="md-list-item-text" 
-						layout="column">
-						<h3>{{pobject.id}}</h3>
-						<h4>{{pobject.name}}</h4>
-						<p>{{pobject.description}}</p>
-					</div>
-					<md-divider md-inset></md-divider>
-				</md-list-item>
-			</md-list>
-		</mb-titled-block>
 </md-content>

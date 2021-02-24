@@ -8,7 +8,7 @@ mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#avatar', {
 		$scope.$watch('files.length', function(len) {
 			var avatar;
 			if (len > 0) {
-				avatar = $scope.files[0].lfFile;
+				avatar = $scope.files[0];
 			} else {
 				avatar = undefined;
 			}

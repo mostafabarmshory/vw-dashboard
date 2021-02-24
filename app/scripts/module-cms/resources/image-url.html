@@ -21,7 +21,7 @@
 			ng-click="ctrl.setSelected(pobject, $index, $event);"
 			ng-repeat="pobject in ctrl.items track by pobject.id"
 			style="border: 16px; border-style: solid; border-width: 1px; margin: 8px"
-			md-colors="ctrl.isSelected($index) ? {borderColor:'accent'} : {}"
+			mb-colors="ctrl.isSelected($index) ? {borderColor:'accent'} : {}"
 			ng-if="!listViewMode">
 			<img
 				style="width: 128px; height: 128px;"
@@ -32,7 +32,7 @@
 			<md-list-item
 				ng-repeat="pobject in items track by pobject.id"
 				ng-click="ctrl.setSelected(pobject, $index, $event);"
-				md-colors="ctrl.isSelected($index) ? {background:'accent'} : {}"
+				mb-colors="ctrl.isSelected($index) ? {background:'accent'} : {}"
 				class="md-3-line">
 				<img
 					ng-if="pobject.mime_type.startsWith('image/')"

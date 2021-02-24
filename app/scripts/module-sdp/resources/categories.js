@@ -1,7 +1,8 @@
 
 mblowfish.resource('sdp-categories-list', {
 	label: 'Categories list',
-	templateUrl: 'views/resources/sdp-categories-list.html',
+	templateUrl: 'scripts/module-sdp/resources/categories.html',
+	tags: ['sdp-category-list'],
+	controllerAs: 'ctrl',
 	controller: 'SdpCategoriesListResourceCtrl',
-	tags: ['sdp-category-list']
 });

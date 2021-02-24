@@ -7,8 +7,8 @@
 		layout="column"
 		flex>
 		<md-input-container
-			class="md-icon-float md-block">
-			<label>Name</label>
+			class="md-icon-float md-icon-right md-block">
+			<label mb-translate>Name</label>
 			<input name="name" ng-model="config.model.name" required></input>
 			<div ng-messages="contentForm.name.$error">
 				<div ng-message="required">This is required!</div>
@@ -17,18 +17,25 @@
 		</md-input-container>
 		
 		<md-input-container>
-			<label>Description</label>
-			<input ng-model="config.model.description"></input>
+			<label mb-translate>Title</label>
+			<textarea ng-model="config.model.title"></textarea>
 		</md-input-container>
-		
+
 		<md-input-container>
-			<label>Title</label>
-			<input ng-model="config.model.title"></input>
+			<label mb-translate>Description</label>
+			<textarea ng-model="config.model.description"></textarea>
 		</md-input-container>
-		
+
 		<md-input-container>
-			<lf-ng-md-file-input lf-files="config.files" progress preview drag required></lf-ng-md-file-input>
-			<div ng-messages="!lf-files.file[0]">
+			<mb-file-input
+				name="files"
+				ng-model="config.files"
+				mb-progress
+				mb-preview
+				mb-drag
+				mb-required>
+			</mb-file-input>
+			<div ng-messages="contentForm.files.$error">
 				<div ng-message="required">This is required!</div>
 			</div>
 		</md-input-container>

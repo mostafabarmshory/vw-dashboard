@@ -1,12 +1,13 @@
 {
 	"name": "vw-dashboard",
-	"moduleName": "vw-dashboard",
-	"version": "6.0.5",
+	"moduleName": "mblowfish-core",
+	"version": "6.0.6",
 	"title": "ViraWeb Dashboard",
 	"description": "ViraWeb123 dashboards allow managers to monitor the contribution of the various departments in their organization.",
 	"license": "MIT",
 	"homepage": "https://dashboard.viraweb123.ir",
 	"dependencies": {
+		"seen-core": "https://gitlab.com/seen/angular/seen-core.git#3.0.x",
 		"seen-bank": "https://gitlab.com/seen/angular/seen-bank.git#3.0.x",
 		"seen-user": "https://gitlab.com/seen/angular/seen-user.git#3.0.x",
 		"seen-tenant": "https://gitlab.com/seen/angular/seen-tenant.git#3.0.x",
@@ -14,24 +15,20 @@
 		"seen-cms": "https://gitlab.com/seen/angular/seen-cms.git#3.0.x",
 		"seen-monitor": "https://gitlab.com/seen/angular/seen-monitor.git#3.0.x",
 		"seen-shop": "https://gitlab.com/seen/angular/seen-shop.git#3.0.x",
-		"seen-sdp": "https://gitlab.com/seen/angular/seen-sdp.git#3.0.x",
 		"seen-seo": "https://gitlab.com/seen/angular/seen-seo.git#3.0.x",
 		"angular-recaptcha": "4.1.x",
 		"angular-file-saver": "1.1.x",
-		"material-steppers": "2.0.x",
-		"leaflet": "^1.6.0",
-		"tinymce": "5.x",
-		"md-color-picker": "https://github.com/mostafabarmshory/md-color-picker.git#0.2.x",
-		"mblowfish-core": "https://gitlab.com/mblowfish/mblowfish-core.git#3.2.x"
+		"mblowfish-core": "https://gitlab.com/mblowfish/mblowfish-core.git#4.1.x"
 	},
 	"devDependencies": {
 		"angular-mocks": "1.8.x"
 	},
 	"resolutions": {
-		"angular": "1.8.x"
+		"angular": "1.8.x",
+		"angular-material": "1.2.x"
 	},
 	"appPath": "app",
-	"backend": {
-		"host": "elbaan.com"
+	"backend": { 
+		"host": "knowsmore.viraweb123.ir"
 	}
 }

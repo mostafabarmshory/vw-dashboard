@@ -17,7 +17,7 @@
 		<md-list flex>
 			<md-list-item 
 				ng-repeat="content in ctrl.items track by content.id"
-				md-colors="ctrl.isSelected(content) ? {background:'accent'} : {}"
+				mb-colors="ctrl.isSelected(content) ? {background:'accent'} : {}"
 				ng-click="ctrl.toggleSelected(content)"
 				class="md-3-line">
 				<div 

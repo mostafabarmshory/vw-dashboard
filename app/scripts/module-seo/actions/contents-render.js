@@ -24,7 +24,7 @@ mblowfish.addAction(AMD_SEO_CONTENTS_RENDER_ACTION, {
 	icon: 'edit',
 	title: 'Render link',
 	description: 'Open the content with an render',
-	groups: ['SEO'],
+	group: 'SEO',
 	action: function($event, $location) {
 		'ngInject';
 

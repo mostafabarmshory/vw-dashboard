@@ -1,6 +1,5 @@
 mblowfish.action(SEEN_QP_SORTS_UPDATE_ACTION, {
-	title: 'Update sorts',
-	icon: 'sort',
+	demon: true,
 	action: function($event, $mbResource, $q) {
 		'ngInject';
 		var values = $event.values || [];
@@ -15,6 +14,7 @@ mblowfish.action(SEEN_QP_SORTS_UPDATE_ACTION, {
 		return $mbResource.get(SEEN_QP_SORTS_RT, {
 			$value: queryParam,
 			$schema: schema,
+			targetEvent: $event,
 		});
 	}
 });

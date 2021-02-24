@@ -22,6 +22,7 @@
 
 
 mblowfish.addAction(AMD_BANK_GATES_UPDATE_ACTION, {
+	demon: true,
 	action: function($event, $q, BankBackend, $mbDispatcherUtil, $mbTranslate) {
 		'ngInject';
 		var values = $event.values;

@@ -114,12 +114,13 @@ mblowfish.addEditor('/cms/contents/:contentId', {
 			return ctrl.isCuntentBusy;
 		}
 
-		function uploadFile() {
+		function uploadFile($event) {
 			ctrl.isCuntentBusy = $mbResource
 				.get('file', {
 					$style: {
-						accept: '.*'
-					}
+						accept: '*/*'
+					},
+					targetEvent: $event
 				})
 				.then(function(file) {
 					return content.uploadValue(file)
@@ -142,12 +143,13 @@ mblowfish.addEditor('/cms/contents/:contentId', {
 		//-------------------------------------------------------------------------
 		// functions: term-taxonomies
 		//-------------------------------------------------------------------------
-		function addTermTaxonomy() {
+		function addTermTaxonomy($event) {
 			return $mbResource
 				.get(AMD_CMS_TERMTAXONOMIES_RT, {
 					style: {
 						title: 'Term taxonomy',
 					},
+					targetEvent: $event,
 				})
 				.then(function(termTaxonomies) {
 					var jobs = [];
@@ -181,12 +183,13 @@ mblowfish.addEditor('/cms/contents/:contentId', {
 		//-------------------------------------------------------------------------
 		// functions: metadata
 		//-------------------------------------------------------------------------
-		function createMetadata() {
+		function createMetadata($event) {
 			return $mbResource
 				.get(AMD_CMS_METADATA_RT, {
 					style: {
 						title: 'Microdatume',
 					},
+					targetEvent: $event,
 				})
 				.then(function(metadata) {
 					var jobs = [];

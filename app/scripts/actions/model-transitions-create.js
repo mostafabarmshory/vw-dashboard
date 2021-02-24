@@ -9,8 +9,7 @@ This action prform list of transitions into the list of models
 
  */
 mblowfish.action(SEEN_MODEL_TRANSITIONS_CREATE, {
-	title: 'Put a transition',
-	icon: 'settings',
+	demon: true,
 	action: function($event, $q, $mbLog, $mbDispatcherUtil, $mbWizard) {
 		'ngInject';
 		//>> precondition

@@ -1,78 +1,59 @@
-<md-content
-	layout-margin
-	flex>
+<md-content>
 	<mb-titled-block 
 		mb-progress="ctrl.loadingTag || ctrl.savingTag"
-		mb-title="{{'Tag' | translate}}"
+		mb-title="{{'Properties' | translate}}"
 		layout="column">
-		<section ng-show="!ctrl.edit"
-			layout="column">
-			<table>
-				<tr>
-					<td>ID </td>
-					<td>: {{tag.id}}</td>
-				</tr>
-				<tr>
-					<td>Name </td>
-					<td>: {{tag.name}}</td>
-				</tr>
-				<tr>
-					<td>Description </td>
-					<td>: {{tag.description}}</td>
-				</tr>
-				<tr>
-					<td>Creation Date</td>
-					<td>: {{tag.creation_dtime}}</td>
-				</tr>
-				<tr>
-					<td>Last Modif Date</td>
-					<td>: {{tag.modif_dtime}}</td>
-				</tr>
-			</table>
+		<md-input-container 
+			class="md-block">
+			<label mb-translate>ID</label>
+			<input 
+				ng-model="ctrl.model.id"
+				disabled>
+		</md-input-container>
+		<md-input-container 
+			class="md-block">
+			<label mb-translate>Name</label>
+			<input 
+				ng-model="ctrl.model.name"
+				ng-change="ctrl.setDerty(true)">
+		</md-input-container>
+		<md-input-container 
+			class="md-block">
+			<label mb-translate>Description</label>
+			<textarea
+				ng-model="ctrl.model.description"
+				ng-change="ctrl.setDerty(true)"></textarea>
+		</md-input-container>
 		
-			<!-- Action bar -->
-			<div ng-show="!ctrl.edit" layout="row">
-				<span flex></span>
-				<md-button 
-					class = "md-raised md-accent"
-					ng-click="remove()">
-	<!-- 				<mb-icon>delete</mb-icon> -->
-					<span mb-translate>Delete</span>
-				</md-button>
-				<md-button 
-					class = "md-raised"
-					ng-click="ctrl.edit=true">
-	<!-- 				<mb-icon>edit</mb-icon> -->
-					<span mb-translate>Edit</span>
-				</md-button>
-			</div>
-		</section>
-	
-		<section ng-show="ctrl.edit"
-			layout="column">
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Name</label>
-				<input ng-model="tag.name">
-			</md-input-container>
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Description</label>
-				<input ng-model="tag.description">
-			</md-input-container>
-			 <div layout="row">
-				<span flex></span>
-				<md-button 
-					class="md-raised"
-					ng-click="ctrl.edit=false">
-	<!-- 				<mb-icon>close</mb-icon> -->
-					<span mb-translate>Cancel</span>
-				</md-button>
-				<md-button 
-					class="md-raised md-primary"
-					ng-click="save()">
-	<!-- 				<mb-icon>save</mb-icon> -->
-					<span mb-translate>Save</span>
-				</md-button>
-			 </div>
-		</section>
+		<md-input-container 
+			class="md-block">
+			<label mb-translate>Creation Date</label>
+			<input
+				ng-model="ctrl.model.creation_dtime"
+				disabled>
+		</md-input-container>
+		<md-input-container 
+			class="md-block">
+			<label mb-translate>Last Modification Date</label>
+			<input
+				ng-model="ctrl.model.creation_dtime"
+				disabled>
+		</md-input-container>
+		
+		<!-- Action bar -->
+		<div layout="row">
+			<span flex></span>
+			<md-button 
+				class="md-raised md-primary"
+				ng-disabled="!ctrl.isDerty()"
+				ng-click="ctrl.updateModel()">
+				<span mb-translate>Save</span>
+			</md-button>
+			<md-button 
+				class = "md-raised md-accent"
+				ng-click="ctrl.deleteModel($event)">
+				<span mb-translate>Delete</span>
+			</md-button>
+		</div>
 	</mb-titled-block>
 </md-content>

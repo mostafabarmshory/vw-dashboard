@@ -9,10 +9,7 @@ Required:
 
  */
 mblowfish.addAction(SEEN_MODEL_UPDATE_ACTION, {
-	icon: 'save',
-	title: 'Update Models',
-	description: 'Update list of models',
-	groups: ['seen'],
+	demon: true,
 	action: function($event, $mbDispatcherUtil, $q, $mbTranslate, $mbLog) {
 		'ngInject';
 

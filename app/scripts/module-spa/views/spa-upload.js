@@ -18,7 +18,7 @@ mblowfish.view('/spas-upload', {
 		 */
 		function fileSelected(element) {
 			ctrl.uploading = true;
-			return $tenant.putSpa(element[0].lfFile)//
+			return $tenant.putSpa(element[0])//
 				.then(function(spa) {
 					toast('Application is installed successfully.');
 					return $navigator.openPage('spas/' + spa.id);

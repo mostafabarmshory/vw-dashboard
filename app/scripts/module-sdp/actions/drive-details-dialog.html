@@ -1,0 +1,52 @@
+<md-dialog-content layout="column">
+	<div layout="row">
+		<mb-icon class="md-icon-avatar">storage</mb-icon>
+		<h3>{{::drive.title}}</h3>
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="exec(SDP_DRIVES_EDIT_ACTION, $event, true)">
+			<mb-icon>edit</mb-icon>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="close()">
+			<mb-icon>close</mb-icon>
+		</md-button>
+	</div>
+	<md-content>
+		<table mb-table>
+			<!-- Asset and description -->
+			<tr>
+				<td mb-translate>ID</td>
+				<td>{{::drive.id}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Title</td>
+				<td>{{::drive.title}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Description</td>
+				<td>
+					<p>{{::drive.description}}</p>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>Derive</td>
+				<td>
+					<p>{{::drive.drive}}</p>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>Home</td>
+				<td>
+					<p>{{::drive.home}}</p>
+				</td>
+			</tr>
+			<tr>
+				<td mb-translate>Create Date</td>
+				<td>{{::drive.creation_dtime}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>Last Modification Date</td>
+				<td>{{::drive.modif_dtime}}</td>
+			</tr>
+		</table>
+	</md-content>
+</md-dialog-content>

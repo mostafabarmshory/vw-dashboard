@@ -1,13 +1,29 @@
-<md-content mb-preloading="ctrl.loading" mb-infinate-scroll="ctrl.loadNextPage()">
-	<md-list flex>
-		<md-list-item ng-repeat="asset in ctrl.items track by asset.id" ng-click="ctrl.openEditor(asset, $event)"
-			class="md-3-line">
-			<mb-icon>folder</mb-icon>
-			<div class="md-list-item-text" layout="column">
-				<h3>{{::asset.id}}</h3>
-				<h4>{{asset.name}}</h4>
-				<p>{{asset.description}}</p>
-			</div>
+<md-content 
+	mb-infinate-scroll="ctrl.loadNextPage()" 
+	ng-cloak>
+	<md-list>
+		<md-list-item 
+			ng-click="ctrl.execOnModel(SDP_ASSETS_DETAILS_ACTION, asset, $event)" 
+			ng-repeat="asset in ctrl.items track by asset.id"
+			class="noright">
+			<img
+				style="z-index: 1;"
+				class="md-avatar"
+				ng-if="asset.cover && !asset.$selected" 
+				ng-click="ctrl.toggleSelection(asset, $event)"
+				ng-src-error="https://www.gravatar.com/avatar/{{ ::asset.id | wbmd5 }}?d=identicon&size=32"
+				ng-src="{{asset.cover}}">
+			<mb-icon
+				style="z-index: 1;"
+				class="md-avatar-icon"
+				ng-click="ctrl.toggleSelection(asset, $event)"
+				ng-if="!asset.cover && !asset.$selected">folder</mb-icon>
+			<mb-icon
+				style="z-index: 1;"
+				class="md-avatar-icon"
+				ng-click="ctrl.toggleSelection(asset, $event)"
+				ng-if="asset.$selected">check</mb-icon>
+			<p>{{asset.title}}</p>
 		</md-list-item>
 	</md-list>
 </md-content>

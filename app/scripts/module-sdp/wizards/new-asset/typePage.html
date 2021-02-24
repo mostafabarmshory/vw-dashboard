@@ -1,0 +1,10 @@
+<md-radio-group 
+	ng-model="ctrl.media_type" 
+	ng-model-options="{getterSetter: true, debounce: 200}"
+	aria-labelledby="Media Type">
+	<md-radio-button 
+		ng-repeat="type in ctrl.media_types track by type.value" 
+		ng-value="type.value">
+		<span mb-translate>{{ ::type.title }}</span>
+	</md-radio-button>
+</md-radio-group>

@@ -1,11 +1,13 @@
 
+
+
 mblowfish.view('/sdp/assets', {
 	title: 'Assets',
 	icon: 'web_asset',
 	groups: ['Digital Assets'],
 	templateUrl: 'scripts/module-sdp/views/assets.html',
 	controllerAs: 'ctrl',
-	controller: function($scope, $view, $sdp, $controller, $mbActions) {
+	controller: function($scope, $view, $sdp, $controller, MbAction) {
 		'ngInject';
 
 		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
@@ -28,21 +30,44 @@ mblowfish.view('/sdp/assets', {
 			return $sdp.getAsset(id);
 		};
 
-		// delete account
-		this.deleteModel = function(asset) {
-			return $sdp.deleteAsset(asset.id);
-		};
-
-		/**
-		Opne the content with an editor
-		 */
-		this.openEditor = function(asset, $event) {
-			$event.values = [asset];
-			return $mbActions.exec(SDP_ASSETS_EDIT_ACTION, $event);
-		};
-
 		this.init({
 			eventType: SDP_ASSETS_SP,
 		});
+
+		var ctrl = this;
+		$view.getToolbar()
+			.addAction(new MbAction({
+				title: 'Delete',
+				icon: 'delete',
+				hide: function() {
+					return !ctrl.hasSelected();
+				},
+				/* @ngInject */
+				action: function($event) {
+					return ctrl.execOnModel(SEEN_MODEL_DELETE_ACTION, ctrl.getSelection(), $event);
+				}
+			}))
+			.addAction(new MbAction({
+				title: 'Edit',
+				icon: 'edit',
+				hide: function() {
+					return !ctrl.hasSelected();
+				},
+				/* @ngInject */
+				action: function($event) {
+					return ctrl.execOnModel(SDP_ASSETS_EDIT_ACTION, ctrl.getSelection(), $event);
+				}
+			}))
+			.addAction(new MbAction({
+				title: 'Preview',
+				icon: 'preview',
+				hide: function() {
+					return ctrl.getSelectionSize() !== 1;
+				},
+				/* @ngInject */
+				action: function($event) {
+					return ctrl.execOnModel(SDP_ASSETS_DETAILS_ACTION, ctrl.getSelection(), $event);
+				}
+			}));
 	},
 });

@@ -23,6 +23,7 @@
 mblowfish.addAction(AMD_SHOP_CATEGORY_CREATE_ACTION, {// create new category menu
 	priority: 10,
 	icon: 'add',
+	group: 'Shop',
 	title: 'New Category',
 	description: 'Creates new category',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',

@@ -51,16 +51,16 @@
 			layout-wrap>
 			<md-button
 				class="md-raised"
-				data-ng-repeat="trans in ctrl.transitions"
-				data-ng-click="ctrl.putTransition(trans, $event)"
-				data-ng-show="{{trans.visible}}">
+				ng-repeat="trans in ctrl.transitions"
+				ng-click="ctrl.putTransition(trans, $event)"
+				ng-show="{{::trans.visible}}">
 				<span mb-translate>{{trans.title|| trans.id}}</span>
 			</md-button>
 			<span flex></span>
 			<md-button
 				class="md-icon-button"
 				target="_blank"
-				ng-href="/{{ctrl.model.name}}/">
+				ng-href="/{{::ctrl.model.name}}/">
 				<mb-icon>open_in_new</span>
 			</md-button>
 		</div>

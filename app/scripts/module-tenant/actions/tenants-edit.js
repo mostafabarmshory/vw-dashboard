@@ -1,6 +1,8 @@
 mblowfish.addAction(TENANT_TENANTS_EDIT_ACTION, {
 	priority: 10,
 	icon: 'store',
+	demon: true,
+	group: 'Tenant',
 	title: 'Edit Tenant',
 	description: 'Open an editor to update a tenant',
 	action: function($event, $location) {

@@ -27,7 +27,7 @@ mblowfish.addResource('amd-seen-user-groups', {
 		}
 
 		function isSelected(group) {
-			return group.isSelected;
+			return group.selected;
 		}
 
 		_.assign(ctrl, {

@@ -1,12 +1,23 @@
-<md-input-container class="md-block md-icon-float">
+<md-input-container 
+	class="md-block md-icon-float">
 	<label translate>Name</label>
 	<input 
-		aria-label="Content Name"
+		aria-label="Category Name"
 		name="name"
 		ng-model="ctrl.name"
 		ng-model-options="{getterSetter: true, debounce: 200}">
 </md-input-container>
-<md-input-container class="md-block">
+<md-input-container 
+	class="md-block md-icon-float">
+	<label translate>Slug</label>
+	<input 
+		aria-label="Category slug"
+		name="name"
+		ng-model="ctrl.slug"
+		ng-model-options="{getterSetter: true, debounce: 200}">
+</md-input-container>
+<md-input-container 
+	class="md-block">
 	<label translate>Description</label>
 	<textarea 
 		aria-label="Content Description"
@@ -14,7 +25,17 @@
 		ng-model="ctrl.description"
 		ng-model-options="{getterSetter: true, debounce: 200}"></textarea>
 </md-input-container>
-
-
-
-
+<md-autocomplete 
+	md-input-name="parent" 
+	md-no-cache="false"
+	md-selected-item="ctrl.parent"
+	md-search-text="ctrl.searchText"
+	md-items="item in ctrl.categorySearch(ctrl.searchText)"
+	md-item-text="item.name"
+	md-escape-options="clear"
+	md-floating-label="Parent"
+	input-aria-describedby="category">
+	<md-item-template>
+		<span md-highlight-text="ctrl.searchText">{{::item.id}} - {{::item.name}}</span>
+	</md-item-template>
+</md-autocomplete>

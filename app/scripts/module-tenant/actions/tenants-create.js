@@ -1,6 +1,7 @@
 mblowfish.addAction(TENANT_TENANTS_CREATE_ACTION, {
 	priority: 10,
 	icon: 'store',
+	group: 'Tenant',
 	title: 'New Tenant',
 	description: 'Creates new sub-tenant in the current one',
 	action: function($tenant, $navigator, $mbDispatcher, $window, $mbTranslate) {

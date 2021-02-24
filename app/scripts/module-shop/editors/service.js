@@ -199,10 +199,11 @@ mblowfish.addEditor('/shop/services/:serviceId', {
 		/*
 		 * Assign some categories to the service.
 		 */
-		function selectCategories() {
+		function selectCategories($event) {
 			$mbResource
 				.get(AMD_SHOP_CATEGORY_SP, {
-					// TODO: maso, 2020: add initial resources
+					// TODO: maso, 2020: add initial resources,
+					targetEvent: $event
 				})
 				.then(addCategories);
 		}

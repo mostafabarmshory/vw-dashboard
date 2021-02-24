@@ -1,11 +1,24 @@
 
+/**
+
+Drive attributes:
+
+- id
+- title
+- description
+- driver
+- home
+- creation_dtime
+- modif_dtime
+
+ */
 mblowfish.view(SDP_VIEW_DRIVES_PATH, {
 	title: 'Storages',
 	icon: 'storage',
 	groups: ['Digital Assets'],
 	templateUrl: 'scripts/module-sdp/views/drives.html',
 	controllerAs: 'ctrl',
-	controller: function($scope, $view, $sdp, $controller, $mbActions) {
+	controller: function($scope, $view, $sdp, $controller, MbAction) {
 		'ngInject';
 
 		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
@@ -33,16 +46,45 @@ mblowfish.view(SDP_VIEW_DRIVES_PATH, {
 			return $sdp.deleteDrive(asset.id);
 		};
 
-		/**
-		Opne the content with an editor
-		 */
-		this.openEditor = function(link, $event) {
-			$event.values = [link];
-			return $mbActions.exec(SDP_DRIVES_EDIT_ACTION, $event);
-		};
-
 		this.init({
 			eventType: SDP_DRIVES_SP,
 		});
+		
+		
+		var ctrl = this;
+		$view.getToolbar()
+			.addAction(new MbAction({
+				title: 'Delete',
+				icon: 'delete',
+				hide: function() {
+					return !ctrl.hasSelected();
+				},
+				/* @ngInject */
+				action: function($event) {
+					return ctrl.execOnModel(SEEN_MODEL_DELETE_ACTION, ctrl.getSelection(), $event);
+				}
+			}))
+			.addAction(new MbAction({
+				title: 'Edit',
+				icon: 'edit',
+				hide: function() {
+					return !ctrl.hasSelected();
+				},
+				/* @ngInject */
+				action: function($event) {
+					return ctrl.execOnModel(SDP_DRIVES_EDIT_ACTION, ctrl.getSelection(), $event);
+				}
+			}))
+			.addAction(new MbAction({
+				title: 'Preview',
+				icon: 'preview',
+				hide: function() {
+					return ctrl.getSelectionSize() !== 1;
+				},
+				/* @ngInject */
+				action: function($event) {
+					return ctrl.execOnModel(SDP_DRIVES_DETAILS_ACTION, ctrl.getSelection(), $event);
+				}
+			}));
 	},
 });

@@ -8,10 +8,7 @@ Required:
 
  */
 mblowfish.addAction(SEEN_MODEL_DELETE_ACTION, {
-	icon: 'delete',
-	title: 'Delete Models',
-	description: 'Delete list of models',
-	groups: ['seen'],
+	demon: true,
 	action: function($event, $mbDispatcherUtil, $q, $mbTranslate, $mbLog) {
 		'ngInject';
 
@@ -54,7 +51,7 @@ mblowfish.addAction(SEEN_MODEL_DELETE_ACTION, {
 			}
 			// show error
 			if (faildModel.length) {
-				alert($mbTranslate('Failt to delete some items'));
+				alert($mbTranslate.instant('Failt to delete some items'));
 			}
 		}
 
@@ -62,12 +59,18 @@ mblowfish.addAction(SEEN_MODEL_DELETE_ACTION, {
 			/* 
 			TODO: maso, 2020: support bulkey delete from server
 			START: {
+				seen.deleteModels(values)
+					.then(function(){
+						// success
+					}, function(){
+						// fail
+					});
 			*/
 			_.forEach(values, deleteModel);
 
 			/*}*/
 			return $q.all(jobs)
-				.then(fireEvents);
+				.finally(fireEvents);
 		}
 
 		// TODO: maso, 2020: add the job into the job lists

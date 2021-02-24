@@ -21,6 +21,8 @@
  */
 
 mblowfish.addAction(AMD_SHOP_CATEGORY_DELETE_ACTION, {
+	demon: true,
+	group: 'Shop',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	action: function($q, $mbTranslate, $event, $mbDispatcherUtil) {
 		'ngInject';

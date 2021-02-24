@@ -1,18 +1,27 @@
 
 mblowfish.addEditor('/tenant/tenants/:tenantId', {
 	templateUrl: 'scripts/module-tenant/editors/tenant.html',
-	controller: function($scope, $state, $q, $tenant, $navigator, $mbTranslate, $mbResource, TenantTenant, TenantAccount) {
+	controllerAs: 'ctrl',
+	controller: function($scope, $state, $editor, $q, $tenant, $controller, $mbTranslate, $mbResource, TenantTenant, TenantAccount) {
 		'ngInject';
+
+		/*
+		 * Extends collection controller from MbAbstractCtrl 
+		 */
+		angular.extend(this, $controller('SeenAbstractItemEditorCtrl', {
+			$scope: $scope,
+			$editor: $editor
+		}));
+
+
 		/**
 		 * Load tenant
 		 */
 		this.load = function() {
-			if (this.loading) {
-				return;
-			}
-			var tenantId = $state.params.tenantId;
-			this.loading = true;
 			var ctrl = this;
+			var tenantId = $state.params.tenantId;
+			ctrl.setStorePath(TENANT_TENANTS_SP)
+				.setTitle('Tenant:' + tenantId);
 			return $tenant
 				.getTenant(tenantId, {
 					graphql: '{id,title, description,subdomain,domain,validate,parent_id,modif_dtime,creation_dtime,owners{id,login,date_joined}}'
@@ -21,83 +30,22 @@ mblowfish.addEditor('/tenant/tenants/:tenantId', {
 					// TODO: maso, 2020: load owners
 					ctrl.loadOwners(tenant.owners);
 					delete tenant.owners;
-					ctrl.tenant = new TenantTenant(tenant);
+					ctrl.setModel(new TenantTenant(tenant));
+					ctrl.setDerty(false);
 				}, function(/*error*/) {
 					alert($mbTranslate.instant('Failed to load tenant.'));
-				})//
-				.finally(function() {
-					ctrl.loading = false;
 				});
 		};
 
-		/**
-		 * Update current tenant
-		 */
-		this.update = function() {
-			if (this.saving) {
-				return;
-			}
-			this.saving = true;
-			var ctrl = this;
-			this.checkTenant();
-			return this.tenant.update()//
-				.then(function(tenant) {
-					ctrl.tenant = tenant;
-					ctrl.edit = false;
-				}, function() {
-					// show error
-					alert($mbTranslate.instant('Failed to save tenant'));
-				})
-				.finally(function() {
-					ctrl.saving = false;
-				});
-		};
-
-		this.checkTenant = function() {
-			if (this.tenant.title.length === 0) {
-				delete this.tenant.title;
-			}
-			if (this.tenant.subdomain.length === 0) {
-				delete this.tenant.subdomain;
-			}
-			if (this.tenant.domain.length === 0) {
-				delete this.tenant.domain;
-			}
-		};
-
-		/**
-		 * Remoe current tenant
-		 */
-		this.remove = function() {
-			if (this.removing) {
-				return;
-			}
-			var ctrl = this;
-			confirm($mbTranslate.instant('delete tenant?'))//
-				.then(function() {
-					ctrl.removing = true;
-					return ctrl.tenant.delete();
-				}, function() {
-					// cancel action. do nothing.
-				})
-				.then(function() {
-					$navigator.openPage('tenant/tenants');
-				}, function() {
-					// show error
-					alert($mbTranslate.instant('Failed to delete tenant'));
-				})
-				.finally(function() {
-					ctrl.removing = false;
-				});
-		};
-
-		this.addOwners = function() {
+		this.addOwners = function($event) {
 			if (this.ownersPromise) {
 				return this.ownersPromise;
 			}
 			var ctrl = this;
 			$mbResource
-				.get('/user/accounts')
+				.get(AMD_USER_ACCOUNTS_RT, {
+					targetEvent: $event
+				})
 				.then(function(accounts) {
 					var jobs = [];
 					_.forEach(accounts, function(account) {
@@ -139,6 +87,5 @@ mblowfish.addEditor('/tenant/tenants/:tenantId', {
 		};
 
 		this.load();
-	},
-	controllerAs: 'ctrl'
+	}
 });

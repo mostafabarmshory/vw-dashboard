@@ -41,26 +41,28 @@ mblowfish.addConstants({
 	SDP_VIEW_LINKS_PATH: '/sdp/links',
 	SDP_VIEW_CATEGORIES_PATH: '/sdp/categories',
 	SDP_VIEW_TAGS_PATH: '/sdp/tags',
+	SDP_VIEW_ASSETS_PATH: '/sdp/assets',
 
 	//------------------------------------------------------------
 	// ACTIONS
 	//------------------------------------------------------------
-	//	AMD_CMS_TERMTAXONOMIES_DELETE_ACTION: 'cms.termTaxonomies.delete',
 	SDP_ASSETS_EDIT_ACTION: 'sdp.assets.edit',
-	SDP_ASSETS_DELETE_ACTION: 'sdp.assets.delete',
 	SDP_ASSETS_CREATE_ACTION: 'sdp.assets.create',
+	SDP_ASSETS_DETAILS_ACTION: 'sdp.assets.details',
 
 	SDP_TAGS_EDIT_ACTION: 'sdp.tags.edit',
 	SDP_TAGS_DELETE_ACTION: 'sdp.tags.delete',
 	SDP_TAGS_CREATE_ACTION: 'sdp.tags.create',
+	SDP_TAGS_DETAILS_ACTION: 'sdp.tags.details',
 
 	SDP_CATEGORIES_EDIT_ACTION: 'sdp.categories.edit',
 	SDP_CATEGORIES_DELETE_ACTION: 'sdp.categories.delete',
 	SDP_CATEGORIES_CREATE_ACTION: 'sdp.categories.create',
+	SDP_CATEGORIES_DETAILS_ACTION: 'sdp.categories.details',
 
 	SDP_DRIVES_EDIT_ACTION: 'sdp.drives.edit',
-	SDP_DRIVES_DELETE_ACTION: 'sdp.drives.delete',
 	SDP_DRIVES_CREATE_ACTION: 'sdp.drives.create',
+	SDP_DRIVES_DETAILS_ACTION: 'sdp.drives.details',
 
 	//------------------------------------------------------------
 	// wizards
@@ -68,6 +70,7 @@ mblowfish.addConstants({
 	SDP_CATEGORY_CREATE_WIZARD: '/sdp/wizards/new-category',
 	SDP_TAG_CREATE_WIZARD: '/sdp/wizards/new-tag',
 	SDP_DRIVE_CREATE_WIZARD: '/sdp/wizards/new-storage',
+	SDP_ASSET_CREATE_WIZARD: '/sdp/wizards/new-asset',
 });
 
 mblowfish.run(function($mbToolbar) {
@@ -85,4 +88,204 @@ mblowfish.run(function($mbToolbar) {
 		.getToolbar(SDP_VIEW_DRIVES_PATH)
 		.addAction(SDP_DRIVES_CREATE_ACTION);
 
+	$mbToolbar
+		.getToolbar(SDP_VIEW_ASSETS_PATH)
+		.addAction(SDP_ASSETS_CREATE_ACTION);
+
 });
+
+
+
+//----------------------------------------------------------------------------------------
+//                                      Data Model
+//----------------------------------------------------------------------------------------
+/**
+ * @ngdoc Factories
+ * @name SdpAsset
+ * @description SDP Asset
+ * 
+ * @attr {integer} id of the asset
+ */
+mblowfish.factory('SdpAsset', seen.factory({
+	url: '/api/v2/sdp/assets',
+	resources: [{
+		name: 'Content',
+		type: 'binary',
+		url: '/content'
+	}, {
+		name: 'Tag',
+		factory: 'SdpTag',
+		type: 'collection',
+		url: '/tags'
+	}, {
+		name: 'Category',
+		factory: 'SdpCategory',
+		type: 'collection',
+		url: '/categories'
+	}, {
+		name: 'Link',
+		factory: 'SdpLink',
+		type: 'collection',
+		url: '/links'
+	}, {
+		name: 'AssetRelation',
+		factory: 'SdpAssetRelation',
+		type: 'collection',
+		url: '/relations'
+	}, {
+		name: 'Child',
+		factory: 'SdpAsset',
+		type: 'collection',
+		url: '/children'
+	}, {
+		name: 'Metadata',
+		factory: 'SdpMetadata',
+		type: 'collection',
+		url: '/metas'
+	}]
+}));
+
+/**
+ * @ngdoc Factories
+ * @name SdpAssetRelation
+ * @description Defines relation between assets
+ */
+mblowfish.factory('SdpAssetRelation', seen.factory({
+	url: '/api/v2/sdp/asset-relations'
+}));
+
+/**
+ * @ngdoc Factories
+ * @name SdpCategory
+ * @description Defines a category
+ */
+mblowfish.factory('SdpCategory', seen.factory({
+	url: '/api/v2/sdp/categories',
+	resources: [{
+		name: 'Asset',
+		factory: 'SdpAsset',
+		type: 'collection',
+		url: '/assets'
+	}, {
+		name: 'Child',
+		factory: 'SdpCategory',
+		type: 'collection',
+		url: '/children'
+	}]
+}));
+
+/**
+ * @ngdoc Factories
+ * @name SdpTag
+ * @description Defines a tag
+ */
+mblowfish.factory('SdpTag', seen.factory({
+	url: '/api/v2/sdp/tags',
+	resources: [{
+		name: 'Asset',
+		factory: 'SdpAsset',
+		type: 'collection',
+		url: '/assets',
+	}]
+}));
+
+/**
+ * @ngdoc Factories
+ * @name SdpDrive
+ * @description Defines a drive which stores assets` files
+ */
+mblowfish.factory('SdpDrive', seen.factory({
+	url: '/api/v2/sdp/drives'
+}));
+
+/**
+ * @ngdoc Factories
+ * @name SdpDriver
+ * @description Defines a driver to work with drives which store assets` files
+ */
+mblowfish.factory('SdpDriver', seen.factory({
+	url: '/api/v2/sdp/drivers'
+}));
+
+/**
+ * @ngdoc Factories
+ * @name SdpLink
+ * @description Defines a link to download the file of an asset
+ */
+mblowfish.factory('SdpLink', seen.factory({
+	url: '/api/v2/sdp/links',
+	resources: [{
+		name: 'Content',
+		type: 'binary',
+		url: '/content'
+	}, {
+		name: 'Payment',
+		factory: 'BankReceipt',
+		type: 'collection',
+		url: '/payments'
+	}]
+}));
+
+/**
+ * @ngdoc Factories
+ * @name SdpProfile
+ * @description Defines sdp profile
+ */
+mblowfish.factory('SdpProfile', seen.factory({
+	url: '/api/v2/sdp/accounts/{account_id}/profiles'
+}));
+
+/**
+ * @ngdoc Factories
+ * @name SdpMetadata
+ * @description Metadata of an Asset
+ */
+mblowfish.factory('SdpMetadata', seen.factory({
+	url: '/api/v2/sdp/asset/{asset_id}/metas'
+}));
+
+/**
+ * @ngdoc Services
+ * @name $sdp
+ * @description Manages entities in the SDP
+ */
+mblowfish.service('$sdp', seen.service({
+	resources: [{
+		name: 'Asset',
+		factory: 'SdpAsset',
+		type: 'collection',
+		url: '/api/v2/sdp/assets'
+	}, {
+		name: 'Category',
+		factory: 'SdpCategory',
+		type: 'collection',
+		url: '/api/v2/sdp/categories'
+	}, {
+		name: 'Tag',
+		factory: 'SdpTag',
+		type: 'collection',
+		url: '/api/v2/sdp/tags'
+	}, {
+		name: 'Link',
+		factory: 'SdpLink',
+		type: 'collection',
+		url: '/api/v2/sdp/links'
+	}, {
+		name: 'AssetRelation',
+		factory: 'SdpAssetRelation',
+		type: 'collection',
+		url: '/api/v2/sdp/asset-relations'
+	}, {
+		name: 'Drive',
+		factory: 'SdpDrive',
+		type: 'collection',
+		url: '/api/v2/sdp/drives'
+	}, {
+		name: 'Driver',
+		factory: 'SdpDriver',
+		type: 'collection',
+		url: '/api/v2/sdp/drivers'
+	}]
+}));
+
+

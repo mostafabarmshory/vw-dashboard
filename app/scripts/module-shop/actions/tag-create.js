@@ -25,7 +25,7 @@ mblowfish.addAction(AMD_SHOP_TAG_CREATE_ACTION, {// create new tag menu
 	icon: 'label',
 	title: 'New Tag',
 	description: 'Creates new tag',
-	groups: ['Shop'],
+	group: 'Shop',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	action: function($shop, $mbTranslate, $event, $mbDispatcherUtil, $mbDynamicForm) {
 		'ngInject';

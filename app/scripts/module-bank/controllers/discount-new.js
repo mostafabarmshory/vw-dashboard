@@ -64,8 +64,10 @@ mblowfish.controller('AmdDiscountNewCtrl', function($scope, $discount, $mbResour
 			});
 	}
 
-	$scope.selectUser = function() {
-		return $mbResource.get('userId')//
+	$scope.selectUser = function($event) {
+		return $mbResource.get('userId', {
+			targetEvent: $event
+		})//
 			.then(function(userId) {
 				$scope.config.model.user = userId;
 			});

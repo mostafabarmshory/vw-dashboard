@@ -24,7 +24,7 @@ mblowfish.addAction(AMD_SHOP_AGENCY_CREATE_ACTION, {
 	icon: 'store',
 	title: 'New Agency',
 	description: 'Creates new agency in shop domain',
-	groups: ['Shop'],
+	group: 'Shop',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	action: function($shop, $mbTranslate, $event, $mbDispatcherUtil, $mbDynamicForm) {
 		'ngInject';

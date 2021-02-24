@@ -1,8 +1,32 @@
 
+/**
+
+
+Hre is list of an asset attributes:
+
+ - id:Sequence
+ - title:Varchar
+ - path:Varchar
+ - size:Integer
+ - file_name:Varchar
+ - download:Integer
+ - creation_dtime:Datetime
+ - modif_dtime:Datetime
+ - description:Text
+ - mime_type:Varchar
+ - media_type:Varchar
+ - price:Integer
+ - cover:Varchar
+ - state:Varchar
+ - parent_id:Foreignkey
+ - owner_id:Foreignkey
+ - drive_id:Foreignkey
+
+ */
 mblowfish.editor('/sdp/assets/:modelId', {
 	templateUrl: 'scripts/module-sdp/editors/asset.html',
 	controllerAs: 'ctrl',
-	controller: function($scope, $element, $controller, $sdp, $editor, $state, SdpAsset) {
+	controller: function($scope, $element, $controller, $sdp, $editor, $state, SdpAsset, $mbResource) {
 		'ngInject';
 		// XXX: add fields path,
 		var graphQl = '{' +
@@ -17,6 +41,18 @@ mblowfish.editor('/sdp/assets/:modelId', {
 			$editor: $editor
 		}));
 
+		this.setImageUrl = function(propertyName, $event) {
+			var ctrl = this;
+			return $mbResource
+				.get('image-url', {
+					targetEvent: $event
+				})
+				.then(function(url) {
+					ctrl.model[propertyName] = url;
+					ctrl.setDerty(true);
+				});
+		};
+
 		/*
 		Loading asset and initialize editor
 		 */
@@ -28,10 +64,12 @@ mblowfish.editor('/sdp/assets/:modelId', {
 		function setCategoriesData(dataList) {
 			ctrl.categories = dataList;
 		}
+
 		function setTagsData(dataList) {
 			ctrl.tags = dataList;
 		}
-		//		$editor.setTitle($mbTranslate('Asset') + ':' + modelId);
+
+		$editor.setTitle('Asset:' + $state.params.modelId);
 		$sdp
 			.getAsset($state.params.modelId, {
 				graphql: graphQl

@@ -1,13 +1,20 @@
-<md-content mb-preloading="ctrl.loading" mb-infinate-scroll="ctrl.loadNextPage()">
+<md-content 
+	mb-infinate-scroll="ctrl.loadNextPage()">
 	<md-list flex>
-		<md-list-item ng-repeat="tag in ctrl.items track by tag.id" ng-click="ctrl.openEditor(category, $event)"
-			class="md-3-line">
-			<mb-icon>folder</mb-icon>
-			<div class="md-list-item-text" layout="column">
-				<h3>{{::tag.id}}</h3>
-				<h4>{{tag.name}}</h4>
-				<p>{{tag.description}}</p>
-			</div>
+		<md-list-item 
+			ng-repeat="item in ctrl.items track by item.id" 
+			ng-click="ctrl.execOnModel(SDP_TAGS_DETAILS_ACTION, item, $event)">
+			<mb-icon
+				style="z-index: 1;"
+				class="md-avatar-icon"
+				ng-click="ctrl.toggleSelection(item, $event)"
+				ng-if="!item.$selected">label</mb-icon>
+			<mb-icon
+				style="z-index: 1;"
+				class="md-avatar-icon"
+				ng-click="ctrl.toggleSelection(item, $event)"
+				ng-if="item.$selected">check</mb-icon>
+			<p>{{::item.id}} - {{item.name}}</p>
 		</md-list-item>
 	</md-list>
 </md-content>

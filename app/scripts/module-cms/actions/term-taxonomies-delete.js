@@ -1,9 +1,6 @@
 
 mblowfish.addAction(AMD_CMS_TERMTAXONOMIES_DELETE_ACTION, {
-	icon: 'delete',
-	title: 'Delete Term-Taxonomies',
-	description: 'Delete list of term-taxonomies',
-	groups: ['CMS'],
+	demon: true,
 	action: function($event, $mbDispatcherUtil, $q, $mbTranslate, $cms) {
 		'ngInject';
 

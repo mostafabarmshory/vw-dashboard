@@ -1,158 +1,159 @@
-<md-content
-	layout-margin
-	flex>
-	
+<md-content>
+	<!-- Model properties -->
 	<mb-titled-block 
-		mb-title="{{'Asset' | translate}}"
+		mb-title="{{'Properties' | translate}}" 
 		layout="column">
-		<section ng-show="!ctrl.edit"
-			layout="column">
-			<table>
-				<tr>
-					<td mb-translate>ID</td>
-					<td>: {{::ctrl.model.id}}</td>
-				</tr>
-				<tr>
-					<td mb-translate>Title</td>
-					<td>: {{ctrl.model.title}}</td>
-				</tr>
-			</table>
-			<!-- Action bar -->
-			<div layout="row">
-				<span flex></span>
-				<md-button 
-					class = "md-raised md-primary"
-					ng-click="remove()">
-					<mb-icon>delete</mb-icon>
-					<span mb-translate>Delete</span>
-				</md-button>
-				<md-button
-					class="md-raised"
-					ng-click="ctrl.edit=true">
-					<mb-icon>edit</mb-icon>
-					<span mb-translate>Edit</span>
-				</md-button>
-			</div>
+		<!-- Asset and description -->
+		<section>
+			<md-input-container 
+				class="md-block">
+				<label mb-translate>ID</label>
+				<input 
+					ng-model="ctrl.model.id"
+					disabled>
+			</md-input-container>
+			<md-input-container 
+				class="md-block">
+				<label mb-translate>Title</label>
+				<input 
+					ng-model="ctrl.model.title"
+					ng-change="ctrl.setDerty(true)">
+			</md-input-container>
+			<md-input-container 
+				class="md-block">
+				<label mb-translate>Description</label>
+				<textarea
+					ng-model="ctrl.model.description"
+					ng-change="ctrl.setDerty(true)"></textarea>
+			</md-input-container>
+			<md-input-container 
+				class="md-icon-float md-icon-right md-block">
+				<label mb-translate>Cover</label>
+				<input
+					ng-model="ctrl.model.cover"
+					ng-change="ctrl.setDerty(true)" />
+				<mb-icon ng-click="ctrl.setImageUrl('cover', $event)">more_horiz</mb-icon>
+			</md-input-container>
+			
+			<md-input-container 
+				class="md-block">
+				<label mb-translate>Create Date</label>
+				<input 
+					ng-model="ctrl.model.creation_dtime"
+					disabled>
+			</md-input-container>
+			<md-input-container 
+				class="md-block">
+				<label mb-translate>Last Modification Date</label>
+				<input 
+					ng-model="ctrl.model.modif_dtime"
+					disabled>
+			</md-input-container>
 		</section>
-	
-		<section ng-show="ctrl.edit"
-			layout="column">
-			
-			<md-button class="md-raised" ng-click="changeFile()">
-				{{'change file'  | translate}}
-			</md-button>
-			
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Name</label>
-				<input ng-model="asset.name">
-			</md-input-container>
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Description</label>
-				<input ng-model="asset.description">
-			</md-input-container>
-			<md-input-container ng-if="asset.type === 'file'" class="md-block" flex-gt-xs>
-				<label>Price</label>
-				<input ng-model="asset.price">
-			</md-input-container>
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Parent</label>
-				<input ng-model="asset.parent">
-			</md-input-container>
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Content</label>
-				<input ng-model="asset.content">
-			</md-input-container>
-			<md-input-container class="md-block" flex-gt-xs>
-				<label>Thumbnail</label>
-				<input ng-model="asset.thumbnail">
-			</md-input-container>
 		
-			 <div layout="row">
-				<span flex></span>
-				<md-button
-					class="md-raised" 
-					ng-click="save()">
-					<mb-icon>save</mb-icon>
-					<span mb-translate>Save</span>
-				</md-button>
-				<md-button 
-					class="md-raised" 
-					ng-click="ctrl.edit=false">
-					<mb-icon>close</mb-icon>
-					<span mb-translate>Cancel</span>
-				</md-button>
-			 </div>
+		
+		<!-- File -->
+		<section>
+			<md-input-container 
+				class="md-block">
+				<label mb-translate>File Name</label>
+				<input
+					ng-model="ctrl.model.file_name"
+					ng-change="ctrl.setDerty(true)" />
+			</md-input-container>
+			<md-input-container 
+				class="md-block">
+				<label mb-translate>File Path</label>
+				<input
+					ng-model="ctrl.model.path"
+					ng-change="ctrl.setDerty(true)" />
+			</md-input-container>
+			<md-input-container 
+				class="md-block">
+				<label mb-translate>File Size</label>
+				<input
+					ng-model="ctrl.model.size"
+					ng-change="ctrl.setDerty(true)" />
+			</md-input-container>
+			<md-input-container 
+				class="md-block">
+				<label mb-translate>Mimetype</label>
+				<input
+					ng-model="ctrl.model.mime_type"
+					ng-change="ctrl.setDerty(true)" />
+			</md-input-container>
+			<md-input-container 
+				class="md-block">
+				<label mb-translate>Media Type</label>
+				<input
+					ng-model="ctrl.model.media_type"
+					ng-change="ctrl.setDerty(true)" />
+			</md-input-container>
 		</section>
+
+		<!-- Action bar -->
+		<div layout="row">
+			<span flex></span>
+			<md-button 
+				class="md-raised md-primary"
+				ng-disabled="!ctrl.isDerty()"
+				ng-click="ctrl.updateModel()">
+				<span mb-translate>Save</span>
+			</md-button>
+			<md-button 
+				class = "md-raised md-accent"
+				ng-click="ctrl.deleteModel($event)">
+				<span mb-translate>Delete</span>
+			</md-button>
+		</div>
 	</mb-titled-block>
 
 	<!-- categories -->
-	<mb-titled-block
-		layout="column" 
-		mb-title="{{'Categories'  | translate}}">
+	<!--<mb-titled-block mb-title="{{'Categories'  | translate}}" layout="column">
 		<div class="sdp-chips-list" style="direction:rtl;">
 			<div layout="row" layout-align="start center">
-				<md-chips flex
-					class="custom-chips" 
-					ng-model="ctrl.categories" 
-					md-removable="true">
+				<md-chips flex class="custom-chips" ng-model="ctrl.categories" md-removable="true">
 					<md-chip-template>
 						<span>
 							<strong>{{$chip.id}} - {{$chip.name}}</strong>
 						</span>
 					</md-chip-template>
-				  	<button md-chip-remove class="md-primary chipaction" ng-click="removeFromCategory($chip)">
+					<button md-chip-remove class="md-primary chipaction" ng-click="removeFromCategory($chip)">
 						<mb-icon class="block">close</mb-icon>
-				  	</button>
+					</button>
 				</md-chips>
-				<md-button
-					class="md-icon-button md-raised"
-					ng-click="addToCategory()">
+				<md-button class="md-icon-button md-raised" ng-click="addToCategory()">
 					<mb-icon>add</mb-icon>
 				</md-button>
 			</div>
-			<div 
-				ng-if="!ctrl.categories || ctrl.categories.length == 0"
-				layout="column" layout-align="center center">
+			<div ng-if="!ctrl.categories || ctrl.categories.length == 0" layout="column" layout-align="center center">
 				<p>This asset is not contained in any category</p>
 			</div>
 		</div>
-	</mb-titled-block>
-	
+	</mb-titled-block>-->
+
 	<!-- tags -->
-	<mb-titled-block
-		mb-title="{{'Tags'  | translate}}"
-		layout="column">
+	<!--<mb-titled-block mb-title="{{'Tags'  | translate}}" layout="column">
 		<div class="sdp-chips-list" style="direction:rtl;">
 			<div layout="row" layout-align="start center">
-				<md-chips flex
-					class="custom-chips"
-					ng-model="ctrl.tags" 
-					md-removable="true">
+				<md-chips flex class="custom-chips" ng-model="ctrl.tags" md-removable="true">
 					<md-chip-template>
 						<span>
 							<strong>{{$chip.id}} - {{$chip.name}}</strong>
 						</span>
 					</md-chip-template>
-				  	<button md-chip-remove class="md-primary chipaction" ng-click="removeTag($chip)">
+					<button md-chip-remove class="md-primary chipaction" ng-click="removeTag($chip)">
 						<mb-icon class="block">close</mb-icon>
-				  	</button>
+					</button>
 				</md-chips>
-				<md-button 
-					class="md-icon-button md-raised" 
-					ng-click="addTag()">
+				<md-button class="md-icon-button md-raised" ng-click="addTag()">
 					<mb-icon>add</mb-icon>
 				</md-button>
 			</div>
-			<div ng-show="!ctrl.tags || ctrl.tags.length == 0"
-				layout="column" layout-align="center center">
+			<div ng-show="!ctrl.tags || ctrl.tags.length == 0" layout="column" layout-align="center center">
 				<p>This asset has no any tag.</p>
 			</div>
 		</div>
-	</mb-titled-block>
-	
+	</mb-titled-block>-->
+
 </md-content>
-
-
-
-
-
