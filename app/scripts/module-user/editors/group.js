@@ -120,10 +120,11 @@ mblowfish.controller('/ums/groups/:groupId', {
 				});
 		}
 
-		function changeRoles() {
+		function changeRoles($event) {
 			var myData = $scope.roles ? $scope.roles.items : [];
 			return $mbResource.get('roles', {
-				data: myData
+				data: myData,
+				targetEvent: $event
 			})//
 				.then(function(list) {
 					// change roles and reload roles
@@ -154,10 +155,11 @@ mblowfish.controller('/ums/groups/:groupId', {
 				});
 		}
 
-		function changeUsers() {
+		function changeUsers($event) {
 			var myData = $scope.users ? $scope.users.items : [];
 			return $mbResource.get('accounts', {
-				data: myData
+				data: myData,
+				targetEvent:$event
 			})//
 				.then(function(list) {
 					// change users and reload users

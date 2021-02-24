@@ -148,11 +148,12 @@ mblowfish.controller('/ums/roles/:roleId', {
 				});
 		}
 
-		function changeUsers() {
+		function changeUsers($event) {
 			var myData = $scope.users ? $scope.users.items : [];
 			return $mbResource
 				.get('accounts', {
-					data: myData
+					data: myData,
+					targetEvent: $event
 				})//
 				.then(function(list) {
 					// change users and reload users

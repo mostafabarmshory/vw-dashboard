@@ -21,7 +21,7 @@ mblowfish.addEditor('/tenant/tenants/:tenantId', {
 			var ctrl = this;
 			var tenantId = $state.params.tenantId;
 			ctrl.setStorePath(TENANT_TENANTS_SP)
-				.setTitle('Tenant:'+tenantId);
+				.setTitle('Tenant:' + tenantId);
 			return $tenant
 				.getTenant(tenantId, {
 					graphql: '{id,title, description,subdomain,domain,validate,parent_id,modif_dtime,creation_dtime,owners{id,login,date_joined}}'
@@ -37,13 +37,15 @@ mblowfish.addEditor('/tenant/tenants/:tenantId', {
 				});
 		};
 
-		this.addOwners = function() {
+		this.addOwners = function($event) {
 			if (this.ownersPromise) {
 				return this.ownersPromise;
 			}
 			var ctrl = this;
 			$mbResource
-				.get(AMD_USER_ACCOUNTS_RT)
+				.get(AMD_USER_ACCOUNTS_RT, {
+					targetEvent: $event
+				})
 				.then(function(accounts) {
 					var jobs = [];
 					_.forEach(accounts, function(account) {

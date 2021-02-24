@@ -1,6 +1,6 @@
 <!doctype html>
 <html 
-	md-theme="{{app.test.theme || app.setting.theme || app.config.theme || 'default'}}"
+	md-theme="{{ settings.theme || 'default'}}"
 	md-theme-watch
 	dir="{{app.dir}}"
 	manifest="<!-- injector:base-path --><!-- endinjector -->manifest.appcache">

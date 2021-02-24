@@ -130,8 +130,9 @@ mblowfish
 			url: '/user/account',
 			float: 'right',
 			items: [
+				MB_LAYOUTS_THEME_SWITECH_ACTION,
 				AMD_ACCOUNT_MESSAGES_COMPONENT,
-				AMD_ACCOUNT_TOOLBAR_COMPONENT
+				AMD_ACCOUNT_TOOLBAR_COMPONENT,
 			]
 		}, {
 			url: '/user/notifications',

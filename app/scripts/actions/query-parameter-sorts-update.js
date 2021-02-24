@@ -14,6 +14,7 @@ mblowfish.action(SEEN_QP_SORTS_UPDATE_ACTION, {
 		return $mbResource.get(SEEN_QP_SORTS_RT, {
 			$value: queryParam,
 			$schema: schema,
+			targetEvent: $event,
 		});
 	}
 });

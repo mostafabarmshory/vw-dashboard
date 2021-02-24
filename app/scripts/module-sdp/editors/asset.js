@@ -40,12 +40,14 @@ mblowfish.editor('/sdp/assets/:modelId', {
 			$element: $element,
 			$editor: $editor
 		}));
-		
-		this.setImageUrl = function (propertyName){
+
+		this.setImageUrl = function(propertyName, $event) {
 			var ctrl = this;
 			return $mbResource
-				.get('image-url', {})
-				.then(function(url){
+				.get('image-url', {
+					targetEvent: $event
+				})
+				.then(function(url) {
 					ctrl.model[propertyName] = url;
 					ctrl.setDerty(true);
 				});
@@ -66,7 +68,7 @@ mblowfish.editor('/sdp/assets/:modelId', {
 		function setTagsData(dataList) {
 			ctrl.tags = dataList;
 		}
-		
+
 		$editor.setTitle('Asset:' + $state.params.modelId);
 		$sdp
 			.getAsset($state.params.modelId, {

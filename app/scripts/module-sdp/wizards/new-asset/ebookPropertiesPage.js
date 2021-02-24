@@ -25,10 +25,11 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#ebook-properties', {
 		this.age_range = createSetterGetter('age_range');
 		this.language = createSetterGetter('language');
 		var ctrl = this;
-		this.setCover = function() {
+		this.setCover = function($event) {
 			$mbResource
 				.get('image-url', {
-					multi: false
+					multi: false,
+					targetEvent: $event
 				})
 				.then(function(url) {
 					ctrl.cover(url);
