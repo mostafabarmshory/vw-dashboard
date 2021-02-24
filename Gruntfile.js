@@ -621,9 +621,9 @@ module.exports = function(grunt) {
 				},
 				files: {
 					'<%= yeoman.dist %>': '*/dist/resources/',
-					'<%= yeoman.dist %>/scripts/plugins': 'tinymce/plugins/',
-					'<%= yeoman.dist %>/scripts/themes': 'tinymce/themes/',
-					'<%= yeoman.dist %>/scripts/skins': 'tinymce/skins/',
+//					'<%= yeoman.dist %>/scripts/plugins': 'tinymce/plugins/',
+//					'<%= yeoman.dist %>/scripts/themes': 'tinymce/themes/',
+//					'<%= yeoman.dist %>/scripts/skins': 'tinymce/skins/',
 				}
 			},
 		}
