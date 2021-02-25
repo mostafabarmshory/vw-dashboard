@@ -92,7 +92,9 @@ module.exports = (env, argv) => {
 			// Compiles ES6 and ES7 into ES5 code
 			test: /\.js$/,
 			exclude: /node_modules/,
-			use: ['babel-loader'],
+			use: [
+				{ loader: 'babel-loader' }
+			],
 		}, {
 			// CSS LOADER
 			//
