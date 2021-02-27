@@ -15,7 +15,7 @@
 					width="250px"
 					height="250px"
 					ng-src="/api/v2/user/accounts/{{::ctrl.account.id}}/avatar" 
-					ng-src-error="https://www.gravatar.com/avatar/{{::(ctrl.account.id|wbmd5)}}?d=identicon&size=250"/>
+					ng-src-error="https://www.gravatar.com/avatar/{{::(ctrl.account.id|mbmd5)}}?d=identicon&size=250"/>
 			</mb-inline>
 			<div flex>
 				<table

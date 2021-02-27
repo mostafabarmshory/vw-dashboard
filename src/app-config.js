@@ -93,15 +93,15 @@ export default function(
 		float: 'right',
 		items: [
 			MB_LAYOUTS_THEME_SWITECH_ACTION,
-//			AMD_ACCOUNT_MESSAGES_COMPONENT,
-//			AMD_ACCOUNT_TOOLBAR_COMPONENT,
+			AMD_ACCOUNT_MESSAGES_COMPONENT,
+			AMD_ACCOUNT_TOOLBAR_COMPONENT,
 		]
 	}, {
 		url: '/user/notifications',
 		float: 'right',
 		items: [
+			AMD_ACCOUNT_CHAT_ACTION,
 			MB_LAYOUTS_TOOLBAR_COMPONENT,
-//			AMD_ACCOUNT_CHAT_ACTION
 		]
 	}]);
 }

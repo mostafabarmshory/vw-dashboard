@@ -29,7 +29,7 @@
 					style="max-width: 300px; max-height: 300px; min-width: 24px; min-height: 24px;"
 					ng-if="ctrl.avatarState === 'normal'"
 					ng-src="/api/v2/user/accounts/{{ctrl.user.id}}/avatar"
-					ng-src-error="https://www.gravatar.com/avatar/{{app.user.current.id|wbmd5}}?d=identicon&size=32"/>
+					ng-src-error="https://www.gravatar.com/avatar/{{app.user.current.id|mbmd5}}?d=identicon&size=32"/>
 			</div>
 
 			<div 

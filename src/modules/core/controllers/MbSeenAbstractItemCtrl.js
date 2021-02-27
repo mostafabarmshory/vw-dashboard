@@ -44,7 +44,7 @@ export default function(
 	/*
 	 * Extends collection controller from MbAbstractCtrl 
 	 */
-	angular.extend(this, $controller('SeenAbstractCtrl', {
+	angular.extend(this, $controller('MbSeenAbstractCtrl', {
 		$scope: $scope
 	}));
 

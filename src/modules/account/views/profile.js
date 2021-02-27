@@ -4,11 +4,12 @@ Profile view
 The profile view allow current user to update its own profile
 
  */
+import templateUrl from './profile.html';
 
-mblowfish.view(AMD_ACCOUNT_PROFILES_VIEW, {
+export default {
 	title: 'Profiles',
 	description: 'View or update all profiles.',
-	templateUrl: 'scripts/module-account/views/profile.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Account'],
 	controller: function($scope, $mbTranslate, $window, UserProfile, $usr) {
@@ -143,4 +144,6 @@ mblowfish.view(AMD_ACCOUNT_PROFILES_VIEW, {
 		// Load account information
 		this.loadUser();
 	}
-});
+}
+
+

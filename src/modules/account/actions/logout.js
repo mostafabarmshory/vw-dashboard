@@ -1,5 +1,5 @@
 
-mblowfish.addAction(AMD_ACCOUNT_LOGOUT_ACTION, {
+export default {
 	group: 'Account',
 	title: 'Logout',
 	description: 'Logout from dashboard',
@@ -8,4 +8,4 @@ mblowfish.addAction(AMD_ACCOUNT_LOGOUT_ACTION, {
 		'ngInject';
 		$mbAccount.logout();
 	}
-});
+}

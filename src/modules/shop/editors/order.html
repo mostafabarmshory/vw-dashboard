@@ -128,7 +128,7 @@
 							class="md-3-line"> 
 							<img class="md-avatar"
 								 ng-src="/api/v2/user/accounts/{{::ctrl.order.customer.id}}/avatar"
-								 ng-src-error="https://www.gravatar.com/avatar/{{::(ctrl.order.customer.id| wbmd5)}}?d=identicon&size=150"/>
+								 ng-src-error="https://www.gravatar.com/avatar/{{::(ctrl.order.customer.id| mbmd5)}}?d=identicon&size=150"/>
 							<div
 								class="md-list-item-text"
 								layout="column">
@@ -161,7 +161,7 @@
 							ng-if="::ctrl.order.assignee"> 
 							<img class="md-avatar"
 								 ng-src="/api/v2/user/accounts/{{::ctrl.order.assignee.id}}/avatar" 
-								 ng-src-error="https://www.gravatar.com/avatar/{{::(ctrl.order.assignee.id | wbmd5)}}?d=identicon&size=150" />
+								 ng-src-error="https://www.gravatar.com/avatar/{{::(ctrl.order.assignee.id | mbmd5)}}?d=identicon&size=150" />
 							<div class="md-list-item-text" layout="column">
 								<h3>{{::ctrl.order.assignee.profiles[0].first_name}} {{::ctrl.order.assignee.profiles[0].last_name}}</h3>
 								<h4>

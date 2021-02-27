@@ -23,6 +23,7 @@
  */
 import './app.css';
 import './app-preloader.css';
+import './app-crisp-hack-button.css';
 
 import $ from 'jquery';
 import mblowfish from 'mblowfish';

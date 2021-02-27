@@ -44,188 +44,195 @@
  *       نزولی
  * 
  */
- export default function() {
-	var pagParam = function() {
+
+export class QueryParameter {
+	constructor() {
 		// init
 		this.param = {};
 		this.filterMap = {};
 		this.sortMap = {};
-		
-		this._init_filters = function(){
-			var obj = this.filterMap;
-			var keys = Object.keys(obj);
-			this.param['_px_fk[]'] = [];
-			this.param['_px_fv[]'] = [];
-			for(var i = 0; i < keys.length; i++){
-				var key = keys[i];
-				var values = obj[key];
-				for(var j = 0; j < values.length; j++){
-					var value = values[j];
-					this.param['_px_fk[]'].push(key);
-					this.param['_px_fv[]'].push(value);	
-				}
-			}
-		};
-		
-		this._init_sorts = function(){
-			var obj = this.sortMap;
-			this.param['_px_sk[]'] = Object.keys(obj);
-			// this.param['_px_so[]'] = Object.values(obj);
-			this.param['_px_so[]'] = [];
-			for(var index=0; index<this.param['_px_sk[]'].length; index++){
-				var key = this.param['_px_sk[]'][index];
-				this.param['_px_so[]'][index] = obj[key];
-			}
-		};
-	};
+	}
 
-	pagParam.prototype = {
-		setSize : function(size) {
-			this.param._px_ps = size;
-			return this;
-		},
-		setQuery : function(query) {
-			this.param._px_q = query;
-			return this;
-		},
-		/**
-		 * تعیین صفحه مورد نظر
-		 * 
-		 * این فراخوانی صفحه‌ای را تعیین می‌کند که مورد نظر کاربر است. برای
-		 * نمونه اگر صفحه دوم از یک کاوش مد نظر باشد باید مقدار یک به عنوان
-		 * ورودی این تابع استفاده شود.
-		 * 
-		 * اندیس تمام صفحه‌ها از صفر شروع می‌شود. بنابر این صفحه اول اندیس صفر و
-		 * صفحه دوم اندیس یک دارد.
-		 * 
-		 * @param int
-		 *            $page شماره صفحه
-		 * @return QueryParameter خود شئی به عنوان خروجی برگردانده می‌شود.
-		 */
-		setPage : function($page) {
-			this.param._px_p = $page;
-			return this;
-		},
-		nextPage : function() {
-			if(!this.param._px_p){
-				this.param._px_p = 1;
+	_init_filters() {
+		var obj = this.filterMap;
+		var keys = Object.keys(obj);
+		this.param['_px_fk[]'] = [];
+		this.param['_px_fv[]'] = [];
+		for (var i = 0; i < keys.length; i++) {
+			var key = keys[i];
+			var values = obj[key];
+			for (var j = 0; j < values.length; j++) {
+				var value = values[j];
+				this.param['_px_fk[]'].push(key);
+				this.param['_px_fv[]'].push(value);
 			}
-			this.param._px_p += 1;
-			return this;
-		},
-
-		setOrder : function($key, $order) {
-			if(!$order){				
-				this.removeSorter($key, $order);
-			}else{				
-				this.addSorter($key, $order);
-			}
-			this._init_sorts();
-			return this;
-		},
-		addSorter : function($key, $order){
-			if(!$order){
-				return this;
-			}
-			this.sortMap[$key] = $order;
-			this._init_sorts();
-			return this;
-		},
-		removeSorter : function($key){
-			delete this.sortMap[$key];
-			this._init_sorts();
-			return this;
-		},
-		clearSorters: function(){
-			this.sortMap = {};
-		},
-		
-		/**
-		 * Sets new filter and remove all old values
-		 * 
-		 * @memberof QueryParameter
-		 */
-		setFilter : function($key, $value) {
-			if(!angular.isDefined($value)){				
-				this.removeFilter($key, $value);
-			}else{
-				this.filterMap[$key] = [];
-				this.addFilter($key, $value);
-			}
-			this._init_filters();
-			return this;
-		},
-		
-		addFilter : function($key, $value){
-			if(!angular.isDefined($value)){				
-				return this;
-			}
-			if(!angular.isArray(this.filterMap[$key])){
-				this.filterMap[$key] = [];
-			}
-			this.filterMap[$key].push($value);
-			this._init_filters();
-			return this;
-		},
-		
-		removeFilter : function($key){
-			delete this.filterMap[$key];
-			this._init_filters();
-			return this;
-		},
-		
-		/**
-		 * Removes all filter options
-		 * 
-		 * @memberof QueryParameter
-		 */
-		clearFilters: function(){
-			this.filterMap = {};
-		},
-		
-		getParameter : function() {
-			return this.param;
-		},
-		
-		/**
-		 * پارامترهای اضافه
-		 * 
-		 * در برخی از کاربردها نیاز به ارسال پارامترهای بیشتری به سرور هست. این
-		 * فراخوانی امکان اضافه کردن پارامترهای اضافه را فراهم می‌کند.
-		 * 
-		 * @memberof QueryParameter
-		 * @since 1.0.2
-		 * 
-		 * @param Object
-		 *            value
-		 * @param String
-		 *            key کلید پارامتر مورد نظر
-		 * @return خود موجودیت
-		 */
-		put : function(key, value) {
-			this.param[key] = value;
-			return this;
-		},
-
-		/**
-		 * دسترسی به یک پارامترها خاص
-		 * 
-		 * این فراخوانی برای دسترسی به یک پارامتر خواص در نظر گرفته شده. این
-		 * پارامترها معمولا به صورت اضافه برای سرور ارسال می‌شوند.
-		 * 
-		 * @memberof QueryParameter
-		 * @since 1.0.2
-		 * 
-		 * @param String
-		 *            key کلید پارامتر مورد نظر
-		 * @return مقدار معادل با کلید
-		 */
-		get : function(key) {
-			return this.param[key];
 		}
+	}
 
-	};
-	return pagParam;
+	_init_sorts() {
+		var obj = this.sortMap;
+		this.param['_px_sk[]'] = Object.keys(obj);
+		// this.param['_px_so[]'] = Object.values(obj);
+		this.param['_px_so[]'] = [];
+		for (var index = 0; index < this.param['_px_sk[]'].length; index++) {
+			var key = this.param['_px_sk[]'][index];
+			this.param['_px_so[]'][index] = obj[key];
+		}
+	}
+
+	setSize(size) {
+		this.param._px_ps = size;
+		return this;
+	}
+
+	setQuery(query) {
+		this.param._px_q = query;
+		return this;
+	}
+	/**
+	 * تعیین صفحه مورد نظر
+	 * 
+	 * این فراخوانی صفحه‌ای را تعیین می‌کند که مورد نظر کاربر است. برای
+	 * نمونه اگر صفحه دوم از یک کاوش مد نظر باشد باید مقدار یک به عنوان
+	 * ورودی این تابع استفاده شود.
+	 * 
+	 * اندیس تمام صفحه‌ها از صفر شروع می‌شود. بنابر این صفحه اول اندیس صفر و
+	 * صفحه دوم اندیس یک دارد.
+	 * 
+	 * @param int
+	 *            $page شماره صفحه
+	 * @return QueryParameter خود شئی به عنوان خروجی برگردانده می‌شود.
+	 */
+	setPage($page) {
+		this.param._px_p = $page;
+		return this;
+	}
+
+	nextPage() {
+		if (!this.param._px_p) {
+			this.param._px_p = 1;
+		}
+		this.param._px_p += 1;
+		return this;
+	}
+
+	setOrder($key, $order) {
+		if (!$order) {
+			this.removeSorter($key, $order);
+		} else {
+			this.addSorter($key, $order);
+		}
+		this._init_sorts();
+		return this;
+	}
+
+	addSorter($key, $order) {
+		if (!$order) {
+			return this;
+		}
+		this.sortMap[$key] = $order;
+		this._init_sorts();
+		return this;
+	}
+
+	removeSorter($key) {
+		delete this.sortMap[$key];
+		this._init_sorts();
+		return this;
+	}
+
+	clearSorters() {
+		this.sortMap = {};
+	}
+
+	/**
+	 * Sets new filter and remove all old values
+	 * 
+	 * @memberof QueryParameter
+	 */
+	setFilter($key, $value) {
+		if (!angular.isDefined($value)) {
+			this.removeFilter($key, $value);
+		} else {
+			this.filterMap[$key] = [];
+			this.addFilter($key, $value);
+		}
+		this._init_filters();
+		return this;
+	}
+
+	addFilter($key, $value) {
+		if (!angular.isDefined($value)) {
+			return this;
+		}
+		if (!angular.isArray(this.filterMap[$key])) {
+			this.filterMap[$key] = [];
+		}
+		this.filterMap[$key].push($value);
+		this._init_filters();
+		return this;
+	}
+
+	removeFilter($key) {
+		delete this.filterMap[$key];
+		this._init_filters();
+		return this;
+	}
+
+	/**
+	 * Removes all filter options
+	 * 
+	 * @memberof QueryParameter
+	 */
+	clearFilters() {
+		this.filterMap = {};
+	}
+
+	getParameter() {
+		return this.param;
+	}
+
+	/**
+	 * پارامترهای اضافه
+	 * 
+	 * در برخی از کاربردها نیاز به ارسال پارامترهای بیشتری به سرور هست. این
+	 * فراخوانی امکان اضافه کردن پارامترهای اضافه را فراهم می‌کند.
+	 * 
+	 * @memberof QueryParameter
+	 * @since 1.0.2
+	 * 
+	 * @param Object
+	 *            value
+	 * @param String
+	 *            key کلید پارامتر مورد نظر
+	 * @return خود موجودیت
+	 */
+	put(key, value) {
+		this.param[key] = value;
+		return this;
+	}
+
+	/**
+	 * دسترسی به یک پارامترها خاص
+	 * 
+	 * این فراخوانی برای دسترسی به یک پارامتر خواص در نظر گرفته شده. این
+	 * پارامترها معمولا به صورت اضافه برای سرور ارسال می‌شوند.
+	 * 
+	 * @memberof QueryParameter
+	 * @since 1.0.2
+	 * 
+	 * @param String
+	 *            key کلید پارامتر مورد نظر
+	 * @return مقدار معادل با کلید
+	 */
+	get(key) {
+		return this.param[key];
+	}
+
+}
+
+export default function() {
+	return QueryParameter;
 }
 
 

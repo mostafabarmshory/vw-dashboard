@@ -31,3 +31,5 @@ Required data
 
 
  */
+
+export default {}

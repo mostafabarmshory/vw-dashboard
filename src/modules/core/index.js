@@ -12,7 +12,6 @@ import './seen/tenant';
 import './seen/user';
 
 import Constants from './Constants';
-import chatAction from './actions/crisp-chat';
 import modelDeleteAction from './actions/model-delete';
 import modelTransitionAction from './actions/model-transitions-create';
 import modelUpdateAction from './actions/model-update';
@@ -43,9 +42,8 @@ import modelTransitionWizard from './wizards/model-transition-data/wizard';
 mblowfish
 	.constant(Constants)
 	// actions
-	.action(Constants.AMD_ACCOUNT_CHAT_ACTION, chatAction)
-	.action(Constants.SEEN_MODEL_DELETE_ACTION, modelDeleteAction)
 	.action(Constants.SEEN_MODEL_TRANSITIONS_CREATE, modelTransitionAction)
+	.action(Constants.SEEN_MODEL_DELETE_ACTION, modelDeleteAction)
 	.action(Constants.SEEN_MODEL_UPDATE_ACTION, modelUpdateAction)
 	.action(Constants.SEEN_QP_FILTERS_UPDATE_ACTION, queryParamFilterUpdateAction)
 	.action(Constants.SEEN_QP_SORTS_UPDATE_ACTION, queryParamSortUpdateAction)

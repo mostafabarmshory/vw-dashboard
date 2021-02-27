@@ -1,8 +1,10 @@
 
-mblowfish.sidenav(AMD_ACCOUNT_MESSAGES_SIDENAV, {
+import templateUrl from './messages.html';
+
+export default {
 	title: 'Messages',
 	description: 'Navigate all system messages',
-	templateUrl: 'scripts/module-account/sidenavs/messages.html',
+	templateUrl: templateUrl,
 	locked: 'false',
 	position: 'end',
 	controllerAs: 'ctrl',
@@ -40,4 +42,4 @@ mblowfish.sidenav(AMD_ACCOUNT_MESSAGES_SIDENAV, {
 			eventType: AMD_ACCOUNT_MESSAGES_SP
 		});
 	}
-});
+}

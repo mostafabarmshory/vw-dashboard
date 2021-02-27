@@ -42,23 +42,24 @@ class SeenStaticResourceCatch {
 }
 
 
-class SObject {
-	constructor(data) {
-		if (data) {
-			this.setData(data);
-		}
-	}
-	setData(data) {
-		angular.extend(this, data);
-	}
-	isAnonymous() {
-		return !(this.id && this.id > 0);
-	}
-	isExpired() {
-		// NOTE: maso, 2018: to be compatible with pluf
-		return false;
+function SObject(data) {
+	if (data) {
+		this.setData(data);
 	}
 }
+
+SObject.prototype.setData = function(data) {
+	angular.extend(this, data);
+};
+
+SObject.prototype.isAnonymous = function() {
+	return !(this.id && this.id > 0);
+};
+
+SObject.prototype.isExpired = function() {
+	// NOTE: maso, 2018: to be compatible with pluf
+	return false;
+};
 
 function capitalizeFirstLetter(name) {
 	return name.charAt(0).toUpperCase() + name.slice(1);

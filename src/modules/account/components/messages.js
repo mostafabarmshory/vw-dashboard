@@ -1,5 +1,9 @@
-mblowfish.addComponent(AMD_ACCOUNT_MESSAGES_COMPONENT, {
-	templateUrl: 'scripts/module-account/components/messages.html',
+
+import templateUrl from './messages.html';
+import './messages.css';
+
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($mbActions, $element, $usr, $mbDispatcher) {
 		'ngInject';
@@ -25,4 +29,6 @@ mblowfish.addComponent(AMD_ACCOUNT_MESSAGES_COMPONENT, {
 			updateElement();
 		});
 	}
-});
+}
+
+

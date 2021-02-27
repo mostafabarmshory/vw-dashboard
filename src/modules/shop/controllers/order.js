@@ -34,7 +34,7 @@ mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder, $controller, $scope
 	/*
 	 * Extends collection controller from MbAbstractCtrl 
 	 */
-	angular.extend(this, $controller('SeenAbstractCtrl', {
+	angular.extend(this, $controller('MbSeenAbstractCtrl', {
 		$scope: $scope
 	}));
 

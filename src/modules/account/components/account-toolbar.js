@@ -1,5 +1,9 @@
-mblowfish.addComponent(AMD_ACCOUNT_TOOLBAR_COMPONENT, {
-	templateUrl: 'scripts/module-account/components/account-toolbar.html',
+
+import templateUrl from './account-toolbar.html';
+import './account-toolbar.css';
+
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($mbActions) {
 		'ngInject';
@@ -12,4 +16,4 @@ mblowfish.addComponent(AMD_ACCOUNT_TOOLBAR_COMPONENT, {
 			$mbActions.exec(AMD_ACCOUNT_PROFILE_UPDATE_ACTION, $event);
 		};
 	}
-});
+}

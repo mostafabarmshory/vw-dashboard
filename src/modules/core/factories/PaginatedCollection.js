@@ -20,6 +20,8 @@
  * SOFTWARE.
  */
 
+import { SeenObject } from './SeenObject';
+
 /**
  * @ngdoc Factories
  * @name PaginatedCollection
@@ -28,13 +30,10 @@
  * 
  * @see QueryParameter
  */
-export default function(SeenObject) {
-
-	var list = function() {
-		SeenObject.apply(this, arguments);
-	};
-
-	list.prototype = new SeenObject();
+class PaginatedCollection extends SeenObject {
+	constructor(data) {
+		super(data);
+	}
 
 	/**
 	 * Check if there is more page in collection
@@ -42,18 +41,19 @@ export default function(SeenObject) {
 	 * @memberof PaginatedCollection
 	 * @return {boolean} true if there exists more page
 	 */
-	list.prototype.hasMore = function() {
+	hasMore() {
 		return (this.current_page < this.page_number);
-	};
+	}
+
 	/**
 	 * Check if it is the first page
 	 * 
 	 * @memberof PaginatedCollection
 	 * @return {boolean} true if this is the first page
 	 */
-	list.prototype.isFirst = function() {
+	isFirst() {
 		return this.current_page === 1;
-	};
+	}
 
 	/**
 	 * Gets next page index
@@ -61,9 +61,9 @@ export default function(SeenObject) {
 	 * @memberof PaginatedCollection
 	 * @return {integer} index of the next page
 	 */
-	list.prototype.getNextPageIndex = function() {
+	getNextPageIndex() {
 		return this.current_page + 1;
-	};
+	}
 
 	/**
 	 * Gets next page index
@@ -71,8 +71,11 @@ export default function(SeenObject) {
 	 * @memberof PaginatedCollection
 	 * @return {integer} index of the previous page
 	 */
-	list.prototype.getPreviousPageIndex = function() {
+	getPreviousPageIndex() {
 		return this.current_page - 1;
-	};
-	return list;
+	}
+}
+
+export default function() {
+	return PaginatedCollection;
 }

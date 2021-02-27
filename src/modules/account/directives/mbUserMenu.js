@@ -29,7 +29,7 @@
  * Load current user action into the scope. It is used to show user menu
  * in several parts of the system.
  */
-mblowfish.directive('mbUserMenu', function($mbAccount, $mdSidenav) {
+export default function($mbAccount, $mdSidenav) {
 	/**
 	 * Post link 
 	 */
@@ -50,4 +50,7 @@ mblowfish.directive('mbUserMenu', function($mbAccount, $mdSidenav) {
 		link: postLink,
 		controller: 'MbAccountCtrl'
 	};
-});
+}
+
+
+
