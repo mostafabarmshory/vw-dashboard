@@ -4,11 +4,11 @@ export default {
 	group: 'Tenant',
 	title: 'New Tenant',
 	description: 'Creates new sub-tenant in the current one',
-	action: function($tenant, $navigator, $mbDispatcher, $window, $mbTranslate) {
+	action: function($tenant, $mbDialog, $event, $mbDispatcher, $window, $mbTranslate) {
 		'ngInject';
 		var job = $tenant.tenantSchema()
 			.then(function(schema) {
-				return $navigator.openDialog({
+				return $mbDialog.show({
 					templateUrl: 'views/dialogs/amd-item-new.html',
 					config: {
 						title: 'New Tenant',

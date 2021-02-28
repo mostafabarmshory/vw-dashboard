@@ -1,6 +1,8 @@
 
-mblowfish.addEditor('/receipts/:id', {
-	templateUrl: 'views/amd-tenant-receipt.html',
+import templateUrl from './receipt.html';
+
+export default {
+	templateUrl: templateUrl,
 	controller: function($scope, $state, $tenant/*, $app, $window*/) {
 		'ngInject';
 
@@ -67,4 +69,6 @@ mblowfish.addEditor('/receipts/:id', {
 	},
 	controllerAs: 'ctrl',
 	helpId: 'receipt'
-});
+}
+
+

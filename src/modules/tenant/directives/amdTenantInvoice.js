@@ -19,18 +19,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import templateUrl from './amdTenantInvoice.html';
 
-mblowfish.filter('iranCurrency', function(numberFilter, translateFilter) {
-	return function(number, unit) {
-		var txt = '';
-		if (!number) {
-			return translateFilter('free');
-		}
-		if (unit === 'R') {
-			txt = 'rial';
-		} else if (unit === 'T') {
-			txt = 'tooman';
-		}
-		return numberFilter(number) + ' ' + translateFilter(txt);
+export default function() {
+	function postLink($scope, $element, $attributes, $ctrls) {
+		var ngModel = $ctrls[0];
+		ngModel.$render = function() {
+			$scope.invoice = ngModel.$modelValue;
+		};
+	}
+	return {
+		restrict: 'E',
+		templateUrl: templateUrl,
+		scope: {
+			disableId: '<amdDisableId',
+			title: '@'
+		},
+		link: postLink,
+		/*    controller: 'the name of a controller defined in controllers',
+		 * or directly -> controller: function(){
+		 *                      define every ctrls to act on view
+		 *                  }             */
+		require: ['ngModel']
 	};
-});
+}
+

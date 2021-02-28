@@ -1,6 +1,7 @@
+import templateUrl from './tenant.html';
 
-mblowfish.addEditor('/tenant/tenants/:tenantId', {
-	templateUrl: 'scripts/module-tenant/editors/tenant.html',
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $state, $editor, $q, $tenant, $controller, $mbTranslate, $mbResource, TenantTenant, TenantAccount) {
 		'ngInject';
@@ -88,4 +89,7 @@ mblowfish.addEditor('/tenant/tenants/:tenantId', {
 
 		this.load();
 	}
-});
+}
+
+
+

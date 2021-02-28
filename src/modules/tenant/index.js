@@ -26,11 +26,18 @@ import mblowfish from 'mblowfish';
 import tenantCreateAction from './actions/tenants-create';
 import tenantEditAction from './actions/tenants-edit';
 // >> directives
+import amdTenantInvoiceDirective from './directives/amdTenantInvoice';
 // >> editors
+import invoiceEditor from './editors/invoice';
+import reciptEditor from './editors/receipt';
+import tenantEditor from './editors/tenant';
+import ticketEditor from './editors/ticket';
 // >> filters
 // >> services
 import mbTenantService from './services/mbTenant';
 // >> views
+import invoiceView from './views/invoices';
+import tenatnsView from './views/tenants';
 
 
 import Constants from './Constants';
@@ -43,13 +50,19 @@ mblowfish
 	.action(Constants.TENANT_TENANTS_EDIT_ACTION, tenantEditAction)
 
 	// >> directives
+	.directive('amdTenantInvoice', amdTenantInvoiceDirective)
 	// >> editors
+	.editor('/tenant/invoices/:invoiceId', invoiceEditor)
+	.editor('/receipts/:id', reciptEditor)
+	.editor('/tenant/tenants/:tenantId', tenantEditor)
+	.editor('/tenant/tickets/:ticketId', ticketEditor)
 	// >> filters
 	// >> services
 	.provider('$mbTenant', mbTenantService)
 
 	// >> views
-
+	.view('/tenant/invoices', invoiceView)
+	.view(TENANT_TENANTS_VIEW_PATH, tenatnsView)
 
 	/**
 	Integerate wtih 

@@ -1,6 +1,7 @@
+import templateUrl from './ticket.html';
 
-mblowfish.addEditor('/tenant/tickets/:ticketId', {
-	templateUrl: 'scripts/module-tenant/editors/ticket.html',
+export default {
+	templateUrl: templateUrl,
 	controller: function($scope, $state, $tenant, QueryParameter) {
 		'ngInject';
 
@@ -123,4 +124,6 @@ mblowfish.addEditor('/tenant/tickets/:ticketId', {
 		$scope.editing = false;
 	},
 	controllerAs: 'ctrl'
-});
+}
+
+

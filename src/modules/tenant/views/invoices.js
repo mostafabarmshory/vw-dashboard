@@ -1,7 +1,7 @@
+import templateUrl from './invoices.html';
 
-
-mblowfish.view('/tenant/invoices', {
-	templateUrl: 'scripts/module-tenant/views/invoices.html',
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Tenant'],
 	title: 'Invoices',
@@ -59,4 +59,7 @@ mblowfish.view('/tenant/invoices', {
 		$scope.sortKeysTitles = ['Id', 'Title', 'Amount', 'Due time', 'creation time'];
 
 	}
-});
+}
+
+
+

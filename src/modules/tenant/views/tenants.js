@@ -1,6 +1,8 @@
 
-mblowfish.view(TENANT_TENANTS_VIEW_PATH, {
-	templateUrl: 'scripts/module-tenant/views/tenants.html',
+import templateUrl from './tenants.html';
+
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Tenant'],
 	title: 'Tenants',
@@ -44,4 +46,6 @@ mblowfish.view(TENANT_TENANTS_VIEW_PATH, {
 			eventType: TENANT_TENANTS_SP,
 		});
 	}
-});
+}
+
+
