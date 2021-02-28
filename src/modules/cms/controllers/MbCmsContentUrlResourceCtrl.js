@@ -1,10 +1,14 @@
 
 
-mblowfish.controller('AmdCmsContentUrlResourceCtrl', function($scope, $resource, $controller) {
+/**
+
+@ngInject
+ */
+export default function($scope, $resource, $controller) {
 	/*
 	 * Extends collection controller
 	 */
-	angular.extend(this, $controller('MbSeenCmsContentsCtrl', {
+	angular.extend(this, $controller('MbCmsContentsCtrl', {
 		$scope: $scope
 	}));
 
@@ -50,6 +54,6 @@ mblowfish.controller('AmdCmsContentUrlResourceCtrl', function($scope, $resource,
 
 	// init the controller
 	this.init();
-});
+}
 
 

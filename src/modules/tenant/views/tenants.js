@@ -8,7 +8,7 @@ mblowfish.view(TENANT_TENANTS_VIEW_PATH, {
 	controller: function($scope, $controller, $tenant, $view, $mbActions) {
 		'ngInject';
 		// Extends with ItemsController
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
 		}));

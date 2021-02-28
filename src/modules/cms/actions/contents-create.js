@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(AMD_CMS_CONTENTS_CREATE_ACTION, {
+export default {
 	icon: 'new',
 	title: 'New Content',
 	description: 'Creates a new content',
@@ -77,4 +77,5 @@ mblowfish.addAction(AMD_CMS_CONTENTS_CREATE_ACTION, {
 				});
 			});
 	},
-});
+}
+

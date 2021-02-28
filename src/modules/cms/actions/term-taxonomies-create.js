@@ -1,5 +1,5 @@
 
-mblowfish.addAction(AMD_CMS_TERMTAXONOMIES_CREATE_ACTION, {
+export default {
 	icon: 'add',
 	title: 'CMS: New Term Taxonomy',
 	description: 'Creates a new teram-taxonomy',
@@ -27,4 +27,7 @@ mblowfish.addAction(AMD_CMS_TERMTAXONOMIES_CREATE_ACTION, {
 				$mbDispatcherUtil.fireCreated(AMD_CMS_TERMTAXONOMIES_SP, tts);
 			});
 	},
-});
+}
+
+
+

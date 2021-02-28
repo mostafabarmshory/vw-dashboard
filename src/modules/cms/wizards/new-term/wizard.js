@@ -1,8 +1,10 @@
-mblowfish.wizard(AMD_CMS_TERM_NEW_WIZARD, {
+
+import Constants from '../../Constants';
+export default {
 	title: 'New Term',
 	description: 'Creates new term.',
 	pages: [
-		AMD_CMS_TERM_NEW_WIZARD + '#term',
+		Constants.AMD_CMS_TERM_NEW_WIZARD + '#term',
 	],
 
 	/*
@@ -22,5 +24,5 @@ mblowfish.wizard(AMD_CMS_TERM_NEW_WIZARD, {
 			values: [data]
 		});
 	},
-});
+}
 

@@ -1,10 +1,11 @@
+import templateUrl from './image-url.html';
 
-mblowfish.resource('cms-image-url', {
+export default {
 	title: 'Images',
 	icon: 'image',
-	templateUrl: 'scripts/module-cms/resources/image-url.html',
+	templateUrl: templateUrl,
 	priority: 10,
 	tags: ['image-url', 'avatar', 'thumbnail'],
 	controllerAs: 'ctrl',
 	controller: 'AmdCmsContentUrlResourceCtrl',
-});
+}

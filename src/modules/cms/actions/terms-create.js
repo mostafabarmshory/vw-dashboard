@@ -1,5 +1,5 @@
 
-mblowfish.addAction(AMD_CMS_TERMS_CREATE_ACTION, {
+export default {
 	icon: 'add',
 	title: 'CMS: New Term',
 	description: 'Creates a new teram',
@@ -27,4 +27,6 @@ mblowfish.addAction(AMD_CMS_TERMS_CREATE_ACTION, {
 				$mbDispatcherUtil.fireCreated(AMD_CMS_TERMS_SP, terms);
 			});
 	},
-});
+}
+
+

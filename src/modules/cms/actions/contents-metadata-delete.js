@@ -1,5 +1,5 @@
 
-mblowfish.addAction(AMD_CMS_CONTENT_METADATA_DELET_ACTION, {
+export default {
 	demon: true,
 	action: function($event, $mbDispatcherUtil) {
 		'ngInject';
@@ -9,7 +9,7 @@ mblowfish.addAction(AMD_CMS_CONTENT_METADATA_DELET_ACTION, {
 			return;
 		}
 
-		return confirm('Delete the microdata')
+		return confirm('Delete the microdata', $event)
 			.then(function() {
 				_.forEach(values, function(value) {
 					value.delete()
@@ -21,4 +21,7 @@ mblowfish.addAction(AMD_CMS_CONTENT_METADATA_DELET_ACTION, {
 				});
 			});
 	},
-});
+}
+
+
+

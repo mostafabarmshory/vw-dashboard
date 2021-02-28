@@ -1,9 +1,11 @@
+import Constants from '../Constants';
+import templateUrl from './term-taxonomy.html';
 
-mblowfish.resource('cms.term-taxonomies', {
-	tags: [AMD_CMS_TERMTAXONOMIES_RT],
+export default {
+	tags: [Constants.AMD_CMS_TERMTAXONOMIES_RT],
 	title: 'Term-Taxonomy',
 	icon: 'label',
-	templateUrl: 'scripts/module-cms/resources/term-taxonomy.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	priority: 8,
 	controller: function($scope, $resource, $controller) {
@@ -11,10 +13,10 @@ mblowfish.resource('cms.term-taxonomies', {
 		/*
 		 * Extends collection controller
 		 */
-		angular.extend(this, $controller('MbSeenCmsTermTaxonomiesCtrl', {
+		angular.extend(this, $controller('MbCmsTermTaxonomiesCtrl', {
 			$scope: $scope
 		}));
-		
+
 		$scope.multi = false;
 		var value = [];
 
@@ -32,4 +34,4 @@ mblowfish.resource('cms.term-taxonomies', {
 			return value.indexOf(item) >= 0;
 		};
 	},
-});
+}

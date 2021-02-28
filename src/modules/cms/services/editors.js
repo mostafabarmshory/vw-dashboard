@@ -1,5 +1,5 @@
 
-mblowfish.provider('$amdCmsEditors', function() {
+export default function() {
 
 	//-------------------------------------------------
 	// Services
@@ -92,6 +92,9 @@ mblowfish.provider('$amdCmsEditors', function() {
 		}
 	};
 	return provider;
-});
+}
+
+
+
 
 

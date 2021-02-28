@@ -1,7 +1,10 @@
-mblowfish.wizardPage(AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#og', {
+
+import templateUrl from './ogPage.html';
+
+export default {
 	title: 'Social Media',
 	description: 'Fill the form to customize your page in social meda.',
-	templateUrl: 'scripts/module-cms/wizards/new-page/ogPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard) {
 		'ngInject';
@@ -32,4 +35,4 @@ mblowfish.wizardPage(AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#og', {
 		this.description = getterSetter('og:description');
 		this.cover = getterSetter('og:image');
 	}
-});
+}

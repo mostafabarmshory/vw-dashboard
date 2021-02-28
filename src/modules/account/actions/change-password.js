@@ -32,4 +32,14 @@ Required data
 
  */
 
-export default {}
+export default {
+	group: 'Account',
+	title: 'Change Password',
+	description: 'Change password of the current account',
+	icon: 'chat',
+	action: function($event) {
+		'ngInject';
+		alert('Not supported', $event);
+	}
+}
+

@@ -1,7 +1,9 @@
-mblowfish.addView(AMD_CMS_VIEW_TERMTAXONOMIES_PATH, {
+import templateUrl from './term-taxonomies.html';
+
+export default {
 	title: 'Term taxonomis',
 	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-cms/views/term-taxonomies.html',
+	templateUrl: templateUrl,
 	groups: ['Content Management'],
 	icon: 'class',
 	controller: function($scope, $cms, $controller, $view, $mbActions) {
@@ -9,7 +11,7 @@ mblowfish.addView(AMD_CMS_VIEW_TERMTAXONOMIES_PATH, {
 		/*
 		 * Extends collection controller
 		 */
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
 		}));
@@ -38,5 +40,8 @@ mblowfish.addView(AMD_CMS_VIEW_TERMTAXONOMIES_PATH, {
 			eventType: AMD_CMS_TERMTAXONOMIES_SP,
 		});
 	},
-});
+}
+
+
+
 

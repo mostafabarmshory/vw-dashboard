@@ -1,5 +1,5 @@
 
-mblowfish.addAction(AMD_CMS_TERMS_DELETE_ACTION, {
+export default {
 	demon: true,
 	action: function($event, $mbDispatcherUtil, $q, $mbTranslate, $cms) {
 		'ngInject';
@@ -35,4 +35,7 @@ mblowfish.addAction(AMD_CMS_TERMS_DELETE_ACTION, {
 					});
 			});
 	},
-});
+}
+
+
+

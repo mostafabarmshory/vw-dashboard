@@ -1,5 +1,5 @@
 
-mblowfish.addAction(AMD_CMS_CONTENTS_NEWPAGE_ACTION, {
+export default {
 	icon: 'add',
 	title: 'CMS: New Page',
 	description: 'Creates a new page',
@@ -15,4 +15,7 @@ mblowfish.addAction(AMD_CMS_CONTENTS_NEWPAGE_ACTION, {
 		}
 		return $mbActions.exec(AMD_CMS_CONTENTS_CREATE_ACTION, $event);
 	},
-});
+}
+
+
+

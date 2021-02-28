@@ -1,12 +1,12 @@
-
+import templateUrl from './images.html';
 /**
 @ngdoc Views
 @name CMS Images
 @description A view of images
  */
-mblowfish.addView(AMD_CMS_VIEW_IMAGES_PATH, {
+export default {
 	title: 'Images',
-	templateUrl: 'scripts/module-cms/views/images.html',
+	templateUrl: templateUrl,
 	groups: ['Content Management'],
 	icon: 'collections',
 	controllerAs: 'ctrl',
@@ -25,7 +25,7 @@ mblowfish.addView(AMD_CMS_VIEW_IMAGES_PATH, {
 		//-----------------------------------------------------------------------
 		// Controller
 		//-----------------------------------------------------------------------
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
 		}));
@@ -89,4 +89,7 @@ mblowfish.addView(AMD_CMS_VIEW_IMAGES_PATH, {
 		});
 		this.addFilter('media_type', 'image');
 	},
-});
+}
+
+
+

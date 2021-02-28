@@ -22,14 +22,15 @@
  * SOFTWARE.
  */
 
+import templateUrl from './term-taxonomy.html';
 
 /**
 @ngdoc function
 @name ngMaterialDashboardCms.controller:AmdCmsTermTaxonomyCtrl
 @description # TaxonomyCtrl Controller of the ngMaterialDashboardCms
  */
-mblowfish.editor('/cms/term-taxonomies/:itemId', {
-	templateUrl: 'scripts/module-cms/editors/term-taxonomy.html',
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $controller, $cms) {
 		'ngInject';
@@ -71,5 +72,5 @@ mblowfish.editor('/cms/term-taxonomies/:itemId', {
 			//		modelId: $routeParam.modelId,
 		});
 	}
-});
+}
 

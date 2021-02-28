@@ -1,4 +1,5 @@
-mblowfish.editor('/cms/vw-studio-editor-ext/:contentId', {
+
+export default {
 	title: 'VW Studio External',
 	icon: 'text',
 	template: '<iframe></iframe>',
@@ -40,7 +41,7 @@ mblowfish.editor('/cms/vw-studio-editor-ext/:contentId', {
 		//------------------------------------------------------------------
 		loadObject();
 	},
-});
+}
 
 
 

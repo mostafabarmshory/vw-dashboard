@@ -56,7 +56,7 @@ import './modules/core';
 import './modules/account';
 //import './modules/backup';
 //import './modules/bank';
-//import './modules/cms';
+import './modules/cms';
 //import './modules/jms';
 //import './modules/sdp';
 //import './modules/seo';

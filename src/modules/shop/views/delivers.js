@@ -36,7 +36,7 @@ mblowfish.addView(AMD_SHOP_DELIVERS_VIEW, {
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function($scope, $controller, $view, $shop) {
 		'ngInject';
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view
 		}));

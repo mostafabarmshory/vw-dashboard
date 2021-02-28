@@ -16,7 +16,7 @@ mblowfish.addView('/bank/gates', {
 		/*
 		 * Extends collection controller
 		 */
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
 		}));

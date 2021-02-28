@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-mblowfish.addEditor('/cms/pdf-viewer/:contentId', {
+export default {
 	title: 'PDF Viewer',
 	icon: 'text',
 	template: '<iframe></iframe>',
@@ -54,7 +54,7 @@ mblowfish.addEditor('/cms/pdf-viewer/:contentId', {
 		//------------------------------------------------------------------
 		loadObject();
 	},
-});
+}
 
 
 

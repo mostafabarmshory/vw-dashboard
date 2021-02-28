@@ -1,7 +1,9 @@
-mblowfish.addView(AMD_CMS_VIEW_TERMS_PATH, {
+import templateUrl from './terms.html';
+
+export default {
 	title: 'Terms',
 	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-cms/views/terms.html',
+	templateUrl: templateUrl,
 	groups: ['Content Management'],
 	icon: 'title',
 	controller: function($scope, $cms, $controller, $view, $mbActions) {
@@ -9,7 +11,7 @@ mblowfish.addView(AMD_CMS_VIEW_TERMS_PATH, {
 		/*
 		 * Extends collection controller
 		 */
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
 		}));
@@ -29,7 +31,7 @@ mblowfish.addView(AMD_CMS_VIEW_TERMS_PATH, {
 			return $cms.getTerm(id);
 		};
 
-		this.deleteTerm = function(term, $event){
+		this.deleteTerm = function(term, $event) {
 			$event.values = [term];
 			return $mbActions.exec(AMD_CMS_TERMS_DELETE_ACTION, $event);
 		};
@@ -39,5 +41,7 @@ mblowfish.addView(AMD_CMS_VIEW_TERMS_PATH, {
 			eventType: AMD_CMS_TERMS_SP,
 		});
 	},
-});
+}
+
+
 

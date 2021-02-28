@@ -21,19 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+import templateUrl from './term.html';
 
 /**
 @ngdoc function
 @name ngMaterialDashboardCms.controller:AmdCmsTermCtrl
 @description # TermCtrl Controller of the ngMaterialDashboardCms
  */
-mblowfish.editor('/cms/terms/:termId', {
+export default {
 	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-cms/editors/term.html',
-	controller: function($navigator, $cms, $mbTranslate, $state, $location, QueryParameter) {
+	templateUrl: templateUrl,
+	controller: function($mbDialog, $cms, $mbTranslate, $state, $location, QueryParameter) {
 		'ngInject';
-		
+
 		this.loadingTerm = true;
 		this.savingTerm = false;
 		this.edit = false;
@@ -138,14 +138,15 @@ mblowfish.editor('/cms/terms/:termId', {
 		/*
 		 * Edit a Meta of the term
 		 */
-		this.editMeta = function(meta, index) {
+		this.editMeta = function(meta, index, $event) {
 			var ctrl = this;
-			$navigator
-				.openDialog({
+			$mbDialog
+				.show({
 					templateUrl: 'views/dialogs/amd-meta.html',
 					config: {
 						model: angular.copy(meta)
-					}
+					},
+					targetEvent: $event
 				})//
 				.then(function(meta) {
 					ctrl.updatingMeta = true;
@@ -184,12 +185,13 @@ mblowfish.editor('/cms/terms/:termId', {
 		 */
 		var ctrl = this;
 		function addMeta() {
-			$navigator.openDialog({
-				templateUrl: 'views/dialogs/amd-meta.html',
-				config: {
-					model: {}
-				}
-			})//
+			$mbDialog
+				.show({
+					templateUrl: 'views/dialogs/amd-meta.html',
+					config: {
+						model: {}
+					}
+				})//
 				.then(function(meta) {
 					ctrl.addingMeta = true;
 					return ctrl.term.putMetadatum(meta);
@@ -208,12 +210,13 @@ mblowfish.editor('/cms/terms/:termId', {
 		 */
 		this.editTaxonomy = function(taxonomy, index) {
 			var ctrl = this;
-			$navigator.openDialog({
-				templateUrl: 'views/dialogs/amd-in-term-taxonomy-new.html',
-				config: {
-					model: angular.copy(taxonomy)
-				}
-			})//
+			$mbDialog
+				.show({
+					templateUrl: 'views/dialogs/amd-in-term-taxonomy-new.html',
+					config: {
+						model: angular.copy(taxonomy)
+					}
+				})//
 				.then(function(taxonomy) {
 					ctrl.updatingTaxonomy = true;
 					return taxonomy.update();
@@ -250,8 +253,8 @@ mblowfish.editor('/cms/terms/:termId', {
 		 * Add taxonomy to the term
 		 */
 		function addTaxonomy() {
-			$navigator
-				.openDialog({
+			$mbDialog
+				.show({
 					templateUrl: 'views/dialogs/amd-in-term-taxonomy-new.html',
 					config: {
 						model: {}
@@ -285,5 +288,5 @@ mblowfish.editor('/cms/terms/:termId', {
 
 		this.loadTerm();
 	}
-});
+}
 

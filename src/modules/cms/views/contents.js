@@ -22,16 +22,16 @@
  * SOFTWARE.
  */
 
-
+import templateUrl from './contents.html';
 /**
 @ngdoc Views
 @name CMS Contents
 @description A view of contents
  */
-mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
+export default {
 	title: 'Contents',
 	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-cms/views/contents.html',
+	templateUrl: templateUrl,
 	groups: ['Content Management'],
 	icon: 'image',
 	controller: function(
@@ -39,7 +39,7 @@ mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
 		$location, $mbActions, $amdCmsEditors) {
 		'ngInject';
 
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
 		}));
@@ -110,4 +110,7 @@ mblowfish.addView(AMD_CMS_VIEW_CONTENTS_PATH, {
 					}));
 			});
 	},
-});
+}
+
+
+

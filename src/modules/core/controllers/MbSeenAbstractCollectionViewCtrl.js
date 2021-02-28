@@ -1,3 +1,5 @@
+import './MbSeenAbstractCollectionViewCtrl.css';
+
 /**
 @ngInject
  */

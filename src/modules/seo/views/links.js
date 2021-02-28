@@ -8,7 +8,7 @@ mblowfish.view('/seo/links', {
 	controller: function($scope, $seo, $controller, $view) {
 		'ngInject';
 		// Extends with ItemsController
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
 		}));

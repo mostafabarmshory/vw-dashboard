@@ -1,17 +1,19 @@
+import Constants from '../Constants';
+import templateUrl from './tag.html';
 
-mblowfish.resource('cms.term-taxonomies.tag', {
-	tags: [AMD_CMS_TERMTAXONOMIES_RT],
+export default {
+	tags: [Constants.AMD_CMS_TERMTAXONOMIES_RT],
 	title: 'Tag',
 	icon: 'label',
 	controllerAs: 'ctrl',
 	priority: 8,
-	templateUrl: 'scripts/module-cms/resources/tag.html',
+	templateUrl: templateUrl,
 	controller: function($scope, $resource, $controller) {
 		'ngInject';
 		/*
 		 * Extends collection controller
 		 */
-		angular.extend(this, $controller('MbSeenCmsTermTaxonomiesCtrl', {
+		angular.extend(this, $controller('MbCmsTermTaxonomiesCtrl', {
 			$scope: $scope
 		}));
 
@@ -32,4 +34,4 @@ mblowfish.resource('cms.term-taxonomies.tag', {
 			return value.indexOf(item) >= 0;
 		};
 	},
-});
+}

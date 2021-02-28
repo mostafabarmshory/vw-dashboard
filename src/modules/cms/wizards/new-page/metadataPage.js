@@ -1,7 +1,11 @@
-mblowfish.wizardPage(AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#metadata', {
+
+import templateUrl from './metadataPage.html';
+
+
+export default {
 	title: 'Metadata',
 	description: 'You can improve page SEO by adding common metada.',
-	templateUrl: 'scripts/module-cms/wizards/new-page/metadataPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard) {
 		'ngInject';
@@ -36,4 +40,4 @@ mblowfish.wizardPage(AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#metadata', {
 		this.favicon = getterSetter('link.favicon');
 		this.cover = getterSetter('link.cover');
 	}
-});
+}

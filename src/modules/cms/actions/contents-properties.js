@@ -1,4 +1,4 @@
-mblowfish.addAction(AMD_CMS_CONTENTS_PROPERTIES_ACTION, {
+export default {
 	demon: true,
 	action: function($event, $amdCmsEditors) {
 		'ngInject';
@@ -11,4 +11,5 @@ mblowfish.addAction(AMD_CMS_CONTENTS_PROPERTIES_ACTION, {
 			$amdCmsEditors.openProperties(content);
 		});
 	},
-});
+}
+

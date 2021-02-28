@@ -1,10 +1,11 @@
-
-mblowfish.resource('cms.metadata.keyval', {
-	tags: [AMD_CMS_METADATA_RT],
+import Constants from '../Constants';
+import templateUrl from './content-metadata.html';
+export default {
+	tags: [Constants.AMD_CMS_METADATA_RT],
 	title: 'Metadatum',
 	icon: 'label',
 	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-cms/resources/content-metadata.html',
+	templateUrl: templateUrl,
 	priority: 8,
 	controller: function($scope, $value, $resource) {
 		'ngInject';
@@ -19,4 +20,4 @@ mblowfish.resource('cms.metadata.keyval', {
 			$resource.setValue(value);
 		};
 	},
-});
+}

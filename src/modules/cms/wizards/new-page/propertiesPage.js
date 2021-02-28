@@ -1,7 +1,10 @@
-mblowfish.wizardPage(AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#properties', {
+import templateUrl from './propertiesPage.html';
+import Constants from '../../Constants';
+
+export default {
 	title: 'Properties',
 	description: 'Each page is known with name, title and description in the Dashboard.',
-	templateUrl: 'scripts/module-cms/wizards/new-page/propertiesPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard, $mbCrypto) {
 		'ngInject';
@@ -23,9 +26,9 @@ mblowfish.wizardPage(AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#properties', {
 			this.name($mbCrypto.uuid());
 		};
 	},
-	nextPage: AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#type',
+	nextPage: Constants.AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#type',
 	isPageComplete: function($wizard) {
 		'ngInject';
 		return $wizard.data.name;
 	}
-});
+}

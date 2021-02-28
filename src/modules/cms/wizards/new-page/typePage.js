@@ -1,7 +1,9 @@
-mblowfish.wizardPage(AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#type', {
+import templateUrl from './typePage.html';
+
+export default {
 	title: 'Page Type',
 	description: 'Select which type of page do you want to create.',
-	templateUrl: 'scripts/module-cms/wizards/new-page/typePage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard) {
 		'ngInject';
@@ -24,4 +26,4 @@ mblowfish.wizardPage(AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#type', {
 		'ngInject';
 		return $wizard.data.type;
 	}
-});
+}

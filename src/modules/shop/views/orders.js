@@ -39,7 +39,7 @@ mblowfish.addView('/shop/orders', {
 	controller: function($scope, $controller, $view, $shop) {
 		'ngInject';
 
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
 		}));

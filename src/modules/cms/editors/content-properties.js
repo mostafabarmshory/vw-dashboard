@@ -22,8 +22,11 @@
  * SOFTWARE.
  */
 
-mblowfish.addEditor('/cms/contents/:contentId', {
-	templateUrl: 'scripts/module-cms/editors/content-properties.html',
+import templateUrl from './content-properties.html';
+import './content-properties.css'
+
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($state, $editor, $scope, $mbActions, $controller, $q, $mbResource,
 		$cms, CmsContent, CmsContentMetadata) {
@@ -88,8 +91,8 @@ mblowfish.addEditor('/cms/contents/:contentId', {
 		
 		@memberof AmdContentCtrl
 		 */
-		function deleteContent() {
-			return confirm('Delete the content?')//
+		function deleteContent($event) {
+			return confirm('Delete the content?', $event)//
 				.then(function() {
 					return content.delete()
 						.then(function() {
@@ -362,6 +365,6 @@ mblowfish.addEditor('/cms/contents/:contentId', {
 
 		reload();
 	},
-});
+}
 
 

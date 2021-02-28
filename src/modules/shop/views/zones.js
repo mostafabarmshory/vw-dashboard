@@ -39,7 +39,7 @@ mblowfish.addView(AMD_SHOP_ZONES_VIEW, {
 	controller: function($scope, $view, $controller, $shop) {
 		'ngInject';
 
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
 		}));

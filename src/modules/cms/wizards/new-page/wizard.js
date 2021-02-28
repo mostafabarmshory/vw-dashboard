@@ -1,13 +1,14 @@
 
+import Constants from '../../Constants';
 
-mblowfish.wizard(AMD_CMS_CONTENTS_NEWPAGE_WIZARD, {
+export default {
 	title: 'New Page',
 	description: 'Creates new page which are used in WEB.',
 	pages: [
-		AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#properties',
-		AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#type',
-		AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#metadata',
-		AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#og',
+		Constants.AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#properties',
+		Constants.AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#type',
+		Constants.AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#metadata',
+		Constants.AMD_CMS_CONTENTS_NEWPAGE_WIZARD + '#og',
 		// TODO: add extra pages
 	],
 
@@ -75,6 +76,8 @@ mblowfish.wizard(AMD_CMS_CONTENTS_NEWPAGE_WIZARD, {
 			values: [data]
 		});
 	},
-});
+}
+
+
 
 

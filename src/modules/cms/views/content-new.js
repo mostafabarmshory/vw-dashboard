@@ -1,8 +1,9 @@
+import templateUrl from './content-new.html';
 
-mblowfish.addView(AMD_CMS_VIEW_CONTENT_NEW_PATH, {
+export default {
 	title: 'Upload',
 	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-cms/views/content-new.html',
+	templateUrl: templateUrl,
 	groups: ['Content Management'],
 	icon: 'cloud_upload',
 	controller: function($scope, $mbActions, $mbCrypto) {
@@ -27,7 +28,7 @@ mblowfish.addView(AMD_CMS_VIEW_CONTENT_NEW_PATH, {
 				.exec(AMD_CMS_CONTENTS_CREATE_ACTION, {
 					values: [data],
 				})
-				.then(function(){
+				.then(function() {
 					reload();
 				})
 				.finally(function() {
@@ -57,4 +58,5 @@ mblowfish.addView(AMD_CMS_VIEW_CONTENT_NEW_PATH, {
 
 		reload();
 	},
-});
+}
+

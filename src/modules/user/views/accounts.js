@@ -36,7 +36,7 @@ mblowfish.addView('/ums/accounts', {
 	controller: function($scope, $controller, $mbActions, $usr, $view) {
 		'ngInject';
 
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
 		}));

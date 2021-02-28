@@ -6,7 +6,7 @@ mblowfish.view('/seo/backends', {
 	controllerAs: 'ctrl',
 	controller: function($scope, $view, $seo, $controller) {
 		'ngInject';
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
 		}));

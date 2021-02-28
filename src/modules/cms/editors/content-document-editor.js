@@ -26,7 +26,7 @@
 
 @see https://github.com/mozilla/pdf.js/wiki/Viewer-options
 */
-mblowfish.addEditor('/cms/document-editor/:contentId', {
+export default {
 	title: 'Document Editor',
 	icon: 'text',
 	template: '<iframe></iframe>',
@@ -73,7 +73,7 @@ mblowfish.addEditor('/cms/document-editor/:contentId', {
 		//------------------------------------------------------------------
 		loadObject();
 	},
-});
+}
 
 
 

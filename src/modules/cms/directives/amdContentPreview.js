@@ -19,13 +19,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+import templateUrl from './amdContentPreview.html';
 /**
 @ngdoc directive
 @name wbInfinateScroll
 @description # wbInfinateScroll
  */
-mblowfish.directive('amdContentPreview', function() {
+export default function() {
 
 	/**
 	 * Link data and view
@@ -74,7 +74,7 @@ mblowfish.directive('amdContentPreview', function() {
 		transclude: false,
 		replace: true,
 		require: 'ngModel',
-		templateUrl: 'views/directives/amd-content-preview.html',
+		templateUrl: templateUrl,
 		link: postLink
 	};
-});
+}

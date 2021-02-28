@@ -21,7 +21,7 @@ mblowfish.view(SDP_VIEW_DRIVES_PATH, {
 	controller: function($scope, $view, $sdp, $controller, MbAction) {
 		'ngInject';
 
-		angular.extend(this, $controller('SeenAbstractCollectionViewCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
 			$view: $view,
 		}));

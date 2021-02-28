@@ -1,8 +1,8 @@
-
-mblowfish.wizardPage(AMD_CMS_TERM_NEW_WIZARD + '#term', {
+import templateUrl from './term-page.html';
+export default {
 	title: 'Tearm',
 	description: 'A term is a general lable of a content.',
-	templateUrl: 'scripts/module-cms/wizards/new-term/term-page.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard) {
 		'ngInject';
@@ -24,5 +24,5 @@ mblowfish.wizardPage(AMD_CMS_TERM_NEW_WIZARD + '#term', {
 		return $wizard.data.name &&
 			$wizard.data.slug;
 	}
-});
+}
 

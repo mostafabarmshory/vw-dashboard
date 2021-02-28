@@ -1,8 +1,11 @@
-mblowfish.wizard(AMD_CMS_TERMTAXONOMY_NEW_WIZARD, {
+
+import Constants from '../../Constants';
+
+export default {
 	title: 'New Term-Taxonomy',
 	description: 'Creates new Term-Taxonomy.',
 	pages: [
-		AMD_CMS_TERMTAXONOMY_NEW_WIZARD + '#term-taxonomy',
+		Constants.AMD_CMS_TERMTAXONOMY_NEW_WIZARD + '#term-taxonomy',
 	],
 
 	/*
@@ -22,5 +25,6 @@ mblowfish.wizard(AMD_CMS_TERMTAXONOMY_NEW_WIZARD, {
 			values: [data]
 		});
 	},
-});
+}
+
 

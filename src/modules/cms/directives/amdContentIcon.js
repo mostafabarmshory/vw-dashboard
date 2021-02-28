@@ -28,7 +28,7 @@
 
 Display an icon for the current content
  */
-mblowfish.directive('amdContentIcon', function() {
+export default function() {
 
 	/**
 	 * Link data and view
@@ -68,4 +68,4 @@ mblowfish.directive('amdContentIcon', function() {
 		template : '<mb-icon>{{::icon}}</mb-icon>',
 		link: postLink
 	};
-});
+}

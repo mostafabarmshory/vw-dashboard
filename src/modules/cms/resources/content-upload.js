@@ -1,8 +1,9 @@
+import templateUrl from './content-upload.html';
 
-mblowfish.resource('cms-upload', {
+export default {
 	title: 'Upload',
 	icon: 'file_upload',
-	templateUrl: 'scripts/module-cms/resources/content-upload.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	priority: 1,
 	tags: ['image-url', 'url', 'avatar', 'thumbnail'],
@@ -70,6 +71,6 @@ mblowfish.resource('cms-upload', {
 		this.init();
 		$resource.process = process;
 	}
-});
+}
 
 
