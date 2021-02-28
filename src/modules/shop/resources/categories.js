@@ -1,10 +1,12 @@
 
+import templateUrl from './categories.html';
+import Constants from '../Constants';
 
-mblowfish.addResource('/shop/categories', {
+export default {
 	label: 'Categories',
-	templateUrl: 'scripts/module-shop/resources/categories.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
-	tags: [AMD_SHOP_CATEGORY_SP],
+	tags: [Constants.AMD_SHOP_CATEGORY_SP],
 	controller: function($scope, $controller, $resource) {
 		'ngInject';
 		/*
@@ -48,4 +50,6 @@ mblowfish.addResource('/shop/categories', {
 			setSelected: setSelected,
 		});
 	}
-});
+}
+
+

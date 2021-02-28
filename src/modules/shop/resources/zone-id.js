@@ -1,8 +1,12 @@
 
+import templateUrl from './zones.html';
+import Constants from '../Constants';
 
-mblowfish.addResource('/shop/zones#id', {
+export default {
 	label: 'Zone',
-	templateUrl: 'scripts/module-shop/resources/zones.html',
+	templateUrl: templateUrl,
+	controllerAs: 'ctrl',
+	tags: [Constants.AMD_SHOP_ZONE_SP + '#id', '/shop/zones#id', 'zone_id'],
 	controller: function($scope, $controller, $resource) {
 		'ngInject';
 		/*
@@ -38,6 +42,4 @@ mblowfish.addResource('/shop/zones#id', {
 			return item.selected;
 		};
 	},
-	controllerAs: 'ctrl',
-	tags: [AMD_SHOP_ZONE_SP + '#id', '/shop/zones#id', 'zone_id']
-});
+}

@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import templateUrl from './orders.html';
 
 
 
@@ -28,10 +29,10 @@
 @description Manages list of categories
 
  */
-mblowfish.addView('/shop/orders', {
+export default {
 	title: 'Orders',
 	icon: 'event',
-	templateUrl: 'scripts/module-shop/views/orders.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	anchore: 'editors',
@@ -68,4 +69,6 @@ mblowfish.addView('/shop/orders', {
 			eventType: AMD_SHOP_ORDERS_SP,
 		});
 	}
-});
+}
+
+

@@ -1,12 +1,13 @@
 
+import templatUrl from './tag.html';
 /**
 @ngdoc Editor
 @name /shop/tags/:itemId
 @description
 TagCtrl Controller of the saasdmCpanelApp
  */
-mblowfish.editor('/shop/tags/:tagId', {
-	templateUrl: 'scripts/module-shop/editors/tag.html',
+export default {
+	templateUrl: templatUrl,
 	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function($scope, $shop, $mbTranslate, $state, $location) {
@@ -71,5 +72,7 @@ mblowfish.editor('/shop/tags/:tagId', {
 
 		loadTag();
 	}
-});
+}
+
+
 

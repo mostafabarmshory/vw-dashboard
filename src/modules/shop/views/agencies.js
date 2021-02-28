@@ -19,17 +19,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+import templateUrl from './agencies.html';
 /**
 @ngdoc View
 @name MbSeenShopAgenciesCtrl
 @description 
 Manages list of agencies from shop domain
  */
-mblowfish.view('/shop/agencies', {
+export default {
 	title: 'Agencies',
 	icon: 'store',
-	templateUrl: 'scripts/module-shop/views/agencies.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
@@ -67,4 +67,5 @@ mblowfish.view('/shop/agencies', {
 			eventType: AMD_SHOP_AGENCY_SP,
 		});
 	}
-});
+}
+

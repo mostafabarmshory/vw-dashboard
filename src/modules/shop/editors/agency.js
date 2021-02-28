@@ -1,10 +1,12 @@
+
+import templatUrl from './agency.html';
 /**
 @ngdoc Controller
 @name AmdShopAgencyCtrl
 @description Manages an agency from shop domain
  */
-mblowfish.addEditor('/shop/agencies/:itemId', {
-	templateUrl: 'scripts/module-shop/editors/agency.html',
+export default {
+	templateUrl: templatUrl,
 	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function(
@@ -68,6 +70,6 @@ mblowfish.addEditor('/shop/agencies/:itemId', {
 				$editor.setTitle('Agency:' + itemId);
 			});
 	}
-});
+}
 
 

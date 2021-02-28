@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import templateUrl from './delivers.html';
 
 
 /**
@@ -27,10 +28,10 @@
 @description 
 Manages list of shop delivers
  */
-mblowfish.addView(AMD_SHOP_DELIVERS_VIEW, {
+export default {
 	title: 'Delivers',
 	icon: 'local_shipping',
-	templateUrl: 'scripts/module-shop/views/delivers.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
@@ -68,4 +69,6 @@ mblowfish.addView(AMD_SHOP_DELIVERS_VIEW, {
 			eventType: AMD_SHOP_DELIVER_SP
 		});
 	}
-});
+}
+
+

@@ -19,7 +19,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+import templateUrl from './orders-board.html';
+import orderDialogTemplate from './orders-board-dialog.html';
+import './orders-board.css';
 
 /**
  * @ngdoc Controllers
@@ -28,26 +30,29 @@
  * 
  * 
  */
-mblowfish.addView('/shop/orders-board', {
+export default {
 	title: 'Orders Board',
 	icon: 'dashboard',
-	templateUrl: 'scripts/module-shop/views/orders-board.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
+	/*
+	@ngInject
+	*/
 	controller: function(
-        /* angularjs */ $scope, $controller, $element,
+        /* angularjs */ $view, $scope, $controller, $element,
         /* seen-shop */ $shop,
-        /* mblowfish */ $navigator, $mbStorage) {
-		'ngInject';
+        /* mblowfish */ $mbDialog, $mbStorage, MbAction) {
 
 		var BOARD_STORAGE_KEY = '/shop/orders/board';
 
 
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
 			$scope: $scope,
-			$element: $element
+			$view: $view,
 		}));
+
 
 		// Override the function
 		this.getModelSchema = function() {
@@ -56,7 +61,10 @@ mblowfish.addView('/shop/orders-board', {
 
 		// get accounts
 		this.getModels = function(parameterQuery) {
-			return $shop.getOrders(parameterQuery);
+			return $shop
+				.getOrders(parameterQuery)
+				//				.finally(()=>this.updateBoard())
+				;
 		};
 
 		// get an account
@@ -123,39 +131,53 @@ mblowfish.addView('/shop/orders-board', {
 			}
 		};
 
-		this.showItemDetail = function(order) {
-			$navigator.openDialog({
-				controller: 'AmdShopOrderCtrl',
-				controllerAs: 'ctrl',
-				templateUrl: 'views/shop/order2.html',
-				config: {
-					order: order
-				},
-				locals: {
-					$state: {
-						params: {
-							orderId: order.id
+		this.showItemDetail = function(order, $event) {
+			$mbDialog
+				.show({
+					controller: 'AmdShopOrderCtrl',
+					controllerAs: 'ctrl',
+					templateUrl: orderDialogTemplate,
+					config: {
+						order: order
+					},
+					locals: {
+						$state: {
+							params: {
+								orderId: order.id
+							}
 						}
-					}
-				},
-			});
+					},
+					targetEvent: $event
+				});
 		};
 
 		//--------------------------------------------------------
 		// --View--
 		//--------------------------------------------------------
 		var ctrl = this;
-		var configs = {
-			id: '/shop/orders/board',
-			eventType: AMD_SHOP_ORDERS_SP,
-		};
-
-		this.addEventHandler(configs.id, function() {
+		$scope.$watch(() => {
+			return ctrl.items.length;
+		}, () => {
 			ctrl.updateBoard();
 		});
-
-		this.init(configs);
-		this.loadBoard();
-		this.loadNextPage();
+		this.init({
+			eventType: AMD_SHOP_ORDERS_SP,
+		});
+		ctrl.loadBoard();
+		ctrl.loadNextPage();
+		$view
+			.getToolbar()
+			.addAction(new MbAction({
+				title: 'Load more items',
+				icon: 'replay_30',
+				/*
+				@ngInject
+				*/
+				action: function($event) {
+					ctrl.loadNextPage($event)
+				}
+			}));
 	}
-});
+}
+
+

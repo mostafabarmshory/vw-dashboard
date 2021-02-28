@@ -22,15 +22,18 @@
  * SOFTWARE.
  */
 
+import templatUrl from './order.html';
 
 /**
 @ngdoc Editor
 @name AmdShopOrderCtrl
 @description load the order
  */
-mblowfish.addEditor('/shop/orders/:orderId', {
+export default {
 	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-shop/editors/order.html',
+	templateUrl: templatUrl,
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: 'AmdShopOrderCtrl',
-});
+}
+
+

@@ -27,9 +27,11 @@
 @ngdoc Controller
 @name AmdShopOrderCtrl
 @description load the order
+
+@ngInject
  */
-mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder, $controller, $scope,
-	$shop, $mbTranslate, $state, $navigator, $window, $mbActions) {
+export default function(ShopOrder, $controller, $scope,
+	$shop, $mbTranslate, $state, $mbDialog, $window, $mbActions) {
 
 	/*
 	 * Extends collection controller from MbAbstractCtrl 
@@ -74,11 +76,11 @@ mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder, $controller, $scope
 		this.totalPrice();
 	};
 
-    /**
-     * Calculate total price of the order.
-     * 
-     * @memberof AmdShopOrderCtrl
-     */
+	/**
+	 * Calculate total price of the order.
+	 * 
+	 * @memberof AmdShopOrderCtrl
+	 */
 	this.totalPrice = function() {
 		var totalPrice = 0;
 		angular.forEach(this.order.order_items, function(orderItm) {
@@ -113,14 +115,16 @@ mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder, $controller, $scope
 			}));
 	};
 
-	this.showImage = function(order, attachment) {
-		$navigator.openDialog({
-			templateUrl: 'views/dialogs/show-image.html',
-			config: {
-				order: order,
-				attachment: attachment
-			}
-		});
+	this.showImage = function(order, attachment, $event) {
+		$mbDialog
+			.show({
+				templateUrl: 'views/dialogs/show-image.html',
+				config: {
+					order: order,
+					attachment: attachment
+				},
+				targetEvent: mbDialog
+			});
 	};
 
 	this.callToCustomer = function() {
@@ -128,13 +132,15 @@ mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder, $controller, $scope
 		$window.open(str);
 	};
 
-	this.showDetailOfHistory = function(history) {
-		$navigator.openDialog({
-			templateUrl: 'views/shop/order-history-detail-dialog.html',
-			config: {
-				history: history
-			}
-		});
+	this.showDetailOfHistory = function(history, $event) {
+		$mbDialog
+			.show({
+				templateUrl: 'views/shop/order-history-detail-dialog.html',
+				config: {
+					history: history
+				},
+				targetEvent: $event
+			});
 	};
 
 
@@ -167,5 +173,5 @@ mblowfish.controller('AmdShopOrderCtrl', function(ShopOrder, $controller, $scope
 	};
 
 	this.loadOrderController();
-});
+}
 

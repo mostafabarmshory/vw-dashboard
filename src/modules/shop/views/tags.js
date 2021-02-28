@@ -20,6 +20,7 @@
  * SOFTWARE.
  */
 
+import templateUrl from './tags.html';
 
 
 /**
@@ -29,10 +30,10 @@
 
 
  */
-mblowfish.addView(AMD_SHOP_TAGS_VIEW, {
+export default {
 	title: 'Tags',
 	icon: 'label',
-	templateUrl: 'scripts/module-shop/views/tags.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
@@ -71,4 +72,5 @@ mblowfish.addView(AMD_SHOP_TAGS_VIEW, {
 			eventType: AMD_SHOP_TAG_SP,
 		});
 	}
-});
+}
+

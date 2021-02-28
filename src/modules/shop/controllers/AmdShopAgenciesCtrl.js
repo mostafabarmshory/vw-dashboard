@@ -1,5 +1,7 @@
-/*
- * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
+/* 
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2016 weburger
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +21,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+
+/**
+@ngdoc Controller
+@name AmdShopCategoriesCtrl
+@description load the order
+
+@ngInject
+ */
+export default function($scope,/* $element,*/ $shop, $controller) {
+
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope,
+	}));
+
+	// Override the function
+	this.getModelSchema = function() {
+		return $shop.agencySchema();
+	};
+
+	// get accounts
+	this.getModels = function(parameterQuery) {
+		return $shop.getAgencies(parameterQuery);
+	};
+
+	// get an account
+	this.getModel = function(id) {
+		return $shop.getAgency(id);
+	};
+
+	// delete account
+	this.deleteModel = function(model) {
+		return $shop.deleteAgency(model.id);
+	};
+
+	this.init({
+		eventType: AMD_SHOP_AGENCY_SP,
+	});
+}
+

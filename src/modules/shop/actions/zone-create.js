@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(AMD_SHOP_ZONE_CREATE_ACTION, {
+export default {
 	title: 'New Category',
 	icon: 'photo_album',
 	description: 'Creates new category',
@@ -54,4 +54,5 @@ mblowfish.addAction(AMD_SHOP_ZONE_CREATE_ACTION, {
 					});
 			});
 	},
-});
+}
+

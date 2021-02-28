@@ -250,7 +250,7 @@ module.exports = (env, argv) => {
 		writeToDisk: true,
 		proxy: {
 			'/api': {
-				target: 'http://knowsmore.viraweb123.ir',
+				target: 'http://elbaan.com',
 				secure: false,
 				changeOrigin: true
 			}

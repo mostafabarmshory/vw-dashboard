@@ -1,10 +1,12 @@
 
+import templateUrl from './agencies.html';
+import Constants from '../Constants';
 
-mblowfish.addResource('/shop/agency#id', {
+export default {
 	label: 'Agency',
-	templateUrl: 'scripts/module-shop/resources/agencies.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
-	tags: [AMD_SHOP_AGENCY_SP + '#id', '/shop/agencies#id', 'agency_id'],
+	tags: [Constants.AMD_SHOP_AGENCY_SP + '#id', '/shop/agencies#id', 'agency_id'],
 	controller: function($scope, $controller, $resource) {
 		'ngInject';
 		angular.extend(this, $controller('AmdShopAgenciesCtrl', {
@@ -37,4 +39,5 @@ mblowfish.addResource('/shop/agency#id', {
 			return item.selected;
 		};
 	},
-});
+}
+

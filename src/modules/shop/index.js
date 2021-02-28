@@ -19,59 +19,91 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
+import mblowfish from 'mblowfish';
+import Constants from './Constants';
 
-/* exported AMD_SHOP_ZONE_SP */
+import agencyCreateAction from './actions/agency-create';
+import agencyDeleteAction from './actions/agency-delete';
+import categoryDeleteAction from './actions/category-delete';
+import categoryCreateAction from './actions/category-new';
+import categorySetParentAction from './actions/category-setparent';
+import categoryUpdateAction from './actions/category-update';
+import deliverCreateAction from './actions/deliver-create';
+import productCreateAction from './actions/product-create';
+import serviceCreateAction from './actions/service-create';
+import tagCreateAction from './actions/tag-create';
+import zoneCreateAction from './actions/zone-create';
 
-mblowfish.addConstants({
-	AMD_SHOP_AGENCY_SP: '/shop/agencies',
-	AMD_SHOP_CATEGORY_SP: '/shop/categories',
-	AMD_SHOP_DELIVER_SP: '/shop/delivers',
-	AMD_SHOP_ORDERS_SP: '/shop/orders',
-	AMD_SHOP_PRODUCT_SP: '/shop/products',
-	AMD_SHOP_SERVICE_SP: '/shop/services',
-	AMD_SHOP_ZONE_SP: '/shop/zones',
-	AMD_SHOP_TAG_SP: '/shop/tags',
+import AmdShopAgenciesCtrl from './controllers/AmdShopAgenciesCtrl';
+import AmdShopCategoriesCtrl from './controllers/AmdShopCategoriesCtrl';
+import AmdShopOrderCtrl from './controllers/AmdShopOrderCtrl';
+import AmdShopZonesCtrl from './controllers/AmdShopZonesCtrl';
 
-	AMD_SHOP_CATEGORIES_VIEW: '/shop/categories',
-	AMD_SHOP_DELIVERS_VIEW: '/shop/delivers',
-	AMD_SHOP_PRODUCTS_VIEW: '/shop/products',
-	AMD_SHOP_SERVICES_VIEW: '/shop/services',
-	AMD_SHOP_TAGS_VIEW: '/shop/tags',
-	AMD_SHOP_ZONES_VIEW: '/shop/zones',
+import agencyEditor from './editors/agency';
+import categoryEditor from './editors/category';
+import deliverEditor from './editors/deliver';
+import orderEditor from './editors/order';
+import productEditor from './editors/product';
+import serviceEditor from './editors/service';
+import tagEditor from './editors/tag';
+import zoneEditor from './editors/zone';
 
-	AMD_SHOP_AGENCY_DELETE_ACTION: 'amd.shop.agency.delete',
-	AMD_SHOP_AGENCY_CREATE_ACTION: 'amd.shop.agency.create',
-	AMD_SHOP_AGENCY_UPDATE_ACTION: 'amd.shop.agency.update',
+import agencyIdResource from './resources/agency-id';
+import categoriesResource from './resources/categories';
+import zoneIdsResource from './resources/zone-id';
 
-	AMD_SHOP_CATEGORY_DELETE_ACTION: 'amd.shop.category.delete',
-	AMD_SHOP_CATEGORY_CREATE_ACTION: 'amd.shop.category.create',
-	AMD_SHOP_CATEGORY_UPDATE_ACTION: 'amd.shop.category.update',
-	AMD_SHOP_CATEGORY_SETPARENT_ACTION: 'amd.shop.category.setParent',
+import agenciesView from './views/agencies';
+import categoriesView from './views/categories';
+import deliversView from './views/delivers';
+import ordersView from './views/orders';
+import ordersBoardView from './views/orders-board';
+import productsView from './views/products';
+import servicesView from './views/services';
+import tagsView from './views/tags';
+import zoneView from './views/zones';
 
-	AMD_SHOP_DELIVER_DELETE_ACTION: 'amd.shop.deliver.delete',
-	AMD_SHOP_DELIVER_CREATE_ACTION: 'amd.shop.deliver.create',
-	AMD_SHOP_DELIVER_UPDATE_ACTION: 'amd.shop.deliver.update',
+mblowfish
+	.constant(Constants)
 
-	AMD_SHOP_ORDER_DELETE_ACTION: 'amd.shop.order.delete',
-	AMD_SHOP_ORDER_CREATE_ACTION: 'amd.shop.order.create',
-	AMD_SHOP_ORDER_UPDATE_ACTION: 'amd.shop.order.update',
+	.action(Constants.AMD_SHOP_AGENCY_CREATE_ACTION, agencyCreateAction)
+	.action(Constants.AMD_SHOP_AGENCY_DELETE_ACTION, agencyDeleteAction)
+	.action(Constants.AMD_SHOP_CATEGORY_DELETE_ACTION, categoryDeleteAction)
+	.action(Constants.AMD_SHOP_CATEGORY_CREATE_ACTION, categoryCreateAction)
+	.action(Constants.AMD_SHOP_CATEGORY_SETPARENT_ACTION, categorySetParentAction)
+	.action(Constants.AMD_SHOP_CATEGORY_UPDATE_ACTION, categoryUpdateAction)
+	.action(Constants.AMD_SHOP_DELIVER_CREATE_ACTION, deliverCreateAction)
+	.action(Constants.AMD_SHOP_PRODUCT_CREATE_ACTION, productCreateAction)
+	.action(Constants.AMD_SHOP_SERVICE_CREATE_ACTION, serviceCreateAction)
+	.action(Constants.AMD_SHOP_TAG_CREATE_ACTION, tagCreateAction)
+	.action(Constants.AMD_SHOP_ZONE_CREATE_ACTION, zoneCreateAction)
 
-	AMD_SHOP_PRODUCT_DELETE_ACTION: 'amd.shop.product.delete',
-	AMD_SHOP_PRODUCT_CREATE_ACTION: 'amd.shop.product.create',
-	AMD_SHOP_PRODUCT_UPDATE_ACTION: 'amd.shop.product.update',
+	.controller('AmdShopAgenciesCtrl', AmdShopAgenciesCtrl)
+	.controller('AmdShopCategoriesCtrl', AmdShopCategoriesCtrl)
+	.controller('AmdShopOrderCtrl', AmdShopOrderCtrl)
+	.controller('AmdShopZonesCtrl', AmdShopZonesCtrl)
 
-	AMD_SHOP_SERVICE_DELETE_ACTION: 'amd.shop.service.delete',
-	AMD_SHOP_SERVICE_CREATE_ACTION: 'amd.shop.service.create',
-	AMD_SHOP_SERVICE_UPDATE_ACTION: 'amd.shop.service.update',
+	.editor('/shop/agencies/:itemId', agencyEditor)
+	.editor('/shop/categories/:categoryId', categoryEditor)
+	.editor('/shop/delivers/:itemId', deliverEditor)
+	.editor('/shop/orders/:orderId', orderEditor)
+	.editor('/shop/products/:productId', productEditor)
+	.editor('/shop/services/:serviceId', serviceEditor)
+	.editor('/shop/tags/:tagId', tagEditor)
+	.editor('/shop/zones/:itemId', zoneEditor)
 
-	AMD_SHOP_TAG_DELETE_ACTION: 'amd.shop.tag.delete',
-	AMD_SHOP_TAG_CREATE_ACTION: 'amd.shop.tag.create',
-	AMD_SHOP_TAG_UPDATE_ACTION: 'amd.shop.tag.update',
-
-	AMD_SHOP_ZONE_DELETE_ACTION: 'amd.shop.zone.delete',
-	AMD_SHOP_ZONE_CREATE_ACTION: 'amd.shop.zone.create',
-	AMD_SHOP_ZONE_UPDATE_ACTION: 'amd.shop.zone.update',
-})
+	.resource('/shop/agency#id', agencyIdResource)
+	.resource('/shop/categories', categoriesResource)
+	.resource('/shop/zones#id', zoneIdsResource)
+	
+	.view('/shop/agencies', agenciesView)
+	.view(AMD_SHOP_CATEGORIES_VIEW, categoriesView)
+	.view(AMD_SHOP_DELIVERS_VIEW, deliversView)
+	.view('/shop/orders', ordersView)
+	.view('/shop/orders-board', ordersBoardView)
+	.view(AMD_SHOP_PRODUCTS_VIEW, productsView)
+	.view(AMD_SHOP_SERVICES_VIEW, servicesView)
+	.view(AMD_SHOP_TAGS_VIEW, tagsView)
+	.view(AMD_SHOP_ZONES_VIEW, zoneView)
 
 	.config(function($mbIconProvider) {
 		'ngInject';

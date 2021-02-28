@@ -20,6 +20,7 @@
  * SOFTWARE.
  */
 
+import templateUrl from './zones.html';
 /**
 @ngdoc Controllers
 @name MbSeenShopZonesCtrl
@@ -29,10 +30,10 @@ In the shop domain you are allowed to categorize agances into zones. This is a
 main controller to manage list of zones.
 
  */
-mblowfish.addView(AMD_SHOP_ZONES_VIEW, {
+export default {
 	title: 'Zones',
 	icon: 'layers',
-	templateUrl: 'scripts/module-shop/views/zones.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner")',
@@ -68,4 +69,6 @@ mblowfish.addView(AMD_SHOP_ZONES_VIEW, {
 			eventType: AMD_SHOP_ZONE_SP,
 		});
 	}
-});
+}
+
+

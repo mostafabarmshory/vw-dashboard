@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import templateUrl from './categories.html';
 
 /**
 @ngdoc View
@@ -27,10 +28,10 @@
 
 Manages list of categories
  */
-mblowfish.addView(AMD_SHOP_CATEGORIES_VIEW, {
+export default {
 	title: 'Categories',
 	icon: 'folder_special',
-	templateUrl: 'scripts/module-shop/views/categories.html',
+	templateUrl: templateUrl,
 	groups: ['Shop'],
 	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
@@ -68,4 +69,5 @@ mblowfish.addView(AMD_SHOP_CATEGORIES_VIEW, {
 			eventType: AMD_SHOP_CATEGORY_SP,
 		});
 	}
-});
+}
+

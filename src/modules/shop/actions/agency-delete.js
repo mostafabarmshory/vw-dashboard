@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(AMD_SHOP_AGENCY_DELETE_ACTION, {
+export default {
 	demon: true,
 	group: 'Shop',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
@@ -57,6 +57,8 @@ mblowfish.addAction(AMD_SHOP_AGENCY_DELETE_ACTION, {
 					});
 			});
 	}
-});
+}
+
+
 
 

@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(AMD_SHOP_AGENCY_CREATE_ACTION, {
+export default {
 	icon: 'store',
 	title: 'New Agency',
 	description: 'Creates new agency in shop domain',
@@ -54,4 +54,4 @@ mblowfish.addAction(AMD_SHOP_AGENCY_CREATE_ACTION, {
 					});
 			});
 	},
-});
+}

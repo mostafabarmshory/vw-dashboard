@@ -20,14 +20,15 @@
  * SOFTWARE.
  */
 
+import templatUrl from './service.html';
 /**
 @ngdoc Editors
 @name /shop/services/:serviceId
 @description 
 Controller of a service
  */
-mblowfish.addEditor('/shop/services/:serviceId', {
-	templateUrl: 'scripts/module-shop/editors/service.html',
+export default {
+	templateUrl: templatUrl,
 	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function(
@@ -259,5 +260,7 @@ mblowfish.addEditor('/shop/services/:serviceId', {
 
 		loadService();
 	}
-});
+}
+
+
 

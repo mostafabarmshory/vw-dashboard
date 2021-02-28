@@ -60,7 +60,7 @@ import './modules/cms';
 //import './modules/jms';
 //import './modules/sdp';
 //import './modules/seo';
-//import './modules/shop';
+import './modules/shop';
 //import './modules/shopx';
 //import './modules/spa';
 import './modules/tenant';

@@ -1,4 +1,9 @@
-mblowfish.controller('AmdShopZonesCtrl', function(
+
+/**
+
+@ngInject
+ */
+export default function(
         /* angularjs */ $scope, $controller,
         /* seen-shop */ $shop) {
 
@@ -29,4 +34,6 @@ mblowfish.controller('AmdShopZonesCtrl', function(
 	this.init({
 		eventType: AMD_SHOP_ZONE_SP,
 	});
-});
+}
+
+

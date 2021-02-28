@@ -21,7 +21,7 @@
  */
 
 
-mblowfish.addAction(AMD_SHOP_PRODUCT_CREATE_ACTION, {// create new category menu
+export default {// create new category menu
 	icon: 'add',
 	title: 'New Product',
 	demon: true,
@@ -55,4 +55,6 @@ mblowfish.addAction(AMD_SHOP_PRODUCT_CREATE_ACTION, {// create new category menu
 					});
 			});
 	},
-});
+}
+
+

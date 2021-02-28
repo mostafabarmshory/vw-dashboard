@@ -20,13 +20,14 @@
  * SOFTWARE.
  */
 
+import templatUrl from './product.html';
 /**
 @ngdoc Editor
 @name AmdShopProductCtrl
 @description Controller of products list
  */
-mblowfish.addEditor('/shop/products/:productId', {
-	templateUrl: 'scripts/module-shop/editors/product.html',
+export default {
+	templateUrl: templatUrl,
 	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function($scope, $shop, $state, $mbTranslate, $navigator, $location, $q, QueryParameter, $editor) {
@@ -298,5 +299,7 @@ mblowfish.addEditor('/shop/products/:productId', {
 
 		loadProduct();
 	}
-});
+}
+
+
 

@@ -1,11 +1,12 @@
 
+import templatUrl from './deliver.html';
 /**
  * @ngdoc Controller
  * @name AmdShopDeliveryCtrl
  * @description Controller of a Delivery
  */
-mblowfish.addEditor('/shop/delivers/:itemId', {
-	templateUrl: 'scripts/module-shop/editors/deliver.html',
+export default {
+	templateUrl: templatUrl,
 	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function(
@@ -70,5 +71,5 @@ mblowfish.addEditor('/shop/delivers/:itemId', {
 				$editor.setTitle('Deliver:' + itemId);
 			});
 	}
-});
+}
 

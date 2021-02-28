@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import templateUrl from './services.html';
 
 
 
@@ -28,10 +29,10 @@
 @description Manages list of categories
 
  */
-mblowfish.addView(AMD_SHOP_SERVICES_VIEW, {
+export default {
 	title: 'Services',
 	icon: 'cloud_upload',
-	templateUrl: 'scripts/module-shop/views/services.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
@@ -72,4 +73,5 @@ mblowfish.addView(AMD_SHOP_SERVICES_VIEW, {
 			eventType: AMD_SHOP_SERVICE_SP,
 		});
 	}
-});
+}
+

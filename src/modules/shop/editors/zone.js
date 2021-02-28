@@ -1,10 +1,13 @@
+
+import templatUrl from './zone.html';
+
 /**
 @ngdoc Editor
 @name AmdShopZoneCtrl
 @description Manages a zone from shop domain
  */
-mblowfish.addEditor('/shop/zones/:itemId', {
-	templateUrl: 'scripts/module-shop/editors/zone.html',
+export default {
+	templateUrl: templatUrl,
 	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function(
@@ -99,6 +102,6 @@ mblowfish.addEditor('/shop/zones/:itemId', {
 			});
 
 	}
-});
+}
 
 

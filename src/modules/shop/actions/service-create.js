@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(AMD_SHOP_SERVICE_CREATE_ACTION, {// create new category menu
+export default {// create new category menu
 	icon: 'photo_album',
 	title: 'New Service',
 	description: 'Creates new service',
@@ -54,4 +54,6 @@ mblowfish.addAction(AMD_SHOP_SERVICE_CREATE_ACTION, {// create new category menu
 					});
 			});
 	},
-});
+}
+
+

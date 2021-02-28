@@ -20,6 +20,7 @@
  * SOFTWARE.
  */
 
+import templatUrl from './category.html';
 /**
 @ngdoc Editors
 @name /shop/categories/:categoryId
@@ -27,8 +28,8 @@
 Manage a shop category.
 
  */
-mblowfish.addEditor('/shop/categories/:categoryId', {
-	templateUrl: 'scripts/module-shop/editors/category.html',
+export default {
+	templateUrl: templatUrl,
 	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function($editor, $scope, $state, $shop, $controller, $mbTranslate, $mbActions, $mbUtil) {
@@ -230,5 +231,7 @@ mblowfish.addEditor('/shop/categories/:categoryId', {
 
 		reload();
 	}
-});
+}
+
+
 

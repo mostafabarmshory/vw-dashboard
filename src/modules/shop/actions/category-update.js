@@ -21,7 +21,7 @@
  */
 
 
-mblowfish.addAction(AMD_SHOP_CATEGORY_UPDATE_ACTION, {
+export default {
 	demon: true,
 	group: 'Shop',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
@@ -53,5 +53,7 @@ mblowfish.addAction(AMD_SHOP_CATEGORY_UPDATE_ACTION, {
 				alert($mbTranslate.instant('Fail to update the category.'));
 			});
 	}
-});
+}
+
+
 

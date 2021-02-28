@@ -21,7 +21,7 @@
  */
 
 
-mblowfish.addAction(AMD_SHOP_DELIVER_CREATE_ACTION, {
+export default {
 	title: 'New Deliver',
 	icon: 'add',
 	description: 'Creates new delivers',
@@ -55,5 +55,6 @@ mblowfish.addAction(AMD_SHOP_DELIVER_CREATE_ACTION, {
 					});
 			});
 	},
-});
+}
+
 

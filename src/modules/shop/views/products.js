@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import templateUrl from './products.html';
 
 
 /**
@@ -28,10 +29,10 @@
  * 
  * 
  */
-mblowfish.addView(AMD_SHOP_PRODUCTS_VIEW, {
+export default {
 	title: 'Products',
 	icon: 'add_shopping_cart',
-	templateUrl: 'scripts/module-shop/views/products.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
@@ -67,5 +68,7 @@ mblowfish.addView(AMD_SHOP_PRODUCTS_VIEW, {
 			eventType: AMD_SHOP_PRODUCT_SP,
 		});
 	}
-});
+}
+
+
 

@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(AMD_SHOP_CATEGORY_CREATE_ACTION, {// create new category menu
+export default {// create new category menu
 	priority: 10,
 	icon: 'add',
 	group: 'Shop',
@@ -55,4 +55,6 @@ mblowfish.addAction(AMD_SHOP_CATEGORY_CREATE_ACTION, {// create new category men
 			});
 	},
 	groups: ['Shope']
-});
+}
+
+

@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(AMD_SHOP_TAG_CREATE_ACTION, {// create new tag menu
+export default {// create new tag menu
 	priority: 10,
 	icon: 'label',
 	title: 'New Tag',
@@ -55,4 +55,5 @@ mblowfish.addAction(AMD_SHOP_TAG_CREATE_ACTION, {// create new tag menu
 					});
 			});
 	},
-});
+}
+	
