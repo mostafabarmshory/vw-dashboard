@@ -32,12 +32,14 @@ import invoiceEditor from './editors/invoice';
 import reciptEditor from './editors/receipt';
 import tenantEditor from './editors/tenant';
 import ticketEditor from './editors/ticket';
+import spaEditor from './editors/spa';
 // >> filters
 // >> services
 import mbTenantService from './services/mbTenant';
 // >> views
 import invoiceView from './views/invoices';
 import tenatnsView from './views/tenants';
+import spasView from './views/spas';
 
 
 import Constants from './Constants';
@@ -56,6 +58,8 @@ mblowfish
 	.editor('/receipts/:id', reciptEditor)
 	.editor('/tenant/tenants/:tenantId', tenantEditor)
 	.editor('/tenant/tickets/:ticketId', ticketEditor)
+	.addEditor('/spas/:spaId', spaEditor)
+	
 	// >> filters
 	// >> services
 	.provider('$mbTenant', mbTenantService)
@@ -63,6 +67,7 @@ mblowfish
 	// >> views
 	.view('/tenant/invoices', invoiceView)
 	.view(TENANT_TENANTS_VIEW_PATH, tenatnsView)
+	.view(TENANT_SPAS_VIEW, spasView)
 
 	/**
 	Integerate wtih 

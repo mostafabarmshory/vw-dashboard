@@ -11,7 +11,6 @@ export default function(
 	$mbTranslateSanitizationProvider, $mbTranslateProvider,
 	$mbStorageProvider, $locationProvider) {
 
-
 	//
 	// $mbAction: manages all actions
 	//

@@ -1,11 +1,13 @@
-mblowfish.addEditor('/spas/:spaId', {
-	templateUrl: 'scripts/module-spa/editors/spa.html',
+
+import templateUrl from './spa.html';
+
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $tenant, $state, $controller, $editor) {
-		'ngInject';
 
 		// Extends with ItemsController
-		angular.extend(this, $controller('SeenAbstractItemEditorCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractItemEditorCtrl', {
 			$scope: $scope,
 			$editor: $editor
 		}));
@@ -34,4 +36,4 @@ mblowfish.addEditor('/spas/:spaId', {
 
 		this.reload();
 	},
-});
+}

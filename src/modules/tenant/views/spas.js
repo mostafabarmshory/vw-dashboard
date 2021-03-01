@@ -1,9 +1,11 @@
 
-mblowfish.view(TENANT_SPAS_VIEW, {
-	templateUrl: 'scripts/module-spa/views/spas.html',
+import templateUrl from './spas.html';
+
+export default {
+	templateUrl: templateUrl,
 	title: 'spas',
 	icon: 'apps',
-	groups: ['Applications'],
+	groups: ['Tenant'],
 	controllerAs: 'ctrl',
 	controller: function($scope, $tenant, $view, $controller) {
 		'ngInject';
@@ -36,4 +38,4 @@ mblowfish.view(TENANT_SPAS_VIEW, {
 		});
 
 	},
-});
+}
