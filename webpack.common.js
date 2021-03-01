@@ -10,7 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
  */
 module.exports = {
 	bail: true,
-	
+
 	/**
 	 * Entry
 	 * Reference: http://webpack.github.io/docs/configuration.html#entry
@@ -32,8 +32,11 @@ module.exports = {
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			title: 'Production',
-			template: __dirname + '/src/app.html',
-			removeComments: false
+			template: __dirname + '/src/app.html.tmplate',
+			minify: {
+				removeComments: false,
+				collapseWhitespace: false
+			}
 		}),
 		//		new webpack.LoaderOptionsPlugin({
 		//			test: /\.scss$/i,
@@ -94,7 +97,18 @@ module.exports = {
 			test: /\.js$/,
 			exclude: /node_modules/,
 			use: [
-				{ loader: 'babel-loader' }
+				{
+					loader: 'babel-loader',
+					options: {
+						babelrc: false,
+						cacheDirectory: true,
+						configFile: './babel.config.json',
+						babelrcRoots: [
+							".",
+							"./node_modules/*",
+						]
+					},
+				}
 			],
 		}, {
 			// CSS LOADER
@@ -142,7 +156,6 @@ module.exports = {
 			// Reference: https://github.com/webpack/raw-loader
 			// Allow loading html through js
 			test: /\.html$/,
-			exclude: path.resolve(__dirname, './src/app.html'),
 			use: [
 				{
 					loader: path.resolve('webpack/ngtemplate-loader.js'),

@@ -1,9 +1,11 @@
+import MbAccountLoginComponent from './modules/account/components/MbAccountLoginComponent';
+
 /**
+Application config
+
 
 @ngInject
  */
-import MbAccountLoginComponent from './modules/account/components/MbAccountLoginComponent';
-
 export default function(
 	$mbApplicationProvider, $mbLayoutProvider, $mbToolbarProvider, $mbActionsProvider,
 	//		$mbSidenavProvider,

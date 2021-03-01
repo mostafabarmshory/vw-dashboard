@@ -4,10 +4,7 @@
 	],
 	"plugins": [
 		[
-			"angularjs-annotate", 
-			{
-				"explicitOnly" : false
-			}
+			"angularjs-annotate"
 		]
 	]
 }
