@@ -1,24 +1,18 @@
 <md-dialog-content layout="column">
-	<div 
-		layout="row"
-		layout-align="center center">
+	<div layout="row" layout-align="center center">
 		<img style="width:40px; height: 40px; margin: 8px; border-radius: 50%; box-sizing: content-box;"
 			ng-src="{{::asset.cover}}" ng-src-error="" alt="">
 		<h3>{{::asset.title}}</h3>
 		<span flex></span>
-		<md-button class="md-icon-button" ng-click="exec(SDP_ASSETS_EDIT_ACTION, $event, true)">
+		<mb-button class="mb-icon-button" aria-label="Edit Asset" ng-click="exec(SDP_ASSETS_EDIT_ACTION, $event, true)">
 			<mb-icon>edit</mb-icon>
-		</md-button>
-		
-		
-		<md-button class="md-icon-button" ng-click="close()">
+		</mb-button>
+		<mb-button class="md-icon-button" aria-label="Close Dialog" ng-click="close()">
 			<mb-icon>close</mb-icon>
-		</md-button>
+		</mb-button>
 	</div>
 	<md-content>
-		<div 
-			layout="row"
-			layout-align="center start">
+		<div layout="row" layout-align="center start">
 			<img ng-src="{{::asset.cover}}" ng-src-error="" alt=""
 				style="max-width: 250px; height: auto;  margin: 8px; border-radius: 8px; box-sizing: content-box;">
 			<table mb-table>
@@ -33,7 +27,9 @@
 				</tr>
 				<tr>
 					<td mb-translate>Description</td>
-					<td><p>{{::asset.description}}</p></td>
+					<td>
+						<p>{{::asset.description}}</p>
+					</td>
 				</tr>
 				<tr>
 					<td mb-translate>Create Date</td>

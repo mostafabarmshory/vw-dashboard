@@ -35,7 +35,6 @@ export default {
 		}
 
 		this.file_name = createSetterGetter('file_name');
-		this.path = createSetterGetter('path');
 		this.size = createSetterGetter('size');
 		this.mime_type = createSetterGetter('mime_type');
 	},
