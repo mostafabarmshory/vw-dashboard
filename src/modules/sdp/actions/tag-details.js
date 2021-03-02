@@ -1,4 +1,5 @@
-mblowfish.addAction(SDP_TAGS_DETAILS_ACTION, {
+import templateUrl from './tag-details-dialog.html';
+export default {
 	demon: true,
 	action: function($event, $mbDialog,  $rootScope, $rootElement, $mbActions) {
 		'ngInject';
@@ -8,7 +9,7 @@ mblowfish.addAction(SDP_TAGS_DETAILS_ACTION, {
 		}
 
 		return $mbDialog.show({
-			templateUrl: 'scripts/module-sdp/actions/tag-details-dialog.html',
+			templateUrl: templateUrl,
 			locals: {
 				$tag: values[0]
 			},
@@ -42,4 +43,5 @@ mblowfish.addAction(SDP_TAGS_DETAILS_ACTION, {
 			}
 		});
 	},
-});
+}
+

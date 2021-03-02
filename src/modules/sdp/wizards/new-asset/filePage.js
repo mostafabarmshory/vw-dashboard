@@ -1,7 +1,9 @@
-mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#file', {
+import templateUrl from './filePage.html';
+
+export default {
 	title: 'Asset File',
 	description: 'Each asset is related into a binary file some where in network. Fill the form to define the binary.',
-	templateUrl: 'scripts/module-sdp/wizards/new-asset/filePage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $wizard, $sdp, QueryParameter) {
 		'ngInject';
@@ -42,4 +44,5 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#file', {
 		'ngInject';
 		return $wizard.data.file_name && $wizard.data.drive;
 	}
-});
+}
+

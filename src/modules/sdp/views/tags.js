@@ -1,6 +1,7 @@
+import templateUrl from './tags.html';
 
-mblowfish.addView('/sdp/tags', {
-	templateUrl: 'scripts/module-sdp/views/tags.html',
+export default {
+	templateUrl: templateUrl,
 	title: 'Tags',
 	icon: 'label',
 	groups: ['Digital Assets'],
@@ -69,7 +70,7 @@ mblowfish.addView('/sdp/tags', {
 					return ctrl.execOnModel(SDP_TAGS_DETAILS_ACTION, ctrl.getSelection(), $event);
 				}
 			}));
-
-
 	},
-});
+}
+
+

@@ -1,4 +1,4 @@
-mblowfish.addAction(SDP_TAGS_EDIT_ACTION, {
+export default {
 	demon: true,
 	action: function($event, $location, $timeout) {
 		'ngInject';
@@ -16,4 +16,5 @@ mblowfish.addAction(SDP_TAGS_EDIT_ACTION, {
 		});
 		return values;
 	},
-});
+}
+

@@ -1,8 +1,9 @@
+import templateUrl from './categories.html';
 
-mblowfish.resource('sdp-categories-list', {
+export default{
 	label: 'Categories list',
-	templateUrl: 'scripts/module-sdp/resources/categories.html',
+	templateUrl: templateUrl,
 	tags: ['sdp-category-list'],
 	controllerAs: 'ctrl',
 	controller: 'SdpCategoriesListResourceCtrl',
-});
+}

@@ -4,6 +4,11 @@ import templateUrl from './spa.html';
 export default {
 	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
+	/**
+	SPA Editor Controller
+	
+	@ngInject
+	 */
 	controller: function($scope, $tenant, $state, $controller, $editor) {
 
 		// Extends with ItemsController

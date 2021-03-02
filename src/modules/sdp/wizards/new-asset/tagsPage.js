@@ -1,7 +1,9 @@
-mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#tags', {
+import templateUrl from './tagsPage.html';
+
+export default {
 	title: 'Tags',
 	description: 'Clasify all assets with tags, hash tags and label.',
-	templateUrl: 'scripts/module-sdp/wizards/new-asset/tagsPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $sdp, $wizard, QueryParameter, $mbActions) {
 		'ngInject';
@@ -39,4 +41,5 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#tags', {
 	nextPage: function() {
 		return SDP_ASSET_CREATE_WIZARD + '#file';
 	}
-});
+}
+

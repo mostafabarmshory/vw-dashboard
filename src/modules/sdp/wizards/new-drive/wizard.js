@@ -1,12 +1,12 @@
+import Constants from '../../Constants';
 
-
-mblowfish.wizard(SDP_DRIVE_CREATE_WIZARD, {
+export default {
 	title: 'New Storage',
 	description: 'Creates new asset storage to store products.',
 	pages: [
-		SDP_DRIVE_CREATE_WIZARD + '#type',
-		SDP_DRIVE_CREATE_WIZARD + '#properties',
-		SDP_DRIVE_CREATE_WIZARD + '#typeProperties',
+		Constants.SDP_DRIVE_CREATE_WIZARD + '#type',
+		Constants.SDP_DRIVE_CREATE_WIZARD + '#properties',
+		Constants.SDP_DRIVE_CREATE_WIZARD + '#typeProperties',
 		// TODO: add extra pages
 	],
 
@@ -33,6 +33,7 @@ mblowfish.wizard(SDP_DRIVE_CREATE_WIZARD, {
 			values: [$wizard.data]
 		});
 	},
-});
+}
+
 
 

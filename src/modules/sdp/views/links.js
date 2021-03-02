@@ -1,9 +1,11 @@
 
-mblowfish.view(SDP_VIEW_LINKS_PATH, {
+import templateUrl from './links.html';
+
+export default {
 	title: 'Links',
 	icon: 'web_asset',
 	groups: ['Digital Assets'],
-	templateUrl: 'scripts/module-sdp/views/links.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $view, $sdp, $controller, $mbActions) {
 		'ngInject';
@@ -45,4 +47,5 @@ mblowfish.view(SDP_VIEW_LINKS_PATH, {
 			eventType: SDP_LINKS_SP,
 		});
 	},
-});
+}
+

@@ -1,4 +1,6 @@
-mblowfish.addAction(SDP_DRIVES_DETAILS_ACTION, {
+import templateUrl from './drive-details-dialog.html';
+
+export default {
 	demon: true,
 	action: function($rootScope, $rootElement, $event, $mbActions, $mbDialog) {
 		'ngInject';
@@ -8,7 +10,7 @@ mblowfish.addAction(SDP_DRIVES_DETAILS_ACTION, {
 		}
 
 		return $mbDialog.show({
-			templateUrl: 'scripts/module-sdp/actions/drive-details-dialog.html',
+			templateUrl: templateUrl,
 			locals: {
 				$drive: values[0]
 			},
@@ -42,4 +44,6 @@ mblowfish.addAction(SDP_DRIVES_DETAILS_ACTION, {
 			}
 		});
 	},
-});
+}
+
+

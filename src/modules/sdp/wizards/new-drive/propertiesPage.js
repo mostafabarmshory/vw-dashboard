@@ -1,7 +1,9 @@
-mblowfish.wizardPage(SDP_DRIVE_CREATE_WIZARD + '#properties', {
+import templateUrl from './propertiesPage.html';
+
+export default {
 	title: 'Properties',
 	description: 'Each tag is known with name and description in the Dashboard. Fill the forme to define a new one.',
-	templateUrl: 'scripts/module-sdp/wizards/new-drive/propertiesPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard, $mbCrypto) {
 		'ngInject';
@@ -27,4 +29,5 @@ mblowfish.wizardPage(SDP_DRIVE_CREATE_WIZARD + '#properties', {
 		'ngInject';
 		return $wizard.data.title;
 	}
-});
+}
+

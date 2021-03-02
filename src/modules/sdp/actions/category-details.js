@@ -1,8 +1,8 @@
+import templateUrl from './category-details-dialog.html';
 
-
-mblowfish.addAction(SDP_CATEGORIES_DETAILS_ACTION, {
+export default {
 	demon: true,
-	action: function($event, $mbDialog,  $rootScope, $rootElement, $mbActions) {
+	action: function($event, $mbDialog, $rootScope, $rootElement, $mbActions) {
 		'ngInject';
 		var values = $event.values;
 		if (!values || !_.isArray(values) || values.length < 1) {
@@ -10,7 +10,7 @@ mblowfish.addAction(SDP_CATEGORIES_DETAILS_ACTION, {
 		}
 
 		return $mbDialog.show({
-			templateUrl: 'scripts/module-sdp/actions/category-details-dialog.html',
+			templateUrl: templateUrl,
 			locals: {
 				$category: values[0]
 			},
@@ -44,5 +44,7 @@ mblowfish.addAction(SDP_CATEGORIES_DETAILS_ACTION, {
 			}
 		});
 	},
-});
+}
+
+
 

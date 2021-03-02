@@ -1,4 +1,4 @@
-mblowfish.addAction(SDP_DRIVES_EDIT_ACTION, {
+export default {
 	demon: true,
 	action: function($event, $location, $timeout) {
 		'ngInject';
@@ -15,4 +15,4 @@ mblowfish.addAction(SDP_DRIVES_EDIT_ACTION, {
 			}, idx * 100);
 		});
 	},
-});
+}

@@ -1,7 +1,9 @@
-mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#ebook-properties', {
+import templateUrl from './ebookPropertiesPage.html';
+
+export default {
 	title: 'Properties',
 	description: 'Each tag is known with name and description in the Dashboard. Fill the forme to define a new one.',
-	templateUrl: 'scripts/module-sdp/wizards/new-asset/ebookPropertiesPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard, $mbResource) {
 		'ngInject';
@@ -40,4 +42,6 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#ebook-properties', {
 		'ngInject';
 		return $wizard.data.title;
 	}
-});
+}
+
+

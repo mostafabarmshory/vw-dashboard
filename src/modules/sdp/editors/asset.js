@@ -1,4 +1,4 @@
-
+import templateUrl from './asset.html';
 /**
 
 
@@ -23,8 +23,8 @@ Hre is list of an asset attributes:
  - drive_id:Foreignkey
 
  */
-mblowfish.editor('/sdp/assets/:modelId', {
-	templateUrl: 'scripts/module-sdp/editors/asset.html',
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $element, $controller, $sdp, $editor, $state, SdpAsset, $mbResource) {
 		'ngInject';
@@ -35,7 +35,7 @@ mblowfish.editor('/sdp/assets/:modelId', {
 			'tags{id, name},' +
 			'}';
 
-		angular.extend(this, $controller('SeenAbstractItemEditorCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractItemEditorCtrl', {
 			$scope: $scope,
 			$element: $element,
 			$editor: $editor
@@ -85,4 +85,6 @@ mblowfish.editor('/sdp/assets/:modelId', {
 				// TODO: asset not found
 			});
 	}
-});
+}
+
+

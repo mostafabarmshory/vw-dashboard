@@ -1,7 +1,8 @@
-mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#genre', {
+import templateUrl from './genrePage.html';
+export default {
 	title: 'Genre',
 	description: 'There may be one or many genre for a book, video, or other asset. Search and add them in the form.',
-	templateUrl: 'scripts/module-sdp/wizards/new-asset/genrePage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $sdp, $wizard, QueryParameter, $mbActions) {
 		'ngInject';
@@ -45,4 +46,6 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#genre', {
 				});
 		};
 	}
-});
+}
+
+

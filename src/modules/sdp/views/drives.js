@@ -1,4 +1,4 @@
-
+import templateUrl from './drives.html';
 /**
 
 Drive attributes:
@@ -12,11 +12,11 @@ Drive attributes:
 - modif_dtime
 
  */
-mblowfish.view(SDP_VIEW_DRIVES_PATH, {
+export default {
 	title: 'Storages',
 	icon: 'storage',
 	groups: ['Digital Assets'],
-	templateUrl: 'scripts/module-sdp/views/drives.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $view, $sdp, $controller, MbAction) {
 		'ngInject';
@@ -87,4 +87,6 @@ mblowfish.view(SDP_VIEW_DRIVES_PATH, {
 				}
 			}));
 	},
-});
+}
+
+

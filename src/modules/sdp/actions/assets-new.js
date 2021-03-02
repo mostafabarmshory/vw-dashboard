@@ -1,4 +1,8 @@
-mblowfish.addAction(SDP_ASSETS_CREATE_ACTION, {
+
+
+import Constants from '../Constants';
+
+export default {
 	icon: 'add',
 	title: 'SDP: New Asset',
 	description: 'Create an assets',
@@ -10,7 +14,7 @@ mblowfish.addAction(SDP_ASSETS_CREATE_ACTION, {
 			values = $event.values;
 		}
 		if (!values || !_.isArray(values)) {
-			return $mbWizard.openWizard(SDP_ASSET_CREATE_WIZARD);
+			return $mbWizard.openWizard(Constants.SDP_ASSET_CREATE_WIZARD);
 		}
 		
 		function setMetadata(asset, metadate){
@@ -62,9 +66,10 @@ mblowfish.addAction(SDP_ASSETS_CREATE_ACTION, {
 		return $q.all(jobs)
 			.then(function() {
 				$mbDispatcherUtil.fireCreated(SDP_DRIVES_SP, models);
-				return $mbActions.exec(SDP_ASSETS_EDIT_ACTION, {
+				return $mbActions.exec(Constants.SDP_ASSETS_EDIT_ACTION, {
 					values: models
 				});
 			});
 	},
-});
+}
+

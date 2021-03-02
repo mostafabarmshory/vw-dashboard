@@ -1,4 +1,4 @@
-mblowfish.addAction(SDP_DRIVES_CREATE_ACTION, {
+export default {
 	icon: 'add',
 	title: 'SDP: New Storage',
 	description: 'Creates a new storage of assets',
@@ -32,4 +32,6 @@ mblowfish.addAction(SDP_DRIVES_CREATE_ACTION, {
 				});
 			});
 	},
-});
+}
+
+

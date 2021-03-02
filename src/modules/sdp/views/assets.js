@@ -1,11 +1,11 @@
+import templateUrl from './assets.html';
 
 
-
-mblowfish.view('/sdp/assets', {
+export default {
 	title: 'Assets',
 	icon: 'web_asset',
 	groups: ['Digital Assets'],
-	templateUrl: 'scripts/module-sdp/views/assets.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $view, $sdp, $controller, MbAction) {
 		'ngInject';
@@ -70,4 +70,5 @@ mblowfish.view('/sdp/assets', {
 				}
 			}));
 	},
-});
+}
+

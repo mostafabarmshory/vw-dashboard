@@ -32,7 +32,7 @@ export default {
 	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function(
-		$scope, $state, $mbTranslate, $location, $navigator, $q,
+		$scope, $state, $mbTranslate, $location, $mbDialog, $q,
         /* wb-core   */ $mbResource,
         /* seen-shop */ $shop, ShopService, ShopCategory, ServiceMetafield) {
 		'ngInject';
@@ -155,37 +155,41 @@ export default {
 
 		function addMetafield(metadata) {
 			var mydata = metadata ? metadata : {};
-			$navigator.openDialog({
-				templateUrl: 'views/dialogs/metafield-new.html',
-				config: {
-					data: mydata
-				}
-				// Create content
-			}).then(function(meta) {
-				return $scope.service.putMetafield(meta)//
-					.then(function() {
-						loadMetafields();
-					}, function() {
-						alert($mbTranslate.instant('Failed to add new item.'));
-					});
-			});
+			$mbDialog
+				.show({
+					templateUrl: 'views/dialogs/metafield-new.html',
+					config: {
+						data: mydata
+					}
+					// Create content
+				})
+				.then(function(meta) {
+					return $scope.service.putMetafield(meta)//
+						.then(function() {
+							loadMetafields();
+						}, function() {
+							alert($mbTranslate.instant('Failed to add new item.'));
+						});
+				});
 		}
 
 		function updateMetafield(metadata) {
-			$navigator.openDialog({
-				templateUrl: 'views/dialogs/metafield-update.html',
-				config: {
-					data: metadata
-				}
-				// Create content
-			}).then(function(meta) {
-				return $scope.service.putMetafield(meta)//
-					.then(function() {
-						loadMetafields();
-					}, function() {
-						alert($mbTranslate.instant('Failed to update item.'));
-					});
-			});
+			$mbDialog
+				.show({
+					templateUrl: 'views/dialogs/metafield-update.html',
+					config: {
+						data: metadata
+					}
+					// Create content
+				})
+				.then(function(meta) {
+					return $scope.service.putMetafield(meta)//
+						.then(function() {
+							loadMetafields();
+						}, function() {
+							alert($mbTranslate.instant('Failed to update item.'));
+						});
+				});
 		}
 
 		function inlineUpdateMetafield(metadata) {

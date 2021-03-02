@@ -19,11 +19,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import templateUrl from './category.html';
 
-mblowfish.resource('sdp-category-list', {
+export default {
 	label: 'Category list',
-	templateUrl: 'scripts/module-sdp/resources/category.html',
+	templateUrl: templateUrl,
 	tags: ['sdp-category'],
 	controllerAs: 'ctrl',
 	controller: 'SdpCategoryListResourceCtrl',
-});
+}
+

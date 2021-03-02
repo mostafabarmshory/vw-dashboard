@@ -19,80 +19,142 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-mblowfish.addConstants({
-	//------------------------------------------------------------
-	// Resources Types
-	//------------------------------------------------------------
-	//	AMD_CMS_TERMTAXONOMIES_RT: '/cms/term-taxonomies',
+import mblowfish from 'mblowfish';
+import Constants from './Constants';
 
-	//------------------------------------------------------------
-	// Stoer Paths
-	//------------------------------------------------------------
-	SDP_ASSETS_SP: '/sdp/assets',
-	SDP_DRIVES_SP: '/sdp/assets',
-	SDP_TAGS_SP: '/sdp/tags',
-	SDP_CATEGORIES_SP: '/sdp/categories',
-	SDP_LINKS_SP: '/sdp/links',
+import assetsDetails from './actions/assets-details';
+import assetsEdit from './actions/assets-edit';
+import assetsNew from './actions/assets-new';
+import categoryDetails from './actions/category-details';
+import categoryEdit from './actions/category-edit';
+import categoryNew from './actions/category-new';
+import driveDetails from './actions/drive-details';
+import driveEdit from './actions/drive-edit';
+import driveNew from './actions/drive-new';
+import tagDetails from './actions/tag-details';
+import tagEdit from './actions/tag-edit';
+import tagNew from './actions/tag-new';
 
-	//------------------------------------------------------------
-	// Views
-	//------------------------------------------------------------
-	SDP_VIEW_DRIVES_PATH: '/sdp/storages',
-	SDP_VIEW_LINKS_PATH: '/sdp/links',
-	SDP_VIEW_CATEGORIES_PATH: '/sdp/categories',
-	SDP_VIEW_TAGS_PATH: '/sdp/tags',
-	SDP_VIEW_ASSETS_PATH: '/sdp/assets',
+import sdpDownloadedLinkDirective from './directives/sdpDownloadedLink';
 
-	//------------------------------------------------------------
-	// ACTIONS
-	//------------------------------------------------------------
-	SDP_ASSETS_EDIT_ACTION: 'sdp.assets.edit',
-	SDP_ASSETS_CREATE_ACTION: 'sdp.assets.create',
-	SDP_ASSETS_DETAILS_ACTION: 'sdp.assets.details',
+import assetEditor from './editors/asset';
+import categoryEditor from './editors/category';
+import driveEditor from './editors/drive';
+import tagEditor from './editors/tag';
 
-	SDP_TAGS_EDIT_ACTION: 'sdp.tags.edit',
-	SDP_TAGS_DELETE_ACTION: 'sdp.tags.delete',
-	SDP_TAGS_CREATE_ACTION: 'sdp.tags.create',
-	SDP_TAGS_DETAILS_ACTION: 'sdp.tags.details',
+import categoriesResource from './resources/categories';
+import categoryResource from './resources/category';
+import driversResource from './resources/drivers';
+import tagsResource from './resources/tags';
 
-	SDP_CATEGORIES_EDIT_ACTION: 'sdp.categories.edit',
-	SDP_CATEGORIES_DELETE_ACTION: 'sdp.categories.delete',
-	SDP_CATEGORIES_CREATE_ACTION: 'sdp.categories.create',
-	SDP_CATEGORIES_DETAILS_ACTION: 'sdp.categories.details',
+import assetsView from './views/assets';
+import categoriesView from './views/categories';
+import downloadLinksView from './views/download-links';
+import drivesView from './views/drives';
+import linksView from './views/links';
+import tagsView from './views/tags';
 
-	SDP_DRIVES_EDIT_ACTION: 'sdp.drives.edit',
-	SDP_DRIVES_CREATE_ACTION: 'sdp.drives.create',
-	SDP_DRIVES_DETAILS_ACTION: 'sdp.drives.details',
+import assetCreateauthorPageWizardPage from './wizards/new-asset/authorPage';
+import assetCreateebookPropertiesPageWizardPage from './wizards/new-asset/ebookPropertiesPage';
+import assetCreatefilePageWizardPage from './wizards/new-asset/filePage';
+import assetCreategenrePageWizardPage from './wizards/new-asset/genrePage';
+import assetCreatemarketPageWizardPage from './wizards/new-asset/marketPage';
+import assetCreatenotsupportPageWizardPage from './wizards/new-asset/notsupportPage';
+import assetCreatpublisherPageeWizardPage from './wizards/new-asset/publisherPage';
+import assetCreatetagsPageWizardPage from './wizards/new-asset/tagsPage';
+import assetCreatetypePageWizardPage from './wizards/new-asset/typePage';
+import assetCreateWizard from './wizards/new-asset/wizard';
 
-	//------------------------------------------------------------
-	// wizards
-	//------------------------------------------------------------
-	SDP_CATEGORY_CREATE_WIZARD: '/sdp/wizards/new-category',
-	SDP_TAG_CREATE_WIZARD: '/sdp/wizards/new-tag',
-	SDP_DRIVE_CREATE_WIZARD: '/sdp/wizards/new-storage',
-	SDP_ASSET_CREATE_WIZARD: '/sdp/wizards/new-asset',
-});
+import tagCreatePropertiesWizardPage from './wizards/new-tag/propertiesPage';
+import tagCreateWizard from './wizards/new-tag/wizard';
 
-mblowfish.run(function($mbToolbar) {
-	'ngInject';
+import driveCreatepropertiesPageWizardPage from './wizards/new-drive/propertiesPage';
+import driveCreatetypePageWizardPage from './wizards/new-drive/typePage';
+import driveCreatetypePropertiesPageWizardPage from './wizards/new-drive/typePropertiesPage';
+import driveCreateWizar from './wizards/new-drive/wizard';
 
-	$mbToolbar
-		.getToolbar(SDP_VIEW_CATEGORIES_PATH)
-		.addAction(SDP_CATEGORIES_CREATE_ACTION);
+import categoryCreatePropertiesWizardPage from './wizards/new-category/propertiesPage';
+import categoryCreateWizard from './wizards/new-category/wizard';
 
-	$mbToolbar
-		.getToolbar(SDP_VIEW_TAGS_PATH)
-		.addAction(SDP_TAGS_CREATE_ACTION);
 
-	$mbToolbar
-		.getToolbar(SDP_VIEW_DRIVES_PATH)
-		.addAction(SDP_DRIVES_CREATE_ACTION);
+mblowfish
+	.addConstants(Constants)
 
-	$mbToolbar
-		.getToolbar(SDP_VIEW_ASSETS_PATH)
-		.addAction(SDP_ASSETS_CREATE_ACTION);
+	.action(Constants.SDP_ASSETS_DETAILS_ACTION, assetsDetails)
+	.action(Constants.SDP_ASSETS_EDIT_ACTION, assetsEdit)
+	.action(Constants.SDP_ASSETS_CREATE_ACTION, assetsNew)
+	.action(Constants.SDP_CATEGORIES_DETAILS_ACTION, categoryDetails)
+	.action(Constants.SDP_CATEGORIES_EDIT_ACTION, categoryEdit)
+	.action(Constants.SDP_CATEGORIES_CREATE_ACTION, categoryNew)
+	.action(Constants.SDP_DRIVES_DETAILS_ACTION, driveDetails)
+	.action(Constants.SDP_DRIVES_EDIT_ACTION, driveEdit)
+	.action(Constants.SDP_DRIVES_CREATE_ACTION, driveNew)
+	.action(Constants.SDP_TAGS_DETAILS_ACTION, tagDetails)
+	.action(Constants.SDP_TAGS_EDIT_ACTION, tagEdit)
+	.action(Constants.SDP_TAGS_CREATE_ACTION, tagNew)
 
-});
+	.directive('sdpDownloadedLink', sdpDownloadedLinkDirective)
+
+	.editor('/sdp/assets/:modelId', assetEditor)
+	.editor('/sdp/categories/:modelId', categoryEditor)
+	.editor('/sdp/storages/:modelId', driveEditor)
+	.editor('/sdp/tags/:modelId', tagEditor)
+
+	.resource('sdp-categories-list', categoriesResource)
+	.resource('sdp-category-list', categoryResource)
+	.resource('sdp-driver-list', driversResource)
+	.resource('sdp-tag-list', tagsResource)
+
+	.view('/sdp/assets', assetsView)
+	.view(SDP_VIEW_CATEGORIES_PATH, categoriesView)
+	.view('/sdp/downloads-link', downloadLinksView)
+	.view(SDP_VIEW_DRIVES_PATH, drivesView)
+	.view(SDP_VIEW_LINKS_PATH, linksView)
+	.view('/sdp/tags', tagsView)
+
+	.wizardPage(SDP_ASSET_CREATE_WIZARD + '#author', assetCreateauthorPageWizardPage)
+	.wizardPage(SDP_ASSET_CREATE_WIZARD + '#ebook-properties', assetCreateebookPropertiesPageWizardPage)
+	.wizardPage(SDP_ASSET_CREATE_WIZARD + '#file', assetCreatefilePageWizardPage)
+	.wizardPage(SDP_ASSET_CREATE_WIZARD + '#genre', assetCreategenrePageWizardPage)
+	.wizardPage(SDP_ASSET_CREATE_WIZARD + '#market', assetCreatemarketPageWizardPage)
+	.wizardPage(SDP_ASSET_CREATE_WIZARD + '#notsupport', assetCreatenotsupportPageWizardPage)
+	.wizardPage(SDP_ASSET_CREATE_WIZARD + '#publisher', assetCreatpublisherPageeWizardPage)
+	.wizardPage(SDP_ASSET_CREATE_WIZARD + '#tags', assetCreatetagsPageWizardPage)
+	.wizardPage(SDP_ASSET_CREATE_WIZARD + '#type', assetCreatetypePageWizardPage)
+	.wizard(SDP_ASSET_CREATE_WIZARD, assetCreateWizard)
+
+	.wizardPage(SDP_CATEGORY_CREATE_WIZARD + '#properties', categoryCreatePropertiesWizardPage)
+	.wizard(SDP_CATEGORY_CREATE_WIZARD, categoryCreateWizard)
+
+	.wizardPage(SDP_DRIVE_CREATE_WIZARD + '#properties', driveCreatepropertiesPageWizardPage)
+	.wizardPage(SDP_DRIVE_CREATE_WIZARD + '#type', driveCreatetypePageWizardPage)
+	.wizardPage(SDP_DRIVE_CREATE_WIZARD + '#typeProperties', driveCreatetypePropertiesPageWizardPage)
+	.wizard(SDP_DRIVE_CREATE_WIZARD, driveCreateWizar)
+
+	.wizardPage(SDP_TAG_CREATE_WIZARD + '#properties', tagCreatePropertiesWizardPage)
+	.wizard(SDP_TAG_CREATE_WIZARD, tagCreateWizard)
+
+	// Integerate with environment
+	.run(function($mbToolbar) {
+		'ngInject';
+
+		$mbToolbar
+			.getToolbar(Constants.SDP_VIEW_CATEGORIES_PATH)
+			.addAction(Constants.SDP_CATEGORIES_CREATE_ACTION);
+
+		$mbToolbar
+			.getToolbar(Constants.SDP_VIEW_TAGS_PATH)
+			.addAction(Constants.SDP_TAGS_CREATE_ACTION);
+
+		$mbToolbar
+			.getToolbar(Constants.SDP_VIEW_DRIVES_PATH)
+			.addAction(Constants.SDP_DRIVES_CREATE_ACTION);
+
+		$mbToolbar
+			.getToolbar(Constants.SDP_VIEW_ASSETS_PATH)
+			.addAction(Constants.SDP_ASSETS_CREATE_ACTION);
+
+	});
 
 
 

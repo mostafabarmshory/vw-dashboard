@@ -1,11 +1,12 @@
+import templateUrl from './tag.html';
 
-mblowfish.editor('/sdp/tags/:modelId', {
-	templateUrl: 'scripts/module-sdp/editors/tag.html',
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $editor, $element, $controller, $sdp, $mbTranslate, $state) {
 		'ngInject';
 
-		angular.extend(this, $controller('SeenAbstractItemEditorCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractItemEditorCtrl', {
 			$scope: $scope,
 			$element: $element,
 			$editor: $editor
@@ -26,4 +27,6 @@ mblowfish.editor('/sdp/tags/:modelId', {
 				// TODO: asset not found
 			});
 	},
-});
+}
+
+

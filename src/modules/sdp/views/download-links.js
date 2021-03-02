@@ -1,8 +1,11 @@
 //
-mblowfish.addView('/sdp/downloads-link', {
+import templateUrl from './download-links.html';
+export default {
 	controller: 'SdpDownloadedFilesLinkCtrl',
-	templateUrl: 'views/sdp-downloaded-files-link.html',
+	templateUrl: templateUrl,
 	title: 'Downloaded links',
 	icon: 'cloud_download',
 	groups: ['Digital Assets'],
-});
+}
+
+

@@ -1,16 +1,16 @@
-
+import templateUrl from './drive.html';
 /**
 
 
 
  */
-mblowfish.editor('/sdp/storages/:modelId', {
-	templateUrl: 'scripts/module-sdp/editors/drive.html',
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
-	controller: function($scope, $element, $controller, $sdp, $editor, $state, SdpDrive, $mbTranslate) {
+	controller: function($scope, $element, $controller, $sdp, $editor, $state, SdpDrive) {
 		'ngInject';
 
-		angular.extend(this, $controller('SeenAbstractItemEditorCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractItemEditorCtrl', {
 			$scope: $scope,
 			$element: $element,
 			$editor: $editor
@@ -23,7 +23,7 @@ mblowfish.editor('/sdp/storages/:modelId', {
 
 		function setDriveData(data) {
 			ctrl.setStorePath(SDP_DRIVES_SP)
-				.setTitle($mbTranslate('Drive') + ':' + $state.params.modelId)
+				.setTitle('Drive' + ':' + $state.params.modelId)
 				.setDerty(false);
 			return ctrl.setModel(new SdpDrive(data));
 		}
@@ -34,4 +34,4 @@ mblowfish.editor('/sdp/storages/:modelId', {
 				ctrl.setObjectNotFoundError();
 			});
 	}
-});
+}

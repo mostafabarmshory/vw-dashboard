@@ -1,7 +1,9 @@
-mblowfish.wizardPage(SDP_CATEGORY_CREATE_WIZARD + '#properties', {
+import templateUrl from './propertiesPage.html';
+
+export default {
 	title: 'Properties',
 	description: 'Category name, description and parent helps to build a useful data.',
-	templateUrl: 'scripts/module-sdp/wizards/new-category/propertiesPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $wizard, $sdp, QueryParameter) {
 		'ngInject';
@@ -39,4 +41,5 @@ mblowfish.wizardPage(SDP_CATEGORY_CREATE_WIZARD + '#properties', {
 		'ngInject';
 		return $wizard.data.name;
 	}
-});
+}
+

@@ -1,7 +1,9 @@
-mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#market', {
+import templateUrl from './marketPage.html';
+
+export default {
 	title: 'Market',
 	description: 'Price, state and other properties are used in selling and market.',
-	templateUrl: 'scripts/module-sdp/wizards/new-asset/marketPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard) {
 		'ngInject';
@@ -25,4 +27,4 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#market', {
 		'ngInject';
 		return $wizard.data.name;
 	}
-});
+}

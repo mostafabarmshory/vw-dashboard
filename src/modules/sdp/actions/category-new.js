@@ -1,5 +1,5 @@
 
-mblowfish.addAction(SDP_CATEGORIES_CREATE_ACTION, {
+export default {
 	icon: 'add',
 	title: 'SDP: New Category',
 	description: 'Creates a new category',
@@ -33,4 +33,6 @@ mblowfish.addAction(SDP_CATEGORIES_CREATE_ACTION, {
 				});
 			});
 	},
-});
+}
+
+

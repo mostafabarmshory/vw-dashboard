@@ -1,7 +1,9 @@
-mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#publisher', {
+import templateUrl from './publisherPage.html';
+
+export default {
 	title: 'Publisher',
 	description: 'There may be one or several publisher for the book, video, or other asset. Search and add them in the form.',
-	templateUrl: 'scripts/module-sdp/wizards/new-asset/publisherPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $sdp, $wizard, QueryParameter, $mbActions) {
 		'ngInject';
@@ -45,4 +47,5 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#publisher', {
 				});
 		};
 	}
-});
+}
+

@@ -1,3 +1,5 @@
+import templateUrl from './typePage.html';
+
 /**
 
 There may be an specific types of asset. Here is list of supported assets:
@@ -12,10 +14,10 @@ There may be an specific types of asset. Here is list of supported assets:
 - Mangazine
 
  */
-mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#type', {
+export default {
 	title: 'Asset Type',
 	description: 'Asset type defines the main category of assets. Select which type of asset you are about to add.',
-	templateUrl: 'scripts/module-sdp/wizards/new-asset/typePage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard) {
 		'ngInject';
@@ -74,4 +76,6 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#type', {
 		'ngInject';
 		return $wizard.data.media_type;
 	}
-});
+}
+
+

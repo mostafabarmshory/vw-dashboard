@@ -7,5 +7,5 @@ export default {
 	priority: 10,
 	tags: ['image-url', 'avatar', 'thumbnail'],
 	controllerAs: 'ctrl',
-	controller: 'AmdCmsContentUrlResourceCtrl',
+	controller: 'MbCmsContentUrlResourceCtrl',
 }

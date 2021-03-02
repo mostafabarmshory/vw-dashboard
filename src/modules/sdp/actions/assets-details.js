@@ -1,6 +1,6 @@
+import templateUrl from './assets-details-dialog.html';
 
-
-mblowfish.addAction(SDP_ASSETS_DETAILS_ACTION, {
+export default {
 	demon: true,
 	action: function($event, $mbDialog,  $rootScope, $rootElement, $mbActions) {
 		'ngInject';
@@ -10,7 +10,7 @@ mblowfish.addAction(SDP_ASSETS_DETAILS_ACTION, {
 		}
 
 		return $mbDialog.show({
-			templateUrl: 'scripts/module-sdp/actions/assets-details-dialog.html',
+			templateUrl: templateUrl,
 			locals: {
 				$asset: values[0]
 			},
@@ -44,5 +44,5 @@ mblowfish.addAction(SDP_ASSETS_DETAILS_ACTION, {
 			}
 		});
 	},
-});
+}
 

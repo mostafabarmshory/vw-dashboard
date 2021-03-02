@@ -1,10 +1,10 @@
+import Constants from '../../Constants';
 
-
-mblowfish.wizard(SDP_CATEGORY_CREATE_WIZARD, {
+export default {
 	title: 'New Category',
 	description: 'Creates new category of products to categorize and manage larg list of them.',
 	pages: [
-		SDP_CATEGORY_CREATE_WIZARD + '#properties',
+		Constants.SDP_CATEGORY_CREATE_WIZARD + '#properties',
 		// TODO: add extra pages
 	],
 
@@ -37,6 +37,6 @@ mblowfish.wizard(SDP_CATEGORY_CREATE_WIZARD, {
 			values: [$wizard.data]
 		});
 	},
-});
+}
 
 

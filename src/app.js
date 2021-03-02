@@ -58,11 +58,10 @@ import './modules/account';
 //import './modules/bank';
 import './modules/cms';
 //import './modules/jms';
-//import './modules/sdp';
+import './modules/sdp';
 //import './modules/seo';
 import './modules/shop';
 //import './modules/shopx';
-//import './modules/spa';
 import './modules/tenant';
 //import './modules/user';
 

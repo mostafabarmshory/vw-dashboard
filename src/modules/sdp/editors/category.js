@@ -1,11 +1,11 @@
-
-mblowfish.editor('/sdp/categories/:modelId', {
-	templateUrl: 'scripts/module-sdp/editors/category.html',
+import templateUrl from './category.html';
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $editor, $element, $controller, $sdp, $mbTranslate, $state) {
 		'ngInject';
 
-		angular.extend(this, $controller('SeenAbstractItemEditorCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractItemEditorCtrl', {
 			$scope: $scope,
 			$element: $element,
 			$editor: $editor
@@ -26,4 +26,5 @@ mblowfish.editor('/sdp/categories/:modelId', {
 				// TODO: asset not found
 			});
 	},
-});
+}
+

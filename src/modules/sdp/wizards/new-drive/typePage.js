@@ -1,7 +1,9 @@
-mblowfish.wizardPage(SDP_DRIVE_CREATE_WIZARD + '#type', {
+import templateUrl from './typePage.html';
+
+export default {
 	title: 'Storage Type',
 	description: 'There are many types of storage to keep your asstes. Select your storage type from the list.',
-	templateUrl: 'scripts/module-sdp/wizards/new-drive/typePage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard, $sdp) {
 		'ngInject';
@@ -27,4 +29,6 @@ mblowfish.wizardPage(SDP_DRIVE_CREATE_WIZARD + '#type', {
 		'ngInject';
 		return $wizard.data.type;
 	}
-});
+}
+
+

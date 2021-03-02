@@ -1,6 +1,6 @@
-
-mblowfish.addView(SDP_VIEW_CATEGORIES_PATH, {
-	templateUrl: 'scripts/module-sdp/views/categories.html',
+import templateUrl from './categories.html';
+export default {
+	templateUrl: templateUrl,
 	title: 'Categories',
 	icon: 'category',
 	groups: ['Digital Assets'],
@@ -69,4 +69,7 @@ mblowfish.addView(SDP_VIEW_CATEGORIES_PATH, {
 				}
 			}));
 	},
-});
+}
+
+
+

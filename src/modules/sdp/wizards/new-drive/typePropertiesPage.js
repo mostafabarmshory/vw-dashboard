@@ -1,12 +1,12 @@
-mblowfish.wizardPage(SDP_DRIVE_CREATE_WIZARD + '#typeProperties', {
+import templateUrl from './typePropertiesPage.html';
+
+export default {
 	title: 'Storage Properites',
 	description: 'Storeages needs some properties to use. Fill the form based on your storage type.',
-	templateUrl: 'scripts/module-sdp/wizards/new-drive/typePropertiesPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard, $sdp) {
 		'ngInject';
-
-
 		this.properties = [];
 		this.data = $wizard.data;
 
@@ -27,4 +27,4 @@ mblowfish.wizardPage(SDP_DRIVE_CREATE_WIZARD + '#typeProperties', {
 //		'ngInject';
 //		return $wizard.data.name;
 //	}
-});
+}

@@ -19,10 +19,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import templateUrl from './tags.html';
 
-mblowfish.resource('sdp-tag-list', {
+export default {
 	label: 'Tag list',
-	templateUrl: 'scripts/module-sdp/resources/tags.html',
+	templateUrl: templateUrl,
 	tags: ['sdp-tag'],
 	controllerAs: 'ctrl',
 	controller: function($scope, $options, $resource, $sdp, $controller) {
@@ -50,7 +51,7 @@ mblowfish.resource('sdp-tag-list', {
 		this.init({
 			eventType: SDP_TAGS_SP,
 		});
-		
+
 		//-------------------------------------------------------
 		// Common in all resources
 		//-------------------------------------------------------
@@ -74,4 +75,5 @@ mblowfish.resource('sdp-tag-list', {
 			}
 		};
 	}
-});
+}
+

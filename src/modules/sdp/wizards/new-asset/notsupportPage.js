@@ -1,7 +1,9 @@
-mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#notsupport', {
+import templateUrl from './notsupportPage.html';
+
+export default {
 	title: 'Not suppored',
 	description: 'The asset type is not supported. Select another one.',
-	templateUrl: 'scripts/module-sdp/wizards/new-asset/notsupportPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function() {
 		'ngInject';
@@ -10,4 +12,5 @@ mblowfish.wizardPage(SDP_ASSET_CREATE_WIZARD + '#notsupport', {
 		'ngInject';
 		return false;
 	}
-});
+}
+

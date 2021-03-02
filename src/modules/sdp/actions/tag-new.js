@@ -1,4 +1,4 @@
-mblowfish.addAction(SDP_TAGS_CREATE_ACTION, {
+export default {
 	icon: 'add',
 	title: 'SDP: New Tag',
 	description: 'Creates a new tag',
@@ -31,4 +31,6 @@ mblowfish.addAction(SDP_TAGS_CREATE_ACTION, {
 				});
 			});
 	},
-});
+}
+
+

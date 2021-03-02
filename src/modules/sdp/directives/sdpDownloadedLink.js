@@ -4,7 +4,8 @@
  * @name amhSdp.directive:sdpAssetFilter
  * @description # sdpAssetFilter
  */
-mblowfish.directive('sdpDownloadedLink', function() {
+
+export default function() {
 	return {
 		restrict: 'E',
 		templateUrl: 'views/directives/sdp-downloaded-link.html',
@@ -12,6 +13,7 @@ mblowfish.directive('sdpDownloadedLink', function() {
 			item: '='
 		},
 		controller: function($scope, /*$sdp, */$usr) {
+			'ngInject';
 			//                      $sdp.asset($scope.item.asset)//
 			//                              .then(function (asset) {
 			//                                  $scope.fileName = asset.name;
@@ -22,5 +24,7 @@ mblowfish.directive('sdpDownloadedLink', function() {
 				});//
 		}
 	};
-});
+}
+
+
 

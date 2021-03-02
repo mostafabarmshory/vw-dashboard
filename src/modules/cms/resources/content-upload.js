@@ -12,7 +12,7 @@ export default {
 		/*
 		 * Extends collection controller
 		 */
-		angular.extend(this, $controller('MbSeenCmsContentsCtrl', {
+		angular.extend(this, $controller('MbCmsContentsCtrl', {
 			$scope: $scope
 		}));
 

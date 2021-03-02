@@ -1,10 +1,10 @@
+import Constant from '../../Constants';
 
-
-mblowfish.wizard(SDP_ASSET_CREATE_WIZARD, {
+export default {
 	title: 'New Asset',
 	description: 'Creates new asset and store in a drive.',
 	pages: [
-		SDP_ASSET_CREATE_WIZARD + '#type',
+		Constant.SDP_ASSET_CREATE_WIZARD + '#type',
 		// switch media_type
 		// case ebook -> #ebook-properties
 		// case audio_book -> #audio_book-properties
@@ -14,11 +14,11 @@ mblowfish.wizard(SDP_ASSET_CREATE_WIZARD, {
 		//1- Asset type pages
 		//------------------------------------------------------
 		// ebook
-		SDP_ASSET_CREATE_WIZARD + '#ebook-properties',
-		SDP_ASSET_CREATE_WIZARD + '#author',
-		SDP_ASSET_CREATE_WIZARD + '#genre',
-		SDP_ASSET_CREATE_WIZARD + '#publisher',
-		SDP_ASSET_CREATE_WIZARD + '#tags', // -> #file
+		Constant.SDP_ASSET_CREATE_WIZARD + '#ebook-properties',
+		Constant.SDP_ASSET_CREATE_WIZARD + '#author',
+		Constant.SDP_ASSET_CREATE_WIZARD + '#genre',
+		Constant.SDP_ASSET_CREATE_WIZARD + '#publisher',
+		Constant.SDP_ASSET_CREATE_WIZARD + '#tags', // -> #file
 		
 		/*
 		NOTE: to add an asset type pages, puth the tags as the 
@@ -28,10 +28,10 @@ mblowfish.wizard(SDP_ASSET_CREATE_WIZARD, {
 		//------------------------------------------------------
 		//3- general pages
 		//------------------------------------------------------
-		SDP_ASSET_CREATE_WIZARD + '#notsupport', // -> X
+		Constant.SDP_ASSET_CREATE_WIZARD + '#notsupport', // -> X
 		// sequence
-		SDP_ASSET_CREATE_WIZARD + '#file',
-		SDP_ASSET_CREATE_WIZARD + '#market',
+		Constant.SDP_ASSET_CREATE_WIZARD + '#file',
+		Constant.SDP_ASSET_CREATE_WIZARD + '#market',
 	],
 
 	/*
@@ -175,6 +175,8 @@ mblowfish.wizard(SDP_ASSET_CREATE_WIZARD, {
 			values: [data]
 		});
 	},
-});
+}
+
+
 
 

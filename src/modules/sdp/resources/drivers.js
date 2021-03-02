@@ -1,7 +1,7 @@
-
-mblowfish.resource('sdp-driver-list', {
+import templateUrl from './drivers.html';
+export default {
 	label: 'Driver list',
-	templateUrl: 'scripts/module-sdp/resources/drivers.html',
+	templateUrl: templateUrl,
 	tags: ['sdp-driver', 'driver_id'],
 	controllerAs: 'ctrl',
 	controller: function($scope, $options, $resource, $sdp, $controller) {
@@ -53,4 +53,5 @@ mblowfish.resource('sdp-driver-list', {
 			}
 		};
 	},
-});
+}
+

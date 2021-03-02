@@ -1,10 +1,10 @@
+import Constants from '../../Constants';
 
-
-mblowfish.wizard(SDP_TAG_CREATE_WIZARD, {
+export default {
 	title: 'New Tag',
 	description: 'Creates new tag to put products in groups.',
 	pages: [
-		SDP_TAG_CREATE_WIZARD + '#properties',
+		Constants.SDP_TAG_CREATE_WIZARD + '#properties',
 		// TODO: add extra pages
 	],
 
@@ -28,10 +28,12 @@ mblowfish.wizard(SDP_TAG_CREATE_WIZARD, {
 	*/
 	performFinish: function($wizard, $mbActions) {
 		'ngInject';
-		return $mbActions.exec(SDP_TAGS_CREATE_ACTION, {
+		return $mbActions.exec(Constants.SDP_TAGS_CREATE_ACTION, {
 			values: [$wizard.data]
 		});
 	},
-});
+}
+
+
 
 

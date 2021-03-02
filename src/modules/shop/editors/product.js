@@ -25,12 +25,14 @@ import templatUrl from './product.html';
 @ngdoc Editor
 @name AmdShopProductCtrl
 @description Controller of products list
+
+
  */
 export default {
 	templateUrl: templatUrl,
 	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	controller: function($scope, $shop, $state, $mbTranslate, $navigator, $location, $q, QueryParameter, $editor) {
+	controller: function($scope, $shop, $state, $mbTranslate, $mbDialog, $location, $q, QueryParameter, $editor) {
 		'ngInject';
 
 		var ctrl = {
@@ -164,39 +166,45 @@ export default {
 				});
 		}
 
-		function addMetafield(metadata) {
+		function addMetafield(metadata, $event) {
 			var mydata = metadata ? metadata : {};
-			$navigator.openDialog({
-				templateUrl: 'views/dialogs/metafield-new.html',
-				config: {
-					data: mydata
-				}
-				// Create content
-			}).then(function(meta) {
-				return $scope.product.putMetafield(meta)//
-					.then(function() {
-						loadMetas();
-					}, function() {
-						alert($mbTranslate.instant('Failed to add new item.'));
-					});
-			});
+			$mbDialog
+				.show({
+					templateUrl: 'views/dialogs/metafield-new.html',
+					config: {
+						data: mydata
+					},
+					targetEvent: $event
+					// Create content
+				})
+				.then(function(meta) {
+					return $scope.product.putMetafield(meta)//
+						.then(function() {
+							loadMetas();
+						}, function() {
+							alert($mbTranslate.instant('Failed to add new item.'));
+						});
+				});
 		}
 
 		function updateMetafield(metadata) {
-			$navigator.openDialog({
-				templateUrl: 'views/dialogs/metafield-update.html',
-				config: {
-					data: metadata
-				}
-				// Create content
-			}).then(function(meta) {
-				return $scope.product.putMetafield(meta)//
-					.then(function() {
-						loadMetas();
-					}, function() {
-						alert($mbTranslate.instant('Failed to update item.'));
-					});
-			});
+			$mbDialog
+				.show({
+					templateUrl: 'views/dialogs/metafield-update.html',
+					config: {
+						data: metadata
+					},
+					targetEvent: $event
+					// Create content
+				})
+				.then(function(meta) {
+					return $scope.product.putMetafield(meta)//
+						.then(function() {
+							loadMetas();
+						}, function() {
+							alert($mbTranslate.instant('Failed to update item.'));
+						});
+				});
 		}
 
 		function inlineUpdateMetafield(metadata) {
