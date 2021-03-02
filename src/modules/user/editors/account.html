@@ -1,0 +1,202 @@
+<md-content 
+	style="overflow: auto;">
+	<mb-titled-block 
+		mb-title="{{ ::('Account' | translate)}}"
+		layout="column">
+		<div
+			layout="column" 
+			layout-gt-sm="row">
+			<mb-inline
+				ng-model="_avatarNewFile"
+				ng-change="ctrl.updateAvatar(_avatarNewFile)"
+				mb-inline-enable="hasAnyRole('tenant.owner', 'user.manager') || principal.id === ctrl.account.id"
+				mb-inline-type="file">
+				<img 
+					width="250px"
+					height="250px"
+					ng-src="/api/v2/user/accounts/{{::ctrl.account.id}}/avatar" 
+					ng-src-error="https://www.gravatar.com/avatar/{{::(ctrl.account.id|mbmd5)}}?d=identicon&size=250"/>
+			</mb-inline>
+			<div flex>
+				<table
+					class="amd-table amd-table-description">
+					<tr>
+						<td mb-translate>ID</td>
+						<td>{{::ctrl.account.id}}</td>
+					</tr>
+					<tr>
+						<td mb-translate>Username</td>
+						<td>{{::ctrl.account.login}}</td>
+					</tr>
+					<tr>
+						<td mb-translate>Joined</td>
+						<td>{{ctrl.account.date_joined | mbDate}}</td>
+					</tr>
+					<tr>
+						<td mb-translate>Last Login</td>
+						<td>{{ctrl.account.last_login | mbDate}}</td>
+					</tr>
+					<tr>
+						<td mb-translate>Activation state</td>
+						<td>
+							<div ng-if="hasAnyRole('tenant.owner', 'user.manager')">
+								<span>{{ctrl.account.is_active ? 'Active' : 'Deactive'  | translate}}</span>
+								<md-switch 
+									ng-model="account.is_active" 
+									ng-change="update()">{{ctrl.account.is_active ? 'Active' : 'Deactive'  | translate}}
+								</md-switch>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div
+			layout="column" 
+			layout-gt-sm="row">
+			<span flex></span>
+			<md-button 
+				class="md-raised md-accent" 
+				ng-click="ctrl.deleteAccount()">
+				<mb-icon>delete</mb-icon>
+				<span mb-translate>Delete</span>
+			</md-button>
+		</div>
+	</mb-titled-block>
+	
+	<mb-titled-block 
+		mb-title="{{::('Public Profile' | translate)}}"
+		mb-progress="ctrl.loading || ctrl.profileUpdating"
+		layout="column">
+		<table 
+			class="amd-table amd-table-description">
+			<tr>
+				<td mb-translate>ID</td>
+				<td> : {{ctrl.profile.id}}</td>
+			</tr>
+			<tr>
+				<td mb-translate>First Name</td>
+				<td><mb-inline
+						ng-model="ctrl.profile.first_name"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="hasAnyRole('tenant.owner', 'user.manager') || principal.id === ctrl.account.id"
+						mb-inline-type="text"> : {{ctrl.profile.first_name}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td mb-translate>Last Name</td>
+				<td><mb-inline
+						ng-model="ctrl.profile.last_name"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="hasAnyRole('tenant.owner', 'user.manager') || principal.id === ctrl.account.id"
+						mb-inline-type="text"> : {{ctrl.profile.last_name}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td mb-translate>EMail</td>
+				<td><mb-inline
+						ng-model="ctrl.profile.public_email"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="hasAnyRole('tenant.owner', 'user.manager') || principal.id === ctrl.account.id"
+						mb-inline-type="email"> : {{ctrl.profile.public_email}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td mb-translate>Language</td>
+				<td><mb-inline
+						ng-model="ctrl.profile.language"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="hasAnyRole('tenant.owner', 'user.manager') || principal.id === ctrl.account.id"
+						mb-inline-type="text"> : {{ctrl.profile.language}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td mb-translate>Timezone</td>
+				<td><mb-inline
+						ng-model="ctrl.profile.timezone"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="hasAnyRole('tenant.owner', 'user.manager') || principal.id === ctrl.account.id"
+						mb-inline-type="text"> : {{ctrl.profile.timezone}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td mb-translate>National Code</td>
+				<td><mb-inline
+						ng-model="ctrl.profile.national_code"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="hasAnyRole('tenant.owner', 'user.manager') || principal.id === ctrl.account.id"
+						mb-inline-type="text"> : {{ctrl.profile.national_code}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td mb-translate>Gender</td>
+				<td><mb-inline
+						ng-model="ctrl.profile.gender"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="hasAnyRole('tenant.owner', 'user.manager') || principal.id === ctrl.account.id"
+						mb-inline-type="gender"> : {{ctrl.profile.gender}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td mb-translate>Weight</td>
+				<td><mb-inline
+						ng-model="ctrl.profile.weight"
+						ng-change="ctrl.updateProfile()"
+						mb-inline-enable="hasAnyRole('tenant.owner', 'user.manager') || principal.id === ctrl.account.id"
+						mb-inline-type="float"> : {{ctrl.profile.weight}}</mb-inline></td>
+			</tr>
+			<tr>
+				<td mb-translate>Birthday</td>
+				<td><mb-inline
+						ng-model="ctrl.profile.birthday"
+						mb-inline-enable="hasAnyRole('tenant.owner', 'user.manager') || principal.id === ctrl.account.id"
+						mb-inline-type="date"
+						mb-inline-on-save="ctrl.updateProfile()"> : {{ctrl.profile.birthday | mbDate}}</mb-inline></td>
+			</tr>
+		</table>
+	</mb-titled-block>
+
+	<!--order info-->
+	<mb-titled-block 
+		mb-title="{{::('Roles' | translate)}}"
+		layout="column">
+		<md-chips 
+			ng-model="ctrl.roles"
+			md-on-remove="ctrl.deleteRole($chip)">
+			<md-chip-template>
+				<strong>{{::$chip.application}}.{{::$chip.code_name}}</strong>
+			</md-chip-template>
+		</md-chips>
+		<div 
+			ng-show="!ctrl.roles || ctrl.roles.length == 0"
+			layout="column" layout-align="center center">
+			<p mb-translate>User has no role.</p>
+		</div>
+		<div layout="row">
+			<span flex></span>
+			<md-button 
+				class="md-raised" 
+				ng-click="ctrl.addRoles($event)">
+				<span mb-translate>Add Role</span>
+			</md-button>
+		</div>
+	</mb-titled-block>
+	
+	<mb-titled-block 
+		mb-title="{{::('Groups' | translate)}}"
+		layout="column">
+		<md-chips 
+			ng-model="ctrl.groups"
+			md-on-remove="ctrl.deleteGroup($chip)">
+			<md-chip-template>
+				<strong>{{$chip.name}}</strong>
+			</md-chip-template>
+		</md-chips>
+		<div 
+			ng-show="!ctrl.groups || ctrl.groups.length == 0"
+			layout="column" layout-align="center center">
+			<p mb-translate>User is not member of any group.</p>
+		</div>
+		<div layout="row">
+			<span flex></span>
+			<md-button class="md-raised"
+				ng-click="ctrl.addGroups($event)">
+				<span mb-translate>Add Group</span>
+			</md-button>
+		</div>
+	</section>
+</md-content>
+

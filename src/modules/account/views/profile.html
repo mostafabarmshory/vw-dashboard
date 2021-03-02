@@ -1,0 +1,118 @@
+<md-content
+	layout-gt-sm="row"
+	layout="column"
+	style="overflow: auto;" >
+
+	<!-- Profile window -->
+	<mb-titled-block
+		flex-gt-sm="50"
+		mb-title="Avatar"
+		mb-progress="ctrl.avatarLoading"
+		layout="column">
+
+		<div 
+			flex layout="column"
+			layout-fill>
+			<div layout="row"
+				style="flex-grow: 1; min-height: 100px;" 
+				layout-align="center center">
+				<mb-file-input
+					style="flex-grow: 1; padding: 10px;"
+					ng-show="ctrl.avatarState === 'edit'"
+					ng-model="ctrl.avatarFiles"
+					mb-accept="image/*"
+					mb-progress
+					mb-preview
+					mb-drag>
+				</mb-file-input>
+				<img
+					style="max-width: 300px; max-height: 300px; min-width: 24px; min-height: 24px;"
+					ng-if="ctrl.avatarState === 'normal'"
+					ng-src="/api/v2/user/accounts/{{ctrl.user.id}}/avatar"
+					ng-src-error="https://www.gravatar.com/avatar/{{app.user.current.id|mbmd5}}?d=identicon&size=32"/>
+			</div>
+
+			<div 
+				style="flex-grow:0; min-height: 40px;">
+				<div
+					layout="column" layout-align="center none"
+					style="flex-grow: 0"
+					layout-gt-xs="row" layout-align-gt-xs="end center"
+					ng-if="ctrl.avatarState === 'normal'">
+					<md-button
+						class="md-raised md-primary"
+						ng-click="ctrl.editAvatar()">
+						<sapn mb-translate="">Edit</sapn>
+					</md-button>
+					<md-button
+						class="md-raised md-accent"
+						ng-click="ctrl.deleteAvatar()">
+						<sapn mb-translate="">Delete</sapn>
+					</md-button>
+				</div>
+
+				<div
+					style="flex-grow: 0"
+					layout="column" layout-align="center none"
+					layout-gt-xs="row" layout-align-gt-xs="end center"
+					ng-if="ctrl.avatarState === 'edit'">
+					<md-button
+						class="md-raised md-primary"
+						ng-click="ctrl.uploadAvatar(ctrl.avatarFiles)">
+						<sapn mb-translate="">Save</sapn>
+					</md-button>
+					<md-button
+						class="md-raised md-accent"
+						ng-click="ctrl.cancelEditAvatar()">
+						<sapn mb-translate="">Cancel</sapn>
+					</md-button>
+				</div>
+			</div>
+		</div>
+	</mb-titled-block>
+
+	<!-- Contact window -->
+	<mb-titled-block
+		flex-gt-sm="50"
+		mb-title="Public Information"
+		mb-progress="ctrl.loadingProfile || ctrl.savingProfile"
+		layout="column">
+		<form
+			name="contactForm"
+			layout="column"
+			layout-padding>
+			<md-input-container layout-fill>
+				<label mb-translate="">First Name</label>
+				<input ng-model="ctrl.profile.first_name">
+			</md-input-container>
+			<md-input-container layout-fill>
+				<label mb-translate="">Last Name</label>
+				<input ng-model="ctrl.profile.last_name">
+			</md-input-container>
+			<md-input-container layout-fill>
+				<label mb-translate="">Public Email</label>
+				<input name="email" ng-model="ctrl.profile.public_email" type="email">
+			</md-input-container>
+			<md-input-container layout-fill>
+				<label mb-translate="">Language</label>
+				<input ng-model="ctrl.profile.language">
+			</md-input-container>
+			<md-input-container layout-fill>
+				<label mb-translate="">Timezone</label>
+				<input ng-model="ctrl.profile.timezone">
+			</md-input-container>
+		</form>
+		<div layout="column"
+				 layout-align="center none"
+				 layout-gt-xs="row"
+				 layout-align-gt-xs="end center">
+			<md-button
+				class="md-raised md-primary"
+				ng-click="save()">
+				<sapn mb-translate="">Update</sapn>
+			</md-button>
+		</div>
+	</mb-titled-block>
+
+</md-content>
+
