@@ -1,7 +1,11 @@
-mblowfish.addResource('amd-seen-user-roles', {
+import templateUrl from './roles.html';
+import Constants from '../Constants';
+
+
+export default {
 	title: 'Account Roles',
-	templateUrl: 'scripts/module-user/resources/roles.html',
-	tags: [AMD_USER_ROLES_RT],
+	templateUrl: templateUrl,
+	tags: [Constants.AMD_USER_ROLES_RT],
 	controllerAs: 'ctrl',
 	controller: function($scope, $resource, $controller, $style) {
 		'ngInject';
@@ -35,4 +39,7 @@ mblowfish.addResource('amd-seen-user-roles', {
 			isSelected: isSelected,
 		});
 	}
-});
+}
+
+
+

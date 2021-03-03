@@ -19,21 +19,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import templateUrl from './role.html';
 
 /**
- * @ngdoc controller
- * @name AmdRoleCtrl
- * @property {boolean} groupLoading  Is true if controller is working on groups.
- * @property {boolean} roleLoading   Is true if controller is working on role.
- * @property {boolean} userLoading   Is true if controller is working on users.
- * @description Manages a role view
- * 
+@ngdoc controller
+@name AmdRoleCtrl
+@property {boolean} groupLoading  Is true if controller is working on groups.
+@property {boolean} roleLoading   Is true if controller is working on role.
+@property {boolean} userLoading   Is true if controller is working on users.
+@description Manages a role view
+
  */
-mblowfish.controller('/ums/roles/:roleId', {
-	templateUrl: 'scripts/module-user/editors/role.html',
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	protect: true,
-	controller: function($scope, $usr, $state, $navigator, $mbResource, $mbTranslate, $q) {
+	controller: function($scope, $usr, $state, $mbLocation, $mbResource, $mbTranslate, $q, $editor) {
 		'ngInject';
 
 		var ctrl = {
@@ -54,7 +55,7 @@ mblowfish.controller('/ums/roles/:roleId', {
 					return $scope.role.delete();//
 				})//
 				.then(function() {
-					$navigator.openPage('ums/roles');
+					$mbLocation.url('ums/roles');
 				}, function(/*error*/) {
 					alert($mbTranslate.instant('Failed to delete item.'));
 				});
@@ -108,6 +109,7 @@ mblowfish.controller('/ums/roles/:roleId', {
 			ctrl.roleLoading = true;
 			return $usr.getRole($state.params.roleId)//
 				.then(function(role) {
+					$editor.setTitle('Role: ' + role.id);
 					$scope.role = role;
 					loadGroups();
 					loadUsers();
@@ -241,4 +243,6 @@ mblowfish.controller('/ums/roles/:roleId', {
 		$scope.ctrl = ctrl;
 		load();
 	}
-});
+}
+
+

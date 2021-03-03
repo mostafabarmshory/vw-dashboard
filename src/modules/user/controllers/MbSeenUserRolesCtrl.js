@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
  * 
@@ -9,8 +8,8 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -22,40 +21,47 @@
  */
 
 
+
 /**
- * @ngdoc Controllers
- * @name MbSeenUserMessagesCtrl
- * @description Manages list of controllers
- * 
+@ngdoc Controllers
+@name MbSeenUserRolesCtrl
+@description Manages list of roles
+
+
+
+@gnInject
  */
-mblowfish.controller('MbSeenUserMessagesCtrl', function ($scope, $usr, $controller) {
-    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-        $scope : $scope
-    }));
+export default function($scope, $usr, $q, $controller) {
 
-    // Overried the function
-    this.getModelSchema = function () {
-        return $usr.messageSchema();
-    };
+	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+		$scope: $scope
+	}));
 
-    // get accounts
-    this.getModels = function (parameterQuery) {
-        return $usr.getMessages(parameterQuery);
-    };
+	// Override the function
+	this.getModelSchema = function() {
+		return $usr.roleSchema();
+	};
 
-    // get an account
-    this.getModel = function (id) {
-        return $usr.getMessage(id);
-    };
+	// get accounts
+	this.getModels = function(parameterQuery) {
+		return $usr.getRoles(parameterQuery);
+	};
 
-    // delete account
-    this.deleteModel = function (item) {
-        return item.delete();
-    };
+	// get an account
+	this.getModel = function(id) {
+		return $usr.getRole(id);
+	};
 
-    this.init({
-        eventType: '/user/messages',
-        // do not show dialog on delete
-        deleteConfirm: false,
-    });
-});
+	// delete account
+	this.deleteModel = function(model) {
+		return $usr.deleteRole(model.id);
+	};
+
+	this.init({
+		eventType: AMD_USER_ROLES_SP
+	});
+}
+
+
+
+

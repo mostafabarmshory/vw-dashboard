@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2015-2025 Phoinex Scholars Co. http://dpq.co.ir
  * 
@@ -8,8 +9,8 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -22,44 +23,41 @@
 
 
 /**
- * @ngdoc Controllers
- * @name MbSeenUserAccountsCtrl
- * @description Manages and display list of accounts
- * 
- * This controller is used in accounts list.
- * 
+@ngdoc Controllers
+@name MbSeenUserMessagesCtrl
+@description Manages list of controllers
+
+
+@ngInject
  */
-mblowfish.controller('MbSeenUserAccountsCtrl', function($scope, $usr, $controller) {
-	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-		$scope: $scope
-	}));
+export default function ($scope, $usr, $controller) {
+    angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
+        $scope : $scope
+    }));
 
-	// Overried the function
-	this.getModelSchema = function() {
-		return $usr.accountSchema();
-	};
+    // Overried the function
+    this.getModelSchema = function () {
+        return $usr.messageSchema();
+    };
 
-	// get accounts
-	this.getModels = function(parameterQuery) {
-		return $usr.getAccounts(parameterQuery);
-	};
+    // get accounts
+    this.getModels = function (parameterQuery) {
+        return $usr.getMessages(parameterQuery);
+    };
 
-	// get an account
-	this.getModel = function(id) {
-		return $usr.getAccount(id);
-	};
+    // get an account
+    this.getModel = function (id) {
+        return $usr.getMessage(id);
+    };
 
-	// add account
-	this.addModel = function(model) {
-		return $usr.putAccount(model);
-	};
+    // delete account
+    this.deleteModel = function (item) {
+        return item.delete();
+    };
 
-	// delete account
-	this.deleteModel = function(model) {
-		return $usr.deleteAccount(model.id);
-	};
-
-	this.init({
-		eventType: AMD_USER_ACCOUNTS_SP
-	});
-});
+    this.init({
+        eventType: '/user/messages',
+        // do not show dialog on delete
+        deleteConfirm: false,
+    });
+}

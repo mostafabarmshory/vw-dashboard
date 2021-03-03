@@ -1,18 +1,21 @@
-mblowfish.resource('amd-seen-user-accounts', {
+import templateUrl from './accounts.html';
+import Constants from '../Constants';
+
+export default {
 	title: 'Account',
-	templateUrl: 'scripts/module-user/resources/accounts.html',
-	tags: [AMD_USER_ACCOUNTS_RT],
+	templateUrl: templateUrl,
+	tags: [Constants.AMD_USER_ACCOUNTS_RT],
 	controllerAs: 'ctrl',
 	controller: function($scope, $resource, $controller) {
 		'ngInject';
-			angular.extend(this, $controller('MbSeenUserAccountsCtrl', {
-				$scope: $scope
-			}));
+		angular.extend(this, $controller('MbSeenUserAccountsCtrl', {
+			$scope: $scope
+		}));
 		var ctrl = this;
 
 		function setSelected(account, selected) {
 			// update account
-			if(_.isUndefined(selected)){
+			if (_.isUndefined(selected)) {
 				selected = true;
 			}
 			account.selected = selected;
@@ -38,4 +41,7 @@ mblowfish.resource('amd-seen-user-accounts', {
 			isSelected: isSelected,
 		});
 	}
-});
+}
+
+
+

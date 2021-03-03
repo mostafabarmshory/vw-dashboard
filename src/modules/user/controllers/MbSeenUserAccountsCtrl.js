@@ -21,41 +21,49 @@
  */
 
 
-
 /**
- * @ngdoc Controllers
- * @name MbSeenUserRolesCtrl
- * @description Manages list of roles
- * 
- * 
- */
-mblowfish.controller('MbSeenUserRolesCtrl', function($scope, $usr, $q, $controller) {
+@ngdoc Controllers
+@name MbSeenUserAccountsCtrl
+@description Manages and display list of accounts
 
+This controller is used in accounts list.
+
+
+@ngInject
+ */
+export default function($scope, $usr, $controller) {
 	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
 		$scope: $scope
 	}));
 
-	// Override the function
+	// Overried the function
 	this.getModelSchema = function() {
-		return $usr.roleSchema();
+		return $usr.accountSchema();
 	};
 
 	// get accounts
 	this.getModels = function(parameterQuery) {
-		return $usr.getRoles(parameterQuery);
+		return $usr.getAccounts(parameterQuery);
 	};
 
 	// get an account
 	this.getModel = function(id) {
-		return $usr.getRole(id);
+		return $usr.getAccount(id);
+	};
+
+	// add account
+	this.addModel = function(model) {
+		return $usr.putAccount(model);
 	};
 
 	// delete account
 	this.deleteModel = function(model) {
-		return $usr.deleteRole(model.id);
+		return $usr.deleteAccount(model.id);
 	};
 
 	this.init({
-		eventType: AMD_USER_ROLES_SP
+		eventType: AMD_USER_ACCOUNTS_SP
 	});
-});
+}
+
+

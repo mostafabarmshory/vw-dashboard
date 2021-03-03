@@ -1,13 +1,7 @@
-<md-content 
-	class="md-padding"
-	layout-padding
-	flex>
-	<section 
+<md-content>
+	<mb-titled-block 
 		mb-preloading="ctrl.roleLoading"
-		layout="column" 
-		layout-align="center start"
-		md-whiteframe="1"
-		layout-margin>
+		layout="column">
 		<table class="amd-table amd-table-description">
 			<tr>
 				<td mb-translate>ID </td>
@@ -66,14 +60,13 @@
 				</td>
 			</tr>
 		</table>
-	</section>
+	</mb-titled-block>
 	
-	<section 
+	
+	<mb-titled-block 
+		mb-title="Groups"
 		mb-preloading="ctrl.groupLoading"
-		layout="column" 
-		md-whiteframe="1"
-		layout-margin>
-		<h3>Groups</h3>
+		layout="column">
 		<md-chips 
 			ng-model="groups.items"
 			md-on-remove="removeGroup($chip)">
@@ -96,14 +89,12 @@
 				<span mb-translate>Edit</span>
 			</md-button>
 		</div>
-	</section>
+	</mb-titled-block>
 	
-	<section 
+	<mb-titled-block 
+		mb-title="Accounts"
 		mb-preloading="ctrl.userLoading"
-		layout="column" 
-		md-whiteframe="1"
-		layout-margin>
-		<h3>Users</h3>
+		layout="column">
 		<md-chips 
 			ng-model="users.items"
 			md-on-remove="removeUser($chip)">
@@ -126,6 +117,6 @@
 				<span mb-translate>Edit</span>
 			</md-button>
 		</div>
-	</section>
+	</mb-titled-block>
 </md-content>
 

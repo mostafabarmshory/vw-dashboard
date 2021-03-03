@@ -1,7 +1,11 @@
-mblowfish.resource('amd-seen-user-account_id', {
+
+import templateUrl from './accountId.html';
+import Constants from '../Constants';
+
+export default {
 	title: 'Account',
-	templateUrl: 'scripts/module-user/resources/accountId.html',
-	tags: [AMD_USER_ACCOUNT_ID_RT, 'account_id'],
+	templateUrl: templateUrl,
+	tags: [Constants.AMD_USER_ACCOUNT_ID_RT, 'account_id'],
 	controllerAs: 'ctrl',
 	controller: function($scope, $resource, $controller) {
 		'ngInject';
@@ -25,4 +29,4 @@ mblowfish.resource('amd-seen-user-account_id', {
 			isSelected: isSelected,
 		});
 	}
-});
+}

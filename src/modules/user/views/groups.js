@@ -19,14 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import templateUrl from './groups.html';
 
 /**
  @ngdoc controller
  @name AmdUserGroupsCtrl
  @description Manages list of accounts
  */
-mblowfish.addView('/ums/groups', {
-	templateUrl: 'scripts/module-user/views/groups.html',
+export default {
+	templateUrl: templateUrl,
 	groups: ['Users Management'],
 	controllerAs: 'ctrl',
 	title: 'Groups',
@@ -68,4 +69,7 @@ mblowfish.addView('/ums/groups', {
 			eventType: AMD_USER_GROUPS_SP
 		});
 	}
-});
+}
+
+
+

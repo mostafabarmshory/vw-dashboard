@@ -19,14 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import templateUrl from './roles.html';
 
 /**
  @ngdoc controller
  @name AmdUserGroupsCtrl
  @description Manages list of accounts
  */
-mblowfish.addView('/ums/roles', {
-	templateUrl: 'scripts/module-user/views/roles.html',
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Users Management'],
 	title: 'Roles',
@@ -38,7 +39,7 @@ mblowfish.addView('/ums/roles', {
 			$scope: $scope,
 			$view: $view,
 		}));
-		
+
 		// Override the function
 		this.getModelSchema = function() {
 			return $usr.roleSchema();
@@ -63,4 +64,7 @@ mblowfish.addView('/ums/roles', {
 			eventType: AMD_USER_ROLES_SP
 		});
 	}
-});
+}
+
+
+

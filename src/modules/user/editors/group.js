@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import templateUrl from './group.html';
 
 /**
 @ngdoc Editor
@@ -30,11 +31,11 @@
 
 Manages a group view
  */
-mblowfish.controller('/ums/groups/:groupId', {
-	templateUrl: 'scripts/module-user/editors/group.html',
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	protect: true,
-	controller: function($scope, $usr, $state, $navigator, $mbResource, $mbTranslate, $q) {
+	controller: function($scope, $usr, $state, $mbLocation, $mbResource, $mbTranslate, $q, $editor) {
 		'ngInject';
 
 		var ctrl = {
@@ -57,7 +58,7 @@ mblowfish.controller('/ums/groups/:groupId', {
 					return $scope.group.delete();//
 				})//
 				.then(function() {
-					$navigator.openPage('ums/groups');
+					$mbLocation.url('ums/groups');
 				}, function(/*error*/) {
 					alert($mbTranslate.instant('Failed to delete item.'));
 				});
@@ -114,6 +115,7 @@ mblowfish.controller('/ums/groups/:groupId', {
 					$scope.group = group;
 					loadRoles();
 					loadUsers();
+					$editor.setTitle('Group: ' + group.id);
 				})//
 				.finally(function() {
 					ctrl.groupLoading = false;
@@ -159,7 +161,7 @@ mblowfish.controller('/ums/groups/:groupId', {
 			var myData = $scope.users ? $scope.users.items : [];
 			return $mbResource.get('accounts', {
 				data: myData,
-				targetEvent:$event
+				targetEvent: $event
 			})//
 				.then(function(list) {
 					// change users and reload users
@@ -247,4 +249,6 @@ mblowfish.controller('/ums/groups/:groupId', {
 		$scope.ctrl = ctrl;
 		load();
 	}
-});
+}
+
+

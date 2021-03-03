@@ -21,39 +21,52 @@
  */
 import mblowfish from 'mblowfish';
 import Constants from './Constants';
+import mblowfishIntegerateRun from './mblowfish-integerate-run';
+
+import accountCreateAction from './actions/account-create';
+import accountEditAction from './actions/account-edit';
+
+import MbSeenUserAccountsCtrl from './controllers/MbSeenUserAccountsCtrl';
+import MbSeenUserGroupsCtrl from './controllers/MbSeenUserGroupsCtrl';
+import MbSeenUserMessagesCtrl from './controllers/MbSeenUserMessagesCtrl';
+import MbSeenUserRolesCtrl from './controllers/MbSeenUserRolesCtrl';
+
+import accountEditor from './editors/account';
+import groupEditor from './editors/group';
+import roleEditor from './editors/role';
+
+
+import accountIdResource from './resources/accountId';
+import accountsResource from './resources/accounts';
+import groupsResource from './resources/groups';
+import rolesResource from './resources/roles';
+
+import accountView from './views/accounts';
+import groupView from './views/groups';
+import roleView from './views/roles';
 
 mblowfish
 	.constant(Constants)
-	
-	
+	.run(mblowfishIntegerateRun)
+
+	.action(AMD_USER_ACCOUNT_CREATE_ACTION, accountCreateAction)
+	.action(AMD_USER_ACCOUNTS_OPENEDITOR_ACTION, accountEditAction)
+
+	.controller('MbSeenUserAccountsCtrl', MbSeenUserAccountsCtrl)
+	.controller('MbSeenUserGroupsCtrl', MbSeenUserGroupsCtrl)
+	.controller('MbSeenUserMessagesCtrl', MbSeenUserMessagesCtrl)
+	.controller('MbSeenUserRolesCtrl', MbSeenUserRolesCtrl)
+
+	.editor('/ums/accounts/:accountId', accountEditor)
+	.editor('/ums/groups/:groupId', groupEditor)
+	.editor('/ums/roles/:roleId', roleEditor)
+
+	.resource('amd-seen-user-account_id', accountIdResource)
+	.resource('amd-seen-user-accounts', accountsResource)
+	.resource('amd-seen-user-groups', groupsResource)
+	.resource('amd-seen-user-roles', rolesResource)
+
+	.view('/ums/accounts', accountView)
+	.view('/ums/groups', groupView)
+	.view('/ums/roles', roleView)
 	;
-
-		// Add action
-		// View: '/ums/accounts'
-//		this.addAction({
-//			title: 'New account',
-//			icon: 'add',
-//			actionId: AMD_USER_ACCOUNT_CREATE_ACTION
-//		});
-
-
-//		// Add action
-// View: '/ums/groups'
-//		this.addAction({
-//			title: 'New group',
-//			icon: 'add',
-//			action: function() {
-//				$navigator.openPage('ums/groups/new');
-//			}
-//		});
-
-
-//		// Add action
-// View: '/ums/roles'
-//		this.addAction({
-//			title: 'New group',
-//			icon: 'add',
-//			action: function() {
-//				$navigator.openPage('ums/groups/new');
-//			}
-//		});
