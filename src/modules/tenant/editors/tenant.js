@@ -9,7 +9,7 @@ export default {
 		/*
 		 * Extends collection controller from MbAbstractCtrl 
 		 */
-		angular.extend(this, $controller('SeenAbstractItemEditorCtrl', {
+		angular.extend(this, $controller('MbSeenAbstractItemEditorCtrl', {
 			$scope: $scope,
 			$editor: $editor
 		}));

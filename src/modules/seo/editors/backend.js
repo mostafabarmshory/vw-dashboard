@@ -1,5 +1,8 @@
-mblowfish.addEditor('/seo/backends/:id', {
-	templateUrl: 'scripts/module-seo/editors/backend.html',
+import templateUrl from './backend.html';
+
+
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $seo, $state, $navigator) {
 
@@ -75,4 +78,8 @@ mblowfish.addEditor('/seo/backends/:id', {
 		$scope.save = save;
 		load();
 	},
-});
+}
+
+
+
+

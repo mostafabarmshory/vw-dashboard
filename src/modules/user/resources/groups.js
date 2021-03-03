@@ -1,7 +1,11 @@
-mblowfish.addResource('amd-seen-user-groups', {
+import templateUrl from './groups.html';
+import Constants from '../Constants';
+
+
+export default {
 	title: 'Account Groups',
-	templateUrl: 'scripts/module-user/resources/groups.html',
-	tags: [AMD_USER_GROUPS_RT],
+	templateUrl: templateUrl,
+	tags: [Constants.AMD_USER_GROUPS_RT],
 	controllerAs: 'ctrl',
 	controller: function($scope, $resource, $controller, $style) {
 		'ngInject';
@@ -35,6 +39,9 @@ mblowfish.addResource('amd-seen-user-groups', {
 			isSelected: isSelected,
 		});
 	}
-});
+}
+
+
+
 
 

@@ -42,12 +42,12 @@ If the values is empty in the event, then a wizard is called to gather
 new data and create a new one.
  */
 
-mblowfish.action(AMD_USER_ACCOUNT_CREATE_ACTION, {
-	icon: 'new',
+export default {
+	icon: 'add',
 	title: 'New Account',
 	description: 'Creates a new account and set all roles and groups.',
 	group: 'User',
-	action: function($event, $usr, $mbWizard, $q, $mbDispatcherUtil, $mbActions) {
+	action: function($event, $usr, $mbWizard, $mbQueue, $mbDispatcherUtil, $mbActions) {
 		'ngInject';
 
 		if (!$event.values) {
@@ -62,7 +62,7 @@ mblowfish.action(AMD_USER_ACCOUNT_CREATE_ACTION, {
 			_.forEach(roles, function(role) {
 				jobs.push(account.putRole(role));
 			});
-			return $q.all(jobs);
+			return $mbQueue.all(jobs);
 		}
 
 		function addGroups(account, groups) {
@@ -73,7 +73,7 @@ mblowfish.action(AMD_USER_ACCOUNT_CREATE_ACTION, {
 			_.forEach(groups, function(group) {
 				jobs.push(account.putGroup(group));
 			});
-			return $q.all(jobs);
+			return $mbQueue.all(jobs);
 		}
 
 		function setAvatar(account, avatar) {
@@ -109,7 +109,7 @@ mblowfish.action(AMD_USER_ACCOUNT_CREATE_ACTION, {
 			jobs.push($usr.putAccount(_.assign(profile, value))
 				.then(function(account) {
 					accounts.push(account);
-					return $q.all([
+					return $mbQueue.all([
 						addRoles(account, roles),
 						addGroups(account, groups),
 						setAvatar(account, avatar)
@@ -117,7 +117,7 @@ mblowfish.action(AMD_USER_ACCOUNT_CREATE_ACTION, {
 				}));
 		});
 
-		return $q.all(jobs)
+		return $mbQueue.all(jobs)
 			.finally(function() {
 				$mbDispatcherUtil.fireCreated(AMD_USER_ACCOUNTS_SP, accounts);
 				return $mbActions.exec(AMD_USER_ACCOUNTS_OPENEDITOR_ACTION, {
@@ -125,4 +125,7 @@ mblowfish.action(AMD_USER_ACCOUNT_CREATE_ACTION, {
 				});
 			});
 	},
-});
+}
+
+
+

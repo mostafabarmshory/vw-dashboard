@@ -1,13 +1,15 @@
-mblowfish.wizard(AMD_USER_ACCOUNT_CREATE_WIZARD, {
+import Constatns from '../../Constants';
+
+export default {
 	title: 'Create an Account',
 	description: 'A new account will be created with group, roles and avatar.',
 	pages: [
-		AMD_USER_ACCOUNT_CREATE_WIZARD + '#account',
-		AMD_USER_ACCOUNT_CREATE_WIZARD + '#cridential',
-		AMD_USER_ACCOUNT_CREATE_WIZARD + '#avatar',
-		AMD_USER_ACCOUNT_CREATE_WIZARD + '#profile',
-		AMD_USER_ACCOUNT_CREATE_WIZARD + '#roles',
-		AMD_USER_ACCOUNT_CREATE_WIZARD + '#groups',
+		Constatns.AMD_USER_ACCOUNT_CREATE_WIZARD + '#account',
+		Constatns.AMD_USER_ACCOUNT_CREATE_WIZARD + '#cridential',
+		Constatns.AMD_USER_ACCOUNT_CREATE_WIZARD + '#avatar',
+		Constatns.AMD_USER_ACCOUNT_CREATE_WIZARD + '#profile',
+		Constatns.AMD_USER_ACCOUNT_CREATE_WIZARD + '#roles',
+		Constatns.AMD_USER_ACCOUNT_CREATE_WIZARD + '#groups',
 	],
 
 	/*
@@ -40,4 +42,7 @@ mblowfish.wizard(AMD_USER_ACCOUNT_CREATE_WIZARD, {
 		});
 	},
 
-});
+}
+
+
+

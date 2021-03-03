@@ -1,6 +1,9 @@
-mblowfish.view('/seo/backends', {
+
+import templateUrl from './backends.html';
+
+export default {
 	title: 'Prerender backends',
-	templateUrl: 'scripts/module-seo/views/backends.html',
+	templateUrl: templateUrl,
 	groups: ['seo'],
 	icon: 'dvr',
 	controllerAs: 'ctrl',
@@ -36,21 +39,4 @@ mblowfish.view('/seo/backends', {
 		});
 
 	},
-});
-//		/**
-//		 * To add a new backend
-//		 * 
-//		 * @returns
-//		 */
-//		this.addBackend = function() {
-//			$navigator.openPage('seo/backends/new');
-//		};
-//
-//		var ctrl = this;
-//		this.addActions([{
-//			title: 'New backend',
-//			icon: 'add',
-//			action: function() {
-//				ctrl.addBackend();
-//			}
-//		}]);
+}

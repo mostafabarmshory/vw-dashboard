@@ -8,22 +8,14 @@
 </md-input-container>
 
 <md-input-container class="md-block md-icon-float">
-	<label translate>File Path</label>
-	<input 
-		aria-label="File Path"
-		name="path"
-		ng-model="ctrl.path"
-		ng-model-options="{getterSetter: true, debounce: 200}">
-</md-input-container>
-
-<md-input-container class="md-block md-icon-float">
 	<label translate>File Size</label>
 	<input 
-		placeholder="In byte for example 1024 (1k)"
+		placeholder="JEDEC Standard (e.g. 2MB)"
 		aria-label="File size"
 		name="size"
 		ng-model="ctrl.size"
-		ng-model-options="{getterSetter: true, debounce: 200}">
+		ng-model-options="{getterSetter: true, updateOn: 'blur', allowInvalid: true}"
+		mb-file-size-parser>
 </md-input-container>
 
 <md-input-container class="md-block md-icon-float">

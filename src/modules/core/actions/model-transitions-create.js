@@ -69,7 +69,7 @@ export default {
 				}
 				// show error
 				if (faildModel.length) {
-					alert('Failt to perform transition on some items');
+					alert('Failt to perform transition on some items', $event,);
 				}
 			});
 	}

@@ -1,5 +1,8 @@
-mblowfish.addEditor('/seo/crawled-links/:crawledLinkId/render', {
-	templateUrl: 'scripts/module-seo/editors/render-link.html',
+import templateUrl from './render-link.html';
+
+
+export default {
+	templateUrl: templateUrl,
 	controller: function($scope, $element, $state, $sce, $seoContent, $seo) {
 		'ngInject';
 		// controller attributes
@@ -63,4 +66,5 @@ mblowfish.addEditor('/seo/crawled-links/:crawledLinkId/render', {
 		}
 	},
 	controllerAs: 'ctrl'
-});
+}
+

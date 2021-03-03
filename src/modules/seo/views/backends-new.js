@@ -1,4 +1,6 @@
-mblowfish.view('/seo/backends-new', {
+
+
+export default {
 	title: 'New prerender backend',
 	groups: ['seo'],
 	icon: 'add',
@@ -49,4 +51,6 @@ mblowfish.view('/seo/backends-new', {
 		$scope.newBackend = newBackend;
 		$scope._userValus = {};
 	},
-});
+}
+
+

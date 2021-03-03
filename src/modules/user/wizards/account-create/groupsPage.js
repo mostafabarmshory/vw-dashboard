@@ -1,7 +1,9 @@
-mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#groups', {
+import templateUrl from './groupsPage.html';
+
+export default {
 	title: 'Groups',
 	description: 'Account will be a member of groups listed here.',
-	templateUrl: 'scripts/module-user/wizards/account-create/groupsPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($controller, $scope, $wizard) {
 		'ngInject';
@@ -32,4 +34,6 @@ mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#groups', {
 		// TODO: check if the login exist
 		return true;
 	}
-});
+}
+
+

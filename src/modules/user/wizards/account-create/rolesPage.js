@@ -1,7 +1,8 @@
-mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#roles', {
+import templateUrl from './rolesPage.html';
+export default {
 	title: 'Roles',
 	description: 'Account will have any roles listed here.',
-	templateUrl: 'scripts/module-user/wizards/account-create/rolesPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($controller, $scope, $wizard) {
 		'ngInject';
@@ -32,4 +33,6 @@ mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#roles', {
 		// TODO: check if the login exist
 		return true;
 	}
-});
+}
+
+

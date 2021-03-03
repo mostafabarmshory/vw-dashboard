@@ -6,7 +6,6 @@ Hre is list of an asset attributes:
 
  - id:Sequence
  - title:Varchar
- - path:Varchar
  - size:Integer
  - file_name:Varchar
  - download:Integer

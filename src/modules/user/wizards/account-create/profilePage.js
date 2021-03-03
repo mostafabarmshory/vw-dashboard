@@ -1,7 +1,9 @@
-mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#profile', {
+import templateUrl from './profilePage.html';
+
+export default {
 	title: 'Profile',
 	description: 'Global profile of account which is accessible.',
-	templateUrl: 'scripts/module-user/wizards/account-create/profilePage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($usr, $wizard) {
 		'ngInject';
@@ -39,4 +41,7 @@ mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#profile', {
 		this.weight = createSetterGetter('weight');
 		this.birthday = createSetterGetter('birthday');
 	}
-});
+}
+
+
+

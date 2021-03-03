@@ -20,27 +20,40 @@
  * SOFTWARE.
  */
 
-mblowfish.addConstants({
-	//------------------------------------------------------------
-	// Resources Types
-	//------------------------------------------------------------
+import mblowfish from 'mblowfish';
+import Constants from './Constants';
+import contentRenderAction from './actions/contents-render';
+
+import backendEditor from './editors/backend';
+import renderEditor from './editors/render-linke';
+import sitemapEditor from './editors/sitemap-link';
+
+import seoContent from './services/seo-content-service';
+
+import backendsView from './views/backends';
+import backendsNewView from './views/backends-new';
+import crawledLinksView from './views/crawled-links';
+import linksView from './views/links';
+import linksNewView from './views/links-new';
+
+mblowfish
+	.constant(Constants)
 
 
-	//------------------------------------------------------------
-	// Stoer Paths
-	//------------------------------------------------------------
+	.action(Constants.AMD_SEO_CONTENTS_RENDER_ACTION, contentRenderAction)
 
+	.editor('/seo/backends/:id', backendEditor)
+	.editor('/seo/crawled-links/:crawledLinkId/render', renderEditor)
+	.editor('/seo/links/:itemId', sitemapEditor)
 
-	//------------------------------------------------------------
-	// Views
-	//------------------------------------------------------------
+	.service('$seoContent', seoContent)
 
-
-	//------------------------------------------------------------
-	// ACTIONS
-	//------------------------------------------------------------
-	AMD_SEO_CONTENTS_RENDER_ACTION: 'amd.seo.contents.render',
-});
+	.view('/seo/backends', backendsView)
+	.view('/seo/backends-new', backendsNewView)
+	.view('/seo/crawled-links', crawledLinksView)
+	.view('/seo/links', linksView)
+	.view('/seo/links-new', linksNewView)
+	;
 
 
 

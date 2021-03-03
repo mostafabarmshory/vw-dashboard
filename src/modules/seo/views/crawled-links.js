@@ -1,5 +1,5 @@
 
-mblowfish.view('/seo/crawled-links', {
+export default {
 	title: 'Crawled links',
 	groups: ['seo'],
 	icon: 'public',
@@ -35,7 +35,7 @@ mblowfish.view('/seo/crawled-links', {
 			eventType: '/seo/crawled-links'
 		});
 	}
-});
+}
 //
 //		/**
 //		 * Upload content to pbobject

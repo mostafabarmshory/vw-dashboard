@@ -33,6 +33,8 @@ import reciptEditor from './editors/receipt';
 import tenantEditor from './editors/tenant';
 import ticketEditor from './editors/ticket';
 import spaEditor from './editors/spa';
+import repoSpaEditor from './editors/repository-spa';
+
 // >> filters
 // >> services
 import mbTenantService from './services/mbTenant';
@@ -40,6 +42,9 @@ import mbTenantService from './services/mbTenant';
 import invoiceView from './views/invoices';
 import tenatnsView from './views/tenants';
 import spasView from './views/spas';
+import settingsLocalView from './views/local-settings';
+import settingsSecurityView from './views/security-settings';
+import repoSpasView from './views/repository-spas';
 
 
 import Constants from './Constants';
@@ -54,18 +59,25 @@ mblowfish
 	// >> directives
 	.directive('amdTenantInvoice', amdTenantInvoiceDirective)
 	// >> editors
-	.editor('/tenant/invoices/:invoiceId', invoiceEditor)
 	.editor('/receipts/:id', reciptEditor)
+
+	.editor('/tenant/invoices/:invoiceId', invoiceEditor)
 	.editor('/tenant/tenants/:tenantId', tenantEditor)
 	.editor('/tenant/tickets/:ticketId', ticketEditor)
-	.addEditor('/spas/:spaId', spaEditor)
-	
+
+	.editor('/spas/:spaId', spaEditor)
+	.editor('/spas/repository/:spaId', repoSpaEditor)
+
+
 	// >> filters
 	// >> services
 	.provider('$mbTenant', mbTenantService)
 
 	// >> views
 	.view('/tenant/invoices', invoiceView)
+	.view(TENANT_REPOSITORYSPAS_VIEW, repoSpasView)
+	.view('/tenant/settings/local', settingsLocalView)
+	.view('/tenant/settings/security', settingsSecurityView)
 	.view(TENANT_TENANTS_VIEW_PATH, tenatnsView)
 	.view(TENANT_SPAS_VIEW, spasView)
 

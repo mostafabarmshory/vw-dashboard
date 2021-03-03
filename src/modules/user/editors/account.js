@@ -19,15 +19,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+import templateUrl from './account.html';
 /**
 @ngdoc Editor
 @name AmdUserAccountCtrl
+
 @description 
 Edit an account and details sucha as profiles, avatar, roles and groups.
  */
-mblowfish.addEditor('/ums/accounts/:accountId', {
-	templateUrl: 'scripts/module-user/editors/account.html',
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function(
 	/* AngularJS */ $usr, $state, $q, $window, $editor,
@@ -295,6 +296,7 @@ mblowfish.addEditor('/ums/accounts/:accountId', {
 					delete accountData.profiles;
 					// account
 					initAccountData(accountData);
+					$editor.setTitle('Account: '+accountData.id);
 				})
 				.finally(function() {
 					delete ctrl.loading;
@@ -349,6 +351,9 @@ mblowfish.addEditor('/ums/accounts/:accountId', {
 		//>> load
 		reload();
 	}
-});
+}
+
+
+
 
 

@@ -27,8 +27,10 @@
 @name MbSeenUserGroupsCtrl
 @description Manages list of groups
 
+
+@ngInject
  */
-mblowfish.controller('MbSeenUserGroupsCtrl', function($scope, $usr, $controller) {
+export default function($scope, $usr, $controller) {
 	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
 		$scope: $scope
 	}));
@@ -61,4 +63,7 @@ mblowfish.controller('MbSeenUserGroupsCtrl', function($scope, $usr, $controller)
 	this.init({
 		eventType: AMD_USER_GROUPS_SP
 	});
-});
+}
+
+
+

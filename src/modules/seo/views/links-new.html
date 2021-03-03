@@ -1,13 +1,6 @@
-<md-content 
-	class="md-padding"
-	style="overflow: auto;">
-	<form 
-		name="linkForm"
-		ng-submit="addLink(model)"
-		mb-preloading="ctrl.saving"
-		layout-margin
-	 	layout="column" 
-		flex>
+<md-content
+	layout="column"
+	layout-padding>
 		<md-input-container>
 			<label mb-translate>Title</label>
 			<input ng-model="model.title">
@@ -57,17 +50,10 @@
 			<span flex></span>
 			<md-button 
 				class="md-raised" 
-				ng-click="cancel()">
-				<mb-icon aria-label="close">close</mb-icon>
-				<span mb-translate>Cancle</span>
-			</md-button>
-			<md-button 
-				class="md-raised" 
 				ng-disabled="linkForm.$invalid"
 				ng-click="addLink(model)">
 				<mb-icon aria-label="close">done</mb-icon>
 				<span mb-translate>Add</span>
 			</md-button>
 		</div>
-	</form>
 </md-content>

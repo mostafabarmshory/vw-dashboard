@@ -1,12 +1,7 @@
-<md-content 
-	class="md-padding"
-	layout-padding
-	flex>
-	<section 
+<md-content>
+	<mb-titled-block 
 		mb-preloading="ctrl.groupLoading"
-		layout="column" 
-		md-whiteframe="1"
-		layout-margin>
+		mb-title="Info">
 		<div layout="column"
 			layout-padding>
 			<div 
@@ -16,7 +11,7 @@
 					class="amd-table amd-table-description">
 					<tr>
 						<td mb-translate>ID</td>
-						<td>{{group.id}}</td>
+						<td>{{::group.id}}</td>
 					</tr>
 					<tr>
 						<td mb-translate>Name</td>
@@ -58,14 +53,11 @@
 				<span mb-translate>Delete</span>
 			</md-button>
 		</div>
-	</section>
+	</mb-titled-block>
 
-	<section 
+	<mb-titled-block 
 		mb-preloading="ctrl.roleLoading"
-		layout="column" 
-		md-whiteframe="1"
-		layout-margin>
-		<h3 mb-translate>Roles</h3>
+		mb-title="Roles">
 		<md-chips 
 			ng-model="roles.items"
 			md-on-remove="removeRole($chip)">
@@ -87,14 +79,11 @@
 				<span mb-translate>Edit</span>
 			</md-button>
 		</div>
-	</section>
+	</mb-titled-block>
 	
-	<section 
+	<mb-titled-block 
 		mb-preloading="ctrl.userLoading"
-		layout="column" 
-		md-whiteframe="1"
-		layout-margin>
-		<h3 mb-translate>Users</h3>
+		mb-title="Accounts">
 		<md-chips 
 			ng-model="users.items"
 			md-on-remove="removeUser($chip)">
@@ -116,6 +105,6 @@
 				<span mb-translate>Edit</span>
 			</md-button>
 		</div>
-	</section>
+	</mb-titled-block>
 </md-content>
 

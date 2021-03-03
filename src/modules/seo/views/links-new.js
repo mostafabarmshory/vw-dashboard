@@ -1,22 +1,25 @@
-mblowfish.view('/seo/links-new', {
+import templateUrl from './links-new.html';
+
+
+export default {
 	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-seo/views/links-new.html',
+	templateUrl: templateUrl,
 	groups: ['seo'],
 	title: 'New sitemap link',
 	icon: 'add',
-	controller: function($scope, $seo, $navigator) {
+	controller: function($scope, $seo, $mbLocation) {
 		'ngInject';
 		var ctrl = {
 			status: 'relax'
 		};
 
-		function addLink(model) {
+		function addLink(model, $event) {
 			ctrl.status = 'working';
 			$seo.putLink(model)//
 				.then(function(link) {
-					$navigator.openPage('seo/links/' + link.id);
+					$mbLocation.path('seo/links/' + link.id);
 				}, function() {
-					alert('failed to add a new link.');
+					alert('failed to add a new link.', $event);
 				})//
 				.finally(function() {
 					ctrl.status = 'relax';
@@ -24,7 +27,7 @@ mblowfish.view('/seo/links-new', {
 		}
 
 		function cancel() {
-			$navigator.openPage('seo/links');
+//			$navigator.openPage('seo/links');
 		}
 
 		function formatDate(date) {
@@ -59,4 +62,6 @@ mblowfish.view('/seo/links-new', {
 		$scope.cancel = cancel;
 		$scope.ctrl = ctrl;
 	},
-});
+}
+
+

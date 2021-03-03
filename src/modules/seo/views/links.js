@@ -1,7 +1,9 @@
+import templateUrl from './links.html';
 
-mblowfish.view('/seo/links', {
+
+export default {
 	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-seo/views/links.html',
+	templateUrl: templateUrl,
 	groups: ['seo'],
 	title: 'Sitemap links',
 	icon: 'link',
@@ -34,7 +36,7 @@ mblowfish.view('/seo/links', {
 			eventType: '/seo/links'
 		});
 	},
-});
+}
 
 
 //		/**

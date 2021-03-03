@@ -19,66 +19,73 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import mblowfish from 'mblowfish';
+import Constants from './Constants';
+import mblowfishIntegerateRun from './mblowfish-integerate-run';
+
+import accountCreateAction from './actions/account-create';
+import accountEditAction from './actions/account-edit';
+
+import MbSeenUserAccountsCtrl from './controllers/MbSeenUserAccountsCtrl';
+import MbSeenUserGroupsCtrl from './controllers/MbSeenUserGroupsCtrl';
+import MbSeenUserMessagesCtrl from './controllers/MbSeenUserMessagesCtrl';
+import MbSeenUserRolesCtrl from './controllers/MbSeenUserRolesCtrl';
+
+import accountEditor from './editors/account';
+import groupEditor from './editors/group';
+import roleEditor from './editors/role';
 
 
-mblowfish.addConstants({
-	//------------------------------------------------------------
-	// Resources Types
-	//------------------------------------------------------------
-	AMD_USER_ROLES_RT: '/user/roles',
-	AMD_USER_GROUPS_RT: '/user/groups',
-	
-	AMD_USER_ACCOUNTS_RT: '/user/accounts',
-	AMD_USER_ACCOUNT_ID_RT: '/user/account#id',
+import accountIdResource from './resources/accountId';
+import accountsResource from './resources/accounts';
+import groupsResource from './resources/groups';
+import rolesResource from './resources/roles';
 
-	//------------------------------------------------------------
-	// Storage path
-	//------------------------------------------------------------
-	AMD_USER_ACCOUNTS_SP: '/user/accounts',
-	AMD_USER_GROUPS_SP: '/user/groups',
-	AMD_USER_ROLES_SP: '/user/roles',
-
-	//------------------------------------------------------------
-	// Actions
-	//------------------------------------------------------------
-	AMD_USER_ACCOUNT_CREATE_ACTION: 'amd.user.accounts.create',
-	AMD_USER_ACCOUNTS_OPENEDITOR_ACTION: 'amd.user.accounts.openEditor',
+import accountView from './views/accounts';
+import groupView from './views/groups';
+import roleView from './views/roles';
 
 
-	//------------------------------------------------------------
-	// Wizards
-	//------------------------------------------------------------
-	AMD_USER_ACCOUNT_CREATE_WIZARD: '/user/wizards/account-create',
-});
-
-		// Add action
-		// View: '/ums/accounts'
-//		this.addAction({
-//			title: 'New account',
-//			icon: 'add',
-//			actionId: AMD_USER_ACCOUNT_CREATE_ACTION
-//		});
+import accountCreateWizardPage from './wizards/account-create/accountPage'
+import accountCreateAvatarWizardPage from './wizards/account-create/avatarPage';
+import accountCreateCredentialWizardPage from './wizards/account-create/credentialPage';
+import accountCreateGroupsWizardPage from './wizards/account-create/groupsPage';
+import accountCreateProfileWizardPage from './wizards/account-create/profilePage';
+import accountCreateRolesWizardPage from './wizards/account-create/rolesPage';
+import accountCreateWizard from './wizards/account-create/wizard';
 
 
-//		// Add action
-// View: '/ums/groups'
-//		this.addAction({
-//			title: 'New group',
-//			icon: 'add',
-//			action: function() {
-//				$navigator.openPage('ums/groups/new');
-//			}
-//		});
+mblowfish
+	.constant(Constants)
+	.run(mblowfishIntegerateRun)
 
+	.action(AMD_USER_ACCOUNT_CREATE_ACTION, accountCreateAction)
+	.action(AMD_USER_ACCOUNTS_OPENEDITOR_ACTION, accountEditAction)
 
+	.controller('MbSeenUserAccountsCtrl', MbSeenUserAccountsCtrl)
+	.controller('MbSeenUserGroupsCtrl', MbSeenUserGroupsCtrl)
+	.controller('MbSeenUserMessagesCtrl', MbSeenUserMessagesCtrl)
+	.controller('MbSeenUserRolesCtrl', MbSeenUserRolesCtrl)
 
+	.editor('/ums/accounts/:accountId', accountEditor)
+	.editor('/ums/groups/:groupId', groupEditor)
+	.editor('/ums/roles/:roleId', roleEditor)
 
-//		// Add action
-// View: '/ums/roles'
-//		this.addAction({
-//			title: 'New group',
-//			icon: 'add',
-//			action: function() {
-//				$navigator.openPage('ums/groups/new');
-//			}
-//		});
+	.resource('amd-seen-user-account_id', accountIdResource)
+	.resource('amd-seen-user-accounts', accountsResource)
+	.resource('amd-seen-user-groups', groupsResource)
+	.resource('amd-seen-user-roles', rolesResource)
+
+	.view('/ums/accounts', accountView)
+	.view('/ums/groups', groupView)
+	.view('/ums/roles', roleView)
+
+	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#account', accountCreateWizardPage)
+	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#avatar', accountCreateAvatarWizardPage)
+	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#cridential', accountCreateCredentialWizardPage)
+	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#groups', accountCreateGroupsWizardPage)
+	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#profile', accountCreateProfileWizardPage)
+	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#roles', accountCreateRolesWizardPage)
+	.wizard(AMD_USER_ACCOUNT_CREATE_WIZARD, accountCreateWizard)
+
+	;

@@ -20,16 +20,16 @@
  * SOFTWARE.
  */
 
-
+import templateUrl from './accounts.html';
 
 /**
  * @ngdoc controller
  * @name AmdUserAccountsCtrl
  * @description Manages list of accounts
  */
-mblowfish.addView('/ums/accounts', {
+export default {
 	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-user/views/accounts.html',
+	templateUrl: templateUrl,
 	groups: ['Users Management'],
 	title: 'Users',
 	icon: 'person',
@@ -76,4 +76,7 @@ mblowfish.addView('/ums/accounts', {
 			eventType: AMD_USER_ACCOUNTS_SP
 		});
 	}
-});
+}
+
+
+
