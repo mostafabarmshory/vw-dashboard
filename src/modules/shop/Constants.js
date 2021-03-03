@@ -14,6 +14,11 @@ export default {
 	AMD_SHOP_SERVICES_VIEW: '/shop/services',
 	AMD_SHOP_TAGS_VIEW: '/shop/tags',
 	AMD_SHOP_ZONES_VIEW: '/shop/zones',
+	//------------------------------------------------------------
+	// ACTIONS
+	//------------------------------------------------------------
+	AMD_SHOP_CATEGORY_IMPORTJSON_ACTION: 'amd.shop.category.importJson',
+	AMD_SHOP_PRODUCT_IMPORTCSV_ACTION: 'amd.shop.product.importCsv',
 
 	AMD_SHOP_AGENCY_DELETE_ACTION: 'amd.shop.agency.delete',
 	AMD_SHOP_AGENCY_CREATE_ACTION: 'amd.shop.agency.create',

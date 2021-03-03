@@ -1,6 +1,7 @@
+import templateUrl from './security-settings.html';
 
-mblowfish.view('/tenant/settings/security', {
-	templateUrl: 'scripts/module-tenant/views/security-settings.html',
+export default {
+	templateUrl: templateUrl,
 	groups: ['Tenant'],
 	title: 'Security',
 	icon: 'font_download',
@@ -159,4 +160,4 @@ mblowfish.view('/tenant/settings/security', {
 		loadCaptchaSetting();
 		loadHttpsSetting();
 	},
-});
+}

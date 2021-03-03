@@ -1,5 +1,7 @@
-mblowfish.view('/spas-upload', {
-	templateUrl: 'scripts/module-spa/views/spa-upload.html',
+import templateUrl from './spa-upload.html';
+
+export default {
+	templateUrl: templateUrl,
 	title: 'Upload spa',
 	icon: 'file_upload',
 	groups: ['Applications'],
@@ -36,4 +38,5 @@ mblowfish.view('/spas-upload', {
 		$scope.ctrl = ctrl;
 		$scope.upload = fileSelected;
 	},
-});
+}
+

@@ -1,9 +1,11 @@
-mblowfish.view(TENANT_REPOSITORYSPAS_VIEW, {
+import templateUrl from './repository-spas.html';
+
+export default {
 	controllerAs: 'ctrl',
-	templateUrl: 'scripts/module-spa/views/repository-spas.html',
+	templateUrl: templateUrl,
 	title: 'Repository',
 	icon: 'cloud_upload',
-	groups: ['Applications'],
+	groups: ['Tenant'],
 	controller: function($scope, $controller, $tenant, $view) {
 		'ngInject';
 
@@ -34,4 +36,4 @@ mblowfish.view(TENANT_REPOSITORYSPAS_VIEW, {
 			eventType: '/spas/repository'
 		});
 	},
-});
+}

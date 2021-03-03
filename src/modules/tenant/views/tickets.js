@@ -1,6 +1,6 @@
-
-mblowfish.addView('/tenant/tickets', {
-	templateUrl: 'scripts/module-tenant/views/tickets.html',
+import templateUrl from './tickets.html';
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Tenant'],
 	title: 'Tickets',
@@ -100,4 +100,6 @@ mblowfish.addView('/tenant/tickets', {
 			action: add
 		}];
 	},
-});
+}
+
+

@@ -63,7 +63,7 @@ import './modules/sdp';
 import './modules/shop';
 //import './modules/shopx';
 import './modules/tenant';
-//import './modules/user';
+import './modules/user';
 
 /***********************************************************************************
  * Custom application loading

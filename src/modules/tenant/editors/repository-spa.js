@@ -1,5 +1,7 @@
-mblowfish.editor('/spas/repository/:spaId', {
-	templateUrl: 'scripts/module-spa/editors/repository-spa.html',
+import templateUrl from './repository-spa.html';
+
+export default {
+	templateUrl: templateUrl,
 	contorllerAs: 'ctrl',
 	controller: function($scope, $state, $tenant, $mbActions) {
 		'ngInject';
@@ -44,4 +46,4 @@ mblowfish.editor('/spas/repository/:spaId', {
 
 		load();
 	},
-});
+}

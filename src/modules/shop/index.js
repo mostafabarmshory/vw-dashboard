@@ -33,6 +33,8 @@ import productCreateAction from './actions/product-create';
 import serviceCreateAction from './actions/service-create';
 import tagCreateAction from './actions/tag-create';
 import zoneCreateAction from './actions/zone-create';
+import importProductAction from './actions/product-import-csv';
+import importCategoryAction from './actions/category-import-json';
 
 import AmdShopAgenciesCtrl from './controllers/AmdShopAgenciesCtrl';
 import AmdShopCategoriesCtrl from './controllers/AmdShopCategoriesCtrl';
@@ -62,6 +64,9 @@ import servicesView from './views/services';
 import tagsView from './views/tags';
 import zoneView from './views/zones';
 
+import mblowfishIntegerateRun from './mblowfish-integerate-run';
+import mblowfishConfig from './mblowfish-config';
+
 mblowfish
 	.constant(Constants)
 
@@ -76,6 +81,9 @@ mblowfish
 	.action(Constants.AMD_SHOP_SERVICE_CREATE_ACTION, serviceCreateAction)
 	.action(Constants.AMD_SHOP_TAG_CREATE_ACTION, tagCreateAction)
 	.action(Constants.AMD_SHOP_ZONE_CREATE_ACTION, zoneCreateAction)
+
+	.action(AMD_SHOP_CATEGORY_IMPORTJSON_ACTION, importCategoryAction)
+	.action(AMD_SHOP_PRODUCT_IMPORTCSV_ACTION, importProductAction)
 
 	.controller('AmdShopAgenciesCtrl', AmdShopAgenciesCtrl)
 	.controller('AmdShopCategoriesCtrl', AmdShopCategoriesCtrl)
@@ -94,7 +102,7 @@ mblowfish
 	.resource('/shop/agency#id', agencyIdResource)
 	.resource('/shop/categories', categoriesResource)
 	.resource('/shop/zones#id', zoneIdsResource)
-	
+
 	.view('/shop/agencies', agenciesView)
 	.view(AMD_SHOP_CATEGORIES_VIEW, categoriesView)
 	.view(AMD_SHOP_DELIVERS_VIEW, deliversView)
@@ -105,32 +113,9 @@ mblowfish
 	.view(AMD_SHOP_TAGS_VIEW, tagsView)
 	.view(AMD_SHOP_ZONES_VIEW, zoneView)
 
-	.config(function($mbIconProvider) {
-		'ngInject';
+	.config(mblowfishConfig)
+	.run(mblowfishIntegerateRun);
 
-		$mbIconProvider
-			.addShapes({
-				'shop-zone': '<path id="path2" d="M 23,7 V 1 H 17 V 3 H 7 V 1 H 1 V 7 H 3 V 17 H 1 v 6 h 6 v -2 h 10 v 2 h 6 V 17 H 21 V 7 Z M 3,3 H 5 V 5 H 3 Z M 5,21 H 3 V 19 H 5 Z M 17,19 H 7 V 17 H 5 V 7 H 7 V 5 h 10 v 2 h 2 v 10 h -2 z m 4,2 h -2 v -2 h 2 z M 19,5 V 3 h 2 v 2 z" /><path id="path4" fill="none" d="M0 0h24v24H0z" />'
-			});
-	})
-	.run(function($mbToolbar) {
-		'ngInject';
-		// Contribute actions to views
-		$mbToolbar.getToolbar(AMD_SHOP_CATEGORIES_VIEW)
-			.addAction(AMD_SHOP_CATEGORY_CREATE_ACTION);
 
-		$mbToolbar.getToolbar(AMD_SHOP_PRODUCTS_VIEW)
-			.addAction(AMD_SHOP_PRODUCT_CREATE_ACTION);
 
-		$mbToolbar.getToolbar(AMD_SHOP_DELIVERS_VIEW)
-			.addAction(AMD_SHOP_DELIVER_CREATE_ACTION);
 
-		$mbToolbar.getToolbar(AMD_SHOP_SERVICES_VIEW)
-			.addAction(AMD_SHOP_SERVICE_CREATE_ACTION);
-
-		$mbToolbar.getToolbar(AMD_SHOP_TAGS_VIEW)
-			.addAction(AMD_SHOP_TAG_CREATE_ACTION);
-
-		$mbToolbar.getToolbar(AMD_SHOP_ZONES_VIEW)
-			.addAction(AMD_SHOP_ZONE_CREATE_ACTION);
-	});

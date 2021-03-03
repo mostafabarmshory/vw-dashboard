@@ -20,37 +20,26 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(AMD_SHOP_CATEGORY_IMPORTJSON_ACTION, {// import categories menu
+export default {// import products menu
 	priority: 10,
 	icon: 'cloud_upload',
-	title: 'Import Categories',
-	description: 'Imports categories from a JSON file',
 	group: 'Shop',
+	title: 'Import Products',
+	description: 'Imports products from a CSV file',
 	/* @ngInject */
-	action: function($event, $shop, $q, $mbTranslate, $mbDialog, $mbDispatcherUtil) {
+	action: function($event, $shop, $q, $mbTranslate, $mbResource, $mbDispatcherUtil) {
 
-		function createCategories(list) {
+		function createProducts(list) {
 			var promisesList = [];
 			list.forEach(function(item) {
-				var childs = item.children;
-				// Send REST to create category
-				item.children = null;
-				var promise = $shop.putCategory(item)
+				// Send REST to create Product
+				var promise = $shop.putProduct(item)
 					// Fire event
-					.then(function(cat) {
-						$mbDispatcherUtil.fireCreated(AMD_SHOP_CATEGORY_SP, [cat]);
-						return cat;
+					.then(function(prodcut) {
+						$mbDispatcherUtil.fireCreated(AMD_SHOP_PRODUCT_SP, [prodcut]);
+						return prodcut;
 					}, function() {
-						alert($mbTranslate.instant('Failed to create new category.'));
-					})
-					// Add childs
-					.then(function(cat) {
-						if (childs) { // category has some childs
-							childs.forEach(function(childItem) {
-								childItem.parent_id = cat.id;
-							});
-							return createCategories(childs);
-						}
+						alert($mbTranslate.instant('Failed to create new prodcut.'));
 					});
 				promisesList.push(promise);
 			});
@@ -58,9 +47,22 @@ mblowfish.addAction(AMD_SHOP_CATEGORY_IMPORTJSON_ACTION, {// import categories m
 		}
 
 		function processData(allText) {
-			var json = JSON.parse(allText);
-			var catList = json.categories;
-			return catList;
+			var allTextLines = allText.split(/\r\n|\n/);
+			var headers = allTextLines[0].split(',');
+			var lines = [];
+
+			for (var i = 1; i < allTextLines.length; i++) {
+				var data = allTextLines[i].split(',');
+				if (data.length === headers.length) {
+
+					var tarr = {};
+					for (var j = 0; j < headers.length; j++) {
+						tarr[headers[j]] = data[j];
+					}
+					lines.push(tarr);
+				}
+			}
+			return lines;
 		}
 
 		function processFileContent(file, processorFunc) {
@@ -83,9 +85,9 @@ mblowfish.addAction(AMD_SHOP_CATEGORY_IMPORTJSON_ACTION, {// import categories m
 				// contents of file in variable     
 				var text = e.target.result;
 				var items = processorFunc(text);
-				return createCategories(items)
+				return createProducts(items)
 					.then(function() {
-						toast($mbTranslate.instant('Categories are added successfully.'));
+						toast($mbTranslate.instant('Products are added successfully.'));
 					});
 			});
 			// read as text file
@@ -94,19 +96,17 @@ mblowfish.addAction(AMD_SHOP_CATEGORY_IMPORTJSON_ACTION, {// import categories m
 
 		// TODO: maso, 2020: add the job into the job lists
 		// $app.addJob('Adding new shop category', job);
-		return $mbDialog
-			.show({
-				title: 'Import List of Categories',
+		return $mbResource
+			.get("file", {
+				title: 'Import List of Products',
 				config: {},
-				controller: 'AmdNavigatorDialogCtrl',
-				controllerAs: 'ctrl',
-				templateUrl: 'scripts/module-shop-x/actions/select-file-dialog.html'
+				targetEvent: $event
 			})
 			.then(function(res) {
 				var file = res.files[0];
 				processFileContent(file, processData);
 			});
-
 	},
 	groups: ['Shope']
-});
+}
+

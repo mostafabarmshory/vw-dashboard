@@ -1,6 +1,9 @@
 
-mblowfish.view('/tenant/settings/local-setting', {
-	templateUrl: 'scripts/module-tenant/views/local-settings.html',
+
+import templateUrl from './local-settings.html';
+
+export default {
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	groups: ['Tenant'],
 	title: 'Local settings',
@@ -95,4 +98,4 @@ mblowfish.view('/tenant/settings/local-setting', {
 		loadSettings();
 		loadCurrencies();
 	},
-});
+}
