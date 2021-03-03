@@ -20,15 +20,10 @@
  * SOFTWARE.
  */
 /**
- * @ngdoc Services
- * @name $mbActions
- * @description Manage application actions
- * 
- * Controllers and views can access actions which is registered by an
- * applications. This service is responsible to manage global actions.
- * 
+
+@ngInject
  */
-mblowfish.service('$seoContent', function($q) {
+export default function($q) {
 
     /**
      * Remove extra informations and optimized the page
@@ -142,4 +137,6 @@ mblowfish.service('$seoContent', function($q) {
 	};
 
 	return this;
-});
+}
+
+

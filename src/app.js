@@ -59,9 +59,8 @@ import './modules/account';
 import './modules/cms';
 //import './modules/jms';
 import './modules/sdp';
-//import './modules/seo';
+import './modules/seo';
 import './modules/shop';
-//import './modules/shopx';
 import './modules/tenant';
 import './modules/user';
 

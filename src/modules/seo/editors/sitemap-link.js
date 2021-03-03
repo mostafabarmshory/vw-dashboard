@@ -1,5 +1,7 @@
-mblowfish.addEditor('/seo/links/:itemId', {
-	templateUrl: 'scripts/module-seo/editors/sitemap-link.html',
+import templateUrl from './sitemap-link.html';
+
+export default {
+	templateUrl: templateUrl,
 	controller: function($scope, $controller, $seo) {
 		'ngInject';
 		/*
@@ -41,4 +43,6 @@ mblowfish.addEditor('/seo/links/:itemId', {
 
 	},
 	controllerAs: 'ctrl',
-});
+}
+
+

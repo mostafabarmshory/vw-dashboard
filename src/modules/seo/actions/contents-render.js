@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-mblowfish.addAction(AMD_SEO_CONTENTS_RENDER_ACTION, {
+export default {
 	icon: 'edit',
 	title: 'Render link',
 	description: 'Open the content with an render',
@@ -36,4 +36,6 @@ mblowfish.addAction(AMD_SEO_CONTENTS_RENDER_ACTION, {
 			$location.url('seo/crawled-links/' + content.id + '/render');
 		});
 	},
-});
+}
+
+
