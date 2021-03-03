@@ -1,7 +1,9 @@
-mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#cridential', {
+import templateUrl from './credentialPage.html';
+
+export default {
 	title: 'Account',
 	description: 'Account information is used to identicate an account.',
-	templateUrl: 'scripts/module-user/wizards/account-create/credentialPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard) {
 		'ngInject';
@@ -24,4 +26,5 @@ mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#cridential', {
 		var data = $wizard.data;
 		return data.password && data.password === data.confirm_password;
 	}
-});
+}
+

@@ -1,7 +1,10 @@
-mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#account', {
+
+import templateUrl from './accountPage.html';
+
+export default {
 	title: 'Account',
 	description: 'Account information is used to identicate an account.',
-	templateUrl: 'scripts/module-user/wizards/account-create/accountPage.html',
+	templateUrl: templateUrl,
 	controllerAs: 'ctrl',
 	controller: function($wizard) {
 		'ngInject';
@@ -25,4 +28,4 @@ mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#account', {
 		// TODO: check if the login exist
 		return $wizard.data.login;
 	}
-});
+}

@@ -1,13 +1,10 @@
 
-export default function() {
+export default function($mbToolbar) {
 	'ngInject';
-	// Add action
-	// View: '/ums/accounts'
-	//		this.addAction({
-	//			title: 'New account',
-	//			icon: 'add',
-	//			actionId: AMD_USER_ACCOUNT_CREATE_ACTION
-	//		});
+
+		$mbToolbar
+			.getToolbar('/ums/accounts')
+			.addAction(AMD_USER_ACCOUNT_CREATE_ACTION);
 
 
 	//		// Add action

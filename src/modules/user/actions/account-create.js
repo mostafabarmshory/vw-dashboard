@@ -43,7 +43,7 @@ new data and create a new one.
  */
 
 export default {
-	icon: 'new',
+	icon: 'add',
 	title: 'New Account',
 	description: 'Creates a new account and set all roles and groups.',
 	group: 'User',
@@ -109,7 +109,7 @@ export default {
 			jobs.push($usr.putAccount(_.assign(profile, value))
 				.then(function(account) {
 					accounts.push(account);
-					return $q.all([
+					return $mbQueue.all([
 						addRoles(account, roles),
 						addGroups(account, groups),
 						setAvatar(account, avatar)

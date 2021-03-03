@@ -1,7 +1,9 @@
-mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#avatar', {
+import tempalteUrl from './avatarPage.html';
+
+export default {
 	title: 'Avatar',
 	description: 'Avatar is used to present an account in wepabes, dashboard and etc.',
-	templateUrl: 'scripts/module-user/wizards/account-create/avatarPage.html',
+	templateUrl: tempalteUrl,
 	controllerAs: 'ctrl',
 	controller: function($scope, $wizard) {
 		'ngInject';
@@ -15,4 +17,6 @@ mblowfish.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#avatar', {
 			$wizard.setData('avatar', avatar);
 		});
 	}
-});
+}
+
+

@@ -45,6 +45,16 @@ import accountView from './views/accounts';
 import groupView from './views/groups';
 import roleView from './views/roles';
 
+
+import accountCreateWizardPage from './wizards/account-create/accountPage'
+import accountCreateAvatarWizardPage from './wizards/account-create/avatarPage';
+import accountCreateCredentialWizardPage from './wizards/account-create/credentialPage';
+import accountCreateGroupsWizardPage from './wizards/account-create/groupsPage';
+import accountCreateProfileWizardPage from './wizards/account-create/profilePage';
+import accountCreateRolesWizardPage from './wizards/account-create/rolesPage';
+import accountCreateWizard from './wizards/account-create/wizard';
+
+
 mblowfish
 	.constant(Constants)
 	.run(mblowfishIntegerateRun)
@@ -69,4 +79,13 @@ mblowfish
 	.view('/ums/accounts', accountView)
 	.view('/ums/groups', groupView)
 	.view('/ums/roles', roleView)
+
+	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#account', accountCreateWizardPage)
+	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#avatar', accountCreateAvatarWizardPage)
+	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#cridential', accountCreateCredentialWizardPage)
+	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#groups', accountCreateGroupsWizardPage)
+	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#profile', accountCreateProfileWizardPage)
+	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#roles', accountCreateRolesWizardPage)
+	.wizard(AMD_USER_ACCOUNT_CREATE_WIZARD, accountCreateWizard)
+
 	;
