@@ -14,7 +14,7 @@
 		aria-label="File size"
 		name="size"
 		ng-model="ctrl.size"
-		ng-model-options="{getterSetter: true, updateOn: 'blur', allowInvalid: true}"
+		ng-model-options="{getterSetter: true, debounce: 600, allowInvalid: true}"
 		mb-file-size-parser>
 </md-input-container>
 
