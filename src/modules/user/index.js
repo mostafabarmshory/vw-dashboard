@@ -25,6 +25,7 @@ import mblowfishIntegerateRun from './mblowfish-integerate-run';
 
 import accountCreateAction from './actions/account-create';
 import accountEditAction from './actions/account-edit';
+import groupCreateAction from './actions/group-create';
 
 import MbSeenUserAccountsCtrl from './controllers/MbSeenUserAccountsCtrl';
 import MbSeenUserGroupsCtrl from './controllers/MbSeenUserGroupsCtrl';
@@ -55,12 +56,17 @@ import accountCreateRolesWizardPage from './wizards/account-create/rolesPage';
 import accountCreateWizard from './wizards/account-create/wizard';
 
 
+import groupInfoCreateWizardPage from './wizards/group-create/groupPage'
+import groupCreateWizard from './wizards/group-create/wizard';
+
+
 mblowfish
 	.constant(Constants)
 	.run(mblowfishIntegerateRun)
 
 	.action(AMD_USER_ACCOUNT_CREATE_ACTION, accountCreateAction)
 	.action(AMD_USER_ACCOUNTS_OPENEDITOR_ACTION, accountEditAction)
+	.action(Constants.AMD_USER_GROUP_CREATE_ACTION, groupCreateAction)
 
 	.controller('MbSeenUserAccountsCtrl', MbSeenUserAccountsCtrl)
 	.controller('MbSeenUserGroupsCtrl', MbSeenUserGroupsCtrl)
@@ -87,5 +93,8 @@ mblowfish
 	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#profile', accountCreateProfileWizardPage)
 	.wizardPage(AMD_USER_ACCOUNT_CREATE_WIZARD + '#roles', accountCreateRolesWizardPage)
 	.wizard(AMD_USER_ACCOUNT_CREATE_WIZARD, accountCreateWizard)
+	
 
+	.wizardPage(Constants.AMD_USER_GROUP_CREATE_WIZARD + '#group', groupInfoCreateWizardPage)
+	.wizard(Constants.AMD_USER_GROUP_CREATE_WIZARD, groupCreateWizard)
 	;

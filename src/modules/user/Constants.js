@@ -20,10 +20,12 @@ export default {
 	//------------------------------------------------------------
 	AMD_USER_ACCOUNT_CREATE_ACTION: 'amd.user.accounts.create',
 	AMD_USER_ACCOUNTS_OPENEDITOR_ACTION: 'amd.user.accounts.openEditor',
+	AMD_USER_GROUP_CREATE_ACTION: 'amd.user.groups.create',
 
 
 	//------------------------------------------------------------
 	// Wizards
 	//------------------------------------------------------------
 	AMD_USER_ACCOUNT_CREATE_WIZARD: '/user/wizards/account-create',
+	AMD_USER_GROUP_CREATE_WIZARD: '/user/wizards/group-create',
 }
