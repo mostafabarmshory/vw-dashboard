@@ -41,7 +41,7 @@
  *   </map>
  */
 
-export class SeenObject {
+export default class SeenObject {
 	/**
 	 * این فراخوانی یک نمونه جدید از این موجودیت ایجاد کرده و مقادیر داده ورودی را به عنوان داده‌های
 	 * این موجودیت قرار می‌دهد.
@@ -98,6 +98,3 @@ export class SeenObject {
 
 }
 
-export default function() {
-	return SeenObject;
-}

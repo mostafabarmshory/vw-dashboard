@@ -26,6 +26,7 @@ import mblowfishIntegerateRun from './mblowfish-integerate-run';
 import accountCreateAction from './actions/account-create';
 import accountEditAction from './actions/account-edit';
 import groupCreateAction from './actions/group-create';
+import groupRolesUpdateAction from './actions/group-update';
 
 import MbSeenUserAccountsCtrl from './controllers/MbSeenUserAccountsCtrl';
 import MbSeenUserGroupsCtrl from './controllers/MbSeenUserGroupsCtrl';
@@ -67,6 +68,7 @@ mblowfish
 	.action(AMD_USER_ACCOUNT_CREATE_ACTION, accountCreateAction)
 	.action(AMD_USER_ACCOUNTS_OPENEDITOR_ACTION, accountEditAction)
 	.action(Constants.AMD_USER_GROUP_CREATE_ACTION, groupCreateAction)
+	.action(Constants.AMD_USER_GROUP_UPDATE_ROLES_ACTION, groupRolesUpdateAction)
 
 	.controller('MbSeenUserAccountsCtrl', MbSeenUserAccountsCtrl)
 	.controller('MbSeenUserGroupsCtrl', MbSeenUserGroupsCtrl)
@@ -74,8 +76,8 @@ mblowfish
 	.controller('MbSeenUserRolesCtrl', MbSeenUserRolesCtrl)
 
 	.editor('/ums/accounts/:accountId', accountEditor)
-	.editor('/ums/groups/:groupId', groupEditor)
-	.editor('/ums/roles/:roleId', roleEditor)
+	.editor('/ums/groups/:modelId', groupEditor)
+	.editor('/ums/roles/:modelId', roleEditor)
 
 	.resource('amd-seen-user-account_id', accountIdResource)
 	.resource('amd-seen-user-accounts', accountsResource)

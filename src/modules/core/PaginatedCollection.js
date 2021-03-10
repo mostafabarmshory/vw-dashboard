@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-import { SeenObject } from './SeenObject';
+import SeenObject from './SeenObject';
 
 /**
  * @ngdoc Factories
@@ -30,7 +30,7 @@ import { SeenObject } from './SeenObject';
  * 
  * @see QueryParameter
  */
-class PaginatedCollection extends SeenObject {
+export default class PaginatedCollection extends SeenObject {
 	constructor(data) {
 		super(data);
 	}
@@ -76,6 +76,3 @@ class PaginatedCollection extends SeenObject {
 	}
 }
 
-export default function() {
-	return PaginatedCollection;
-}

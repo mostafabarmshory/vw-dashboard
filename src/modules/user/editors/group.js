@@ -20,7 +20,13 @@
  * SOFTWARE.
  */
 import templateUrl from './group.html';
+import Constants from '../Constants';
+import QueryParameter from '../../core/QueryParameter';
 
+const graphQl = `{
+	id,title,description,
+	roles{id, name, code_name, application, description}
+}`;
 /**
 @ngdoc Editor
 @name AmdGroupCtrl
@@ -33,221 +39,49 @@ Manages a group view
  */
 export default {
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
 	protect: true,
-	controller: function($scope, $usr, $state, $mbLocation, $mbResource, $mbTranslate, $q, $editor) {
+	controller: function($scope, $element, $usr, $state, $controller, $editor, UserGroup, $mbQueue) {
 		'ngInject';
 
-		var ctrl = {
-			roleLoading: true,
-			groupLoading: true,
-			userLoading: true
+		angular.extend(this, $controller('MbSeenAbstractItemEditorCtrl', {
+			$scope: $scope,
+			$element: $element,
+			$editor: $editor
+		}));
+
+		this.findRole = (query) => {
+			var queryParameter = new QueryParameter();
+			queryParameter.setQuery(query);
+			return $usr.getRoles(queryParameter)
+				.then(list =>{
+					return list.items;
+				});
 		};
 
-		/**
-		 * Remove the group
-		 * 
-		 * Remove current group from the backend.
-		 * 
-		 * @memberof AmdGroupCtrl
-		 * @returns {promiss} to do 
-		 */
-		function remove() {
-			return confirm($mbTranslate.instant('Group will be removed. There is no undo.'))
-				.then(function() {
-					return $scope.group.delete();//
-				})//
-				.then(function() {
-					$mbLocation.url('ums/groups');
-				}, function(/*error*/) {
-					alert($mbTranslate.instant('Failed to delete item.'));
-				});
-		}
-
-		/**
-		 * Save changes of the current group
-		 * 
-		 * Save the current group to the backend.
-		 * 
-		 * @memberof AmdGroupCtrl
-		 * @return {promiss} to do 
-		 */
-		function save() {
-			if (ctrl.groupLoading) {
-				return;
-			}
-			ctrl.groupLoading = true;
-			return $scope.group.update()//
-				.then(function() {
-					toast($mbTranslate.instant('Save is successfull.'));
-				})//
-				.finally(function() {
-					ctrl.groupLoading = false;
-				});
-		}
-
-		function loadRoles() {
-			ctrl.roleLoading = true;
-			return $scope.group.getRoles()//
-				.then(function(roles) {
-					$scope.roles = roles;
-				})//
-				.finally(function() {
-					ctrl.roleLoading = false;
-				});
-		}
-
-		function loadUsers() {
-			ctrl.userLoading = true;
-			return $scope.group.getAccounts()//
-				.then(function(users) {
-					$scope.users = users;
-				})//
-				.finally(function() {
-					ctrl.userLoading = false;
-				});
-		}
-
-		function load() {
-			ctrl.groupLoading = true;
-			return $usr.getGroup($state.params.groupId)//
-				.then(function(group) {
-					$scope.group = group;
-					loadRoles();
-					loadUsers();
-					$editor.setTitle('Group: ' + group.id);
-				})//
-				.finally(function() {
-					ctrl.groupLoading = false;
-				});
-		}
-
-		function changeRoles($event) {
-			var myData = $scope.roles ? $scope.roles.items : [];
-			return $mbResource.get('roles', {
-				data: myData,
-				targetEvent: $event
+		this.updateGroup = ($event) => {
+			return $mbQueue.all([
+				this.execOnModel(SEEN_MODEL_UPDATE_ACTION, $event),
+				this.execOnModel(AMD_USER_GROUP_UPDATE_ROLES_ACTION, $event),
+			])
+			.then(() => this.setDerty(false));
+		};
+	
+		$usr
+			.getGroup($state.params.modelId, {
+//				graphQl: graphQl
 			})//
-				.then(function(list) {
-					// change roles and reload roles
-					var jobs = [];
-					list.forEach(function(item) {
-						if (_findIndex(myData, item) < 0) {
-							var promise = $scope.group.putRole({
-								'id': item.id,
-								'role': item.id,
-								'role_id': item.id
-							});
-							jobs.push(promise);
-						}
+			.then(groupData => {
+				var group = new UserGroup(groupData);
+				group.getRoles()
+					.then((roles) => {
+						group.roles = roles.items;
+						group.$roles = _.cloneDeep(roles.items);
 					});
-					myData.forEach(function(item) {
-						if (_findIndex(list, item) < 0) {
-							var promise = $scope.group.deleteRole(item);
-							jobs.push(promise);
-						}
-					});
-					$q.all(jobs)//
-						.then(function() {
-							loadRoles();
-						}, function() {
-							$scope.roles = myData;
-							alert($mbTranslate.instant('An error occured while set roles.'));
-						});
-				});
-		}
-
-		function changeUsers($event) {
-			var myData = $scope.users ? $scope.users.items : [];
-			return $mbResource.get('accounts', {
-				data: myData,
-				targetEvent: $event
-			})//
-				.then(function(list) {
-					// change users and reload users
-					var jobs = [];
-					list.forEach(function(item) {
-						if (_findIndex(myData, item) < 0) {
-							var promise = $scope.group.putAccount(item);
-							jobs.push(promise);
-						}
-					});
-					myData.forEach(function(item) {
-						if (_findIndex(list, item) < 0) {
-							var promise = $scope.group.deleteAccount(item);
-							jobs.push(promise);
-						}
-					});
-					$q.all(jobs)//
-						.then(function() {
-							loadUsers();
-						}, function() {
-							$scope.users = myData;
-							alert($mbTranslate.instant('An error occured while set users.'));
-						});
-				});
-		}
-
-		function _findIndex(array, item) {
-			for (var i = 0; i < array.length; i++) {
-				if (array[i].id === item.id) {
-					return i;
-				}
-			}
-			return -1;
-		}
-
-		function removeRole(role) {
-			if (ctrl.roleLoading) {
-				return;
-			}
-			ctrl.roleLoading = true;
-			confirm($mbTranslate.instant('Item will be deleted.'))//
-				.then(function() {
-					return $scope.group.deleteRole(role);
-				})//
-				.then(function() {
-					var index = $scope.roles.items.indexOf(role);
-					if (index > -1) {
-						$scope.roles.items.splice(index, 1);
-					}
-				})//
-				.finally(function() {
-					ctrl.roleLoading = false;
-				});
-		}
-
-		function removeUser(user) {
-			if (ctrl.userLoading) {
-				return;
-			}
-			ctrl.userLoading = true;
-			confirm($mbTranslate.instant('Item will be deleted.'))//
-				.then(function() {
-					return $scope.group.deleteAccount(user);
-				})//
-				.then(function() {
-					var index = $scope.users.items.indexOf(user);
-					if (index > -1) {
-						$scope.users.items.splice(index, 1);
-					}
-				})//
-				.finally(function() {
-					ctrl.userLoading = false;
-				});
-		}
-
-		$scope.save = save;
-		$scope.remove = remove;
-
-		$scope.changeRoles = changeRoles;
-		$scope.changeUsers = changeUsers;
-
-		$scope.removeRole = removeRole;
-		$scope.removeUser = removeUser;
-
-		$scope.ctrl = ctrl;
-		load();
+				this
+					.setModel(group)
+					.setStorePath(Constants.AMD_USER_GROUPS_SP);
+				$editor.setTitle('Group:' + group.id);
+			});
 	}
 }
 
