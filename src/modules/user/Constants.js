@@ -20,6 +20,8 @@ export default {
 	//------------------------------------------------------------
 	AMD_USER_ACCOUNT_CREATE_ACTION: 'amd.user.accounts.create',
 	AMD_USER_ACCOUNTS_OPENEDITOR_ACTION: 'amd.user.accounts.openEditor',
+	AMD_USER_ACCOUNT_UPDATE_ROLES_ACTION: 'amd.user.accounts.roles.update',
+	AMD_USER_ACCOUNT_UPDATE_GROUPS_ACTION: 'amd.user.accounts.groups.update',
 	AMD_USER_GROUP_CREATE_ACTION: 'amd.user.groups.create',
 	AMD_USER_GROUP_UPDATE_ROLES_ACTION: 'amd.user.groups.roles.update',
 

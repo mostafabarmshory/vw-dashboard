@@ -25,8 +25,10 @@ import mblowfishIntegerateRun from './mblowfish-integerate-run';
 
 import accountCreateAction from './actions/account-create';
 import accountEditAction from './actions/account-edit';
+import accountGroupsUpdateAction from './actions/account-update-groups';
+import accountRolesUpdateAction from './actions/account-update-roles';
 import groupCreateAction from './actions/group-create';
-import groupRolesUpdateAction from './actions/group-update';
+import groupRolesUpdateAction from './actions/group-update-roles';
 
 import MbSeenUserAccountsCtrl from './controllers/MbSeenUserAccountsCtrl';
 import MbSeenUserGroupsCtrl from './controllers/MbSeenUserGroupsCtrl';
@@ -67,6 +69,8 @@ mblowfish
 
 	.action(AMD_USER_ACCOUNT_CREATE_ACTION, accountCreateAction)
 	.action(AMD_USER_ACCOUNTS_OPENEDITOR_ACTION, accountEditAction)
+	.action(Constants.AMD_USER_ACCOUNT_UPDATE_GROUPS_ACTION, accountGroupsUpdateAction)
+	.action(Constants.AMD_USER_ACCOUNT_UPDATE_ROLES_ACTION, accountRolesUpdateAction)
 	.action(Constants.AMD_USER_GROUP_CREATE_ACTION, groupCreateAction)
 	.action(Constants.AMD_USER_GROUP_UPDATE_ROLES_ACTION, groupRolesUpdateAction)
 
@@ -75,7 +79,7 @@ mblowfish
 	.controller('MbSeenUserMessagesCtrl', MbSeenUserMessagesCtrl)
 	.controller('MbSeenUserRolesCtrl', MbSeenUserRolesCtrl)
 
-	.editor('/ums/accounts/:accountId', accountEditor)
+	.editor('/ums/accounts/:modelId', accountEditor)
 	.editor('/ums/groups/:modelId', groupEditor)
 	.editor('/ums/roles/:modelId', roleEditor)
 
