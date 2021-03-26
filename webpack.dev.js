@@ -17,7 +17,10 @@ module.exports = merge(common, {
 	// Dev server configuration
 	// Reference: https://webpack.js.org/configuration/dev-server/
 	devServer: {
-		contentBase: path.join(__dirname, 'dist'),
+		contentBase: [
+			path.join(__dirname, 'dist'),
+			path.join(__dirname, 'spas')
+		],
 		compress: true,
 		port: 9001,
 		writeToDisk: true,

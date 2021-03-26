@@ -21,7 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+import ParentApi from 'mblowfish/src/wp/ParentApi';
+import './content-document-editor.css';
+import Constants from '../Constants';
 /*
 
 @see https://github.com/mozilla/pdf.js/wiki/Viewer-options
@@ -29,50 +31,112 @@
 export default {
 	title: 'Document Editor',
 	icon: 'text',
-	template: '<iframe></iframe>',
+	template: '<iframe class="mb-cms-content-document-editor"></iframe>',
 	controllerAs: 'ctrl',
 	supportedMimetypes: [
 		'text/html',
 		'application/weburger+json'
 	],
-	controller: function($state, $element, $cms, $httpParamSerializer, $mbLocal) {
+	controller: function(
+		$state, $element, $editor, $scope,
+		$mbResource, $mbDispatcherUtil,
+		$cms, $mbLocal, $controller, CmsContent) {
 		'ngInject';
-		//------------------------------------------------------------------
-		// Functions
-		//------------------------------------------------------------------\
-		function loadObject() {
-			$cms.getContent($state.params.contentId,{
-				graphql: '{id,media_type,mime_type,metas{id,key,value}}'
-			})
-				.then(function(content) {
-					var metas = content.metas;
-					delete content.metas;
-					var language = $mbLocal.getLanguage();
-					_.forEach(metas, function(meta){
-						if(meta.key === 'language'){
-							language = meta.value;
-						}
+
+		angular.extend(this, $controller('MbSeenAbstractItemEditorCtrl', {
+			$scope: $scope,
+			$element: $element,
+			$editor: $editor
+		}));
+
+
+		let api;
+		let content;
+		let iframe = $element.find('iframe');
+		let parent = window;
+		let child = iframe[0].contentWindow || iframe[0].contentDocument.parentWindow;
+
+		function connectApi(parentApi) {
+			api = parentApi;
+			api
+				.on('resource', (config) => getResource(config))
+				.on('change', () => $editor.setDerty(true))
+				.on('save', value => saveEditorContent(value))
+				.on('delete', () => this.deleteModel());
+			loadEditorDescription();
+			loadEditorContent();
+			// fire loaded
+		}
+
+		function getResource(config) {
+			$mbResource
+				.get(config.type) // TODO: maso, 2021: set event target
+				.then(value => api.call(config.call, value));
+		}
+
+		function loadEditorDescription() {
+			// inner editor
+			api.call('setTitle', content.title);
+			api.call('setDescription', content.description);
+		}
+
+		function loadEditorContent() {
+			content.downloadValue()
+				.then(value => {
+					api.call('setDerty', false);
+					api.call('setValue', value);
+
+					$editor.setDerty(false);
+				})
+		}
+
+		function saveEditorContent(value) {
+			content.uploadValue(value)
+				.then(newContent => {
+					$mbDispatcherUtil.fireUpdated(Constants.AMD_CMS_CONTENT_SP, {
+						values: [newContent]
 					});
-					content = _.assign(content, {
-						language: language,
-						file: '/api/v2/cms/contents/' + content.id + '/content',
-						url: '/api/v2/cms/contents/' + content.id + '/content'
-					});
-					$element.find('iframe')
-						.attr('src', '/vw-document/?' + $httpParamSerializer(content))
-						.css({
-							'flex-grow': 1,
-							'border': 'none',
-							'overflow': 'hidden'
-						});
-				});
+					api.call('setDerty', false);
+					$editor.setDerty(false);
+				})
+		}
+
+		function getLanguage() {
+			var language = $mbLocal.getLanguage();
+			let metas = content.metas || [];
+			metas.forEach(meta => {
+				if (meta.key === 'language') {
+					language = meta.value;
+				}
+			});
+			return language;
 		}
 
 		//------------------------------------------------------------------
 		// init
-		//------------------------------------------------------------------
-		loadObject();
-	},
+		//------------------------------------------------------------------\
+		$cms
+			.getContent($state.params.contentId, {
+				graphql: '{id,media_type,mime_type,metas{id,key,value}}'
+			})
+			.then(contentData => {
+				content = new CmsContent(contentData);
+				this
+					.setTitle('Content:' + content.id)
+					.setModel(content)
+					.setStorePath(Constants.AMD_CMS_CONTENT_SP);
+				iframe
+					.attr('src', `/vw-document/?api=wp&version=1&language=${getLanguage()}`)
+					.on('load', () => {
+						ParentApi
+							.connect(contentData, parent, child, '*')
+							.then(parentApi => connectApi(parentApi))
+					})
+					.on('error', () => {
+						// TODO: maso, 2021: fail to load inner web application
+					});
+			});
+	}
 }
 
 

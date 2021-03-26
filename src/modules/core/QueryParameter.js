@@ -45,7 +45,7 @@
  * 
  */
 
-export class QueryParameter {
+export default class QueryParameter {
 	constructor() {
 		// init
 		this.param = {};
@@ -231,9 +231,6 @@ export class QueryParameter {
 
 }
 
-export default function() {
-	return QueryParameter;
-}
 
 
 

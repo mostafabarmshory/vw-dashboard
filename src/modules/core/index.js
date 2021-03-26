@@ -29,9 +29,9 @@ import mbPaginationBarDirective from './directives/mbPaginationBar';
 
 import welcomeEditor from './editors/welcome';
 
-import PaginatedCollectionFactory from './factories/PaginatedCollection';
-import QueryParameterFactory from './factories/QueryParameter';
-import SeenObjectFactory from './factories/SeenObject';
+import PaginatedCollection from './PaginatedCollection';
+import QueryParameter from './QueryParameter';
+import SeenObject from './SeenObject';
 import VwLayoutProviderDefaultFactory from './factories/VwLayoutProviderDefault';
 
 import qpFilterResource from './resources/query-parameter-filters';
@@ -63,9 +63,15 @@ mblowfish
 	.editor('/welcome', welcomeEditor)
 
 	// >> factories
-	.factory('PaginatedCollection', PaginatedCollectionFactory)
-	.factory('QueryParameter', QueryParameterFactory)
-	.factory('SeenObject', SeenObjectFactory)
+	.factory('PaginatedCollection', () => {
+		return PaginatedCollection;
+	})
+	.factory('QueryParameter', () => {
+		return QueryParameter;
+	})
+	.factory('SeenObject', () => {
+		return SeenObject;
+	})
 	.factory('VwLayoutProviderDefault', VwLayoutProviderDefaultFactory)
 
 	// resources

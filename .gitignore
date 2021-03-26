@@ -1,6 +1,5 @@
 # NodeJS
 /node_modules
-/package-lock.json
 
 # Project
 /dist
@@ -20,3 +19,4 @@
 /.settings/
 /*.zip
 /nbproject/private/
+/spas/
