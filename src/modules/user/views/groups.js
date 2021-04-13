@@ -27,9 +27,10 @@ import templateUrl from './groups.html';
  @description Manages list of accounts
  */
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	templateUrl: templateUrl,
 	groups: ['Users Management'],
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	title: 'Groups',
 	icon: 'group',
 	controller: function($scope, $controller, $usr, $view) {

@@ -3,8 +3,9 @@
 import templateUrl from './local-settings.html';
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	groups: ['Tenant'],
 	title: 'Local settings',
 	icon: 'settings_applications',

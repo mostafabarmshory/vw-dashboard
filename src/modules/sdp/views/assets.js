@@ -2,11 +2,11 @@ import templateUrl from './assets.html';
 
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	title: 'Assets',
 	icon: 'web_asset',
 	groups: ['Digital Assets'],
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
 	controller: function($scope, $view, $sdp, $controller, MbAction) {
 		'ngInject';
 

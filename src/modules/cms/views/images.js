@@ -5,11 +5,12 @@ import templateUrl from './images.html';
 @description A view of images
  */
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	title: 'Images',
 	templateUrl: templateUrl,
 	groups: ['Content Management'],
 	icon: 'collections',
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	controller: function($scope, $view, $cms, $controller, $mbActions, $amdCmsEditors) {
 		'ngInject';
 		

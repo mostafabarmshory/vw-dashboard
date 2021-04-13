@@ -33,7 +33,6 @@ export default {
 	icon: 'folder_special',
 	templateUrl: templateUrl,
 	groups: ['Shop'],
-	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function($scope, $controller, $shop, $view) {
 		'ngInject';

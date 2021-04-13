@@ -1,8 +1,9 @@
 import templateUrl from './term-taxonomies.html';
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	title: 'Term taxonomis',
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	templateUrl: templateUrl,
 	groups: ['Content Management'],
 	icon: 'class',

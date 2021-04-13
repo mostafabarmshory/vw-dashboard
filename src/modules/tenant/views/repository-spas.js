@@ -1,7 +1,8 @@
 import templateUrl from './repository-spas.html';
 
 export default {
-	controllerAs: 'ctrl',
+	access: 'hasAnyRole("tenant.owner")',
+//	controllerAs: 'ctrl',
 	templateUrl: templateUrl,
 	title: 'Repository',
 	icon: 'cloud_upload',

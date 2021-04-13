@@ -1,8 +1,9 @@
 import templateUrl from './terms.html';
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	title: 'Terms',
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	templateUrl: templateUrl,
 	groups: ['Content Management'],
 	icon: 'title',

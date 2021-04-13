@@ -33,7 +33,6 @@ export default {
 	title: 'Products',
 	icon: 'add_shopping_cart',
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function($scope, $controller, $shop, $view) {

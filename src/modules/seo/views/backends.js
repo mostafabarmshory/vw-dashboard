@@ -2,11 +2,12 @@
 import templateUrl from './backends.html';
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	title: 'Prerender backends',
 	templateUrl: templateUrl,
 	groups: ['seo'],
 	icon: 'dvr',
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	controller: function($scope, $view, $seo, $controller) {
 		'ngInject';
 		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {

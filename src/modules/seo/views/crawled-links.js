@@ -1,10 +1,11 @@
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	title: 'Crawled links',
 	groups: ['seo'],
 	icon: 'public',
 	templateUrl: 'scripts/module-seo/views/crawled-links.html',
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	controller: function($scope, $view, $seo, $controller) {
 		'ngInject';
 

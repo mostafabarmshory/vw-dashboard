@@ -33,7 +33,6 @@ export default {
 	title: 'Orders',
 	icon: 'event',
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	anchore: 'editors',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',

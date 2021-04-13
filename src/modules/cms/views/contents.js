@@ -29,8 +29,9 @@ import templateUrl from './contents.html';
 @description A view of contents
  */
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	title: 'Contents',
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	templateUrl: templateUrl,
 	groups: ['Content Management'],
 	icon: 'image',

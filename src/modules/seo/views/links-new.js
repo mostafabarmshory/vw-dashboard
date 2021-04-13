@@ -2,7 +2,8 @@ import templateUrl from './links-new.html';
 
 
 export default {
-	controllerAs: 'ctrl',
+	access: 'hasAnyRole("tenant.owner")',
+//	controllerAs: 'ctrl',
 	templateUrl: templateUrl,
 	groups: ['seo'],
 	title: 'New sitemap link',

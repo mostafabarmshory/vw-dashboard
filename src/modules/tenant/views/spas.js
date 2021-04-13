@@ -2,11 +2,12 @@
 import templateUrl from './spas.html';
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	templateUrl: templateUrl,
 	title: 'spas',
 	icon: 'apps',
 	groups: ['Tenant'],
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	controller: function($scope, $tenant, $view, $controller) {
 		'ngInject';
 

@@ -1,7 +1,7 @@
 mblowfish.addView('/bank/gates', {
+	access: 'hasAnyRole("tenant.owner")',
 	title: 'Bank gates',
 	icon: 'attach_money',
-	controllerAs: 'ctrl',
 	templateUrl: 'scripts/module-bank/views/gates.html',
 	groups: ['Finance'],
 	controller: function($scope, $controller, $bank, $mbActions, $view) {

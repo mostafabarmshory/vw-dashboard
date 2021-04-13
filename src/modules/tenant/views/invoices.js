@@ -1,8 +1,9 @@
 import templateUrl from './invoices.html';
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	groups: ['Tenant'],
 	title: 'Invoices',
 	icon: 'settings_applications',

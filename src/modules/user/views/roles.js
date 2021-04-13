@@ -27,8 +27,9 @@ import templateUrl from './roles.html';
  @description Manages list of accounts
  */
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	groups: ['Users Management'],
 	title: 'Roles',
 	icon: 'accessibility',

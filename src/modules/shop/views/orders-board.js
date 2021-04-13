@@ -34,7 +34,6 @@ export default {
 	title: 'Orders Board',
 	icon: 'dashboard',
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	/*

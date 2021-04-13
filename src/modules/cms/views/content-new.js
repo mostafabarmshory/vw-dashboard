@@ -1,8 +1,9 @@
 import templateUrl from './content-new.html';
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	title: 'Upload',
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	templateUrl: templateUrl,
 	groups: ['Content Management'],
 	icon: 'cloud_upload',
