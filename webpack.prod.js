@@ -1,7 +1,7 @@
 const common = require('./webpack.common.js');
 const package = require('./package.json');
 const { merge } = require('webpack-merge');
-var ZipPlugin = require('zip-webpack-plugin');
+const ZipPlugin = require('zip-webpack-plugin');
 const GenerateJsonPlugin = require("generate-json-webpack-plugin")
 
 
