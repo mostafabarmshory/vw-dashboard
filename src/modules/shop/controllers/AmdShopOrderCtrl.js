@@ -22,7 +22,8 @@
  * SOFTWARE.
  */
 
-
+import orderHistoryDialogTemplate from './order-history-detail-dialog.html';
+import imageTemplateDialog from './show-image-dialog.html';
 /**
 @ngdoc Controller
 @name AmdShopOrderCtrl
@@ -116,15 +117,26 @@ export default function(ShopOrder, $controller, $scope,
 	};
 
 	this.showImage = function(order, attachment, $event) {
-		$mbDialog
-			.show({
-				templateUrl: 'views/dialogs/show-image.html',
+		$mbDialog.show({
+			templateUrl: imageTemplateDialog,
+			locals: {
 				config: {
 					order: order,
 					attachment: attachment
 				},
-				targetEvent: mbDialog
-			});
+			},
+			/**
+			@ngInject
+			 */
+			controller: function($scope, config, $mdDialog) {
+				$scope.config = config;
+				$scope.cancel = function() {
+					$mdDialog.hide();
+				};
+			},
+			controllerAs: 'ctrl',
+			targetEvent: $event
+		});
 	};
 
 	this.callToCustomer = function() {
@@ -133,14 +145,25 @@ export default function(ShopOrder, $controller, $scope,
 	};
 
 	this.showDetailOfHistory = function(history, $event) {
-		$mbDialog
-			.show({
-				templateUrl: 'views/shop/order-history-detail-dialog.html',
+		$mbDialog.show({
+			templateUrl: orderHistoryDialogTemplate,
+			locals: {
 				config: {
 					history: history
 				},
-				targetEvent: $event
-			});
+			},
+			/**
+			@ngInject
+			 */
+			controller: function($scope, config, $mdDialog) {
+				$scope.config = config;
+				$scope.cancel = function() {
+					$mdDialog.hide();
+				};
+			},
+			controllerAs: 'ctrl',
+			targetEvent: $event
+		});
 	};
 
 
