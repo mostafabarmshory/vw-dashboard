@@ -2,9 +2,8 @@ import templateUrl from './repository-spas.html';
 
 export default {
 	access: 'hasAnyRole("tenant.owner")',
-//	controllerAs: 'ctrl',
 	templateUrl: templateUrl,
-	title: 'Repository',
+	title: 'SPA Repository',
 	icon: 'cloud_upload',
 	groups: ['Tenant'],
 	controller: function($scope, $controller, $tenant, $view) {

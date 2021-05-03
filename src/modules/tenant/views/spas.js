@@ -7,7 +7,6 @@ export default {
 	title: 'spas',
 	icon: 'apps',
 	groups: ['Tenant'],
-//	controllerAs: 'ctrl',
 	controller: function($scope, $tenant, $view, $controller) {
 		'ngInject';
 
