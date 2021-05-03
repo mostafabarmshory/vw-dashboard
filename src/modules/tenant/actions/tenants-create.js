@@ -1,37 +1,37 @@
+
+import Constants from '../Constants';
+
 export default {
 	priority: 10,
 	icon: 'store',
 	group: 'Tenant',
 	title: 'New Tenant',
 	description: 'Creates new sub-tenant in the current one',
-	action: function($tenant, $mbDialog, $event, $mbDispatcher, $window, $mbTranslate) {
+	action: function($tenant, $event, $mbWizard, $q, $mbDispatcherUtil) {
 		'ngInject';
-		var job = $tenant.tenantSchema()
-			.then(function(schema) {
-				return $mbDialog.show({
-					templateUrl: 'views/dialogs/amd-item-new.html',
-					config: {
-						title: 'New Tenant',
-						schema: schema,
-						data: {}
-					}
+
+		var values = $event.values;
+		if (!values || !_.isArray(values)) {
+			return $mbWizard.openWizard(Constants.TENANT_NEW_WIZARD);
+		}
+
+		var jobs = [],
+			tenants = [];
+		_.forEach(values, function(tenantData) {
+			var promise = $tenant.putTenant(tenantData)
+				.then(function(newTenant) {
+					tenants.push(newTenant);
 				});
-			})
-			.then(function(itemData) {
-				return $tenant.putTenant(itemData);
-			})
-			.then(function(item) {
-				$mbDispatcher.dispatch('/tenant/tenants', {
-					key: 'create',
-					values: [item]
-				});
-			}, function() {
-				$window.alert($mbTranslate.instant('Failed to create a new tenant.'));
-			});
+			jobs.push(promise);
+		});
+
 		// TODO: maso, 2020: add the job into the job lists
 		// $app.addJob('Adding new shop category', job);
-		return job;
-	},
-	groups: ['/tenant/tenants#more']
+		return $q.all(jobs)
+			.then(function() {
+				$mbDispatcherUtil.fireCreated(Constants.TENANT_TENANTS_SP, tenants);
+			});
+
+	}
 }
 

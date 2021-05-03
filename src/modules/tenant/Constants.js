@@ -35,4 +35,9 @@ export default {
 	//------------------------------------------------------------
 	TENANT_TENANTS_CREATE_ACTION: 'tenant.tenants.create',
 	TENANT_TENANTS_EDIT_ACTION: 'tenant.tenants.edit',
+	
+	//------------------------------------------------------------
+	// Wizard
+	//------------------------------------------------------------
+	TENANT_NEW_WIZARD: 'tenant.tenants.new.wizard',
 }
