@@ -47,7 +47,7 @@ export default function($scope, $controller,
 		.addAction(new MbAction({
 			title: 'Update filters',
 			icon: 'filter_list',
-			action: function() {
+			action: function($event) {
 				'ngInject';
 				return runQueryParameterEditorAction(SEEN_QP_FILTERS_UPDATE_ACTION, $event);
 			}
