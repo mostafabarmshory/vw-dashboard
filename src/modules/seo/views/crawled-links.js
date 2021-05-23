@@ -1,11 +1,12 @@
+import templateUrl from './crawled-links.html';
+
 
 export default {
 	access: 'hasAnyRole("tenant.owner")',
 	title: 'Crawled links',
 	groups: ['seo'],
 	icon: 'public',
-	templateUrl: 'scripts/module-seo/views/crawled-links.html',
-//	controllerAs: 'ctrl',
+	templateUrl: templateUrl,
 	controller: function($scope, $view, $seo, $controller) {
 		'ngInject';
 
