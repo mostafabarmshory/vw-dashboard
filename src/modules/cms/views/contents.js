@@ -31,7 +31,6 @@ import templateUrl from './contents.html';
 export default {
 	access: 'hasAnyRole("tenant.owner")',
 	title: 'Contents',
-//	controllerAs: 'ctrl',
 	templateUrl: templateUrl,
 	groups: ['Content Management'],
 	icon: 'image',
