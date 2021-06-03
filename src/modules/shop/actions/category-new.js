@@ -27,34 +27,32 @@ export default {// create new category menu
 	title: 'New Category',
 	description: 'Creates new category',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	action: function($event, $shop, $mbTranslate, $mbDynamicForm, $mbDispatcherUtil) {
+	action: function($event, $shop, $mbWizard, $q, $mbDispatcherUtil) {
 		'ngInject';
-		var defVal = {};
-		var values = $event.values;
-		if (values && values.length) {
-			defVal = values[0];
+		var values = [];
+		if ($event) {
+			values = $event.values;
 		}
-		// TODO: maso, 2020: add the job into the job lists
-		// $app.addJob('Adding new shop category', job);
-		$shop.categorySchema()
-			.then(function(schema) {
-				return $mbDynamicForm
-					.openDialog({
-						title: 'New Category',
-						value: defVal,
-						schema: schema
-					})
-					.then(function(data) {
-						return $shop.putCategory(data)
-							.then(function(cat) {
-								$mbDispatcherUtil.fireCreated(AMD_SHOP_CATEGORY_SP, [cat]);
-							}, function() {
-								alert($mbTranslate.instant('Failed to create new category.'));
-							});
-					});
+		if (!values || !_.isArray(values)) {
+			return $mbWizard.openWizard(AMD_SHOP_CATEGORY_CREATE_WIZARD);
+		}
+
+
+		var jobs = [],
+			models = [];
+		_.forEach(values, function(value) {
+			jobs.push($shop
+				.putCategory(value)
+				.then(function(model) {
+					models.push(model);
+				}));
+		});
+
+		return $q.all(jobs)
+			.then(function() {
+				$mbDispatcherUtil.fireCreated(AMD_SHOP_CATEGORY_SP, models);
 			});
-	},
-	groups: ['Shope']
+	}
 }
 
 

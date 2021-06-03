@@ -52,4 +52,8 @@ export default {
 	AMD_SHOP_ZONE_DELETE_ACTION: 'amd.shop.zone.delete',
 	AMD_SHOP_ZONE_CREATE_ACTION: 'amd.shop.zone.create',
 	AMD_SHOP_ZONE_UPDATE_ACTION: 'amd.shop.zone.update',
+	
+	
+	
+	AMD_SHOP_CATEGORY_CREATE_WIZARD: '/shop/categories/create/wizard',
 }

@@ -64,8 +64,12 @@ import servicesView from './views/services';
 import tagsView from './views/tags';
 import zoneView from './views/zones';
 
+import categoryCreateInfoWizardPage from './wizards/new-category/category-info';
+import categoryCreateWizard from './wizards/new-category/wizard';
+
 import mblowfishIntegerateRun from './mblowfish-integerate-run';
 import mblowfishConfig from './mblowfish-config';
+
 
 mblowfish
 	.constant(Constants)
@@ -113,9 +117,11 @@ mblowfish
 	.view(AMD_SHOP_TAGS_VIEW, tagsView)
 	.view(AMD_SHOP_ZONES_VIEW, zoneView)
 
+	.wizardPage(AMD_SHOP_CATEGORY_CREATE_WIZARD + '#info', categoryCreateInfoWizardPage)
+	.wizard(AMD_SHOP_CATEGORY_CREATE_WIZARD, categoryCreateWizard)
+
 	.config(mblowfishConfig)
 	.run(mblowfishIntegerateRun);
-
 
 
 
