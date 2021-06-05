@@ -19,7 +19,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+import {
+	differenceBy,
+	findItemFrom
+} from '../Utiles';
 
 /**
 @ngdoc Controllers
@@ -65,26 +68,6 @@ export default function($scope, $controller, $q,
 	angular.extend(this, $controller('MbSeenAbstractCtrl', {
 		$scope: $scope
 	}));
-
-    /*
-     * util function
-     */
-	function differenceBy(source, filters, key) {
-		_.forEach(filters, function(filter) {
-			_.remove(source, function(item) {
-				return item[key] === filter[key];
-			});
-		});
-	}
-
-	function findItemFrom(item, collection) {
-		item.id = _.toNumber(item.id);
-		for (var i = 0; i < collection.length; i++) {
-			if (collection[i].id === item.id) {
-				return collection[i];
-			}
-		}
-	}
 
 	var STATE_INIT = 'init';
 	var STATE_BUSY = 'busy';
