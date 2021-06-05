@@ -241,26 +241,66 @@
 	
 	
 	
-	<!-- Metafields -->
+	<!-- Variants -->
 	<mb-titled-block
 		mb-title="{{'Variants' | translate}}"
-		layout="row">
-		<md-button
-			ng-repeat="item in ctrl.variant"
-			style="width: 200px; height: 200px;"
-			layout-align="end center"
-			ng-click="ctrl.editVariant(item, $event)"
-			aria-label="add meta data">
-			<mb-icon>face</mb-icon>
-		</md-button>
+		layout="column">
 		
-		<md-button
-			style="width: 200px; height: 200px;"
-			layout-align="end center"
-			ng-click="ctrl.addVariant($event)"
-			aria-label="add meta data">
-			<mb-icon>add</mb-icon>
-		</md-button>
+		<table class="mb-table mb-shop-table">
+			<thead>
+				<tr mb-colors="{color: 'primary-700'}">
+					<td 
+						ng-show="meta.key !== 'variant'"
+						ng-repeat="meta in ctrl.metafields | orderBy:'meta.key' track by meta.id"
+						style="width: 20%" 
+						mb-translate="">{{meta.key}}</td>
+					<td mb-translate style="width: 10%;text-align: center;"></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr 
+					ng-repeat="item in ctrl.variant track by $index">
+					<td
+						ng-show="meta.key !== 'variant'"
+						ng-repeat="meta in ctrl.metafields | orderBy:'meta.key' track by meta.id">
+						<div 
+							layout="row">
+							<md-input-container 
+								class="md-block">
+								<input 
+									ng-model="item[meta.key]"
+									ng-change="ctrl.setDerty(true)"
+									aria-label="Variant value">
+							</md-input-container>
+							<mb-icon 
+								ng-click="ctrl.setVariantValyeByResource(item, meta, $event)"
+								ng-show="meta.key === 'image' || meta.key === 'color'">more_horiz</mb-icon>
+						</div>
+					</td>
+					<td style="text-align: center;">
+						<div layout="row">
+							<md-button 
+								class="md-icon-button md-accent"
+								ng-click="ctrl.removeVariant($index, $event)"
+								aria-label="Remove Variant">
+								<mb-icon>delete</mb-icon>
+							</md-button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div layout="row">
+			<span flex></span>
+			<md-button
+				layout-align="end center"
+				class="md-icon-button md-raised md-primary"
+				ng-click="ctrl.addVariant($event)"
+				aria-label="add variant data">
+				<mb-icon>add</mb-icon>
+			</md-button>
+		</div>
 	</mb-titled-block>
 </md-content>
 

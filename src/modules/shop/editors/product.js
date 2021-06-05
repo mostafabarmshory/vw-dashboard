@@ -63,14 +63,39 @@ export default {
 		//----------------------------------------------------------------------------
 		// variant
 		//----------------------------------------------------------------------------
-		this.addVariant = $event => {
-			ctrl.variant.push({});
-			ctrl.setDerty(true);
+		this.addVariant = () => {
+			var $variant = {};
+			ctrl.variant.push($variant);
+			ctrl.setMetaDerty('variant');
 		}
 
-		// TODO: edit variant
-		// TODO: remove variant
+		this.setVariantValyeByResource = ($variant, $meta, $event) => {
+			// type define
+			var $type;
+			switch ($meta.key) {
+				case 'image':
+					$type = 'image-url';
+					break;
+				default:
+					$type = $meta.key;
+			}
+			
+			// get resource
+			return $mbResource
+				.get($type, {
+					targetEvent: $event
+				})//
+				.then((value) => {
+					$variant[$meta.key] = value;
+					ctrl.setMetaDerty('variant');
+				});
+		}
 
+		// TODO: remove variant
+		this.removeVariant = ($index, $event) => {
+			this.variant.slice($index, 1);
+			ctrl.setMetaDerty('variant', $event);
+		}
 
 		//----------------------------------------------------------------------------
 		// Meta fields
@@ -112,19 +137,19 @@ export default {
 		this.setMetaValue = ($key, $value) => {
 			var $meta;
 			ctrl.metafields.forEach(meta => {
-				if(meta.key === $key){
+				if (meta.key === $key) {
 					$meta = meta;
 				}
 			});
-			if($meta){
+			if ($meta) {
 				$meta.value = $value;
 				ctrl.setMetaDerty($meta);
 				return;
 			}
 			return ctrl.addMetafield($key, $value);
 		}
-		
-		
+
+
 		//----------------------------------------------------------------------------
 		// Product
 		//----------------------------------------------------------------------------
