@@ -1,7 +1,8 @@
 <md-content>
 	<mb-titled-block 
 		mb-title="{{'Product' | translate}}"
-		layout="column">
+		layout="column"
+		layout-align="start stretch">
 		<div 
 			layout="row" 
 			layout-xs="column" 
@@ -153,7 +154,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="meta in ctrl.metas">
+				<tr 
+					ng-repeat="meta in ctrl.metafields"
+					ng-show="meta.key !== 'variant'">
 					<td>
 						<md-input-container 
 							class="md-block">
@@ -199,13 +202,20 @@
 							<md-button 
 								ng-if="meta.key === 'image'"
 								class="md-icon-button md-accent"
-								ng-click="ctrl.setMetaValue(meta, 'image-url', $event)"
+								ng-click="ctrl.setMetaValueByResource(meta, 'image-url', $event)"
 								aria-label="Set image to meta value">
 								<mb-icon>insert_photo</mb-icon>
 							</md-button>
 							<md-button 
+								ng-if="meta.key === 'color'"
 								class="md-icon-button md-accent"
-								ng-click="ctrl.setMetaDerty(meta)"
+								ng-click="ctrl.setMetaValueByResource(meta, 'color', $event)"
+								aria-label="Set image to meta value">
+								<mb-icon>palette</mb-icon>
+							</md-button>
+							<md-button 
+								class="md-icon-button md-accent"
+								ng-click="ctrl.removeMetafield(meta)"
 								aria-label="Remove Variable">
 								<mb-icon>delete</mb-icon>
 							</md-button>
@@ -224,6 +234,33 @@
 				<mb-icon>add</mb-icon>
 			</md-button>
 		</div>
+	</mb-titled-block>
+	
+	
+	
+	
+	
+	
+	<!-- Metafields -->
+	<mb-titled-block
+		mb-title="{{'Variants' | translate}}"
+		layout="row">
+		<md-button
+			ng-repeat="item in ctrl.variant"
+			style="width: 200px; height: 200px;"
+			layout-align="end center"
+			ng-click="ctrl.editVariant(item, $event)"
+			aria-label="add meta data">
+			<mb-icon>face</mb-icon>
+		</md-button>
+		
+		<md-button
+			style="width: 200px; height: 200px;"
+			layout-align="end center"
+			ng-click="ctrl.addVariant($event)"
+			aria-label="add meta data">
+			<mb-icon>add</mb-icon>
+		</md-button>
 	</mb-titled-block>
 </md-content>
 

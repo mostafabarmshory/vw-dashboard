@@ -21,13 +21,16 @@
  */
 
 import templatUrl from './product.html';
-
+import {
+	removeItemFromCollection
+} from '../../core/Utiles';
 
 
 
 export const graphQl = '{' +
 	'id,title,description,brand,model,manufacturer,avatar,price,off,' +
 	'categories{id, name},' +
+	'metafields{id, key, namespace, product_id, unit, value}' +
 	'}';
 
 /**
@@ -58,10 +61,22 @@ export default {
 		var ctrl = this;
 
 		//----------------------------------------------------------------------------
+		// variant
+		//----------------------------------------------------------------------------
+		this.addVariant = $event => {
+			ctrl.variant.push({});
+			ctrl.setDerty(true);
+		}
+
+		// TODO: edit variant
+		// TODO: remove variant
+
+
+		//----------------------------------------------------------------------------
 		// Meta fields
 		//----------------------------------------------------------------------------
 		this.removeMetafield = (meta) => {
-			ctrl.metas = removeItemFromCollection(ctrl.metas, meta);
+			ctrl.metafields = removeItemFromCollection(ctrl.metafields, meta);
 			ctrl.setDerty(true);
 		}
 
@@ -74,7 +89,7 @@ export default {
 				unit: $unit,
 				namespace: $namespace
 			};
-			ctrl.metas.push($meta);
+			ctrl.metafields.push($meta);
 			ctrl.setMetaDerty($meta);
 		}
 
@@ -83,7 +98,7 @@ export default {
 			ctrl.setDerty(true);
 		}
 
-		this.setMetaValue = ($meta, $type, $event) => {
+		this.setMetaValueByResource = ($meta, $type, $event) => {
 			return $mbResource
 				.get($type, {
 					targetEvent: $event
@@ -93,22 +108,40 @@ export default {
 					ctrl.setMetaDerty($meta);
 				});
 		}
+
+		this.setMetaValue = ($key, $value) => {
+			var $meta;
+			ctrl.metafields.forEach(meta => {
+				if(meta.key === $key){
+					$meta = meta;
+				}
+			});
+			if($meta){
+				$meta.value = $value;
+				ctrl.setMetaDerty($meta);
+				return;
+			}
+			return ctrl.addMetafield($key, $value);
+		}
+		
+		
 		//----------------------------------------------------------------------------
 		// Product
 		//----------------------------------------------------------------------------
 		this.updateProduct = $event => {
+			ctrl.addMetafield('variant', JSON.stringify(ctrl.variant), '', 'std');
 			Object.assign(ctrl.product, {
 				// category
 				categories: ctrl.categories,
 				originCategories: ctrl.originCategories,
 				// meata
-				metas: ctrl.metas,
-				originMetas: ctrl.originMetas
+				metafields: ctrl.metafields,
+				originMetafields: ctrl.originMetafields
 			});
 			$event.values = [
 				ctrl.product
 			];
-			$mbActions
+			return $mbActions
 				.exec(AMD_SHOP_PRODUCT_UPDATE_ACTION, $event)
 				.then(products => {
 					ctrl.product = products[0];
@@ -153,6 +186,19 @@ export default {
 		}
 
 		function toMetadata(data) {
+			data.forEach(item => {
+				if (item.key === 'variant') {
+					try {
+						ctrl.variant = JSON.parse(item.value);
+					} catch ($ex) {
+						// TODO: logger
+					}
+					return false;
+				}
+			});
+			if (!Array.isArray(ctrl.variant)) {
+				ctrl.variant = [];
+			}
 			return data;
 		}
 
@@ -174,9 +220,9 @@ export default {
 				delete productData.categories;
 
 				// load metas
-				this.originMetas = toMetadata(productData.metas) || [];
-				this.metas = [...this.originMetas];
-				delete productData.metas;
+				this.originMetafields = toMetadata(productData.metafields) || [];
+				this.metafields = [...this.originMetafields];
+				delete productData.metafields;
 
 				// load product
 				this.product = toProductData(productData);

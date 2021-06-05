@@ -61,8 +61,8 @@ export default {// create new category menu
 				.forEach(category => jobs.push(product.deleteCategory(category)));
 				
 			// update metas
-			newCollection = product.metas || [];
-			oldCollection = product.originMetas || [];
+			newCollection = product.metafields || [];
+			oldCollection = product.originMetafields || [];
 			newCollection.forEach(meta => {
 					if(meta.id < 0 || meta.derty){
 						jobs.push(product.putMetafield(meta));
