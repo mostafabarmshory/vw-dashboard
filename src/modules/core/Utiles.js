@@ -66,3 +66,71 @@ export function findItemFrom(item, collection) {
 		}
 	}
 }
+
+
+/**
+
+This is equal to the following math (set) operation:
+
+```javascript
+	result = a ∪ b;
+```
+
+ */
+export function unionCollection(a, b) {
+	// TODO:
+}
+
+/**
+
+This is equal to the following math (set) operation:
+
+```javascript
+	result = a ∩ b;
+```
+
+ */
+export function intersectionCollection(a, b) {
+	// TODO:
+}
+
+/**
+
+This is equal to the following math (set) operation:
+
+```javascript
+	result = a - b;
+```
+
+ */
+export function differenceCollection(a, b) {
+	var result = [];
+	a.forEach(item => {
+		var index = -1;
+		b.forEach((target, i) => {
+			if (target.id === item.id) {
+				index = i
+			}
+		});
+		if (index === -1) {
+			result.push(item);
+		}
+	});
+	return result;
+}
+
+
+/**
+Search the collection and find an item then remove it where
+
+	item.id === collection[index].id
+
+ */
+export function removeItemFromCollection(collection, item) {
+	var index = findIndexById(collection, item);
+	if (index > -1) {
+		collection.splice(index, 1);
+	}
+	return collection;
+}
+

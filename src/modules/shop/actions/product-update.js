@@ -19,41 +19,72 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import {differenceCollection} from '../../core/Utiles';
+
 
 export default {// create new category menu
-	priority: 10,
-	icon: 'add',
+	icon: 'save',
+	title: 'Update Product',
+	demon: true,
 	group: 'Shop',
-	title: 'New Category',
-	description: 'Creates new category',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	action: function($event, $shop, $mbWizard, $q, $mbDispatcherUtil) {
+	action: function($event, $q) {
 		'ngInject';
-		var values = [];
-		if ($event) {
-			values = $event.values;
-		}
-		if (!values || !_.isArray(values)) {
-			return $mbWizard.openWizard(AMD_SHOP_CATEGORY_CREATE_WIZARD);
+
+		var values = $event.values;
+		if (!values && !values.length) {
+			// TODO: add log
+			return;
 		}
 
-
-		var jobs = [],
+		var 
+			jobs = [],
 			models = [];
-		_.forEach(values, function(value) {
-			jobs.push($shop
-				.putCategory(value)
-				.then(function(model) {
-					models.push(model);
-				}));
+
+
+		values.forEach(product => {
+			// update the product
+			jobs
+				.push(product
+					.update()
+					.then(newProduct => models.push(newProduct)));
+			var 
+				newCollection, 
+				oldCollection;
+			
+			// update categories
+			newCollection = product.categories || [];
+			oldCollection = product.originCategories || [];
+			differenceCollection(newCollection, oldCollection)
+				.forEach(category => jobs.push(product.putCategory(category)));
+			differenceCollection(oldCollection, newCollection)
+				.forEach(category => jobs.push(product.deleteCategory(category)));
+				
+			// update metas
+			newCollection = product.metas || [];
+			oldCollection = product.originMetas || [];
+			newCollection.forEach(meta => {
+					if(meta.id < 0 || meta.derty){
+						jobs.push(product.putMetafield(meta));
+					}
+					delete meta.derty;
+				});
+			differenceCollection(oldCollection, newCollection)
+				.forEach(meta => {
+					if(meta.id || meta.id > 1){
+						jobs.push(product.deleteMetafield(meta));
+					}
+				});
+			
 		});
 
-		return $q.all(jobs)
-			.then(function() {
-				$mbDispatcherUtil.fireCreated(AMD_SHOP_CATEGORY_SP, models);
+		return $q
+			.all(jobs)
+			.then(() => {
+				// TODO: maso, 2021: dispatch events.
 				return models;
 			});
-	}
+	},
 }
 
 

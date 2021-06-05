@@ -191,6 +191,25 @@ export default function($scope, $controller, $editor,
 		})));
 	};
 
+
+
+
+	/**
+	Execute a command on the a model item
+	
+	@param Object model to execute on
+	@param String commandId to execute
+	@param Event $event related to the source event
+	@returns a promise to complete the job
+	@memberof SeenAbstractItemEditorCtrl
+	
+	 */
+	this.execOn = function(model, commandId, $event) {
+		return this.setJob($mbActions.exec(commandId, _.assign($event || {}, {
+			values: [model],
+		})));
+	};
+
 	/**
 	Clears all errors and unlock the editor
 	 */

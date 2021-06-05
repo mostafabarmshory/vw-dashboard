@@ -30,11 +30,11 @@ export default {
 		var values = $event.values;
 		if (!values || !_.isArray(values) || values.length === 0) {
 			// TODO: maso, 2020: add log
-			return $q.rject('No value to update');
+			return;
 		}
 		var jobs = [];
 		var newValues = [];
-		_.forEach(values, function(category) {
+		values.forEach(category => {
 			if (!(category instanceof ShopCategory)) {
 				category = new ShopCategory(category);
 			}

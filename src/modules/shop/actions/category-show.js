@@ -20,40 +20,22 @@
  * SOFTWARE.
  */
 
-export default {// create new category menu
-	priority: 10,
-	icon: 'add',
+
+export default {
+	demon: true,
 	group: 'Shop',
-	title: 'New Category',
-	description: 'Creates new category',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	action: function($event, $shop, $mbWizard, $q, $mbDispatcherUtil) {
+	action: function($event) {
 		'ngInject';
-		var values = [];
-		if ($event) {
-			values = $event.values;
+		var values = $event.values;
+		if (!values || !_.isArray(values) || values.length === 0) {
+			// TODO: maso, 2020: add log
+			return;
 		}
-		if (!values || !_.isArray(values)) {
-			return $mbWizard.openWizard(AMD_SHOP_CATEGORY_CREATE_WIZARD);
-		}
-
-
-		var jobs = [],
-			models = [];
-		_.forEach(values, function(value) {
-			jobs.push($shop
-				.putCategory(value)
-				.then(function(model) {
-					models.push(model);
-				}));
-		});
-
-		return $q.all(jobs)
-			.then(function() {
-				$mbDispatcherUtil.fireCreated(AMD_SHOP_CATEGORY_SP, models);
-				return models;
-			});
+		
+		return alert(values[0], $event);
 	}
 }
+
 
 

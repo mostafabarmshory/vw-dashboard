@@ -21,6 +21,15 @@
  */
 
 import templatUrl from './product.html';
+
+
+
+
+export const graphQl = '{' +
+	'id,title,description,brand,model,manufacturer,avatar,price,off,' +
+	'categories{id, name},' +
+	'}';
+
 /**
 @ngdoc Editor
 @name AmdShopProductCtrl
@@ -30,282 +39,158 @@ import templatUrl from './product.html';
  */
 export default {
 	templateUrl: templatUrl,
-	controllerAs: 'ctrl',
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	controller: function($scope, $shop, $state, $mbTranslate, $mbDialog, $location, $q, QueryParameter, $editor) {
+	controller: function(
+		$scope, $element, $editor, $state,
+		$shop, ShopProduct,
+		$mbTranslate, $controller, $mbDialog, $mbResource, $q, QueryParameter, $mbActions) {
 		'ngInject';
 
-		var ctrl = {
-			loading: false,
-			updating: false,
-			edit: false,
-			loadingMetas: false,
-			loadingCategories: false
+		/*
+		 * Extends collection controller from MbAbstractCtrl 
+		 */
+		angular.extend(this, $controller('MbSeenAbstractItemEditorCtrl', {
+			$scope: $scope,
+			$element: $element,
+			$editor: $editor
+		}));
+
+		var ctrl = this;
+
+		//----------------------------------------------------------------------------
+		// Meta fields
+		//----------------------------------------------------------------------------
+		this.removeMetafield = (meta) => {
+			ctrl.metas = removeItemFromCollection(ctrl.metas, meta);
+			ctrl.setDerty(true);
+		}
+
+		this.addMetafield = ($key, $value, $unit, $namespace) => {
+			$key = $key || 'key';
+			var $meta = {
+				id: -1000 * Math.random(),
+				key: $key,
+				value: $value,
+				unit: $unit,
+				namespace: $namespace
+			};
+			ctrl.metas.push($meta);
+			ctrl.setMetaDerty($meta);
+		}
+
+		this.setMetaDerty = ($meta) => {
+			$meta.derty = true;
+			ctrl.setDerty(true);
+		}
+
+		this.setMetaValue = ($meta, $type, $event) => {
+			return $mbResource
+				.get($type, {
+					targetEvent: $event
+				})//
+				.then((url) => {
+					$meta.value = url;
+					ctrl.setMetaDerty($meta);
+				});
+		}
+		//----------------------------------------------------------------------------
+		// Product
+		//----------------------------------------------------------------------------
+		this.updateProduct = $event => {
+			Object.assign(ctrl.product, {
+				// category
+				categories: ctrl.categories,
+				originCategories: ctrl.originCategories,
+				// meata
+				metas: ctrl.metas,
+				originMetas: ctrl.originMetas
+			});
+			$event.values = [
+				ctrl.product
+			];
+			$mbActions
+				.exec(AMD_SHOP_PRODUCT_UPDATE_ACTION, $event)
+				.then(products => {
+					ctrl.product = products[0];
+					ctrl.setDerty(false);
+				});
+		}
+
+		//----------------------------------------------------------------------------
+		// Categories
+		//----------------------------------------------------------------------------
+		var categorySearchQueryParameter = new QueryParameter();
+		categorySearchQueryParameter.setOrder('id', 'd');
+
+		this.searchCategoires = (query) => {
+			categorySearchQueryParameter.setQuery(query);
+			return $shop
+				.getCategories(categorySearchQueryParameter)
+				.then(list => list.items);
 		};
 
-		/**
-		 * @name loadProduct
-		 * @memberOf AmdShopProductCtrl
-		 * @description Load the selected product
-		 */
-		function loadProduct() {
-			if (ctrl.loading) {
-				return;
-			}
-			ctrl.loading = true;
-			$shop.getProduct($state.params.productId)//
-				.then(function(p) {
-					$editor.setTitle('Product:' + p.id);
-					$scope.product = p;
-					loadMetas();
-					loadCategories();
-				}, function() {
-					alert($mbTranslate.instant('Faild to load the product.'));
-				})//
-				.finally(function() {
-					ctrl.loading = false;
-				});
-		}
 
-		/**
-		 * @name remove
-		 * @memberOf AmdShopProductCtrl
-		 * @description Remove the selected product from the server
-		 */
-		function remove() {
-			confirm($mbTranslate.instant('Item will be deleted. There is no undo action.'))//
-				.then(function() {
-					return $scope.product.delete()//
-						.then(function() {
-							$location.path('/products');
-						}, function() {
-							alert($mbTranslate.instant('Fail to delete the product.'));
-						});
-				});
-		}
-
-		/**
-		 * @name update
-		 * @memberOf AmdShopProductCtrl
-		 * @description Update the selected product
-		 */
-		function update() {
-			if (ctrl.updating) {
-				return;
-			}
-			ctrl.updating = true;
-			$scope.product.update()//
-				.then(function(newProduct) {
-					$scope.product = newProduct;
-					ctrl.edit = false;
-				}, function() {
-					alert($mbTranslate.instant('Failed to update product.'));
-				})//
-				.finally(function() {
-					ctrl.updating = false;
-				});
-		}
-
-		/**
-		 * @name loadMetas
-		 * @memberOf AmdShopProductCtrl
-		 * @description Load the metadatas of the product
-		 */
-		function loadMetas() {
-			if (ctrl.loadingMetas) {
-				return;
-			}
-			ctrl.loadingMetas = true;
-			$scope.product.getMetafields()
-				.then(function(metaFields) {
-					$scope.metafeilds = metaFields.items;
-				}, function() {
-					alert($mbTranslate.instant('Faild to get metafields.'));
-				})//
-				.finally(function() {
-					ctrl.loadingMetas = false;
-				});
-		}
-
-		/*
-		 * Load categories the product belongs to.
-		 */
-		function loadCategories() {
-			if (ctrl.loadingCategories) {
-				return;
-			}
-			ctrl.loadingCategories = true;
-			$scope.product.getCategories()
-				.then(function(res) {
-					$scope.categories = res.items;
-				}, function() {
-					alert($mbTranslate.instant('Faild to get categories.'));
-				})//
-				.finally(function() {
-					ctrl.loadingCategories = false;
-				});
-		}
-
-		/**
-		 * @name removeMetaField
-		 * @memberOf AmdShopProductCtrl
-		 * @description Remove a metadata from the metadatas of the product
-		 * @param {type}
-		 *            metaData
-		 */
-		function removeMetafield(metaData) {
-			confirm($mbTranslate.instant('Item will be deleted. There is no undo action.'))//
-				.then(function() {
-					return $scope.product.deleteMetafield(metaData)//
-						.then(function() {
-							loadMetas();
-							toast($mbTranslate.instant('Item is deleted successfully.'));
-						}, function() {
-							alert($mbTranslate.instant('Failed to delete item.'));
-						});
-				});
-		}
-
-		function addMetafield(metadata, $event) {
-			var mydata = metadata ? metadata : {};
-			$mbDialog
-				.show({
-					templateUrl: 'views/dialogs/metafield-new.html',
-					config: {
-						data: mydata
-					},
-					targetEvent: $event
-					// Create content
-				})
-				.then(function(meta) {
-					return $scope.product.putMetafield(meta)//
-						.then(function() {
-							loadMetas();
-						}, function() {
-							alert($mbTranslate.instant('Failed to add new item.'));
-						});
-				});
-		}
-
-		function updateMetafield(metadata) {
-			$mbDialog
-				.show({
-					templateUrl: 'views/dialogs/metafield-update.html',
-					config: {
-						data: metadata
-					},
-					targetEvent: $event
-					// Create content
-				})
-				.then(function(meta) {
-					return $scope.product.putMetafield(meta)//
-						.then(function() {
-							loadMetas();
-						}, function() {
-							alert($mbTranslate.instant('Failed to update item.'));
-						});
-				});
-		}
-
-		function inlineUpdateMetafield(metadata) {
-			return $scope.product.putMetafield(metadata)//
-				.then(function() {
-					loadMetas();
-				}, function() {
-					alert($mbTranslate.instant('Failed to update item.'));
-				});
-		}
-
-		/*
-		 * Assign some categories to the product.
-		 */
-		function selectCategories() {
-			loadAllCategories()
-				.then(function(allCategories) {
-					return cleanCategories(allCategories);
-				})
-				.then(function(allCategories) {
-					return $navigator.openDialog({
-						templateUrl: 'views/dialogs/select-categories.html',
-						config: {
-							data: allCategories
-						}
+		this.createCategory = (name, $event) => {
+			$event.values = [{
+				name: name,
+				description: name
+			}];
+			$mbActions.exec(AMD_SHOP_CATEGORY_CREATE_ACTION, $event)
+				.then((categories) => {
+					ctrl.searchCategoiresText = '';
+					categories.forEach(category => {
+						ctrl.categories.push(category);
+						$editor.setDerty(true);
 					});
-				})
-				.then(function(newCats) {
-					updateCategories(newCats);
 				});
+		};
+
+		//----------------------------------------------------------------------------
+		// Convertors
+		//----------------------------------------------------------------------------
+		function toCategories(data) {
+			return data;
 		}
 
-		var categories = [];
-		/*
-		 * @returns {.$q@call;defer.promise}
-		 * @description Load all categories defines in the shop
-		 */
-		function loadAllCategories() {
-			var pp = new QueryParameter();
-			pp.setOrder('name', 'a');
-			return $shop.getCategories(pp)//
-				.then(function(res) {
-					categories = res.items;
-					return categories;
-				});
+		function toMetadata(data) {
+			return data;
 		}
 
-		/*
-		 * @param {type} allCategories
-		 * @returns {allCategories}
-		 * @description Add 'selected' field to each category in categories and assign it true or false
-		 */
-		function cleanCategories(allCategories) {
-			var deferred = $q.defer();
-			for (var i = 0; i < allCategories.length; i++) {
-				allCategories[i].selected = false;
-				for (var j = 0; j < $scope.categories.length; j++) {
-					if ($scope.categories[j].id === allCategories[i].id) {
-						allCategories[i].selected = true;
-					}
-				}
-			}
-			deferred.resolve(allCategories);
-			return deferred.promise;
+		function toProductData(data) {
+			return new ShopProduct(data);
 		}
 
-		/*
-		 * @param {type} cats
-		 * @returns {undefined}
-		 * @description Push the product's categories to the server
-		 */
-		function updateCategories(cats) {
-			$scope.updatingCategories = true;
-			var jobs = [];
-			for (var i = 0; i < cats.length; i++) {
-				if (cats[i].selected) {
-					jobs.push($scope.product.putCategory(cats[i]));
-				} else {
-					jobs.push($scope.product.deleteCategory(cats[i]));
-				}
-			}
-			return $q.all(jobs)
-				.then(function() {
-					$scope.updatingCategories = false;
-					loadCategories();
-				});
-		}
+		//----------------------------------------------------------------------------
+		// Init the editor
+		//----------------------------------------------------------------------------
+		$shop
+			.getProduct($state.params.productId, {
+				graphql: graphQl
+			})//
+			.then(productData => {
+				// load categories
+				this.originCategories = toCategories(productData.categories) || [];
+				this.categories = [...this.originCategories];
+				delete productData.categories;
 
-		/*
-		 * تمام امکاناتی که در لایه نمایش ارائه می‌شود در اینجا نام گذاری شده است.
-		 */
-		$scope.remove = remove;
-		$scope.update = update;
-		$scope.ctrl = ctrl;
-		$scope.removeMetafield = removeMetafield;
-		$scope.addMetafield = addMetafield;
-		$scope.updateMetafield = updateMetafield;
-		$scope.inlineUpdateMetafield = inlineUpdateMetafield;
-		$scope.selectCategories = selectCategories;
+				// load metas
+				this.originMetas = toMetadata(productData.metas) || [];
+				this.metas = [...this.originMetas];
+				delete productData.metas;
 
-		loadProduct();
+				// load product
+				this.product = toProductData(productData);
+
+				// init the editor
+				this
+					.setTitle('Product:' + productData.id)
+					.setModel(this.product)
+					.setStorePath(AMD_SHOP_PRODUCT_SP);
+			}, () => {
+				// TODO: handler error
+				alert($mbTranslate.instant('Faild to load the product.'));
+			});
+
 	}
 }
 

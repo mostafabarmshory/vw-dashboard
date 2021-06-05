@@ -28,6 +28,7 @@ export default {
 	AMD_SHOP_CATEGORY_CREATE_ACTION: 'amd.shop.category.create',
 	AMD_SHOP_CATEGORY_UPDATE_ACTION: 'amd.shop.category.update',
 	AMD_SHOP_CATEGORY_SETPARENT_ACTION: 'amd.shop.category.setParent',
+	AMD_SHOP_CATEGORY_SHOW_ACTION: 'amd.shop.category.show',
 
 	AMD_SHOP_DELIVER_DELETE_ACTION: 'amd.shop.deliver.delete',
 	AMD_SHOP_DELIVER_CREATE_ACTION: 'amd.shop.deliver.create',

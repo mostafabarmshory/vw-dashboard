@@ -41,8 +41,7 @@ export default {
 			//		modelId: $routeParam.modelId,
 		});
 
-	},
-	controllerAs: 'ctrl',
+	}
 }
 
 

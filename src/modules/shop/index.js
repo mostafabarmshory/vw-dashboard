@@ -28,8 +28,10 @@ import categoryDeleteAction from './actions/category-delete';
 import categoryCreateAction from './actions/category-new';
 import categorySetParentAction from './actions/category-setparent';
 import categoryUpdateAction from './actions/category-update';
+import categoryShowAction from './actions/category-show';
 import deliverCreateAction from './actions/deliver-create';
 import productCreateAction from './actions/product-create';
+import productUpdateAction from './actions/product-update';
 import serviceCreateAction from './actions/service-create';
 import tagCreateAction from './actions/tag-create';
 import zoneCreateAction from './actions/zone-create';
@@ -80,8 +82,10 @@ mblowfish
 	.action(Constants.AMD_SHOP_CATEGORY_CREATE_ACTION, categoryCreateAction)
 	.action(Constants.AMD_SHOP_CATEGORY_SETPARENT_ACTION, categorySetParentAction)
 	.action(Constants.AMD_SHOP_CATEGORY_UPDATE_ACTION, categoryUpdateAction)
+	.action(Constants.AMD_SHOP_CATEGORY_SHOW_ACTION, categoryShowAction)
 	.action(Constants.AMD_SHOP_DELIVER_CREATE_ACTION, deliverCreateAction)
 	.action(Constants.AMD_SHOP_PRODUCT_CREATE_ACTION, productCreateAction)
+	.action(Constants.AMD_SHOP_PRODUCT_UPDATE_ACTION, productUpdateAction)
 	.action(Constants.AMD_SHOP_SERVICE_CREATE_ACTION, serviceCreateAction)
 	.action(Constants.AMD_SHOP_TAG_CREATE_ACTION, tagCreateAction)
 	.action(Constants.AMD_SHOP_ZONE_CREATE_ACTION, zoneCreateAction)
