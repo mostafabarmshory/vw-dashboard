@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 import templateUrl from './products.html';
-
+import './products.css';
 
 /**
  * @ngdoc Controllers
