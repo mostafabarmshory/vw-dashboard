@@ -1,4 +1,20 @@
+<div
+	layout="column">
+<!-- Action bar -->
+<md-toolbar layout="row">
+	<md-button 
+		ng-disabled="!ctrl.isDerty()"
+		ng-click="ctrl.updateProduct($event)">
+		<span mb-translate>Save</span>
+	</md-button>
+	<md-button 
+		ng-click="ctrl.deleteModel($event)">
+		<span mb-translate>Delete</span>
+	</md-button>
+</md-toolbar>
 <md-content>
+
+	
 	<mb-titled-block 
 		mb-title="{{'Product' | translate}}"
 		layout="column"
@@ -83,7 +99,7 @@
 			</div>
 		</div>
 		
-		<!-- TODO: categoris -->
+		<!-- categoris -->
 		<div>
 			<label id="toLabel" mb-translate>Categories</label>
 			<md-chips 
@@ -102,7 +118,7 @@
 					md-item-text="item.name"
 					md-clear-button="true">
 					<md-item-template>
-						<span md-highlight-text="ctrl.searchText">{{item.name}}({{::item.name}})</span>
+						<span md-highlight-text="ctrl.searchCategoiresText">{{item.name}}({{::item.name}})</span>
 					</md-item-template>
 					<md-not-found>
 						<md-button
@@ -122,20 +138,43 @@
 			</md-chips>
 		</div>
 		
-		<!-- Action bar -->
-		<div layout="row">
-			<span flex></span>
-			<md-button 
-				class="md-raised md-primary"
-				ng-disabled="!ctrl.isDerty()"
-				ng-click="ctrl.updateProduct($event)">
-				<span mb-translate>Save</span>
-			</md-button>
-			<md-button 
-				class = "md-raised md-accent"
-				ng-click="ctrl.deleteModel($event)">
-				<span mb-translate>Delete</span>
-			</md-button>
+		<!-- categoris -->
+		<div>
+			<label id="toLabel" mb-translate>Tags</label>
+			<md-chips 
+				ng-model="ctrl.tags" 
+				ng-change="ctrl.setDerty(true)"
+				md-autocomplete-snap
+				input-aria-label="Tags">
+				<md-autocomplete 
+					input-aria-describedby="autocompleteTitle" 
+					placeholder="Search for a tag"
+					md-no-cache="true"
+					md-autoselect="true"
+					md-selected-item="ctrl.selectedTags" 
+					md-search-text="ctrl.searchTagsText"
+					md-items="item in ctrl.searchTags(ctrl.searchTagsText)" 
+					md-item-text="item.name"
+					md-clear-button="true">
+					<md-item-template>
+						<span md-highlight-text="ctrl.searchTagsText">{{item.name}}({{::item.name}})</span>
+					</md-item-template>
+					<md-not-found>
+						<md-button
+							style="width: 100%"
+							ng-click="ctrl.createTag(ctrl.searchTagsText, $event)">
+							<span mb-translate>Create a New Tag</span> (<em>{{ctrl.searchTagsText}}</em>)
+						</md-button>
+					</md-not-found>
+				</md-autocomplete>
+				<md-chip-template>
+					<span
+						ng-click="ctrl.execOn($chip, AMD_SHOP_TAG_SHOW_ACTION, $event)">
+						<mb-icon size="12">launch</mb-icon>
+						<strong>{{$chip.name}}</strong>
+					</span>
+				</md-chip-template>
+			</md-chips>
 		</div>
 	</mb-titled-block>
 
@@ -304,4 +343,4 @@
 		</div>
 	</mb-titled-block>
 </md-content>
-
+</div>

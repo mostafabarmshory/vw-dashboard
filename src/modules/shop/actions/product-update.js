@@ -60,6 +60,15 @@ export default {// create new category menu
 			differenceCollection(oldCollection, newCollection)
 				.forEach(category => jobs.push(product.deleteCategory(category)));
 				
+				
+			// update tags
+			newCollection = product.tags || [];
+			oldCollection = product.originTags || [];
+			differenceCollection(newCollection, oldCollection)
+				.forEach(tag => jobs.push(product.putTag(tag)));
+			differenceCollection(oldCollection, newCollection)
+				.forEach(tag => jobs.push(product.deleteTag(tag)));
+				
 			// update metas
 			newCollection = product.metafields || [];
 			oldCollection = product.originMetafields || [];

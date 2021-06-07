@@ -175,6 +175,9 @@ export default {
 				// category
 				categories: ctrl.categories,
 				originCategories: ctrl.originCategories,
+				// tags
+				tags: ctrl.tags,
+				originTags: ctrl.originTags,
 				// meata
 				metafields: ctrl.metafields,
 				originMetafields: ctrl.originMetafields
@@ -218,6 +221,37 @@ export default {
 					});
 				});
 		};
+		
+		
+		
+		//----------------------------------------------------------------------------
+		// tags
+		//----------------------------------------------------------------------------
+		var tagsSearchQueryParameter = new QueryParameter();
+		tagsSearchQueryParameter.setOrder('id', 'd');
+
+		this.searchTags = (query) => {
+			tagsSearchQueryParameter.setQuery(query);
+			return $shop
+				.getTags(tagsSearchQueryParameter)
+				.then(list => list.items);
+		};
+
+
+		this.createTag = (name, $event) => {
+			$event.values = [{
+				name: name,
+				description: name
+			}];
+			$mbActions.exec(AMD_SHOP_TAG_CREATE_ACTION, $event)
+				.then((tags) => {
+					ctrl.searchTagsText = '';
+					tags.forEach(tag => {
+						ctrl.tags.push(tag);
+						$editor.setDerty(true);
+					});
+				});
+		};
 
 		//----------------------------------------------------------------------------
 		// Convertors
@@ -246,6 +280,10 @@ export default {
 		function toProductData(data) {
 			return new ShopProduct(data);
 		}
+		
+		function toTags(list){
+			return list || [];
+		}
 
 		//----------------------------------------------------------------------------
 		// Init the editor
@@ -259,6 +297,11 @@ export default {
 				this.originCategories = toCategories(productData.categories) || [];
 				this.categories = [...this.originCategories];
 				delete productData.categories;
+				
+				// load tags
+				this.originTags = toTags(productData.tags) || [];
+				this.tags = [...this.originTags];
+				delete productData.tags;
 
 				// load metas
 				this.originMetafields = toMetadata(productData.metafields) || [];
@@ -277,7 +320,6 @@ export default {
 				// TODO: handler error
 				alert($mbTranslate.instant('Faild to load the product.'));
 			});
-
 	}
 }
 
