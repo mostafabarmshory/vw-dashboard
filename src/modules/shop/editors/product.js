@@ -135,7 +135,7 @@ export default {
 				});
 		}
 
-		this.setMetaValue = ($key, $value) => {
+		this.setMetaValue = ($key, $value, $unit, $namespace) => {
 			var $meta;
 			ctrl.metafields.forEach(meta => {
 				if (meta.key === $key) {
@@ -147,10 +147,25 @@ export default {
 				ctrl.setMetaDerty($meta);
 				return;
 			}
-			return ctrl.addMetafield($key, $value);
+			return ctrl.addMetafield($key, $value, $unit, $namespace);
 		}
 
-
+		this.metafieldsMoreActions = [{
+			icon: 'face',
+			title: 'Init with basic fields',
+			/*
+			@ngInject
+			*/
+			action: function() {
+				ctrl.setMetaValue('image', '', '', 'theme');
+				ctrl.setMetaValue('color', 'red', '', 'physical');
+				ctrl.setMetaValue('size', 'Larg', '', 'physical');
+				ctrl.setMetaValue('rating', '1', '', 'community');
+				ctrl.setMetaValue('vstore.stock', '1', '', 'theme');
+				ctrl.setMetaValue('vstore.new', 'true', '', 'theme');
+				ctrl.setMetaValue('vstore.sale', 'true', '', 'theme');
+			}
+		}];
 		//----------------------------------------------------------------------------
 		// Product
 		//----------------------------------------------------------------------------
