@@ -26,8 +26,8 @@ export default {// import categories menu
 	title: 'Import Categories',
 	description: 'Imports categories from a JSON file',
 	group: 'Shop',
-	/* @ngInject */
 	action: function($event, $shop, $q, $mbTranslate, $mbResource, $mbDispatcherUtil) {
+		'ngInject';
 
 		function createCategories(list) {
 			var promisesList = [];

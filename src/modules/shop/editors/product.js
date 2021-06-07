@@ -30,7 +30,8 @@ import {
 export const graphQl = '{' +
 	'id,title,description,brand,model,manufacturer,avatar,price,off,' +
 	'categories{id, name},' +
-	'metafields{id, key, namespace, product_id, unit, value}' +
+	'metafields{id, key, namespace, product_id, unit, value},' +
+	'tags{id, name}' +
 	'}';
 
 /**

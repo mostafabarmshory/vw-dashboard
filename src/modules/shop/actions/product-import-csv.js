@@ -26,8 +26,8 @@ export default {// import products menu
 	group: 'Shop',
 	title: 'Import Products',
 	description: 'Imports products from a CSV file',
-	/* @ngInject */
 	action: function($event, $shop, $q, $mbTranslate, $mbResource, $mbDispatcherUtil) {
+		'ngInject';
 
 		function createProducts(list) {
 			var promisesList = [];

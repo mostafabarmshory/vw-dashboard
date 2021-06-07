@@ -36,13 +36,11 @@ export default {
 	templateUrl: templateUrl,
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	/*
-	@ngInject
-	*/
 	controller: function(
         /* angularjs */ $view, $scope, $controller, $element,
         /* seen-shop */ $shop,
         /* mblowfish */ $mbDialog, $mbStorage, MbAction) {
+		'ngInject';
 
 		var BOARD_STORAGE_KEY = '/shop/orders/board';
 
