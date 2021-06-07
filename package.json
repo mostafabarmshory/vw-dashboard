@@ -63,5 +63,15 @@
 		"node": ">=0.10.0"
 	},
 	"private": false,
-	"publishConfig": {}
+	"publishConfig": {},
+	"babel": {
+		"presets": [
+			"@babel/preset-env"
+		],
+		"plugins": [
+			[
+				"angularjs-annotate"
+			]
+		]
+	}
 }

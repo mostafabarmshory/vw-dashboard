@@ -96,14 +96,22 @@ module.exports = {
 			// Transpile .js files using babel-loader
 			// Compiles ES6 and ES7 into ES5 code
 			test: /\.js$/,
-			exclude: /node_modules/,
+			//			exclude: /node_modules/,
+			exclude: {
+				and: [/node_modules/], // Exclude libraries in node_modules ...
+				not: [
+					// Except for a few of them that needs to be transpiled because they use modern syntax
+					/mblowfish/,
+				]
+			},
 			use: [
 				{
 					loader: 'babel-loader',
 					options: {
-						babelrc: false,
-						cacheDirectory: true,
-						configFile: './babel.config.json',
+						//						babelrc: false,
+						//						cacheDirectory: true,
+						//						configFile: './babel.config.json',
+						rootMode: "upward",
 						babelrcRoots: [
 							".",
 							"./node_modules/*",

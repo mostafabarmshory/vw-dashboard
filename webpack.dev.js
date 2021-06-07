@@ -26,7 +26,7 @@ module.exports = merge(common, {
 		writeToDisk: true,
 		proxy: {
 			'/api': {
-				target: 'http://sodraarts.com/',
+				target: 'http://viraweb123.ir',
 				secure: false,
 				changeOrigin: true
 			}
