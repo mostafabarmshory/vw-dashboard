@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import {differenceCollection} from '../../core/Utiles';
+import { differenceCollection } from '../../core/Utiles';
 
 
 export default {// create new category menu
@@ -37,7 +37,7 @@ export default {// create new category menu
 			return;
 		}
 
-		var 
+		var
 			jobs = [],
 			models = [];
 
@@ -48,10 +48,10 @@ export default {// create new category menu
 				.push(product
 					.update()
 					.then(newProduct => models.push(newProduct)));
-			var 
-				newCollection, 
+			var
+				newCollection,
 				oldCollection;
-			
+
 			// update categories
 			newCollection = product.categories || [];
 			oldCollection = product.originCategories || [];
@@ -59,8 +59,8 @@ export default {// create new category menu
 				.forEach(category => jobs.push(product.putCategory(category)));
 			differenceCollection(oldCollection, newCollection)
 				.forEach(category => jobs.push(product.deleteCategory(category)));
-				
-				
+
+
 			// update tags
 			newCollection = product.tags || [];
 			oldCollection = product.originTags || [];
@@ -68,23 +68,23 @@ export default {// create new category menu
 				.forEach(tag => jobs.push(product.putTag(tag)));
 			differenceCollection(oldCollection, newCollection)
 				.forEach(tag => jobs.push(product.deleteTag(tag)));
-				
+
 			// update metas
 			newCollection = product.metafields || [];
 			oldCollection = product.originMetafields || [];
 			newCollection.forEach(meta => {
-					if(meta.id < 0 || meta.derty){
-						jobs.push(product.putMetafield(meta));
-					}
-					delete meta.derty;
-				});
+				if (meta.id < 0 || meta.derty) {
+					jobs.push(product.putMetafield(meta));
+				}
+				delete meta.derty;
+			});
 			differenceCollection(oldCollection, newCollection)
 				.forEach(meta => {
-					if(meta.id || meta.id > 1){
+					if (meta.id || meta.id > 1) {
 						jobs.push(product.deleteMetafield(meta));
 					}
 				});
-			
+
 		});
 
 		return $q

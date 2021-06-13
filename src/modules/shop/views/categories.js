@@ -20,6 +20,7 @@
  * SOFTWARE.
  */
 import templateUrl from './categories.html';
+import './categories.css';
 
 /**
 @ngdoc View

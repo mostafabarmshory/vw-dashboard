@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import {differenceCollection} from '../../core/Utiles';
 
 
 export default {
@@ -32,23 +33,44 @@ export default {
 			// TODO: maso, 2020: add log
 			return;
 		}
-		var jobs = [];
-		var newValues = [];
+		var jobs = [],
+			newValues = [];
 		values.forEach(category => {
 			if (!(category instanceof ShopCategory)) {
 				category = new ShopCategory(category);
 			}
 			jobs.push(category.update()
-				.then(function(newCategory) {
+				.then(newCategory => {
 					newValues.push(newCategory);
 				}));
+				
+			var
+				newCollection,
+				oldCollection;
+				
+			// update metas
+			newCollection = category.metafields || [];
+			oldCollection = category.originMetafields || [];
+			newCollection.forEach(meta => {
+				if (meta.id < 0 || meta.derty) {
+					jobs.push(category.putMetafield(meta));
+				}
+				delete meta.derty;
+			});
+			differenceCollection(oldCollection, newCollection)
+				.forEach(meta => {
+					if (meta.id || meta.id > 1) {
+						jobs.push(category.deleteMetafield(meta));
+					}
+				});
 		});
 
 		// TODO: maso, 2020: add the job into the job lists
 		// $app.addJob('Adding new shop category', job);
 		return $q.all(jobs)
-			.then(function() {
+			.then(() => {
 				$mbDispatcherUtil.fireUpdated(AMD_SHOP_CATEGORY_SP, newValues);
+				return newValues;
 			}, function() {
 				alert($mbTranslate.instant('Fail to update the category.'));
 			});

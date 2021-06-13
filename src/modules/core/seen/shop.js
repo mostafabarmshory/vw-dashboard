@@ -327,7 +327,18 @@ mblowfish.factory('ShopCategory', seen.factory({
 		factory: 'ShopService',
 		type: 'collection',
 		url: '/services'
+	},
+	{
+		name: 'metafield',
+		factory: 'ShopCategoryMetafield',
+		type: 'collection',
+		url: '/metafields'
 	}]
+}));
+
+
+mblowfish.factory('ShopCategoryMetafield', seen.factory({
+	url: '/api/v2/shop/categories/{category_id}/metafields'
 }));
 
 
