@@ -6,13 +6,10 @@ The profile view allow current user to update its own profile
  */
 import templateUrl from './profile.html';
 
-export default {
-	title: 'Profiles',
-	description: 'View or update all profiles.',
-	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
-	groups: ['Account'],
-	controller: function($scope, $mbTranslate, $window, UserProfile, $usr) {
+export class MbAccountProfileViewCtrl {
+
+
+	constructor($scope, $mbTranslate, $window, UserProfile, $usr) {
 		'ngInject';
 		// set initial data
 		this.user = null;
@@ -144,6 +141,15 @@ export default {
 		// Load account information
 		this.loadUser();
 	}
+}
+
+export default {
+	title: 'Profiles',
+	description: 'View or update all profiles.',
+	templateUrl: templateUrl,
+	controllerAs: 'ctrl',
+	groups: ['Account'],
+	controller: MbAccountProfileViewCtrl
 }
 
 

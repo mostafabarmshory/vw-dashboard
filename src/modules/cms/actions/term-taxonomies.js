@@ -1,7 +1,29 @@
 
-export default {
-	demon: true,
-	action: function($event, $mbDispatcherUtil, $q, $mbTranslate, $cms) {
+export function createTermTaxonomies($event, $mbDispatcherUtil, $mbWizard, $cms, $q) {
+	'ngInject';
+
+	var values = $event.values;
+	if (!values || !_.isArray(values)) {
+		return $mbWizard.openWizard(AMD_CMS_TERMTAXONOMY_NEW_WIZARD);
+	}
+
+	var jobs = [],
+		tts = [];
+	_.forEach(values, function(tt) {
+		var promise = $cms.putTermTaxonomy(tt)
+			.then(function(newtt) {
+				tts.push(newtt);
+			});
+		jobs.push(promise);
+	});
+
+	return $q.all(jobs)
+		.then(function() {
+			$mbDispatcherUtil.fireCreated(AMD_CMS_TERMTAXONOMIES_SP, tts);
+		});
+}
+
+export function deleteTermTaxonomies($event, $mbDispatcherUtil, $q, $mbTranslate, $cms) {
 		'ngInject';
 
 		var values = $event.values;
@@ -34,6 +56,9 @@ export default {
 						$mbDispatcherUtil.fireDeleted(AMD_CMS_TERMTAXONOMIES_SP, values);
 					});
 			});
-	},
-}
+	}
+
+
+
+
 

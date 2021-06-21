@@ -1,16 +1,18 @@
 
-
+import MbCmsContentsCtrl from './MbCmsContentsCtrl';
 /**
 
 @ngInject
  */
-export default function($scope, $resource, $controller) {
-	/*
-	 * Extends collection controller
-	 */
-	angular.extend(this, $controller('MbCmsContentsCtrl', {
-		$scope: $scope
-	}));
+export class MbCmsContentsCtrl extends MbCmsContentsCtrl {
+
+	constructor($scope, $q, $mbLog, $cms, $resource) {
+		'ngInject';
+		super($scope, $q, $mbLog, $cms);
+		this.$resource = $resource;
+		// init the controller
+		this.init();
+	}
 
 	/**
 	 * Sets the absolute mode
@@ -18,7 +20,7 @@ export default function($scope, $resource, $controller) {
 	 * @param {boolean}
 	 *            absolute mode of the controler
 	 */
-	this.setAbsolute = function(absolute) {
+	setAbsolute(absolute) {
 		this.absolute = absolute;
 	};
 
@@ -27,11 +29,11 @@ export default function($scope, $resource, $controller) {
 	 *
 	 * @return absolute mode of the controller
 	 */
-	this.isAbsolute = function() {
+	isAbsolute() {
 		return this.absolute;
-	};
+	}
 
-	function getDomain() {
+	getDomain() {
 		// XXX: maso, 2020:
 		return '';
 	}
@@ -39,21 +41,18 @@ export default function($scope, $resource, $controller) {
 	/*
 	 * Sets value
 	 */
-	this.setSelected = function(content) {
+	setSelected(content) {
 		this.selected = content;
 		var path = '/api/v2/cms/contents/' + content.id + '/content';
 		if (this.isAbsolute()) {
 			path = getDomain() + path;
 		}
-		$resource.setValue(path);
-	};
+		this.$resource.setValue(path);
+	}
 
-	this.isSelected = function(content) {
+	isSelected(content) {
 		return this.selected && this.selected.id === content.id;
-	};
-
-	// init the controller
-	this.init();
+	}
 }
 
 

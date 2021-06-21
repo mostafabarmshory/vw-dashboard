@@ -25,19 +25,109 @@
 import $mbActions from 'mblowfish/src/services/mbActions';
 import templateUrl from './content-properties.html';
 import './content-properties.css';
+import {
+	AMD_CMS_CONTENT_SP,
+	AMD_CMS_CONTENTS_DELETE_ACTION,
+	AMD_CMS_CONTENTS_UPDATE_ACTION,
+	AMD_CMS_CONTENTS_UPDATE_ACTION,
+	AMD_CMS_CONTENTS_TOCLIPBOARD_ACTION,
+} from '../Constants';
+import MbSeenAbstractItemEditorCtrl from '../../core/controllers/MbSeenAbstractItemEditorCtrl';
 
-import MbSeenAbstractItemCtrl from '../../core/controllers/MbSeenAbstractItemCtrl';
 
 
-var graphqlQuery =
-	'{id,name,title,description,state,creation_dtime,modif_dtime,downloads,file_name,file_size,media_type,mime_type,' +
-	'term_taxonomies{id,taxonomy,term{id,name}},' +
-	'metas{id,key,value}}';
-
-export class MbCmsContentPropertiesEditorCtrl extends MbSeenAbstractItemCtrl{
-	constructor($scope, $q, $window, $mbRouteParams){
+export class MbCmsContentPropertiesEditorCtrl extends MbSeenAbstractItemEditorCtrl {
+	constructor($scope, $q, $window, $mbRouteParams) {
 		'ngInject';
-		super($scope, $q, $window, $mbRouteParams)
+		super($scope, $q, $window, $mbRouteParams);
+		this.setEventType(AMD_CMS_CONTENT_SP);
+		//		var contentTermTaxonomiesAssos = AMD_CMS_CONTENT_SP + '/' + $state.params.contentId + '/term-taxonomies';
+	}
+
+
+	// Load content
+	reload() {
+		this.setJob($mbActions.exec('LoadFullContent')
+			.then(content => this.setModel(content)
+				.setTitle('Content:' + content.id)))
+		//		ctrl.isBusy = $cms
+		//			.getContent($state.params.contentId, {
+		//				graphql: graphqlQuery,
+		//			})//
+		//			.then(function(content) {
+		//				setContent(content);
+		//				setTermTaxonomies(content.term_taxonomies);
+		//				setMetadata(content.metas);
+		//				$editor.setTitle('Content:' + content.id);
+		//			})
+		//			.finally(function() {
+		//				delete ctrl.isBusy;
+		//			});
+	}
+
+
+	//-------------------------------------------------------------------------
+	// functions: content
+	//-------------------------------------------------------------------------
+
+	/**
+	Deletes content 
+	
+	 */
+	deleteContent($event) {
+		return this.execOn(this.model, AMD_CMS_CONTENTS_DELETE_ACTION, $event);
+		//		return confirm('Delete the content?', $event)//
+		//			.then(function() {
+		//				return content.delete()
+		//					.then(function() {
+		//						ctrl.fireDeleted(AMD_CMS_CONTENT_SP, content);
+		//					}, function(/*error*/) {
+		//						// TODO: maso, 2020: log error
+		//						alert('fail to delete content.');
+		//					});
+		//			});
+	}
+
+	updateContent() {
+		return this.execOn(this.model, AMD_CMS_CONTENTS_UPDATE_ACTION, $event);
+		//		ctrl.isCuntentBusy = content.update()//
+		//			.then(function(newContent) {
+		//				ctrl.fireUpdated(AMD_CMS_CONTENT_SP, newContent);
+		//			}, function() {
+		//				alert('An error is occured while updating content.');
+		//			})
+		//			.finally(function() {
+		//				delete ctrl.isCuntentBusy;
+		//			});
+		//		return ctrl.isCuntentBusy;
+	}
+
+	uploadFile($event) {
+		return this.execOn(this.model, AMD_CMS_CONTENTS_UPLOAD_ACTION, $event);
+		//		ctrl.isCuntentBusy = $mbResource
+		//			.get('file', {
+		//				$style: {
+		//					accept: '*/*'
+		//				},
+		//				targetEvent: $event
+		//			})
+		//			.then(function(file) {
+		//				return content.uploadValue(file)
+		//					.then(function(newContent) {
+		//						ctrl.fireUpdated(AMD_CMS_CONTENT_SP, newContent);
+		//					});
+		//			})
+		//			.finally(function() {
+		//				delete ctrl.isCuntentBusy;
+		//			});
+		//		return ctrl.isCuntentBusy;
+	}
+
+
+	copyContentToClipboard() {
+		return this.execOn(this.model, AMD_CMS_CONTENTS_TOCLIPBOARD_ACTION, $event);
+		//			$clipboard.copyTo(this.content);
+		// TODO: maso, 2019: add notify
 	}
 }
 
@@ -49,7 +139,6 @@ export class MbCmsContentPropertiesEditorCtrl extends MbSeenAbstractItemCtrl{
 //	//-------------------------------------------------------------------------
 //	// Variables
 //	//-------------------------------------------------------------------------
-//	var contentTermTaxonomiesAssos = AMD_CMS_CONTENT_SP + '/' + $state.params.contentId + '/term-taxonomies';
 //
 //	var ctrl = this;
 //	var content;
@@ -85,66 +174,6 @@ export class MbCmsContentPropertiesEditorCtrl extends MbSeenAbstractItemCtrl{
 //			collection.splice(index, 1);
 //		}
 //	}
-//	//-------------------------------------------------------------------------
-//	// functions: content
-//	//-------------------------------------------------------------------------
-//
-//	/**
-//	Deletes content 
-//	
-//	@memberof AmdContentCtrl
-//	 */
-//	function deleteContent($event) {
-//		return confirm('Delete the content?', $event)//
-//			.then(function() {
-//				return content.delete()
-//					.then(function() {
-//						ctrl.fireDeleted(AMD_CMS_CONTENT_SP, content);
-//					}, function(/*error*/) {
-//						// TODO: maso, 2020: log error
-//						alert('fail to delete content.');
-//					});
-//			});
-//	}
-//
-//	function updateContent() {
-//		ctrl.isCuntentBusy = content.update()//
-//			.then(function(newContent) {
-//				ctrl.fireUpdated(AMD_CMS_CONTENT_SP, newContent);
-//			}, function() {
-//				alert('An error is occured while updating content.');
-//			})
-//			.finally(function() {
-//				delete ctrl.isCuntentBusy;
-//			});
-//		return ctrl.isCuntentBusy;
-//	}
-//
-//	function uploadFile($event) {
-//		ctrl.isCuntentBusy = $mbResource
-//			.get('file', {
-//				$style: {
-//					accept: '*/*'
-//				},
-//				targetEvent: $event
-//			})
-//			.then(function(file) {
-//				return content.uploadValue(file)
-//					.then(function(newContent) {
-//						ctrl.fireUpdated(AMD_CMS_CONTENT_SP, newContent);
-//					});
-//			})
-//			.finally(function() {
-//				delete ctrl.isCuntentBusy;
-//			});
-//		return ctrl.isCuntentBusy;
-//	}
-//
-//	//
-//	//	this.copyContentToClipboard = function() {
-//	//		$clipboard.copyTo(this.content);
-//	//		// TODO: maso, 2019: add notify
-//	//	};
 //
 //	//-------------------------------------------------------------------------
 //	// functions: term-taxonomies
@@ -262,22 +291,6 @@ export class MbCmsContentPropertiesEditorCtrl extends MbSeenAbstractItemCtrl{
 //	}
 //
 //
-//	// Load content
-//	function reload() {
-//		ctrl.isBusy = $cms
-//			.getContent($state.params.contentId, {
-//				graphql: graphqlQuery,
-//			})//
-//			.then(function(content) {
-//				setContent(content);
-//				setTermTaxonomies(content.term_taxonomies);
-//				setMetadata(content.metas);
-//				$editor.setTitle('Content:' + content.id);
-//			})
-//			.finally(function() {
-//				delete ctrl.isBusy;
-//			});
-//	}
 //
 //
 //	//-------------------------------------------------------------------------
