@@ -23,78 +23,22 @@
  */
 
 import templateUrl from './contents.html';
-/**
-@ngdoc Views
-@name CMS Contents
-@description A view of contents
- */
-export default {
-	access: 'hasAnyRole("tenant.owner")',
-	title: 'Contents',
-	templateUrl: templateUrl,
-	groups: ['Content Management'],
-	icon: 'image',
-	controller: function(
-		$scope, $view, $cms, $controller, $q, MbAction,
-		$location, $mbActions, $amdCmsEditors) {
+import MbSeenAbstractCollectionViewCtrl from '../../core/controllers/MbSeenAbstractCollectionViewCtrl';
+import $mbActions from 'mblowfish/src/services/mbActions';
+
+export class MbCmsContentsCollectionViewCtrl extends MbSeenAbstractCollectionViewCtrl {
+
+	constructor($view, $scope, $mbLog, MbAction, MbComponent, $cms, $q, $location, $amdCmsEditors) {
 		'ngInject';
+		super($view, $scope, $q, $mbLog, MbAction, MbComponent);
+		this.$amdCmsEditors = $amdCmsEditors;
+		this.$cms = $cms;
 
-		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
-			$scope: $scope,
-			$view: $view,
-		}));
-
-		// Override the schema function
-		this.getModelSchema = function() {
-			return $cms.contentSchema();
-		};
-
-		// get contents
-		this.getModels = function(parameterQuery) {
-			return $cms.getContents(parameterQuery);
-		};
-
-		// get a content
-		this.getModel = function(id) {
-			return $cms.getContent(id);
-		};
-
-		// delete account
-		this.deleteModel = function(content) {
-			return $cms.deleteContent(content.id);
-		};
-
-		/**
-		Opne the content with an editor
-		 */
-		this.openEditor = function(content, $event) {
-			$event.values = [content];
-			return $mbActions.exec(AMD_CMS_CONTENTS_EDIT_ACTION, $event);
-		};
-
-		/**
-		Opens content with the custome editor
-		 */
-		this.openWithSelectedEditor = function(content, editor, $event) {
-			$event.editor = editor;
-			return this.openEditor(content, $event);
-		};
-
-		this.openProperties = function(content) {
-			return $mbActions.exec(AMD_CMS_CONTENTS_PROPERTIES_ACTION, {
-				values: [content],
-			});
-		};
-
-		this.openMenu = function(content, $mdMenu, $event) {
-			this.editors = $amdCmsEditors.getEditors(content.mime_type);
-			return $mdMenu.open($event);
-		};
-		
-		$q.when(this.init({
-			eventType: AMD_CMS_CONTENT_SP,
-		}))
-			.then(function() {
+		$q
+			.when(this.init({
+				eventType: AMD_CMS_CONTENT_SP,
+			}))
+			.then(() => {
 				$view.getToolbar()
 					.addAction(new MbAction({
 						title: 'New content',
@@ -109,7 +53,69 @@ export default {
 						actionId: AMD_CMS_CONTENTS_NEWPAGE_ACTION
 					}));
 			});
-	},
+	}
+
+
+	// Override the schema function
+	getModelSchema = function() {
+		return this.$cms.contentSchema();
+	}
+
+	// get contents
+	getModels(parameterQuery) {
+		return this.$cms.getContents(parameterQuery);
+	}
+
+	// get a content
+	getModel(id) {
+		return this.$cms.getContent(id);
+	}
+
+	// delete account
+	deleteModel(content) {
+		return this.$cms.deleteContent(content.id);
+	}
+
+	/**
+	Opne the content with an editor
+	 */
+	openEditor(content, $event) {
+		$event.values = [content];
+		return $mbActions.exec(AMD_CMS_CONTENTS_EDIT_ACTION, $event);
+	}
+
+	/**
+	Opens content with the custome editor
+	 */
+	openWithSelectedEditor(content, editor, $event) {
+		$event.editor = editor;
+		return this.openEditor(content, $event);
+	}
+
+	openProperties(content) {
+		return $mbActions.exec(AMD_CMS_CONTENTS_PROPERTIES_ACTION, {
+			values: [content],
+		});
+	}
+
+	openMenu(content, $mdMenu, $event) {
+		this.editors = this.$amdCmsEditors.getEditors(content.mime_type);
+		return $mdMenu.open($event);
+	}
+
+}
+/**
+@ngdoc Views
+@name CMS Contents
+@description A view of contents
+ */
+export default {
+	access: 'hasAnyRole("tenant.owner")',
+	title: 'Contents',
+	templateUrl: templateUrl,
+	groups: ['Content Management'],
+	icon: 'image',
+	controller: MbCmsContentsCollectionViewCtrl
 }
 
 

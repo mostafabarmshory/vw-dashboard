@@ -12,6 +12,7 @@
 	"scripts": {
 		"build": "webpack --config webpack.prod.js",
 		"serve": "webpack serve --history-api-fallback --inline --progress --config webpack.dev.js",
+		"start": "webpack serve --history-api-fallback --inline --progress --config webpack.dev.js",
 		"test": "karma start karma.conf.js",
 		"test-watch": "karma start --auto-watch --no-single-run"
 	},

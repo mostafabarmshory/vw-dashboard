@@ -20,6 +20,8 @@
  * SOFTWARE.
  */
 
+import MbAbstractCtrl from 'mblowfish/src/controllers/MbAbstractCtrl';
+
 /**
 @ngdoc Controllers
 @name MbSeenAbstractCollectionCtrl
@@ -51,19 +53,15 @@ an action.
 - addItem: controller
 - addModel: model
 - addViewItem: view
-@ngInject
  */
-export default function($scope, $controller, $q) {
+export default class MbSeenAbstractCtrl extends MbAbstractCtrl {
 
-
-	/*
-	 * Extends collection controller from MbAbstractCtrl 
-	 */
-	angular.extend(this, $controller('MbAbstractCtrl', {
-		$scope: $scope
-	}));
-
-	this.getSchema = function() {
+	constructor($scope, $q) {
+		'ngInject';
+		super($scope);
+		this.$q = $q;
+	}
+	getSchema() {
 		if (!angular.isDefined(this.getModelSchema)) {
 			return;
 		}
@@ -71,23 +69,20 @@ export default function($scope, $controller, $q) {
 			.then(function(schema) {
 				return schema;
 			});
-	};
+	}
 
 	//properties is the children of schema.
-	this.getProperties = function() {
+	getProperties() {
 		if (angular.isDefined(this.properties)) {
-			$q.resolve(this.properties);
+			this.$q.resolve(this.properties);
 		}
-		var ctrl = this;
-		if (angular.isDefined(ctrl.getModelSchema)) {
+		if (angular.isDefined(this.getModelSchema)) {
 			return this.getSchema()
-				.then(function(schema) {
-					ctrl.properties = schema.children;
-				});
+				.then((schema) => this.properties = schema.children);
 		}
-	};
+	}
 
-	this.init = function() {
+	init() {
 		this.getProperties();
-	};
+	}
 }

@@ -20,7 +20,12 @@
  * SOFTWARE.
  */
 
+import MbSeenAbstractCtrl from './MbSeenAbstractCtrl';
 
+// Messages
+var DELETE_MODEL_MESSAGE = 'Delete the item?';
+//	var LOAD_ACTION_FAIL_MESSAGE = 'Fail to load item';
+var IMPLEMENT_BY_CHILDREN_ERROR = 'This method must be override in clild class';
 
 /**
 @ngdoc Controllers
@@ -35,48 +40,41 @@ There are three categories of actions;
 
 @ngInject
  */
-export default function(
-	/* AngularJS  */ $scope, $controller, $q, $window,
-	/* MBlowfish  */
-	/* ngRoute    */ $mbRouteParams) {
+export default class MbSeenAbstractItemCtrl extends MbSeenAbstractCtrl {
 
 
-	/*
-	 * Extends collection controller from MbAbstractCtrl 
-	 */
-	angular.extend(this, $controller('MbSeenAbstractCtrl', {
-		$scope: $scope
-	}));
+	constructor($scope, $q, $window, $mbRouteParams) {
+		'ngInject';
+		super($scope, $q);
+		this.$window = $window;
+		this.$mbRouteParams = $mbRouteParams;
 
 
-	// Messages
-	var DELETE_MODEL_MESSAGE = 'Delete the item?';
-	//	var LOAD_ACTION_FAIL_MESSAGE = 'Fail to load item';
-	var IMPLEMENT_BY_CHILDREN_ERROR = 'This method must be override in clild class';
+		/*
+		 * Extra actions
+		 */
+		this.actions = [];
 
-	/*
-	 * Extra actions
-	 */
-	this.actions = [];
+		/**
+		 * Is true if the controller is busy
+		 * 
+		 * @type boolean
+		 * @memberof SeenAbstractItemCtrl
+		 */
+		this.busy = false;
 
-	/**
-	 * Is true if the controller is busy
-	 * 
-	 * @type boolean
-	 * @memberof SeenAbstractItemCtrl
-	 */
-	this.busy = false;
+		/**
+		 * Is true if the controller is dirty
+		 * 
+		 * The controller is dirty if and only if a property of the item is changed by 
+		 * the view.
+		 * 
+		 * @type boolean
+		 * @memberof SeenAbstractItemCtrl
+		 */
+		this.dirty = false;
+	}
 
-	/**
-	 * Is true if the controller is dirty
-	 * 
-	 * The controller is dirty if and only if a property of the item is changed by 
-	 * the view.
-	 * 
-	 * @type boolean
-	 * @memberof SeenAbstractItemCtrl
-	 */
-	this.dirty = false;
 
 	// -------------------------------------------------------------------------
 	// Model
@@ -94,9 +92,9 @@ export default function(
 	 * @return promiss to delete item
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.deleteModel = function(/*item*/) {
-		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
-	};
+	deleteModel(/*item*/) {
+		return this.$q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
+	}
 
 	/**
 	 * Gets item schema
@@ -104,9 +102,9 @@ export default function(
 	 * @return promise to get schema
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.getModelSchema = function() {
-		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
-	};
+	getModelSchema() {
+		return this.$q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
+	}
 
 	/**
 	 * Query and get items
@@ -115,9 +113,9 @@ export default function(
 	 * @return promiss to get items
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.getModel = function(/*id*/) {
-		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
-	};
+	getModel(/*id*/) {
+		return this.$q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
+	}
 
 	/**
 	 * Update current model
@@ -125,9 +123,9 @@ export default function(
 	 * @memberof SeenAbstractItemCtrl
 	 * @return promiss to add and return an item
 	 */
-	this.updateModel = function(/*model*/) {
-		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
-	};
+	updateModel(/*model*/) {
+		return this.$q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
+	}
 
 
 	// -------------------------------------------------------------------------
@@ -143,69 +141,64 @@ export default function(
 	 * @type Object
 	 * @memberof SeenAbstractItemCtrl
 	 */
-//	this.item;
-//	this.itemId;
+	//	this.item;
+	//	this.itemId;
 
 	/**
 	 * Sets item to view
 	 * 
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.setItem = function(item) {
+	setItem(item) {
 		this.item = item;
-	};
+	}
 
 	/**
 	 * Get view item
 	 * 
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.getItem = function() {
+	getItem() {
 		return this.item;
-	};
+	}
 
 	/**
 	 * Gets id of the view item
 	 * 
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.getItemId = function() {
+	getItemId() {
 		return this.itemId;
-	};
+	}
 
 	/**
 	 * Sets id of the view item
 	 * 
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.setItemId = function(itemId) {
+	setItemId(itemId) {
 		this.itemId = itemId;
-	};
+	}
 
 	/**
 	 * Reload item by its ID
 	 * 
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.loadItem = function() {
-		var ctrl = this;
-		var job = this.getModel(this.itemId)
-			.then(function(item) {
-				ctrl.setItem(item);
-			}, function(/*error*/) {
-				$window.alert('Fail to load the item ' + ctrl.itemId);
-			});
-		// TODO: maso, 2020: add application job
-		return job;
-	};
+	loadItem() {
+		return this.getModel(this.itemId)
+			.then(
+				(item) => this.setItem(item),
+				(/*error*/) => this.$window.alert('Fail to load the item ' + this.getItemId()));
+	}
 
-	this.setLastPromis = function(p) {
+	setLastPromis(p) {
 		this.__lastPromis = p;
-	};
+	}
 
-	this.getLastPromis = function() {
+	getLastPromis() {
 		return this.__lastPromis;
-	};
+	}
 
 	/**
 	 * Checks if the state of the controller is busy
@@ -213,9 +206,9 @@ export default function(
 	 * @return {boolean} true if the controller is busy
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.isBusy = function() {
+	isBusy() {
 		return this.busy;
-	};
+	}
 
 	/**
 	 * Checks if the state of the controller is dirty
@@ -223,9 +216,9 @@ export default function(
 	 * @return {boolean} true if the controller is dirty
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.isDirty = function() {
+	isDirty() {
 		return this.dirty;
-	};
+	}
 
 	/**
 	 * Check if confirmation is required for critical tasks
@@ -233,9 +226,9 @@ export default function(
 	 * @return {boolean} true if the confirmation is required
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.isConfirmationRequired = function() {
+	isConfirmationRequired() {
 		return this.confirmationRequired;
-	};
+	}
 
 	/**
 	 * Set confirmation
@@ -243,11 +236,11 @@ export default function(
 	 * @params confirmationRequired {boolean}
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.setConfirmationRequired = function(confirmationRequired) {
+	setConfirmationRequired(confirmationRequired) {
 		this.confirmationRequired = confirmationRequired;
-	};
+	}
 
-	this.updateItem = function($event) {
+	updateItem($event) {
 		// prevent default event
 		if ($event) {
 			$event.preventDefault();
@@ -263,12 +256,12 @@ export default function(
 			});
 		// TODO: maso, 2020: add job tos list
 		return job;
-	};
+	}
 
 	/**
 	 * Creates new item with the createItemDialog
 	 */
-	this.deleteItem = function($event) {
+	deleteItem($event) {
 		// prevent default event
 		if ($event) {
 			$event.preventDefault();
@@ -290,14 +283,14 @@ export default function(
 		}
 		// delete the item
 		if (this.isConfirmationRequired()) {
-			$window.confirm(DELETE_MODEL_MESSAGE)
+			this.$window.confirm(DELETE_MODEL_MESSAGE)
 				.then(function() {
 					return _deleteInternal();
 				});
 		} else {
 			return _deleteInternal();
 		}
-	};
+	}
 
 	/**
 	 * Reload the controller
@@ -306,7 +299,7 @@ export default function(
 	 * @memberof SeenAbstractItemCtrl
 	 * @returns promise to reload
 	 */
-	this.reload = function() {
+	reload() {
 		// safe reload
 		var ctrl = this;
 		function safeReload() {
@@ -324,7 +317,7 @@ export default function(
 		var promise = safeReload();
 		this.setLastPromis(promise);
 		return promise;
-	};
+	}
 
 	/**
 	 * Set a GraphQl format of data
@@ -335,10 +328,10 @@ export default function(
 	 * @memberof SeenAbstractItemCtrl
 	 * @param graphql
 	 */
-	this.setDataQuery = function(grqphql) {
+	setDataQuery(grqphql) {
 		this.queryParameter.put('graphql', grqphql);
 		// TODO: maso, 2018: check if refresh is required
-	};
+	}
 
 	/**
 	 * Generate default event handler
@@ -348,12 +341,12 @@ export default function(
 	 * 
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.eventHandlerCallBack = function() {
+	eventHandlerCallBack() {
 		if (this._eventHandlerCallBack) {
 			return this._eventHandlerCallBack;
 		}
 		var ctrl = this;
-		this._eventHandlerCallBack = function($event) {
+		this._eventHandlerCallBack = ($event) => {
 			switch ($event.key) {
 				case 'updated':
 					ctrl.updateViewItems($event.values);
@@ -366,14 +359,14 @@ export default function(
 			}
 		};
 		return this._eventHandlerCallBack;
-	};
+	}
 
 	/**
 	 * Sets controller event type
 	 * 
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.setEventType = function(eventType) {
+	setEventType(eventType) {
 		if (this.eventType === eventType) {
 			return;
 		}
@@ -383,10 +376,10 @@ export default function(
 		}
 		this.eventType = eventType;
 		this.addEventHandler(this.eventType, callback);
-	};
+	}
 
 
-	this.seen_abstract_item_supperInit = this.init;
+	//	this.seen_abstract_item_supperInit = this.init;
 	/**
 	 * Loads and init the controller
 	 * 
@@ -402,11 +395,9 @@ export default function(
 	 * 
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.init = function(configs) {
-		if (this.seen_abstract_item_supperInit) {
-			this.seen_abstract_item_supperInit(configs);
-		}
-//		var ctrl = this;
+	init(configs) {
+		super.init(configs);
+		//		var ctrl = this;
 		if (!angular.isDefined(configs)) {
 			return;
 		}
@@ -431,9 +422,8 @@ export default function(
 		}
 
 		return this.reload();
-	};
+	}
 
 }
-
 
 

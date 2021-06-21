@@ -20,7 +20,12 @@
  * SOFTWARE.
  */
 
+import MbSeenAbstractItemCtrl from './MbSeenAbstractItemCtrl';
 
+
+// Messages
+var DELETE_MODEL_BINARY_MESSAGE = 'Delete binary content?';
+var IMPLEMENT_BY_CHILDREN_ERROR = 'This method must be override in clild class';
 
 /**
 @ngdoc Controllers
@@ -35,19 +40,13 @@ There are three categories of actions;
 
 @ngInject
  */
-export default function($scope, $controller, $q, $window) {
+export default class MbSeenAbstractBinaryItemCtrl extends MbSeenAbstractItemCtrl {
 
+	constructor($scope, $q, $window, $mbRouteParams) {
+		'ngInject';
+		super($scope, $q, $window, $mbRouteParams)
+	}
 
-	/*
-	 * Extends collection controller from MbAbstractCtrl 
-	 */
-	angular.extend(this, $controller('MbSeenAbstractItemCtrl', {
-		$scope: $scope
-	}));
-
-	// Messages
-	var DELETE_MODEL_BINARY_MESSAGE = 'Delete binary content?';
-	var IMPLEMENT_BY_CHILDREN_ERROR = 'This method must be override in clild class';
 
 	// -------------------------------------------------------------------------
 	// Model
@@ -65,9 +64,9 @@ export default function($scope, $controller, $q, $window) {
 	 * @return promise to delete item
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.deleteModelBinary = function(/*item*/) {
-		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
-	};
+	deleteModelBinary(/*item*/) {
+		return this.$q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
+	}
 
 	/**
 	 * Upload model binary
@@ -76,9 +75,9 @@ export default function($scope, $controller, $q, $window) {
 	 * @return promise to delete item
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.uploadModelBinary = function(/*item*/) {
-		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
-	};
+	uploadModelBinary(/*item*/) {
+		return this.$q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
+	}
 
 	/**
 	 * Get model binary path
@@ -87,9 +86,9 @@ export default function($scope, $controller, $q, $window) {
 	 * @return promise to delete item
 	 * @memberof SeenAbstractItemCtrl
 	 */
-	this.getModelBinaryUrl = function(/*item*/) {
-		return $q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
-	};
+	getModelBinaryUrl(/*item*/) {
+		return this.$q.reject(IMPLEMENT_BY_CHILDREN_ERROR);
+	}
 
 
 
@@ -102,32 +101,32 @@ export default function($scope, $controller, $q, $window) {
 	//
 	//
 	// -------------------------------------------------------------------------
-//	this.itemUrl;
+	//	this.itemUrl;
 
 	/**
 	 * Sets itemUrl to view
 	 * 
 	 * @memberof SeenAbstractBinaryItemCtrl
 	 */
-	this.setItemUrl = function(itemUrl) {
+	setItemUrl(itemUrl) {
 		this.itemUrl = itemUrl;
-	};
+	}
 
 	/**
 	 * Get view itemUrl
 	 * 
 	 * @memberof SeenAbstractBinaryItemCtrl
 	 */
-	this.getItemUrl = function() {
+	getItemUrl() {
 		return this.itemUrl;
-	};
+	}
 
 	/**
 	 * Deletes item binary file
 	 * 
 	 * @memberof SeenAbstractBinaryItemCtrl
 	 */
-	this.deleteItemBinary = function($event) {
+	deleteItemBinary($event) {
 		// prevent default event
 		if ($event) {
 			$event.preventDefault();
@@ -153,27 +152,24 @@ export default function($scope, $controller, $q, $window) {
 		// TODO: maso, 2018: get current promise
 		// delete the item
 		if (this.isConfirmationRequired()) {
-			$window.confirm(DELETE_MODEL_BINARY_MESSAGE)
+			this.$window.confirm(DELETE_MODEL_BINARY_MESSAGE)
 				.then(function() {
 					return _deleteInternal();
 				});
 		} else {
 			return _deleteInternal();
 		}
-	};
-
+	}
 	/*
 	 * Extends init method
 	 */
-	this.supperInit = this.init;
-	this.init = function(configs) {
-//		var ctrl = this;
+	init(configs) {
+		//		var ctrl = this;
 		if (!angular.isDefined(configs)) {
 			return;
 		}
 		this.setItemUrl(configs.url);
 		this.supperInit(configs);
 	};
-
 }
 

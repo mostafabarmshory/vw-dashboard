@@ -1,46 +1,50 @@
 import templateUrl from './term-taxonomies.html';
+import MbSeenAbstractCollectionViewCtrl from '../../core/controllers/MbSeenAbstractCollectionViewCtrl';
+import $mbActions from 'mblowfish/src/services/mbActions';
+
+
+export class MbCmsTermTaxonomisCollectionViewCtrl extends MbSeenAbstractCollectionViewCtrl {
+	constructor($view, $scope, $q, $mbLog, MbAction, MbComponent, $cms) {
+		'ngInject';
+		super($view, $scope, $q, $mbLog, MbAction, MbComponent);
+		this.$cms = $cms;
+
+		this.init({
+			// dispatcher path and internal address
+			eventType: AMD_CMS_TERMTAXONOMIES_SP
+		});
+	}
+
+	// Override the schema function
+	getModelSchema() {
+		return this.$cms.termTaxonomySchema();
+	}
+
+	// get models
+	getModels(parameterQuery) {
+		return this.$cms.getTermTaxonomies(parameterQuery);
+	}
+
+	// get a model
+	getModel(id) {
+		return this.$cms.getTermTaxonomy(id);
+	}
+
+	deleteTermTaxonomy(termTaxonomy, $event) {
+		$event.values = [termTaxonomy];
+		$mbActions.exec(AMD_CMS_TERMTAXONOMIES_DELETE_ACTION, $event);
+	}
+}
+
 
 export default {
 	access: 'hasAnyRole("tenant.owner")',
 	title: 'Term taxonomis',
-//	controllerAs: 'ctrl',
+	//	controllerAs: 'ctrl',
 	templateUrl: templateUrl,
 	groups: ['Content Management'],
 	icon: 'class',
-	controller: function($scope, $cms, $controller, $view, $mbActions) {
-		'ngInject';
-		/*
-		 * Extends collection controller
-		 */
-		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
-			$scope: $scope,
-			$view: $view,
-		}));
-
-		// Override the schema function
-		this.getModelSchema = function() {
-			return $cms.termTaxonomySchema();
-		};
-
-		// get models
-		this.getModels = function(parameterQuery) {
-			return $cms.getTermTaxonomies(parameterQuery);
-		};
-
-		// get a model
-		this.getModel = function(id) {
-			return $cms.getTermTaxonomy(id);
-		};
-
-		this.deleteTermTaxonomy = function(termTaxonomy, $event) {
-			$event.values = [termTaxonomy];
-			$mbActions.exec(AMD_CMS_TERMTAXONOMIES_DELETE_ACTION, $event);
-		};
-
-		this.init({
-			eventType: AMD_CMS_TERMTAXONOMIES_SP,
-		});
-	},
+	controller: MbCmsTermTaxonomisCollectionViewCtrl,
 }
 
 

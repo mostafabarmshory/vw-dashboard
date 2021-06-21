@@ -1,5 +1,38 @@
 
 import templateUrl from './messages.html';
+import MbSeenAbstractCollectionCtrl from '../../core/controllers/MbSeenAbstractCollectionCtrl';
+
+export class MessageSideNavCtrl extends MbSeenAbstractCollectionCtrl {
+
+	constructor($scope, $q, $mbLog, $mbActions, QueryParameter, $usr) {
+		'ngInject';
+		super($scope, $q, $mbLog, $mbActions, QueryParameter);
+		this.$usr = $usr;
+		this.init({
+			eventType: AMD_ACCOUNT_MESSAGES_SP
+		});
+	}
+
+	// Override the schema function
+	getModelSchema() {
+		return this.$usr.messageSchema();
+	};
+
+	// get contents
+	getModels(parameterQuery) {
+		return this.$usr.getMessages(parameterQuery);
+	};
+
+	// get a content
+	getModel(id) {
+		return this.$usr.getMessage(id);
+	};
+
+	// delete account
+	deleteModel(item) {
+		return this.$usr.deleteMessage(item.id);
+	};
+}
 
 export default {
 	title: 'Messages',
@@ -8,38 +41,5 @@ export default {
 	locked: 'false',
 	position: 'end',
 	controllerAs: 'ctrl',
-	controller: function($scope, $usr, $controller) {
-		'ngInject';
-
-		/*
-		 * Extends collection controller
-		 */
-		angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-			$scope: $scope
-		}));
-
-		// Override the schema function
-		this.getModelSchema = function() {
-			return $usr.messageSchema();
-		};
-
-		// get contents
-		this.getModels = function(parameterQuery) {
-			return $usr.getMessages(parameterQuery);
-		};
-
-		// get a content
-		this.getModel = function(id) {
-			return $usr.getMessage(id);
-		};
-
-		// delete account
-		this.deleteModel = function(item) {
-			return $usr.deleteMessage(item.id);
-		};
-
-		this.init({
-			eventType: AMD_ACCOUNT_MESSAGES_SP
-		});
-	}
+	controller: MessageSideNavCtrl
 }
