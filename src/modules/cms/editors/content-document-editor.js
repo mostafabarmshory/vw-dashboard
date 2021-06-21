@@ -22,8 +22,120 @@
  * SOFTWARE.
  */
 import ParentApi from 'mblowfish/src/wp/ParentApi';
-import './content-document-editor.css';
+import MbSeenAbstractItemEditorCtrl from '../../core/controllers/MbSeenAbstractItemEditorCtrl';
 import Constants from '../Constants';
+import './content-document-editor.css';
+
+export class MbCmsContentDocumentEditor extends MbSeenAbstractItemEditorCtrl {
+
+	constructor($state, $element, $editor, $scope, $q,
+		$mbResource, $mbDispatcherUtil,
+		$cms, $mbLocal, CmsContent) {
+		'ngInject';
+		super($scope, $editor, $q);
+
+		this.$mbResource = $mbResource;
+		this.$mbDispatcherUtil = $mbDispatcherUtil;
+		this.$mbLocal = $mbLocal;
+
+		this.iframe = $element.find('iframe');
+		this.parent = window;
+		this.child = this.iframe[0].contentWindow || iframe[0].contentDocument.parentWindow;
+
+		//------------------------------------------------------------------
+		// init
+		//------------------------------------------------------------------\
+		$cms
+			.getContent($state.params.contentId, {
+				graphql: '{id,media_type,mime_type,metas{id,key,value}}'
+			})
+			.then(contentData => {
+				var content = new CmsContent(contentData);
+				this
+					.setTitle('Content:' + content.id)
+					.setModel(content)
+					.setStorePath(Constants.AMD_CMS_CONTENT_SP);
+				this.iframe
+					.attr('src', `/vw-document/?api=wp&version=1&language=${this.getLanguage()}`)
+					.on('load', () => {
+						ParentApi
+							.connect(contentData, this.parent, this.child, '*')
+							.then(parentApi => this.connectApi(parentApi))
+					})
+					.on('error', () => {
+						// TODO: maso, 2021: fail to load inner web application
+					});
+			});
+	}
+
+
+	connectApi(parentApi) {
+		this.api = parentApi;
+		this.api
+			.on('resource', (config) => this.getResource(config))
+			.on('change', () => $editor.setDerty(true))
+			.on('save', value => this.saveEditorContent(value))
+			.on('delete', () => this.deleteModel());
+		this.loadEditorDescription();
+		this.loadEditorContent();
+		// fire loaded
+	}
+
+	getResource(config) {
+		this.$mbResource
+			.get(config.type) // TODO: maso, 2021: set event target
+			.then(value => this.api.call(config.call, value));
+	}
+
+	loadEditorDescription() {
+		// inner editor
+		var model = this.getModel();
+		this.api.call('setTitle', model.title);
+		this.api.call('setDescription', model.description);
+	}
+
+	loadEditorContent() {
+		var model = this.getModel();
+		model.downloadValue()
+			.then(value => {
+				this.api.call('setDerty', false);
+				this.api.call('setValue', value);
+				this.$editor.setDerty(false);
+			})
+	}
+
+	saveEditorContent(value) {
+		var model = this.getModel();
+		model.uploadValue(value)
+			.then(newContent => {
+				this.$mbDispatcherUtil.fireUpdated(Constants.AMD_CMS_CONTENT_SP, {
+					values: [newContent]
+				});
+				this.api.call('setDerty', false);
+				this.$editor.setDerty(false);
+			})
+	}
+
+	getLanguage() {
+		var language = this.$mbLocal.getLanguage();
+		var model = this.getModel();
+		let metas = model.metas || [];
+		metas.forEach(meta => {
+			if (meta.key === 'language') {
+				language = meta.value;
+			}
+		});
+		return language;
+	}
+}
+
+
+
+
+
+
+
+
 /*
 
 @see https://github.com/mozilla/pdf.js/wiki/Viewer-options
@@ -37,114 +149,6 @@ export default {
 		'text/html',
 		'application/weburger+json'
 	],
-	controller: function(
-		$state, $element, $editor, $scope,
-		$mbResource, $mbDispatcherUtil,
-		$cms, $mbLocal, $controller, CmsContent) {
-		'ngInject';
-
-		angular.extend(this, $controller('MbSeenAbstractItemEditorCtrl', {
-			$scope: $scope,
-			$element: $element,
-			$editor: $editor
-		}));
-
-
-		let api;
-		let content;
-		let iframe = $element.find('iframe');
-		let parent = window;
-		let child = iframe[0].contentWindow || iframe[0].contentDocument.parentWindow;
-
-		function connectApi(parentApi) {
-			api = parentApi;
-			api
-				.on('resource', (config) => getResource(config))
-				.on('change', () => $editor.setDerty(true))
-				.on('save', value => saveEditorContent(value))
-				.on('delete', () => this.deleteModel());
-			loadEditorDescription();
-			loadEditorContent();
-			// fire loaded
-		}
-
-		function getResource(config) {
-			$mbResource
-				.get(config.type) // TODO: maso, 2021: set event target
-				.then(value => api.call(config.call, value));
-		}
-
-		function loadEditorDescription() {
-			// inner editor
-			api.call('setTitle', content.title);
-			api.call('setDescription', content.description);
-		}
-
-		function loadEditorContent() {
-			content.downloadValue()
-				.then(value => {
-					api.call('setDerty', false);
-					api.call('setValue', value);
-
-					$editor.setDerty(false);
-				})
-		}
-
-		function saveEditorContent(value) {
-			content.uploadValue(value)
-				.then(newContent => {
-					$mbDispatcherUtil.fireUpdated(Constants.AMD_CMS_CONTENT_SP, {
-						values: [newContent]
-					});
-					api.call('setDerty', false);
-					$editor.setDerty(false);
-				})
-		}
-
-		function getLanguage() {
-			var language = $mbLocal.getLanguage();
-			let metas = content.metas || [];
-			metas.forEach(meta => {
-				if (meta.key === 'language') {
-					language = meta.value;
-				}
-			});
-			return language;
-		}
-
-		//------------------------------------------------------------------
-		// init
-		//------------------------------------------------------------------\
-		$cms
-			.getContent($state.params.contentId, {
-				graphql: '{id,media_type,mime_type,metas{id,key,value}}'
-			})
-			.then(contentData => {
-				content = new CmsContent(contentData);
-				this
-					.setTitle('Content:' + content.id)
-					.setModel(content)
-					.setStorePath(Constants.AMD_CMS_CONTENT_SP);
-				iframe
-					.attr('src', `/vw-document/?api=wp&version=1&language=${getLanguage()}`)
-					.on('load', () => {
-						ParentApi
-							.connect(contentData, parent, child, '*')
-							.then(parentApi => connectApi(parentApi))
-					})
-					.on('error', () => {
-						// TODO: maso, 2021: fail to load inner web application
-					});
-			});
-	}
+	controller: MbCmsContentDocumentEditor
 }
-
-
-
-
-
-
-
-
-
 // https://www.viraweb123.ir/vw-document/?url=/api/v2/cms/contents/13688/content

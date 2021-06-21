@@ -22,38 +22,45 @@
  * SOFTWARE.
  */
 
+import MbSeenAbstractItemEditorCtrl from '../../core/controllers/MbSeenAbstractItemEditorCtrl';
+
+export class MbCmsContentPdfEditor extends MbSeenAbstractItemEditorCtrl {
+
+	constructor($state, $element, $cms, $httpParamSerializer) {
+		'ngInject';
+		super($scope, $editor, $q);
+		this.loadObject();
+		this.$cms = $cms;
+		this.$state = $state;
+		this.$element = $element;
+		this.$httpParamSerializer = $httpParamSerializer;
+	}
+
+	loadObject() {
+		this.$cms.getContent(this.$state.params.contentId)
+			.then(function(content) {
+				_.assign(content, {
+					url: '/api/v2/cms/contents/' + content.id + '/content'
+				});
+				this.$element.find('iframe')
+					.attr('src', '/vw-pdf/web/viewer.html?' + this.$httpParamSerializer(content))
+					.css({
+						'flex-grow': 1,
+						'border': 'none',
+						'overflow': 'hidden'
+					});
+			});
+	}
+}
+
+
 export default {
 	title: 'PDF Viewer',
 	icon: 'text',
 	template: '<iframe></iframe>',
 	controllerAs: 'ctrl',
 	supportedMimetypes: ['application/pdf'],
-	controller: function($state, $element, $cms, $httpParamSerializer) {
-		'ngInject';
-		//------------------------------------------------------------------
-		// Functions
-		//------------------------------------------------------------------\
-		function loadObject() {
-			$cms.getContent($state.params.contentId)
-				.then(function(content) {
-					_.assign(content, {
-						url: '/api/v2/cms/contents/' + content.id + '/content'
-					});
-					$element.find('iframe')
-						.attr('src', '/vw-pdf/web/viewer.html?' + $httpParamSerializer(content))
-						.css({
-							'flex-grow': 1,
-							'border': 'none',
-							'overflow': 'hidden'
-						});
-				});
-		}
-
-		//------------------------------------------------------------------
-		// init
-		//------------------------------------------------------------------
-		loadObject();
-	},
+	controller: MbCmsContentPdfEditor,
 }
 
 

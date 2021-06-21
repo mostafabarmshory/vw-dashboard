@@ -35,9 +35,9 @@ var graphqlQuery =
 	'metas{id,key,value}}';
 
 export class MbCmsContentPropertiesEditorCtrl extends MbSeenAbstractItemCtrl{
-	constructor($scope){
+	constructor($scope, $q, $window, $mbRouteParams){
 		'ngInject';
-		super($scope)
+		super($scope, $q, $window, $mbRouteParams)
 	}
 }
 

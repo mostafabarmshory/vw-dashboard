@@ -1,44 +1,39 @@
 
 import templateUrl from './spa.html';
+import MbSeenAbstractItemEditorCtrl from '../../core/controllers/MbSeenAbstractItemEditorCtrl';
+
+
+export class MbCmsContentPropertiesEditorCtrl extends MbSeenAbstractItemEditorCtrl {
+	constructor($scope, $editor, $q, $tenant, $state) {
+		'ngInject';
+		super($scope, $editor, $q);
+		this.$tenant = $tenant;
+		this.$state = $state;
+		this.reload();
+	}
+
+	/**
+	 Reload data
+	
+	This is called if the model is required to reload.
+	 */
+	reload() {
+		var job = this.$tenant.getSpa(this.$state.params.spaId)//
+			.then((model) => {
+				this
+					.setStorePath(TENANT_SPAS_SP)
+					.setTitle('SPA: ' + model.id)
+					.setModel(model);
+				return model.getPossibleTransitions();
+			})
+			.then((transList) => this.setTransitions(transList.items));
+		// Editor knows which is the current job
+		return this.setJob(job);
+	};
+}
+
 
 export default {
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
-	/**
-	SPA Editor Controller
-	
-	@ngInject
-	 */
-	controller: function($scope, $tenant, $state, $controller, $editor) {
-
-		// Extends with ItemsController
-		angular.extend(this, $controller('MbSeenAbstractItemEditorCtrl', {
-			$scope: $scope,
-			$editor: $editor
-		}));
-
-		/**
-		 Reload data
-	
-		This is called if the model is required to reload.
-		 */
-		this.reload = function() {
-			var ctrl = this;
-			var job = $tenant.getSpa($state.params.spaId)//
-				.then(function(model) {
-					ctrl
-						.setStorePath(TENANT_SPAS_SP)
-						.setModel(model);
-					return model.getPossibleTransitions();
-				})//
-				.then(function(transList) {
-					ctrl
-						.setTransitions(transList.items);
-				});
-			// Editor knows which is the current job
-			return this.setJob(job);
-		};
-
-		this.reload();
-	},
+	controller: MbCmsContentPropertiesEditorCtrl,
 }

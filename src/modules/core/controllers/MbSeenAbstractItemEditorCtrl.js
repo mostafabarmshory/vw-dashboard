@@ -117,6 +117,15 @@ export default class MbSeenAbstractItemEditorCtrl extends MbSeenAbstractCtrl {
 	}
 
 	/**
+	Gets current model
+	
+	@returns {Object} the model
+	 */
+	getModel() {
+		return this.model;
+	}
+
+	/**
 	 Adds the given transition to object. 
 
 	In other word, do some transaction on SPA.
@@ -248,17 +257,17 @@ export default class MbSeenAbstractItemEditorCtrl extends MbSeenAbstractCtrl {
 	}
 
 	setTitle(title) {
-		$editor.setTitle(title);
+		this.$editor.setTitle(title);
 		return this;
 	}
 
 	setDerty(derty) {
-		$editor.setDerty(derty);
+		this.$editor.setDerty(derty);
 		return this;
 	}
 
 	isDerty() {
-		return $editor.isDerty();
+		return this.$editor.isDerty();
 	}
 
 }
