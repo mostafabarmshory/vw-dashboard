@@ -46,7 +46,7 @@
 		"generate-json-webpack-plugin": "^2.0.0"
 	},
 	"dependencies": {
-		"mblowfish": "file:/home/maso/git/mblowfish/mblowfish-core"
+		"mblowfish": "file:/home/maso/git/viraweb123/mblowfish"
 	},
 	"peerDependencies": {},
 	"peerDependenciesMeta": {},
