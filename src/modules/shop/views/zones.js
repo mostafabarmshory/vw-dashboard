@@ -34,7 +34,6 @@ export default {
 	title: 'Zones',
 	icon: 'layers',
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner")',
 	controller: function($scope, $view, $controller, $shop) {

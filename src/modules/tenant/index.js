@@ -47,6 +47,11 @@ import settingsSecurityView from './views/security-settings';
 import repoSpasView from './views/repository-spas';
 
 
+import tenantNewWizard from './wizards/new-tenant/wizard';
+import tenantInfoWizardPage from './wizards/new-tenant/tenant-info';
+import tenantDomainWizardPage from './wizards/new-tenant/tenant-domain';
+
+
 import Constants from './Constants';
 
 mblowfish
@@ -80,6 +85,10 @@ mblowfish
 	.view('/tenant/settings/security', settingsSecurityView)
 	.view(TENANT_TENANTS_VIEW_PATH, tenatnsView)
 	.view(TENANT_SPAS_VIEW, spasView)
+	
+	.wizardPage(Constants.TENANT_NEW_WIZARD + '#domain', tenantDomainWizardPage)
+	.wizardPage(Constants.TENANT_NEW_WIZARD + '#info', tenantInfoWizardPage)
+	.wizard(Constants.TENANT_NEW_WIZARD, tenantNewWizard)
 
 	/**
 	Integerate wtih 

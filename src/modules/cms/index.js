@@ -22,15 +22,22 @@
 import mblowfish from 'mblowfish';
 
 // >> actions
-import contentsCreateAction from './actions/contents-create';
-import contentsEditAction from './actions/contents-edit';
-import contentsMetadataDeleteAction from './actions/contents-metadata-delete';
-import contentsNewPageAction from './actions/contents-newPage';
-import contentPropertiesAction from './actions/contents-properties';
-import termTaxonomiesCreateAction from './actions/term-taxonomies-create';
-import termTaxonomiesDeleteAction from './actions/term-taxonomies-delete';
-import termCrateAction from './actions/terms-create';
-import termDeleteAction from './actions/terms-delete';
+import {
+	createContents,
+	editContents,
+	createNewPage,
+	deleteContentMetadata,
+	openContentProperties
+} from './actions/contents';
+
+import {
+	createTermTaxonomies,
+	deleteTermTaxonomies
+} from './actions/term-taxonomies';
+import {
+	createTerms,
+	deleteTerms
+} from './actions/terms';
 // >> controllers
 import MbCmsContentUrlResourceCtrl from './controllers/MbCmsContentUrlResourceCtrl';
 import MbCmsContentsCtrl from './controllers/MbCmsContentsCtrl';
@@ -77,21 +84,60 @@ import contentNewPageWizard from './wizards/new-page/wizard';
 
 
 
-import Constants from './Constants';
+import * as Constants from './Constants';
 
 mblowfish
 	.addConstants(Constants)
 
 	// >> actions
-	.action(AMD_CMS_CONTENTS_CREATE_ACTION, contentsCreateAction)
-	.action(AMD_CMS_CONTENTS_EDIT_ACTION, contentsEditAction)
-	.action(AMD_CMS_CONTENT_METADATA_DELET_ACTION, contentsMetadataDeleteAction)
-	.action(AMD_CMS_CONTENTS_NEWPAGE_ACTION, contentsNewPageAction)
-	.action(AMD_CMS_CONTENTS_PROPERTIES_ACTION, contentPropertiesAction)
-	.action(AMD_CMS_TERMTAXONOMIES_CREATE_ACTION, termTaxonomiesCreateAction)
-	.action(AMD_CMS_TERMTAXONOMIES_DELETE_ACTION, termTaxonomiesDeleteAction)
-	.action(AMD_CMS_TERMS_CREATE_ACTION, termCrateAction)
-	.action(AMD_CMS_TERMS_DELETE_ACTION, termDeleteAction)
+	.action(Constants.AMD_CMS_CONTENTS_CREATE_ACTION, {
+		icon: 'new',
+		title: 'New Content',
+		description: 'Creates a new content',
+		group: 'CMS',
+		action: createContents,
+	})
+	.action(Constants.AMD_CMS_CONTENTS_EDIT_ACTION, {
+		demon: true,
+		action: editContents,
+	})
+	.action(Constants.AMD_CMS_CONTENTS_NEWPAGE_ACTION, {
+		icon: 'add',
+		title: 'New Page',
+		description: 'Creates a new page',
+		group: 'CMS',
+		action: createNewPage,
+	})
+	.action(Constants.AMD_CMS_CONTENT_METADATA_DELET_ACTION, {
+		demon: true,
+		action: deleteContentMetadata,
+	})
+	.action(Constants.AMD_CMS_CONTENTS_PROPERTIES_ACTION, {
+		demon: true,
+		action: openContentProperties,
+	})
+	.action(Constants.AMD_CMS_TERMTAXONOMIES_CREATE_ACTION, {
+		icon: 'add',
+		title: 'New Term Taxonomy',
+		description: 'Creates a new teram-taxonomy',
+		group: 'CMS',
+		action: createTermTaxonomies,
+	})
+	.action(Constants.AMD_CMS_TERMTAXONOMIES_DELETE_ACTION, {
+		demon: true,
+		action: deleteTermTaxonomies,
+	})
+	.action(Constants.AMD_CMS_TERMS_CREATE_ACTION, {
+		icon: 'add',
+		title: 'New Term',
+		description: 'Creates a new teram',
+		group: 'CMS',
+		action: createTerms,
+	})
+	.action(Constants.AMD_CMS_TERMS_DELETE_ACTION, {
+		demon: true,
+		action: deleteTerms,
+	})
 
 	// >> controller
 	.controller('MbCmsContentUrlResourceCtrl', MbCmsContentUrlResourceCtrl)

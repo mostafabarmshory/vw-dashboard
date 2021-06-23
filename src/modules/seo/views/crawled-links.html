@@ -60,7 +60,7 @@
 					<md-menu-divider></md-menu-divider>
 					<md-menu-item>
 						<md-button 
-							ng-click="ctrl.deleteItem(object)" 
+							ng-click="ctrl.execOnModel(SEEN_MODEL_DELETE_ACTION, object, $event)" 
 							aria-label="Delete content">
 							<mb-icon>delete</mb-icon>
 							<span translate>Delete</span>

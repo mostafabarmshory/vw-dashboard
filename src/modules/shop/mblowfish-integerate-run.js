@@ -3,8 +3,6 @@
 export default function($mbToolbar) {
 	'ngInject';
 	// Contribute actions to views
-	$mbToolbar.getToolbar(AMD_SHOP_CATEGORIES_VIEW)
-		.addAction(AMD_SHOP_CATEGORY_CREATE_ACTION);
 
 	$mbToolbar.getToolbar(AMD_SHOP_PRODUCTS_VIEW)
 		.addAction(AMD_SHOP_PRODUCT_CREATE_ACTION);
@@ -24,6 +22,7 @@ export default function($mbToolbar) {
 		
 	// Contribute to categories toolbar
 	$mbToolbar.getToolbar(AMD_SHOP_CATEGORIES_VIEW)
+		.addAction(AMD_SHOP_CATEGORY_CREATE_ACTION)
 		.addAction(AMD_SHOP_CATEGORY_IMPORTJSON_ACTION);
 	/*
 	This is equal to :

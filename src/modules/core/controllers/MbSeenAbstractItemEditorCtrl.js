@@ -1,3 +1,5 @@
+import $mbActions from 'mblowfish/src/services/mbActions';
+import MbSeenAbstractCtrl from './MbSeenAbstractCtrl';
 
 /**
 This is a general implementaint of an item editor controller.
@@ -32,17 +34,15 @@ To setup the controller:
 	this.setModel(model)
 		.setStorePath(stoerPath);
 
-@ngInject
  */
-export default function($scope, $controller, $editor,
-	$mbActions) {
+export default class MbSeenAbstractItemEditorCtrl extends MbSeenAbstractCtrl {
 
-	/*
-	 * Extends collection controller from MbAbstractCtrl 
-	 */
-	angular.extend(this, $controller('MbSeenAbstractCtrl', {
-		$scope: $scope
-	}));
+	constructor($scope, $editor, $q) {
+		'ngInject';
+		super($scope, $q);
+		this.$editor = $editor;
+	}
+
 
 	/*
 	 Generate default event handler
@@ -50,7 +50,7 @@ export default function($scope, $controller, $editor,
 	 If you are about to handle event with a custom function, please
 	 override this function.
 	 */
-	this.eventHandlerCallBack = function() {
+	eventHandlerCallBack() {
 		if (this.$eventHandlerCallBack) {
 			return this.$eventHandlerCallBack;
 		}
@@ -68,7 +68,7 @@ export default function($scope, $controller, $editor,
 			}
 			switch ($event.key) {
 				case 'delete':
-					$editor.close();
+					this.$editor.close();
 					break;
 				default:
 					if (_.isFunction(ctrl.reload)) {
@@ -78,7 +78,7 @@ export default function($scope, $controller, $editor,
 			}
 		};
 		return this.$eventHandlerCallBack;
-	};
+	}
 
 	/**
 	Sets the store path
@@ -89,7 +89,7 @@ export default function($scope, $controller, $editor,
 	@returns the controller itself
 	@memberof SeenAbstractItemEditorCtrl
 	 */
-	this.setStorePath = function(storePath) {
+	setStorePath(storePath) {
 		if (this.storePath === storePath) {
 			return this;
 		}
@@ -100,7 +100,7 @@ export default function($scope, $controller, $editor,
 		this.storePath = storePath;
 		this.addEventHandler(this.storePath, callback);
 		return this;
-	};
+	}
 
 	/**
 	Sets the model
@@ -111,10 +111,19 @@ export default function($scope, $controller, $editor,
 	@returns the controller itself
 	@memberof SeenAbstractItemEditorCtrl
 	 */
-	this.setModel = function(model) {
+	setModel(model) {
 		this.model = model;
 		return this;
-	};
+	}
+
+	/**
+	Gets current model
+	
+	@returns {Object} the model
+	 */
+	getModel() {
+		return this.model;
+	}
 
 	/**
 	 Adds the given transition to object. 
@@ -126,11 +135,11 @@ export default function($scope, $controller, $editor,
 	@returns a promise to complete the job
 	@memberof SeenAbstractItemEditorCtrl
 	 */
-	this.putTransition = function(transition, $event) {
+	putTransition(transition, $event) {
 		return this.execOnModel(SEEN_MODEL_TRANSITIONS_CREATE, _.assign($event || {}, {
 			transition: transition,
 		}));
-	};
+	}
 
 	/**
 	 Call general delete action on a seen model.
@@ -138,9 +147,9 @@ export default function($scope, $controller, $editor,
 	@returns a promise to complete the job
 	@memberof SeenAbstractItemEditorCtrl
 	 */
-	this.deleteModel = function($event) {
+	deleteModel($event) {
 		return this.execOnModel(SEEN_MODEL_DELETE_ACTION, $event);
-	};
+	}
 
 	/**
 	 Call general update action on a seen model.
@@ -148,13 +157,10 @@ export default function($scope, $controller, $editor,
 	@returns a promise to complete the job
 	@memberof SeenAbstractItemEditorCtrl
 	 */
-	this.updateModel = function($event) {
-		var ctrl = this;
+	updateModel($event) {
 		return this.execOnModel(SEEN_MODEL_UPDATE_ACTION, $event)
-			.then(function() {
-				ctrl.setDerty(false);
-			});
-	};
+			.then(() => this.setDerty(false));
+	}
 
 	/**
 	Execute a command on the current model item
@@ -168,7 +174,7 @@ export default function($scope, $controller, $editor,
 	@memberof SeenAbstractItemEditorCtrl
 	
 	 */
-	this.execOnModel = function(commandId, $event) {
+	execOnModel(commandId, $event) {
 		var
 			updateModelFunction,
 			deleteModelFunction,
@@ -189,23 +195,42 @@ export default function($scope, $controller, $editor,
 			updateModel: updateModelFunction,
 			deleteModel: deleteModelFunction,
 		})));
-	};
+	}
+
+
+
+
+	/**
+	Execute a command on the a model item
+	
+	@param Object model to execute on
+	@param String commandId to execute
+	@param Event $event related to the source event
+	@returns a promise to complete the job
+	@memberof SeenAbstractItemEditorCtrl
+	
+	 */
+	execOn(model, commandId, $event) {
+		return this.setJob($mbActions.exec(commandId, _.assign($event || {}, {
+			values: [model],
+		})));
+	}
 
 	/**
 	Clears all errors and unlock the editor
 	 */
-	this.clearError = function() {
+	clearError() {
 		// XXX: maso, 2020: clear all errors
-	};
+	}
 
 	/**
 	Display error and loack the editor
 	
 	The error is 'Object Not Found'
 	 */
-	this.setObjectNotFoundError = function() {
+	setObjectNotFoundError() {
 		// XXX: maso, 2020: load error in editor area
-	};
+	}
 
 	/**
 	Sets current controller job
@@ -217,32 +242,32 @@ export default function($scope, $controller, $editor,
 	@returns a promise to complete the job
 	@memberof SeenAbstractItemEditorCtrl
 	 */
-	this.setJob = function(prommise) {
+	setJob(prommise) {
 		var ctrl = this;
 		this.isBusy = prommise
 			.finally(function() {
 				delete ctrl.isBusy;
 			});
 		return this.isBusy;
-	};
+	}
 
-	this.setTransitions = function(transitions) {
+	setTransitions(transitions) {
 		this.transitions = transitions;
 		return this;
-	};
+	}
 
-	this.setTitle = function(title) {
-		$editor.setTitle(title);
+	setTitle(title) {
+		this.$editor.setTitle(title);
 		return this;
-	};
+	}
 
-	this.setDerty = function(derty) {
-		$editor.setDerty(derty);
+	setDerty(derty) {
+		this.$editor.setDerty(derty);
 		return this;
-	};
+	}
 
-	this.isDerty = function() {
-		return $editor.isDerty();
-	};
+	isDerty() {
+		return this.$editor.isDerty();
+	}
+
 }
-

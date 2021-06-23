@@ -2,8 +2,9 @@
 import templateUrl from './tenants.html';
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	groups: ['Tenant'],
 	title: 'Tenants',
 	icon: 'business',

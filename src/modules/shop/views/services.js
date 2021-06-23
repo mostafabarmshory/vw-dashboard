@@ -33,7 +33,6 @@ export default {
 	title: 'Services',
 	icon: 'cloud_upload',
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function($scope, $controller, $shop, $view) {

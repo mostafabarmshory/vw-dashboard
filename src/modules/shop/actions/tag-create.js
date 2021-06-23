@@ -27,33 +27,43 @@ export default {// create new tag menu
 	description: 'Creates new tag',
 	group: 'Shop',
 	preAuthorize: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
-	action: function($shop, $mbTranslate, $event, $mbDispatcherUtil, $mbDynamicForm) {
+	action: function($shop, $event, $mbDispatcherUtil, $mbDynamicForm, $mbActions, $q) {
 		'ngInject';
 		var data = {};
 		var values = $event.values;
-		if (values && values.length) {
-			data = values[0];
+		if (!values || !Array.isArray(values) || values.length < 1) {
+			// TODO: maso, 2020: add the job into the job lists
+			// $app.addJob('Adding new shop category', job);
+			return $shop.tagSchema()
+				.then(function(schema) {
+					return $mbDynamicForm
+						.openDialog({
+							title: 'New Tag',
+							schema: schema,
+							data: data
+						})
+						.then(function(itemData) {
+							$event.values = [itemData];
+							return $mbActions.exec(AMD_SHOP_TAG_CREATE_ACTION, $event);
+						});
+				});
 		}
 
-		// TODO: maso, 2020: add the job into the job lists
-		// $app.addJob('Adding new shop category', job);
-		return $shop.tagSchema()
-			.then(function(schema) {
-				return $mbDynamicForm
-					.openDialog({
-						title: 'New Tag',
-						schema: schema,
-						data: data
-					})
-					.then(function(itemData) {
-						return $shop.putTag(itemData)
-							.then(function(item) {
-								$mbDispatcherUtil.fireCreated(AMD_SHOP_TAG_SP, [item]);
-							}, function() {
-								alert($mbTranslate.instant('Failed to create a new tag.'));
-							});
-					});
+
+
+		var jobs = [],
+			models = [];
+		values.forEach(value => {
+			jobs.push($shop.putTag(value)
+				.then(function(tag) {
+					models.push(tag);
+				}));
+		});
+
+		return $q.all(jobs)
+			.then(function() {
+				$mbDispatcherUtil.fireCreated(AMD_SHOP_TAG_SP, models);
+				return models;
 			});
 	},
 }
-	

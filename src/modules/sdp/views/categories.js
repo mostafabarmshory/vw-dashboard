@@ -1,10 +1,10 @@
 import templateUrl from './categories.html';
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	templateUrl: templateUrl,
 	title: 'Categories',
 	icon: 'category',
 	groups: ['Digital Assets'],
-	controllerAs: 'ctrl',
 	controller: function($scope, $view, $sdp, $controller, MbAction) {
 		'ngInject';
 
@@ -31,7 +31,7 @@ export default {
 		this.init({
 			eventType: SDP_CATEGORIES_SP,
 		});
-		
+
 
 		var ctrl = this;
 		$view.getToolbar()

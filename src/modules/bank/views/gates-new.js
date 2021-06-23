@@ -1,9 +1,9 @@
 mblowfish.addView('/bank/gates-new', {
+	access: 'hasAnyRole("tenant.owner")',
 	title: 'New bank gate',
 	icon: 'add',
 	templateUrl: 'scripts/module-bank/views/gates-new.html',
 	groups: ['Finance'],
-	controllerAs: 'ctrl',
 	controller: function($scope, $bank, $mbActions) {
 		'ngInject';
 		/**

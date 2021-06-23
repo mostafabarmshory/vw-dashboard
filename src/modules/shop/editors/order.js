@@ -30,7 +30,7 @@ import templatUrl from './order.html';
 @description load the order
  */
 export default {
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	templateUrl: templatUrl,
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: 'AmdShopOrderCtrl',

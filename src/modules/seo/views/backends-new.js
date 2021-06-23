@@ -1,11 +1,12 @@
 
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	title: 'New prerender backend',
 	groups: ['seo'],
 	icon: 'add',
 	templateUrl: 'scripts/module-seo/views/backends-new.html',
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	controller: function($scope, $seo, $navigator) {
 		var ctrl = {
 			status: 'relax'

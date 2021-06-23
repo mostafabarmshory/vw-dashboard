@@ -32,7 +32,6 @@ export default {
 	title: 'Delivers',
 	icon: 'local_shipping',
 	templateUrl: templateUrl,
-	controllerAs: 'ctrl',
 	groups: ['Shop'],
 	access: 'hasAnyRole("tenant.owner", "shop.zoneOwner", "shop.agencyOwner", "shop.staff")',
 	controller: function($scope, $controller, $view, $shop) {

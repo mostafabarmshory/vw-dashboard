@@ -22,40 +22,38 @@
  * SOFTWARE.
  */
 
-/**
+import MbSeenAbstractCollectionCtrl from '../../core/controllers/MbSeenAbstractCollectionCtrl';
 
-@ngInject
- */
-export default function($scope, $cms, $controller) {
+export default class MbCmsContentsCtrl extends MbSeenAbstractCollectionCtrl {
 
-    /*
-     * Extends collection controller
-     */
-	angular.extend(this, $controller('MbSeenAbstractCollectionCtrl', {
-		$scope: $scope
-	}));
+	constructor($scope, $q, $mbLog, $cms) {
+		'ngInject';
+		super($scope, $q, $mbLog);
+		this.$cms = $cms;
+
+
+		this.init({
+			eventType: AMD_CMS_TERMTAXONOMIES_SP
+		});
+	}
 
 	// Override the schema function
-	this.getModelSchema = function() {
-		return $cms.termTaxonomySchema();
-	};
+	getModelSchema() {
+		return this.$cms.termTaxonomySchema();
+	}
 
 	// get contents
-	this.getModels = function(parameterQuery) {
-		return $cms.getTermTaxonomies(parameterQuery);
-	};
+	getModels(parameterQuery) {
+		return this.$cms.getTermTaxonomies(parameterQuery);
+	}
 
 	// get a content
-	this.getModel = function(id) {
-		return $cms.getTermTaxonomy(id);
+	getModel(id) {
+		return this.$cms.getTermTaxonomy(id);
 	};
 
 	// delete account
-	this.deleteModel = function(content) {
-		return $cms.deleteTermTaxonomy(content.id);
-	};
-
-	this.init({
-		eventType: AMD_CMS_TERMTAXONOMIES_SP
-	});
+	deleteModel(content) {
+		return this.$cms.deleteTermTaxonomy(content.id);
+	}
 }

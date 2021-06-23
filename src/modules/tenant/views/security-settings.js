@@ -1,11 +1,12 @@
 import templateUrl from './security-settings.html';
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	templateUrl: templateUrl,
 	groups: ['Tenant'],
 	title: 'Security',
 	icon: 'font_download',
-	controllerAs: 'ctrl',
+//	controllerAs: 'ctrl',
 	controller: function($scope, $tenant, $q) {
 		'ngInject';
 		$scope.options = ['nocaptcha', 'recaptcha'];

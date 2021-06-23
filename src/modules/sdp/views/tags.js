@@ -1,11 +1,11 @@
 import templateUrl from './tags.html';
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	templateUrl: templateUrl,
 	title: 'Tags',
 	icon: 'label',
 	groups: ['Digital Assets'],
-	controllerAs: 'ctrl',
 	controller: function($scope, $view, $sdp, $controller, MbAction) {
 		'ngInject';
 

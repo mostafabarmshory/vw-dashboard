@@ -1,41 +1,63 @@
-
+/* 
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2016 weburger
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 import templateUrl from './spas.html';
+import MbSeenAbstractCollectionViewCtrl from '../../core/controllers/MbSeenAbstractCollectionViewCtrl';
+
+export class MbTenantSpasCollectionViewCtrl extends MbSeenAbstractCollectionViewCtrl {
+	constructor($view, $scope, $q, $mbLog, MbAction, MbComponent, $tenant) {
+		'ngInject';
+		super($view, $scope, $q, $mbLog, MbAction, MbComponent);
+		this.$tenant = $tenant;
+		this.init({
+			eventType: TENANT_SPAS_SP
+		});
+	}
+	/*
+	 * Overried the function
+	 */
+	getModelSchema() {
+		return this.$tenant.spaSchema();
+	}
+
+	// get spas
+	getModels(parameterQuery) {
+		return this.$tenant.getSpas(parameterQuery);
+	}
+
+	// get a spa
+	getModel(id) {
+		return this.$tenant.getSpa(id);
+	}
+}
 
 export default {
+	access: 'hasAnyRole("tenant.owner")',
 	templateUrl: templateUrl,
 	title: 'spas',
 	icon: 'apps',
 	groups: ['Tenant'],
-	controllerAs: 'ctrl',
-	controller: function($scope, $tenant, $view, $controller) {
-		'ngInject';
-
-		// Extends with ItemsController
-		angular.extend(this, $controller('MbSeenAbstractCollectionViewCtrl', {
-			$scope: $scope,
-			$view: $view
-		}));
-
-		/*
-		 * Overried the function
-		 */
-		this.getModelSchema = function() {
-			return $tenant.spaSchema();
-		};
-
-		// get spas
-		this.getModels = function(parameterQuery) {
-			return $tenant.getSpas(parameterQuery);
-		};
-
-		// get a spa
-		this.getModel = function(id) {
-			return $tenant.getSpa(id);
-		};
-
-		this.init({
-			eventType: TENANT_SPAS_SP
-		});
-
-	},
+	controller: MbTenantSpasCollectionViewCtrl,
 }
+
+

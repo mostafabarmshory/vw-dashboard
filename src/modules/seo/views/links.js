@@ -2,7 +2,8 @@ import templateUrl from './links.html';
 
 
 export default {
-	controllerAs: 'ctrl',
+	access: 'hasAnyRole("tenant.owner")',
+//	controllerAs: 'ctrl',
 	templateUrl: templateUrl,
 	groups: ['seo'],
 	title: 'Sitemap links',
