@@ -21,6 +21,9 @@
  */
 
 import $mbActions from 'mblowfish/src/services/mbActions';
+import $mbDispatcherUtil from 'mblowfish/src/services/mbDispatcherUtil';
+import { differenceCollection } from '../../core/Utiles';
+
 import {
 	AMD_CMS_CONTENTS_NEWPAGE_WIZARD,
 	AMD_CMS_CONTENT_SP,
@@ -28,11 +31,25 @@ import {
 	AMD_CMS_CONTENTS_CREATE_ACTION
 } from '../Constants';
 
+import {
+	SEEN_MODEL_DELETE_ACTION
+} from '../../core/Constants';
 
+/*
+Data model of a content in the system. 
+
+We suppose all contens loaded as follow. Then action in the part can run on them. There
+is an action to load based on this data model (so use the load action every time).
+
+ */
 const FullContentgraphqlQuery =
 	'{id,name,title,description,state,creation_dtime,modif_dtime,downloads,file_name,file_size,media_type,mime_type,' +
+	// -> originTermTaxonomies
 	'term_taxonomies{id,taxonomy,term{id,name}},' +
+	// -> originMetas
 	'metas{id,key,value}}';
+
+
 
 /**
 Creates new content
@@ -107,6 +124,108 @@ export function editContents($event, $amdCmsEditors) {
 	_.forEach(values, function(content) {
 		$amdCmsEditors.openContent(content, editorName);
 	});
+}
+
+export function readContents($event, $q, $cms, CmsContent) {
+	'ngInject';
+	var values = [];
+	if ($event) {
+		values = $event.values;
+	}
+	if (!values || !_.isArray(values)) {
+		return;
+	}
+
+	var
+		jobs = [],
+		models = [];
+	values.forEach((contentId) => {
+		jobs.push($cms.getContent(contentId, {
+			graphql: FullContentgraphqlQuery
+		}).then((data) => {
+			// load term taxonomies
+			if (data.term_taxonomies) {
+				data.originTermTaxonomies = data.term_taxonomies;
+				data.termTaxonomies = [...data.originTermTaxonomies];
+			}
+
+			// load metas
+			if (data.metas) {
+				data.originMetas = [...data.metas];
+			}
+
+			var content = new CmsContent(data);
+			models.push(content);
+		}));
+	});
+	return $q.all(jobs)
+		.then(() => {
+			$mbDispatcherUtil.fireRead(AMD_CMS_CONTENT_SP, models);
+			return models;
+		});
+}
+
+export function deleteContents($event) {
+	$event.storePath = AMD_CMS_CONTENT_SP;
+	return $mbActions.exec(SEEN_MODEL_DELETE_ACTION, $event);
+}
+
+export function updateContents($event, $q, CmsContent) {
+	'ngInject';
+	var values = [];
+	if ($event) {
+		values = $event.values;
+	}
+	if (!values || !_.isArray(values)) {
+		return;
+	}
+
+	var
+		jobs = [],
+		models = [];
+
+	values.forEach((content) => {
+		var
+			newCollection,
+			oldCollection,
+			innerJobs = [];
+
+		// update metas
+		newCollection = content.metas || [];
+		oldCollection = content.originMetas || [];
+		newCollection
+			.forEach(meta => {
+				if (meta.id < 0 || meta.derty) {
+					innerJobs.push(content.putMetadatum(meta));
+				}
+				delete meta.derty;
+			});
+		differenceCollection(oldCollection, newCollection)
+			.forEach(meta => innerJobs.push(content.deleteMetadatum(meta)));
+
+
+		// update term-taxonomies
+		newCollection = content.termTaxonomies || [];
+		oldCollection = content.originTermTaxonomies || [];
+		differenceCollection(newCollection, oldCollection)
+			.forEach(item => innerJobs.push(content.putTermTaxonomy(item)));
+		differenceCollection(oldCollection, newCollection)
+			.forEach(item => innerJobs.push(content.deleteTermTaxonomy(item)));
+
+
+		jobs.push($q.all(innerJobs)
+			.then(() => content.update())
+			.then((data) => {
+				var content = new CmsContent(data);
+				models.push(content);
+			}));
+	});
+
+	return $q.all(jobs)
+		.then(() => {
+			$mbDispatcherUtil.fireUpdated(AMD_CMS_CONTENT_SP, models);
+			return models;
+		});
 }
 
 export function createNewPage($event, $mbWizard) {

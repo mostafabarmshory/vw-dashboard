@@ -23,7 +23,7 @@
  */
 import ParentApi from 'mblowfish/src/wp/ParentApi';
 import MbSeenAbstractItemEditorCtrl from '../../core/controllers/MbSeenAbstractItemEditorCtrl';
-import Constants from '../Constants';
+import * as Constants from '../Constants';
 import './content-document-editor.css';
 
 export class MbCmsContentDocumentEditor extends MbSeenAbstractItemEditorCtrl {

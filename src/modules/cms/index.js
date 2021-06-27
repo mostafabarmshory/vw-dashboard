@@ -25,6 +25,9 @@ import mblowfish from 'mblowfish';
 import {
 	createContents,
 	editContents,
+	readContents,
+	deleteContents,
+	updateContents,
 	createNewPage,
 	deleteContentMetadata,
 	openContentProperties
@@ -100,6 +103,18 @@ mblowfish
 	.action(Constants.AMD_CMS_CONTENTS_EDIT_ACTION, {
 		demon: true,
 		action: editContents,
+	})
+	.action(Constants.AMD_CMS_CONTENTS_READ_ACTION, {
+		demon: true,
+		action: readContents,
+	})
+	.action(Constants.AMD_CMS_CONTENTS_DELETE_ACTION, {
+		demon: true,
+		action: deleteContents,
+	})
+	.action(Constants.AMD_CMS_CONTENTS_UPDATE_ACTION, {
+		demon: true,
+		action: updateContents,
 	})
 	.action(Constants.AMD_CMS_CONTENTS_NEWPAGE_ACTION, {
 		icon: 'add',

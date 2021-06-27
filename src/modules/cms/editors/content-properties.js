@@ -27,79 +27,51 @@ import templateUrl from './content-properties.html';
 import './content-properties.css';
 import {
 	AMD_CMS_CONTENT_SP,
+	AMD_CMS_CONTENTS_READ_ACTION,
+	AMD_CMS_CONTENTS_UPDATE_ACTION,
+	AMD_CMS_CONTENTS_UPLOAD_ACTION,
 	AMD_CMS_CONTENTS_DELETE_ACTION,
-	AMD_CMS_CONTENTS_UPDATE_ACTION,
-	AMD_CMS_CONTENTS_UPDATE_ACTION,
 	AMD_CMS_CONTENTS_TOCLIPBOARD_ACTION,
 } from '../Constants';
 import MbSeenAbstractItemEditorCtrl from '../../core/controllers/MbSeenAbstractItemEditorCtrl';
+import {
+	removeItemFromCollection
+} from '../../core/Utiles';
 
 
 
 export class MbCmsContentPropertiesEditorCtrl extends MbSeenAbstractItemEditorCtrl {
-	constructor($scope, $q, $window, $mbRouteParams) {
+	constructor($scope, $q, $editor, $state, $mbResource) {
 		'ngInject';
-		super($scope, $q, $window, $mbRouteParams);
-		this.setEventType(AMD_CMS_CONTENT_SP);
-		//		var contentTermTaxonomiesAssos = AMD_CMS_CONTENT_SP + '/' + $state.params.contentId + '/term-taxonomies';
+		super($scope, $editor, $q);
+		this.setStorePath(AMD_CMS_CONTENT_SP);
+		this.$state = $state;
+		this.$mbResource = $mbResource;
+		this.reload();
 	}
 
 
 	// Load content
-	reload() {
-		this.setJob($mbActions.exec('LoadFullContent')
-			.then(content => this.setModel(content)
-				.setTitle('Content:' + content.id)))
-		//		ctrl.isBusy = $cms
-		//			.getContent($state.params.contentId, {
-		//				graphql: graphqlQuery,
-		//			})//
-		//			.then(function(content) {
-		//				setContent(content);
-		//				setTermTaxonomies(content.term_taxonomies);
-		//				setMetadata(content.metas);
-		//				$editor.setTitle('Content:' + content.id);
-		//			})
-		//			.finally(function() {
-		//				delete ctrl.isBusy;
-		//			});
+	reload($event) {
+		return this.setJob(this.execOn(this.$state.params.contentId, AMD_CMS_CONTENTS_READ_ACTION, $event)
+			.then(contents => {
+				var content = contents[0];
+				this.setModel(content);
+				this.setTitle('Content:' + content.id);
+				this.setDerty(false);
+			}));
 	}
 
 
 	//-------------------------------------------------------------------------
 	// functions: content
 	//-------------------------------------------------------------------------
-
-	/**
-	Deletes content 
-	
-	 */
 	deleteContent($event) {
 		return this.execOn(this.model, AMD_CMS_CONTENTS_DELETE_ACTION, $event);
-		//		return confirm('Delete the content?', $event)//
-		//			.then(function() {
-		//				return content.delete()
-		//					.then(function() {
-		//						ctrl.fireDeleted(AMD_CMS_CONTENT_SP, content);
-		//					}, function(/*error*/) {
-		//						// TODO: maso, 2020: log error
-		//						alert('fail to delete content.');
-		//					});
-		//			});
 	}
 
-	updateContent() {
+	updateContent($event) {
 		return this.execOn(this.model, AMD_CMS_CONTENTS_UPDATE_ACTION, $event);
-		//		ctrl.isCuntentBusy = content.update()//
-		//			.then(function(newContent) {
-		//				ctrl.fireUpdated(AMD_CMS_CONTENT_SP, newContent);
-		//			}, function() {
-		//				alert('An error is occured while updating content.');
-		//			})
-		//			.finally(function() {
-		//				delete ctrl.isCuntentBusy;
-		//			});
-		//		return ctrl.isCuntentBusy;
 	}
 
 	uploadFile($event) {
@@ -129,258 +101,103 @@ export class MbCmsContentPropertiesEditorCtrl extends MbSeenAbstractItemEditorCt
 		//			$clipboard.copyTo(this.content);
 		// TODO: maso, 2019: add notify
 	}
+
+
+	//----------------------------------------------------------------------------
+	// Meta fields
+	//----------------------------------------------------------------------------
+	removeMeta(meta) {
+		this.model.metas = removeItemFromCollection(this.model.metas, meta);
+		this.setDerty(true);
+	}
+
+	addMeta($key, $value) {
+		$key = $key || 'key';
+		var $meta = {
+			id: -1000 * Math.random(),
+			key: $key,
+			value: $value,
+		};
+		this.model.metas.push($meta);
+		this.setMetaDerty($meta);
+	}
+
+	setMetaDerty ($meta) {
+		$meta.derty = true;
+		this.setDerty(true);
+	}
+
+	setMetaValueByResource($meta, $type, $event) {
+		$type = $type || guessResourceTypeFromName($meta.key);
+		return this.$mbResource
+			.get($type, {
+				targetEvent: $event
+			})//
+			.then((data) => {
+				$meta.value = data;
+				this.setMetaDerty($meta);
+			});
+	}
+
+	setMetaValue($key, $value) {
+		var $meta;
+		this.model.metas.forEach(meta => {
+			if (meta.key === $key) {
+				$meta = meta;
+			}
+		});
+		if ($meta) {
+			$meta.value = $value;
+			this.setMetaDerty($meta);
+			return;
+		}
+		return this.addMetafield($key, $value);
+	}
+
+
+	//---------------------------------------------------
+
+	addTermTaxonomy($event) {
+		return this.$mbResource
+			.get(AMD_CMS_TERMTAXONOMIES_RT, {
+				style: {
+					title: 'Term taxonomy',
+				},
+				targetEvent: $event,
+			})
+			.then((termTaxonomies) => {
+				termTaxonomies.forEach((tt) => {
+					this.model.termTaxonomies.push(tt)
+				});
+				this.setDerty(true);
+			});
+	}
+
+	removeTermTaxonomy(termTaxonomy) {
+		this.model.termTaxonomies = removeItemFromCollection(this.model.termTaxonomies, termTaxonomy);
+		this.setDerty(true);
+	}
+
 }
 
+// TODO: move this function to $mbResource
+export function guessResourceTypeFromName($name) {
+	var $type;
+	switch ($name) {
+		case 'image':
+		case 'favicon':
+		case 'link.cover':
+		case 'og:image':
+			$type = 'image-url';
+			break;
+		case 'color':
+			$type = 'color';
+		default:
+			$type = null;
+	}
+	return $type;
+}
 
-
-//($state, $editor, $scope, /*$mbActions,*/ $controller, $q, $mbResource,
-//	$cms, CmsContent, CmsContentMetadata) {
-//
-//	//-------------------------------------------------------------------------
-//	// Variables
-//	//-------------------------------------------------------------------------
-//
-//	var ctrl = this;
-//	var content;
-//	var metadata;
-//	var termTaxonomies;
-//
-//
-//	//-------------------------------------------------------------------------
-//	// functions: util
-//	//-------------------------------------------------------------------------
-//
-//	function getItemIndex(collection, item) {
-//		for (var i = 0; i < collection.length; i++) {
-//			if (collection[i].id === item.id) {
-//				return i;
-//			}
-//		}
-//		return -1;
-//	}
-//
-//	function addToCollection(collection, item) {
-//		var index = getItemIndex(collection, item);
-//		if (index >= 0) {
-//			collection[index] = item;
-//		} else {
-//			collection.push(item);
-//		}
-//	}
-//
-//	function removeFromCollection(collection, item) {
-//		var index = getItemIndex(collection, item);
-//		if (index >= 0) {
-//			collection.splice(index, 1);
-//		}
-//	}
-//
-//	//-------------------------------------------------------------------------
-//	// functions: term-taxonomies
-//	//-------------------------------------------------------------------------
-//	function addTermTaxonomy($event) {
-//		return $mbResource
-//			.get(AMD_CMS_TERMTAXONOMIES_RT, {
-//				style: {
-//					title: 'Term taxonomy',
-//				},
-//				targetEvent: $event,
-//			})
-//			.then(function(termTaxonomies) {
-//				var jobs = [];
-//				var vlaues = [];
-//				_.forEach(termTaxonomies, function(tt) {
-//					jobs.push(content.putTermTaxonomy(tt)
-//						.then(function(newtt) {
-//							vlaues.push(newtt);
-//						}));
-//				});
-//				ctrl.isTermtaxonomiesBusy = $q.all(jobs)
-//					.finally(function() {
-//						ctrl.fireCreated(contentTermTaxonomiesAssos, vlaues);
-//						delete ctrl.isTermtaxonomiesBusy;
-//					});
-//				return ctrl.isTermtaxonomiesBusy;
-//			});
-//	}
-//
-//	function deleteTermTaxonomy(termTaxonomy) {
-//		ctrl.isTermtaxonomiesBusy = content.deleteTermTaxonomy(termTaxonomy)
-//			.then(function() {
-//				ctrl.fireDeleted(termTaxonomy, termTaxonomy);
-//			})
-//			.finally(function() {
-//				delete ctrl.isTermtaxonomiesBusy;
-//			});
-//		return ctrl.isTermtaxonomiesBusy;
-//	}
-//
-//	//-------------------------------------------------------------------------
-//	// functions: metadata
-//	//-------------------------------------------------------------------------
-//	function createMetadata($event) {
-//		return $mbResource
-//			.get(AMD_CMS_METADATA_RT, {
-//				style: {
-//					title: 'Microdatume',
-//				},
-//				targetEvent: $event,
-//			})
-//			.then(function(metadata) {
-//				var jobs = [];
-//				var values = [];
-//				_.forEach(metadata, function(metadatum) {
-//					// TODO: maso, 2020: log error of each jobs
-//					jobs.push(content.putMetadatum(metadatum)
-//						.then(function(newMetadatum) {
-//							values.push(newMetadatum);
-//						}));
-//				});
-//				ctrl.isMicrodataBusy = $q.all(jobs)
-//					.finally(function() {
-//						ctrl.fireCreated(AMD_CMS_METADATA_SP, values);
-//						delete ctrl.isMicrodataBusy;
-//					});
-//				return ctrl.isMicrodataBusy;
-//			});
-//	}
-//
-//	function deleteMetadata(microdata, $event) {
-//		$event = $event || {};
-//		$event.values = [microdata];
-//		return $mbActions.exec(AMD_CMS_CONTENT_METADATA_DELET_ACTION, $event);
-//	}
-//
-//	function updateMetadata(microdata) {
-//		ctrl.isMicrodataBusy = microdata.update()
-//			.then(function(newMicrodatum) {
-//				ctrl.fireUpdated(AMD_CMS_METADATA_SP, newMicrodatum);
-//			}, function(/*error*/) {
-//				// TODO: maso, 2020: Log error
-//				alert('Fail to update Microdatum.');
-//			})
-//			.finally(function() {
-//				delete ctrl.isMicrodataBusy;
-//			});
-//		return ctrl.isMicrodataBusy;
-//	}
-//
-//
-//
-//	//-------------------------------------------------------------------------
-//	// functions: load
-//	//-------------------------------------------------------------------------
-//	function setContent(newContent) {
-//		content = new CmsContent(newContent);
-//		ctrl.content = content;
-//	}
-//
-//	function setTermTaxonomies(termTaxonomiesValues) {
-//		termTaxonomies = termTaxonomiesValues;
-//		ctrl.termTaxonomies = termTaxonomies;
-//	}
-//
-//	function setMetadata(metadataValue) {
-//		metadata = [];
-//		for (var i = 0; i < metadataValue.length; i++) {
-//			var item = new CmsContentMetadata(metadataValue[i]);
-//			item.content_id = content.id;
-//			metadata.push(item);
-//		}
-//		ctrl.metadata = metadata;
-//	}
-//
-//
-//
-//
-//	//-------------------------------------------------------------------------
-//	// End 
-//	//-------------------------------------------------------------------------
-//	ctrl.addEventHandler(AMD_CMS_CONTENT_SP, function(event) {
-//		if (!content) {
-//			return;
-//		}
-//		_.forEach(event.values, function(value) {
-//			if (value.id === content.id) {
-//				switch (event.key) {
-//					case 'create':
-//					case 'update':
-//						_.assign(content, value);
-//						break;
-//					case 'delete':
-//						$editor.close();
-//						break;
-//				}
-//			}
-//		});
-//	});
-//
-//	ctrl.addEventHandler(AMD_CMS_METADATA_SP, function(data) {
-//		if (!content) {
-//			return;
-//		}
-//		_.forEach(data.values, function(value) {
-//			if (value.content_id !== content.id) {
-//				return;
-//			}
-//			switch (data.key) {
-//				case 'create':
-//				case 'update':
-//					addToCollection(metadata, value);
-//					break;
-//				case 'delete':
-//					removeFromCollection(metadata, value);
-//					break;
-//			}
-//		});
-//	});
-//
-//
-//	ctrl.addEventHandler(contentTermTaxonomiesAssos, function(data) {
-//		if (!content) {
-//			return;
-//		}
-//		_.forEach(data.values, function(value) {
-//			switch (data.key) {
-//				case 'create':
-//				case 'update':
-//					addToCollection(termTaxonomies, value);
-//					break;
-//				case 'delete':
-//					removeFromCollection(termTaxonomies, value);
-//					break;
-//			}
-//		});
-//	});
-//
-//
-//
-//	_.assign(ctrl, {
-//		isBusy: false,
-//		isContentBusy: false,
-//		isMetadataBusy: false,
-//		isTermTaxonomiesBusy: false,
-//
-//		//>> general
-//		reload: reload,
-//
-//		//>> content
-//		deleteContent: deleteContent,
-//		updateContent: updateContent,
-//		uploadFile: uploadFile,
-//
-//		//>> metadata
-//		updateMetadata: updateMetadata,
-//		deleteMetadata: deleteMetadata,
-//		createMetadata: createMetadata,
-//
-//		//>> term-taxonomies
-//		addTermTaxonomy: addTermTaxonomy,
-//		deleteTermTaxonomy: deleteTermTaxonomy,
-//	});
-//
-//	reload();
-//}
 
 
 export default {

@@ -1,5 +1,5 @@
 import templateUrl from './propertiesPage.html';
-import Constants from '../../Constants';
+import * as Constants from '../../Constants';
 
 export default {
 	title: 'Properties',

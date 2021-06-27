@@ -29,6 +29,7 @@ export const AMD_CMS_VIEW_IMAGES_PATH = '/cms/images';
 // ACTIONS
 //------------------------------------------------------------
 export const AMD_CMS_CONTENTS_CREATE_ACTION = 'amd.cms.contents.create';
+export const AMD_CMS_CONTENTS_READ_ACTION = 'amd.cms.contents.read';
 export const AMD_CMS_CONTENTS_UPDATE_ACTION = 'amd.cms.contents.update';
 export const AMD_CMS_CONTENTS_DELETE_ACTION = 'amd.cms.contents.delete';
 export const AMD_CMS_CONTENTS_EDIT_ACTION = 'amd.cms.contents.edit';

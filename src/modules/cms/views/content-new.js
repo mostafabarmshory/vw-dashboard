@@ -1,13 +1,13 @@
 import templateUrl from './content-new.html';
 import $mbActions from 'mblowfish/src/services/mbActions';
+import $mbCrypto from 'mblowfish/src/services/mbCrypto';
 
 export class MbCmsContentNewView {
 
-	constructor($scope, $mbCrypto) {
+	constructor() {
 		'ngInject';
 		this.savingContent = false;
-		this.$scope = $scope;
-		this.$mbCrypto = $mbCrypto;
+		this.reload();
 	}
 
 	cancel() {
@@ -27,20 +27,16 @@ export class MbCmsContentNewView {
 			.exec(AMD_CMS_CONTENTS_CREATE_ACTION, {
 				values: [data],
 			})
-			.then(function() {
-				reload();
-			})
-			.finally(function() {
-				delete ctrl.savingContent;
-			});
+			.then(() => this.reload())
+			.finally(() => delete this.savingContent);
 	}
 
 	generateRandomName() {
-		this.$scope.config.model.name = $mbCrypto.uuid();
+		this.config.model.name = $mbCrypto.uuid();
 	}
 
 	reload() {
-		this.$scope.config = {
+		this.config = {
 			model: {},
 			files: []
 		};

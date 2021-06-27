@@ -22,6 +22,36 @@
 
 
 /**
+ * Link data and view
+ */
+function postLink(scope, attr, elem, ngModel) {
+	/*
+	 * Load types
+	 */
+	ngModel.$render = function() {
+		var content = ngModel.$viewValue;
+		var icon = 'insert_drive_file';
+		if (!content) {
+			scope.icon = icon;
+			return;
+		}
+		var mime_type = content.mime_type;
+		if (angular.isArray(mime_type.match(/.*(ogg|mp3|mpeg).*/i))) {
+			icon = 'audiotrack';
+		} else if (angular.isArray(mime_type.match(/.*(video).*/i))) {
+			icon = 'video_library';
+		} else if (angular.isArray(mime_type.match(/.*(image).*/i))) {
+			icon = 'image';
+		} else if (angular.isArray(mime_type.match(/.*(weburger).*/i))) {
+			icon = 'chrome_reader_mode';
+		} else {
+			icon = 'insert_drive_file';
+		}
+		scope.icon = icon;
+	};
+}
+
+/**
 @ngdoc Directive
 @name amd-content-icon
 @description 
@@ -29,43 +59,12 @@
 Display an icon for the current content
  */
 export default function() {
-
-	/**
-	 * Link data and view
-	 */
-	function postLink(scope, attr, elem, ngModel) {
-		/*
-		 * Load types
-		 */
-		ngModel.$render = function(){
-			var content = ngModel.$viewValue;
-			var icon = 'insert_drive_file';
-			if(!content){
-				scope.icon = icon;
-				return;
-			}
-			var mime_type = content.mime_type;
-			if(angular.isArray(mime_type.match(/.*(ogg|mp3|mpeg).*/i))){
-				icon = 'audiotrack';
-			} else if(angular.isArray(mime_type.match(/.*(video).*/i))){
-				icon = 'video_library';
-			} else if(angular.isArray(mime_type.match(/.*(image).*/i))){
-				icon = 'image';
-			} else if(angular.isArray(mime_type.match(/.*(weburger).*/i))){
-				icon = 'chrome_reader_mode';
-			} else {
-				icon = 'insert_drive_file';
-			}
-			scope.icon = icon;
-		};
-	}
-	
 	return {
-		restrict : 'E',
-		transclude : false,
+		restrict: 'E',
+		transclude: false,
 		replace: true,
 		require: 'ngModel',
-		template : '<mb-icon>{{::icon}}</mb-icon>',
+		template: '<mb-icon>{{::icon}}</mb-icon>',
 		link: postLink
 	};
 }

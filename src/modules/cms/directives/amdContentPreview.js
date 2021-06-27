@@ -20,54 +20,55 @@
  * SOFTWARE.
  */
 import templateUrl from './amdContentPreview.html';
+
+/**
+ * Link data and view
+ */
+function postLink(scope, attr, elem, ngModel) {
+
+	function loadContent(content) {
+		if (scope.loadingModel) {
+			return;
+		}
+		scope.loadingModel = true;
+		return content.downloadValue()
+			.then(function(model) {
+				scope.model = model;
+			})
+			.finally(function() {
+				scope.loadingModel = false;
+			});
+	}
+	/*
+	 * Load types
+	 */
+	ngModel.$render = function() {
+		scope.content = ngModel.$viewValue;
+		if (!scope.content) {
+			scope.type = 'unknown';
+			return;
+		}
+		if (angular.isArray(scope.content.mime_type.match(/.*(ogg|mp3|mpeg).*/i))) {
+			scope.type = 'audio';
+		} else if (angular.isArray(scope.content.mime_type.match(/.*(video).*/i))) {
+			scope.type = 'video';
+		} else if (angular.isArray(scope.content.mime_type.match(/.*(image).*/i))) {
+			scope.type = 'image';
+		} else if (angular.isArray(scope.content.mime_type.match(/.*(weburger).*/i))) {
+			scope.type = 'weburger';
+			loadContent(scope.content);
+		} else {
+			scope.type = 'unknown';
+		}
+	};
+}
+
 /**
 @ngdoc directive
 @name wbInfinateScroll
 @description # wbInfinateScroll
  */
 export default function() {
-
-	/**
-	 * Link data and view
-	 */
-	function postLink(scope, attr, elem, ngModel) {
-
-		function loadContent(content) {
-			if (scope.loadingModel) {
-				return;
-			}
-			scope.loadingModel = true;
-			return content.downloadValue()
-				.then(function(model) {
-					scope.model = model;
-				})
-				.finally(function() {
-					scope.loadingModel = false;
-				});
-		}
-		/*
-		 * Load types
-		 */
-		ngModel.$render = function() {
-			scope.content = ngModel.$viewValue;
-			if (!scope.content) {
-				scope.type = 'unknown';
-				return;
-			}
-			if (angular.isArray(scope.content.mime_type.match(/.*(ogg|mp3|mpeg).*/i))) {
-				scope.type = 'audio';
-			} else if (angular.isArray(scope.content.mime_type.match(/.*(video).*/i))) {
-				scope.type = 'video';
-			} else if (angular.isArray(scope.content.mime_type.match(/.*(image).*/i))) {
-				scope.type = 'image';
-			} else if (angular.isArray(scope.content.mime_type.match(/.*(weburger).*/i))) {
-				scope.type = 'weburger';
-				loadContent(scope.content);
-			} else {
-				scope.type = 'unknown';
-			}
-		};
-	}
 
 	return {
 		restrict: 'E',

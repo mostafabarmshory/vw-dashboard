@@ -1,7 +1,7 @@
 <md-content style="overflow: auto;">
 	<form 
 		name="contentForm"
-		ng-action="ctrl.add(config)"
+		ng-action="ctrl.add(ctrl.config)"
 		mb-preloading="ctrl.savingContent"
 		layout-margin
 		layout="column"
@@ -9,7 +9,10 @@
 		<md-input-container
 			class="md-icon-float md-icon-right md-block">
 			<label mb-translate>Name</label>
-			<input name="name" ng-model="config.model.name" required></input>
+			<input 
+				name="name" 
+				ng-model="ctrl.config.model.name" 
+				required></input>
 			<div ng-messages="contentForm.name.$error">
 				<div ng-message="required">This is required!</div>
 			</div>
@@ -18,18 +21,18 @@
 		
 		<md-input-container>
 			<label mb-translate>Title</label>
-			<textarea ng-model="config.model.title"></textarea>
+			<textarea ng-model="ctrl.config.model.title"></textarea>
 		</md-input-container>
 
 		<md-input-container>
 			<label mb-translate>Description</label>
-			<textarea ng-model="config.model.description"></textarea>
+			<textarea ng-model="ctrl.config.model.description"></textarea>
 		</md-input-container>
 
 		<md-input-container>
 			<mb-file-input
 				name="files"
-				ng-model="config.files"
+				ng-model="ctrl.config.files"
 				mb-progress
 				mb-preview
 				mb-drag
@@ -44,7 +47,7 @@
 			<span flex></span>
 			<md-button
 				class="md-raised" 
-				ng-click="ctrl.add(config)">
+				ng-click="ctrl.add(ctrl.config)">
 				<mb-icon aria-label="close">done</mb-icon>
 				<span mb-translate>Add</span>
 			</md-button>

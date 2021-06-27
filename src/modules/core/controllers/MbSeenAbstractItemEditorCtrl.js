@@ -54,12 +54,15 @@ export default class MbSeenAbstractItemEditorCtrl extends MbSeenAbstractCtrl {
 		if (this.$eventHandlerCallBack) {
 			return this.$eventHandlerCallBack;
 		}
-		var ctrl = this;
-		this.$eventHandlerCallBack = function($event) {
+		this.$eventHandlerCallBack = ($event) => {
+			if (!this.model) {
+				return;
+			}
 			var isMatch = false;
 			var values = $event.values;
-			_.forEach(values, function(value) {
-				if (value.id === ctrl.model.id) {
+			var id = this.model.id;
+			values.forEach((value) => {
+				if (value.id === id) {
 					isMatch = true;
 				}
 			});
@@ -70,9 +73,12 @@ export default class MbSeenAbstractItemEditorCtrl extends MbSeenAbstractCtrl {
 				case 'delete':
 					this.$editor.close();
 					break;
+				case 'read':
+					// may be in loop
+					break;
 				default:
-					if (_.isFunction(ctrl.reload)) {
-						ctrl.reload();
+					if (_.isFunction(this.reload)) {
+						this.reload();
 					}
 					break;
 			}

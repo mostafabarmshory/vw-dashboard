@@ -2,9 +2,8 @@
 import MbCmsContentsCtrl from './MbCmsContentsCtrl';
 /**
 
-@ngInject
  */
-export class MbCmsContentsCtrl extends MbCmsContentsCtrl {
+export default class MbCmsContentsUrlCtrl extends MbCmsContentsCtrl {
 
 	constructor($scope, $q, $mbLog, $cms, $resource) {
 		'ngInject';
